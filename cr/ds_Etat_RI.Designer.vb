@@ -1581,6 +1581,12 @@ Partial Public Class ds_Etat_RI
         
         Private columnPrincEmplIdent As Global.System.Data.DataColumn
         
+        Private columnNumSerie As Global.System.Data.DataColumn
+        
+        Private columnImmatPlaque As Global.System.Data.DataColumn
+        
+        Private columnImmatCertif As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1873,6 +1879,30 @@ Partial Public Class ds_Etat_RI
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property NumSerieColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNumSerie
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ImmatPlaqueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnImmatPlaque
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ImmatCertifColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnImmatCertif
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1941,9 +1971,12 @@ Partial Public Class ds_Etat_RI
                     ByVal PrincAttelage As String,  _
                     ByVal PrincType As String,  _
                     ByVal PrincCategorie As String,  _
-                    ByVal PrincEmplIdent As String) As MaterielRow
+                    ByVal PrincEmplIdent As String,  _
+                    ByVal NumSerie As String,  _
+                    ByVal ImmatPlaque As String,  _
+                    ByVal ImmatCertif As String) As MaterielRow
             Dim rowMaterielRow As MaterielRow = CType(Me.NewRow,MaterielRow)
-            Dim columnValuesArray() As Object = New Object() {Identifiant, Marque, Modele, Capacite, LargeurNbRangs, Annee, Type, Categorie, Attelage, Regulation, TypeBuse, Fonctionnement, TypeDeJet, DebitBuse, EmplacementIdentifiant, SIRENProprietaire, NumeroControle, BuseMarque, BuseModele, Utilisation, Accessoires, TypeLargeurNbRangs, AncienIdentifiant, isPulveAdditionnel, PrincNumNat, PrincMarque, PrincModele, PrincCapacite, PrincAttelage, PrincType, PrincCategorie, PrincEmplIdent}
+            Dim columnValuesArray() As Object = New Object() {Identifiant, Marque, Modele, Capacite, LargeurNbRangs, Annee, Type, Categorie, Attelage, Regulation, TypeBuse, Fonctionnement, TypeDeJet, DebitBuse, EmplacementIdentifiant, SIRENProprietaire, NumeroControle, BuseMarque, BuseModele, Utilisation, Accessoires, TypeLargeurNbRangs, AncienIdentifiant, isPulveAdditionnel, PrincNumNat, PrincMarque, PrincModele, PrincCapacite, PrincAttelage, PrincType, PrincCategorie, PrincEmplIdent, NumSerie, ImmatPlaque, ImmatCertif}
             rowMaterielRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowMaterielRow)
             Return rowMaterielRow
@@ -2004,6 +2037,9 @@ Partial Public Class ds_Etat_RI
             Me.columnPrincType = MyBase.Columns("PrincType")
             Me.columnPrincCategorie = MyBase.Columns("PrincCategorie")
             Me.columnPrincEmplIdent = MyBase.Columns("PrincEmplIdent")
+            Me.columnNumSerie = MyBase.Columns("NumSerie")
+            Me.columnImmatPlaque = MyBase.Columns("ImmatPlaque")
+            Me.columnImmatCertif = MyBase.Columns("ImmatCertif")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2073,6 +2109,12 @@ Partial Public Class ds_Etat_RI
             MyBase.Columns.Add(Me.columnPrincCategorie)
             Me.columnPrincEmplIdent = New Global.System.Data.DataColumn("PrincEmplIdent", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrincEmplIdent)
+            Me.columnNumSerie = New Global.System.Data.DataColumn("NumSerie", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNumSerie)
+            Me.columnImmatPlaque = New Global.System.Data.DataColumn("ImmatPlaque", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnImmatPlaque)
+            Me.columnImmatCertif = New Global.System.Data.DataColumn("ImmatCertif", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnImmatCertif)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Materiel_constraint1", New Global.System.Data.DataColumn() {Me.columnIdentifiant}, true))
             Me.columnIdentifiant.AllowDBNull = false
             Me.columnIdentifiant.Unique = true
@@ -5248,6 +5290,51 @@ Partial Public Class ds_Etat_RI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property NumSerie() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableMateriel.NumSerieColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'NumSerie' dans la table 'Materiel' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableMateriel.NumSerieColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ImmatPlaque() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableMateriel.ImmatPlaqueColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'ImmatPlaque' dans la table 'Materiel' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableMateriel.ImmatPlaqueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ImmatCertif() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableMateriel.ImmatCertifColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'ImmatCertif' dans la table 'Materiel' est DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableMateriel.ImmatCertifColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsMarqueNull() As Boolean
             Return Me.IsNull(Me.tableMateriel.MarqueColumn)
         End Function
@@ -5592,6 +5679,42 @@ Partial Public Class ds_Etat_RI
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPrincEmplIdentNull()
             Me(Me.tableMateriel.PrincEmplIdentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsNumSerieNull() As Boolean
+            Return Me.IsNull(Me.tableMateriel.NumSerieColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetNumSerieNull()
+            Me(Me.tableMateriel.NumSerieColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsImmatPlaqueNull() As Boolean
+            Return Me.IsNull(Me.tableMateriel.ImmatPlaqueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetImmatPlaqueNull()
+            Me(Me.tableMateriel.ImmatPlaqueColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsImmatCertifNull() As Boolean
+            Return Me.IsNull(Me.tableMateriel.ImmatCertifColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetImmatCertifNull()
+            Me(Me.tableMateriel.ImmatCertifColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

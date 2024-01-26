@@ -259,10 +259,15 @@ Public Class ajouter_profil
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.
                                 objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
                                 'Update de cet agent avec l'agent recu pas WS
+                                objAgent.idCRODIPPool = ""
                                 AgentManager.save(objAgent)
-                                    MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
-                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
-                                Else
+                                'Création du pool de la structure
+                                oStructure.CreatePool()
+                                MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
+                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
+                                CSEnvironnement.delPid()
+                                Application.Exit()
+                            Else
                                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If

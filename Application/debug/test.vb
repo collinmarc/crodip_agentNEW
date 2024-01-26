@@ -1002,9 +1002,7 @@ Public Class test
 #Region " Referentiel "
 
 
-    Private Sub btnReferentiel_pulverisateur_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReferentiel_pulverisateur.Click
-        ReferentielPulverisateurManager.getWSReferentielPulverisateur()
-    End Sub
+
 
     Private Sub btnReferentiel_manometre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReferentiel_manometre.Click
         ReferentielManometreManager.getWSReferentielManometre()

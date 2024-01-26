@@ -234,17 +234,17 @@ Public Class SynchronisationElmt
                         bReturn = False
                     End Try
                 End If
-            Case "GetReferentielPulverisateur".ToUpper().Trim()
-                If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
-                    Try
-                        setStatus("Réception MAJ référentiel des marques de pulvérisateur...")
-                        ReferentielPulverisateurManager.getWSReferentielPulverisateur()
-                        bReturn = True
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runDescSynchro(GetReferentielPulverisateur) : " & ex.Message.ToString)
-                        bReturn = False
-                    End Try
-                End If
+            'Case "GetReferentielPulverisateur".ToUpper().Trim()
+            '    If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
+            '        Try
+            '            setStatus("Réception MAJ référentiel des marques de pulvérisateur...")
+            '            ReferentielPulverisateurManager.getWSReferentielPulverisateur()
+            '            bReturn = True
+            '        Catch ex As Exception
+            '            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetReferentielPulverisateur) : " & ex.Message.ToString)
+            '            bReturn = False
+            '        End Try
+            '    End If
             Case "GetReferentielPulverisateurMarquesModeles".ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
                     Try

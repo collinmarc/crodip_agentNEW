@@ -217,18 +217,22 @@ Public Class apropos
     End Sub
 
     Private Sub btn_RAZBase_Click(sender As Object, e As EventArgs) Handles btn_RAZBase.Click
-        If MsgBox("ATTENTION, Cette action supprime toutes les données de votre base, il faudra faire une synchronisation complête pour retrouver vos données, Etes-vous sur de vouloir supprimer toutes les données de votre Base ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation de la base de données") = MsgBoxResult.Yes Then
-            If MsgBox("Etes-vous sur de vouloir supprimer toutes les données de votre Base ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation de la base de données") = MsgBoxResult.Yes Then
-                Try
+        If InputBox("Mot de passe", "Réinitialisation de la base") = "Crodip35" Then
 
-                    Dim oCSDB As New CSDb(True)
-                    oCSDB.RAZ_BASE_DONNEES()
-                    oCSDB.free()
-                    MsgBox("Votre base de données a été réinitialisée, veuillez vous reconnecter pour réaliser un synchronisation complête", MsgBoxStyle.OkOnly)
-                    Application.Exit()
-                Catch ex As Exception
-                    CSDebug.dispFatal("Apropos.RAZBASE ERR" & ex.Message)
-                End Try
+            If MsgBox("ATTENTION, Cette action supprime toutes les données de votre base, il faudra faire une synchronisation complête pour retrouver vos données, Etes-vous sur de vouloir supprimer toutes les données de votre Base ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation de la base de données") = MsgBoxResult.Yes Then
+                If MsgBox("Etes-vous sur de vouloir supprimer toutes les données de votre Base ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation de la base de données") = MsgBoxResult.Yes Then
+                    Try
+
+                        Dim oCSDB As New CSDb(True)
+                        oCSDB.RAZ_BASE_DONNEES()
+                        oCSDB.free()
+                        MsgBox("Votre base de données a été réinitialisée, veuillez vous reconnecter pour réaliser un synchronisation complête", MsgBoxStyle.OkOnly)
+                        CSEnvironnement.delPid()
+                        Application.Exit()
+                    Catch ex As Exception
+                        CSDebug.dispFatal("Apropos.RAZBASE ERR" & ex.Message)
+                    End Try
+                End If
             End If
         End If
     End Sub

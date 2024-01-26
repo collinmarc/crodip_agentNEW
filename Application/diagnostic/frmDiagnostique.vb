@@ -1261,7 +1261,7 @@ Public Class FrmDiagnostique
                     For Each tmpDiagnosticMano542 In m_diagnostic.diagnosticMano542List.Liste
                         ' Récupération des contrôles
                         'tmpTxtBox_pressionPulve = CSForm.getControlByName("manopulvePressionPulve_" & curPression, manopulvePression_panel_manoPulve)
-                        tmpTxtBox_pressionControle = CSForm.getControlByName("manopulvePressionControle_" & curPression, manopulvePression_panel_manoAgent)
+                        tmpTxtBox_pressionControle = CSForm.getControlByName("manopulvePressionControle_" & curPression, pnl542)
                         '################################################################################################
                         'If Not tmpTxtBox_pressionPulve Is Nothing Then
                         'tmpTxtBox_pressionPulve.Text = tmpDiagnosticMano542.pressionPulve
@@ -1407,57 +1407,57 @@ Public Class FrmDiagnostique
 
 #Region " OLD - Loaders "
 
-    Public Sub loaderMano()
+    'Public Sub loaderMano()
 
-        Dim positionTop As Integer = 0
-        For i As Integer = 1 To 12
+    '    Dim positionTop As Integer = 0
+    '    For i As Integer = 1 To 12
 
-            If positionTop = 0 Then
-                positionTop = 8
-            Else
-                positionTop = positionTop + 24
-            End If
+    '        If positionTop = 0 Then
+    '            positionTop = 8
+    '        Else
+    '            positionTop = positionTop + 24
+    '        End If
 
-            '## Mano pulvé
-            Dim tmpManoPulve As New CRODIP_ControlLibrary.TBNumeric
-            tmpManoPulve.Name = "manopulvePressionPulve_" & i
-            Controls.Add(tmpManoPulve)
-            ' Position
-            tmpManoPulve.Parent = manopulvePression_panel_manoPulve
-            tmpManoPulve.Left = 16
-            tmpManoPulve.Top = positionTop
-            ' Taille
-            tmpManoPulve.Width = 128
-            '            AddHandler tmpManoPulve.TextChanged, AddressOf calcErrMano
+    '        '## Mano pulvé
+    '        Dim tmpManoPulve As New CRODIP_ControlLibrary.TBNumeric
+    '        tmpManoPulve.Name = "manopulvePressionPulve_" & i
+    '        Controls.Add(tmpManoPulve)
+    '        ' Position
+    '        tmpManoPulve.Parent = manopulvePression_panel_manoPulve
+    '        tmpManoPulve.Left = 16
+    '        tmpManoPulve.Top = positionTop
+    '        ' Taille
+    '        tmpManoPulve.Width = 128
+    '        '            AddHandler tmpManoPulve.TextChanged, AddressOf calcErrMano
 
-            '## Mano Agent
-            Dim tmpManoAgent As New CRODIP_ControlLibrary.TBNumeric
-            tmpManoAgent.Name = "manopulvePressionAgent_" & i
-            Controls.Add(tmpManoAgent)
-            ' Position
-            tmpManoAgent.Parent = manopulvePression_panel_manoAgent
-            tmpManoAgent.Left = 16
-            tmpManoAgent.Top = positionTop
-            ' Taille
-            tmpManoAgent.Width = 128
-            'AddHandler tmpManoAgent.TextChanged, AddressOf calcErrMano
+    '        '## Mano Agent
+    '        Dim tmpManoAgent As New CRODIP_ControlLibrary.TBNumeric
+    '        tmpManoAgent.Name = "manopulvePressionAgent_" & i
+    '        Controls.Add(tmpManoAgent)
+    '        ' Position
+    '        tmpManoAgent.Parent = manopulvePression_panel_manoAgent
+    '        tmpManoAgent.Left = 16
+    '        tmpManoAgent.Top = positionTop
+    '        ' Taille
+    '        tmpManoAgent.Width = 128
+    '        'AddHandler tmpManoAgent.TextChanged, AddressOf calcErrMano
 
-            '## Erreur
-            Dim tmpErreur As New CRODIP_ControlLibrary.TBNumeric
-            tmpErreur.Name = "errPression_" & i
-            Controls.Add(tmpErreur)
-            ' Position
-            tmpErreur.Parent = manopulvePression_panel_erreur
-            tmpErreur.Left = 16
-            tmpErreur.Top = positionTop
-            ' Taille
-            tmpErreur.Width = 128
-            tmpErreur.ReadOnly = True
+    '        '## Erreur
+    '        Dim tmpErreur As New CRODIP_ControlLibrary.TBNumeric
+    '        tmpErreur.Name = "errPression_" & i
+    '        Controls.Add(tmpErreur)
+    '        ' Position
+    '        tmpErreur.Parent = manopulvePression_panel_erreur
+    '        tmpErreur.Left = 16
+    '        tmpErreur.Top = positionTop
+    '        ' Taille
+    '        tmpErreur.Width = 128
+    '        tmpErreur.ReadOnly = True
 
-        Next
+    '    Next
 
-    End Sub
-    'Public Sub loaderTroncon()
+    'End Sub
+    ''Public Sub loaderTroncon()
 
     '    For x As Integer = 2 To 3
     '        Dim positionTop As Integer = 0
@@ -1732,15 +1732,15 @@ Public Class FrmDiagnostique
     ' RESETS
     Public Sub manoPulveResetValues_line(ByVal numLine As Integer)
         Try
-            Dim manopulvePressionEcart As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionEcart_" & numLine, Panel48)
-            Dim manopulvePressionImprecision As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionImprecision_" & numLine, Panel48)
+            Dim manopulvePressionEcart As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionEcart_" & numLine, pnl542)
+            Dim manopulvePressionImprecision As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionImprecision_" & numLine, pnl542)
             manopulvePressionEcart.Text = ""
             manopulvePressionImprecision.Text = ""
             manopulvePressionImprecision.BackColor = System.Drawing.SystemColors.Control
 
             Dim isEmpty As Boolean = True
             For i As Integer = 1 To 4
-                Dim tmpManopulvePressionLue As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionLue_" & i, Panel48)
+                Dim tmpManopulvePressionLue As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionLue_" & i, pnl542)
                 If tmpManopulvePressionLue.Text <> "" Then
                     isEmpty = False
                 End If
@@ -1787,7 +1787,7 @@ Public Class FrmDiagnostique
                 rb542IsFaiblePression.Checked = True
 
             Else
-                rb542IsSaisieManuelleFaible.Checked = True
+                ckSaisieManuelle542.Checked = True
             End If
 
         Catch ex As Exception
@@ -8110,7 +8110,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             If rb542IsFaiblePression.Checked Then
                 If Not m_bDuringLoad Then
-                    setPressionsFaibles(False)
+                    setPressionsFaibles(ckSaisieManuelle542.Checked)
                 End If
             End If
         Catch ex As Exception
@@ -8298,25 +8298,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         'CSDebug.dispInfo("manopulveIsFortePression_CheckedChanged_1")
         If rb542IsFortePression.Checked Then
             If Not m_bDuringLoad Then
-                setPressionsFortes(False)
+                setPressionsFortes(ckSaisieManuelle542.Checked)
             End If
         End If
 
     End Sub
 
-    Private Sub rb542IsSaisieManuelleFaible_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsSaisieManuelleFaible.CheckedChanged
-        'CSDebug.dispInfo("manopulveIsSaisieManuelle_CheckedChanged_1")
-        If rb542IsSaisieManuelleFaible.Checked And Not m_bDuringLoad Then
-            setPressionsFaibles(True)
+    Private Sub ckSaisieManuelle542_CheckedChanged(sender As Object, e As EventArgs) Handles ckSaisieManuelle542.CheckedChanged
+        If Not m_bDuringLoad Then
+            If rb542IsFortePression.Checked Then
+                setPressionsFortes(ckSaisieManuelle542.Checked)
+            End If
+            If rb542IsFaiblePression.Checked Then
+                setPressionsFaibles(ckSaisieManuelle542.Checked)
+            End If
         End If
-
-    End Sub
-    Private Sub rb542IsSaisieManuelleForte_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsSaisieManuelleForte.CheckedChanged
-        'CSDebug.dispInfo("manopulveIsSaisieManuelle_CheckedChanged_1")
-        If rb542IsSaisieManuelleForte.Checked And Not m_bDuringLoad Then
-            setPressionsFortes(True)
-        End If
-
     End Sub
     Private Sub setPressionsFaibles(pbSaisieManuelle As Boolean)
         Try
@@ -8631,19 +8627,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             init542()
             init833()
             If rb542IsFaiblePression.Checked Then
-                setPressionsFaibles(pbSaisieManuelle:=False)
+                setPressionsFaibles(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
             Else
-                If rb542IsFortePression.Checked Then
-                    setPressionsFortes(pbSaisieManuelle:=False)
-                Else
-                    If rb542IsSaisieManuelleFaible.Checked Then
-                        setPressionsFaibles(pbSaisieManuelle:=True)
-                    Else
-                        setPressionsFortes(pbSaisieManuelle:=True)
-                    End If
-
-                End If
-
+                setPressionsFortes(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
             End If
             'Affichage des valeurs 
             '            If Not m_bDuringLoad Then
@@ -11057,4 +11043,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
 
     End Sub
+
+
 End Class

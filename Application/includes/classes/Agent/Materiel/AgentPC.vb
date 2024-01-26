@@ -82,8 +82,7 @@ Public Class AgentPC
             End If
 
 
-            Dim IDLu As String =
-            Registry.GetValue(keyName, "POOL", "")
+            Dim IDLu As String = Registry.GetValue(keyName, "POOL", "")
             If IDLu.Equals(Me.numInterne) Then
                 bReturn = True
             Else

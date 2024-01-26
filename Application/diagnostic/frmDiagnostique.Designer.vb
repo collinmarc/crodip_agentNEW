@@ -613,6 +613,27 @@ Partial Class FrmDiagnostique
         Me.tbMoyenne4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.pressionTronc_20_pressionManoPulve = New CRODIP_ControlLibrary.TBNumeric()
         Me.pnl542 = New System.Windows.Forms.Panel()
+        Me.manopulvePressionImprecision_1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionImprecision_2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionEcart_1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionImprecision_3 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionImprecision_4 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionEcart_2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionControle_2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionEcart_3 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionEcart_4 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionPulve_3 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionControle_3 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionControle_4 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionPulve_4 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionPulve_2 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionPulve_1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.manopulvePressionControle_1 = New CRODIP_ControlLibrary.TBNumeric()
+        Me.Label224 = New System.Windows.Forms.Label()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.ckSaisieManuelle542 = New System.Windows.Forms.CheckBox()
         Me.btnRecalculer = New System.Windows.Forms.Label()
         Me.manopulveIsUseCalibrateur = New System.Windows.Forms.CheckBox()
         Me.rb542IsFaiblePression = New System.Windows.Forms.RadioButton()
@@ -624,43 +645,9 @@ Partial Class FrmDiagnostique
         Me.manopulveResultat = New System.Windows.Forms.Label()
         Me.Label226 = New System.Windows.Forms.Label()
         Me.Lbl_diagnostic_542 = New System.Windows.Forms.Label()
-        Me.Panel48 = New System.Windows.Forms.Panel()
-        Me.Panel54 = New System.Windows.Forms.Panel()
-        Me.Label70 = New System.Windows.Forms.Label()
-        Me.Panel53 = New System.Windows.Forms.Panel()
-        Me.Label69 = New System.Windows.Forms.Label()
-        Me.Panel52 = New System.Windows.Forms.Panel()
-        Me.Label66 = New System.Windows.Forms.Label()
-        Me.manopulvePression_panel_erreur = New System.Windows.Forms.Panel()
-        Me.manopulvePressionEcart_1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionEcart_2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionEcart_3 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionEcart_4 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePression_panel_manoPulve = New System.Windows.Forms.Panel()
-        Me.manopulvePressionPulve_3 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionPulve_4 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionPulve_2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionPulve_1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePression_panel_manoAgent = New System.Windows.Forms.Panel()
-        Me.manopulvePressionControle_2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionControle_3 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionControle_4 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionLue_6 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionLue_8 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionLue_7 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionControle_1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionLue_5 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.Panel46 = New System.Windows.Forms.Panel()
-        Me.Label224 = New System.Windows.Forms.Label()
-        Me.Panel292 = New System.Windows.Forms.Panel()
-        Me.manopulvePressionImprecision_1 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionImprecision_2 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionImprecision_3 = New CRODIP_ControlLibrary.TBNumeric()
-        Me.manopulvePressionImprecision_4 = New CRODIP_ControlLibrary.TBNumeric()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.manoTroncon_listManoControle = New System.Windows.Forms.ComboBox()
         Me.rb542IsFortePression = New System.Windows.Forms.RadioButton()
-        Me.rb542IsSaisieManuelleFaible = New System.Windows.Forms.RadioButton()
         Me.tabPage_diagnostique_buses = New System.Windows.Forms.TabPage()
         Me.Panel922 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
@@ -860,7 +847,6 @@ Partial Class FrmDiagnostique
         Me.Label_diagnostic_123 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.Label_diagnostic_12 = New CRODIP_ControlLibrary.CtrlParamNiveau()
         Me.m_bsrcManoCPression = New System.Windows.Forms.BindingSource(Me.components)
-        Me.rb542IsSaisieManuelleForte = New System.Windows.Forms.RadioButton()
         Me.ContextMenuStrip1.SuspendLayout
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.Pctb_calc, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1022,15 +1008,6 @@ Partial Class FrmDiagnostique
         CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).BeginInit
         Me.pnl542.SuspendLayout
         Me.GroupBox3.SuspendLayout
-        Me.Panel48.SuspendLayout
-        Me.Panel54.SuspendLayout
-        Me.Panel53.SuspendLayout
-        Me.Panel52.SuspendLayout
-        Me.manopulvePression_panel_erreur.SuspendLayout
-        Me.manopulvePression_panel_manoPulve.SuspendLayout
-        Me.manopulvePression_panel_manoAgent.SuspendLayout
-        Me.Panel46.SuspendLayout
-        Me.Panel292.SuspendLayout
         Me.tabPage_diagnostique_buses.SuspendLayout
         Me.Panel922.SuspendLayout
         Me.Panel11.SuspendLayout
@@ -11346,21 +11323,241 @@ Partial Class FrmDiagnostique
         Me.pnl542.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnl542.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.pnl542.Controls.Add(Me.rb542IsSaisieManuelleForte)
+        Me.pnl542.Controls.Add(Me.manopulvePressionImprecision_1)
+        Me.pnl542.Controls.Add(Me.manopulvePressionImprecision_2)
+        Me.pnl542.Controls.Add(Me.manopulvePressionEcart_1)
+        Me.pnl542.Controls.Add(Me.manopulvePressionImprecision_3)
+        Me.pnl542.Controls.Add(Me.manopulvePressionImprecision_4)
+        Me.pnl542.Controls.Add(Me.manopulvePressionEcart_2)
+        Me.pnl542.Controls.Add(Me.manopulvePressionControle_2)
+        Me.pnl542.Controls.Add(Me.manopulvePressionEcart_3)
+        Me.pnl542.Controls.Add(Me.manopulvePressionEcart_4)
+        Me.pnl542.Controls.Add(Me.manopulvePressionPulve_3)
+        Me.pnl542.Controls.Add(Me.manopulvePressionControle_3)
+        Me.pnl542.Controls.Add(Me.manopulvePressionControle_4)
+        Me.pnl542.Controls.Add(Me.manopulvePressionPulve_4)
+        Me.pnl542.Controls.Add(Me.manopulvePressionPulve_2)
+        Me.pnl542.Controls.Add(Me.manopulvePressionPulve_1)
+        Me.pnl542.Controls.Add(Me.manopulvePressionControle_1)
+        Me.pnl542.Controls.Add(Me.Label224)
+        Me.pnl542.Controls.Add(Me.Label70)
+        Me.pnl542.Controls.Add(Me.Label27)
+        Me.pnl542.Controls.Add(Me.Label25)
+        Me.pnl542.Controls.Add(Me.ckSaisieManuelle542)
         Me.pnl542.Controls.Add(Me.btnRecalculer)
         Me.pnl542.Controls.Add(Me.manopulveIsUseCalibrateur)
         Me.pnl542.Controls.Add(Me.rb542IsFaiblePression)
         Me.pnl542.Controls.Add(Me.GroupBox3)
         Me.pnl542.Controls.Add(Me.Lbl_diagnostic_542)
-        Me.pnl542.Controls.Add(Me.Panel48)
         Me.pnl542.Controls.Add(Me.Label65)
         Me.pnl542.Controls.Add(Me.manoTroncon_listManoControle)
         Me.pnl542.Controls.Add(Me.rb542IsFortePression)
-        Me.pnl542.Controls.Add(Me.rb542IsSaisieManuelleFaible)
         Me.pnl542.Location = New System.Drawing.Point(0, 114)
         Me.pnl542.Name = "pnl542"
         Me.pnl542.Size = New System.Drawing.Size(1004, 213)
         Me.pnl542.TabIndex = 1
+        '
+        'manopulvePressionImprecision_1
+        '
+        Me.manopulvePressionImprecision_1.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionImprecision_1.ForceBindingOnTextChanged = False
+        Me.manopulvePressionImprecision_1.Location = New System.Drawing.Point(498, 97)
+        Me.manopulvePressionImprecision_1.Name = "manopulvePressionImprecision_1"
+        Me.manopulvePressionImprecision_1.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionImprecision_1.TabIndex = 0
+        Me.manopulvePressionImprecision_1.TabStop = False
+        '
+        'manopulvePressionImprecision_2
+        '
+        Me.manopulvePressionImprecision_2.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionImprecision_2.ForceBindingOnTextChanged = False
+        Me.manopulvePressionImprecision_2.Location = New System.Drawing.Point(498, 121)
+        Me.manopulvePressionImprecision_2.Name = "manopulvePressionImprecision_2"
+        Me.manopulvePressionImprecision_2.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionImprecision_2.TabIndex = 1
+        Me.manopulvePressionImprecision_2.TabStop = False
+        '
+        'manopulvePressionEcart_1
+        '
+        Me.manopulvePressionEcart_1.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionEcart_1.ForceBindingOnTextChanged = False
+        Me.manopulvePressionEcart_1.Location = New System.Drawing.Point(349, 97)
+        Me.manopulvePressionEcart_1.Name = "manopulvePressionEcart_1"
+        Me.manopulvePressionEcart_1.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionEcart_1.TabIndex = 0
+        Me.manopulvePressionEcart_1.TabStop = False
+        '
+        'manopulvePressionImprecision_3
+        '
+        Me.manopulvePressionImprecision_3.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionImprecision_3.ForceBindingOnTextChanged = False
+        Me.manopulvePressionImprecision_3.Location = New System.Drawing.Point(498, 145)
+        Me.manopulvePressionImprecision_3.Name = "manopulvePressionImprecision_3"
+        Me.manopulvePressionImprecision_3.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionImprecision_3.TabIndex = 2
+        Me.manopulvePressionImprecision_3.TabStop = False
+        '
+        'manopulvePressionImprecision_4
+        '
+        Me.manopulvePressionImprecision_4.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionImprecision_4.ForceBindingOnTextChanged = False
+        Me.manopulvePressionImprecision_4.Location = New System.Drawing.Point(498, 169)
+        Me.manopulvePressionImprecision_4.Name = "manopulvePressionImprecision_4"
+        Me.manopulvePressionImprecision_4.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionImprecision_4.TabIndex = 3
+        Me.manopulvePressionImprecision_4.TabStop = False
+        '
+        'manopulvePressionEcart_2
+        '
+        Me.manopulvePressionEcart_2.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionEcart_2.ForceBindingOnTextChanged = False
+        Me.manopulvePressionEcart_2.Location = New System.Drawing.Point(349, 121)
+        Me.manopulvePressionEcart_2.Name = "manopulvePressionEcart_2"
+        Me.manopulvePressionEcart_2.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionEcart_2.TabIndex = 1
+        Me.manopulvePressionEcart_2.TabStop = False
+        '
+        'manopulvePressionControle_2
+        '
+        Me.manopulvePressionControle_2.ForceBindingOnTextChanged = False
+        Me.manopulvePressionControle_2.Location = New System.Drawing.Point(200, 121)
+        Me.manopulvePressionControle_2.Name = "manopulvePressionControle_2"
+        Me.manopulvePressionControle_2.ReadOnly = True
+        Me.manopulvePressionControle_2.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionControle_2.TabIndex = 1
+        '
+        'manopulvePressionEcart_3
+        '
+        Me.manopulvePressionEcart_3.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionEcart_3.ForceBindingOnTextChanged = False
+        Me.manopulvePressionEcart_3.Location = New System.Drawing.Point(349, 145)
+        Me.manopulvePressionEcart_3.Name = "manopulvePressionEcart_3"
+        Me.manopulvePressionEcart_3.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionEcart_3.TabIndex = 2
+        Me.manopulvePressionEcart_3.TabStop = False
+        '
+        'manopulvePressionEcart_4
+        '
+        Me.manopulvePressionEcart_4.BackColor = System.Drawing.SystemColors.Control
+        Me.manopulvePressionEcart_4.ForceBindingOnTextChanged = False
+        Me.manopulvePressionEcart_4.Location = New System.Drawing.Point(349, 169)
+        Me.manopulvePressionEcart_4.Name = "manopulvePressionEcart_4"
+        Me.manopulvePressionEcart_4.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionEcart_4.TabIndex = 3
+        Me.manopulvePressionEcart_4.TabStop = False
+        '
+        'manopulvePressionPulve_3
+        '
+        Me.manopulvePressionPulve_3.ForceBindingOnTextChanged = False
+        Me.manopulvePressionPulve_3.Location = New System.Drawing.Point(51, 145)
+        Me.manopulvePressionPulve_3.Name = "manopulvePressionPulve_3"
+        Me.manopulvePressionPulve_3.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionPulve_3.TabIndex = 2
+        '
+        'manopulvePressionControle_3
+        '
+        Me.manopulvePressionControle_3.ForceBindingOnTextChanged = False
+        Me.manopulvePressionControle_3.Location = New System.Drawing.Point(200, 145)
+        Me.manopulvePressionControle_3.Name = "manopulvePressionControle_3"
+        Me.manopulvePressionControle_3.ReadOnly = True
+        Me.manopulvePressionControle_3.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionControle_3.TabIndex = 3
+        '
+        'manopulvePressionControle_4
+        '
+        Me.manopulvePressionControle_4.ForceBindingOnTextChanged = False
+        Me.manopulvePressionControle_4.Location = New System.Drawing.Point(200, 169)
+        Me.manopulvePressionControle_4.Name = "manopulvePressionControle_4"
+        Me.manopulvePressionControle_4.ReadOnly = True
+        Me.manopulvePressionControle_4.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionControle_4.TabIndex = 4
+        '
+        'manopulvePressionPulve_4
+        '
+        Me.manopulvePressionPulve_4.ForceBindingOnTextChanged = False
+        Me.manopulvePressionPulve_4.Location = New System.Drawing.Point(51, 169)
+        Me.manopulvePressionPulve_4.Name = "manopulvePressionPulve_4"
+        Me.manopulvePressionPulve_4.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionPulve_4.TabIndex = 3
+        '
+        'manopulvePressionPulve_2
+        '
+        Me.manopulvePressionPulve_2.ForceBindingOnTextChanged = False
+        Me.manopulvePressionPulve_2.Location = New System.Drawing.Point(51, 121)
+        Me.manopulvePressionPulve_2.Name = "manopulvePressionPulve_2"
+        Me.manopulvePressionPulve_2.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionPulve_2.TabIndex = 1
+        '
+        'manopulvePressionPulve_1
+        '
+        Me.manopulvePressionPulve_1.ForceBindingOnTextChanged = False
+        Me.manopulvePressionPulve_1.Location = New System.Drawing.Point(51, 97)
+        Me.manopulvePressionPulve_1.Name = "manopulvePressionPulve_1"
+        Me.manopulvePressionPulve_1.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionPulve_1.TabIndex = 0
+        '
+        'manopulvePressionControle_1
+        '
+        Me.manopulvePressionControle_1.ForceBindingOnTextChanged = False
+        Me.manopulvePressionControle_1.Location = New System.Drawing.Point(200, 97)
+        Me.manopulvePressionControle_1.Name = "manopulvePressionControle_1"
+        Me.manopulvePressionControle_1.ReadOnly = True
+        Me.manopulvePressionControle_1.Size = New System.Drawing.Size(112, 20)
+        Me.manopulvePressionControle_1.TabIndex = 0
+        '
+        'Label224
+        '
+        Me.Label224.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label224.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label224.Location = New System.Drawing.Point(490, 67)
+        Me.Label224.Name = "Label224"
+        Me.Label224.Size = New System.Drawing.Size(128, 16)
+        Me.Label224.TabIndex = 9
+        Me.Label224.Text = "Imprécision"
+        Me.Label224.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label70
+        '
+        Me.Label70.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label70.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label70.Location = New System.Drawing.Point(341, 67)
+        Me.Label70.Name = "Label70"
+        Me.Label70.Size = New System.Drawing.Size(128, 16)
+        Me.Label70.TabIndex = 9
+        Me.Label70.Text = "Ecart"
+        Me.Label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label27
+        '
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label27.Location = New System.Drawing.Point(192, 67)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(128, 16)
+        Me.Label27.TabIndex = 9
+        Me.Label27.Text = "Mano contrôle (bar)"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label25
+        '
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label25.Location = New System.Drawing.Point(43, 69)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(128, 16)
+        Me.Label25.TabIndex = 35
+        Me.Label25.Text = "Mano pulvé (bar)"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ckSaisieManuelle542
+        '
+        Me.ckSaisieManuelle542.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ckSaisieManuelle542.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ckSaisieManuelle542.Location = New System.Drawing.Point(296, 31)
+        Me.ckSaisieManuelle542.Name = "ckSaisieManuelle542"
+        Me.ckSaisieManuelle542.Size = New System.Drawing.Size(184, 17)
+        Me.ckSaisieManuelle542.TabIndex = 34
+        Me.ckSaisieManuelle542.Text = "Saisie manuelle"
         '
         'btnRecalculer
         '
@@ -11488,338 +11685,6 @@ Partial Class FrmDiagnostique
         Me.Lbl_diagnostic_542.TabIndex = 4
         Me.Lbl_diagnostic_542.Text = "     Contrôle du manomètre pulvérisateur (5.4.2)"
         '
-        'Panel48
-        '
-        Me.Panel48.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.Panel48.Controls.Add(Me.Panel54)
-        Me.Panel48.Controls.Add(Me.Panel53)
-        Me.Panel48.Controls.Add(Me.Panel52)
-        Me.Panel48.Controls.Add(Me.manopulvePression_panel_erreur)
-        Me.Panel48.Controls.Add(Me.manopulvePression_panel_manoPulve)
-        Me.Panel48.Controls.Add(Me.manopulvePression_panel_manoAgent)
-        Me.Panel48.Controls.Add(Me.Panel46)
-        Me.Panel48.Controls.Add(Me.Panel292)
-        Me.Panel48.Location = New System.Drawing.Point(40, 65)
-        Me.Panel48.Name = "Panel48"
-        Me.Panel48.Size = New System.Drawing.Size(582, 145)
-        Me.Panel48.TabIndex = 10
-        '
-        'Panel54
-        '
-        Me.Panel54.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel54.Controls.Add(Me.Label70)
-        Me.Panel54.Location = New System.Drawing.Point(289, 2)
-        Me.Panel54.Name = "Panel54"
-        Me.Panel54.Size = New System.Drawing.Size(146, 31)
-        Me.Panel54.TabIndex = 21
-        '
-        'Label70
-        '
-        Me.Label70.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label70.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label70.Location = New System.Drawing.Point(8, 10)
-        Me.Label70.Name = "Label70"
-        Me.Label70.Size = New System.Drawing.Size(128, 16)
-        Me.Label70.TabIndex = 9
-        Me.Label70.Text = "Ecart"
-        Me.Label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel53
-        '
-        Me.Panel53.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel53.Controls.Add(Me.Label69)
-        Me.Panel53.Location = New System.Drawing.Point(145, 2)
-        Me.Panel53.Name = "Panel53"
-        Me.Panel53.Size = New System.Drawing.Size(143, 31)
-        Me.Panel53.TabIndex = 20
-        '
-        'Label69
-        '
-        Me.Label69.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label69.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label69.Location = New System.Drawing.Point(5, 10)
-        Me.Label69.Name = "Label69"
-        Me.Label69.Size = New System.Drawing.Size(128, 16)
-        Me.Label69.TabIndex = 8
-        Me.Label69.Text = "Mano contrôle (bar)"
-        Me.Label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel52
-        '
-        Me.Panel52.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel52.Controls.Add(Me.Label66)
-        Me.Panel52.Location = New System.Drawing.Point(1, 2)
-        Me.Panel52.Name = "Panel52"
-        Me.Panel52.Size = New System.Drawing.Size(144, 31)
-        Me.Panel52.TabIndex = 19
-        '
-        'Label66
-        '
-        Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label66.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label66.Location = New System.Drawing.Point(8, 10)
-        Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(128, 16)
-        Me.Label66.TabIndex = 6
-        Me.Label66.Text = "Mano pulvé (bar)"
-        Me.Label66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'manopulvePression_panel_erreur
-        '
-        Me.manopulvePression_panel_erreur.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.manopulvePression_panel_erreur.Controls.Add(Me.manopulvePressionEcart_1)
-        Me.manopulvePression_panel_erreur.Controls.Add(Me.manopulvePressionEcart_2)
-        Me.manopulvePression_panel_erreur.Controls.Add(Me.manopulvePressionEcart_3)
-        Me.manopulvePression_panel_erreur.Controls.Add(Me.manopulvePressionEcart_4)
-        Me.manopulvePression_panel_erreur.Location = New System.Drawing.Point(289, 33)
-        Me.manopulvePression_panel_erreur.Name = "manopulvePression_panel_erreur"
-        Me.manopulvePression_panel_erreur.Size = New System.Drawing.Size(146, 111)
-        Me.manopulvePression_panel_erreur.TabIndex = 18
-        '
-        'manopulvePressionEcart_1
-        '
-        Me.manopulvePressionEcart_1.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionEcart_1.ForceBindingOnTextChanged = False
-        Me.manopulvePressionEcart_1.Location = New System.Drawing.Point(16, 8)
-        Me.manopulvePressionEcart_1.Name = "manopulvePressionEcart_1"
-        Me.manopulvePressionEcart_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionEcart_1.TabIndex = 0
-        Me.manopulvePressionEcart_1.TabStop = False
-        '
-        'manopulvePressionEcart_2
-        '
-        Me.manopulvePressionEcart_2.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionEcart_2.ForceBindingOnTextChanged = False
-        Me.manopulvePressionEcart_2.Location = New System.Drawing.Point(16, 32)
-        Me.manopulvePressionEcart_2.Name = "manopulvePressionEcart_2"
-        Me.manopulvePressionEcart_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionEcart_2.TabIndex = 1
-        Me.manopulvePressionEcart_2.TabStop = False
-        '
-        'manopulvePressionEcart_3
-        '
-        Me.manopulvePressionEcart_3.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionEcart_3.ForceBindingOnTextChanged = False
-        Me.manopulvePressionEcart_3.Location = New System.Drawing.Point(16, 56)
-        Me.manopulvePressionEcart_3.Name = "manopulvePressionEcart_3"
-        Me.manopulvePressionEcart_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionEcart_3.TabIndex = 2
-        Me.manopulvePressionEcart_3.TabStop = False
-        '
-        'manopulvePressionEcart_4
-        '
-        Me.manopulvePressionEcart_4.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionEcart_4.ForceBindingOnTextChanged = False
-        Me.manopulvePressionEcart_4.Location = New System.Drawing.Point(16, 80)
-        Me.manopulvePressionEcart_4.Name = "manopulvePressionEcart_4"
-        Me.manopulvePressionEcart_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionEcart_4.TabIndex = 3
-        Me.manopulvePressionEcart_4.TabStop = False
-        '
-        'manopulvePression_panel_manoPulve
-        '
-        Me.manopulvePression_panel_manoPulve.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.manopulvePression_panel_manoPulve.Controls.Add(Me.manopulvePressionPulve_3)
-        Me.manopulvePression_panel_manoPulve.Controls.Add(Me.manopulvePressionPulve_4)
-        Me.manopulvePression_panel_manoPulve.Controls.Add(Me.manopulvePressionPulve_2)
-        Me.manopulvePression_panel_manoPulve.Controls.Add(Me.manopulvePressionPulve_1)
-        Me.manopulvePression_panel_manoPulve.Location = New System.Drawing.Point(1, 33)
-        Me.manopulvePression_panel_manoPulve.Name = "manopulvePression_panel_manoPulve"
-        Me.manopulvePression_panel_manoPulve.Size = New System.Drawing.Size(144, 111)
-        Me.manopulvePression_panel_manoPulve.TabIndex = 0
-        '
-        'manopulvePressionPulve_3
-        '
-        Me.manopulvePressionPulve_3.ForceBindingOnTextChanged = False
-        Me.manopulvePressionPulve_3.Location = New System.Drawing.Point(16, 56)
-        Me.manopulvePressionPulve_3.Name = "manopulvePressionPulve_3"
-        Me.manopulvePressionPulve_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_3.TabIndex = 2
-        '
-        'manopulvePressionPulve_4
-        '
-        Me.manopulvePressionPulve_4.ForceBindingOnTextChanged = False
-        Me.manopulvePressionPulve_4.Location = New System.Drawing.Point(16, 80)
-        Me.manopulvePressionPulve_4.Name = "manopulvePressionPulve_4"
-        Me.manopulvePressionPulve_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_4.TabIndex = 3
-        '
-        'manopulvePressionPulve_2
-        '
-        Me.manopulvePressionPulve_2.ForceBindingOnTextChanged = False
-        Me.manopulvePressionPulve_2.Location = New System.Drawing.Point(16, 32)
-        Me.manopulvePressionPulve_2.Name = "manopulvePressionPulve_2"
-        Me.manopulvePressionPulve_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_2.TabIndex = 1
-        '
-        'manopulvePressionPulve_1
-        '
-        Me.manopulvePressionPulve_1.ForceBindingOnTextChanged = False
-        Me.manopulvePressionPulve_1.Location = New System.Drawing.Point(16, 8)
-        Me.manopulvePressionPulve_1.Name = "manopulvePressionPulve_1"
-        Me.manopulvePressionPulve_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_1.TabIndex = 0
-        '
-        'manopulvePression_panel_manoAgent
-        '
-        Me.manopulvePression_panel_manoAgent.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionControle_2)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionControle_3)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionControle_4)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionLue_6)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionLue_8)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionLue_7)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionControle_1)
-        Me.manopulvePression_panel_manoAgent.Controls.Add(Me.manopulvePressionLue_5)
-        Me.manopulvePression_panel_manoAgent.Location = New System.Drawing.Point(145, 33)
-        Me.manopulvePression_panel_manoAgent.Name = "manopulvePression_panel_manoAgent"
-        Me.manopulvePression_panel_manoAgent.Size = New System.Drawing.Size(143, 111)
-        Me.manopulvePression_panel_manoAgent.TabIndex = 1
-        '
-        'manopulvePressionControle_2
-        '
-        Me.manopulvePressionControle_2.ForceBindingOnTextChanged = False
-        Me.manopulvePressionControle_2.Location = New System.Drawing.Point(16, 32)
-        Me.manopulvePressionControle_2.Name = "manopulvePressionControle_2"
-        Me.manopulvePressionControle_2.ReadOnly = True
-        Me.manopulvePressionControle_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_2.TabIndex = 1
-        '
-        'manopulvePressionControle_3
-        '
-        Me.manopulvePressionControle_3.ForceBindingOnTextChanged = False
-        Me.manopulvePressionControle_3.Location = New System.Drawing.Point(16, 56)
-        Me.manopulvePressionControle_3.Name = "manopulvePressionControle_3"
-        Me.manopulvePressionControle_3.ReadOnly = True
-        Me.manopulvePressionControle_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_3.TabIndex = 3
-        '
-        'manopulvePressionControle_4
-        '
-        Me.manopulvePressionControle_4.ForceBindingOnTextChanged = False
-        Me.manopulvePressionControle_4.Location = New System.Drawing.Point(16, 80)
-        Me.manopulvePressionControle_4.Name = "manopulvePressionControle_4"
-        Me.manopulvePressionControle_4.ReadOnly = True
-        Me.manopulvePressionControle_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_4.TabIndex = 4
-        '
-        'manopulvePressionLue_6
-        '
-        Me.manopulvePressionLue_6.ForceBindingOnTextChanged = False
-        Me.manopulvePressionLue_6.Location = New System.Drawing.Point(16, 32)
-        Me.manopulvePressionLue_6.Name = "manopulvePressionLue_6"
-        Me.manopulvePressionLue_6.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionLue_6.TabIndex = 12
-        Me.manopulvePressionLue_6.Visible = False
-        '
-        'manopulvePressionLue_8
-        '
-        Me.manopulvePressionLue_8.ForceBindingOnTextChanged = False
-        Me.manopulvePressionLue_8.Location = New System.Drawing.Point(16, 80)
-        Me.manopulvePressionLue_8.Name = "manopulvePressionLue_8"
-        Me.manopulvePressionLue_8.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionLue_8.TabIndex = 10
-        Me.manopulvePressionLue_8.Visible = False
-        '
-        'manopulvePressionLue_7
-        '
-        Me.manopulvePressionLue_7.ForceBindingOnTextChanged = False
-        Me.manopulvePressionLue_7.Location = New System.Drawing.Point(16, 56)
-        Me.manopulvePressionLue_7.Name = "manopulvePressionLue_7"
-        Me.manopulvePressionLue_7.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionLue_7.TabIndex = 9
-        Me.manopulvePressionLue_7.Visible = False
-        '
-        'manopulvePressionControle_1
-        '
-        Me.manopulvePressionControle_1.ForceBindingOnTextChanged = False
-        Me.manopulvePressionControle_1.Location = New System.Drawing.Point(16, 8)
-        Me.manopulvePressionControle_1.Name = "manopulvePressionControle_1"
-        Me.manopulvePressionControle_1.ReadOnly = True
-        Me.manopulvePressionControle_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_1.TabIndex = 0
-        '
-        'manopulvePressionLue_5
-        '
-        Me.manopulvePressionLue_5.ForceBindingOnTextChanged = False
-        Me.manopulvePressionLue_5.Location = New System.Drawing.Point(16, 8)
-        Me.manopulvePressionLue_5.Name = "manopulvePressionLue_5"
-        Me.manopulvePressionLue_5.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionLue_5.TabIndex = 11
-        Me.manopulvePressionLue_5.Visible = False
-        '
-        'Panel46
-        '
-        Me.Panel46.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel46.Controls.Add(Me.Label224)
-        Me.Panel46.Location = New System.Drawing.Point(436, 2)
-        Me.Panel46.Name = "Panel46"
-        Me.Panel46.Size = New System.Drawing.Size(146, 31)
-        Me.Panel46.TabIndex = 21
-        '
-        'Label224
-        '
-        Me.Label224.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label224.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label224.Location = New System.Drawing.Point(5, 10)
-        Me.Label224.Name = "Label224"
-        Me.Label224.Size = New System.Drawing.Size(128, 16)
-        Me.Label224.TabIndex = 9
-        Me.Label224.Text = "Imprécision"
-        Me.Label224.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel292
-        '
-        Me.Panel292.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.Panel292.Controls.Add(Me.manopulvePressionImprecision_1)
-        Me.Panel292.Controls.Add(Me.manopulvePressionImprecision_2)
-        Me.Panel292.Controls.Add(Me.manopulvePressionImprecision_3)
-        Me.Panel292.Controls.Add(Me.manopulvePressionImprecision_4)
-        Me.Panel292.Location = New System.Drawing.Point(436, 33)
-        Me.Panel292.Name = "Panel292"
-        Me.Panel292.Size = New System.Drawing.Size(146, 111)
-        Me.Panel292.TabIndex = 18
-        '
-        'manopulvePressionImprecision_1
-        '
-        Me.manopulvePressionImprecision_1.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionImprecision_1.ForceBindingOnTextChanged = False
-        Me.manopulvePressionImprecision_1.Location = New System.Drawing.Point(16, 9)
-        Me.manopulvePressionImprecision_1.Name = "manopulvePressionImprecision_1"
-        Me.manopulvePressionImprecision_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionImprecision_1.TabIndex = 0
-        Me.manopulvePressionImprecision_1.TabStop = False
-        '
-        'manopulvePressionImprecision_2
-        '
-        Me.manopulvePressionImprecision_2.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionImprecision_2.ForceBindingOnTextChanged = False
-        Me.manopulvePressionImprecision_2.Location = New System.Drawing.Point(16, 32)
-        Me.manopulvePressionImprecision_2.Name = "manopulvePressionImprecision_2"
-        Me.manopulvePressionImprecision_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionImprecision_2.TabIndex = 1
-        Me.manopulvePressionImprecision_2.TabStop = False
-        '
-        'manopulvePressionImprecision_3
-        '
-        Me.manopulvePressionImprecision_3.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionImprecision_3.ForceBindingOnTextChanged = False
-        Me.manopulvePressionImprecision_3.Location = New System.Drawing.Point(16, 56)
-        Me.manopulvePressionImprecision_3.Name = "manopulvePressionImprecision_3"
-        Me.manopulvePressionImprecision_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionImprecision_3.TabIndex = 2
-        Me.manopulvePressionImprecision_3.TabStop = False
-        '
-        'manopulvePressionImprecision_4
-        '
-        Me.manopulvePressionImprecision_4.BackColor = System.Drawing.SystemColors.Control
-        Me.manopulvePressionImprecision_4.ForceBindingOnTextChanged = False
-        Me.manopulvePressionImprecision_4.Location = New System.Drawing.Point(16, 80)
-        Me.manopulvePressionImprecision_4.Name = "manopulvePressionImprecision_4"
-        Me.manopulvePressionImprecision_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionImprecision_4.TabIndex = 3
-        Me.manopulvePressionImprecision_4.TabStop = False
-        '
         'Label65
         '
         Me.Label65.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -11852,18 +11717,6 @@ Partial Class FrmDiagnostique
         Me.rb542IsFortePression.Size = New System.Drawing.Size(115, 16)
         Me.rb542IsFortePression.TabIndex = 3
         Me.rb542IsFortePression.Text = "Forte pression"
-        '
-        'rb542IsSaisieManuelleFaible
-        '
-        Me.rb542IsSaisieManuelleFaible.Checked = True
-        Me.rb542IsSaisieManuelleFaible.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rb542IsSaisieManuelleFaible.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.rb542IsSaisieManuelleFaible.Location = New System.Drawing.Point(285, 24)
-        Me.rb542IsSaisieManuelleFaible.Name = "rb542IsSaisieManuelleFaible"
-        Me.rb542IsSaisieManuelleFaible.Size = New System.Drawing.Size(207, 16)
-        Me.rb542IsSaisieManuelleFaible.TabIndex = 4
-        Me.rb542IsSaisieManuelleFaible.TabStop = True
-        Me.rb542IsSaisieManuelleFaible.Text = "Saisie manuelle faible pression"
         '
         'tabPage_diagnostique_buses
         '
@@ -14764,18 +14617,6 @@ Partial Class FrmDiagnostique
         Me.m_bsrcManoCPression.DataSource = GetType(Crodip_agent.ManometreControle)
         Me.m_bsrcManoCPression.Sort = "Traca"
         '
-        'rb542IsSaisieManuelleForte
-        '
-        Me.rb542IsSaisieManuelleForte.Checked = True
-        Me.rb542IsSaisieManuelleForte.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rb542IsSaisieManuelleForte.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.rb542IsSaisieManuelleForte.Location = New System.Drawing.Point(285, 44)
-        Me.rb542IsSaisieManuelleForte.Name = "rb542IsSaisieManuelleForte"
-        Me.rb542IsSaisieManuelleForte.Size = New System.Drawing.Size(207, 16)
-        Me.rb542IsSaisieManuelleForte.TabIndex = 34
-        Me.rb542IsSaisieManuelleForte.TabStop = True
-        Me.rb542IsSaisieManuelleForte.Text = "Saisie manuelle forte pression"
-        '
         'FrmDiagnostique
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -14959,21 +14800,9 @@ Partial Class FrmDiagnostique
         Me.TabPage9.PerformLayout
         CType(Me.gdvPressions4, System.ComponentModel.ISupportInitialize).EndInit
         Me.pnl542.ResumeLayout(False)
+        Me.pnl542.PerformLayout
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout
-        Me.Panel48.ResumeLayout(False)
-        Me.Panel54.ResumeLayout(False)
-        Me.Panel53.ResumeLayout(False)
-        Me.Panel52.ResumeLayout(False)
-        Me.manopulvePression_panel_erreur.ResumeLayout(False)
-        Me.manopulvePression_panel_erreur.PerformLayout
-        Me.manopulvePression_panel_manoPulve.ResumeLayout(False)
-        Me.manopulvePression_panel_manoPulve.PerformLayout
-        Me.manopulvePression_panel_manoAgent.ResumeLayout(False)
-        Me.manopulvePression_panel_manoAgent.PerformLayout
-        Me.Panel46.ResumeLayout(False)
-        Me.Panel292.ResumeLayout(False)
-        Me.Panel292.PerformLayout
         Me.tabPage_diagnostique_buses.ResumeLayout(False)
         Me.Panel922.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
@@ -15088,38 +14917,22 @@ Partial Class FrmDiagnostique
     Friend WithEvents manopulveResultat As System.Windows.Forms.Label
     Friend WithEvents Label226 As System.Windows.Forms.Label
     Friend WithEvents Lbl_diagnostic_542 As System.Windows.Forms.Label
-    Friend WithEvents Panel48 As System.Windows.Forms.Panel
-    Friend WithEvents Panel54 As System.Windows.Forms.Panel
     Friend WithEvents Label70 As System.Windows.Forms.Label
-    Friend WithEvents Panel53 As System.Windows.Forms.Panel
-    Friend WithEvents Label69 As System.Windows.Forms.Label
-    Friend WithEvents Panel52 As System.Windows.Forms.Panel
-    Friend WithEvents Label66 As System.Windows.Forms.Label
-    Friend WithEvents manopulvePression_panel_erreur As System.Windows.Forms.Panel
     Friend WithEvents manopulvePressionEcart_1 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionEcart_2 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionEcart_3 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionEcart_4 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePression_panel_manoPulve As System.Windows.Forms.Panel
     Friend WithEvents manopulvePressionPulve_3 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionPulve_4 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionPulve_2 As CRODIP_ControlLibrary.TBNumeric
     '  Friend WithEvents manopulvePressionPulve_7 As CRODIP_ControlLibrary.TBNumeric
     '   Friend WithEvents manopulvePressionPulve_6 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionPulve_1 As CRODIP_ControlLibrary.TBNumeric
-    '    Friend WithEvents manopulvePressionPulve_5 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePression_panel_manoAgent As System.Windows.Forms.Panel
     Friend WithEvents manopulvePressionControle_2 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionControle_3 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionControle_4 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePressionLue_6 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePressionLue_8 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePressionLue_7 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionControle_1 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents manopulvePressionLue_5 As CRODIP_ControlLibrary.TBNumeric
-    Friend WithEvents Panel46 As System.Windows.Forms.Panel
     Friend WithEvents Label224 As System.Windows.Forms.Label
-    Friend WithEvents Panel292 As System.Windows.Forms.Panel
     Friend WithEvents manopulvePressionImprecision_1 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionImprecision_2 As CRODIP_ControlLibrary.TBNumeric
     Friend WithEvents manopulvePressionImprecision_3 As CRODIP_ControlLibrary.TBNumeric
@@ -15127,7 +14940,6 @@ Partial Class FrmDiagnostique
     Friend WithEvents Label65 As System.Windows.Forms.Label
     Friend WithEvents manoTroncon_listManoControle As System.Windows.Forms.ComboBox
     Friend WithEvents rb542IsFortePression As System.Windows.Forms.RadioButton
-    Friend WithEvents rb542IsSaisieManuelleFaible As System.Windows.Forms.RadioButton
     Friend WithEvents pnl_833 As System.Windows.Forms.Panel
     Friend WithEvents lblp833DefautEcart As System.Windows.Forms.Label
     Friend WithEvents lblP833DefautHeterogeneite As System.Windows.Forms.Label
@@ -15908,5 +15720,7 @@ Partial Class FrmDiagnostique
     Friend WithEvents Label21 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label19 As Label
-    Friend WithEvents rb542IsSaisieManuelleForte As RadioButton
+    Friend WithEvents ckSaisieManuelle542 As CheckBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label25 As Label
 End Class

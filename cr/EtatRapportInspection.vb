@@ -271,7 +271,10 @@ Public Class EtatRapportInspection
                                                          PrincMarque:=oPulvePrinc.marque,
                                                          PrincModele:=oPulvePrinc.modele,
                                                          PrincType:=oPulvePrinc.type,
-                                                         PrincNumNat:=oPulvePrinc.numeroNational)
+                                                         PrincNumNat:=oPulvePrinc.numeroNational,
+                                                         NumSerie:=oPulvePrinc.numeroChassis,
+                                                         ImmatPlaque:=oPulvePrinc.immatPlaque,
+                                                         ImmatCertif:=oPulvePrinc.immatCertificat)
 
             Dim dateLimiteControle As Date
             m_oDiag.CalculDateProchainControle()

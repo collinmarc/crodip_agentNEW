@@ -9,7 +9,6 @@ Public Class FactureItemManager
         Try
             Dim oCSDB As New CSDb(True)
             Dim oCmd As DbCommand
-            Dim oParam As DbParameter
             oCmd = oCSDB.getConnection.CreateCommand
             oCmd.CommandText = "SELECT Count(*) from factureItem where idFacture = @1 and nFactureItem = @2"
             AddParameter(oCmd, "@1", pFactureID)

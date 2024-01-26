@@ -1,5 +1,11 @@
 TRUNK
 MASTER
+BUILD 20240126170000
+	0001611: Réinitialisation d'une base : Gestion du numéro de PC
+	0001607: Retour version PP 2024011817000000 : Cadre 542
+	0001608: Retour version PP 2024011817000000 : Perte des infos de traca en synchro des Manos
+	0001604: Accentué le visuel du numéro déjà en base
+
 BUILD 20240118170000
 	0001601: Fiche Pulvé : Immatriculations + serie Obligatoire
 	0001600: SELECTION DES MANO SUR ONGLET MANO TRONCON

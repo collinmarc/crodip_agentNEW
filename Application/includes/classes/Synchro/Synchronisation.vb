@@ -679,26 +679,28 @@ Public Class Synchronisation
             ' Synchro des prestationsCategories
             Dim arrUpdatesPrestationCategorie() As PrestationCategorie = PrestationCategorieManager.getUpdates
             For Each tmpUpdatePrestationCategorie As PrestationCategorie In arrUpdatesPrestationCategorie
-                Try
-                    Dim UpdatedObject As New Object
-                    Dim response As Integer = PrestationCategorieManager.sendWSPrestationCategorie(tmpUpdatePrestationCategorie, m_Agent, UpdatedObject)
-                    Select Case response
-                        Case -1 ' ERROR
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Erreur Locale")
-                        Case 0, 2 ' OK
-                            PrestationCategorieManager.setSynchro(tmpUpdatePrestationCategorie)
+                If tmpUpdatePrestationCategorie.libelle <> "" Then
+                    Try
+                        Dim UpdatedObject As New Object
+                        Dim response As Integer = PrestationCategorieManager.sendWSPrestationCategorie(tmpUpdatePrestationCategorie, m_Agent, UpdatedObject)
+                        Select Case response
+                            Case -1 ' ERROR
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Erreur Locale")
+                            Case 0, 2 ' OK
+                                PrestationCategorieManager.setSynchro(tmpUpdatePrestationCategorie)
                             '                            listSynchro = listSynchro & "Catégorie de tarif (n°" & tmpUpdatePrestationCategorie.id & ") ; "
                             'Case 2 ' SENDPROFILAGENT_UPDATE
                             '                           listSynchro = listSynchro & "Catégorie de tarif (n°" & tmpUpdatePrestationCategorie.id & ") ; "
                             'PrestationCategorieManager.save(PrestationCategorieManager.xml2object(updatedObject), m_Agent, True)
-                        Case 1 ' NOK
-                            CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : Non-Ok")
-                        Case 9 ' BADREQUEST
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : BadRequest")
-                    End Select
-                Catch ex As Exception
-                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) : " & ex.Message.ToString)
-                End Try
+                            Case 1 ' NOK
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : Non-Ok")
+                            Case 9 ' BADREQUEST
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : BadRequest")
+                        End Select
+                    Catch ex As Exception
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationCategorie) : " & ex.Message.ToString)
+                    End Try
+                End If
             Next
 
         End If
@@ -706,26 +708,28 @@ Public Class Synchronisation
             ' Synchro des prestationsTarif
             Dim arrUpdatesPrestationTarif() As PrestationTarif = PrestationTarifManager.getUpdates
             For Each tmpUpdatePrestationTarif As PrestationTarif In arrUpdatesPrestationTarif
-                Try
-                    Dim UpdatedObject As New Object
-                    Dim response As Integer = PrestationTarifManager.sendWSPrestationTarif(tmpUpdatePrestationTarif, m_Agent, UpdatedObject)
-                    Select Case response
-                        Case -1 ' ERROR
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Erreur Locale")
-                        Case 0, 2 ' OK
-                            PrestationTarifManager.setSynchro(tmpUpdatePrestationTarif)
+                If tmpUpdatePrestationTarif.description <> "" Then
+                    Try
+                        Dim UpdatedObject As New Object
+                        Dim response As Integer = PrestationTarifManager.sendWSPrestationTarif(tmpUpdatePrestationTarif, m_Agent, UpdatedObject)
+                        Select Case response
+                            Case -1 ' ERROR
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Erreur Locale")
+                            Case 0, 2 ' OK
+                                PrestationTarifManager.setSynchro(tmpUpdatePrestationTarif)
                             'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
                             'Case 2 ' SENDPROFILAGENT_UPDATE
                             'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
                             'PrestationTarifManager.save(PrestationTarifManager.xml2object(updatedObject), m_Agent, True)
-                        Case 1 ' NOK
-                            CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : Non-Ok")
-                        Case 9 ' BADREQUEST
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : BadRequest")
-                    End Select
-                Catch ex As Exception
-                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) : " & ex.Message.ToString)
-                End Try
+                            Case 1 ' NOK
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : Non-Ok")
+                            Case 9 ' BADREQUEST
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : BadRequest")
+                        End Select
+                    Catch ex As Exception
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPrestationTarif) : " & ex.Message.ToString)
+                    End Try
+                End If
             Next
 
         End If

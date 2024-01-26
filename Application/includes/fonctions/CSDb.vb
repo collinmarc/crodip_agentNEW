@@ -1,4 +1,5 @@
 Imports System.Data.Common
+Imports Microsoft.Data.Sqlite
 'Imports System.Data.OleDb
 
 Public Class CSDb
@@ -262,9 +263,9 @@ Public Class CSDb
                 free()
             End If
         Catch ex As Exception
-                CSDebug.dispFatal("CSDb::getValue : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
-            End Try
-            Return oReturn
+            CSDebug.dispFatal("CSDb::getValue : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
+        End Try
+        Return oReturn
     End Function
     '''
     ''' Execution d'un requete sans retour
@@ -329,6 +330,7 @@ Public Class CSDb
         Dim bReturn As Boolean
         Try
             CSDebug.dispError("VIDAGE DE LA BASE DE DONNEES !!!!!")
+
             Dim bddCommande As DbCommand
             bddCommande = getConnection().CreateCommand
             'Vidage conmplet de la base
@@ -409,6 +411,12 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             'bddCommande.CommandText = "DELETE FROM VERSION"
             'bddCommande.ExecuteNonQuery()
+            _dbConnection.Close()
+            nInstance = 0
+            getInstance()
+            bddCommande = getConnection().CreateCommand
+            bddCommande.CommandText = "VACUUM"
+            bddCommande.ExecuteNonQuery()
 
             bReturn = True
         Catch ex As Exception
