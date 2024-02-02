@@ -27,8 +27,6 @@ Public Class FrmDiagnostique
     Protected m_RelevePression833_P3 As RelevePression833
     Protected m_RelevePression833_P4 As RelevePression833
 
-    Protected m_Niveaux As Integer
-    Protected m_Troncons As Integer
     Protected Const ROW_NIVEAUX As Integer = 0
     Protected Const ROW_TRONCONS As Integer = 1
     Protected Const ROW_PRESSION As Integer = 2
@@ -56,7 +54,8 @@ Public Class FrmDiagnostique
     'Protected m_PopupHelp551Mode As Integer = 0  ' O= Close, 551, 562
     'Protected m_PopupHelp552Mode As Integer = 0  ' O= Close, 551, 562
     Protected m_PopupHelp831Mode As DiagnosticHelp831.ModeHelp831 = DiagnosticHelp831.ModeHelp831.Mode8312
-    Protected m_bDuringLoad As Boolean = True
+    Protected m_bDuringLoad As Boolean = False
+    Protected m_nNbDuringLoad As Integer = 0
     Protected m_bDuringLoad551 As Boolean = True
     Protected m_bDuringLoad552 As Boolean = True
 
@@ -71,11 +70,34 @@ Public Class FrmDiagnostique
     Private Const NB_BUSES_MAX As Integer = 200
     Private m_olstManoC As List(Of ManometreControle)
 
+    Private Sub Events_Activate()
+        If m_bDuringLoad Then
+            m_nNbDuringLoad = m_nNbDuringLoad - 1
+            If m_nNbDuringLoad <= 0 Then
+                m_bDuringLoad = False
+                m_nNbDuringLoad = 0
+            End If
+        End If
 
+
+    End Sub
+    Private Sub Events_Suspend()
+        If Not m_bDuringLoad Then
+            If m_nNbDuringLoad = 0 Then
+                m_bDuringLoad = True
+                m_nNbDuringLoad = 1
+            Else
+                m_nNbDuringLoad = m_nNbDuringLoad + 1
+            End If
+        End If
+    End Sub
+    Private Function Events_IsActive() As Boolean
+        Return (m_bDuringLoad = False)
+    End Function
 
     Public Sub New()
         '        MyBase.New()
-        m_bDuringLoad = True
+        Events_Suspend()
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
@@ -83,7 +105,7 @@ Public Class FrmDiagnostique
         OrganizeControls()
 
         m_referentielBuses.load(GlobalsCRODIP.GLOB_STR_REFERENTIELBUSES_FILENAME)
-        m_bDuringLoad = False
+        Events_Activate()
 
 
     End Sub
@@ -950,7 +972,8 @@ Public Class FrmDiagnostique
             If m_Pulverisateur.manometreNbtroncons <> 0 Then
                 nupTroncons.Value = m_Pulverisateur.manometreNbtroncons
             End If
-            CreerNiveauxTroncons833()
+            createRelevePression(m_Pulverisateur.manometreNbniveaux, m_Pulverisateur.manometreNbtroncons)
+            Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=True)
             '            SetCurrentPressionControls()
             SelectTableauMesurePourDefaut()
 
@@ -1147,6 +1170,11 @@ Public Class FrmDiagnostique
 
                 End If
             End If
+
+            Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=False)
+
+            createRelevePression(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons)
+
             If m_diagnostic.controleNbreNiveaux > 0 Then
                 nup_niveaux.Value = m_diagnostic.controleNbreNiveaux
 
@@ -1154,14 +1182,26 @@ Public Class FrmDiagnostique
             If m_diagnostic.controleNbreTroncons > 0 Then
                 nupTroncons.Value = m_diagnostic.controleNbreTroncons
             End If
-            CreerNiveauxTroncons833()
+
+
+
+            If m_RelevePression833_P1.colNiveaux(0).colTroncons(0).PressionMano > 4D Then
+                'Nous sommes en forte pression
+                rb542IsFortePression.Checked = True
+            Else
+                'Nous sommes en basse pression
+                rb542IsFaiblePression.Checked = True
+            End If
+            '07/12/2023 : Pouquoi changer de tab ?
+            'tab_833.SelectTab(nPression - 1)
+            '            createRelevePression()
             '########################################################################################################
             ' Chargement tableau 5.4.2
-            Affiche542()
+            'Affiche542()
             '########################################################################################################
             ' Chargement tableau 8.3.3
             'affichage du tableau des pressions
-            'Affiche8332()
+            Affiche8332()
             'Selection de la pression par défaut
             'SelectTableauMesurePourDefaut()
 
@@ -1286,34 +1326,35 @@ Public Class FrmDiagnostique
     Private Function Affiche8332() As Boolean
         Dim bReturn As Boolean
         Try
-            '########################################################################################################
-            ' Chargement tableau 8.3.3
-            'affichage du tableau des pressions
-            Dim nPression As Integer
-            Dim nNiveau As Integer = 0
-            Dim nTroncon As Integer = 0
-            For nPression = 1 To 4
-                SetCurrentPressionControls(nPression)
-                '07/12/2023 : Pouquoi changer de tab ?
-                'tab_833.SelectTab(nPression - 1)
-                For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
-                    For Each oTr As RelevePression833Troncon In oNiv.colTroncons
-                        If oTr.PressionLue <> 0 Then
-                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION)
-                            m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION).Value = oTr.PressionLue
-                        End If
-                        If Not String.IsNullOrEmpty(oTr.Traca) Then
-                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
-                            m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = oTr.Traca
-                        Else
-                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
-                            m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = ""
-                        End If
+            If m_RelevePression833_P1 IsNot Nothing Then
+                '########################################################################################################
+                ' Chargement tableau 8.3.3
+                'affichage du tableau des pressions
+                Dim nPression As Integer
+                Dim nNiveau As Integer = 0
+                Dim nTroncon As Integer = 0
+                For nPression = 1 To 4
+                    SetCurrentPressionControls(nPression)
+                    '07/12/2023 : Pouquoi changer de tab ?
+                    'tab_833.SelectTab(nPression - 1)
+                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                            If oTr.PressionLue <> 0 Then
+                                '                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION)
+                                m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION).Value = oTr.PressionLue
+                            End If
+                            If Not String.IsNullOrEmpty(oTr.Traca) Then
+                                '                           m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
+                                m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = oTr.Traca
+                            Else
+                                '                          m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE)
+                                m_dgvPressionCurrent(oTr.NumCol, ROW_MANOMETRE).Value = ""
+                            End If
+                        Next
                     Next
+                    validatePressionTronc(nPression)
                 Next
-                validatePressionTronc(nPression)
-            Next
-
+            End If
             If m_diagnostic.diagnosticInfosComplementaires IsNot Nothing Then
                 If Not String.IsNullOrEmpty(m_diagnostic.diagnosticInfosComplementaires.PressionParDefaut) Then
                     Select Case m_diagnostic.diagnosticInfosComplementaires.PressionParDefaut
@@ -1680,7 +1721,7 @@ Public Class FrmDiagnostique
             manoPulveEcartMax.Text = oLstMano542.EcartMax
             'Définitiion du Défaut
             'Dim valueBarManoTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("manopulvePressionPulve_" & idMano, Panel48)
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 'RadioButton_diagnostic_5421.Checked = False
                 RadioButton_diagnostic_5422.Checked = False
                 RadioButton_diagnostic_5423.Checked = False
@@ -1689,20 +1730,20 @@ Public Class FrmDiagnostique
             If oLstMano542.Result = DiagnosticMano542.ERR542.OK Then
                 manopulveResultat.Text = "OK"
                 manopulveResultat.ForeColor = System.Drawing.Color.Green
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     RadioButton_diagnostic_5420.Checked = True
                 End If
             End If
             If oLstMano542.Result = DiagnosticMano542.ERR542.FAIBLE Then
                 manopulveResultat.Text = "FAIBLE"
                 manopulveResultat.ForeColor = System.Drawing.Color.LightCoral
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     RadioButton_diagnostic_5422.Checked = True
                 End If
             End If
             If oLstMano542.Result = DiagnosticMano542.ERR542.FORTE Then
                 manopulveResultat.Text = "IMPORTANTE"
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     RadioButton_diagnostic_5423.Checked = True
                 End If
                 manopulveResultat.ForeColor = System.Drawing.Color.Red
@@ -2265,8 +2306,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
             m_diagnostic.diagnosticTroncons833.Liste.Clear()
             '## Sauvegarde du nombre de Niveau et de Troncons
-            m_diagnostic.controleNbreNiveaux = m_Niveaux
-            m_diagnostic.controleNbreTroncons = m_Troncons
+            m_diagnostic.controleNbreNiveaux = nup_niveaux.Value
+            m_diagnostic.controleNbreTroncons = nupTroncons.Value
 
             ' ### Bouclage sur les pressions
             Dim startOnglet As Integer = 1
@@ -2488,7 +2529,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim debitNominalTextBox As CRODIP_ControlLibrary.TBNumeric
         Try
             If tbdebitBuse Is Nothing Then
-                CSDebug.dispInfo("le Controle diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit n'existe pas")
+                'CSDebug.dispInfo("le Controle diagBuses_mesureDebit_" & lotId & "_" & buseId & "_debit n'existe pas")
                 Return 0D
             End If
             If tbusureBuse Is Nothing Then
@@ -2691,7 +2732,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 diagBuses_resultat.ForeColor = System.Drawing.Color.Red
                 '       tabBuses_isOk = 0
                 'arrCheckboxes(8, 3) += 1
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     RadioButton_diagnostic_9221.Checked = True
                     RadioButton_diagnostic_9222.Checked = False
                     RadioButton_diagnostic_9220.Checked = False
@@ -2701,7 +2742,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 diagBuses_resultat.ForeColor = System.Drawing.Color.Red
                 '      tabBuses_isOk = 0
                 'arrCheckboxes(8, 3) += 1
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     RadioButton_diagnostic_9221.Checked = False
                     RadioButton_diagnostic_9222.Checked = True
                     RadioButton_diagnostic_9220.Checked = False
@@ -2712,7 +2753,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             diagBuses_resultat.ForeColor = System.Drawing.Color.Green
             ' tabBuses_isOk = 1
             'arrCheckboxes(8, 1) += 1
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 RadioButton_diagnostic_9221.Checked = False
                 RadioButton_diagnostic_9222.Checked = False
                 RadioButton_diagnostic_9220.Checked = True
@@ -2789,19 +2830,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 For i As Integer = 1 To nbBusesValue
                     Try
                         Dim debitTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & lotId & "_" & i & "_debit", diagBuses_tab_categories)
-                        If debitTextBox.Text <> "" Then
-                            debitMoy = (debitMoy + CType(debitTextBox.Text, Double))
-                            Try
-                                Dim debitTmp As Double = CDbl(debitTextBox.Text)
-                                If debitTmp < debitMin Then
-                                    debitMin = debitTmp
-                                End If
-                                If debitTmp > debitMax Then
-                                    debitMax = debitTmp
-                                End If
-                            Catch ex As Exception
-                                CSDebug.dispWarn("diagnostique::mutCalcDebitMoy Max/min : " & ex.Message)
-                            End Try
+                        If debitTextBox IsNot Nothing Then
+                            If debitTextBox.Text <> "" Then
+                                debitMoy = (debitMoy + CType(debitTextBox.Text, Double))
+                                Try
+                                    Dim debitTmp As Double = CDbl(debitTextBox.Text)
+                                    If debitTmp < debitMin Then
+                                        debitMin = debitTmp
+                                    End If
+                                    If debitTmp > debitMax Then
+                                        debitMax = debitTmp
+                                    End If
+                                Catch ex As Exception
+                                    CSDebug.dispWarn("diagnostique::mutCalcDebitMoy Max/min : " & ex.Message)
+                                End Try
+                            End If
                         End If
                     Catch ex As Exception
                         CSDebug.dispWarn("diagnostique::mutCalcDebitMoy : " & ex.Message)
@@ -2890,9 +2933,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     'Si le calibrateur est utilisé et que la pression est cochée
 
                     If (Not bUseCalibrateur Or (ochk.Checked And bUseCalibrateur)) Then
-                        For nNiveau As Integer = 1 To m_Niveaux
-                            For nTroncon As Integer = 1 To m_Troncons
-                                ncol = ((nNiveau - 1) * m_Troncons) + nTroncon
+                        For nNiveau As Integer = 1 To m_diagnostic.controleNbreNiveaux
+                            For nTroncon As Integer = 1 To m_diagnostic.controleNbreTroncons
+                                ncol = ((nNiveau - 1) * m_diagnostic.controleNbreTroncons) + nTroncon
                                 If odgv(ncol, ROW_PRESSION).Value Is Nothing Then
                                     bAllFilled = False
                                 End If
@@ -3006,8 +3049,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim tbdebitNominal As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
             Dim debitMoyBusesTextBox As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitMoyen_" & lotId, diagBuses_tab_categories)
 
-            Dim oldDuringLoad As Boolean = m_bDuringLoad
-            m_bDuringLoad = True
+            Events_Suspend()
             If tbDebitNominalCONSTructeur.Text = "" Then
                 'S'il n'y a pas de débitNominal constructeur on prend 
                 '   Le débit moyen si le nombre de buses est >2
@@ -3037,7 +3079,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Else
                 tbdebitNominal.Text = tbDebitNominalCONSTructeur.Text
             End If
-            m_bDuringLoad = oldDuringLoad  'on revient dans l'état initial
+            Events_Activate()
         Catch ex As Exception
             CSDebug.dispError("fillDebitNom ERR : " & ex.Message.ToString)
 
@@ -3906,7 +3948,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ' Changement debit nominal Pour Calcul
     Private Sub debitNominalPourCalcul_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 Dim lotId As Integer = CType(sender.name.replace("TextBox_debitNominal_", ""), Integer)
                 mutCalcLot(lotId)
                 mutCalcTotal()
@@ -3927,13 +3969,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ' Changement debit nominal constructeur
     Private Sub debitNominalCONSTructeur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-
-            Dim lotId As Integer = CType(sender.name.replace("TextBox_debitNominalCONSTructeur_", ""), Integer)
-            fillDebitNominalPourCalcul(lotId)
-            Dim tbdebitNominal As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
-            m_DiagBuses.Liste(lotId - 1).debitNominal = tbdebitNominal.Text
-            'Recalcul de l'ensemble du lot 
-            mutCalcLot(lotId)
+            If Events_IsActive() Then
+                Dim lotId As Integer = CType(sender.name.replace("TextBox_debitNominalCONSTructeur_", ""), Integer)
+                fillDebitNominalPourCalcul(lotId)
+                Dim tbdebitNominal As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("TextBox_debitNominal_" & lotId, diagBuses_tab_categories)
+                m_DiagBuses.Liste(lotId - 1).debitNominal = tbdebitNominal.Text
+                'Recalcul de l'ensemble du lot 
+                mutCalcLot(lotId)
+            End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::DebitNominalCONSTructeur_TextChanged : " & ex.Message)
         End Try
@@ -3942,13 +3985,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub ecartTolere_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            Dim lotId As Integer = CType(sender.name.replace("ComboBox_ecartTolere_", ""), Integer)
+            If Events_IsActive() Then
+                Dim lotId As Integer = CType(sender.name.replace("ComboBox_ecartTolere_", ""), Integer)
             Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
             Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
             m_DiagBuses.Liste(lotId - 1).ecartTolere = ecartTolereValue
-            If sender.text <> "" Then
-                mutCalcLot(lotId)
-            End If
+                If sender.text <> "" Then
+                    mutCalcLot(lotId)
+                End If
+            End if
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ecartTolere_SelectedIndexChanged ERR : " & ex.Message)
 
@@ -4477,12 +4522,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         popup_help_811.Visible = False
     End Sub
     Private Sub help811_largeur_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help811_largeur.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             calc_help_811()
         End If
     End Sub
     Private Sub help811_fleche_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help811_fleche.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             calc_help_811()
         End If
     End Sub
@@ -4616,17 +4661,17 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         popup_help_831.Visible = False
     End Sub
     Private Sub help831_ecartementReference_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help831_ecartementReference.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             calc_help_831()
         End If
     End Sub
     Private Sub help831_ecartementMax_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help831_ecartementMax.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             calc_help_831()
         End If
     End Sub
     Private Sub help831_ecartementMin_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles help831_ecartementMin.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             calc_help_831()
         End If
     End Sub
@@ -4666,10 +4711,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 tmpEcart2 = Math.Abs((tmpEcartMax - tmpEcartRef) * 100 / tmpEcartRef)
                 tmpEcart = Math.Max(tmpEcart1, tmpEcart2)
 
-                oldDuringLoad = m_bDuringLoad
-                m_bDuringLoad = True
+                'oldDuringLoad = m_bDuringLoad
+                Events_Suspend()
                 help831_ecart.Text = Math.Round(tmpEcart, 2)
-                m_bDuringLoad = oldDuringLoad
+                Events_Activate()
             End If
             If tmpEcart <= 5 Then
                 ' OK
@@ -4942,8 +4987,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Mise à jour du pulvérisateurCourant
             'il sera sauvegarde en même temps que le diagnostique
             '====================================================================================
-            m_Pulverisateur.manometreNbniveaux = m_Niveaux
-            m_Pulverisateur.manometreNbtroncons = m_Troncons
+            m_Pulverisateur.manometreNbniveaux = m_diagnostic.controleNbreTroncons
+            m_Pulverisateur.manometreNbtroncons = m_diagnostic.controleNbreTroncons
             'Pour le paramétrage des buses on prend le niveau 1
             Dim nLot As Integer = 1
             Dim oControl As Control
@@ -5154,7 +5199,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub checkAnswer2(ByVal pcontrole As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)
 
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             'Si l'objet n'a pas de nom on sort (Evnmt déclenché lors de la création du controle)
             If String.IsNullOrEmpty(pcontrole.Name) Or pcontrole.Name.ToUpper() = "CTRLDIAG2" Then
                 Exit Sub
@@ -5253,7 +5298,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Protected Overridable Function checkIsOk(ByVal ongletId As Integer) As Boolean
         Dim bIsOk As Boolean = False
         Try
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 Select Case ongletId
                     Case 1
                         'Pour L'onglet 1 , on vérifie directement les CheckBox
@@ -5338,18 +5383,20 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Protected Overridable Function CheckOnglet7() As Integer
 
         Dim iReturn As Integer = 3 'Etat initial = 3 Gris
-        If CheckIfManoTronconsAreFilled() Then
-            iReturn = 2 'OK = vert
-            If manopulveResultat.Text.Trim().ToUpper() = "IMPORTANTE" Then
-                iReturn = 0 'Rouge
-            End If
+        If gdvPressions1.Columns.GetColumnCount(DataGridViewElementStates.None) > 1 Then
+            If CheckIfManoTronconsAreFilled() Then
+                iReturn = 2 'OK = vert
+                If manopulveResultat.Text.Trim().ToUpper() = "IMPORTANTE" Then
+                    iReturn = 0 'Rouge
+                End If
 
-            If lblP833DefautHeterogeneite.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
-                iReturn = 0 'Rouge
-            End If
+                If lblP833DefautHeterogeneite.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
+                    iReturn = 0 'Rouge
+                End If
 
-            If lblp833DefautEcart.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
-                iReturn = 0 'Rouge
+                If lblp833DefautEcart.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
+                    iReturn = 0 'Rouge
+                End If
             End If
         End If
         Return iReturn
@@ -7911,7 +7958,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 If bDefaut Then
                     lblp833DefautEcart.Text = "DEFAUT"
                     lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
-                    If Not m_bDuringLoad Then
+                    If Events_IsActive() Then
                         'Pas de déclenchement pendant l'affichage d'un diag
                         RadioButton_diagnostic_8333.Checked = True
                         RadioButton_diagnostic_8330.Checked = False
@@ -7921,7 +7968,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     lblp833DefautEcart.ForeColor = System.Drawing.Color.Green
                     RadioButton_diagnostic_8333.Checked = False
                     If lblP833DefautHeterogeneite.Text = "OK" Then
-                        If Not m_bDuringLoad Then
+                        If Events_IsActive() Then
                             'Pas de déclenchement pendant l'affichage d'un diag
                             RadioButton_diagnostic_8330.Checked = True
                         End If
@@ -7953,7 +8000,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If bDefaut Then
                 lblP833DefautHeterogeneite.Text = "DEFAUT"
                 lblP833DefautHeterogeneite.ForeColor = System.Drawing.Color.Red
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     'Pas de déclenchement pendant l'affichage d'un diag
                     RadioButton_diagnostic_8332.Checked = True
                     RadioButton_diagnostic_8330.Checked = False
@@ -7966,7 +8013,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 RadioButton_diagnostic_8332.Checked = False
                 'si le défaut d'écart est aussi à OK => on coche OK sans l'onglet Rampe
                 If lblp833DefautEcart.Text = "OK" Then
-                    If Not m_bDuringLoad Then
+                    If Events_IsActive() Then
                         'Pas de déclenchement pendant l'affichage d'un diag
                         RadioButton_diagnostic_8330.Checked = True
                     End If
@@ -7985,8 +8032,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nCol As Integer
             'Pour le defaut hétérogénéité => il faut regarder tous les tronçons
             'car le défaut est calculé sur la différence entre la pression d'un tronçon et la moyenne des autres tronçons
-            For nTroncon = 1 To m_Troncons
-                nCol = ((pNiveau - 1) * m_Troncons) + nTroncon
+            For nTroncon = 1 To m_diagnostic.controleNbreTroncons
+                nCol = ((pNiveau - 1) * m_diagnostic.controleNbreTroncons) + nTroncon
                 If m_RelevePression833_Current.GetTroncon(pNiveau, nTroncon).isDefaultHeterogeneite(m_Paramdiag.ParamDiagCalc833) Then
                     'Ce troncon est en défaut
                     m_dgvPressionCurrent(nCol, ROW_HETERO_PCT).Style.ForeColor = System.Drawing.Color.Red
@@ -7994,7 +8041,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     m_dgvPressionCurrent(nCol, ROW_HETERO_PCT).Style.ForeColor = System.Drawing.Color.Black
                 End If
 
-                nCol = ((pNiveau - 1) * m_Troncons) + nTroncon
+                nCol = ((pNiveau - 1) * m_diagnostic.controleNbreTroncons) + nTroncon
                 AfficheResultat833(nCol)
             Next
 
@@ -8109,7 +8156,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
 
             If rb542IsFaiblePression.Checked Then
-                If Not m_bDuringLoad Then
+                If Events_IsActive() Then
                     setPressionsFaibles(ckSaisieManuelle542.Checked)
                 End If
             End If
@@ -8136,7 +8183,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             manopulvePressionPulve_3.ReadOnly = Not pbSaisieManuelle
             manopulvePressionPulve_4.ReadOnly = Not pbSaisieManuelle
             'RAZ des traca manos avant rechargement de la liste
-            m_bDuringLoad = True 'pour ne pas traiter le changement
+            Events_Suspend() 'pour ne pas traiter le changement
             For nPression As Integer = 1 To 4
                 SetCurrentPressionControls(nPression)
                 For Each oCol As DataGridViewColumn In m_dgvPressionCurrent.Columns
@@ -8145,7 +8192,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     End If
                 Next
             Next
-            m_bDuringLoad = False
+            Events_Activate()
 
             m_bsrcManoCPression.Clear()
             For Each oManoc As ManometreControle In m_olstManoC
@@ -8297,7 +8344,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub manopulveIsFortePression_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb542IsFortePression.CheckedChanged
         'CSDebug.dispInfo("manopulveIsFortePression_CheckedChanged_1")
         If rb542IsFortePression.Checked Then
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 setPressionsFortes(ckSaisieManuelle542.Checked)
             End If
         End If
@@ -8305,7 +8352,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Private Sub ckSaisieManuelle542_CheckedChanged(sender As Object, e As EventArgs) Handles ckSaisieManuelle542.CheckedChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             If rb542IsFortePression.Checked Then
                 setPressionsFortes(ckSaisieManuelle542.Checked)
             End If
@@ -8325,7 +8372,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             manopulvePressionPulve_3.ReadOnly = Not pbSaisieManuelle
             manopulvePressionPulve_4.ReadOnly = Not pbSaisieManuelle
             'RAZ des traca manos avant rechargement de la liste
-            m_bDuringLoad = True 'pour ne pas traiter le changement
+            Events_Suspend() 'pour ne pas traiter le changement
             For nPression As Integer = 1 To 4
                 SetCurrentPressionControls(nPression)
                 For Each oCol As DataGridViewColumn In m_dgvPressionCurrent.Columns
@@ -8334,7 +8381,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     End If
                 Next
             Next
-            m_bDuringLoad = False
+            Events_Activate()
 
             'Chargement des bons manos
             m_bsrcManoCPression.Clear()
@@ -8343,7 +8390,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     m_bsrcManoCPression.Add(oManoc)
                 End If
             Next
-            SetPressions()
+            'Les dgv 833 ont-ils été construit ?
+            If gdvPressions1.Rows.Count > 0 Then
+                SetPressions()
+            End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFaibles ERR : " & ex.Message)
         End Try
@@ -8355,25 +8405,25 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
 
             AffichageEnteteOnglet()
-            createRelevePression()
             RAZManopulvePressionLues()
-            'Affecation de numéro de traca dans l'ordre
-            If m_bsrcManoCPression.Count > 0 Then
-                Dim nItem As Integer = 0
-                For nPression As Integer = 1 To 4
-                    SetCurrentPressionControls(nPression)
-                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
-                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+            'Affecation de numéro de traca dans l'ordre s'il y a des Mano sélectionnés
+            Dim nItem As Integer = 0
+            For nPression As Integer = 1 To 4
+                SetCurrentPressionControls(nPression)
+                For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                    For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                        oTr.Traca = ""
+                        If m_bsrcManoCPression.Count > 0 Then
                             oTr.Traca = m_bsrcManoCPression(nItem).traca
                             nItem = nItem + 1
                             If nItem > m_bsrcManoCPression.Count - 1 Then
                                 nItem = 0
                             End If
-                        Next
+                        End If
                     Next
-                    nItem = 0
                 Next
-            End If
+                nItem = 0
+            Next
             Affiche8332()
             SetPressionControle542ToPressionManoPulve833(manopulveIsUseCalibrateur.Checked)
             SelectTableauMesurePourDefaut()
@@ -8521,21 +8571,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     'End Sub
 
     Private Sub manopulvePressionControle_1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles manopulvePressionControle_1.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             validatemanopulvePressionControle(1)
         End If
     End Sub
 
 
     Private Sub manopulvePressionControle_2_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles manopulvePressionControle_2.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             validatemanopulvePressionControle(2)
         End If
     End Sub
 
 
     Private Sub manopulvePressionControle_3_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles manopulvePressionControle_3.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             validatemanopulvePressionControle(3)
         End If
     End Sub
@@ -8544,7 +8594,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     'Sur le manoPulvePressionControle 4 on valid à chaque frappe , car il se peut qu'il soit le dernier TB de la page. et 
     'le validated ne se déclenche que si un autre controle prend le focus , click sur un panel ne prend pas le focus
     Private Sub manopulvePressionControle_4_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles manopulvePressionControle_4.TextChanged
-        If Not m_bDuringLoad Then
+        If Events_IsActive() Then
             validatemanopulvePressionControle(4)
         End If
     End Sub
@@ -8569,10 +8619,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End Select
 
             If TB IsNot Nothing Then
-                oldDuringLoad = m_bDuringLoad
-                m_bDuringLoad = True
+                'oldDuringLoad = m_bDuringLoad
+                Events_Suspend()
                 TB.Text = TB.Text.Replace(".", ",")
-                m_bDuringLoad = oldDuringLoad
+                Events_Activate()
                 If IsNumeric(TB.Text) Then
                     SetPressionControle542ToPressionManoPulve833(pPression, manopulveIsUseCalibrateur.Checked)
                     calcDefaut542()
@@ -8616,40 +8666,50 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
 
-    Private Sub CreerNiveauxTroncons833()
+    Private Sub Creercontrols542_833(pbReinit542 As Boolean, pbInitTraca833 As Boolean)
         'CSDebug.dispInfo("CreerNiveauxTroncons833")
         Try
 
-            designdgv(nup_niveaux.Value, nupTroncons.Value, 1)
-            designdgv(nup_niveaux.Value, nupTroncons.Value, 2)
-            designdgv(nup_niveaux.Value, nupTroncons.Value, 3)
-            designdgv(nup_niveaux.Value, nupTroncons.Value, 4)
-            init542()
-            init833()
-            If rb542IsFaiblePression.Checked Then
-                setPressionsFaibles(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
+            If pbReinit542 Then
+                init542()
+                If rb542IsFaiblePression.Checked Then
+                    setPressionsFaibles(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
+                Else
+                    setPressionsFortes(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
+                End If
+                Affiche542()
             Else
-                setPressionsFortes(pbSaisieManuelle:=ckSaisieManuelle542.Checked)
+                'Réinit des Pressions de controle 542
+                manopulvePressionControle_1.Text = ""
+                manopulvePressionControle_2.Text = ""
+                manopulvePressionControle_3.Text = ""
+                manopulvePressionControle_4.Text = ""
             End If
+            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 1)
+            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 2)
+            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 3)
+            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 4)
+            init833()
             'Affichage des valeurs 
-            '            If Not m_bDuringLoad Then
-            Affiche542()
+            '            If Events_IsActive() Then
             'Affecation de numéro de traca dans l'ordre
-            If m_bsrcManoCPression.Count > 0 Then
-                Dim nItem As Integer = 0
-                For nPression As Integer = 1 To 4
-                    SetCurrentPressionControls(nPression)
-                    For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
-                        For Each oTr As RelevePression833Troncon In oNiv.colTroncons
-                            oTr.Traca = m_bsrcManoCPression(nItem).traca
-                            nItem = nItem + 1
-                            If nItem > m_bsrcManoCPression.Count - 1 Then
-                                nItem = 0
-                            End If
+            If pbInitTraca833 Then
+                If m_bsrcManoCPression.Count > 0 Then
+                    Dim nItem As Integer = 0
+                    For nPression As Integer = 1 To 4
+                        SetCurrentPressionControls(nPression)
+                        For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
+                            For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                                oTr.Traca = m_bsrcManoCPression(nItem).traca
+                                nItem = nItem + 1
+                                If nItem > m_bsrcManoCPression.Count - 1 Then
+                                    nItem = 0
+                                End If
+                            Next
                         Next
+                        nItem = 0
                     Next
-                    nItem = 0
-                Next
+                End If
             End If
 
             Affiche8332()
@@ -8658,7 +8718,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             checkIsOk(7)
 
         Catch ex As Exception
-            CSDebug.dispError("diagnostique::CreerNiveauxTroncons833 ERR : " & ex.Message)
+            CSDebug.dispError("diagnostique::Creercontrols542_833 ERR : " & ex.Message)
         End Try
 
     End Sub
@@ -8721,25 +8781,28 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub nup_niveaux_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nup_niveaux.ValueChanged
-        Affiche833Reset()
+        m_diagnostic.controleNbreNiveaux = nup_niveaux.Value
+        Affiche833Reset(pbReinit542:=False)
     End Sub
     Private Sub nupTroncons_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nupTroncons.ValueChanged
-        Affiche833Reset()
+        m_diagnostic.controleNbreTroncons = nupTroncons.Value
+        Affiche833Reset(pbReinit542:=False)
     End Sub
     ''' <summary>
     ''' reaffachiag du tableau 833 modificatino du nbre niveaux / Tronçons
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub Affiche833Reset()
+    Private Sub Affiche833Reset(pbReinit542 As Boolean)
         Try
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 'pour éviter trop de rafraischissement on cache le tab au début et on le montre à la fin
                 tab_833.Hide()
+                createRelevePression(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons)
                 '                If nup_niveaux.Value > 0 And nupTroncons.Value > 0 Then
                 Dim tabindex As Integer = tab_833.SelectedIndex
                 validerDiagnostiqueTab542()
                 validerDiagnostiqueTab833()
-                CreerNiveauxTroncons833()
+                Creercontrols542_833(pbReinit542, pbInitTraca833:=True)
 
                 tab_833.SelectedIndex = tabindex
                 tab_833.Show()
@@ -8771,8 +8834,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Exit Sub
             End Select
 
-            m_Niveaux = nup_niveaux.Value
-            m_Troncons = nupTroncons.Value
             nbColTotal = pNbNiveaux * pNbTroncons + 1
             If nbColTotal < 30 Then
                 pdgvPression.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -8904,21 +8965,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
 
-    Private Sub createRelevePression()
+    Private Sub createRelevePression(pnNiveau As Integer, pnTroncon As Integer)
         Try
 
             Dim pressionMano As Decimal
             pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression1)
-            m_RelevePression833_P1 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
+            m_RelevePression833_P1 = New RelevePression833(pnNiveau, pnTroncon, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
             pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression2)
-            m_RelevePression833_P2 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
+            m_RelevePression833_P2 = New RelevePression833(pnNiveau, pnTroncon, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
             pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression3)
-            m_RelevePression833_P3 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
+            m_RelevePression833_P3 = New RelevePression833(pnNiveau, pnTroncon, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
             pressionMano = CDec(m_Paramdiag.ParamDiagCalc833.Pression4)
-            m_RelevePression833_P4 = New RelevePression833(nup_niveaux.Value, nupTroncons.Value, pressionMano, m_Paramdiag.ParamDiagCalc833)
+            m_RelevePression833_P4 = New RelevePression833(pnNiveau, pnTroncon, pressionMano, m_Paramdiag.ParamDiagCalc833)
 
             'Mise à jour des releve de pression à partir des DiagTroncons s'ils existent
 
@@ -8992,8 +9053,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub gdvPressions1_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions1.CellValueChanged
         'CSDebug.dispInfo("gdvPressions1_CellValueChanged")
         Try
-            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
-                dgv_CellValueChanged()
+            If Events_IsActive() Then
+                If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
+                    SetCurrentPressionControls(1)
+                    CType(sender, DataGridView).CurrentCell = CType(sender, DataGridView).Rows.Item(e.RowIndex).Cells(e.ColumnIndex)
+                    dgv_CellValueChanged()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::gdvPressions1_CellValueChanged ERR : " & ex.Message)
@@ -9024,9 +9089,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub gdvPressions2_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions2.CellValueChanged
         'CSDebug.dispInfo("gdvPressions2_CellValueChanged")
         Try
+            If Events_IsActive() Then
 
-            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
-                dgv_CellValueChanged()
+                If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
+                    SetCurrentPressionControls(2)
+                    CType(sender, DataGridView).CurrentCell = CType(sender, DataGridView).Rows.Item(e.RowIndex).Cells(e.ColumnIndex)
+                    dgv_CellValueChanged()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::gdvPressions2_CellValueChanged ERR : " & ex.Message)
@@ -9055,9 +9124,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub gdvPressions3_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions3.CellValueChanged
         'CSDebug.dispInfo("gdvPressions3_CellValueChanged")
         Try
+            If Events_IsActive() Then
 
-            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
-                dgv_CellValueChanged()
+                If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
+                    SetCurrentPressionControls(3)
+                    CType(sender, DataGridView).CurrentCell = CType(sender, DataGridView).Rows.Item(e.RowIndex).Cells(e.ColumnIndex)
+                    dgv_CellValueChanged()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::gdvPressions3_CellValueChanged ERR : " & ex.Message)
@@ -9087,10 +9160,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub gdvPressions4_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gdvPressions4.CellValueChanged
         'CSDebug.dispInfo("gdvPressions4_CellValueChanged")
-        If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
-            dgv_CellValueChanged()
+        If Events_IsActive() Then
+            If (e.RowIndex = ROW_PRESSION Or e.RowIndex = ROW_MANOMETRE) And e.ColumnIndex > 0 Then
+                SetCurrentPressionControls(4)
+                CType(sender, DataGridView).CurrentCell = CType(sender, DataGridView).Rows.Item(e.RowIndex).Cells(e.ColumnIndex)
+                dgv_CellValueChanged()
+            End If
         End If
-
     End Sub
 
 
@@ -9163,7 +9239,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub dgv_CellValueChanged()
         If m_dgvPressionCurrent IsNot Nothing And m_dgvPressionCurrent.CurrentCell IsNot Nothing Then
 
-            If Not m_bDuringLoad Then
+            If Events_IsActive() Then
                 If m_dgvPressionCurrent.CurrentCell.RowIndex = ROW_PRESSION Then
                     dgv_CellValueChangedPression()
                 Else
@@ -9182,7 +9258,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim oNiveau As RelevePression833Niveau
             Dim nPression As Integer
             Dim strValue As String
-            SetCurrentPressionControls()
+            Events_Suspend() 'Pour prevenir le traietement des evts de mise à jour
+            'SetCurrentPressionControls()
             If m_dgvPressionCurrent.CurrentCell.Value Is Nothing Then
                 strValue = ""
             Else
@@ -9237,6 +9314,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
                 calcDefaut542()
             End If
+            Events_Activate() 'Libération du traietement des évenments
+
             'Vérification de la saisie de l'onglet 7
             checkIsOk(7)
         Catch ex As Exception
@@ -9253,6 +9332,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nTroncon As Integer
             Dim oNiveau As RelevePression833Niveau
             Dim strValue As String
+
+            Events_Suspend()
             strValue = m_dgvPressionCurrent.CurrentCell.Value.ToString()
 
             ncol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
@@ -9261,6 +9342,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
 
             oNiveau.SetTraca(nTroncon, strValue)
+            Events_Activate()
+
         Catch ex As Exception
             CSDebug.dispError("diagnostique::dgv_CellValueChangedMano ERR : " & ex.Message)
         End Try
@@ -10614,9 +10697,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             m_olstManoC.Sort()
 
             If m_diagnostic IsNot Nothing Then
-                m_bDuringLoad = True
+                Events_Suspend()
                 Formload()
-                m_bDuringLoad = False
+                Events_Activate()
                 AfficheDiagnosticItems() 'Affiche des Diag Item existant (en dehors du DuringLoad)
                 checkAllIsOk()
             End If

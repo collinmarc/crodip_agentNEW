@@ -433,7 +433,7 @@ Public Class DiagnosticHelp552
         'Débit mètre = 3 chiffre après la virgule
         ErreurDebitMetre = Math.Abs(Math.Round((Math.Abs(EcartPct_m1) + Math.Abs(EcartPct_m2) + Math.Abs(EcartPct_m3)) / 3, 3))
         ErreurDebitMetreSigned = Math.Round((EcartPct_m1 + EcartPct_m2 + EcartPct_m3) / 3, 3)
-        CSDebug.dispInfo("DiagHelp552.CalcErreurDebitMetre: ErreurDebitMetre=" & ErreurDebitMetre & " ,ErreurDebitMetreSigned =" & ErreurDebitMetreSigned)
+        'CSDebug.dispInfo("DiagHelp552.CalcErreurDebitMetre: ErreurDebitMetre=" & ErreurDebitMetre & " ,ErreurDebitMetreSigned =" & ErreurDebitMetreSigned)
     End Sub
 
     Private Function calcEcart(ByVal pDebitEtalon As Decimal, ByVal pDebitAfficheur As Decimal, ByVal pNbBuses As Decimal, ByVal pPression As Decimal) As Decimal
