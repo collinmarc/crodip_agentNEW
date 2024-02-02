@@ -4681,7 +4681,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim tmpEcartMax As Double = 0
         Dim tmpEcartMin As Double = 0
         Dim tmpEcart As Double = 0
-        Dim oldDuringLoad As Boolean
 
         Try
             tmpEcartRef = CType(help831_ecartementReference.Text.ToString.Replace(".", ","), Double)
@@ -8603,7 +8602,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Function validatemanopulvePressionControle(ByVal pPression As Integer) As Boolean
         'CSDebug.dispInfo("validatemanopulvePressionControle")
         Dim bReturn As Boolean
-        Dim oldDuringLoad As Boolean
         bReturn = False
         Try
             Dim TB As CRODIP_ControlLibrary.TBNumeric = Nothing
