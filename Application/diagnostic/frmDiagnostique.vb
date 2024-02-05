@@ -1290,7 +1290,7 @@ Public Class FrmDiagnostique
                 Next
             End If
             'Affichage de la famille de pression
-            SetFamillePressions()
+            'SetFamillePressions()
 
             If m_diagnostic.controleUseCalibrateur Then
                 'Affichage du tableau des pressions (Pression Controle) 5.4.2
@@ -4869,8 +4869,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             rb542IsFaiblePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 4
-        End If
-        If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
+        Else
+            '            If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
             rb542IsFortePression.Checked = True
             nup_niveaux.Value = 1
             nupTroncons.Value = 2
@@ -4986,7 +4986,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Mise à jour du pulvérisateurCourant
             'il sera sauvegarde en même temps que le diagnostique
             '====================================================================================
-            m_Pulverisateur.manometreNbniveaux = m_diagnostic.controleNbreTroncons
+            m_Pulverisateur.manometreNbniveaux = m_diagnostic.controleNbreNiveaux
             m_Pulverisateur.manometreNbtroncons = m_diagnostic.controleNbreTroncons
             'Pour le paramétrage des buses on prend le niveau 1
             Dim nLot As Integer = 1
@@ -8200,7 +8200,10 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
 
-            SetPressions()
+            'Les dgv 833 ont-ils été construit ?
+            If gdvPressions1.Rows.Count > 0 Then
+                SetPressions()
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("diagnostique::setPressionsFortes ERR : " & ex.Message)
@@ -8988,7 +8991,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     For Each oDiagTroncon833 As DiagnosticTroncons833 In m_diagnostic.diagnosticTroncons833.ListeparPression(nPression)
                         If oDiagTroncon833.nNiveau <= m_RelevePression833_Current.colNiveaux.Count() Then
                             If oDiagTroncon833.nTroncon <= m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons.Count() Then
-
+                                m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionMano(m_diagnostic.diagnosticMano542List.diagnosticMano542(nPression - 1).pressionControled)
                                 m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionLue(oDiagTroncon833.pressionSortie)
                                 Dim oMano As ManometreControle = m_bsrcManoCPression.List.OfType(Of ManometreControle).Where(Function(M)
                                                                                                                                  Return M.numeroNational = oDiagTroncon833.ManocId
