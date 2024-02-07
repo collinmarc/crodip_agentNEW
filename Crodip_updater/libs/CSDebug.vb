@@ -18,6 +18,16 @@ Public Class CSDebug
         End If
         Return bReturn
     End Function
+    Public Shared Sub dispError(ByVal pErrorMsg As String, ex As Exception)
+        Dim errorMessage As String
+        errorMessage = pErrorMsg + ex.Message
+        If ex.InnerException IsNot Nothing Then
+            errorMessage = errorMessage + "," + ex.InnerException.Message
+        End If
+
+        displayMsg("[Error] - " & errorMessage)
+    End Sub
+
     Public Shared Function dispWarn(ByVal warnMsg As String) As Boolean
         Dim bReturn As Boolean
         bReturn = True

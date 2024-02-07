@@ -131,7 +131,9 @@ Public Class FVBancManager
             paramsQuery = "'" & objFVBanc.id & "' , '" & CSDb.secureString(objFVBanc.idBancMesure) & "'"
 
             ' Mise a jour de la date de derniere modification
-            objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            If Not bSynchro Then
+                objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            End If
 
             If Not objFVBanc.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`type`"

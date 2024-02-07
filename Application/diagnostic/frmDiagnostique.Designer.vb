@@ -10571,7 +10571,7 @@ Partial Class FrmDiagnostique
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Size = New System.Drawing.Size(976, 273)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "5 bar"
+        Me.TabPage1.Text = "w bar"
         '
         'Label22
         '
@@ -10706,7 +10706,6 @@ Partial Class FrmDiagnostique
         Me.pressionTronc_5_pressionManoPulve.Size = New System.Drawing.Size(48, 20)
         Me.pressionTronc_5_pressionManoPulve.TabIndex = 10
         Me.pressionTronc_5_pressionManoPulve.TabStop = False
-        Me.pressionTronc_5_pressionManoPulve.Text = "5"
         '
         'gdvPressions1
         '
@@ -10763,7 +10762,7 @@ Partial Class FrmDiagnostique
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Size = New System.Drawing.Size(976, 273)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "10 bar"
+        Me.TabPage2.Text = "x bar"
         '
         'Label21
         '
@@ -10932,7 +10931,6 @@ Partial Class FrmDiagnostique
         Me.pressionTronc_10_pressionManoPulve.Size = New System.Drawing.Size(48, 20)
         Me.pressionTronc_10_pressionManoPulve.TabIndex = 34
         Me.pressionTronc_10_pressionManoPulve.TabStop = False
-        Me.pressionTronc_10_pressionManoPulve.Text = "10"
         '
         'TabPage8
         '
@@ -10956,7 +10954,7 @@ Partial Class FrmDiagnostique
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage8.Size = New System.Drawing.Size(976, 273)
         Me.TabPage8.TabIndex = 4
-        Me.TabPage8.Text = "15 bar"
+        Me.TabPage8.Text = "y bar"
         '
         'Label20
         '
@@ -11124,7 +11122,6 @@ Partial Class FrmDiagnostique
         Me.pressionTronc_15_pressionManoPulve.Size = New System.Drawing.Size(48, 20)
         Me.pressionTronc_15_pressionManoPulve.TabIndex = 34
         Me.pressionTronc_15_pressionManoPulve.TabStop = False
-        Me.pressionTronc_15_pressionManoPulve.Text = "15"
         '
         'TabPage9
         '
@@ -11147,7 +11144,7 @@ Partial Class FrmDiagnostique
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Size = New System.Drawing.Size(976, 273)
         Me.TabPage9.TabIndex = 5
-        Me.TabPage9.Text = "20 bar"
+        Me.TabPage9.Text = "z bar"
         '
         'Label19
         '
@@ -11316,7 +11313,6 @@ Partial Class FrmDiagnostique
         Me.pressionTronc_20_pressionManoPulve.Size = New System.Drawing.Size(48, 20)
         Me.pressionTronc_20_pressionManoPulve.TabIndex = 34
         Me.pressionTronc_20_pressionManoPulve.TabStop = False
-        Me.pressionTronc_20_pressionManoPulve.Text = "20"
         '
         'pnl542
         '

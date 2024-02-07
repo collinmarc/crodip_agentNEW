@@ -184,8 +184,10 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New PrestationCategorie
                     Try
                         setStatus("Réception MAJ Catégorie de prestation n°" & pElement.identifiantChaine & "...")
-                        tmpObject = PrestationCategorieManager.getWSPrestationCategorieById(pAgent, CType(pElement.identifiantChaine, Integer))
-                        PrestationCategorieManager.save(tmpObject, pAgent, True)
+                        tmpObject = PrestationCategorieManager.getWSPrestationCategorieById(pAgent, CType(pElement.IdentifiantChaine, Integer))
+                        If tmpObject.libelle <> "" Then
+                            PrestationCategorieManager.save(tmpObject, pAgent, True)
+                        End If
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetPrestationCategorie) : " & ex.Message.ToString)
@@ -202,7 +204,9 @@ Public Class SynchronisationElmt
                         Dim idCategorie As Integer = CType(tmpSplit(1), Integer)
                         setStatus("Réception MAJ Tarif de prestation n°" & idObject & "...")
                         tmpObject = PrestationTarifManager.getWSPrestationTarifById(idObject, idCategorie, pAgent)
-                        PrestationTarifManager.save(tmpObject, pAgent, True)
+                        If tmpObject.description <> "" Then
+                            PrestationTarifManager.save(tmpObject, pAgent, True)
+                        End If
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetPrestationTarif) : " & ex.Message.ToString)

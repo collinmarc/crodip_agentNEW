@@ -833,7 +833,20 @@ Public Class FrmDiagnostique
             diagBuses_tab_categories.TabPages.Clear()
 
             ' Passage en mode Rampe/ArboViti
-            SetDiagnostic833Type()
+            tab_833.Visible = True
+            If m_Paramdiag.ParamDiagCalc833.Pression1 = 1.6D Then
+                rb542IsFaiblePression.Checked = True
+                'nup_niveaux.Value = 1
+                'nupTroncons.Value = 4
+            Else
+                '            If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
+                rb542IsFortePression.Checked = True
+                'nup_niveaux.Value = 1
+                'nupTroncons.Value = 2
+            End If
+            nup_niveaux.Value = m_diagnostic.controleNbreNiveaux
+            nupTroncons.Value = m_diagnostic.controleNbreTroncons
+            'Affiche833Reset(pbReinit542:=False)
 
 
             'L'affichage des défaut de pressions provoque le OK sur 8334
@@ -844,8 +857,10 @@ Public Class FrmDiagnostique
             If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
                 Or m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU _
                 Or m_diagnostic.diagRemplacementId <> "" Then
+
                 ' Chargement du diagnostic si on est en mode CV ou VISU OU EN MODE REMPLACEMENT
                 loadExistingDiag()
+
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
                 If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
@@ -976,6 +991,18 @@ Public Class FrmDiagnostique
             Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=True)
             '            SetCurrentPressionControls()
             SelectTableauMesurePourDefaut()
+            'Annulation du defaut 8333
+            RadioButton_diagnostic_8333.Checked = False
+            lblp833DefautEcart.Text = ""
+            lblP833DefautHeterogeneite.Text = ""
+            pressionTronc_DefautEcart1.Text = ""
+            pressionTronc_DefautEcart2.Text = ""
+            pressionTronc_DefautEcart3.Text = ""
+            pressionTronc_DefautEcart4.Text = ""
+            pressionTronc_heterogeniteAlimentation1.Text = ""
+            pressionTronc_heterogeniteAlimentation2.Text = ""
+            pressionTronc_heterogeniteAlimentation3.Text = ""
+            pressionTronc_heterogeniteAlimentation4.Text = ""
 
             bReturn = True
         Catch ex As Exception
@@ -1170,6 +1197,14 @@ Public Class FrmDiagnostique
 
                 End If
             End If
+            If m_diagnostic.diagnosticMano542List.Liste(0).pressionPulved > 4D Then
+                'Nous sommes en forte pression
+                rb542IsFortePression.Checked = True
+            Else
+                'Nous sommes en basse pression
+                rb542IsFaiblePression.Checked = True
+            End If
+
 
             Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=False)
 
@@ -1185,13 +1220,13 @@ Public Class FrmDiagnostique
 
 
 
-            If m_RelevePression833_P1.colNiveaux(0).colTroncons(0).PressionMano > 4D Then
-                'Nous sommes en forte pression
-                rb542IsFortePression.Checked = True
-            Else
-                'Nous sommes en basse pression
-                rb542IsFaiblePression.Checked = True
-            End If
+            'If m_RelevePression833_P1.colNiveaux(0).colTroncons(0).PressionMano > 4D Then
+            '    'Nous sommes en forte pression
+            '    rb542IsFortePression.Checked = True
+            'Else
+            '    'Nous sommes en basse pression
+            '    rb542IsFaiblePression.Checked = True
+            'End If
             '07/12/2023 : Pouquoi changer de tab ?
             'tab_833.SelectTab(nPression - 1)
             '            createRelevePression()
@@ -1339,6 +1374,7 @@ Public Class FrmDiagnostique
                     'tab_833.SelectTab(nPression - 1)
                     For Each oNiv As RelevePression833Niveau In m_RelevePression833_Current.colNiveaux
                         For Each oTr As RelevePression833Troncon In oNiv.colTroncons
+                            SetCurrentPressionControls(nPression)
                             If oTr.PressionLue <> 0 Then
                                 '                            m_dgvPressionCurrent.currentCell = m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION)
                                 m_dgvPressionCurrent(oTr.NumCol, ROW_PRESSION).Value = oTr.PressionLue
@@ -4867,13 +4903,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         tab_833.Visible = True
         If m_Paramdiag.ParamDiagCalc833.Pression1 = 1.6D Then
             rb542IsFaiblePression.Checked = True
-            nup_niveaux.Value = 1
-            nupTroncons.Value = 4
+            'nup_niveaux.Value = 1
+            'nupTroncons.Value = 4
         Else
             '            If m_Paramdiag.ParamDiagCalc833.Pression1 = 5D Then
             rb542IsFortePression.Checked = True
-            nup_niveaux.Value = 1
-            nupTroncons.Value = 2
+            'nup_niveaux.Value = 1
+            'nupTroncons.Value = 2
         End If
 
 
@@ -7776,7 +7812,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub tab_diagnostique_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tab_diagnostique.SelectedIndexChanged
         Select Case tab_diagnostique.SelectedIndex
             Case 6
-                SetCurrentPressionControls()
+                SetCurrentPressionControls(1)
 
         End Select
     End Sub
@@ -7888,7 +7924,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 AfficheDefautHeterogeneite()
                 AfficheDefautEcart()
                 'ReAffection des controles courrants
-                SetCurrentPressionControls()
+                SetCurrentPressionControls(npression)
 
             End If
         End If
@@ -8200,6 +8236,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
             Next
 
+            AfficheEnteteOnglet833()
             'Les dgv 833 ont-ils été construit ?
             If gdvPressions1.Rows.Count > 0 Then
                 SetPressions()
@@ -8210,13 +8247,17 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
 
     End Sub
-    Private Sub AffichageEnteteOnglet()
+    Private Sub AfficheEnteteOnglet833()
         Try
 
             tab_833.TabPages(0).Text = manopulvePressionPulve_1.Text & " bars"
             tab_833.TabPages(1).Text = manopulvePressionPulve_2.Text & " bars"
             tab_833.TabPages(2).Text = manopulvePressionPulve_3.Text & " bars"
             tab_833.TabPages(3).Text = manopulvePressionPulve_4.Text & " bars"
+            pressionTronc_5_pressionManoPulve.Text = manopulvePressionPulve_1.Text
+            pressionTronc_10_pressionManoPulve.Text = manopulvePressionPulve_2.Text
+            pressionTronc_15_pressionManoPulve.Text = manopulvePressionPulve_3.Text
+            pressionTronc_20_pressionManoPulve.Text = manopulvePressionPulve_4.Text
         Catch ex As Exception
             CSDebug.dispError("diagnostique::AffichageEnteteOnglet ERR : " & ex.Message)
         End Try
@@ -8392,6 +8433,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     m_bsrcManoCPression.Add(oManoc)
                 End If
             Next
+            AfficheEnteteOnglet833()
             'Les dgv 833 ont-ils été construit ?
             If gdvPressions1.Rows.Count > 0 Then
                 SetPressions()
@@ -8406,7 +8448,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub SetPressions()
         Try
 
-            AffichageEnteteOnglet()
+            'AffichageEnteteOnglet833()
             RAZManopulvePressionLues()
             'Affecation de numéro de traca dans l'ordre s'il y a des Mano sélectionnés
             Dim nItem As Integer = 0
@@ -8782,12 +8824,16 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
     Private Sub nup_niveaux_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nup_niveaux.ValueChanged
+        'If Events_IsActive() Then
         m_diagnostic.controleNbreNiveaux = nup_niveaux.Value
-        Affiche833Reset(pbReinit542:=False)
+            Affiche833Reset(pbReinit542:=False)
+        ' End If
     End Sub
     Private Sub nupTroncons_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nupTroncons.ValueChanged
+        'If Events_IsActive() Then
         m_diagnostic.controleNbreTroncons = nupTroncons.Value
-        Affiche833Reset(pbReinit542:=False)
+            Affiche833Reset(pbReinit542:=False)
+        'End If
     End Sub
     ''' <summary>
     ''' reaffachiag du tableau 833 modificatino du nbre niveaux / Tronçons
@@ -9022,7 +9068,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 'End If
             End If
             SelectTableauMesurePourDefaut()
-            SetCurrentPressionControls()
+            SetCurrentPressionControls(1)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::createRelevePression ERR : " & ex.Message)
         End Try
@@ -9342,7 +9388,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             nTroncon = m_dgvPressionCurrent(ncol, ROW_TRONCONS).Value
             oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
 
-            oNiveau.SetTraca(nTroncon, strValue)
+            'Passage du Mano sur toutes les pressions
+            Dim nPressionOrigine As Integer = m_dgvPressionCurrent(ncol, ROW_NPRESSION).Value
+            For nPression As Integer = 1 To 4
+                SetCurrentPressionControls(nPression)
+                oNiveau = m_RelevePression833_Current.GetNiveau(nNiveau)
+                oNiveau.SetTraca(nTroncon, strValue)
+                m_dgvPressionCurrent(ncol, ROW_MANOMETRE).Value = strValue
+            Next
+            SetCurrentPressionControls(nPressionOrigine)
             Events_Activate()
 
         Catch ex As Exception
@@ -9836,7 +9890,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim nTroncon As Integer
             For nPression = 1 To 4
                 tab_833.SelectedIndex = nPression - 1
-                SetCurrentPressionControls()
+                SetCurrentPressionControls(nPression)
                 For nCol As Integer = 1 To m_dgvPressionCurrent.Columns.Count - 1
                     Dim Pression As Decimal = CDec(m_tbPressionManoCurrent.Text)
                     nNiveau = m_dgvPressionCurrent(nCol, ROW_NIVEAUX).Value
@@ -9972,7 +10026,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub tab833_changeTab()
         Try
 
-            SetCurrentPressionControls()
+            SetCurrentPressionControls(tab_833.SelectedIndex + 1)
             'on suprimme la puce sur tous les onglets
             For Each oTab As TabPage In tab_833.TabPages
                 oTab.ImageIndex = -1
