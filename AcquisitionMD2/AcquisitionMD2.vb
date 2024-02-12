@@ -1,14 +1,20 @@
 ﻿Imports CRODIPAcquisition
+Imports CsvHelper
+Imports CsvHelper.Configuration
 Imports NLog
+Imports System.Data.Common
 Imports System.Data.OleDb
+Imports System.Globalization
+Imports System.IO
 Imports System.Linq
 
 Public Class AcquisitionMD2
     Implements ICRODIPAcquisition
     Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
+    Private bFichiercsvCree As Boolean = False
 
     Public Sub New()
-        m_fichierMD2 = My.Settings.FichierMD2
+        m_fichierMD2 = My.Settings.fichier
     End Sub
 
     Private m_fichierMD2 As String
@@ -26,54 +32,53 @@ Public Class AcquisitionMD2
 
         Dim oReturn As New List(Of AcquisitionValue)
 
+        'Transfert des donnés depuis la base ACCESS vers le fichier CSV
+        If Not bFichiercsvCree Then
+            If System.IO.File.Exists(My.Settings.ProgTransfert) Then
+                logger.Info("AcquisitionMD2.GetValues Lancement de " & My.Settings.ProgTransfert)
+                Process.Start(My.Settings.ProgTransfert)
+            End If
+            bFichiercsvCree = True
+        End If
+        If File.Exists(My.Settings.CSVMD2) Then
+            Dim lst As System.Collections.Generic.List(Of md2Enr)
+            Using reader As StreamReader = New StreamReader(My.Settings.CSVMD2)
+                Dim csvConfig As New CsvConfiguration(Globalization.CultureInfo.CurrentCulture)
+                csvConfig.Delimiter = ";"
+                csvConfig.MissingFieldFound = Nothing
 
-        Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
-        oConn.Open()
-        ' Initialisation de la DB
-        Dim ocmd As OleDbCommand
-        ocmd = oConn.CreateCommand()
-        ocmd.CommandText = "SELECT IdNiveau,debit,pression FROM tmpDataAcquiring ORDER BY IdNiveau, IdBuse"
-        Dim dataResults As System.Data.OleDb.OleDbDataReader = ocmd.ExecuteReader()
+                Using csv As CsvReader = New CsvReader(reader, csvConfig)
+                    lst = csv.GetRecords(Of md2Enr)().ToList()
+                End Using
+                reader.Close()
+            End Using
+            Dim curIdBuse As Integer = 0
+            Dim prevIdNiveau As Integer = 0
 
-        ' Parcourt des résultats
-        Dim i As Integer = 0
-        Dim prevIdNiveau As Integer = 0
-        Dim curIdBuse As Integer = 0
-
-        While dataResults.Read()
-
-            Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
-            ' On rempli notre tableau
-            Dim tmpColId As Integer = 0
-            While tmpColId < dataResults.FieldCount()
-                If Not dataResults.IsDBNull(tmpColId) Then
-                    Select Case dataResults.GetName(tmpColId).ToUpper().Trim()
-                        Case "idBuse".ToUpper().Trim()
-
-'                            tmpResponse.NumBuse = curIdBuse
-                        Case "idNiveau".ToUpper().Trim()
-                            tmpResponse.Niveau = dataResults.GetValue(tmpColId)
-                            'S'il y a rupture de niveau => Renumérotation de la buse
-                            If tmpResponse.Niveau <> prevIdNiveau Then
-                                curIdBuse = 0
-                            End If
-                            prevIdNiveau = tmpResponse.Niveau
-                            curIdBuse += 1
-                            tmpResponse.NumBuse = curIdBuse
-                        Case "debit".ToUpper().Trim()
-                            tmpResponse.Debit = dataResults.GetValue(tmpColId)
-                        Case "pression".ToUpper().Trim()
-                            tmpResponse.Pression = dataResults.GetValue(tmpColId)
-                    End Select
+            For Each omd2enr As md2Enr In lst
+                Dim tmpResponse As New CRODIPAcquisition.AcquisitionValue()
+                ' On rempli notre tableau
+                Dim tmpColId As Integer = 0
+                tmpResponse.Niveau = omd2enr.idNiveau
+                'S'il y a rupture de niveau => Renumérotation de la buse
+                If tmpResponse.Niveau <> prevIdNiveau Then
+                    curIdBuse = 0
                 End If
-                tmpColId = tmpColId + 1
-            End While
-            oReturn.Add(tmpResponse)
-        End While
-        dataResults.Close()
-        oConn.Close()
-        logger.Info("AcquisitionMD2.GetValues Return " & oReturn.Count & "elements")
+                prevIdNiveau = tmpResponse.Niveau
+                curIdBuse += 1
+                tmpResponse.NumBuse = curIdBuse
+
+                If Not String.IsNullOrEmpty(omd2enr.debit) Then
+                    tmpResponse.Debit = omd2enr.debit
+                End If
+                If Not String.IsNullOrEmpty(omd2enr.pression) Then
+                    tmpResponse.Pression = omd2enr.pression
+                End If
+                oReturn.Add(tmpResponse)
+            Next
+        Else
+            logger.Info("AcquisitionMD2.getValues fichier CSV " & My.Settings.CSVMD2 & " introuvable")
+        End If
         Return oReturn
 
     End Function
@@ -111,46 +116,16 @@ Public Class AcquisitionMD2
     End Function
 
     Public Sub FTO_SaveData(plst As List(Of AcquisitionValue)) Implements ICRODIPAcquisition.FTO_SaveData
-        Dim oConn As OleDb.OleDbConnection
-        oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
-        oConn.Open()
-        ' Initialisation de la DB
-        Dim ocmd As OleDbCommand
-        ocmd = oConn.CreateCommand()
-        Dim n As Integer = 0
-        ocmd.CommandText = String.Format("DELETE FROM tmpDataAcquiring ")
-        ocmd.ExecuteNonQuery()
-        ocmd.CommandText = "Insert INTO tmpDataAcquiring (IdBuse,IdNiveau,debit,pression) VALUES (?,?,?,?)"
-
-        For Each oVal In plst
-            n = n + 1
-            ocmd.Parameters.Clear()
-            ocmd.Parameters.Add("?", OleDb.OleDbType.Integer).Value = n
-            ocmd.Parameters.Add("?", OleDb.OleDbType.Integer).Value = oVal.Niveau
-            ocmd.Parameters.Add("?", OleDb.OleDbType.Double).Value = oVal.Debit
-            ocmd.Parameters.Add("?", OleDb.OleDbType.Double).Value = oVal.Pression
-            ocmd.ExecuteNonQuery()
-        Next
-
-        oConn.Close()
+        Throw New NotImplementedException()
 
     End Sub
 
     Public Function clearResults() As Boolean Implements ICRODIPAcquisition.clearResults
         Dim bReturn As Boolean = False
         Try
-            Dim oConn As OleDb.OleDbConnection
-            oConn = New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fichierMD2)
-            oConn.Open()
-            ' Initialisation de la DB
-            Dim ocmd As OleDbCommand
-            ocmd = oConn.CreateCommand()
-            Dim n As Integer = 0
-            ocmd.CommandText = String.Format("DELETE FROM tmpDataAcquiring ")
-            ocmd.ExecuteNonQuery()
-
-            oConn.Close()
-            bReturn = True
+            If System.IO.File.Exists(My.Settings.ProgTransfert) Then
+                Process.Start(My.Settings.ProgTransfert & " " & "CLEAR")
+            End If
         Catch ex As Exception
             bReturn = False
         End Try

@@ -4,6 +4,7 @@ Imports System.Data.OleDb
 Imports System.Linq
 Imports System.IO
 Imports CsvHelper
+Imports CsvHelper.Configuration
 
 Public Class AcquisitionERECA
     Implements ICRODIPAcquisition
@@ -75,12 +76,15 @@ Public Class AcquisitionERECA
 #End Region
         Dim olstValueERECA As New List(Of ValueERECA)
         Using sr As New StreamReader(m_fichierERECA)
+            Dim csvConfig As CsvConfiguration
+            csvConfig = New CsvConfiguration(Globalization.CultureInfo.CurrentCulture)
+            csvConfig.MissingFieldFound = Nothing
+            csvConfig.Delimiter = ";"
+            csvConfig.HasHeaderRecord = False
+            csvConfig.IgnoreBlankLines = True
 
-            Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
-                csvR.Configuration.MissingFieldFound = Nothing
-                csvR.Configuration.Delimiter = ";"
-                csvR.Configuration.HasHeaderRecord = False
-                csvR.Configuration.IgnoreBlankLines = True
+
+            Using csvR As New CsvReader(sr, csvConfig)
                 olstValueERECA = csvR.GetRecords(Of ValueERECA)().ToList()
             End Using
         End Using

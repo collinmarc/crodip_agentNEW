@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -56,11 +56,32 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("./bdd/crodip_dasylab.mdb")>  _
-        Public ReadOnly Property FichierMD2() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("./bdd/md2.csv")>  _
+        Public ReadOnly Property CSVMD2() As String
             Get
-                Return CType(Me("FichierMD2"),String)
+                Return CType(Me("CSVMD2"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("AcquisitionMD2Transfert.exe")>  _
+        Public ReadOnly Property ProgTransfert() As String
+            Get
+                Return CType(Me("ProgTransfert"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("./bdd/crodip_dasylab.mdb")>  _
+        Public Property fichier() As String
+            Get
+                Return CType(Me("fichier"),String)
+            End Get
+            Set
+                Me("fichier") = value
+            End Set
         End Property
     End Class
 End Namespace

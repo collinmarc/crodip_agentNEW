@@ -1,5 +1,6 @@
 ﻿Imports CRODIPAcquisition
 Imports CsvHelper
+Imports CsvHelper.Configuration
 Imports NLog
 Imports System.Data.OleDb
 Imports System.IO
@@ -113,9 +114,10 @@ Public Class AcquisitionITEQ2
         Else
             Dim olstValueITEQ As New List(Of ValueITEQ2)
             Using sr As New StreamReader(m_fichierITEQ)
+                Dim csvConfig As New CsvConfiguration(Globalization.CultureInfo.CurrentCulture)
+                csvConfig.Delimiter = delimiter
 
-                Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
-                    csvR.Configuration.Delimiter = delimiter
+                Using csvR As New CsvReader(sr, csvConfig)
                     olstValueITEQ = csvR.GetRecords(Of ValueITEQ2)().ToList()
                 End Using
             End Using
@@ -145,10 +147,10 @@ Public Class AcquisitionITEQ2
                         tmpResponse.Pression = oValueITEQ.Pression.Replace(".", Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
                     End If
                     tmpResponse.Ref = oValueITEQ.Ref
-                        oReturn.Add(tmpResponse)
-                        If bPremLigne Then
-                            bPremLigne = False 'On n'est plus sur la première ligne
-                        End If
+                    oReturn.Add(tmpResponse)
+                    If bPremLigne Then
+                        bPremLigne = False 'On n'est plus sur la première ligne
+                    End If
                 Catch ex As Exception
 
                 End Try

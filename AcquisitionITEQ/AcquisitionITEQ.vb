@@ -1,5 +1,6 @@
 ﻿Imports CRODIPAcquisition
 Imports CsvHelper
+Imports CsvHelper.Configuration
 Imports NLog
 Imports System.Data.OleDb
 Imports System.IO
@@ -113,9 +114,9 @@ Public Class AcquisitionITEQ
         Else
             Dim olstValueITEQ As New List(Of ValueITEQ)
             Using sr As New StreamReader(m_fichierITEQ)
-
-                Using csvR As New CsvReader(sr, Globalization.CultureInfo.CurrentCulture)
-                    csvR.Configuration.Delimiter = delimiter
+                Dim csvConfig As New CsvConfiguration(Globalization.CultureInfo.CurrentCulture)
+                csvConfig.Delimiter = delimiter
+                Using csvR As New CsvReader(sr, csvConfig)
                     olstValueITEQ = csvR.GetRecords(Of ValueITEQ)().ToList()
                 End Using
             End Using
