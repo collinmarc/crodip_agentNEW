@@ -1787,28 +1787,35 @@ Public Class FrmDiagnostique
             If oLstMano542.Result = DiagnosticMano542.ERR542.OK Then
                 manopulveResultat.Text = "OK"
                 manopulveResultat.ForeColor = System.Drawing.Color.Green
-                If Events_IsActive() Then
-                    RadioButton_diagnostic_5420.Checked = True
-                End If
+                'If Events_IsActive() Then
+                RadioButton_diagnostic_5420.Checked = True
+                RadioButton_diagnostic_5422.Checked = False
+                RadioButton_diagnostic_5423.Checked = False
+                'End If
             End If
             If oLstMano542.Result = DiagnosticMano542.ERR542.FAIBLE Then
                 manopulveResultat.Text = "FAIBLE"
                 manopulveResultat.ForeColor = System.Drawing.Color.LightCoral
-                If Events_IsActive() Then
-                    RadioButton_diagnostic_5422.Checked = True
-                End If
+                'If Events_IsActive() Then
+                RadioButton_diagnostic_5420.Checked = False
+                RadioButton_diagnostic_5422.Checked = True
+                RadioButton_diagnostic_5423.Checked = False
+                'End If
             End If
             If oLstMano542.Result = DiagnosticMano542.ERR542.FORTE Then
                 manopulveResultat.Text = "IMPORTANTE"
-                If Events_IsActive() Then
-                    RadioButton_diagnostic_5423.Checked = True
-                End If
+                'If Events_IsActive() Then
+                RadioButton_diagnostic_5420.Checked = False
+                RadioButton_diagnostic_5422.Checked = False
+                RadioButton_diagnostic_5423.Checked = True
+                ' End If
                 manopulveResultat.ForeColor = System.Drawing.Color.Red
             End If
             '            If oLstMano542.Result = DiagnosticMano542.ERR542.NONCALC Then
             '            manopulveResultat.Text = ""
             '            manopulveResultat.ForeColor = System.Drawing.Color.Gray
             '            End If
+            checkIsOk(5)
             checkIsOk(7)
 
 
@@ -9326,7 +9333,6 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim oNiveau As RelevePression833Niveau
             Dim nPression As Integer
             Dim strValue As String
-            Events_Suspend("dgv_CellValueChangedPression") 'Pour prevenir le traietement des evts de mise à jour
             'SetCurrentPressionControls()
             If m_dgvPressionCurrent.CurrentCell.Value Is Nothing Then
                 strValue = ""
@@ -9336,6 +9342,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             strValue = strValue.ToString().Replace("?", ",")
             strValue = strValue.ToString().Replace(";", ".")
+            Events_Suspend("dgv_CellValueChangedPression") 'Pour prevenir le traietement des evts de mise à jour
+
             m_dgvPressionCurrent.CurrentCell.Value = strValue.Replace(".", ",")
             ncol = m_dgvPressionCurrent.CurrentCell.ColumnIndex
             nNiveau = m_dgvPressionCurrent(ncol, ROW_NIVEAUX).Value
@@ -9357,6 +9365,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Else
                 m_dgvPressionCurrent(ncol, ROW_ECARTMOYEN_PCT).Style.ForeColor = System.Drawing.Color.Black
             End If
+            Events_Activate("dgv_CellValueChangedPression") 'Libération du traietement des évenments
 
             AfficheResultatNiveau(nNiveau)
 
@@ -9387,9 +9396,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             checkIsOk(7)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::dgv_CellValueChangedPression ERR : " & ex.Message)
+            Events_Activate("dgv_CellValueChangedPression") 'Libération du traietement des évenments
         End Try
 
-        Events_Activate("dgv_CellValueChangedPression") 'Libération du traietement des évenments
 
     End Sub
     Private Sub dgv_CellValueChangedManometre()

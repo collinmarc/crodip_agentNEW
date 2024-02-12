@@ -2,6 +2,7 @@ TRUNK
 MASTER
 BUILD XXXXXX
 	0001616: Les nombre de niveaux et de tronçons ne sont pas initialisés sur le pulvé n'est pas renseigné
+	0001617: le défaut 5.4.2 ne se coche pas si on utilise le calibrateur
 
 BUILD 20240126170000
 	0001611: Réinitialisation d'une base : Gestion du numéro de PC
