@@ -34,5 +34,5 @@ Imports System.Runtime.InteropServices
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip3")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodip4")>
-<Assembly: AssemblyFileVersionAttribute("2024.02.07.2200")>
+<Assembly: AssemblyFileVersionAttribute("2024.02.12.1700")>
 <Assembly: ComVisible(False)>

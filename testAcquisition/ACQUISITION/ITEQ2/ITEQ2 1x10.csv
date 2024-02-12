@@ -1,0 +1,11 @@
+﻿Ref.,H/V,Marque Modèle (ou fonctionnement),Calibre,Pression de contrôle (bar),Débit nominal (l/min),Set,"",Débit mesuré (l/min),Pression mesurée (bar),L/R
+test gc iteq2,H,-,"",3,1,1,1,0.88,3,-
+test gc iteq2,H,-,"",3,1,2,2,0.88,3,-
+test gc iteq2,H,-,"",3,1,3,3,0.88,3,-
+test gc iteq2,H,-,"",3,1,4,4,0.88,3,-
+test gc iteq2,H,-,"",3,1,5,5,0.88,3,-
+test gc iteq2,H,-,"",3,1,6,6,0.88,3,-
+test gc iteq2,H,-,"",3,1,7,7,0.88,3,-
+test gc iteq2,H,-,"",3,1,8,8,0.88,3,-
+test gc iteq2,H,-,"",3,1,9,9,0.88,3,-
+test gc iteq2,H,-,"",3,1,10,10,0.88,3,-

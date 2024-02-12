@@ -1,0 +1,32 @@
+***Manometre***
+Pression mano(Bars);Pression moyenne(Bars);Pression min(Bars);Pression max(Bars);Erreur(%);Resultat;
+1.5;3.13329896907215;3.10515463917525;3.15463917525772;108.886597938144;-3;
+2;3.14041237113401;3.12061855670102;3.16391752577318;57.0206185567004;-3;
+3;4.220412371134;4.1443298969072;4.25567010309277;40.6804123711335;-3;
+4;1.53958762886597;1.52783505154639;1.54948453608247;61.5103092783507;-3;
+
+***Ecart pression***
+Troncon;P1(Bars);P2(Bars);Erreur equilibre(%);Erreur perte de charge(%);
+1;2.98;2.92;1.36986301369863;2.01342281879195;
+2;3.04;2.96;1.36986301369863;2.63157894736842;
+
+***Controle buse***
+Ref;H/V;Marque/Type Modele (ou fonctionnement);Calibre;Pression de controle ( bar );Debit nominal (l/min);Jeu;Troncon;Niveau;Buse troncon;Numero Buse;Debit mesure (l/min);Pression mesuree (bar);L/R;Debit equivalent@3Bars
+;;TEEJET XR;lilas;;0.99;;1;1;1;1;0.1805665919043;2.89113486842108;;0.18393477806781;
+;;TEEJET XR;lilas;;0.99;;1;1;2;2;0.15295599700951;2.89571637426903;;0.15568584407936;
+;;TEEJET XR;lilas;;0.99;;1;1;3;3;0.17711526754246;2.87313909774439;;0.18098321584697;
+;;TEEJET XR;lilas;;0.99;;1;1;4;4;0.17844269998932;2.86319548872183;;0.18265598734401;
+;;TEEJET XR;lilas;;0.99;;2;1;1;5;0.1678232404144;3.11870300751882;;0.16459844204833;
+;;TEEJET XR;lilas;;0.99;;2;1;2;6;0.16410642956317;2.80526315789476;;0.16970686860777;
+;;TEEJET XR;lilas;;0.99;;2;1;3;7;0.17525686211684;2.84979323308273;;0.17981626952136;
+;;TEEJET XR;lilas;;0.99;;2;1;4;8;0.15853121328634;2.79088815789476;;0.16436305101514;
+
+***Vitesse***
+Parcours;Distance;Temps;Vitesse mesuree(km/h);Vitesse compteur(km/h);
+1;0;0;0;0;
+2;0;0;0;0;
+
+***Debit***
+Mesure;Debit theorique ( L/min);Debit affiche(L/min);erreur(%);
+1;0;0;100
+

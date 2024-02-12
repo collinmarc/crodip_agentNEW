@@ -69,4 +69,9 @@ Public Class Form1
         FlowPanelAAMS.Visible = rbIteq2.Checked
 
     End Sub
+
+    Private Sub rbERECA_CheckedChanged(sender As Object, e As EventArgs) Handles rbERECA.CheckedChanged
+        FlowPanelAAMS.Visible = rbERECA.Checked
+
+    End Sub
 End Class
