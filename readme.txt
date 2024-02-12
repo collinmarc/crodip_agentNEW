@@ -3,6 +3,7 @@ MASTER
 BUILD XXXXXX
 	0001616: Les nombre de niveaux et de tronçons ne sont pas initialisés sur le pulvé n'est pas renseigné
 	0001617: le défaut 5.4.2 ne se coche pas si on utilise le calibrateur
+	0001619: Ordre de tabulation sur les Saisie de pressions 542
 
 BUILD 20240126170000
 	0001611: Réinitialisation d'une base : Gestion du numéro de PC

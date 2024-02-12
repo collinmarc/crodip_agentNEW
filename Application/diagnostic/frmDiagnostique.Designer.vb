@@ -10395,7 +10395,7 @@ Partial Class FrmDiagnostique
         Me.rbPression4.Location = New System.Drawing.Point(177, 35)
         Me.rbPression4.Name = "rbPression4"
         Me.rbPression4.Size = New System.Drawing.Size(14, 13)
-        Me.rbPression4.TabIndex = 196
+        Me.rbPression4.TabIndex = 3
         Me.rbPression4.TabStop = True
         Me.rbPression4.UseVisualStyleBackColor = True
         '
@@ -10405,7 +10405,7 @@ Partial Class FrmDiagnostique
         Me.rbPression3.Location = New System.Drawing.Point(133, 34)
         Me.rbPression3.Name = "rbPression3"
         Me.rbPression3.Size = New System.Drawing.Size(14, 13)
-        Me.rbPression3.TabIndex = 195
+        Me.rbPression3.TabIndex = 2
         Me.rbPression3.TabStop = True
         Me.rbPression3.UseVisualStyleBackColor = True
         '
@@ -10415,7 +10415,7 @@ Partial Class FrmDiagnostique
         Me.rbPression2.Location = New System.Drawing.Point(91, 34)
         Me.rbPression2.Name = "rbPression2"
         Me.rbPression2.Size = New System.Drawing.Size(14, 13)
-        Me.rbPression2.TabIndex = 194
+        Me.rbPression2.TabIndex = 1
         Me.rbPression2.TabStop = True
         Me.rbPression2.UseVisualStyleBackColor = True
         '
@@ -10425,7 +10425,7 @@ Partial Class FrmDiagnostique
         Me.rbPression1.Location = New System.Drawing.Point(40, 34)
         Me.rbPression1.Name = "rbPression1"
         Me.rbPression1.Size = New System.Drawing.Size(14, 13)
-        Me.rbPression1.TabIndex = 193
+        Me.rbPression1.TabIndex = 0
         Me.rbPression1.TabStop = True
         Me.rbPression1.UseVisualStyleBackColor = True
         '
@@ -10436,7 +10436,7 @@ Partial Class FrmDiagnostique
         Me.Label111.Location = New System.Drawing.Point(190, 34)
         Me.Label111.Name = "Label111"
         Me.Label111.Size = New System.Drawing.Size(98, 13)
-        Me.Label111.TabIndex = 192
+        Me.Label111.TabIndex = 4
         Me.Label111.Text = "Pression par défaut"
         '
         'lblp833DefautEcart
@@ -10549,7 +10549,7 @@ Partial Class FrmDiagnostique
         Me.tab_833.Name = "tab_833"
         Me.tab_833.SelectedIndex = 0
         Me.tab_833.Size = New System.Drawing.Size(984, 300)
-        Me.tab_833.TabIndex = 2
+        Me.tab_833.TabIndex = 5
         '
         'TabPage1
         '
@@ -11420,7 +11420,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionControle_2.Name = "manopulvePressionControle_2"
         Me.manopulvePressionControle_2.ReadOnly = True
         Me.manopulvePressionControle_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_2.TabIndex = 1
+        Me.manopulvePressionControle_2.TabIndex = 9
         '
         'manopulvePressionEcart_3
         '
@@ -11448,7 +11448,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionPulve_3.Location = New System.Drawing.Point(51, 145)
         Me.manopulvePressionPulve_3.Name = "manopulvePressionPulve_3"
         Me.manopulvePressionPulve_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_3.TabIndex = 2
+        Me.manopulvePressionPulve_3.TabIndex = 6
         '
         'manopulvePressionControle_3
         '
@@ -11457,7 +11457,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionControle_3.Name = "manopulvePressionControle_3"
         Me.manopulvePressionControle_3.ReadOnly = True
         Me.manopulvePressionControle_3.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_3.TabIndex = 3
+        Me.manopulvePressionControle_3.TabIndex = 10
         '
         'manopulvePressionControle_4
         '
@@ -11466,7 +11466,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionControle_4.Name = "manopulvePressionControle_4"
         Me.manopulvePressionControle_4.ReadOnly = True
         Me.manopulvePressionControle_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_4.TabIndex = 4
+        Me.manopulvePressionControle_4.TabIndex = 11
         '
         'manopulvePressionPulve_4
         '
@@ -11474,7 +11474,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionPulve_4.Location = New System.Drawing.Point(51, 169)
         Me.manopulvePressionPulve_4.Name = "manopulvePressionPulve_4"
         Me.manopulvePressionPulve_4.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_4.TabIndex = 3
+        Me.manopulvePressionPulve_4.TabIndex = 7
         '
         'manopulvePressionPulve_2
         '
@@ -11482,7 +11482,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionPulve_2.Location = New System.Drawing.Point(51, 121)
         Me.manopulvePressionPulve_2.Name = "manopulvePressionPulve_2"
         Me.manopulvePressionPulve_2.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_2.TabIndex = 1
+        Me.manopulvePressionPulve_2.TabIndex = 5
         '
         'manopulvePressionPulve_1
         '
@@ -11490,7 +11490,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionPulve_1.Location = New System.Drawing.Point(51, 97)
         Me.manopulvePressionPulve_1.Name = "manopulvePressionPulve_1"
         Me.manopulvePressionPulve_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionPulve_1.TabIndex = 0
+        Me.manopulvePressionPulve_1.TabIndex = 4
         '
         'manopulvePressionControle_1
         '
@@ -11499,7 +11499,7 @@ Partial Class FrmDiagnostique
         Me.manopulvePressionControle_1.Name = "manopulvePressionControle_1"
         Me.manopulvePressionControle_1.ReadOnly = True
         Me.manopulvePressionControle_1.Size = New System.Drawing.Size(112, 20)
-        Me.manopulvePressionControle_1.TabIndex = 0
+        Me.manopulvePressionControle_1.TabIndex = 8
         '
         'Label224
         '
@@ -11552,7 +11552,7 @@ Partial Class FrmDiagnostique
         Me.ckSaisieManuelle542.Location = New System.Drawing.Point(296, 31)
         Me.ckSaisieManuelle542.Name = "ckSaisieManuelle542"
         Me.ckSaisieManuelle542.Size = New System.Drawing.Size(184, 17)
-        Me.ckSaisieManuelle542.TabIndex = 34
+        Me.ckSaisieManuelle542.TabIndex = 3
         Me.ckSaisieManuelle542.Text = "Saisie manuelle"
         '
         'btnRecalculer
@@ -11565,7 +11565,7 @@ Partial Class FrmDiagnostique
         Me.btnRecalculer.Location = New System.Drawing.Point(770, 175)
         Me.btnRecalculer.Name = "btnRecalculer"
         Me.btnRecalculer.Size = New System.Drawing.Size(128, 24)
-        Me.btnRecalculer.TabIndex = 33
+        Me.btnRecalculer.TabIndex = 12
         Me.btnRecalculer.Text = "    ReCalculer"
         Me.btnRecalculer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -11587,7 +11587,7 @@ Partial Class FrmDiagnostique
         Me.rb542IsFaiblePression.Location = New System.Drawing.Point(43, 31)
         Me.rb542IsFaiblePression.Name = "rb542IsFaiblePression"
         Me.rb542IsFaiblePression.Size = New System.Drawing.Size(120, 16)
-        Me.rb542IsFaiblePression.TabIndex = 2
+        Me.rb542IsFaiblePression.TabIndex = 1
         Me.rb542IsFaiblePression.Text = "Faible pression"
         '
         'GroupBox3
@@ -11711,7 +11711,7 @@ Partial Class FrmDiagnostique
         Me.rb542IsFortePression.Location = New System.Drawing.Point(166, 31)
         Me.rb542IsFortePression.Name = "rb542IsFortePression"
         Me.rb542IsFortePression.Size = New System.Drawing.Size(115, 16)
-        Me.rb542IsFortePression.TabIndex = 3
+        Me.rb542IsFortePression.TabIndex = 2
         Me.rb542IsFortePression.Text = "Forte pression"
         '
         'tabPage_diagnostique_buses
