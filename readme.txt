@@ -1,5 +1,8 @@
 TRUNK
 MASTER
+BUILD XXXXXX
+	0001616: Les nombre de niveaux et de tronçons ne sont pas initialisés sur le pulvé n'est pas renseigné
+
 BUILD 20240126170000
 	0001611: Réinitialisation d'une base : Gestion du numéro de PC
 	0001607: Retour version PP 2024011817000000 : Cadre 542
