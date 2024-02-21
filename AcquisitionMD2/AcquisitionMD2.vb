@@ -2,11 +2,8 @@
 Imports CsvHelper
 Imports CsvHelper.Configuration
 Imports NLog
-Imports System.Data.Common
-Imports System.Data.OleDb
-Imports System.Globalization
 Imports System.IO
-Imports System.Linq
+Imports System.Diagnostics
 
 Public Class AcquisitionMD2
     Implements ICRODIPAcquisition
@@ -36,7 +33,13 @@ Public Class AcquisitionMD2
         If Not bFichiercsvCree Then
             If System.IO.File.Exists(My.Settings.ProgTransfert) Then
                 logger.Info("AcquisitionMD2.GetValues Lancement de " & My.Settings.ProgTransfert)
-                Process.Start(My.Settings.ProgTransfert)
+                Dim pInfo As ProcessStartInfo = New ProcessStartInfo()
+                pInfo.FileName = My.Settings.ProgTransfert
+                Dim p As Process = Process.Start(pInfo)
+                'p.WaitForInputIdle()
+                p.WaitForExit()
+
+                '                Process.Start(My.Settings.ProgTransfert)
             End If
             bFichiercsvCree = True
         End If
