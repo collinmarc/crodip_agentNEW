@@ -1217,7 +1217,7 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "UP"
                                                                              End Function).ToList()
 
-        Dim lblPressionCroissante As Label
+        Dim lblPressionCroissante As Label = New Label()
         If bMAJIHM Then
             Me.tlpPressionCroissant.Controls.Clear()
             Me.tlpPressionCroissant.RowStyles.Clear()
@@ -1260,7 +1260,7 @@ Public Class frmControleManometresNew
                                                                                  Return D.type = "DOWN"
                                                                              End Function).ToList()
 
-        Dim lblPressionDeCroissante As Label
+        Dim lblPressionDeCroissante As New Label()
         If bMAJIHM Then
             Me.tlpPressionDecroissante.Controls.Clear()
             Me.tlpPressionDecroissante.RowStyles.Clear()

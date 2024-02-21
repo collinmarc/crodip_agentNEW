@@ -5,9 +5,9 @@ Public Class AgentManager
     Inherits RootManager
 #Region "Methodes acces Web Service"
 
-    Public Shared Function RESTlogin(pAgent As Agent) As Boolean
-        Return RootManager.RESTConnect(pAgent)
-    End Function
+    'Public Shared Function RESTlogin(pAgent As Agent) As Boolean
+    '    Return RootManager.RESTConnect(pAgent)
+    'End Function
     ' Methode OK
     Public Shared Function getWSAgentById(ByVal agent_id As String) As Agent
         Dim objAgent As New Agent

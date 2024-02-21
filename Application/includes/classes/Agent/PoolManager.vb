@@ -1,9 +1,9 @@
 ﻿Imports System.Data.Common
 Imports System.Collections.Generic
-Imports RestSharp
-Imports RestSharp.Authenticators
+'Imports RestSharp
+'Imports RestSharp.Authenticators
 Imports System.Threading.Tasks
-Imports System.Text.Json.Serialization
+'Imports System.Text.Json.Serialization
 
 Public Class PoolManager
     Inherits RootManager
@@ -173,37 +173,37 @@ idCRODIPPC = @idCRODIPPC,
 
     End Function
 
-    Public Shared Function RESTgetPoolByIDCrodip(pAgent As Agent, pidCrodip As String) As Pool
-        Dim oReturn As Pool = Nothing
-        Try
-            oReturn = RESTgetByID(Of Pool)("getPool", pAgent, pidCrodip)
-        Catch ex As Exception
-            CSDebug.dispError("PoolManager.RESTgetPoolByidCrodip ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    'Public Shared Function RESTgetPoolByIDCrodip(pAgent As Agent, pidCrodip As String) As Pool
+    '    Dim oReturn As Pool = Nothing
+    '    Try
+    '        oReturn = RESTgetByID(Of Pool)("getPool", pAgent, pidCrodip)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("PoolManager.RESTgetPoolByidCrodip ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 
-    Public Shared Function RESTgetPools(pAgent As Agent) As List(Of Pool)
-        Dim oReturn As New List(Of Pool)
-        Try
+    'Public Shared Function RESTgetPools(pAgent As Agent) As List(Of Pool)
+    '    Dim oReturn As New List(Of Pool)
+    '    Try
 
-            oReturn = RESTgetList(Of Pool)("getPools", pAgent)
-        Catch ex As Exception
-            CSDebug.dispError("PoolManager.RESTgetPools ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    '        oReturn = RESTgetList(Of Pool)("getPools", pAgent)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("PoolManager.RESTgetPools ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 
-    Public Shared Function RESTsetPool(pAgent As Agent, pPool As Pool) As Boolean
-        Dim oReturn As Boolean
-        Try
-            oReturn = RESTset(Of Pool)("setPool", pAgent, pPool)
+    'Public Shared Function RESTsetPool(pAgent As Agent, pPool As Pool) As Boolean
+    '    Dim oReturn As Boolean
+    '    Try
+    '        oReturn = RESTset(Of Pool)("setPool", pAgent, pPool)
 
-        Catch ex As Exception
-            CSDebug.dispError("PoolManager.RESTsetPool ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    '    Catch ex As Exception
+    '        CSDebug.dispError("PoolManager.RESTsetPool ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 End Class
 
 

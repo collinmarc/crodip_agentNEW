@@ -135,37 +135,37 @@ Public Class AgentPCManager
 
     End Function
 
-    Public Shared Function RESTgetAgentPCByIDCrodip(pAgent As Agent, pidCrodip As String) As AgentPC
-        Dim oReturn As AgentPC = Nothing
-        Try
-            oReturn = RESTgetByID(Of AgentPC)("getAgentPC", pAgent, pidCrodip)
-        Catch ex As Exception
-            CSDebug.dispError("AgentPCManager.RESTgetAgentPCByidCrodip ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    'Public Shared Function RESTgetAgentPCByIDCrodip(pAgent As Agent, pidCrodip As String) As AgentPC
+    '    Dim oReturn As AgentPC = Nothing
+    '    Try
+    '        oReturn = RESTgetByID(Of AgentPC)("getAgentPC", pAgent, pidCrodip)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("AgentPCManager.RESTgetAgentPCByidCrodip ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 
-    Public Shared Function RESTgetAgentPCs(pAgent As Agent) As List(Of AgentPC)
-        Dim oReturn As New List(Of AgentPC)
-        Try
+    'Public Shared Function RESTgetAgentPCs(pAgent As Agent) As List(Of AgentPC)
+    '    Dim oReturn As New List(Of AgentPC)
+    '    Try
 
-            oReturn = RESTgetList(Of AgentPC)("getAgentPC", pAgent)
-        Catch ex As Exception
-            CSDebug.dispError("PoolManager.RESTgetPools ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    '        oReturn = RESTgetList(Of AgentPC)("getAgentPC", pAgent)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("PoolManager.RESTgetPools ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 
-    Public Shared Function RESTsetAgentPC(pAgent As Agent, pobj As AgentPC) As Boolean
-        Dim oReturn As Boolean
-        Try
-            oReturn = RESTset(Of AgentPC)("setAgentPC", pAgent, pobj)
+    'Public Shared Function RESTsetAgentPC(pAgent As Agent, pobj As AgentPC) As Boolean
+    '    Dim oReturn As Boolean
+    '    Try
+    '        oReturn = RESTset(Of AgentPC)("setAgentPC", pAgent, pobj)
 
-        Catch ex As Exception
-            CSDebug.dispError("AgentPCManager.RESTsetPool ERR", ex)
-        End Try
-        Return oReturn
-    End Function
+    '    Catch ex As Exception
+    '        CSDebug.dispError("AgentPCManager.RESTsetPool ERR", ex)
+    '    End Try
+    '    Return oReturn
+    'End Function
 
     Public Shared Sub RAZInstall()
         Try
