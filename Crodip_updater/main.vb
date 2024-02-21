@@ -374,7 +374,7 @@ Public Class mainForm
             End If
 
         Catch ex As Exception
-            CSDebug.dispError("Err 0x000005 : " & ex.Message.ToString)
+            CSDebug.dispError("Crodip_updater.Main._majCheck : " & ex.Message.ToString)
         End Try
 
         '#########################################################
