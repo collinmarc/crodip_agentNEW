@@ -670,7 +670,6 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod(), Ignore()>
     Public Sub TST_GET_SEND_WS_Exploitation2()
         Dim oExploitation As Exploitation
-        Dim strId As String
 
         oExploitation = ExploitationManager.getWSExploitationById(m_oAgent.id, "498-1119-1")
         Assert.AreEqual("498-1119-1", oExploitation.id)
