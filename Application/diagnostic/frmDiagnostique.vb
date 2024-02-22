@@ -8878,6 +8878,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 validerDiagnostiqueTab542()
                 validerDiagnostiqueTab833()
                 Creercontrols542_833(pbReinit542, pbInitTraca833:=True)
+                'Annulation du défaut 833
+                RadioButton_diagnostic_8332.Checked = False
+                RadioButton_diagnostic_8333.Checked = False
+                lblp833DefautEcart.Text = ""
+                lblP833DefautHeterogeneite.Text = ""
 
                 tab_833.SelectedIndex = tabindex
                 tab_833.Show()

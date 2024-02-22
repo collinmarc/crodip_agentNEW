@@ -1,10 +1,16 @@
 TRUNK
 MASTER
 BUILD XXXXXX
+	0001622: Controle 833 : Modif du Nb tronçons => Defaut 833
+	0001620: le nombre de niveaux et de tronçons du pulve ne se reporte pas dans le controle
+	0001627: Diag833 : Affectation de la traca de mano : B10 <B2
+
+
+BUILD 20240212170000
 	0001616: Les nombre de niveaux et de tronçons ne sont pas initialisés sur le pulvé n'est pas renseigné
 	0001617: le défaut 5.4.2 ne se coche pas si on utilise le calibrateur
 	0001619: Ordre de tabulation sur les Saisie de pressions 542
-		0001618: Le doc de co-pro ne sort plus
+	0001618: Le doc de co-pro ne sort plus
 
 BUILD 20240126170000
 	0001611: Réinitialisation d'une base : Gestion du numéro de PC

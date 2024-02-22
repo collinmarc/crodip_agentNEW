@@ -539,7 +539,7 @@ Public Class ManometreControle
         If obj Is Nothing Then
             Return 1
         Else
-            Return Me.Traca.CompareTo(obj.Traca)
+            Return Me.numTraca.CompareTo(obj.numTraca)
         End If
     End Function
 End Class
