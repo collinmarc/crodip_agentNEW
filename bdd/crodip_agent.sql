@@ -1,23 +1,23 @@
 --
--- Fichier généré par SQLiteStudio v3.2.1 sur mer. mars 29 10:06:53 2023
+-- Fichier généré par SQLiteStudio v3.2.1 sur jeu. févr. 22 09:13:50 2024
 --
 -- Encodage texte utilisé : System
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
--- Table : AGENT
-DROP TABLE IF EXISTS AGENT;
+-- Table : Agent
+DROP TABLE IF EXISTS Agent;
 
-CREATE TABLE AGENT (
+CREATE TABLE Agent (
     Id                     INT            PRIMARY KEY,
     numeroNational         NVARCHAR (50)  UNIQUE,
-    motdepasse             NVARCHAR (255),
+    motDePasse             NVARCHAR (255),
     nom                    VARCHAR (256),
     prenom                 VARCHAR (256),
     idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    telephoneportable      VARCHAR (256),
-    email                  VARCHAR (256),
+    telephonePortable      VARCHAR (256),
+    eMail                  VARCHAR (256),
     dateCreation           DATETIME2,
     dateDerniereConnexion  DATETIME2,
     dateDerniereSynchro    DATETIME2,
@@ -29,7 +29,7 @@ CREATE TABLE AGENT (
     isActif                BIT            DEFAULT 0,
     droitsPulves           VARCHAR (2560),
     isGestionnaire         BIT            DEFAULT 0,
-    signatureElect         BIT            DEFAULT 0,
+    SignatureElect         BIT            DEFAULT 0,
     statut                 VARCHAR (50),
     idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE SET NULL
 );
@@ -88,7 +88,10 @@ CREATE TABLE AgentManoControle (
     jamaisServi            BIT,
     dateActivation         DATETIME2 (0),
     bAjusteur              BIT,
-    resolutionLecture      TEXT
+    resolutionLecture      TEXT,
+    typeTraca              TEXT,
+    numTraca               INT,
+    typeRaccord            TEXT
 );
 
 
@@ -730,7 +733,8 @@ CREATE TABLE DiagnosticTroncons833 (
     idColumn               NVARCHAR (255),
     pressionSortie         NVARCHAR (255),
     dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0) 
+    dateModificationCrodip DATETIME2 (0),
+    manocId                TEXT
 );
 
 
@@ -1105,7 +1109,9 @@ CREATE TABLE Pulverisateur (
     isRincagecircuit          BIT,
     isPompesDoseuses          BIT,
     nbPompesDoseuses          INT,
-    Numchassis                NVARCHAR (255) 
+    immatCertificat           TEXT,
+    immatPlaque               TEXT,
+    numerochassis             TEXT
 );
 
 
@@ -1196,6 +1202,91 @@ DROP INDEX IF EXISTS NumNat;
 CREATE INDEX NumNat ON Pulverisateur (
     numeroNational ASC
 );
+
+
+COMMIT TRANSACTION;
+--
+-- Fichier généré par SQLiteStudio v3.2.1 sur jeu. févr. 22 09:26:58 2024
+--
+-- Encodage texte utilisé : System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table : VERSION
+DROP TABLE IF EXISTS VERSION;
+
+CREATE TABLE VERSION (
+    VERSION_NUM  NVARCHAR (255),
+    VERSION_DATE DATETIME2 (0),
+    VERSION_COMM NVARCHAR (255) 
+);
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V2.8.00',
+                        '2021-11-29 00:00:00',
+                        'CoProprietaire'
+                    );
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V3.0.00',
+                        '2022-08-30 12:00:00',
+                        'Gestion des equipements'
+                    );
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V3.0.00',
+                        '2022-09-27 12:00:00',
+                        'Gestion des equipements'
+                    );
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V3.0.01',
+                        '2023-03-01 12:00:00',
+                        'Metrologie'
+                    );
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V3.1.00',
+                        '2023-07-23 12:00:00',
+                        'Tracabilité Mano'
+                    );
+
+INSERT INTO VERSION (
+                        VERSION_NUM,
+                        VERSION_DATE,
+                        VERSION_COMM
+                    )
+                    VALUES (
+                        'V3.1.01',
+                        '2024-01-16 12:00:00',
+                        'Immatriculation Pulve'
+                    );
 
 
 COMMIT TRANSACTION;

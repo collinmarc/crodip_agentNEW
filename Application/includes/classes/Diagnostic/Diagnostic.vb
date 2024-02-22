@@ -3123,6 +3123,7 @@ Public Class Diagnostic
                 Me.pulverisateurRincagecircuit = "NON"
             End If
 
+
             Me.buseMarque = poPulve.buseMarque
             Me.buseModele = poPulve.buseModele
             Me.buseType = poPulve.buseType
@@ -3193,6 +3194,12 @@ Public Class Diagnostic
                 _diagnostichelp12123.calcule()
             End If
 
+            If poPulve.manometreNbniveaux > 0 Then
+                controleNbreNiveaux = poPulve.manometreNbniveaux
+            End If
+            If poPulve.manometreNbtroncons > 0 Then
+                controleNbreTroncons = poPulve.manometreNbtroncons
+            End If
             'On Stocke la referenc du pulve ou l'encodage Automatique
             _pulverisateur = poPulve
             bReturn = True
