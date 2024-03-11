@@ -1,6 +1,6 @@
 TRUNK
 MASTER
-BUILD XXXXXX
+BUILD 20240310120000
 	0001622: Controle 833 : Modif du Nb tronçons => Defaut 833
 	0001620: le nombre de niveaux et de tronçons du pulve ne se reporte pas dans le controle
 	0001627: Diag833 : Affectation de la traca de mano : B10 <B2
