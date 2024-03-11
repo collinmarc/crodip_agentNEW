@@ -5,6 +5,7 @@ BUILD XXXXXX
 	0001620: le nombre de niveaux et de tronçons du pulve ne se reporte pas dans le controle
 	0001627: Diag833 : Affectation de la traca de mano : B10 <B2
 	0001631: Saisie de controle : niveau mano =0
+	0001599: Sélection du contexte en contre visite
 
 
 BUILD 20240212170000

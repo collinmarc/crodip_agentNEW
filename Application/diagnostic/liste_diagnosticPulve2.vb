@@ -3286,6 +3286,13 @@ Public Class liste_diagnosticPulve2
                 m_oDiag.SetAsContreVisite(agentCourant)
                 'on le Clone
                 diagnosticCourant = m_oDiag.Clone()
+                diagnosticCourant.controleCodePostal = ""
+                diagnosticCourant.controleCommune = ""
+                diagnosticCourant.controleNomSite = ""
+                diagnosticCourant.controleSite = ""
+                diagnosticCourant.controleIsSiteSecurise = False
+                diagnosticCourant.controleIsRecupResidus = False
+                diagnosticCourant.proprietaireRepresentant = ""
                 diagnosticCourant.controleIsPremierControle = False
                 diagnosticCourant.isContrevisiteImmediate = False
                 diagnosticCourant.TotalHT = 0
