@@ -2975,7 +2975,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Au moins une pression doit être cochée 
             bAllFilled = bAllFilled And (rbPression1.Checked Or rbPression2.Checked Or rbPression3.Checked Or rbPression4.Checked)
 
-            If pnl_833.Enabled Then
+            If tab_833.Enabled Then
                 For nPression As Integer = 1 To 4
 
                     Select Case nPression
@@ -5010,7 +5010,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Récupération de la Perte de charge Moyenne et Maxi dans le Tab833 (S'il est actif)
             'il faudrait trouver un moyerde déterminer si la saisie a été effectuée sans passer par le test du panel
             '===============================
-            If pnl_833.Enabled Then
+            If tab_833.Enabled Then
                 nPression = 0
                 For i As Integer = 1 To 4
                     SetCurrentPressionControls(i)
@@ -5446,8 +5446,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Protected Overridable Function CheckOnglet7() As Integer
 
         Dim iReturn As Integer = 3 'Etat initial = 3 Gris
-        If gdvPressions1.Columns.GetColumnCount(DataGridViewElementStates.None) > 1 Then
-            If CheckIfManoTronconsAreFilled() Then
+        'If gdvPressions1.Columns.GetColumnCount(DataGridViewElementStates.None) > 1 Then
+        If CheckIfManoTronconsAreFilled() Then
                 iReturn = 2 'OK = vert
                 If manopulveResultat.Text.Trim().ToUpper() = "IMPORTANTE" Then
                     iReturn = 0 'Rouge
@@ -5461,7 +5461,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     iReturn = 0 'Rouge
                 End If
             End If
-        End If
+        'End If
         Return iReturn
     End Function
 
@@ -7182,7 +7182,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If RadioButton_diagnostic_8332.Checked And
             (RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or
             RadioButton_diagnostic_8332.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX) Then
-            disableTab833()
+            disableTab833(True)
         Else
             enableTab833()
         End If
@@ -7193,7 +7193,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If RadioButton_diagnostic_8333.Checked And
             (RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.UN Or
             RadioButton_diagnostic_8333.Cause = CRODIP_ControlLibrary.CRODIP_NIVEAUCAUSE.DEUX) Then
-            disableTab833()
+            disableTab833(True)
         Else
             enableTab833()
         End If
@@ -7765,10 +7765,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         checkIsOk(7)
     End Sub
     ' Traitement de l'activation / désactivation du tableau 8.3.3
-    Public Sub disableTab833()
+    Public Sub disableTab833(pTous As Boolean)
         '        diagBuses_tab_pressionTroncons_rampe.Enabled = False
         tab_833.Enabled = False
-        pnl_833.Enabled = False
+        If pTous Then
+            pnl_833.Enabled = False
+        End If
         checkIsOk(7)
     End Sub
     Public Sub enableTab833()
@@ -7780,7 +7782,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Public Function isTab833Enabled() As Boolean
-        Return pnl_833.Enabled
+        Return tab_833.Enabled
     End Function
 
     ' Traitement de l'activation / désactivation du tableau 9.2.2
@@ -7894,7 +7896,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             SetPressionControle542ToPressionManoPulve833(3, manopulveIsUseCalibrateur.Checked)
             SetPressionControle542ToPressionManoPulve833(4, manopulveIsUseCalibrateur.Checked)
         End If
-        If pnl_833.Enabled Then
+        If tab_833.Enabled Then
             'Si pas d'utilisation du calibrateur , remontée des infos de 8.3.3 dans le tableau 5.42
             If Not manopulveIsUseCalibrateur.Checked Then
                 'Si on n'utilise pas le calibrateur, on remonte la moyenne des pressions lues dans le tableau 5.4.2
@@ -7922,7 +7924,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim nTroncon As Integer
 
         'La validation n'est à faire que si le tableau est actif (L'activation des défauts 833 désactive le tableau)
-        If pnl_833.Enabled And m_RelevePression833_Current IsNot Nothing Then
+        If tab_833.Enabled And m_RelevePression833_Current IsNot Nothing Then
 
             'Affection des controles courants
             SetCurrentPressionControls(npression)
@@ -8853,14 +8855,20 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
     Private Sub nup_niveaux_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nup_niveaux.ValueChanged
         'If Events_IsActive() Then
+        If nup_niveaux.Value = 0 Then
+            nupTroncons.Value = 0
+        End If
         m_diagnostic.controleNbreNiveaux = nup_niveaux.Value
-            Affiche833Reset(pbReinit542:=False)
+        Affiche833Reset(pbReinit542:=False)
         ' End If
     End Sub
     Private Sub nupTroncons_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nupTroncons.ValueChanged
         'If Events_IsActive() Then
         m_diagnostic.controleNbreTroncons = nupTroncons.Value
-            Affiche833Reset(pbReinit542:=False)
+        Affiche833Reset(pbReinit542:=False)
+        If nupTroncons.Value = 0 Then
+            disableTab833(False)
+        End If
         'End If
     End Sub
     ''' <summary>
