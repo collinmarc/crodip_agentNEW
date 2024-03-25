@@ -1,5 +1,10 @@
 TRUNK
 MASTER
+BUILD 20240324120000
+	0001634: Prise en compte de la pression par défaut
+	0001636: RI : Entete de la liste des défaut
+	0001635: Saisie Manuelle des pressions 5.4.2 => Encodage du 833
+
 BUILD 20240310120000
 	0001622: Controle 833 : Modif du Nb tronçons => Defaut 833
 	0001620: le nombre de niveaux et de tronçons du pulve ne se reporte pas dans le controle

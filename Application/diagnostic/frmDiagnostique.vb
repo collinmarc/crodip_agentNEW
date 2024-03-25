@@ -1013,9 +1013,7 @@ Public Class FrmDiagnostique
             '            SetCurrentPressionControls()
             SelectTableauMesurePourDefaut()
             'Annulation du defaut 8333
-            RadioButton_diagnostic_8333.Checked = False
-            lblp833DefautEcart.Text = ""
-            lblP833DefautHeterogeneite.Text = ""
+            AnnulerDefaut8333()
             pressionTronc_DefautEcart1.Text = ""
             pressionTronc_DefautEcart2.Text = ""
             pressionTronc_DefautEcart3.Text = ""
@@ -8005,37 +8003,27 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim bDefaut As Boolean
             bDefaut = False
             If m_RelevePression833_Current IsNot Nothing Then
-                If m_RelevePression833_Current.Result_isDefautEcart Then
-                    bDefaut = True
-                End If
-                'If rbPression1.Checked And m_RelevePression833_P1.Result_isDefautEcart Then
-                '    bDefaut = True
-                'End If
-                'If rbPression2.Checked And m_RelevePression833_P2.Result_isDefautEcart Then
-                '    bDefaut = True
-                'End If
-                'If rbPression3.Checked And m_RelevePression833_P3.Result_isDefautEcart Then
-                '    bDefaut = True
-                'End If
-                'If rbPression4.Checked And m_RelevePression833_P4.Result_isDefautEcart Then
-                '    bDefaut = True
-                'End If
-                If bDefaut Then
-                    lblp833DefautEcart.Text = "DEFAUT"
-                    lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
-                    If Events_IsActive() Then
-                        'Pas de déclenchement pendant l'affichage d'un diag
-                        RadioButton_diagnostic_8333.Checked = True
-                        RadioButton_diagnostic_8330.Checked = False
+                If m_RelevePression833_Current.PressionManoPourCalculDefaut Then
+                    If m_RelevePression833_Current.Result_isDefautEcart Then
+                        bDefaut = True
                     End If
-                Else
-                    lblp833DefautEcart.Text = "OK"
-                    lblp833DefautEcart.ForeColor = System.Drawing.Color.Green
-                    RadioButton_diagnostic_8333.Checked = False
-                    If lblP833DefautHeterogeneite.Text = "OK" Then
+                    If bDefaut Then
+                        lblp833DefautEcart.Text = "DEFAUT"
+                        lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
                         If Events_IsActive() Then
                             'Pas de déclenchement pendant l'affichage d'un diag
-                            RadioButton_diagnostic_8330.Checked = True
+                            RadioButton_diagnostic_8333.Checked = True
+                            RadioButton_diagnostic_8330.Checked = False
+                        End If
+                    Else
+                        lblp833DefautEcart.Text = "OK"
+                        lblp833DefautEcart.ForeColor = System.Drawing.Color.Green
+                        RadioButton_diagnostic_8333.Checked = False
+                        If lblP833DefautHeterogeneite.Text = "OK" Then
+                            If Events_IsActive() Then
+                                'Pas de déclenchement pendant l'affichage d'un diag
+                                RadioButton_diagnostic_8330.Checked = True
+                            End If
                         End If
                     End If
                 End If
@@ -8432,6 +8420,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             If rb542IsFaiblePression.Checked Then
                 setPressionsFaibles(ckSaisieManuelle542.Checked)
             End If
+            AnnulerDefaut8333()
         End If
     End Sub
     Private Sub setPressionsFaibles(pbSaisieManuelle As Boolean)
@@ -8887,11 +8876,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 validerDiagnostiqueTab833()
                 Creercontrols542_833(pbReinit542, pbInitTraca833:=True)
                 'Annulation du défaut 833
-                RadioButton_diagnostic_8332.Checked = False
-                RadioButton_diagnostic_8333.Checked = False
-                lblp833DefautEcart.Text = ""
-                lblP833DefautHeterogeneite.Text = ""
-
+                AnnulerDefaut8333()
                 tab_833.SelectedIndex = tabindex
                 tab_833.Show()
                 '            End If
@@ -8901,6 +8886,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         End Try
 
     End Sub
+
+    Private Sub AnnulerDefaut8333()
+        RadioButton_diagnostic_8332.Checked = False
+        RadioButton_diagnostic_8333.Checked = False
+        lblp833DefautEcart.Text = ""
+        lblP833DefautHeterogeneite.Text = ""
+    End Sub
+
     Private Sub designdgv(ByVal pNbNiveaux As Integer, ByVal pNbTroncons As Integer, ByVal pNPression As Integer)
         Try
 
@@ -9466,8 +9459,8 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         setRelevePressionparDeFaut(3, rbPression3.Checked)
     End Sub
     Private Sub setRelevePressionparDeFaut(ByVal nPression As Integer, ByVal bValue As Boolean)
-        If bValue Then
-            Dim oReleve As RelevePression833 = Nothing
+        'If bValue Then
+        Dim oReleve As RelevePression833 = Nothing
             Select Case nPression
                 Case 1
                     oReleve = m_RelevePression833_P1
@@ -9480,17 +9473,17 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End Select
             If oReleve IsNot Nothing Then
                 oReleve.PressionManoPourCalculDefaut = bValue
-                'Affichage de l'onglet de la pression par défaut
-                '                If bValue Then
-                '#07/12/2023 : le 
-                'tab_833.SelectedTab = tab_833.TabPages(nPression - 1)
-                'tab833_changeTab() ' on ne sait pas pourquoi, mais l'evt Selectindex ne se déclence automatiquement
-                AfficheDefautEcartGeneral()
+            'Affichage de l'onglet de la pression par défaut
+            '            If bValue Then
+            '#07/12/2023 : le 
+            'tab_833.SelectedTab = tab_833.TabPages(nPression - 1)
+            'tab833_changeTab() ' on ne sait pas pourquoi, mais l'evt Selectindex ne se déclence automatiquement
+            AfficheDefautEcartGeneral()
                 AfficheDefautHeterogeneiteGeneral()
-                '               End If
-            End If
-            checkIsOk(7)
+            '           End If
         End If
+            checkIsOk(7)
+        'End If
     End Sub
     Private Sub rbPression4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbPression4.CheckedChanged
         'CSDebug.dispInfo("rbPression4_CheckedChanged")
