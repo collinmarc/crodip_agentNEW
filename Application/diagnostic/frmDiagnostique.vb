@@ -8741,13 +8741,15 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 End If
                 Affiche542()
             Else
-                'Réinit des Pressions de controle 542
-                manopulvePressionControle_1.Text = ""
-                manopulvePressionControle_2.Text = ""
-                manopulvePressionControle_3.Text = ""
-                manopulvePressionControle_4.Text = ""
+                If Not manopulveIsUseCalibrateur.Checked Then
+                    'Réinit des Pressions de controle 542
+                    manopulvePressionControle_1.Text = ""
+                    manopulvePressionControle_2.Text = ""
+                    manopulvePressionControle_3.Text = ""
+                    manopulvePressionControle_4.Text = ""
+                End If
             End If
-            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 1)
+                designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 1)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 2)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 3)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 4)
