@@ -8002,12 +8002,23 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
             Dim bDefaut As Boolean
             bDefaut = False
-            If m_RelevePression833_Current IsNot Nothing Then
-                If m_RelevePression833_Current.PressionManoPourCalculDefaut Then
-                    If m_RelevePression833_Current.Result_isDefautEcart Then
-                        bDefaut = True
-                    End If
-                    If bDefaut Then
+            'Selection du releve par defaut
+            Dim oReleve As RelevePression833 = Nothing
+            If rbPression1.Checked Then
+                oReleve = m_RelevePression833_P1
+            End If
+            If rbPression2.Checked Then
+                oReleve = m_RelevePression833_P2
+            End If
+            If rbPression3.Checked Then
+                oReleve = m_RelevePression833_P3
+            End If
+            If rbPression4.Checked Then
+                oReleve = m_RelevePression833_P4
+            End If
+            If oReleve IsNot Nothing Then
+                If oReleve.PressionManoPourCalculDefaut Then
+                    If oReleve.Result_isDefautEcart Then
                         lblp833DefautEcart.Text = "DEFAUT"
                         lblp833DefautEcart.ForeColor = System.Drawing.Color.Red
                         If Events_IsActive() Then
