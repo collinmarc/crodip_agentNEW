@@ -1,0 +1,44 @@
+POSTMAN
+Dans le menu collections
+Import https://admin-pp.crodip.net/new.wsdl
+=> une colection est créée avec tous les Services
+
+Selection d'un Service "GetAgentPC"  onglet Body
+=> Remplir la structure avec des valeurs
+exemple
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetAgentPCRequest xmlns="http://www.example.org/crodip/">
+      <uid>1</uid>
+      <idCrodip>string</idCrodip>
+    </GetAgentPCRequest>
+  </soap:Body>
+</soap:Envelope>
+
+pour un WS qui demande de la donnée "SendAgentPC"
+Body 
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <SendAgentPCRequest xmlns="http://www.example.org/crodip/">
+        <agentID>001</agentID>
+        <AgentPCRequest>
+                <uid>1</uid>
+                <idCrodip>999</idCrodip>
+                <idStructure>2</idStructure>
+                <cleUtilisation/>
+                <libelle>AgentPCRetour</libelle>
+                <etat>1</etat>
+                <numInterne/>
+                <agentSuppression/>
+                <raisonSuppression/>
+                <dateSuppression>2024-04-11 09:23:08</dateSuppression>
+                <isSupprime>0</isSupprime>
+                <dateModificationAgent>2024-04-12 09:23:08</dateModificationAgent>
+                <dateModificationCrodip>2024-04-11 09:23:08</dateModificationCrodip>
+        </AgentPCRequest>
+    </SendAgentPCRequest>
+  </soap:Body>
+</soap:Envelope>
+

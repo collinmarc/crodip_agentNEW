@@ -111,9 +111,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ACQUISITION\ERECA\ERECA1X56.csv">
+    <Content Include="ACQUISITION\ERECA\ERECA1X56.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="ACQUISITION\ERECA\barmier.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -202,10 +202,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="ACQUISITION\ITEQ2\iteq v2 test 14-09 formation.csv" />
-    <None Include="ACQUISITION\ITEQ2\ITEQ2 1x10.csv" />
-    <None Include="ACQUISITION\ITEQ\ITEQ 1x26.csv">
+    <Content Include="ACQUISITION\ITEQ2\ITEQ2 1x10.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="ACQUISITION\ITEQ\ITEQ 1x26.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ACQUISITION\ITEQ\test iteq 2niv.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
