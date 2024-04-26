@@ -86,7 +86,7 @@
                 lblError.Text = ("Veuillez remplir le paramètre 'Modèle'.")
                 bReturn = False
             End If
-            If bReturn = True And fichePulve_dateAchat.Text = "" Then
+            If bReturn = True And cbxAnneeConstruction.Text = "" Then
                 lblError.Text = ("Veuillez remplir le paramètre 'Date de construction'.")
                 bReturn = False
             End If
