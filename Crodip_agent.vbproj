@@ -684,7 +684,7 @@
     <Compile Include="Application\exploitant\transfert_pulve.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\exploitant\fiche_exploitant.vb">
+    <Compile Include="Application\includes\fiche_exploitant.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\exploitant\pulverisateur\ajout_pulve2.vb">
@@ -2422,7 +2422,7 @@
     <EmbeddedResource Include="Application\exploitant\transfert_pulve.resx">
       <DependentUpon>transfert_pulve.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\exploitant\fiche_exploitant.resx">
+    <EmbeddedResource Include="Application\includes\fiche_exploitant.resx">
       <DependentUpon>fiche_exploitant.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2.resx">
