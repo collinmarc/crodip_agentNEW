@@ -744,12 +744,13 @@ Public Class fiche_manometre
         '        CSDebug.dispFatal("fiche_manometreControle::btn_ficheMano_supprimer_Click : " & ex.Message.ToString)
         '    End Try
         'End If
-        Dim oFrm As SuppressionMateriel
-        oFrm = New SuppressionMateriel(manometreCourant)
-        If oFrm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            Me.Close()
-        End If
+        MsgBox("Contacter le CRODIP pour supprimer votre équipement")
+        'Dim oFrm As SuppressionMateriel
+        'oFrm = New SuppressionMateriel(manometreCourant)
+        'If oFrm.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+        '    Me.DialogResult = Windows.Forms.DialogResult.OK
+        '    Me.Close()
+        'End If
     End Sub
 
 

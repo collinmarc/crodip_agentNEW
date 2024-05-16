@@ -491,16 +491,18 @@ Public Class fiche_banc
 
 
     Private Sub btn_ficheMano_supprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheMano_supprimer.Click
-        Try
-            Dim oFRM As SuppressionMateriel
-            oFRM = New SuppressionMateriel(BancCourant)
-            If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                Me.DialogResult = Windows.Forms.DialogResult.OK
-                Me.Close()
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("fiche_banc::btn_ficheMano_supprimer_Click : " & ex.Message.ToString)
-        End Try
+        MsgBox("Contacter le CRODIP pour supprimer votre équipement")
+
+        'Try
+        '    Dim oFRM As SuppressionMateriel
+        '    oFRM = New SuppressionMateriel(BancCourant)
+        '    If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+        '        Me.DialogResult = Windows.Forms.DialogResult.OK
+        '        Me.Close()
+        '    End If
+        'Catch ex As Exception
+        '    CSDebug.dispError("fiche_banc::btn_ficheMano_supprimer_Click : " & ex.Message.ToString)
+        'End Try
     End Sub
 
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click

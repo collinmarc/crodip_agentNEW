@@ -450,12 +450,14 @@ Public Class fiche_buse
 #End Region
 
     Private Sub btn_ficheMano_supprimer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ficheMano_supprimer.Click
-        Dim oFRM As SuppressionMateriel
-        oFRM = New SuppressionMateriel(BuseCourant)
-        If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-            Me.DialogResult = Windows.Forms.DialogResult.OK
-            Me.Close()
-        End If
+        MsgBox("Contacter le CRODIP pour supprimer votre équipement")
+
+        'Dim oFRM As SuppressionMateriel
+        'oFRM = New SuppressionMateriel(BuseCourant)
+        'If oFRM.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+        '    Me.DialogResult = Windows.Forms.DialogResult.OK
+        '    Me.Close()
+        'End If
     End Sub
 
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click
