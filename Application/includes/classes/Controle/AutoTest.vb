@@ -269,6 +269,7 @@ Public Class AutoTest
         Return bReturn
     End Function
     Private m_Traca As String
+    <XmlIgnore()>
     Public Property Traca() As String
         Get
             Return m_Traca

@@ -3380,85 +3380,96 @@ Public Class Diagnostic
         Dim oPulve As Pulverisateur
         oPulve = PulverisateurManager.getPulverisateurById(pulverisateurId)
 
-        If String.IsNullOrEmpty(oPulve.dateProchainControle) Then
-            dReturn = Now()
+        Dim dDernierControlePulve As Date
+        If oPulve.getDateDernierControle() = "" Then
+            dDernierControlePulve = Date.MinValue
         Else
-            dReturn = CDate(oPulve.dateProchainControle)
+            dDernierControlePulve = CDate(oPulve.getDateDernierControle())
         End If
-        Dim oAlertes As Alertes
-        oAlertes = Alertes.readXML()
-        Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Jaune
-        Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Rouge
+
+        'Si le controle n'est pas le dernier controle
+        'on ne change pas la date de prochainControle
+        If dDernierControlePulve > CDate(Me.controleDateFin) Then
+            dReturn = oPulve.dateProchainControle
+        Else
+            If String.IsNullOrEmpty(oPulve.dateProchainControle) Then
+                dReturn = Now()
+            Else
+                dReturn = CDate(oPulve.dateProchainControle)
+            End If
+            Dim oAlertes As Alertes
+            oAlertes = Alertes.readXML()
+            Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Jaune
+            Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte(CDate(controleDateDebut)).Rouge
 
 
-        Dim pulverisateurControleEtatApres As String = pulverisateurControleEtat
+            Dim pulverisateurControleEtatApres As String = pulverisateurControleEtat
 
-        Select Case pulverisateurControleEtat
-            Case "" 'Etat Nouveau
-                Select Case controleEtat
-                    Case Diagnostic.controleEtatOK
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCV
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCC
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
-                End Select
-            Case Pulverisateur.controleEtatOK
-                'Etat OK
-                Select Case controleEtat
-                    Case Diagnostic.controleEtatOK
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCV
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCC
-                        'dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                End Select
-            Case Pulverisateur.controleEtatNOKCV 'En attente de CV
-                Select Case controleEtat
-                    Case Diagnostic.controleEtatOK
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCV
-                        If pImport Then
+            Select Case pulverisateurControleEtat
+                Case "" 'Etat Nouveau
+                    Select Case controleEtat
+                        Case Diagnostic.controleEtatOK
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
+                        Case Diagnostic.controleEtatNOKCV
                             dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
-                        Else
+                        Case Diagnostic.controleEtatNOKCC
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                    End Select
+                Case Pulverisateur.controleEtatOK
+                    'Etat OK
+                    Select Case controleEtat
+                        Case Diagnostic.controleEtatOK
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
+                        Case Diagnostic.controleEtatNOKCV
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                        Case Diagnostic.controleEtatNOKCC
+                            'dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                    End Select
+                Case Pulverisateur.controleEtatNOKCV 'En attente de CV
+                    Select Case controleEtat
+                        Case Diagnostic.controleEtatOK
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
+                        Case Diagnostic.controleEtatNOKCV
+                            If pImport Then
+                                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                            Else
+                                'If CDate(controleDateDebut) <= dReturn Then
+                                'dReturn = dReturn
+                                'Else
+                                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                                'End If
+                            End If
+                        Case Diagnostic.controleEtatNOKCC
+                            '        If pImport Then
+                            '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                            '        Else
+                            '            If CDate(controleDateDebut) <= dReturn Then
+                            '                dReturn = dReturn
+                            '            Else
+                            '                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                            '            End If
+                            '        End If
+                    End Select
+                Case Pulverisateur.controleEtatNOKCC 'Etat Attente de Controle Complet
+                    Select Case controleEtat
+                        Case Diagnostic.controleEtatOK
+                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
+                        Case Diagnostic.controleEtatNOKCV
                             'If CDate(controleDateDebut) <= dReturn Then
-                            'dReturn = dReturn
+                            '    dReturn = dReturn
                             'Else
-                            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                            '    dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
                             'End If
-                        End If
-                    Case Diagnostic.controleEtatNOKCC
-                        '        If pImport Then
-                        '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        '        Else
-                        '            If CDate(controleDateDebut) <= dReturn Then
-                        '                dReturn = dReturn
-                        '            Else
-                        '                dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        '            End If
-                        '        End If
-                End Select
-            Case Pulverisateur.controleEtatNOKCC 'Etat Attente de Controle Complet
-                Select Case controleEtat
-                    Case Diagnostic.controleEtatOK
-                        dReturn = CDate(controleDateDebut).AddMonths(nMoisValideOK).AddDays(-1)
-                    Case Diagnostic.controleEtatNOKCV
-                        'If CDate(controleDateDebut) <= dReturn Then
-                        '    dReturn = dReturn
-                        'Else
-                        '    dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        'End If
-                    Case Diagnostic.controleEtatNOKCC
-                        '        If CDate(controleDateDebut) > dReturn Then
-                        '            dReturn = dReturn
-                        '        Else
-                        '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
-                        '        End If
-                End Select
-        End Select
+                        Case Diagnostic.controleEtatNOKCC
+                            '        If CDate(controleDateDebut) > dReturn Then
+                            '            dReturn = dReturn
+                            '        Else
+                            '            dReturn = CDate(controleDateDebut).AddMonths(nMoisValideCV)
+                            '        End If
+                    End Select
+            End Select
 
-
-
+        End If
         pulverisateurDateProchainControle = CSDate.ToCRODIPString(dReturn)
         Return CSDate.ToCRODIPString(dReturn)
     End Function

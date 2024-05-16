@@ -3356,4 +3356,8 @@ Public Class liste_diagnosticPulve2
     Private Sub liste_diagnosticPulve2_ImeModeChanged(sender As Object, e As EventArgs) Handles Me.ImeModeChanged
 
     End Sub
+
+    Private Sub liste_diagnosticPulve2_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
+
+    End Sub
 End Class

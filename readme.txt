@@ -6,6 +6,7 @@ BUILD XXXXXXX
 	0001660: Restreindre le champ pulvé AncienIdentifiant
 	0001669: Désactivation du bouton supprimer pour les équipements contrôle
 	0001668: Ecran controle régulier
+	0001670: Prise en compte de la validité du dernier contrôle réalisé
 
 BUILD 20240325120000
 	0001634: Prise en compte de la pression par défaut

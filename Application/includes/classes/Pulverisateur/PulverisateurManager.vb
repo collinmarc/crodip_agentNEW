@@ -109,7 +109,7 @@ Public Class PulverisateurManager
         ' déclarations
         Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
         Dim idPC As String
-        idPC = pAgent.oPool.getAgentPC().idCrodip
+        idPC = pAgent.oPool.idCRODIPPC
         Dim Racine As String = idCrodipStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 

@@ -141,6 +141,7 @@ Public Class Pulverisateur
         End If
         _idStructure = -1
         dateProchainControle = Nothing
+        controleEtat = controleEtatOK
     End Sub
     Public Property id() As String
         Get
@@ -1664,31 +1665,39 @@ Public Class Pulverisateur
         Dim bReturn As Boolean
 
         Try
-            Select Case controleEtat
-                Case Pulverisateur.controleEtatNOKCC
-                    'Si le pulve était en att de Controle complet
-                    'il y reste sauf pour un controle OK
-                    Select Case pdiagnostic.controleEtat
-                        Case Diagnostic.controleEtatOK
-                            controleEtat = Pulverisateur.controleEtatOK
-                        Case Diagnostic.controleEtatNOKCV
-                        Case Diagnostic.controleEtatNOKCC
-                        Case Else
-                    End Select
-                Case Else
+            'Si le controle est le dernier en date
+            Dim dateDernierControlePulve As Date
+            If Me.getDateDernierControle() = "" Then
+                dateDernierControlePulve = Date.MinValue
+            Else
+                dateDernierControlePulve = Me.getDateDernierControle()
+            End If
+            If pdiagnostic.controleDateFin > dateDernierControlePulve Then
+                Select Case controleEtat
+                    Case Pulverisateur.controleEtatNOKCC
+                        'Si le pulve était en att de Controle complet
+                        'il y reste sauf pour un controle OK
+                        Select Case pdiagnostic.controleEtat
+                            Case Diagnostic.controleEtatOK
+                                controleEtat = Pulverisateur.controleEtatOK
+                            Case Diagnostic.controleEtatNOKCV
+                            Case Diagnostic.controleEtatNOKCC
+                            Case Else
+                        End Select
+                    Case Else
 
-                    Select Case pdiagnostic.controleEtat
-                        Case Diagnostic.controleEtatOK
-                            controleEtat = Pulverisateur.controleEtatOK
-                        Case Diagnostic.controleEtatNOKCV
-                            controleEtat = Pulverisateur.controleEtatNOKCV
-                        Case Diagnostic.controleEtatNOKCC
-                            controleEtat = Pulverisateur.controleEtatNOKCC
-                        Case Else
-                            controleEtat = Pulverisateur.controleEtatOK
-                    End Select
-            End Select
-
+                        Select Case pdiagnostic.controleEtat
+                            Case Diagnostic.controleEtatOK
+                                controleEtat = Pulverisateur.controleEtatOK
+                            Case Diagnostic.controleEtatNOKCV
+                                controleEtat = Pulverisateur.controleEtatNOKCV
+                            Case Diagnostic.controleEtatNOKCC
+                                controleEtat = Pulverisateur.controleEtatNOKCC
+                            Case Else
+                                controleEtat = Pulverisateur.controleEtatOK
+                        End Select
+                End Select
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.setControleEtat ERR " & ex.Message)

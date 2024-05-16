@@ -40,7 +40,100 @@ Public Class Pulverisateurtest
     'End Sub
 #End Region
 
+    ''' <summary>
+    ''' un Diag antérieur ne modifie pas l'état du pulvé et la date prochain controle
+    ''' </summary>
+    <TestMethod()>
+    Public Sub TestEtatPulveDiagAnterieur()
+        Dim bOK As Boolean
+        m_oExploitation = createExploitation()
+        ExploitationManager.save(m_oExploitation, m_oAgent)
 
+        m_oPulve = createPulve(m_oExploitation)
+        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+
+        m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
+        m_oDiag.controleDateDebut = "19/05/2024"
+        m_oDiag.controleDateFin = "19/05/2024"
+        m_oDiag.controleEtat = Diagnostic.controleEtatNOKCV
+        m_oDiag.CalculDateProchainControle()
+        m_oPulve.SetControleEtat(m_oDiag)
+        m_oPulve.dateProchainControle = m_oDiag.pulverisateurDateProchainControle
+
+        Assert.AreEqual(Pulverisateur.controleEtatNOKCV, m_oPulve.controleEtat)
+        Assert.AreEqual("", m_oPulve.getDateDernierControle())
+
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        Assert.IsTrue(bOK, "Erreur en SV de Pulve")
+        bOK = DiagnosticManager.save(m_oDiag)
+        Assert.IsTrue(bOK, "Erreur en SV de Diag")
+
+        Assert.AreEqual(m_oDiag.controleDateFinS, m_oPulve.getDateDernierControle())
+
+        Dim dateProchainControleAvant As String
+        dateProchainControleAvant = m_oPulve.dateProchainControle
+
+        'Création d'un second diag antérieur au Premier
+        m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
+        m_oDiag.controleDateDebut = "27/02/2024"
+        m_oDiag.controleDateFin = "27/02/2024"
+        m_oDiag.controleEtat = Diagnostic.controleEtatOK
+        m_oDiag.CalculDateProchainControle()
+        m_oPulve.SetControleEtat(MyBase.m_oDiag)
+        m_oPulve.dateProchainControle = m_oDiag.pulverisateurDateProchainControle
+        'Le Controle etant antérieur , il ne doit pas influencé l'état du pulvé , ni la date de prochain contrôle
+        Assert.AreEqual(Pulverisateur.controleEtatNOKCV, m_oPulve.controleEtat) 'Comme Avant
+        Assert.AreEqual(dateProchainControleAvant, m_oPulve.dateProchainControle) 'comme avant
+
+
+
+
+    End Sub
+    ''' <summary>
+    ''' Après un diag OK , on réalise un Diag par anticipation CV => l'état du pulvé doit changer
+    ''' </summary>
+    <TestMethod()>
+    Public Sub TestEtatPulveDiagAPriori()
+        Dim bOK As Boolean
+        m_oExploitation = createExploitation()
+        ExploitationManager.save(m_oExploitation, m_oAgent)
+
+        m_oPulve = createPulve(m_oExploitation)
+        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+
+        m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
+        m_oDiag.controleDateDebut = "06/02/2024"
+        m_oDiag.controleDateFin = "06/02/2024"
+        m_oDiag.controleEtat = Diagnostic.controleEtatOK
+        m_oDiag.CalculDateProchainControle()
+        m_oPulve.SetControleEtat(m_oDiag)
+        m_oPulve.dateProchainControle = m_oDiag.pulverisateurDateProchainControle
+
+        Assert.AreEqual(Pulverisateur.controleEtatOK, m_oPulve.controleEtat)
+        Assert.AreEqual("", m_oPulve.getDateDernierControle())
+
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        Assert.IsTrue(bOK, "Erreur en SV de Pulve")
+        bOK = DiagnosticManager.save(m_oDiag)
+        Assert.IsTrue(bOK, "Erreur en SV de Diag")
+
+        Assert.AreEqual(m_oDiag.controleDateFinS, m_oPulve.getDateDernierControle())
+        Dim dateProchainControleAvant As String
+        dateProchainControleAvant = m_oPulve.dateProchainControle
+
+        'Création d'un second diag  avant la date d'expiration
+        m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
+        m_oDiag.controleDateDebut = "27/02/2024"
+        m_oDiag.controleDateFin = "27/02/2024"
+        m_oDiag.controleEtat = Diagnostic.controleEtatNOKCV
+        m_oDiag.CalculDateProchainControle()
+        m_oPulve.SetControleEtat(m_oDiag)
+        m_oPulve.dateProchainControle = m_oDiag.pulverisateurDateProchainControle
+
+        Assert.AreEqual(Pulverisateur.controleEtatNOKCV, m_oPulve.controleEtat) 'Comme Avant
+        Assert.AreNotEqual(dateProchainControleAvant, m_oPulve.dateProchainControle) 'comme avant
+
+    End Sub
     <TestMethod()>
     Public Sub TestTRTSPE()
 
@@ -150,9 +243,9 @@ Public Class Pulverisateurtest
 
         m_oAgent.oPool = Nothing
         str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual("498-1119-3", str)
+        Assert.AreEqual(m_oStructure.id & "-" & m_oAgent.id & "-3", str)
         str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oAgent.idStructure & "-1119-3", str)
+        Assert.AreEqual(m_oAgent.idStructure & "-" & m_oAgent.id & "-3", str)
 
 
     End Sub
