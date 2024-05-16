@@ -137,6 +137,12 @@ Public Class accueil
     Friend WithEvents PulvePrincipalNumNatDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FichePulve As DataGridViewImageColumn
     Friend WithEvents btnMAJPulveFromDiag As Button
+    Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Type As DataGridViewTextBoxColumn
+    Friend WithEvents isOK As DataGridViewCheckBoxColumn
+    Friend WithEvents isNOK As DataGridViewCheckBoxColumn
+    Friend WithEvents isNonEffectue As DataGridViewCheckBoxColumn
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -292,11 +298,6 @@ Public Class accueil
     Friend WithEvents btn_controleQuotdien_Exporter As System.Windows.Forms.Button
     Friend WithEvents btn_controleQuotdien_Valider As System.Windows.Forms.Button
     Friend WithEvents dgv_ControleRegulier As System.Windows.Forms.DataGridView
-    Friend WithEvents TypeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents isOK As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents isNOK As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents isNonEffectue As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents btn_imprimerDoc As System.Windows.Forms.Label
     Friend WithEvents SplitContainer_ModuleDocumentaire As System.Windows.Forms.SplitContainer
     Friend WithEvents tv_Docs As System.Windows.Forms.TreeView
@@ -382,11 +383,6 @@ Public Class accueil
         Me.btn_controleQuotdien_Exporter = New System.Windows.Forms.Button()
         Me.btn_controleQuotdien_Valider = New System.Windows.Forms.Button()
         Me.dgv_ControleRegulier = New System.Windows.Forms.DataGridView()
-        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.isOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.isNOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.isNonEffectue = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.bsControleQuotidien = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label15 = New System.Windows.Forms.Label()
         Me.picsRefresh = New System.Windows.Forms.PictureBox()
@@ -639,6 +635,12 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
+        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.isOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.isNOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.isNonEffectue = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -923,50 +925,13 @@ Public Class accueil
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.isOK, Me.isNOK, Me.isNonEffectue})
+        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.Type, Me.isOK, Me.isNOK, Me.isNonEffectue})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
         Me.dgv_ControleRegulier.Location = New System.Drawing.Point(6, 251)
         Me.dgv_ControleRegulier.Name = "dgv_ControleRegulier"
         Me.dgv_ControleRegulier.RowHeadersWidth = 10
-        Me.dgv_ControleRegulier.Size = New System.Drawing.Size(419, 252)
+        Me.dgv_ControleRegulier.Size = New System.Drawing.Size(429, 252)
         Me.dgv_ControleRegulier.TabIndex = 10
-        '
-        'TypeDataGridViewTextBoxColumn
-        '
-        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "TypeLibelle"
-        Me.TypeDataGridViewTextBoxColumn.FillWeight = 50.0!
-        Me.TypeDataGridViewTextBoxColumn.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
-        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "IdMateriel"
-        Me.IdDataGridViewTextBoxColumn.FillWeight = 30.0!
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'isOK
-        '
-        Me.isOK.DataPropertyName = "isOK"
-        Me.isOK.FillWeight = 10.0!
-        Me.isOK.HeaderText = "OK"
-        Me.isOK.Name = "isOK"
-        '
-        'isNOK
-        '
-        Me.isNOK.DataPropertyName = "isNOK"
-        Me.isNOK.FillWeight = 10.0!
-        Me.isNOK.HeaderText = "NOK"
-        Me.isNOK.Name = "isNOK"
-        '
-        'isNonEffectue
-        '
-        Me.isNonEffectue.DataPropertyName = "isNonEffectue"
-        Me.isNonEffectue.FillWeight = 10.0!
-        Me.isNonEffectue.HeaderText = "NON"
-        Me.isNonEffectue.Name = "isNonEffectue"
         '
         'bsControleQuotidien
         '
@@ -3949,6 +3914,51 @@ Public Class accueil
         Me.rbDatesFacture.TabIndex = 0
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
+        '
+        'TypeDataGridViewTextBoxColumn
+        '
+        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "TypeLibelle"
+        Me.TypeDataGridViewTextBoxColumn.FillWeight = 40.0!
+        Me.TypeDataGridViewTextBoxColumn.HeaderText = "Type"
+        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
+        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "IdMateriel"
+        Me.IdDataGridViewTextBoxColumn.FillWeight = 20.0!
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Type
+        '
+        Me.Type.DataPropertyName = "Traca"
+        Me.Type.FillWeight = 10.0!
+        Me.Type.HeaderText = "Traca"
+        Me.Type.Name = "Type"
+        Me.Type.ReadOnly = True
+        '
+        'isOK
+        '
+        Me.isOK.DataPropertyName = "isOK"
+        Me.isOK.FillWeight = 10.0!
+        Me.isOK.HeaderText = "OK"
+        Me.isOK.Name = "isOK"
+        '
+        'isNOK
+        '
+        Me.isNOK.DataPropertyName = "isNOK"
+        Me.isNOK.FillWeight = 10.0!
+        Me.isNOK.HeaderText = "NOK"
+        Me.isNOK.Name = "isNOK"
+        '
+        'isNonEffectue
+        '
+        Me.isNonEffectue.DataPropertyName = "isNonEffectue"
+        Me.isNonEffectue.FillWeight = 10.0!
+        Me.isNonEffectue.HeaderText = "NON"
+        Me.isNonEffectue.Name = "isNonEffectue"
         '
         'accueil
         '

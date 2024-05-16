@@ -37,6 +37,7 @@ Public Class AutoTest
         IdMateriel = pMano.idCrodip
         IdStructure = pMano.idStructure
         NumAgent = pAgent.id
+        Traca = pMano.Traca
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
         _id = -1
@@ -267,5 +268,13 @@ Public Class AutoTest
         End Try
         Return bReturn
     End Function
-
+    Private m_Traca As String
+    Public Property Traca() As String
+        Get
+            Return m_Traca
+        End Get
+        Set(ByVal value As String)
+            m_Traca = value
+        End Set
+    End Property
 End Class

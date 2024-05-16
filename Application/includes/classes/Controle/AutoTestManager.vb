@@ -262,7 +262,7 @@ Public Class AutoTestManager
             If pTypeMateriels.ToUpper() = "BANC" Or pTypeMateriels.ToUpper() = "TOUS" Then
                 Dim arrBanc As System.Collections.Generic.List(Of Banc)
                 ' On récupère les bancs de l'agent
-                arrBanc = BancManager.getBancByAgent(pAgent, True)
+                arrBanc = BancManager.getBancByAgent(pAgent, False)
                 For Each oBanc As Banc In arrBanc
                     oCtrlRegulier = New AutoTest(pAgent, oBanc)
                     oCtrlRegulier.DateControle = pDateControle
@@ -272,7 +272,7 @@ Public Class AutoTestManager
             If pTypeMateriels.ToUpper() = "MANOC" Or pTypeMateriels.ToUpper() = "TOUS" Then
                 Dim arrManoC As List(Of ManometreControle)
                 ' On récupère les Mano de Controle  de la structure
-                arrManoC = ManometreControleManager.getManoControleByAgent(pAgent, True)
+                arrManoC = ManometreControleManager.getManoControleByAgent(pAgent, False)
                 For Each oManoC As ManometreControle In arrManoC
                     oCtrlRegulier = New AutoTest(pAgent, oManoC)
                     oCtrlRegulier.DateControle = pDateControle
