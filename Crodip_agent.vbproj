@@ -1531,6 +1531,9 @@
     <Compile Include="Application\Signature\frmSignClientWacom.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Content Include="wgssSTU.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="bdd\crodip_agent.db3" />
     <None Include="bdd\crodip_agent.mdb" />
     <None Include="bdd\crodip_agent.sql" />
