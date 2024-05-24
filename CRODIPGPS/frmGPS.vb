@@ -105,7 +105,7 @@
         ActionRAZ()
     End Sub
 
-    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs)
         ActionSelectMesure()
     End Sub
 
@@ -133,6 +133,10 @@
 
     Private Sub btnNlleMesure_Click(sender As Object, e As EventArgs) Handles btnNlleMesure.Click
         ActionNouvelleMesure()
+    End Sub
+
+    Private Sub laDistance_Click(sender As Object, e As EventArgs) Handles laDistance.Click
+
     End Sub
 End Class
 

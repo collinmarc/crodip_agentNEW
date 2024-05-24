@@ -24,8 +24,6 @@ Partial Class frmGPS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.bntDemarrer = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.laDistance = New System.Windows.Forms.Label()
         Me._bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
@@ -38,39 +36,22 @@ Partial Class frmGPS
         Me.btnRAZ = New System.Windows.Forms.Button()
         Me._bgwGPS = New System.ComponentModel.BackgroundWorker()
         Me._Timer1 = New System.Windows.Forms.Timer(Me.components)
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.rbMesure1 = New System.Windows.Forms.RadioButton()
+        Me.rbMesure2 = New System.Windows.Forms.RadioButton()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me._bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'bntDemarrer
         '
-        Me.bntDemarrer.BackColor = System.Drawing.Color.Yellow
+        Me.bntDemarrer.BackColor = System.Drawing.Color.RoyalBlue
         Me.bntDemarrer.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.bntDemarrer.Location = New System.Drawing.Point(22, 73)
         Me.bntDemarrer.Name = "bntDemarrer"
         Me.bntDemarrer.Size = New System.Drawing.Size(305, 126)
         Me.bntDemarrer.TabIndex = 0
-        Me.bntDemarrer.Text = "Démarrer"
+        Me.bntDemarrer.Text = "Arrêter"
         Me.bntDemarrer.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(27, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(164, 31)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Mesure N° : "
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumericUpDown1.Location = New System.Drawing.Point(186, 9)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(91, 38)
-        Me.NumericUpDown1.TabIndex = 2
         '
         'Label2
         '
@@ -89,9 +70,9 @@ Partial Class frmGPS
         Me.laDistance.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laDistance.Location = New System.Drawing.Point(594, 75)
         Me.laDistance.Name = "laDistance"
-        Me.laDistance.Size = New System.Drawing.Size(54, 31)
+        Me.laDistance.Size = New System.Drawing.Size(97, 31)
         Me.laDistance.TabIndex = 4
-        Me.laDistance.Text = "....."
+        Me.laDistance.Text = "154.90"
         '
         '_bsrcGPSMesure
         '
@@ -114,20 +95,21 @@ Partial Class frmGPS
         Me.laTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.laTemps.Location = New System.Drawing.Point(594, 110)
         Me.laTemps.Name = "laTemps"
-        Me.laTemps.Size = New System.Drawing.Size(54, 31)
+        Me.laTemps.Size = New System.Drawing.Size(44, 31)
         Me.laTemps.TabIndex = 6
-        Me.laTemps.Text = "....."
+        Me.laTemps.Text = "90"
         '
         'laVitesse
         '
         Me.laVitesse.AutoSize = True
         Me.laVitesse.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me._bsrcGPSMesure, "Vitesse", True))
         Me.laVitesse.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.laVitesse.ForeColor = System.Drawing.Color.DodgerBlue
         Me.laVitesse.Location = New System.Drawing.Point(594, 168)
         Me.laVitesse.Name = "laVitesse"
-        Me.laVitesse.Size = New System.Drawing.Size(54, 31)
+        Me.laVitesse.Size = New System.Drawing.Size(67, 31)
         Me.laVitesse.TabIndex = 8
-        Me.laVitesse.Text = "....."
+        Me.laVitesse.Text = "16,5"
         '
         'Label7
         '
@@ -162,7 +144,7 @@ Partial Class frmGPS
         'btnRAZ
         '
         Me.btnRAZ.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRAZ.Location = New System.Drawing.Point(316, 9)
+        Me.btnRAZ.Location = New System.Drawing.Point(378, 12)
         Me.btnRAZ.Name = "btnRAZ"
         Me.btnRAZ.Size = New System.Drawing.Size(288, 38)
         Me.btnRAZ.TabIndex = 12
@@ -178,11 +160,48 @@ Partial Class frmGPS
         '
         Me._Timer1.Interval = 1000
         '
+        'rbMesure1
+        '
+        Me.rbMesure1.AutoSize = True
+        Me.rbMesure1.Checked = True
+        Me.rbMesure1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbMesure1.Location = New System.Drawing.Point(132, 12)
+        Me.rbMesure1.Name = "rbMesure1"
+        Me.rbMesure1.Size = New System.Drawing.Size(42, 29)
+        Me.rbMesure1.TabIndex = 13
+        Me.rbMesure1.TabStop = True
+        Me.rbMesure1.Text = "1"
+        Me.rbMesure1.UseVisualStyleBackColor = True
+        '
+        'rbMesure2
+        '
+        Me.rbMesure2.AutoSize = True
+        Me.rbMesure2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbMesure2.Location = New System.Drawing.Point(190, 12)
+        Me.rbMesure2.Name = "rbMesure2"
+        Me.rbMesure2.Size = New System.Drawing.Size(42, 29)
+        Me.rbMesure2.TabIndex = 14
+        Me.rbMesure2.Text = "2"
+        Me.rbMesure2.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(28, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(104, 31)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "Mesure"
+        '
         'frmGPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.rbMesure2)
+        Me.Controls.Add(Me.rbMesure1)
         Me.Controls.Add(Me.btnRAZ)
         Me.Controls.Add(Me.btnExporter)
         Me.Controls.Add(Me.btnNlleMesure)
@@ -192,12 +211,9 @@ Partial Class frmGPS
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.laDistance)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.NumericUpDown1)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.bntDemarrer)
         Me.Name = "frmGPS"
         Me.Text = "Acquisition GPS"
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -205,8 +221,6 @@ Partial Class frmGPS
     End Sub
 
     Friend WithEvents bntDemarrer As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Label2 As Label
     Friend WithEvents laDistance As Label
     Friend WithEvents Label4 As Label
@@ -219,4 +233,7 @@ Partial Class frmGPS
     Friend WithEvents _bsrcGPSMesure As BindingSource
     Friend WithEvents _bgwGPS As System.ComponentModel.BackgroundWorker
     Friend WithEvents _Timer1 As Timer
+    Friend WithEvents rbMesure1 As RadioButton
+    Friend WithEvents rbMesure2 As RadioButton
+    Friend WithEvents Label1 As Label
 End Class
