@@ -2,7 +2,7 @@
 
 Module Module3
 
-    Public Sub Main()
+    Public Sub Main3()
         ' Obtenir tous les ports série disponibles
         Dim ports As String() = SerialPort.GetPortNames()
         Console.WriteLine("Ports série disponibles : " & String.Join(", ", ports))

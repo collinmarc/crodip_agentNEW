@@ -14,24 +14,36 @@
             Return _distance
         End Get
         Set(ByVal value As Decimal)
-            _distance = value
+            If value <> _distance Then
+                _distance = value
+                calculeVitesse()
+            End If
         End Set
     End Property
     Private _temps As Decimal
-    Public Property Temps() As Decimal
+    Public Property Temps() As Integer
         Get
             Return _temps
         End Get
-        Set(ByVal value As Decimal)
-            _temps = value
+        Set(ByVal value As Integer)
+            If value <> _temps Then
+                _temps = value
+                calculeVitesse()
+            End If
         End Set
     End Property
+    Private Sub calculeVitesse()
+        If Temps <> 0 And Distance <> 0 Then
+            Vitesse = (Distance / 1000 / Temps) * 3600
+        End If
+    End Sub
     Private _vitesse As Decimal
     Public Property Vitesse() As Decimal
         Get
             Return Math.Round(_vitesse, 3)
         End Get
         Set(ByVal value As Decimal)
+
             _vitesse = value
         End Set
     End Property
@@ -42,4 +54,16 @@
         Vitesse = Distance / Temps * 3.6
 
     End Sub
+    Public Function ToCsv(pFile As String) As Boolean
+        Dim bReturn As Boolean
+        Try
+
+            System.IO.File.AppendText(Num & ";" & Distance & ";" & Temps & ";" & Vitesse)
+            bReturn = True
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 End Class
