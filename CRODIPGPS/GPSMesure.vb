@@ -58,7 +58,7 @@
         Dim bReturn As Boolean
         Try
 
-            System.IO.File.AppendText(Num & ";" & Distance & ";" & Temps & ";" & Vitesse)
+            System.IO.File.AppendAllText(pFile, Num & ";" & Distance & ";" & Temps & ";" & Vitesse & vbCrLf)
             bReturn = True
         Catch ex As Exception
             Console.WriteLine(ex.Message)

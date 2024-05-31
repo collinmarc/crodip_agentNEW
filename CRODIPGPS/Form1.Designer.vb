@@ -40,8 +40,8 @@ Partial Class Form1
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '

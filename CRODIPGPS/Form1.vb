@@ -31,9 +31,11 @@ Public Class Form1
         elapsedTime = TimeSpan.Zero
 
         m1 = New GPSMesure()
+        m1.Num = 1
         m_bsrcGPSMesure.Add(m1)
         m1.Vitesse = 15.6
         m2 = New GPSMesure()
+        m2.Num = 2
         m_bsrcGPSMesure.Add(m2)
         m_bsrcGPSMesure.MoveFirst()
         SetEtat0GPSNONACTIF()
@@ -80,6 +82,7 @@ Public Class Form1
     Private Sub CbMesureSuivante_Click(sender As Object, e As EventArgs) Handles CbMesureSuivante.Click
         rbMesure2.Checked = True
         CbMesureSuivante.Enabled = False
+        GPSActif()
     End Sub
 
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
@@ -104,6 +107,7 @@ Public Class Form1
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = False
         CbMesureSuivante.Enabled = False
+        ckVitessseStable.Checked = False
     End Sub
     Private Sub SetEtat1ENATTENTE()
         TraceMsg("Etat1")
@@ -140,14 +144,15 @@ Public Class Form1
 
         If m1.Distance > 0 And m2.Distance > 0 Then
             _Etat = EtatFom.MESURESEFFECTUEES
+            cbExporter.Enabled = True
         Else
             _Etat = EtatFom.ENATTENTE
+            cbExporter.Enabled = False
         End If
         SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
         cbMesure.UseAccentColor = False
         cbMesure.Text = "Démarrer"
         cbMesure.Enabled = True
-        cbMesure.Tag = "ARRETEE"
         CbMesureSuivante.Enabled = (_Etat = EtatFom.ENATTENTE)
     End Sub
     Private _n As Integer
@@ -209,6 +214,10 @@ Public Class Form1
     End Sub
 
     Private Sub gpsManager_GPSActifEvent(sender As Object, e As EventArgs) Handles gpsManager.GPSActifEvent
+        GPSActif()
+    End Sub
+
+    Private Sub GPSActif()
         SetEtat6GPSACTIF()
         startTime = DateTime.Now
         elapsedTime = TimeSpan.MinValue
@@ -237,6 +246,9 @@ Public Class Form1
     Private Function Exporter(pFile As String) As Boolean
         Dim bReturn As Boolean
         Try
+            If System.IO.File.Exists(pFile) Then
+                System.IO.File.Delete(pFile)
+            End If
             m1.ToCsv(pFile)
             m2.ToCsv(pFile)
             bReturn = True
@@ -246,4 +258,8 @@ Public Class Form1
         End Try
         Return bReturn
     End Function
+
+    Private Sub ckVitessseStable_CheckedChanged(sender As Object, e As EventArgs) Handles ckVitessseStable.CheckedChanged
+        'SetEtat1ENATTENTE()
+    End Sub
 End Class

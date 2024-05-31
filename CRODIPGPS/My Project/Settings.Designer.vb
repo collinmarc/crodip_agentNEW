@@ -54,13 +54,16 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public ReadOnly Property FichierExport() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("crodipgps.csv")>  _
+        Public Property FichierExport() As String
             Get
                 Return CType(Me("FichierExport"),String)
             End Get
+            Set
+                Me("FichierExport") = value
+            End Set
         End Property
     End Class
 End Namespace
