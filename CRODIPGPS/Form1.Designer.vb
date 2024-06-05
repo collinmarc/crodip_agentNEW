@@ -36,11 +36,12 @@ Partial Class Form1
         Me.cbExporter = New MaterialSkin.Controls.MaterialButton()
         Me.cbQuitter = New MaterialSkin.Controls.MaterialButton()
         Me.pbMesure = New MaterialSkin.Controls.MaterialProgressBar()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.CkTest = New MaterialSkin.Controls.MaterialCheckbox()
         Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -270,19 +271,16 @@ Partial Class Form1
         Me.pbMesure.Size = New System.Drawing.Size(438, 5)
         Me.pbMesure.TabIndex = 12
         '
-        'Timer1
+        'TimerLectureGPS
         '
-        Me.Timer1.Interval = 1000
-        '
-        'Timer2
-        '
-        Me.Timer2.Interval = 1000
+        Me.TimerLectureGPS.Interval = 1000
         '
         'ckGPSActif
         '
         Me.ckGPSActif.AutoSize = True
         Me.ckGPSActif.Depth = 0
-        Me.ckGPSActif.Location = New System.Drawing.Point(358, 81)
+        Me.ckGPSActif.Enabled = False
+        Me.ckGPSActif.Location = New System.Drawing.Point(354, 111)
         Me.ckGPSActif.Margin = New System.Windows.Forms.Padding(0)
         Me.ckGPSActif.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckGPSActif.MouseState = MaterialSkin.MouseState.HOVER
@@ -298,7 +296,8 @@ Partial Class Form1
         '
         Me.ckVitessseStable.AutoSize = True
         Me.ckVitessseStable.Depth = 0
-        Me.ckVitessseStable.Location = New System.Drawing.Point(318, 118)
+        Me.ckVitessseStable.Enabled = False
+        Me.ckVitessseStable.Location = New System.Drawing.Point(314, 148)
         Me.ckVitessseStable.Margin = New System.Windows.Forms.Padding(0)
         Me.ckVitessseStable.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckVitessseStable.MouseState = MaterialSkin.MouseState.HOVER
@@ -310,6 +309,26 @@ Partial Class Form1
         Me.ckVitessseStable.Text = "VitesseStable"
         Me.ckVitessseStable.UseVisualStyleBackColor = True
         '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        '
+        'CkTest
+        '
+        Me.CkTest.AutoSize = True
+        Me.CkTest.Depth = 0
+        Me.CkTest.Location = New System.Drawing.Point(335, 64)
+        Me.CkTest.Margin = New System.Windows.Forms.Padding(0)
+        Me.CkTest.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.CkTest.MouseState = MaterialSkin.MouseState.HOVER
+        Me.CkTest.Name = "CkTest"
+        Me.CkTest.ReadOnly = False
+        Me.CkTest.Ripple = True
+        Me.CkTest.Size = New System.Drawing.Size(110, 37)
+        Me.CkTest.TabIndex = 16
+        Me.CkTest.Text = "Mode Test"
+        Me.CkTest.UseVisualStyleBackColor = True
+        '
         'm_bsrcGPSMesure
         '
         Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
@@ -319,6 +338,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(452, 665)
+        Me.Controls.Add(Me.CkTest)
         Me.Controls.Add(Me.ckVitessseStable)
         Me.Controls.Add(Me.ckGPSActif)
         Me.Controls.Add(Me.pbMesure)
@@ -357,10 +377,11 @@ Partial Class Form1
     Friend WithEvents cbExporter As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbQuitter As MaterialSkin.Controls.MaterialButton
     Friend WithEvents pbMesure As MaterialSkin.Controls.MaterialProgressBar
-    Friend WithEvents Timer1 As Timer
+    Friend WithEvents TimerLectureGPS As Timer
     Friend WithEvents m_bsrcGPSMesure As BindingSource
-    Friend WithEvents Timer2 As Timer
     Friend WithEvents ckGPSActif As MaterialSkin.Controls.MaterialCheckbox
     Friend WithEvents ckVitessseStable As MaterialSkin.Controls.MaterialCheckbox
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents CkTest As MaterialSkin.Controls.MaterialCheckbox
 End Class
