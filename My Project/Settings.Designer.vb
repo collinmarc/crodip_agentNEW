@@ -346,24 +346,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.fr")>  _
-    Public ReadOnly Property FTPHost() As String
-        Get
-            Return CType(Me("FTPHost"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("admin-pp.crodip.fr")>  _
-    Public ReadOnly Property FTPHostTest() As String
-        Get
-            Return CType(Me("FTPHostTest"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
     Public ReadOnly Property AutoSync() As Boolean
         Get
@@ -422,15 +404,6 @@ Partial Friend NotInheritable Class MySettings
     Public ReadOnly Property SynchroEtatTVManoUrl() As String
         Get
             Return CType(Me("SynchroEtatTVManoUrl"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.fr/server")>  _
-    Public ReadOnly Property WSCrodipURL() As String
-        Get
-            Return CType(Me("WSCrodipURL"),String)
         End Get
     End Property
     
@@ -510,32 +483,20 @@ Partial Friend NotInheritable Class MySettings
     End Property
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>
-    Public Property GestionDesPools() As Boolean
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property GestionDesPools() As Boolean
         Get
-            Return CType(Me("GestionDesPools"), Boolean)
+            Return CType(Me("GestionDesPools"),Boolean)
         End Get
-        Set(ByVal value As Boolean)
-            Me("GestionDesPools") = value
-        End Set
     End Property
-
+    
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _
     Public ReadOnly Property DBExtension() As String
         Get
             Return CType(Me("DBExtension"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V3.0.01")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
         End Get
     End Property
     
@@ -559,10 +520,64 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20230224150000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20240325120000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V3.1.01")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.net/server")>  _
+    Public ReadOnly Property WSCrodipURL() As String
+        Get
+            Return CType(Me("WSCrodipURL"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.net")>  _
+    Public ReadOnly Property FTPHost() As String
+        Get
+            Return CType(Me("FTPHost"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("admin-test.crodip.net")>  _
+    Public ReadOnly Property FTPHostTest() As String
+        Get
+            Return CType(Me("FTPHostTest"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("CRODIPGPSFULL.EXE")>  _
+    Public ReadOnly Property GPSApplication() As String
+        Get
+            Return CType(Me("GPSApplication"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("crodipgps.csv")>  _
+    Public ReadOnly Property GPSCSV() As String
+        Get
+            Return CType(Me("GPSCSV"),String)
         End Get
     End Property
 End Class

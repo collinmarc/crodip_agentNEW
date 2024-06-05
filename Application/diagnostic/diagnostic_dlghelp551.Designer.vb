@@ -23,6 +23,8 @@ Partial Class diagnostic_dlghelp551
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.pnl_help551 = New System.Windows.Forms.Panel()
+        Me.btnAcquisition = New System.Windows.Forms.Button()
+        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.btnValider = New System.Windows.Forms.Button()
         Me.laTitre = New System.Windows.Forms.Label()
@@ -47,7 +49,6 @@ Partial Class diagnostic_dlghelp551
         Me.Label85 = New System.Windows.Forms.Label()
         Me.help551_result = New System.Windows.Forms.Label()
         Me.help551_erreurMoyenne = New CRODIP_ControlLibrary.TBNumeric()
-        Me.lblCodeDefaut = New System.Windows.Forms.Label()
         Me.pnl_help551.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,6 +58,7 @@ Partial Class diagnostic_dlghelp551
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnl_help551.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pnl_help551.Controls.Add(Me.btnAcquisition)
         Me.pnl_help551.Controls.Add(Me.lblCodeDefaut)
         Me.pnl_help551.Controls.Add(Me.btnAnnuler)
         Me.pnl_help551.Controls.Add(Me.btnValider)
@@ -86,6 +88,34 @@ Partial Class diagnostic_dlghelp551
         Me.pnl_help551.Name = "pnl_help551"
         Me.pnl_help551.Size = New System.Drawing.Size(488, 258)
         Me.pnl_help551.TabIndex = 1
+        '
+        'btnAcquisition
+        '
+        Me.btnAcquisition.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAcquisition.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.btnAcquisition.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
+        Me.btnAcquisition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAcquisition.FlatAppearance.BorderSize = 0
+        Me.btnAcquisition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAcquisition.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAcquisition.ForeColor = System.Drawing.Color.White
+        Me.btnAcquisition.Location = New System.Drawing.Point(23, 222)
+        Me.btnAcquisition.Name = "btnAcquisition"
+        Me.btnAcquisition.Size = New System.Drawing.Size(164, 29)
+        Me.btnAcquisition.TabIndex = 60
+        Me.btnAcquisition.Text = "      Acquisition GPS"
+        Me.btnAcquisition.UseVisualStyleBackColor = False
+        '
+        'lblCodeDefaut
+        '
+        Me.lblCodeDefaut.AutoSize = True
+        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblCodeDefaut.Location = New System.Drawing.Point(7, 4)
+        Me.lblCodeDefaut.Name = "lblCodeDefaut"
+        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
+        Me.lblCodeDefaut.TabIndex = 59
+        Me.lblCodeDefaut.Text = "..."
         '
         'btnAnnuler
         '
@@ -228,7 +258,7 @@ Partial Class diagnostic_dlghelp551
         Me.Label57.Size = New System.Drawing.Size(144, 16)
         Me.Label57.TabIndex = 46
         Me.Label57.Text = "Résultat"
-        Me.Label57.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Label57.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label58
         '
@@ -342,17 +372,6 @@ Partial Class diagnostic_dlghelp551
         Me.help551_erreurMoyenne.TabIndex = 33
         Me.help551_erreurMoyenne.TabStop = False
         '
-        'lblCodeDefaut
-        '
-        Me.lblCodeDefaut.AutoSize = True
-        Me.lblCodeDefaut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.lblCodeDefaut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblCodeDefaut.Location = New System.Drawing.Point(7, 4)
-        Me.lblCodeDefaut.Name = "lblCodeDefaut"
-        Me.lblCodeDefaut.Size = New System.Drawing.Size(19, 13)
-        Me.lblCodeDefaut.TabIndex = 59
-        Me.lblCodeDefaut.Text = "..."
-        '
         'diagnostic_dlghelp551
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -397,5 +416,5 @@ Partial Class diagnostic_dlghelp551
     Friend WithEvents btnAnnuler As System.Windows.Forms.Button
     Friend WithEvents btnValider As System.Windows.Forms.Button
     Friend WithEvents lblCodeDefaut As System.Windows.Forms.Label
-
+    Friend WithEvents btnAcquisition As Button
 End Class

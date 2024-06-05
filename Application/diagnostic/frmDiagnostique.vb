@@ -11233,5 +11233,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     End Sub
 
+    Private Sub btn_diagnostic_acquisitionDonnees_Click(sender As Object, e As EventArgs) Handles btn_diagnostic_acquisitionDonnees.Click
 
+    End Sub
 End Class

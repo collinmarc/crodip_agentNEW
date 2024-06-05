@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.ComponentModel
+Imports System.Windows.Forms
 
 Public Class diagnostic_dlghelp551
     Implements IfrmCRODIP
@@ -41,7 +42,7 @@ Public Class diagnostic_dlghelp551
         Dim bReturn As Boolean
         Try
             Me.DialogResult = Windows.Forms.DialogResult.OK
-            Select m_Mode
+            Select Case m_Mode
                 Case DiagnosticHelp551.Help551Mode.Mode551
                     m_oDiag.diagnosticHelp551 = m_oHelp
                 Case DiagnosticHelp551.Help551Mode.Mode5621
@@ -71,7 +72,7 @@ Public Class diagnostic_dlghelp551
 
         Select Case idMesure
             Case 1
-                If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And _
+                If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And
                    Trim(help551_m1_temps.Text) <> "" And IsNumeric(help551_m1_temps.Text) Then
                     tmpTemps = GlobalsCRODIP.StringToDouble(help551_m1_temps.Text)
                     bReturn = (tmpTemps > 0)
@@ -95,8 +96,8 @@ Public Class diagnostic_dlghelp551
 
         Select Case idMesure
             Case 1
-                If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And _
-                   Trim(help551_m1_temps.Text) <> "" And IsNumeric(help551_m1_temps.Text) And _
+                If Trim(help551_m1_distance.Text) <> "" And IsNumeric(help551_m1_distance.Text) And
+                   Trim(help551_m1_temps.Text) <> "" And IsNumeric(help551_m1_temps.Text) And
                    Trim(help551_m1_vitesseLue.Text) <> "" And IsNumeric(help551_m1_vitesseLue.Text) Then
                     tmpTemps = GlobalsCRODIP.StringToDouble(help551_m1_temps.Text)
                     bReturn = (tmpTemps > 0)
@@ -105,7 +106,7 @@ Public Class diagnostic_dlghelp551
                 End If
             Case 2
                 If Trim(help551_m2_distance.Text) <> "" And IsNumeric(help551_m2_distance.Text) _
-                    And Trim(help551_m2_temps.Text) <> "" And IsNumeric(help551_m2_temps.Text) And _
+                    And Trim(help551_m2_temps.Text) <> "" And IsNumeric(help551_m2_temps.Text) And
                     Trim(help551_m2_vitesseLue.Text) <> "" And IsNumeric(help551_m2_vitesseLue.Text) Then
                     tmpTemps = GlobalsCRODIP.StringToDouble(help551_m2_temps.Text)
                     bReturn = (tmpTemps > 0)
@@ -287,5 +288,50 @@ Public Class diagnostic_dlghelp551
         formload()
     End Sub
     Protected Overridable Sub formload() Implements IfrmCRODIP.formLoad
+    End Sub
+
+    Private Sub btnAcquisition_Click(sender As Object, e As EventArgs) Handles btnAcquisition.Click
+        AcquisitionGPS()
+    End Sub
+
+    Private Sub AcquisitionGPS()
+        If System.IO.File.Exists(My.Settings.GPSApplication) Then
+            Dim p As New Process()
+            p.StartInfo.FileName = My.Settings.GPSApplication
+            p.Start()
+            p.WaitForExit()
+        End If
+
+        Dim FileName As String
+        FileName = My.Settings.GPSCSV
+        If Not System.IO.File.Exists(FileName) Then
+            Dim oDLG As New OpenFileDialog()
+            oDLG.Filter = "*.csv"
+            oDLG.Multiselect = False
+            If oDLG.ShowDialog() = DialogResult.OK Then
+                FileName = oDLG.FileName
+            Else
+                Exit Sub
+            End If
+        End If
+        Dim Lines As String()
+        Dim Line As String
+        Lines = System.IO.File.ReadAllLines(FileName)
+        If Lines.Length = 2 Then
+            Line = Lines(0)
+            Dim LineDetail As String()
+            LineDetail = Line.Split(";")
+            help551_m1_distance.Text = LineDetail(1)
+            help551_m1_temps.Text = LineDetail(2)
+            Line = Lines(1)
+            LineDetail = Line.Split(";")
+            help551_m2_distance.Text = LineDetail(1)
+            help551_m2_temps.Text = LineDetail(2)
+        End If
+
+    End Sub
+
+    Private Sub diagnostic_dlghelp551_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+
     End Sub
 End Class
