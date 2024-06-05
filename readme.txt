@@ -1,6 +1,6 @@
 TRUNK
 MASTER
-BUILD XXXXXXX
+BUILD 20240605170000
 	0001663: Gestion des Numeros de serie et Immat dans la fiche puvlé
 	0001664: AFFICHAGE SUR BON DE LIVRAISON
 	0001660: Restreindre le champ pulvé AncienIdentifiant
