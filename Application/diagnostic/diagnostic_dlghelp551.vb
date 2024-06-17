@@ -298,6 +298,7 @@ Public Class diagnostic_dlghelp551
         If System.IO.File.Exists(My.Settings.GPSApplication) Then
             Dim p As New Process()
             p.StartInfo.FileName = My.Settings.GPSApplication
+            p.StartInfo.Arguments = m_oDiag.pulverisateurNumNational
             p.Start()
             p.WaitForExit()
         End If
@@ -306,7 +307,7 @@ Public Class diagnostic_dlghelp551
         FileName = My.Settings.GPSCSV
         If Not System.IO.File.Exists(FileName) Then
             Dim oDLG As New OpenFileDialog()
-            oDLG.Filter = "*.csv"
+            oDLG.Filter = "Fichier CSV|*.csv"
             oDLG.Multiselect = False
             If oDLG.ShowDialog() = DialogResult.OK Then
                 FileName = oDLG.FileName
@@ -321,12 +322,19 @@ Public Class diagnostic_dlghelp551
             Line = Lines(0)
             Dim LineDetail As String()
             LineDetail = Line.Split(";")
-            help551_m1_distance.Text = LineDetail(1)
-            help551_m1_temps.Text = LineDetail(2)
+
+            If LineDetail(0) = m_oDiag.pulverisateurNumNational Then
+                help551_m1_distance.Text = LineDetail(2)
+                help551_m1_temps.Text = LineDetail(3)
+                help551_m1_vitesseLue.Text = LineDetail(5)
+            End If
             Line = Lines(1)
             LineDetail = Line.Split(";")
-            help551_m2_distance.Text = LineDetail(1)
-            help551_m2_temps.Text = LineDetail(2)
+            If LineDetail(0) = m_oDiag.pulverisateurNumNational Then
+                help551_m2_distance.Text = LineDetail(2)
+                help551_m2_temps.Text = LineDetail(3)
+                help551_m2_vitesseLue.Text = LineDetail(5)
+            End If
         End If
 
     End Sub

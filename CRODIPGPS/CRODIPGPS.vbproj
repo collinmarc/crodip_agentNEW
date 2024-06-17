@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6288E64B-CC4D-4C5C-92B9-77C8FD061CCC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>CRODIPGPS.Form1</StartupObject>
+    <StartupObject>CRODIPGPS.Module1</StartupObject>
     <RootNamespace>CRODIPGPS</RootNamespace>
     <AssemblyName>CRODIPGPS</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -236,6 +236,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
@@ -244,6 +245,7 @@
     </Compile>
     <Compile Include="GPSManager.vb" />
     <Compile Include="GPSMesure.vb" />
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -312,6 +314,8 @@
   <PropertyGroup>
     <PostBuildEvent>DEL $(OutDir)CRODIPGPS.*
 cd $(OutDir)
-repack.bat</PostBuildEvent>
+repack.bat
+REM Recopie dans le répertoire de crodip_Agent
+copy CRODIPGPSFULL.exe ../.../../../bin/$(ConfigurationName)/</PostBuildEvent>
   </PropertyGroup>
 </Project>

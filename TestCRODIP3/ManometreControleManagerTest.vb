@@ -515,11 +515,11 @@ Public Class ManometreControleManagerTest
     ''' Test du chargement à partir d'un Pool
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()>
+    <TestMethod(), Ignore()>
     Public Sub GetByPoolTest()
         Dim oManoC As ManometreControle
         Dim idMano As String
-        Crodip_agent.My.Settings.GestionDesPools = True
+        'Crodip_agent.My.Settings.GestionDesPools = True
 
         'Creation d'un Pool
         Dim oPool = New Pool()

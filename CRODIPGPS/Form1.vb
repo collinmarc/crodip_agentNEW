@@ -40,12 +40,19 @@ Public Class Form1
             System.IO.File.Delete("GPS.log")
         End If
 
+        If String.IsNullOrEmpty(_NumPulve) Then
+            _NumPulve = InputBox("Numéro du pulvérisateur", "CRODIPGPS")
+        End If
+
         m1 = New GPSMesure()
+        m1.NumPulve = _NumPulve
         m1.Num = 1
         m_bsrcGPSMesure.Add(m1)
         m2 = New GPSMesure()
         m2.Num = 2
+        m2.NumPulve = _NumPulve
         m_bsrcGPSMesure.Add(m2)
+
         m_bsrcGPSMesure.MoveFirst()
         SetEtat0GPSNONACTIF()
 
@@ -97,6 +104,7 @@ Public Class Form1
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = False
         CbMesureSuivante.Enabled = False
+        '        tbNumPulve.SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
     End Sub
     Private Sub SetEtat6GPSACTIF()
         TraceMsg("Etat6")
@@ -143,10 +151,10 @@ Public Class Form1
 
         If m1.Distance > 0 And m2.Distance > 0 Then
             _Etat = EtatFom.MESURESEFFECTUEES
-            cbExporter.Enabled = True
+            cbSauvegarder.Enabled = True
         Else
             _Etat = EtatFom.ENATTENTE
-            cbExporter.Enabled = False
+            cbSauvegarder.Enabled = False
         End If
         SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
         cbMesure.UseAccentColor = False
@@ -215,10 +223,10 @@ Public Class Form1
 
     Private Sub m_bsrcGPSMesure_PositionChanged(sender As Object, e As EventArgs) Handles m_bsrcGPSMesure.PositionChanged
         _MesureEncours = m_bsrcGPSMesure.Current
-        cbExporter.Enabled = False
+        cbSauvegarder.Enabled = False
         If m_bsrcGPSMesure.Count = 2 Then
             If m1.Distance > 0 And m2.Distance > 0 Then
-                cbExporter.Enabled = True
+                cbSauvegarder.Enabled = True
             End If
         End If
     End Sub
@@ -249,7 +257,7 @@ Public Class Form1
         End If
     End Sub
     Dim _FichierExport As String
-    Private Sub cbExporter_Click(sender As Object, e As EventArgs) Handles cbExporter.Click
+    Private Sub cbExporter_Click(sender As Object, e As EventArgs) Handles cbSauvegarder.Click
         SaveFileDialog1.FileName = System.IO.Path.GetFileName(My.Settings.FichierExport)
         SaveFileDialog1.InitialDirectory = System.IO.Path.GetDirectoryName(My.Settings.FichierExport)
         If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -334,6 +342,10 @@ Public Class Form1
     End Sub
 
     Private Sub CkTest_CheckedChanged(sender As Object, e As EventArgs) Handles CkTest.CheckedChanged
+        PnlCacheCkTest.Visible = Not CkTest.Checked
+        ' CkTest.Visible = CkTest.Checked
+        ckGPSActif.Visible = CkTest.Checked
+        ckVitessseStable.Visible = CkTest.Checked
         ckGPSActif.Enabled = CkTest.Checked
         ckVitessseStable.Enabled = CkTest.Checked
     End Sub
@@ -341,6 +353,25 @@ Public Class Form1
     '==================================
     Private _tabVitesse As New Queue(Of Decimal)(5)
     Private _VitesseConstante As Boolean
+    Private _NumPulve As String
+    Public Sub New()
+
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+
+    End Sub
+    Public Sub New(pNumPulve As String)
+
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+        _NumPulve = pNumPulve
+
+    End Sub
+
     Public Property VitesseConstante() As Boolean
         Get
             Return _VitesseConstante

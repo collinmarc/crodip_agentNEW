@@ -47,6 +47,15 @@
             _vitesse = value
         End Set
     End Property
+    Private _VitessseLue As Decimal
+    Public Property VitesseLue() As Decimal
+        Get
+            Return _VitessseLue
+        End Get
+        Set(ByVal value As Decimal)
+            _VitessseLue = value
+        End Set
+    End Property
     Public Sub SetValues(pDistance As Decimal, pTemps As Decimal)
         _distance = pDistance
         _temps = pTemps
@@ -54,11 +63,20 @@
         Vitesse = Distance / Temps * 3.6
 
     End Sub
+    Private _NumPulve As String
+    Public Property NumPulve() As String
+        Get
+            Return _NumPulve
+        End Get
+        Set(ByVal value As String)
+            _NumPulve = value
+        End Set
+    End Property
     Public Function ToCsv(pFile As String) As Boolean
         Dim bReturn As Boolean
         Try
 
-            System.IO.File.AppendAllText(pFile, Num & ";" & Distance & ";" & Temps & ";" & Vitesse & vbCrLf)
+            System.IO.File.AppendAllText(pFile, NumPulve & ";" & Num & ";" & Distance & ";" & Temps & ";" & Vitesse & ";" & VitesseLue & vbCrLf)
             bReturn = True
         Catch ex As Exception
             Console.WriteLine(ex.Message)

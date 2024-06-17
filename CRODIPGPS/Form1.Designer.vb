@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits MaterialSkin.Controls.MaterialForm
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.cbMesure = New MaterialSkin.Controls.MaterialButton()
@@ -33,7 +33,7 @@ Partial Class Form1
         Me.tbTemps = New MaterialSkin.Controls.MaterialTextBox()
         Me.MaterialTextBox1 = New MaterialSkin.Controls.MaterialTextBox()
         Me.CbMesureSuivante = New MaterialSkin.Controls.MaterialButton()
-        Me.cbExporter = New MaterialSkin.Controls.MaterialButton()
+        Me.cbSauvegarder = New MaterialSkin.Controls.MaterialButton()
         Me.cbQuitter = New MaterialSkin.Controls.MaterialButton()
         Me.pbMesure = New MaterialSkin.Controls.MaterialProgressBar()
         Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
@@ -42,7 +42,14 @@ Partial Class Form1
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.CkTest = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
+        Me.MaterialTextBox2 = New MaterialSkin.Controls.MaterialTextBox()
+        Me.MaterialLabel4 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel5 = New MaterialSkin.Controls.MaterialLabel()
+        Me.lblNumPulvé = New MaterialSkin.Controls.MaterialLabel()
         Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -57,12 +64,12 @@ Partial Class Form1
         Me.cbMesure.Enabled = False
         Me.cbMesure.HighEmphasis = True
         Me.cbMesure.Icon = Nothing
-        Me.cbMesure.Location = New System.Drawing.Point(7, 191)
+        Me.cbMesure.Location = New System.Drawing.Point(6, 225)
         Me.cbMesure.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.cbMesure.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbMesure.Name = "cbMesure"
         Me.cbMesure.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbMesure.Size = New System.Drawing.Size(438, 49)
+        Me.cbMesure.Size = New System.Drawing.Size(405, 126)
         Me.cbMesure.TabIndex = 0
         Me.cbMesure.Text = "Démarer"
         Me.cbMesure.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -74,7 +81,7 @@ Partial Class Form1
         Me.rbMesure1.AutoSize = True
         Me.rbMesure1.Checked = True
         Me.rbMesure1.Depth = 0
-        Me.rbMesure1.Location = New System.Drawing.Point(44, 81)
+        Me.rbMesure1.Location = New System.Drawing.Point(90, 170)
         Me.rbMesure1.Margin = New System.Windows.Forms.Padding(0)
         Me.rbMesure1.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.rbMesure1.MouseState = MaterialSkin.MouseState.HOVER
@@ -90,7 +97,7 @@ Partial Class Form1
         '
         Me.rbMesure2.AutoSize = True
         Me.rbMesure2.Depth = 0
-        Me.rbMesure2.Location = New System.Drawing.Point(168, 81)
+        Me.rbMesure2.Location = New System.Drawing.Point(214, 170)
         Me.rbMesure2.Margin = New System.Windows.Forms.Padding(0)
         Me.rbMesure2.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.rbMesure2.MouseState = MaterialSkin.MouseState.HOVER
@@ -104,10 +111,11 @@ Partial Class Form1
         '
         'MaterialLabel1
         '
+        Me.MaterialLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MaterialLabel1.AutoSize = True
         Me.MaterialLabel1.Depth = 0
         Me.MaterialLabel1.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel1.Location = New System.Drawing.Point(52, 290)
+        Me.MaterialLabel1.Location = New System.Drawing.Point(52, 400)
         Me.MaterialLabel1.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel1.Name = "MaterialLabel1"
         Me.MaterialLabel1.Size = New System.Drawing.Size(100, 19)
@@ -116,10 +124,11 @@ Partial Class Form1
         '
         'MaterialLabel2
         '
+        Me.MaterialLabel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MaterialLabel2.AutoSize = True
         Me.MaterialLabel2.Depth = 0
         Me.MaterialLabel2.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel2.Location = New System.Drawing.Point(52, 341)
+        Me.MaterialLabel2.Location = New System.Drawing.Point(52, 451)
         Me.MaterialLabel2.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel2.Name = "MaterialLabel2"
         Me.MaterialLabel2.Size = New System.Drawing.Size(81, 19)
@@ -128,10 +137,11 @@ Partial Class Form1
         '
         'MaterialLabel3
         '
+        Me.MaterialLabel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MaterialLabel3.AutoSize = True
         Me.MaterialLabel3.Depth = 0
         Me.MaterialLabel3.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel3.Location = New System.Drawing.Point(41, 417)
+        Me.MaterialLabel3.Location = New System.Drawing.Point(39, 514)
         Me.MaterialLabel3.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel3.Name = "MaterialLabel3"
         Me.MaterialLabel3.Size = New System.Drawing.Size(113, 19)
@@ -140,13 +150,14 @@ Partial Class Form1
         '
         'tbDistance
         '
+        Me.tbDistance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbDistance.AnimateReadOnly = False
         Me.tbDistance.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbDistance.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Distance", True))
         Me.tbDistance.Depth = 0
         Me.tbDistance.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbDistance.LeadingIcon = Nothing
-        Me.tbDistance.Location = New System.Drawing.Point(168, 273)
+        Me.tbDistance.Location = New System.Drawing.Point(168, 383)
         Me.tbDistance.MaxLength = 50
         Me.tbDistance.MouseState = MaterialSkin.MouseState.OUT
         Me.tbDistance.Multiline = False
@@ -158,13 +169,14 @@ Partial Class Form1
         '
         'tbTemps
         '
+        Me.tbTemps.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTemps.AnimateReadOnly = False
         Me.tbTemps.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbTemps.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Temps", True))
         Me.tbTemps.Depth = 0
         Me.tbTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbTemps.LeadingIcon = Nothing
-        Me.tbTemps.Location = New System.Drawing.Point(168, 329)
+        Me.tbTemps.Location = New System.Drawing.Point(168, 439)
         Me.tbTemps.MaxLength = 50
         Me.tbTemps.MouseState = MaterialSkin.MouseState.OUT
         Me.tbTemps.Multiline = False
@@ -176,6 +188,7 @@ Partial Class Form1
         '
         'MaterialTextBox1
         '
+        Me.MaterialTextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MaterialTextBox1.AnimateReadOnly = False
         Me.MaterialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.MaterialTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Vitesse", True))
@@ -183,7 +196,7 @@ Partial Class Form1
         Me.MaterialTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.MaterialTextBox1.ForeColor = System.Drawing.Color.DodgerBlue
         Me.MaterialTextBox1.LeadingIcon = Nothing
-        Me.MaterialTextBox1.Location = New System.Drawing.Point(168, 403)
+        Me.MaterialTextBox1.Location = New System.Drawing.Point(168, 496)
         Me.MaterialTextBox1.MaxLength = 50
         Me.MaterialTextBox1.MouseState = MaterialSkin.MouseState.OUT
         Me.MaterialTextBox1.Multiline = False
@@ -195,7 +208,7 @@ Partial Class Form1
         '
         'CbMesureSuivante
         '
-        Me.CbMesureSuivante.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.CbMesureSuivante.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CbMesureSuivante.AutoSize = False
         Me.CbMesureSuivante.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
@@ -203,56 +216,54 @@ Partial Class Form1
         Me.CbMesureSuivante.Depth = 0
         Me.CbMesureSuivante.HighEmphasis = True
         Me.CbMesureSuivante.Icon = Nothing
-        Me.CbMesureSuivante.Location = New System.Drawing.Point(55, 489)
+        Me.CbMesureSuivante.Location = New System.Drawing.Point(64, 611)
         Me.CbMesureSuivante.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.CbMesureSuivante.MouseState = MaterialSkin.MouseState.HOVER
         Me.CbMesureSuivante.Name = "CbMesureSuivante"
         Me.CbMesureSuivante.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.CbMesureSuivante.Size = New System.Drawing.Size(327, 73)
+        Me.CbMesureSuivante.Size = New System.Drawing.Size(294, 126)
         Me.CbMesureSuivante.TabIndex = 9
         Me.CbMesureSuivante.Text = "Mesure suivante"
         Me.CbMesureSuivante.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.CbMesureSuivante.UseAccentColor = False
         Me.CbMesureSuivante.UseVisualStyleBackColor = True
         '
-        'cbExporter
+        'cbSauvegarder
         '
-        Me.cbExporter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbExporter.AutoSize = False
-        Me.cbExporter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.cbExporter.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.cbExporter.Depth = 0
-        Me.cbExporter.HighEmphasis = True
-        Me.cbExporter.Icon = Nothing
-        Me.cbExporter.Location = New System.Drawing.Point(10, 583)
-        Me.cbExporter.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.cbExporter.MouseState = MaterialSkin.MouseState.HOVER
-        Me.cbExporter.Name = "cbExporter"
-        Me.cbExporter.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbExporter.Size = New System.Drawing.Size(178, 73)
-        Me.cbExporter.TabIndex = 10
-        Me.cbExporter.Text = "Exporter"
-        Me.cbExporter.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.cbExporter.UseAccentColor = False
-        Me.cbExporter.UseVisualStyleBackColor = True
+        Me.cbSauvegarder.AutoSize = False
+        Me.cbSauvegarder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.cbSauvegarder.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.cbSauvegarder.Depth = 0
+        Me.cbSauvegarder.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cbSauvegarder.HighEmphasis = True
+        Me.cbSauvegarder.Icon = Nothing
+        Me.cbSauvegarder.Location = New System.Drawing.Point(4, 6)
+        Me.cbSauvegarder.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.cbSauvegarder.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbSauvegarder.Name = "cbSauvegarder"
+        Me.cbSauvegarder.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.cbSauvegarder.Size = New System.Drawing.Size(193, 131)
+        Me.cbSauvegarder.TabIndex = 10
+        Me.cbSauvegarder.Text = "Sauvegarder"
+        Me.cbSauvegarder.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.cbSauvegarder.UseAccentColor = False
+        Me.cbSauvegarder.UseVisualStyleBackColor = True
         '
         'cbQuitter
         '
-        Me.cbQuitter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbQuitter.AutoSize = False
         Me.cbQuitter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.cbQuitter.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
         Me.cbQuitter.Depth = 0
+        Me.cbQuitter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbQuitter.HighEmphasis = True
         Me.cbQuitter.Icon = Nothing
-        Me.cbQuitter.Location = New System.Drawing.Point(260, 583)
+        Me.cbQuitter.Location = New System.Drawing.Point(205, 6)
         Me.cbQuitter.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.cbQuitter.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbQuitter.Name = "cbQuitter"
         Me.cbQuitter.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbQuitter.Size = New System.Drawing.Size(176, 73)
+        Me.cbQuitter.Size = New System.Drawing.Size(194, 131)
         Me.cbQuitter.TabIndex = 11
         Me.cbQuitter.Text = "Quitter"
         Me.cbQuitter.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -261,14 +272,14 @@ Partial Class Form1
         '
         'pbMesure
         '
-        Me.pbMesure.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.pbMesure.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbMesure.Depth = 0
         Me.pbMesure.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.pbMesure.Location = New System.Drawing.Point(7, 249)
+        Me.pbMesure.Location = New System.Drawing.Point(7, 360)
         Me.pbMesure.MouseState = MaterialSkin.MouseState.HOVER
         Me.pbMesure.Name = "pbMesure"
-        Me.pbMesure.Size = New System.Drawing.Size(438, 5)
+        Me.pbMesure.Size = New System.Drawing.Size(405, 5)
         Me.pbMesure.TabIndex = 12
         '
         'TimerLectureGPS
@@ -280,34 +291,36 @@ Partial Class Form1
         Me.ckGPSActif.AutoSize = True
         Me.ckGPSActif.Depth = 0
         Me.ckGPSActif.Enabled = False
-        Me.ckGPSActif.Location = New System.Drawing.Point(354, 111)
+        Me.ckGPSActif.Location = New System.Drawing.Point(133, 71)
         Me.ckGPSActif.Margin = New System.Windows.Forms.Padding(0)
         Me.ckGPSActif.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckGPSActif.MouseState = MaterialSkin.MouseState.HOVER
         Me.ckGPSActif.Name = "ckGPSActif"
         Me.ckGPSActif.ReadOnly = False
         Me.ckGPSActif.Ripple = True
-        Me.ckGPSActif.Size = New System.Drawing.Size(91, 37)
+        Me.ckGPSActif.Size = New System.Drawing.Size(101, 37)
         Me.ckGPSActif.TabIndex = 14
-        Me.ckGPSActif.Text = "GPS OK"
+        Me.ckGPSActif.Text = "&GPS OK"
         Me.ckGPSActif.UseVisualStyleBackColor = True
+        Me.ckGPSActif.Visible = False
         '
         'ckVitessseStable
         '
         Me.ckVitessseStable.AutoSize = True
         Me.ckVitessseStable.Depth = 0
         Me.ckVitessseStable.Enabled = False
-        Me.ckVitessseStable.Location = New System.Drawing.Point(314, 148)
+        Me.ckVitessseStable.Location = New System.Drawing.Point(267, 71)
         Me.ckVitessseStable.Margin = New System.Windows.Forms.Padding(0)
         Me.ckVitessseStable.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckVitessseStable.MouseState = MaterialSkin.MouseState.HOVER
         Me.ckVitessseStable.Name = "ckVitessseStable"
         Me.ckVitessseStable.ReadOnly = False
         Me.ckVitessseStable.Ripple = True
-        Me.ckVitessseStable.Size = New System.Drawing.Size(131, 37)
+        Me.ckVitessseStable.Size = New System.Drawing.Size(141, 37)
         Me.ckVitessseStable.TabIndex = 15
-        Me.ckVitessseStable.Text = "VitesseStable"
+        Me.ckVitessseStable.Text = "&VitesseStable"
         Me.ckVitessseStable.UseVisualStyleBackColor = True
+        Me.ckVitessseStable.Visible = False
         '
         'BackgroundWorker1
         '
@@ -317,17 +330,105 @@ Partial Class Form1
         '
         Me.CkTest.AutoSize = True
         Me.CkTest.Depth = 0
-        Me.CkTest.Location = New System.Drawing.Point(335, 64)
+        Me.CkTest.Location = New System.Drawing.Point(3, 71)
         Me.CkTest.Margin = New System.Windows.Forms.Padding(0)
         Me.CkTest.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.CkTest.MouseState = MaterialSkin.MouseState.HOVER
         Me.CkTest.Name = "CkTest"
         Me.CkTest.ReadOnly = False
         Me.CkTest.Ripple = True
-        Me.CkTest.Size = New System.Drawing.Size(110, 37)
+        Me.CkTest.Size = New System.Drawing.Size(120, 37)
         Me.CkTest.TabIndex = 16
-        Me.CkTest.Text = "Mode Test"
+        Me.CkTest.Text = "Mode &Test"
         Me.CkTest.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.cbSauvegarder, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.cbQuitter, 1, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(9, 746)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(403, 143)
+        Me.TableLayoutPanel1.TabIndex = 17
+        '
+        'PnlCacheCkTest
+        '
+        Me.PnlCacheCkTest.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlCacheCkTest.Location = New System.Drawing.Point(6, 71)
+        Me.PnlCacheCkTest.Name = "PnlCacheCkTest"
+        Me.PnlCacheCkTest.Size = New System.Drawing.Size(124, 37)
+        Me.PnlCacheCkTest.TabIndex = 18
+        '
+        'MaterialTextBox2
+        '
+        Me.MaterialTextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.MaterialTextBox2.AnimateReadOnly = False
+        Me.MaterialTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MaterialTextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "VitesseLue", True))
+        Me.MaterialTextBox2.Depth = 0
+        Me.MaterialTextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.MaterialTextBox2.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.MaterialTextBox2.LeadingIcon = Nothing
+        Me.MaterialTextBox2.Location = New System.Drawing.Point(168, 552)
+        Me.MaterialTextBox2.MaxLength = 50
+        Me.MaterialTextBox2.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialTextBox2.Multiline = False
+        Me.MaterialTextBox2.Name = "MaterialTextBox2"
+        Me.MaterialTextBox2.Size = New System.Drawing.Size(100, 50)
+        Me.MaterialTextBox2.TabIndex = 20
+        Me.MaterialTextBox2.Text = "16.5"
+        Me.MaterialTextBox2.TrailingIcon = Nothing
+        '
+        'MaterialLabel4
+        '
+        Me.MaterialLabel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.MaterialLabel4.AutoSize = True
+        Me.MaterialLabel4.Depth = 0
+        Me.MaterialLabel4.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel4.Location = New System.Drawing.Point(14, 565)
+        Me.MaterialLabel4.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel4.Name = "MaterialLabel4"
+        Me.MaterialLabel4.Size = New System.Drawing.Size(138, 19)
+        Me.MaterialLabel4.TabIndex = 19
+        Me.MaterialLabel4.Text = "Vitesse lue (km/h) :"
+        '
+        'MaterialLabel5
+        '
+        Me.MaterialLabel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.MaterialLabel5.AutoSize = True
+        Me.MaterialLabel5.Depth = 0
+        Me.MaterialLabel5.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.MaterialLabel5.Location = New System.Drawing.Point(6, 124)
+        Me.MaterialLabel5.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel5.Name = "MaterialLabel5"
+        Me.MaterialLabel5.Size = New System.Drawing.Size(231, 24)
+        Me.MaterialLabel5.TabIndex = 21
+        Me.MaterialLabel5.Text = "Numero du pulvérisateur :"
+        Me.MaterialLabel5.UseAccent = True
+        '
+        'lblNumPulvé
+        '
+        Me.lblNumPulvé.AutoSize = True
+        Me.lblNumPulvé.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "NumPulve", True))
+        Me.lblNumPulvé.Depth = 0
+        Me.lblNumPulvé.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblNumPulvé.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.lblNumPulvé.ForeColor = System.Drawing.Color.Maroon
+        Me.lblNumPulvé.Location = New System.Drawing.Point(272, 124)
+        Me.lblNumPulvé.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblNumPulvé.Name = "lblNumPulvé"
+        Me.lblNumPulvé.Size = New System.Drawing.Size(136, 24)
+        Me.lblNumPulvé.TabIndex = 22
+        Me.lblNumPulvé.Text = "MaterialLabel6"
         '
         'm_bsrcGPSMesure
         '
@@ -337,13 +438,17 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(452, 665)
+        Me.ClientSize = New System.Drawing.Size(419, 914)
+        Me.Controls.Add(Me.lblNumPulvé)
+        Me.Controls.Add(Me.MaterialLabel5)
+        Me.Controls.Add(Me.MaterialTextBox2)
+        Me.Controls.Add(Me.MaterialLabel4)
+        Me.Controls.Add(Me.PnlCacheCkTest)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.CkTest)
         Me.Controls.Add(Me.ckVitessseStable)
         Me.Controls.Add(Me.ckGPSActif)
         Me.Controls.Add(Me.pbMesure)
-        Me.Controls.Add(Me.cbQuitter)
-        Me.Controls.Add(Me.cbExporter)
         Me.Controls.Add(Me.CbMesureSuivante)
         Me.Controls.Add(Me.MaterialTextBox1)
         Me.Controls.Add(Me.tbTemps)
@@ -354,10 +459,10 @@ Partial Class Form1
         Me.Controls.Add(Me.rbMesure2)
         Me.Controls.Add(Me.rbMesure1)
         Me.Controls.Add(Me.cbMesure)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form1"
         Me.Text = "Acquisition GPS CRODIP"
+        Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -374,7 +479,7 @@ Partial Class Form1
     Friend WithEvents tbTemps As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialTextBox1 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents CbMesureSuivante As MaterialSkin.Controls.MaterialButton
-    Friend WithEvents cbExporter As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents cbSauvegarder As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbQuitter As MaterialSkin.Controls.MaterialButton
     Friend WithEvents pbMesure As MaterialSkin.Controls.MaterialProgressBar
     Friend WithEvents TimerLectureGPS As Timer
@@ -384,4 +489,10 @@ Partial Class Form1
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents CkTest As MaterialSkin.Controls.MaterialCheckbox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents PnlCacheCkTest As Panel
+    Friend WithEvents MaterialTextBox2 As MaterialSkin.Controls.MaterialTextBox
+    Friend WithEvents MaterialLabel4 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel5 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents lblNumPulvé As MaterialSkin.Controls.MaterialLabel
 End Class
