@@ -4,6 +4,8 @@ MASTER
 XXXXX
 	0001684: Les vérif des plaques d'immatriculation ne doivent pas prendre en compte la date de construction
 	0001683: Améliorations Application GPS
+	0001687: Désactivation de l'appercçu automatique en Recap de rapport
+
 
 BUILD 20240605170000
 	0001663: Gestion des Numeros de serie et Immat dans la fiche puvlé

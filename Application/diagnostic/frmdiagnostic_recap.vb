@@ -743,9 +743,16 @@ Public Class frmdiagnostic_recap
             btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
         End If
 
-        RefreshDiag()
+        'le refresh est déjà fait dans le Activated
+        'RefreshDiag()
 
     End Sub
+    Private Sub frmdiagnostic_recap_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Me.WindowState = FormWindowState.Maximized
+        Me.ControlBox = False
+        RefreshDiag()
+    End Sub
+
 
     Public Sub RefreshDiag()
 
@@ -757,8 +764,9 @@ Public Class frmdiagnostic_recap
         '##################
         'Generation de l'apperçu du rapport
         '###################
-
-        AppercuDocument()
+        If My.Settings.AppercuRecap Then
+            AppercuDocument()
+        End If
     End Sub
 
     Private Sub AfficheConclusion()
@@ -1537,9 +1545,4 @@ Public Class frmdiagnostic_recap
         TryCast(MdiParent, parentContener).Action(New ActionFDiagEND())
     End Sub
 
-    Private Sub frmdiagnostic_recap_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        Me.WindowState = FormWindowState.Maximized
-        Me.ControlBox = False
-        RefreshDiag()
-    End Sub
 End Class
