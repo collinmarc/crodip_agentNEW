@@ -170,5 +170,8 @@
     <Setting Name="AppercuRecap" Type="System.String" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="AcquisitionGPS" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

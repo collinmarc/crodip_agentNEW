@@ -6,7 +6,7 @@ XXXXX
 	0001683: Améliorations Application GPS
 	0001687: Désactivation de l'appercçu automatique en Recap de rapport
 	 0001695: CRODIPGPS : stabilisation de la vitesse
-
+	0001690: Activation/Desactivation du bouton Acquisistion GPS
 
 BUILD 20240605170000
 	0001663: Gestion des Numeros de serie et Immat dans la fiche puvlé

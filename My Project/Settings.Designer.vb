@@ -589,6 +589,15 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("AppercuRecap"),String)
         End Get
     End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+    Public ReadOnly Property AcquisitionGPS() As Boolean
+        Get
+            Return CType(Me("AcquisitionGPS"),Boolean)
+        End Get
+    End Property
 End Class
 
 Namespace My

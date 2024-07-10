@@ -95,6 +95,7 @@ Partial Class diagnostic_dlghelp551
         Me.btnAcquisition.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.btnAcquisition.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
         Me.btnAcquisition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAcquisition.Enabled = Global.Crodip_agent.MySettings.Default.AcquisitionGPS
         Me.btnAcquisition.FlatAppearance.BorderSize = 0
         Me.btnAcquisition.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAcquisition.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -105,6 +106,7 @@ Partial Class diagnostic_dlghelp551
         Me.btnAcquisition.TabIndex = 60
         Me.btnAcquisition.Text = "      Acquisition GPS"
         Me.btnAcquisition.UseVisualStyleBackColor = False
+        Me.btnAcquisition.Visible = Global.Crodip_agent.MySettings.Default.AcquisitionGPS
         '
         'lblCodeDefaut
         '
