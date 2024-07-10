@@ -54,16 +54,40 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("crodipgps.csv")>  _
-        Public Property FichierExport() As String
+        Public ReadOnly Property FichierExport() As String
             Get
                 Return CType(Me("FichierExport"),String)
             End Get
-            Set
-                Me("FichierExport") = value
-            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("500")>  _
+        Public ReadOnly Property intervalGPS() As Integer
+            Get
+                Return CType(Me("intervalGPS"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+        Public ReadOnly Property nbIntervalleVitesseConstante() As Integer
+            Get
+                Return CType(Me("nbIntervalleVitesseConstante"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.05")>  _
+        Public ReadOnly Property EcartMAx() As Decimal
+            Get
+                Return CType(Me("EcartMAx"),Decimal)
+            End Get
         End Property
     End Class
 End Namespace

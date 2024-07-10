@@ -9,9 +9,9 @@ Imports System.Runtime.InteropServices
 ' Vérifiez les valeurs des attributs de l'assembly
 
 <Assembly: AssemblyTitle("CRODIPGPS")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("CRODIPGPS")>
+<Assembly: AssemblyDescription("Module d'acquisition GPS pour le Logiciel Agent CRODIP")>
+<Assembly: AssemblyCompany("CRODIP")>
+<Assembly: AssemblyProduct("Acquisition GPS pour logiciel Agent CRODIP")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
 <Assembly: AssemblyTrademark("")>
 
@@ -32,4 +32,4 @@ Imports System.Runtime.InteropServices
 ' <Assembly: AssemblyVersion("1.0.*")>
 
 <Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("2024.07.09.1200")>

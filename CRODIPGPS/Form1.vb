@@ -88,7 +88,7 @@ Public Class Form1
     Private Sub CbMesureSuivante_Click(sender As Object, e As EventArgs) Handles CbMesureSuivante.Click
         rbMesure2.Checked = True
         CbMesureSuivante.Enabled = False
-        GPSActif()
+        SetEtat1ENATTENTE()
     End Sub
 
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
@@ -303,13 +303,13 @@ Public Class Form1
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         gpsManager = New GPSManager()
-        TimerDetectionGPS = New System.Timers.Timer(1000)
+        TimerDetectionGPS = New System.Timers.Timer(My.Settings.intervalGPS)
         AddHandler TimerDetectionGPS.Elapsed, AddressOf TimerDetectionGPS_Tick
         TimerDetectionGPS.Enabled = True
         TimerDetectionGPS.Start()
 
         While Not gpsManager.GPSActif And Not Me.VitesseConstante
-            Thread.Sleep(100)
+            Thread.Sleep(My.Settings.intervalGPS)
         End While
     End Sub
 
@@ -351,7 +351,7 @@ Public Class Form1
     End Sub
 
     '==================================
-    Private _tabVitesse As New Queue(Of Decimal)(5)
+    Private _tabVitesse As New Queue(Of Decimal)(My.Settings.nbIntervalleVitesseConstante)
     Private _VitesseConstante As Boolean
     Private _NumPulve As String
     Public Sub New()
@@ -381,17 +381,21 @@ Public Class Form1
         End Set
     End Property
     Private Sub ajouteVitesse(pVitesse As Decimal)
-        If _tabVitesse.Count >= 5 Then
+        If _tabVitesse.Count >= My.Settings.nbIntervalleVitesseConstante Then
             _tabVitesse.Dequeue()
         End If
         _tabVitesse.Enqueue(pVitesse)
-        If _tabVitesse.Count = 5 Then
+        If _tabVitesse.Count = My.Settings.nbIntervalleVitesseConstante Then
             'Calcule de la vitesse Moyenne
-            Dim moy = (_tabVitesse(0) + _tabVitesse(1) + _tabVitesse(2) + _tabVitesse(3) + _tabVitesse(4) + _tabVitesse(5)) / 5
+            Dim moy As Decimal = 0
+            For Each vitesse As Decimal In _tabVitesse
+                moy = moy + vitesse
+            Next
+            moy = moy / _tabVitesse.Count
             Dim bEcart As Boolean = True
             'Vérification s'il y a un ecart de plus de 5%
             For Each oV As Decimal In _tabVitesse
-                If ((oV - moy) / moy) > 0.05 Then
+                If ((oV - moy) / moy) > My.Settings.EcartMAx Then
                     bEcart = False
                 End If
             Next
