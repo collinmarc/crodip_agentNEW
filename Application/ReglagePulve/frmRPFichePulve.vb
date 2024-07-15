@@ -24,7 +24,7 @@
         tbAncienIdentifiant.Visible = False
 
 
-        btn_fichePulve_annuler.Visible = False
+        cb_QuitterSansSauvegarder.Visible = False
         btn_fichePulve_valider.Visible = False
         btn_fichePulve_supprimer.Visible = False
         laProchainControle.Visible = False
