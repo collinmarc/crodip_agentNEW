@@ -999,6 +999,8 @@ Public Class liste_diagnosticPulve2
         '
         Me.controleDateDebut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.controleDateDebut.DataPropertyName = "controleDateDebut"
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle2.Format = "g"
         DataGridViewCellStyle2.NullValue = Nothing
         Me.controleDateDebut.DefaultCellStyle = DataGridViewCellStyle2

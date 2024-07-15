@@ -10,6 +10,8 @@ XXXXX
 	0001686: Controle du Numero de PC ne fonctionne plus  (Non constaté)
 	0001671: Mise à jour pulvé équipement additionnel
 	0001638: MAJ du réferentiel buses
+	0001650: CONTRAT : mettre même typo entre montant Ht et TTC séparé par un tiret
+
 
 BUILD 20240605170000
 	0001663: Gestion des Numeros de serie et Immat dans la fiche puvlé
