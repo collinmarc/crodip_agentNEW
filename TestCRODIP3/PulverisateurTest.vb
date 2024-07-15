@@ -393,6 +393,49 @@ Public Class Pulverisateurtest
 
 
     End Sub
+    <TestMethod()>
+    Public Sub TST_MajNumNatPulvePrinc()
+        Dim oExploitation As Exploitation
+        Dim oPUlve As Pulverisateur
+        Dim oPUlve2 As Pulverisateur
+        Dim strDateModif1 As String
+
+
+        oExploitation = createExploitation()
+        oPUlve = createPulve(oExploitation)
+
+        oPUlve.numeroNational = "E001123456"
+
+        ExploitationManager.save(pExploit:=oExploitation, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+
+        'Création d'un Pulve Additionnel
+
+        oPUlve2 = createPulve(oExploitation)
+        oPUlve2.SetPulverisateurAdditionnel(oPUlve)
+        Assert.AreEqual(oPUlve.numeroNational, oPUlve2.pulvePrincipalNumNat)
+        Assert.IsTrue(oPUlve2.isPulveAdditionnel)
+
+        PulverisateurManager.save(pPulve:=oPUlve2, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        strDateModif1 = oPUlve2.dateModificationAgent
+        'Rechargement du Pulve Principal
+        oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
+        Assert.AreEqual(oPUlve.numeroNational, oPUlve.numeroNationalBis)
+
+        pause(1000)
+        'Changement du numéro nationnal
+        oPUlve.numeroNational = "E001456789"
+        'Sauvegarde
+        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+
+        'Rechargement du Pulve additionnel
+        oPUlve2 = PulverisateurManager.getPulverisateurById(oPUlve2.id)
+        'Vérificatino du numero du pulve principal
+        Assert.AreEqual(oPUlve.numeroNational, oPUlve2.pulvePrincipalNumNat)
+        Assert.AreNotEqual(strDateModif1, oPUlve2.dateModificationAgent)
+
+
+    End Sub
 
 
 End Class

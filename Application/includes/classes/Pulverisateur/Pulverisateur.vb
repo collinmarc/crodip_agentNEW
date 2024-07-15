@@ -160,6 +160,21 @@ Public Class Pulverisateur
             _numeroNational = Value
         End Set
     End Property
+    ''' <summary>
+    ''' ce numéro nationnal sert à mémoriser l'ancien numero en cas de modification
+    ''' il est initialisé au moment du chargement de l'objet en mémoire
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlIgnore()>
+    Dim _numeroNationalBis As String
+    Public Property numeroNationalBis() As String
+        Get
+            Return _numeroNationalBis
+        End Get
+        Set(ByVal Value As String)
+            _numeroNationalBis = Value
+        End Set
+    End Property
 
     Public Property type() As String
         Get
@@ -995,6 +1010,8 @@ Public Class Pulverisateur
                     Me.id = pColValue.ToString()
                 Case "numeroNational".ToUpper().Trim()
                     Me.numeroNational = pColValue.ToString()
+                    'Mémorisation du numéro nationnal
+                    Me.numeroNationalBis = pColValue.ToString()
                 Case "type".ToUpper().Trim()
                     Me.type = pColValue.ToString()
                 Case "marque".ToUpper().Trim()

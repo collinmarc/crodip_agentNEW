@@ -382,6 +382,13 @@ Public Class PulverisateurManager
                     oExploit2Pulve.isSupprimeCoProp = False
                     ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
                 End If
+
+                'Liaison avec les pulvérisateurs additionels
+                If pPulve.numeroNationalBis <> "" And pPulve.numeroNationalBis <> pPulve.numeroNational Then
+                    'Il y a eu une modification du numéro national
+                    UpdateNumeroNationnalPulveAdditionnel(pPulve.numeroNationalBis, pPulve.numeroNational)
+                End If
+
                 bReturn = True
             End If
         Catch ex As Exception
@@ -1001,5 +1008,33 @@ Public Class PulverisateurManager
         End Try
         Return bReturn
     End Function
+    Public Shared Function UpdateNumeroNationnalPulveAdditionnel(pNumNatAncien As String, pNumNatNouv As String) As Boolean
+        Dim paramsQuery As String = ""
+        Dim bReturn As Boolean
+        Try
 
+            Dim bdd As New CSDb(True)
+            Dim bddCommande As DbCommand
+            bddCommande = bdd.getConnection().CreateCommand()
+            Dim sDate As String = CSDate.ToCRODIPString(Now)
+
+            paramsQuery = "UPDATE Pulverisateur " &
+                "set pulvePrincipalNumNat = '" & pNumNatNouv & "'" &
+                ", dateModificationAgent = '" & CSDate.ToCRODIPString(Date.Now) & "'" &
+                "WHERE pulvePrincipalNumNat = '" & pNumNatAncien & "' AND isPulveAdditionnel = 1"
+
+
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = paramsQuery
+            bddCommande.ExecuteNonQuery()
+
+            bdd.free()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PulverisateurManager.updateNumeroNationnalPulveAdditionnel", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+
+    End Function
 End Class
