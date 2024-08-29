@@ -11,7 +11,7 @@
     Private _distance As Decimal
     Public Property Distance() As Decimal
         Get
-            Return _distance
+            Return Math.Round(_distance, 1)
         End Get
         Set(ByVal value As Decimal)
             If value <> _distance Then
@@ -40,7 +40,7 @@
     Private _vitesse As Decimal
     Public Property Vitesse() As Decimal
         Get
-            Return Math.Round(_vitesse, 3)
+            Return Math.Round(_vitesse, 2)
         End Get
         Set(ByVal value As Decimal)
 

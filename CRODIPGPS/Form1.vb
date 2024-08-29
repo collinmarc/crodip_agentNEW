@@ -72,13 +72,29 @@ Public Class Form1
                 TimerLectureGPS.Enabled = True
                 TimerLectureGPS.Start()
                 gpsManager.StartMesure()
-
+                'La Vitesse mesurée n'est pas affichée encours d'acquiqition
+                tbVitesseMesuree.Visible = False
+                laVitesseMesuree.Visible = False
                 '            Case EtatFom.MESUREENCOURS
  '               SetEtat4MESURESEFFECTUEES()
             Case EtatFom.MESUREARRETABLE
                 '                TimerLectureGPS.Stop()
                 '               gpsManager.DesactiverGPS()
                 SetEtat4MESURESEFFECTUEES()
+                Dim bOk = False
+                While (Not bOk)
+                    Try
+                        _MesureEncours.VitesseLue = InputBox("Indiquez votre vitesse en Km/h", "Vitesse Lue", "0,00")
+                        bOk = True
+                    Catch ex As Exception
+
+                    End Try
+                End While
+                m_bsrcGPSMesure.ResetCurrentItem()
+                'La Vitesse mesurée n'est pas affichée encours d'acquiqition
+                tbVitesseMesuree.Visible = True
+                laVitesseMesuree.Visible = True
+
             Case Else
                 'SetEtat1ENATTENTE()
         End Select
@@ -86,9 +102,15 @@ Public Class Form1
     End Sub
 
     Private Sub CbMesureSuivante_Click(sender As Object, e As EventArgs) Handles CbMesureSuivante.Click
-        rbMesure2.Checked = True
-        CbMesureSuivante.Enabled = False
-        SetEtat1ENATTENTE()
+        If _MesureEncours.VitesseLue = 0 Then
+            MessageBox.Show("Veuillez saisir la vitesse lue avant de passer à la mesure suivante")
+            Me.SelectNextControl(laVitesseLue, True, False, False, True)
+        Else
+
+            rbMesure2.Checked = True
+            CbMesureSuivante.Enabled = False
+            SetEtat1ENATTENTE()
+        End If
     End Sub
 
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
@@ -348,6 +370,7 @@ Public Class Form1
         ckVitessseStable.Visible = CkTest.Checked
         ckGPSActif.Enabled = CkTest.Checked
         ckVitessseStable.Enabled = CkTest.Checked
+        tbVitesseMesuree.ForeColor = tbVitesseMesuree.BackColor
     End Sub
 
     '==================================
