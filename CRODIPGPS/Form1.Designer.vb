@@ -152,10 +152,11 @@ Partial Class Form1
         'tbDistance
         '
         Me.tbDistance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.tbDistance.AnimateReadOnly = False
+        Me.tbDistance.AnimateReadOnly = True
         Me.tbDistance.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbDistance.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Distance", True))
         Me.tbDistance.Depth = 0
+        Me.tbDistance.Enabled = False
         Me.tbDistance.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbDistance.LeadingIcon = Nothing
         Me.tbDistance.Location = New System.Drawing.Point(193, 383)
@@ -175,6 +176,7 @@ Partial Class Form1
         Me.tbTemps.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbTemps.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Temps", True))
         Me.tbTemps.Depth = 0
+        Me.tbTemps.Enabled = False
         Me.tbTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbTemps.LeadingIcon = Nothing
         Me.tbTemps.Location = New System.Drawing.Point(193, 439)
@@ -194,6 +196,7 @@ Partial Class Form1
         Me.tbVitesseMesuree.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbVitesseMesuree.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Vitesse", True))
         Me.tbVitesseMesuree.Depth = 0
+        Me.tbVitesseMesuree.Enabled = False
         Me.tbVitesseMesuree.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbVitesseMesuree.ForeColor = System.Drawing.Color.DodgerBlue
         Me.tbVitesseMesuree.LeadingIcon = Nothing

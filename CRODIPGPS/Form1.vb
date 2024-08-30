@@ -75,6 +75,8 @@ Public Class Form1
                 'La Vitesse mesurée n'est pas affichée encours d'acquiqition
                 tbVitesseMesuree.Visible = False
                 laVitesseMesuree.Visible = False
+                rbMesure1.Enabled = False
+                rbMesure2.Enabled = False
                 '            Case EtatFom.MESUREENCOURS
  '               SetEtat4MESURESEFFECTUEES()
             Case EtatFom.MESUREARRETABLE
@@ -94,6 +96,8 @@ Public Class Form1
                 'La Vitesse mesurée n'est pas affichée encours d'acquiqition
                 tbVitesseMesuree.Visible = True
                 laVitesseMesuree.Visible = True
+                rbMesure1.Enabled = True
+                rbMesure2.Enabled = True
 
             Case Else
                 'SetEtat1ENATTENTE()
