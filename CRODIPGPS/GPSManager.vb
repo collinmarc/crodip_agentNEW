@@ -11,15 +11,15 @@ Public Class GPSManager
         Set(value As Boolean)
             If _GPSActif <> value Then
                 _GPSActif = value
-                If _GPSActif Then
-                    RaiseEvent GPSActifEvent(Me, EventArgs.Empty)
-                End If
+                '                If _GPSActif Then
+                '               RaiseEvent GPSActifEvent(Me, EventArgs.Empty)
+                '          End If
             End If
         End Set
     End Property
 
     ' Événement GPSActifEvent
-    Public Event GPSActifEvent As EventHandler
+    '    Public Event GPSActifEvent As EventHandler
 
     ' Distance et temps écoulé
     Public distance As Double
@@ -51,18 +51,13 @@ Public Class GPSManager
 
     ' Méthode pour configurer le port série
     Public Sub ConfigurerPortSerie(portName As String, baudRate As Integer)
-        If serialPort.IsOpen Then
-            serialPort.Close()
-        End If
         serialPort.PortName = portName
         serialPort.BaudRate = baudRate
+        If Not serialPort.IsOpen Then
+            serialPort.Open()
+        End If
     End Sub
 
-    ' Méthode pour activer le GPS
-    Public Sub EcouterGPS()
-        serialPort.Open()
-        'timer.Start()
-    End Sub
 
     ' Méthode pour désactiver le GPS
     Public Sub DesactiverGPS()
@@ -74,12 +69,6 @@ Public Class GPSManager
         startLatitude = 0
         startLongitude = 0
     End Sub
-
-    ' Gestionnaire d'événements pour le Timer
-    'Private Sub OnTimedEvent(source As Object, e As ElapsedEventArgs)
-    '    ' Afficher les données pour vérification (peut être enlevé pour l'utilisation réelle)
-    '    Console.WriteLine($"Distance: {distance} mètres")
-    'End Sub
 
     ' Gestionnaire d'événements pour les données série reçues
     Private Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
@@ -230,6 +219,8 @@ Public Class GPSManager
                     While (DateTime.Now - start).TotalSeconds < 2
                         Dim data As String = testPort.ReadExisting()
                         If data.Contains("$GPGGA") OrElse data.Contains("$GPRMC") Then
+                            testPort.Close()
+                            GPSActif = True
                             Return portName
                         End If
                     End While
@@ -244,4 +235,7 @@ Public Class GPSManager
         Console.WriteLine(pMessage)
         System.IO.File.AppendAllText("./GPS.LOG", pMessage & vbCrLf)
     End Sub
+    Public Function IsSerialPortOpen() As Boolean
+        Return serialPort.IsOpen
+    End Function
 End Class

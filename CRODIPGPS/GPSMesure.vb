@@ -1,4 +1,14 @@
 ﻿Public Class GPSMesure
+    Private _VitesseConstante As Boolean
+    Private _tabVitesse As New Queue(Of Decimal)(My.Settings.nbIntervalleVitesseConstante)
+    Public Property VitesseConstante() As Boolean
+        Get
+            Return _VitesseConstante
+        End Get
+        Set(ByVal value As Boolean)
+            _VitesseConstante = value
+        End Set
+    End Property
     Private _num As Integer
     Public Property Num() As Integer
         Get
@@ -6,6 +16,23 @@
         End Get
         Set(ByVal value As Integer)
             _num = value
+        End Set
+    End Property
+    Private newPropertyValue As Boolean
+    Public Property IsNum1() As Boolean
+        Get
+            Return Num = 1
+        End Get
+        Set(ByVal value As Boolean)
+            Num = 1
+        End Set
+    End Property
+    Public Property IsNum2() As Boolean
+        Get
+            Return Num = 2
+        End Get
+        Set(ByVal value As Boolean)
+            Num = 2
         End Set
     End Property
     Private _distance As Decimal
@@ -16,7 +43,7 @@
         Set(ByVal value As Decimal)
             If value <> _distance Then
                 _distance = value
-                calculeVitesse()
+                Vitesse = calculeVitesse(Distance, Temps)
             End If
         End Set
     End Property
@@ -28,15 +55,18 @@
         Set(ByVal value As Integer)
             If value <> _temps Then
                 _temps = value
-                calculeVitesse()
+                Vitesse = calculeVitesse(Distance, Temps)
             End If
         End Set
     End Property
-    Private Sub calculeVitesse()
-        If Temps <> 0 And Distance <> 0 Then
-            Vitesse = (Distance / 1000 / Temps) * 3600
+    Public Function calculeVitesse(pdistance As Decimal, pTemps As Integer) As Decimal
+        Dim dReturn As Decimal = 0
+        If pTemps <> 0 And pdistance <> 0 Then
+            dReturn = (pdistance / 1000 / pTemps) * 3600
         End If
-    End Sub
+        Return dReturn
+    End Function
+
     Private _vitesse As Decimal
     Public Property Vitesse() As Decimal
         Get
@@ -64,6 +94,12 @@
 
     End Sub
     Private _NumPulve As String
+
+    Public Sub New()
+        _tabVitesse.Clear()
+
+    End Sub
+
     Public Property NumPulve() As String
         Get
             Return _NumPulve
@@ -84,4 +120,29 @@
         End Try
         Return bReturn
     End Function
+    Public Sub ajouteVitesse(pVitesse As Decimal)
+        If _tabVitesse.Count >= My.Settings.nbIntervalleVitesseConstante Then
+            _tabVitesse.Dequeue()
+        End If
+        _tabVitesse.Enqueue(pVitesse)
+        If _tabVitesse.Count = My.Settings.nbIntervalleVitesseConstante Then
+            'Calcule de la vitesse Moyenne
+            Dim moy As Decimal = 0
+            For Each vitesse As Decimal In _tabVitesse
+                moy = moy + vitesse
+            Next
+            moy = moy / _tabVitesse.Count
+            Dim bEcart As Boolean = True
+            'Vérification s'il y a un ecart de plus de 5%
+
+            For Each oV As Decimal In _tabVitesse
+                If ((oV - moy) / moy) > My.Settings.EcartMAx Then
+                    bEcart = False
+                End If
+            Next
+            Me.VitesseConstante = bEcart
+        Else
+            Me.VitesseConstante = False
+        End If
+    End Sub
 End Class

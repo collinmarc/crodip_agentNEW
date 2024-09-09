@@ -14,5 +14,20 @@
     <Setting Name="EcartMAx" Type="System.Decimal" Scope="Application">
       <Value Profile="(Default)">0.05</Value>
     </Setting>
+    <Setting Name="VitesseLue" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">8.5</Value>
+    </Setting>
+    <Setting Name="LimiteVitesse" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="Distance1" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="Distance2" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="VitessePort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

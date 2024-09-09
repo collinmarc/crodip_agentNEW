@@ -89,6 +89,51 @@ Namespace My
                 Return CType(Me("EcartMAx"),Decimal)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("8.5")>  _
+        Public ReadOnly Property VitesseLue() As Decimal
+            Get
+                Return CType(Me("VitesseLue"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("15")>  _
+        Public ReadOnly Property LimiteVitesse() As Decimal
+            Get
+                Return CType(Me("LimiteVitesse"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("50")>  _
+        Public ReadOnly Property Distance1() As Decimal
+            Get
+                Return CType(Me("Distance1"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public ReadOnly Property Distance2() As Decimal
+            Get
+                Return CType(Me("Distance2"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("9600")>  _
+        Public ReadOnly Property VitessePort() As Integer
+            Get
+                Return CType(Me("VitessePort"),Integer)
+            End Get
+        End Property
     End Class
 End Namespace
 
