@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
@@ -55,6 +56,7 @@ Partial Class Form1
         Me.tbVitesseLue = New MaterialSkin.Controls.MaterialTextBox()
         Me.VitesseLueMoins = New MaterialSkin.Controls.MaterialButton()
         Me.VitesseLuePlus = New MaterialSkin.Controls.MaterialButton()
+        Me.cbReset = New MaterialSkin.Controls.MaterialButton()
         Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -108,6 +110,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.Controls.Add(Me.CkTest, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.laVitesse, 2, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanelVitesseLue, 1, 8)
+        Me.TableLayoutPanel2.Controls.Add(Me.cbReset, 2, 4)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(11, 67)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 12
@@ -196,7 +199,7 @@ Partial Class Form1
         'cbMesure
         '
         Me.cbMesure.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
         Me.cbMesure.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
         Me.cbMesure.Depth = 0
         Me.cbMesure.Dock = System.Windows.Forms.DockStyle.Fill
@@ -208,7 +211,7 @@ Partial Class Form1
         Me.cbMesure.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbMesure.Name = "cbMesure"
         Me.cbMesure.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbMesure.Size = New System.Drawing.Size(378, 77)
+        Me.cbMesure.Size = New System.Drawing.Size(248, 77)
         Me.cbMesure.TabIndex = 28
         Me.cbMesure.Text = "Démarrer"
         Me.cbMesure.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -429,6 +432,7 @@ Partial Class Form1
         Me.cbQuitter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.cbQuitter.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
         Me.cbQuitter.Depth = 0
+        Me.cbQuitter.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cbQuitter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbQuitter.HighEmphasis = True
         Me.cbQuitter.Icon = Nothing
@@ -600,17 +604,41 @@ Partial Class Form1
         Me.VitesseLuePlus.UseAccentColor = False
         Me.VitesseLuePlus.UseVisualStyleBackColor = True
         '
+        'cbReset
+        '
+        Me.cbReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.cbReset.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.cbReset.Depth = 0
+        Me.cbReset.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cbReset.HighEmphasis = True
+        Me.cbReset.Icon = CType(resources.GetObject("cbReset.Icon"), System.Drawing.Image)
+        Me.cbReset.Location = New System.Drawing.Point(260, 148)
+        Me.cbReset.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.cbReset.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbReset.Name = "cbReset"
+        Me.cbReset.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.cbReset.Size = New System.Drawing.Size(122, 77)
+        Me.cbReset.TabIndex = 42
+        Me.cbReset.Text = "RESET"
+        Me.cbReset.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.cbReset.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.cbReset.UseAccentColor = False
+        Me.cbReset.UseVisualStyleBackColor = True
+        '
         'm_bsrcGPSMesure
         '
         Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'Form1
         '
+        Me.AcceptButton = Me.cbSauvegarder
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.cbQuitter
         Me.ClientSize = New System.Drawing.Size(408, 603)
         Me.Controls.Add(Me.PnlCacheCkTest)
         Me.Controls.Add(Me.TableLayoutPanel2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimizeBox = False
         Me.Name = "Form1"
         Me.Text = "Acquisition GPS CRODIP"
@@ -657,4 +685,5 @@ Partial Class Form1
     Friend WithEvents tbVitesseLue As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents VitesseLueMoins As MaterialSkin.Controls.MaterialButton
     Friend WithEvents VitesseLuePlus As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents cbReset As MaterialSkin.Controls.MaterialButton
 End Class

@@ -2,6 +2,7 @@
 MASTER
 
 BUILD 20240715170000
+	0001702: Améliorations CRODIPGPS + fichie Pulvé
 	0001700: Fiche Pulve : Saisie des Immat et Numero de saisie en majuscule
 	0001699: CRODIPGPS : Amélioration Aout 2024 + Sept 2024
 	0001684: Les vérif des plaques d'immatriculation ne doivent pas prendre en compte la date de construction

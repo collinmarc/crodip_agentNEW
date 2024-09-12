@@ -107,9 +107,12 @@ Public Class Form1
         TraceMsg("Etat0")
         _EtatForm = ETAT.Etat_0GPSINACTIF
         SkinManager.Theme = MaterialSkinManager.Themes.DARK
+        cbReset.Visible = False
+        cbReset.Enabled = False
         cbMesure.Text = "Démarrer"
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = False
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         CbMesureSuivante.Enabled = False
         cbValiderVitesseLue.Visible = False
         '        tbNumPulve.SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
@@ -121,8 +124,11 @@ Public Class Form1
         'cbMesure.Text = "Démarrer"
         Dim p As Integer
         p = m_bsrcGPSMesure.Position
+        cbReset.Visible = False
+        cbReset.Enabled = False
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = False
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         m_bsrcGPSMesure.Position = p
         CbMesureSuivante.Enabled = False
         ckVitessseStable.Checked = False
@@ -140,11 +146,14 @@ Public Class Form1
         TraceMsg("Etat2")
         _EtatForm = ETAT.Etat_2ENATTENTE
         SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
-        cbMesure.Text = "Démarrer"
 
+        cbReset.Visible = False
+        cbReset.Enabled = False
+        cbMesure.Text = "Démarrer"
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = True
         CbMesureSuivante.Enabled = Not rbMesure2.Checked And _MesureEncours.Distance > 0
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         cbValiderVitesseLue.Visible = False
         laVitesseLue.Visible = False
         TableLayoutPanelVitesseLue.Visible = False
@@ -156,6 +165,9 @@ Public Class Form1
         SkinManager.Theme = MaterialSkinManager.Themes.DARK
         cbMesure.Text = "En cours"
         cbMesure.UseAccentColor = True
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
+        cbReset.Visible = True
+        cbReset.Enabled = True
         'cbMesure.Enabled = False
         _n = 0
         pbMesure.Value = 0
@@ -176,6 +188,9 @@ Public Class Form1
         cbMesure.UseAccentColor = True
         cbMesure.Text = "Arrêter"
         cbMesure.Enabled = True
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
+        cbReset.Visible = True
+        cbReset.Enabled = True
         CbMesureSuivante.Enabled = False
         cbValiderVitesseLue.Visible = False
     End Sub
@@ -184,8 +199,11 @@ Public Class Form1
 
         _EtatForm = ETAT.Etat_5MESUREEFFECTUEE
         SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        cbReset.Visible = False
+        cbReset.Enabled = False
         cbMesure.UseAccentColor = True
         cbMesure.Enabled = False
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         CbMesureSuivante.Enabled = False
         'Positionnement sur la vitesse Lue
         Me.SelectNextControl(laVitesseLue, True, False, False, True)
@@ -197,7 +215,10 @@ Public Class Form1
     End Sub
     Private Sub SetEtat67MESURESEFFECTUEES()
         TraceMsg("Etat67 Mesures Effectuées")
+        cbReset.Visible = False
+        cbReset.Enabled = False
         cbMesure.Text = "Recommencer"
+        Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         ckVitessseStable.Checked = False
         If m1.Distance > 0 And m2.Distance > 0 Then
             _EtatForm = ETAT.Etat_7_2MESUREOK
@@ -474,6 +495,7 @@ Public Class Form1
         Action_ARRETER
         Action_VITESSELUEOK
         Action_MESURESUIVANTE
+        Action_RESET
     End Enum
 
     Public Enum ETAT As Integer
@@ -503,6 +525,7 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
             Case ETAT.Etat_1GPSACTIF
                 Select Case paction
@@ -515,6 +538,7 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
             Case ETAT.Etat_2ENATTENTE
                 Select Case paction
@@ -528,6 +552,7 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
             Case ETAT.Etat_3MESUREENCOURS
                 Select Case paction
@@ -540,6 +565,8 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
+                        SetEtat1GPSACTIF()
                 End Select
             Case ETAT.Etat_4MESUREARRETABLE
                 Select Case paction
@@ -553,6 +580,8 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
+                        SetEtat1GPSACTIF()
                 End Select
             Case ETAT.Etat_5MESUREEFFECTUEE
                 Select Case paction
@@ -565,6 +594,7 @@ Public Class Form1
                     Case ACTION.Action_VITESSELUEOK
                         SetEtat67MESURESEFFECTUEES()
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
             Case ETAT.Etat_6MESUREOK
                 Select Case paction
@@ -578,6 +608,7 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
             Case ETAT.Etat_7_2MESUREOK
                 Select Case paction
@@ -591,6 +622,7 @@ Public Class Form1
                     Case ACTION.Action_ARRETER
                     Case ACTION.Action_VITESSELUEOK
                     Case ACTION.Action_MESURESUIVANTE
+                    Case ACTION.Action_RESET
                 End Select
 
         End Select
@@ -621,5 +653,9 @@ Public Class Form1
         _MesureEncours.VitesseLue = _MesureEncours.VitesseLue + 0.1D
         m_bsrcGPSMesure.ResetBindings(False)
 
+    End Sub
+
+    Private Sub cbReset_Click(sender As Object, e As EventArgs) Handles cbReset.Click
+        SetAction(ACTION.Action_RESET)
     End Sub
 End Class
