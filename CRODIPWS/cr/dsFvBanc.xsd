@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFvBanc" targetNamespace="http://tempuri.org/dsFvBanc.xsd" xmlns:mstns="http://tempuri.org/dsFvBanc.xsd" xmlns="http://tempuri.org/dsFvBanc.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFvBanc" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFvBanc" msprop:Generator_UserDSName="dsFvBanc">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Verif" msprop:Generator_TableClassName="VerifDataTable" msprop:Generator_TableVarName="tableVerif" msprop:Generator_TablePropName="Verif" msprop:Generator_RowDeletingName="VerifRowDeleting" msprop:Generator_RowChangingName="VerifRowChanging" msprop:Generator_RowEvHandlerName="VerifRowChangeEventHandler" msprop:Generator_RowDeletedName="VerifRowDeleted" msprop:Generator_UserTableName="Verif" msprop:Generator_RowChangedName="VerifRowChanged" msprop:Generator_RowEvArgName="VerifRowChangeEvent" msprop:Generator_RowClassName="VerifRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="dateVerification" msprop:Generator_ColumnVarNameInTable="columndateVerification" msprop:Generator_ColumnPropNameInRow="dateVerification" msprop:Generator_ColumnPropNameInTable="dateVerificationColumn" msprop:Generator_UserColumnName="dateVerification" type="xs:string" minOccurs="0" />
+              <xs:element name="agentVerif" msprop:Generator_ColumnVarNameInTable="columnagentVerif" msprop:Generator_ColumnPropNameInRow="agentVerif" msprop:Generator_ColumnPropNameInTable="agentVerifColumn" msprop:Generator_UserColumnName="agentVerif" type="xs:string" minOccurs="0" />
+              <xs:element name="proprietaire" msprop:Generator_ColumnVarNameInTable="columnproprietaire" msprop:Generator_ColumnPropNameInRow="proprietaire" msprop:Generator_ColumnPropNameInTable="proprietaireColumn" msprop:Generator_UserColumnName="proprietaire" type="xs:string" minOccurs="0" />
+              <xs:element name="idBanc" msprop:Generator_ColumnVarNameInTable="columnidBanc" msprop:Generator_ColumnPropNameInRow="idBanc" msprop:Generator_ColumnPropNameInTable="idBancColumn" msprop:Generator_UserColumnName="idBanc" type="xs:string" minOccurs="0" />
+              <xs:element name="tempExt" msprop:Generator_ColumnVarNameInTable="columntempExt" msprop:Generator_ColumnPropNameInRow="tempExt" msprop:Generator_ColumnPropNameInTable="tempExtColumn" msprop:Generator_UserColumnName="tempExt" type="xs:string" minOccurs="0" />
+              <xs:element name="tempEau" msprop:Generator_ColumnVarNameInTable="columntempEau" msprop:Generator_ColumnPropNameInRow="tempEau" msprop:Generator_ColumnPropNameInTable="tempEauColumn" msprop:Generator_UserColumnName="tempEau" type="xs:string" minOccurs="0" />
+              <xs:element name="Resultat" msprop:Generator_ColumnVarNameInTable="columnResultat" msprop:Generator_ColumnPropNameInRow="Resultat" msprop:Generator_ColumnPropNameInTable="ResultatColumn" msprop:Generator_UserColumnName="Resultat" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Buse" msprop:Generator_TableClassName="BuseDataTable" msprop:Generator_TableVarName="tableBuse" msprop:Generator_TablePropName="Buse" msprop:Generator_RowDeletingName="BuseRowDeleting" msprop:Generator_RowChangingName="BuseRowChanging" msprop:Generator_RowEvHandlerName="BuseRowChangeEventHandler" msprop:Generator_RowDeletedName="BuseRowDeleted" msprop:Generator_UserTableName="Buse" msprop:Generator_RowChangedName="BuseRowChanged" msprop:Generator_RowEvArgName="BuseRowChangeEvent" msprop:Generator_RowClassName="BuseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="couleur" msprop:Generator_ColumnVarNameInTable="columncouleur" msprop:Generator_ColumnPropNameInRow="couleur" msprop:Generator_ColumnPropNameInTable="couleurColumn" msprop:Generator_UserColumnName="couleur" type="xs:string" minOccurs="0" />
+              <xs:element name="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" type="xs:string" minOccurs="0" />
+              <xs:element name="PressionEtalonage" msprop:Generator_ColumnVarNameInTable="columnPressionEtalonage" msprop:Generator_ColumnPropNameInRow="PressionEtalonage" msprop:Generator_ColumnPropNameInTable="PressionEtalonageColumn" msprop:Generator_UserColumnName="PressionEtalonage" type="xs:string" minOccurs="0" />
+              <xs:element name="debit3bars" msprop:Generator_ColumnVarNameInTable="columndebit3bars" msprop:Generator_ColumnPropNameInRow="debit3bars" msprop:Generator_ColumnPropNameInTable="debit3barsColumn" msprop:Generator_UserColumnName="debit3bars" type="xs:string" minOccurs="0" />
+              <xs:element name="Mesure1" msprop:Generator_ColumnVarNameInTable="columnMesure1" msprop:Generator_ColumnPropNameInRow="Mesure1" msprop:Generator_ColumnPropNameInTable="Mesure1Column" msprop:Generator_UserColumnName="Mesure1" type="xs:string" minOccurs="0" />
+              <xs:element name="Mesure2" msprop:Generator_ColumnVarNameInTable="columnMesure2" msprop:Generator_ColumnPropNameInRow="Mesure2" msprop:Generator_ColumnPropNameInTable="Mesure2Column" msprop:Generator_UserColumnName="Mesure2" type="xs:string" minOccurs="0" />
+              <xs:element name="Mesure3" msprop:Generator_ColumnVarNameInTable="columnMesure3" msprop:Generator_ColumnPropNameInRow="Mesure3" msprop:Generator_ColumnPropNameInTable="Mesure3Column" msprop:Generator_UserColumnName="Mesure3" type="xs:string" minOccurs="0" />
+              <xs:element name="Moyenne" msprop:Generator_ColumnVarNameInTable="columnMoyenne" msprop:Generator_ColumnPropNameInRow="Moyenne" msprop:Generator_ColumnPropNameInTable="MoyenneColumn" msprop:Generator_UserColumnName="Moyenne" type="xs:string" minOccurs="0" />
+              <xs:element name="Ecart" msprop:Generator_ColumnVarNameInTable="columnEcart" msprop:Generator_ColumnPropNameInRow="Ecart" msprop:Generator_ColumnPropNameInTable="EcartColumn" msprop:Generator_UserColumnName="Ecart" type="xs:string" minOccurs="0" />
+              <xs:element name="Resultat" msprop:Generator_ColumnVarNameInTable="columnResultat" msprop:Generator_ColumnPropNameInRow="Resultat" msprop:Generator_ColumnPropNameInTable="ResultatColumn" msprop:Generator_UserColumnName="Resultat" type="xs:string" minOccurs="0" />
+              <xs:element name="pctEcart3bar" msprop:Generator_ColumnVarNameInTable="columnpctEcart3bar" msprop:Generator_ColumnPropNameInRow="pctEcart3bar" msprop:Generator_ColumnPropNameInTable="pctEcart3barColumn" msprop:Generator_UserColumnName="pctEcart3bar" type="xs:string" minOccurs="0" />
+              <xs:element name="pctEcartTolerance" msprop:Generator_ColumnVarNameInTable="columnpctEcartTolerance" msprop:Generator_ColumnPropNameInRow="pctEcartTolerance" msprop:Generator_ColumnPropNameInTable="pctEcartToleranceColumn" msprop:Generator_UserColumnName="pctEcartTolerance" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

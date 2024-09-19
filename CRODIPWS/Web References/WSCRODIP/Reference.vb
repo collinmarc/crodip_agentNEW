@@ -4192,15 +4192,15 @@ Namespace WSCRODIP
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
-        Public Overloads ReadOnly Property Result() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Object)
-            End Get
-        End Property
-        
+        'Public Overloads ReadOnly Property Result() As Object
+        '    Get
+        '        Me.RaiseExceptionIfNecessary
+        '        Return CType(Me.results(0),Object)
+        '    End Get
+        'End Property
+
         '''<remarks/>
         Public Overloads ReadOnly Property result() As Integer
             Get

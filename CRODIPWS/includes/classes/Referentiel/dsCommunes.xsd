@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCommunes" targetNamespace="http://tempuri.org/dsCommunes.xsd" xmlns:mstns="http://tempuri.org/dsCommunes.xsd" xmlns="http://tempuri.org/dsCommunes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCommunes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsCommunes" msprop:Generator_UserDSName="dsCommunes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Communes" msprop:Generator_TableClassName="CommunesDataTable" msprop:Generator_TableVarName="tableCommunes" msprop:Generator_TablePropName="Communes" msprop:Generator_RowDeletingName="CommunesRowDeleting" msprop:Generator_RowChangingName="CommunesRowChanging" msprop:Generator_RowEvHandlerName="CommunesRowChangeEventHandler" msprop:Generator_RowDeletedName="CommunesRowDeleted" msprop:Generator_UserTableName="Communes" msprop:Generator_RowChangedName="CommunesRowChanged" msprop:Generator_RowEvArgName="CommunesRowChangeEvent" msprop:Generator_RowClassName="CommunesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codeInsee" msprop:Generator_ColumnVarNameInTable="columncodeInsee" msprop:Generator_ColumnPropNameInRow="codeInsee" msprop:Generator_ColumnPropNameInTable="codeInseeColumn" msprop:Generator_UserColumnName="codeInsee" type="xs:string" minOccurs="0" />
+              <xs:element name="NomCommune" msprop:Generator_ColumnVarNameInTable="columnNomCommune" msprop:Generator_ColumnPropNameInRow="NomCommune" msprop:Generator_ColumnPropNameInTable="NomCommuneColumn" msprop:Generator_UserColumnName="NomCommune" type="xs:string" minOccurs="0" />
+              <xs:element name="CodePostal" msprop:Generator_ColumnVarNameInTable="columnCodePostal" msprop:Generator_ColumnPropNameInRow="CodePostal" msprop:Generator_ColumnPropNameInTable="CodePostalColumn" msprop:Generator_UserColumnName="CodePostal" type="xs:string" minOccurs="0" />
+              <xs:element name="LibelleAcheminement" msprop:Generator_ColumnVarNameInTable="columnLibelleAcheminement" msprop:Generator_ColumnPropNameInRow="LibelleAcheminement" msprop:Generator_ColumnPropNameInTable="LibelleAcheminementColumn" msprop:Generator_UserColumnName="LibelleAcheminement" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

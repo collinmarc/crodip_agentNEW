@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFvMano" targetNamespace="http://tempuri.org/dsFvMano.xsd" xmlns:mstns="http://tempuri.org/dsFvMano.xsd" xmlns="http://tempuri.org/dsFvMano.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFvMano" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFvMano" msprop:Generator_UserDSName="dsFvMano">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Verif" msprop:Generator_TableClassName="VerifDataTable" msprop:Generator_TableVarName="tableVerif" msprop:Generator_RowChangedName="VerifRowChanged" msprop:Generator_TablePropName="Verif" msprop:Generator_RowDeletingName="VerifRowDeleting" msprop:Generator_RowChangingName="VerifRowChanging" msprop:Generator_RowEvHandlerName="VerifRowChangeEventHandler" msprop:Generator_RowDeletedName="VerifRowDeleted" msprop:Generator_RowClassName="VerifRow" msprop:Generator_UserTableName="Verif" msprop:Generator_RowEvArgName="VerifRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="dateVerification" msprop:Generator_ColumnVarNameInTable="columndateVerification" msprop:Generator_ColumnPropNameInRow="dateVerification" msprop:Generator_ColumnPropNameInTable="dateVerificationColumn" msprop:Generator_UserColumnName="dateVerification" type="xs:string" minOccurs="0" />
+              <xs:element name="agentVerif" msprop:Generator_ColumnVarNameInTable="columnagentVerif" msprop:Generator_ColumnPropNameInRow="agentVerif" msprop:Generator_ColumnPropNameInTable="agentVerifColumn" msprop:Generator_UserColumnName="agentVerif" type="xs:string" minOccurs="0" />
+              <xs:element name="proprietaire" msprop:Generator_ColumnVarNameInTable="columnproprietaire" msprop:Generator_ColumnPropNameInRow="proprietaire" msprop:Generator_ColumnPropNameInTable="proprietaireColumn" msprop:Generator_UserColumnName="proprietaire" type="xs:string" minOccurs="0" />
+              <xs:element name="NumManoRef" msprop:Generator_ColumnVarNameInTable="columnNumManoRef" msprop:Generator_ColumnPropNameInRow="NumManoRef" msprop:Generator_ColumnPropNameInTable="NumManoRefColumn" msprop:Generator_UserColumnName="NumManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="TypeManoRef" msprop:Generator_ColumnVarNameInTable="columnTypeManoRef" msprop:Generator_ColumnPropNameInRow="TypeManoRef" msprop:Generator_ColumnPropNameInTable="TypeManoRefColumn" msprop:Generator_UserColumnName="TypeManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="MarqueManoRef" msprop:Generator_ColumnVarNameInTable="columnMarqueManoRef" msprop:Generator_ColumnPropNameInRow="MarqueManoRef" msprop:Generator_ColumnPropNameInTable="MarqueManoRefColumn" msprop:Generator_UserColumnName="MarqueManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="FondManoRef" msprop:Generator_ColumnVarNameInTable="columnFondManoRef" msprop:Generator_ColumnPropNameInRow="FondManoRef" msprop:Generator_ColumnPropNameInTable="FondManoRefColumn" msprop:Generator_UserColumnName="FondManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="ClasseManoRef" msprop:Generator_ColumnVarNameInTable="columnClasseManoRef" msprop:Generator_ColumnPropNameInRow="ClasseManoRef" msprop:Generator_ColumnPropNameInTable="ClasseManoRefColumn" msprop:Generator_UserColumnName="ClasseManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="IncertitudeManoRef" msprop:Generator_ColumnVarNameInTable="columnIncertitudeManoRef" msprop:Generator_ColumnPropNameInRow="IncertitudeManoRef" msprop:Generator_ColumnPropNameInTable="IncertitudeManoRefColumn" msprop:Generator_UserColumnName="IncertitudeManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="NumMano" msprop:Generator_ColumnVarNameInTable="columnNumMano" msprop:Generator_ColumnPropNameInRow="NumMano" msprop:Generator_ColumnPropNameInTable="NumManoColumn" msprop:Generator_UserColumnName="NumMano" type="xs:string" minOccurs="0" />
+              <xs:element name="MarqueMano" msprop:Generator_ColumnVarNameInTable="columnMarqueMano" msprop:Generator_ColumnPropNameInRow="MarqueMano" msprop:Generator_ColumnPropNameInTable="MarqueManoColumn" msprop:Generator_UserColumnName="MarqueMano" type="xs:string" minOccurs="0" />
+              <xs:element name="ClasseMano" msprop:Generator_ColumnVarNameInTable="columnClasseMano" msprop:Generator_ColumnPropNameInRow="ClasseMano" msprop:Generator_ColumnPropNameInTable="ClasseManoColumn" msprop:Generator_UserColumnName="ClasseMano" type="xs:string" minOccurs="0" />
+              <xs:element name="UniteMano" msprop:Generator_ColumnVarNameInTable="columnUniteMano" msprop:Generator_ColumnPropNameInRow="UniteMano" msprop:Generator_ColumnPropNameInTable="UniteManoColumn" msprop:Generator_UserColumnName="UniteMano" type="xs:string" minOccurs="0" />
+              <xs:element name="FondMano" msprop:Generator_ColumnVarNameInTable="columnFondMano" msprop:Generator_ColumnPropNameInRow="FondMano" msprop:Generator_ColumnPropNameInTable="FondManoColumn" msprop:Generator_UserColumnName="FondMano" type="xs:string" minOccurs="0" />
+              <xs:element name="ResolutionMano" msprop:Generator_ColumnVarNameInTable="columnResolutionMano" msprop:Generator_ColumnPropNameInRow="ResolutionMano" msprop:Generator_ColumnPropNameInTable="ResolutionManoColumn" msprop:Generator_UserColumnName="ResolutionMano" type="xs:string" minOccurs="0" />
+              <xs:element name="Temperature" msprop:Generator_ColumnVarNameInTable="columnTemperature" msprop:Generator_ColumnPropNameInRow="Temperature" msprop:Generator_ColumnPropNameInTable="TemperatureColumn" msprop:Generator_UserColumnName="Temperature" type="xs:string" minOccurs="0" />
+              <xs:element name="Resultat" msprop:Generator_ColumnVarNameInTable="columnResultat" msprop:Generator_ColumnPropNameInRow="Resultat" msprop:Generator_ColumnPropNameInTable="ResultatColumn" msprop:Generator_UserColumnName="Resultat" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pression" msprop:Generator_TableClassName="PressionDataTable" msprop:Generator_TableVarName="tablePression" msprop:Generator_RowChangedName="PressionRowChanged" msprop:Generator_TablePropName="Pression" msprop:Generator_RowDeletingName="PressionRowDeleting" msprop:Generator_RowChangingName="PressionRowChanging" msprop:Generator_RowEvHandlerName="PressionRowChangeEventHandler" msprop:Generator_RowDeletedName="PressionRowDeleted" msprop:Generator_RowClassName="PressionRow" msprop:Generator_UserTableName="Pression" msprop:Generator_RowEvArgName="PressionRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:string" minOccurs="0" />
+              <xs:element name="PointEssai" msprop:Generator_ColumnVarNameInTable="columnPointEssai" msprop:Generator_ColumnPropNameInRow="PointEssai" msprop:Generator_ColumnPropNameInTable="PointEssaiColumn" msprop:Generator_UserColumnName="PointEssai" type="xs:string" minOccurs="0" />
+              <xs:element name="PressionMano" msprop:Generator_ColumnVarNameInTable="columnPressionMano" msprop:Generator_ColumnPropNameInRow="PressionMano" msprop:Generator_ColumnPropNameInTable="PressionManoColumn" msprop:Generator_UserColumnName="PressionMano" type="xs:string" minOccurs="0" />
+              <xs:element name="PressionManoRef" msprop:Generator_ColumnVarNameInTable="columnPressionManoRef" msprop:Generator_ColumnPropNameInRow="PressionManoRef" msprop:Generator_ColumnPropNameInTable="PressionManoRefColumn" msprop:Generator_UserColumnName="PressionManoRef" type="xs:string" minOccurs="0" />
+              <xs:element name="ErreurAbsolue" msprop:Generator_ColumnVarNameInTable="columnErreurAbsolue" msprop:Generator_ColumnPropNameInRow="ErreurAbsolue" msprop:Generator_ColumnPropNameInTable="ErreurAbsolueColumn" msprop:Generator_UserColumnName="ErreurAbsolue" type="xs:string" minOccurs="0" />
+              <xs:element name="ErreurFond" msprop:Generator_ColumnVarNameInTable="columnErreurFond" msprop:Generator_ColumnPropNameInRow="ErreurFond" msprop:Generator_ColumnPropNameInTable="ErreurFondColumn" msprop:Generator_UserColumnName="ErreurFond" type="xs:string" minOccurs="0" />
+              <xs:element name="Incertitude" msprop:Generator_ColumnVarNameInTable="columnIncertitude" msprop:Generator_ColumnPropNameInRow="Incertitude" msprop:Generator_ColumnPropNameInTable="IncertitudeColumn" msprop:Generator_UserColumnName="Incertitude" type="xs:string" minOccurs="0" />
+              <xs:element name="EMT" msprop:Generator_ColumnVarNameInTable="columnEMT" msprop:Generator_ColumnPropNameInRow="EMT" msprop:Generator_ColumnPropNameInTable="EMTColumn" msprop:Generator_UserColumnName="EMT" type="xs:string" minOccurs="0" />
+              <xs:element name="Conformité" msprop:Generator_ColumnVarNameInTable="columnConformité" msprop:Generator_ColumnPropNameInRow="Conformité" msprop:Generator_ColumnPropNameInTable="ConformitéColumn" msprop:Generator_UserColumnName="Conformité" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Diagramme" msprop:Generator_TableClassName="DiagrammeDataTable" msprop:Generator_TableVarName="tableDiagramme" msprop:Generator_TablePropName="Diagramme" msprop:Generator_RowDeletingName="DiagrammeRowDeleting" msprop:Generator_RowChangingName="DiagrammeRowChanging" msprop:Generator_RowEvHandlerName="DiagrammeRowChangeEventHandler" msprop:Generator_RowDeletedName="DiagrammeRowDeleted" msprop:Generator_UserTableName="Diagramme" msprop:Generator_RowChangedName="DiagrammeRowChanged" msprop:Generator_RowEvArgName="DiagrammeRowChangeEvent" msprop:Generator_RowClassName="DiagrammeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" type="xs:int" minOccurs="0" />
+              <xs:element name="PressionCroissante" msprop:Generator_ColumnVarNameInTable="columnPressionCroissante" msprop:Generator_ColumnPropNameInRow="PressionCroissante" msprop:Generator_ColumnPropNameInTable="PressionCroissanteColumn" msprop:Generator_UserColumnName="PressionCroissante" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PressionDecroissante" msprop:Generator_ColumnVarNameInTable="columnPressionDecroissante" msprop:Generator_ColumnPropNameInRow="PressionDecroissante" msprop:Generator_ColumnPropNameInTable="PressionDecroissanteColumn" msprop:Generator_UserColumnName="PressionDecroissante" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PressionRepetition" msprop:Generator_ColumnVarNameInTable="columnPressionRepetition" msprop:Generator_ColumnPropNameInRow="PressionRepetition" msprop:Generator_ColumnPropNameInTable="PressionRepetitionColumn" msprop:Generator_UserColumnName="PressionRepetition" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
