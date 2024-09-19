@@ -1570,6 +1570,7 @@
     <None Include="cr\ds_EtatFacture.xss">
       <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
     </None>
+    <None Include="Docs\new.wsdl" />
     <None Include="My Project\DataSources\ContratCommercial.datasource" />
     <None Include="My Project\DataSources\Facture.datasource" />
     <None Include="My Project\DataSources\Pool.datasource" />

@@ -168,6 +168,7 @@ Public Class Form1
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
         cbReset.Visible = True
         cbReset.Enabled = True
+        cbReset.BackColor = Color.Red
         'cbMesure.Enabled = False
         _n = 0
         pbMesure.Value = 0
@@ -191,6 +192,7 @@ Public Class Form1
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
         cbReset.Visible = True
         cbReset.Enabled = True
+        cbReset.BackColor = Color.Red
         CbMesureSuivante.Enabled = False
         cbValiderVitesseLue.Visible = False
     End Sub

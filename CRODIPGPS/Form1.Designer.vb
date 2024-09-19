@@ -607,6 +607,7 @@ Partial Class Form1
         'cbReset
         '
         Me.cbReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.cbReset.BackColor = System.Drawing.Color.Red
         Me.cbReset.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
         Me.cbReset.Depth = 0
         Me.cbReset.Dock = System.Windows.Forms.DockStyle.Fill
@@ -619,11 +620,11 @@ Partial Class Form1
         Me.cbReset.NoAccentTextColor = System.Drawing.Color.Empty
         Me.cbReset.Size = New System.Drawing.Size(122, 77)
         Me.cbReset.TabIndex = 42
-        Me.cbReset.Text = "RESET"
+        Me.cbReset.Text = "STOP"
         Me.cbReset.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.cbReset.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbReset.UseAccentColor = False
-        Me.cbReset.UseVisualStyleBackColor = True
+        Me.cbReset.UseVisualStyleBackColor = False
         '
         'm_bsrcGPSMesure
         '
