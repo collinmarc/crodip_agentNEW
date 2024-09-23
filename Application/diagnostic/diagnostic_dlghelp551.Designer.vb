@@ -104,7 +104,7 @@ Partial Class diagnostic_dlghelp551
         Me.btnAcquisition.Name = "btnAcquisition"
         Me.btnAcquisition.Size = New System.Drawing.Size(164, 29)
         Me.btnAcquisition.TabIndex = 60
-        Me.btnAcquisition.Text = "      Acquisition GPS"
+        Me.btnAcquisition.Text = "      Mesure GPS"
         Me.btnAcquisition.UseVisualStyleBackColor = False
         Me.btnAcquisition.Visible = Global.Crodip_agent.MySettings.Default.AcquisitionGPS
         '

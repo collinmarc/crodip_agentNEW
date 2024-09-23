@@ -304,7 +304,7 @@ Public Class diagnostic_dlghelp551
         End If
 
         Dim FileName As String
-        FileName = My.Settings.GPSCSV
+        FileName = m_oDiag.pulverisateurNumNational + Now.Date.ToString("yyyyMMdd") + ".csv"
         If Not System.IO.File.Exists(FileName) Then
             Dim oDLG As New OpenFileDialog()
             oDLG.Filter = "Fichier CSV|*.csv"

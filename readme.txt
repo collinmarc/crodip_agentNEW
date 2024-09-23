@@ -2,6 +2,7 @@
 MASTER
 
 BUILD 20240715170000
+	0001705: Saisie des Plaques d'immatriculation pour les Automoteurs et Trainés + Format auto des Immat
 	0001702: Améliorations CRODIPGPS + fichie Pulvé
 	0001700: Fiche Pulve : Saisie des Immat et Numero de saisie en majuscule
 	0001699: CRODIPGPS : Amélioration Aout 2024 + Sept 2024

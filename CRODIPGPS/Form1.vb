@@ -363,13 +363,14 @@ Public Class Form1
         End If
     End Sub
     Dim _FichierExport As String
-    Private Sub cbExporter_Click(sender As Object, e As EventArgs) Handles cbSauvegarder.Click
-        SaveFileDialog1.FileName = System.IO.Path.GetFileName(My.Settings.FichierExport)
+    Private Sub cbSauvegarder_Click(sender As Object, e As EventArgs) Handles cbSauvegarder.Click
+        SaveFileDialog1.FileName = _NumPulve + Now.Date.ToString("yyyyMMdd") + ".csv"
         SaveFileDialog1.InitialDirectory = System.IO.Path.GetDirectoryName(My.Settings.FichierExport)
         If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             _FichierExport = SaveFileDialog1.FileName
         End If
         Exporter(_FichierExport)
+        Me.Close()
     End Sub
 
     Private Function Exporter(pFile As String) As Boolean
