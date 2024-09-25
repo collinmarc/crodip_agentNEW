@@ -56,10 +56,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("crodipgps.csv")>  _
-        Public ReadOnly Property FichierExport() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("MESURESGPS")>  _
+        Public ReadOnly Property RepertoireExport() As String
             Get
-                Return CType(Me("FichierExport"),String)
+                Return CType(Me("RepertoireExport"),String)
             End Get
         End Property
         

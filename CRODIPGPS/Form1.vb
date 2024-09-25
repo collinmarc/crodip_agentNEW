@@ -364,11 +364,17 @@ Public Class Form1
     End Sub
     Dim _FichierExport As String
     Private Sub cbSauvegarder_Click(sender As Object, e As EventArgs) Handles cbSauvegarder.Click
-        SaveFileDialog1.FileName = _NumPulve + Now.Date.ToString("yyyyMMdd") + ".csv"
-        SaveFileDialog1.InitialDirectory = System.IO.Path.GetDirectoryName(My.Settings.FichierExport)
-        If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
-            _FichierExport = SaveFileDialog1.FileName
+        _FichierExport = _NumPulve + "_" + Now.Date.ToString("yyyyMMdd") + ".csv"
+        If Not System.IO.Directory.Exists(My.Settings.RepertoireExport) Then
+            System.IO.Directory.CreateDirectory(My.Settings.RepertoireExport)
         End If
+
+        _FichierExport = My.Settings.RepertoireExport + "/" + _FichierExport
+
+        'If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+        ' _FichierExport = SaveFileDialog1.FileName
+        ' End If
+        TraceMsg("Enregistrement dans : " & _FichierExport)
         Exporter(_FichierExport)
         Me.Close()
     End Sub

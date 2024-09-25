@@ -161,8 +161,8 @@
     <Setting Name="GPSApplication" Type="System.String" Scope="Application">
       <Value Profile="(Default)">CRODIPGPSFULL.EXE</Value>
     </Setting>
-    <Setting Name="GPSCSV" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">crodipgps.csv</Value>
+    <Setting Name="GPSRepertoireExport" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MESURESGPS</Value>
     </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
       <Value Profile="(Default)">20240605170000</Value>

@@ -565,10 +565,10 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("crodipgps.csv")>  _
-    Public ReadOnly Property GPSCSV() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("MESURESGPS")>  _
+    Public ReadOnly Property GPSRepertoireExport() As String
         Get
-            Return CType(Me("GPSCSV"),String)
+            Return CType(Me("GPSRepertoireExport"),String)
         End Get
     End Property
     

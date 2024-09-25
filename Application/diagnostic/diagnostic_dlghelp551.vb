@@ -304,8 +304,8 @@ Public Class diagnostic_dlghelp551
         End If
 
         Dim FileName As String
-        FileName = m_oDiag.pulverisateurNumNational + Now.Date.ToString("yyyyMMdd") + ".csv"
-        If Not System.IO.File.Exists(FileName) Then
+        FileName = m_oDiag.pulverisateurNumNational + "_" + Now.Date.ToString("yyyyMMdd") + ".csv"
+        If Not System.IO.File.Exists(My.Settings.GPSRepertoireExport + "/" + FileName) Then
             Dim oDLG As New OpenFileDialog()
             oDLG.Filter = "Fichier CSV|*.csv"
             oDLG.Multiselect = False
@@ -317,7 +317,7 @@ Public Class diagnostic_dlghelp551
         End If
         Dim Lines As String()
         Dim Line As String
-        Lines = System.IO.File.ReadAllLines(FileName)
+        Lines = System.IO.File.ReadAllLines(My.Settings.GPSRepertoireExport + "/" + FileName)
         If Lines.Length = 2 Then
             Line = Lines(0)
             Dim LineDetail As String()

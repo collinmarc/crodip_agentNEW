@@ -25,12 +25,10 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.lblNumPulvé = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel5 = New MaterialSkin.Controls.MaterialLabel()
@@ -58,11 +56,12 @@ Partial Class Form1
         Me.VitesseLueMoins = New MaterialSkin.Controls.MaterialButton()
         Me.VitesseLuePlus = New MaterialSkin.Controls.MaterialButton()
         Me.cbReset = New MaterialSkin.Controls.MaterialButton()
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TimerLectureGPS
@@ -148,10 +147,6 @@ Partial Class Form1
         Me.ckVitessseStable.Text = "&VitesseStable"
         Me.ckVitessseStable.UseVisualStyleBackColor = True
         Me.ckVitessseStable.Visible = False
-        '
-        'm_bsrcGPSMesure
-        '
-        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'ckGPSActif
         '
@@ -425,7 +420,7 @@ Partial Class Form1
         Me.cbSauvegarder.NoAccentTextColor = System.Drawing.Color.Empty
         Me.cbSauvegarder.Size = New System.Drawing.Size(182, 18)
         Me.cbSauvegarder.TabIndex = 29
-        Me.cbSauvegarder.Text = "Sauvegarder"
+        Me.cbSauvegarder.Text = "Importer"
         Me.cbSauvegarder.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbSauvegarder.UseAccentColor = False
         Me.cbSauvegarder.UseVisualStyleBackColor = True
@@ -630,6 +625,10 @@ Partial Class Form1
         Me.cbReset.UseAccentColor = False
         Me.cbReset.UseVisualStyleBackColor = False
         '
+        'm_bsrcGPSMesure
+        '
+        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
+        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
@@ -645,17 +644,16 @@ Partial Class Form1
         Me.Text = "Acquisition GPS CRODIP"
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanelMesures.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents TimerLectureGPS As Timer
     Friend WithEvents m_bsrcGPSMesure As BindingSource
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PnlCacheCkTest As Panel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
