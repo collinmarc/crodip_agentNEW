@@ -254,10 +254,10 @@ Public Class Form1
         If gpsManager.GPSActif Then
             Dim distance As Decimal
             Dim vitesse As Decimal
-            Dim temps As Integer
+            Dim temps As Double
             'Récupération du temps
             elapsedTime = DateTime.Now - startTime
-            temps = elapsedTime.Hours * 3600 + elapsedTime.Minutes * 60 + elapsedTime.Seconds
+            temps = elapsedTime.TotalSeconds
             'Récupération de la distance
             If gpsManager.IsSerialPortOpen Then
                 TraceMsg("Ecoute[" & gpsManager.startLatitude & "," & gpsManager.startLongitude & "=" & gpsManager.distance & "]")
@@ -271,7 +271,7 @@ Public Class Form1
             'Calcul de vitesse
             If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
                 _MesureEncours.Distance = distance
-                _MesureEncours.Temps = temps
+                _MesureEncours.Temps = CDec(temps)
                 vitesse = _MesureEncours.Vitesse
             Else
                 vitesse = _MesureEncours.calculeVitesse(distance, temps)

@@ -48,18 +48,18 @@
         End Set
     End Property
     Private _temps As Decimal
-    Public Property Temps() As Integer
+    Public Property Temps() As Decimal
         Get
             Return _temps
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As Decimal)
             If value <> _temps Then
                 _temps = value
                 Vitesse = calculeVitesse(Distance, Temps)
             End If
         End Set
     End Property
-    Public Function calculeVitesse(pdistance As Decimal, pTemps As Integer) As Decimal
+    Public Function calculeVitesse(pdistance As Decimal, pTemps As Decimal) As Decimal
         Dim dReturn As Decimal = 0
         If pTemps <> 0 And pdistance <> 0 Then
             dReturn = (pdistance / 1000 / pTemps) * 3600

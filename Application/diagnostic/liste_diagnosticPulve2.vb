@@ -2846,6 +2846,8 @@ Public Class liste_diagnosticPulve2
             dataResults.Close()
             bdd.free()
             bdd = Nothing
+            Dim nMoisValideOK As String = Pulverisateur.getNiveauAlerte(Date.Now).Jaune
+            Dim nMoisValideCV As String = Pulverisateur.getNiveauAlerte(Date.Now).Rouge
             Dim nRow As Integer = 0
             For Each oDiag As Diagnostic In m_bsrcDiag.List
                 Select Case Trim(oDiag.controleEtat)
@@ -2864,9 +2866,20 @@ Public Class liste_diagnosticPulve2
 
                 'Désactivation du bouton 'Reprendre" selon l'état
                 Select Case Trim(oDiag.controleEtat)
-                    Case "-1", "1"
+                    Case Diagnostic.controleEtatNOKCC, Diagnostic.controleEtatOK  'CC ou OK
                         oCell = DataGridView1.Rows(nRow).Cells(col_ContreVisite.Index)
                         oCell.Enabled = False
+                    Case Diagnostic.controleEtatNOKCV
+                        oCell = DataGridView1.Rows(nRow).Cells(col_ContreVisite.Index)
+                        Dim dLimiteCV As Date
+                        dLimiteCV = CDate(oDiag.controleDateDebut).AddMonths(nMoisValideCV).AddDays(-1)
+                        If Date.Now > dLimiteCV Then
+                            oCell.Enabled = False
+                        Else
+                            oCell.Enabled = True
+                        End If
+
+
                 End Select
 
 

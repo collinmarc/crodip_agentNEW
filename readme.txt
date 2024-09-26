@@ -2,6 +2,9 @@
 MASTER
 
 BUILD 20240715170000
+	0001710: CRODIPGPS : Calculer la vitesse sur des fractions de secondes
+	0001709: interdire la CV sur les Diag de plus de 4 mois
+	0001708: CRODIPGPS : Ajout D'unrepertoire de sauvegarde automatique
 	0001705: Saisie des Plaques d'immatriculation pour les Automoteurs et Trainés + Format auto des Immat
 	0001702: Améliorations CRODIPGPS + fichie Pulvé
 	0001700: Fiche Pulve : Saisie des Immat et Numero de saisie en majuscule
