@@ -6,6 +6,7 @@ Imports Ionic.Zip
 
 <Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem))>
 Public Class Diagnostic
+    Inherits root
     Implements ICloneable
     Private _id As String = ""
     Private _organismePresId As Integer
@@ -399,8 +400,8 @@ Public Class Diagnostic
         setPulverisateur(pPulve)
         SetProprietaire(pClient)
         controleIsComplet = True
-        controleDateDebut = CSDate.TOCRODIPString(Date.Now)
-        controleDateFin = CSDate.TOCRODIPString(Date.Now)
+        controleDateDebut = CSDate.ToCRODIPString(Date.Now)
+        controleDateFin = CSDate.ToCRODIPString(Date.Now)
     End Sub
 
     ''' <summary>
@@ -2540,7 +2541,7 @@ Public Class Diagnostic
             organismePresCodePostal = structureCourante.codePostal
             organismePresCommune = structureCourante.commune
 
-            inspecteurId = pAgent.id
+            inspecteurId = pAgent.uid
             inspecteurNom = pAgent.nom
             inspecteurPrenom = pAgent.prenom
             inspecteurNumeroNational = pAgent.numeroNational
@@ -2568,9 +2569,9 @@ Public Class Diagnostic
             Me.setOrganisme(pAgent)
             Me.controleInitialId = Me.id
             Me.controleDateDernierControle = Me.controleDateFin
-            Me.controleDateDebut = CSDate.TOCRODIPString(Date.Now)
-            Me.controleDateFin = CSDate.TOCRODIPString(Date.Now)
-            Me.dateModificationAgent = CSDate.TOCRODIPString(Date.Now)
+            Me.controleDateDebut = CSDate.ToCRODIPString(Date.Now)
+            Me.controleDateFin = CSDate.ToCRODIPString(Date.Now)
+            Me.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
             Me.controleIsComplet = False
             Me.isATGIP = False
             Me.isTGIP = False
@@ -3106,8 +3107,8 @@ Public Class Diagnostic
             End If
             If Not String.IsNullOrEmpty(poPulve.nombreExploitants) Then
                 Me.pulverisateurNbreExploitants = poPulve.nombreExploitants
-            End if
-                If poPulve.isCoupureAutoTroncons Then
+            End If
+            If poPulve.isCoupureAutoTroncons Then
                 Me.pulverisateurCoupureAutoTroncons = "OUI"
             Else
                 Me.pulverisateurCoupureAutoTroncons = "NON"

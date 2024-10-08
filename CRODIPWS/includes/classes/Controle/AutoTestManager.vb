@@ -2,6 +2,28 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class AutoTestManager
+    Inherits RootManager
+
+#Region "Methodes Web Service"
+
+    Public Shared Function getWSAutoTestById(pAgent As Agent, ByVal pmanometre_uid As Integer) As AutoTest
+        Dim oreturn As AutoTest
+        oreturn = getWSByKey(Of AutoTest)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSAutoTest(pAgent As Agent, ByVal pobj As AutoTest, ByRef pReturn As AutoTest) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = SendWS(Of AutoTest)(pobj, pReturn)
+
+        Catch ex As Exception
+            CSDebug.dispFatal("sendWSAutoTest : " & ex.Message)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
+#End Region
 
 
 #Region "Methodes Locales"
@@ -214,7 +236,7 @@ Public Class AutoTestManager
                 '## Execution de la requete
                 Dim oDBReader As DbDataReader
                 Dim sqlQuery As String
-                sqlQuery = "SELECT * FROM CONTROLE_REGULIER WHERE CTRG_NUMAGENT='" & pAgent.id & "' "
+                sqlQuery = "SELECT * FROM CONTROLE_REGULIER WHERE CTRG_NUMAGENT='" & pAgent.uid & "' "
                 If Not (pTypeMateriels = "TOUS" Or String.IsNullOrEmpty(pTypeMateriels)) Then
                     sqlQuery = sqlQuery & " AND CTRG_TYPE = '" & pTypeMateriels & "' "
                 End If
@@ -333,63 +355,5 @@ Public Class AutoTestManager
     End Function
 #End Region
 
-    Public Shared Function sendWSControlesReguliers(ByVal pAgent As Agent) As Boolean
-        Dim bReturn As Boolean
-
-        Try
-            Dim oCol As List(Of AutoTest)
-            oCol = getcolControlesReguliers(pAgent, , , , True)
-            If Not oCol Is Nothing Then
-                If oCol.Count > 0 Then
-                    Dim ArrObject(oCol.Count) As AutoTest
-                    Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-                    Dim i As Integer
-                    i = 0
-                    For Each obj As AutoTest In oCol
-                        ArrObject(i) = obj
-                        i = i + 1
-                    Next
-                    Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject)
-                    If response = 0 Or response = 2 Or (GlobalsCRODIP.GLOB_ENV_DEBUG And response = 9) Then
-                        'Mise à jour de la date de synchro (date Modification CRODIP)
-                        For Each obj As AutoTest In oCol
-                            obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())
-                            saveSynchro(obj)
-                        Next
-
-                    End If
-                End If
-            End If
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("sendWSManometreControle : " & ex.Message & ex.InnerException.InnerException.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
-    'Public Shared Function sendWS2ControlesReguliers(ByVal pAgent As Agent) As Boolean
-    '    Dim bReturn As Boolean
-
-    '    Try
-    '        Dim oCol As Collection
-    '        oCol = getcolControlesReguliers(pAgent, , , , True)
-    '        If Not oCol Is Nothing Then
-    '            Dim ArrObject(oCol.Count) As AutoTest
-    '            Dim objWSCrodip As WSCrodip2.CrodipServerClient = WebServiceCRODIP.getWS2()
-    '            Dim i As Integer
-    '            i = 0
-    '            For Each obj As AutoTest In oCol
-    '                ArrObject(i) = obj
-    '                i = i + 1
-    '            Next
-    '            objWSCrodip.SendAutoTest(ArrObject)
-    '        End If
-    '        bReturn = True
-    '    Catch ex As Exception
-    '        CSDebug.dispError("sendWSManometreControle : " & ex.Message & ex.InnerException.InnerException.Message)
-    '        bReturn = False
-    '    End Try
-    '    Return bReturn
-    'End Function
 
 End Class

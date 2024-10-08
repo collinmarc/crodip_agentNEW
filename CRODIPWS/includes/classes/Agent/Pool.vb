@@ -58,7 +58,7 @@ Public Class Pool
                     Case "idCRODIPPC".Trim().ToUpper()
                         Me.idCRODIPPC = pValue
                     Case "idStructure".Trim().ToUpper()
-                        Me.idStructure = pValue
+                        Me.uidstructure = pValue
                     Case "nbPastillesVertes".Trim().ToUpper()
                         Me.nbPastillesVertes = pValue
                     Case "idBanc".Trim().ToUpper()

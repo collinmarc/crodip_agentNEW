@@ -51,7 +51,7 @@ Public Class DiagnosticMano542Manager
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendDiagnosticMano542(pAgent.id, tmpArr, updatedObject)
+            'Return objWSCrodip.SendDiagnosticMano542(pAgent.id, tmpArr, updatedObject)
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticMano542Manager.sendWSDiagnosticMano542 ERR" & ex.Message & ":" & ex.Message)
 

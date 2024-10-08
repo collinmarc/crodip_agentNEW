@@ -1,0 +1,41 @@
+﻿pour créer les intefaces pour accéder au WS CRODIP
+1° Supprimer le namespace existant (WSCRODIP)
+le recréer par Ajouter / reference de service
+	Avancé , Décocher la génération des opérations Asyschrones
+	Ajouter une reference Web
+	Charger le wsdl désiré ex : http://admin-pp.crodip.net/new.wsdl
+	Espace de nom = WSCRODIP
+
+Modifier le reference.vb (Afficher tous les fichiers)
+ajouter sur chaque send au dessus du nom de méthode 
+		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
+Modifier la classe GetIncrementDiagnosticCompletedEventArgs
+en mettant en commentaire la methode GetResult as integer
+
+Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer
+
+Code à inserrer dans chaque Classe Manager
+==================================
+    Inherits RootManager
+
+#Region "Methodes Web Service"
+
+    Public Shared Function getWSBancById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Banc
+        Dim oreturn As Banc
+        oreturn = getWSByKey(Of Banc)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSBanc(pAgent As Agent, ByVal pobj As Banc, ByRef pReturn As Banc) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = SendWS(Of Banc)(pobj, pReturn)
+
+        Catch ex As Exception
+            CSDebug.dispFatal("sendWSBanc : " & ex.Message)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
+#End Region
+=====================================

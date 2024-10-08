@@ -215,21 +215,21 @@ Public Class IdentifiantPulverisateurManager
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetIdentifiantPulverisateur(pAgent.id, pId, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If objWSCrodip_responseItem.InnerText() <> "" Then
-                            objIdent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("Erreur - PulverisateurManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("Erreur - PulverisateurManager - Code 9 : Bad Request")
-            End Select
+            'Dim codeResponse As Integer = objWSCrodip.GetIdentifiantPulverisateur(pAgent.id, pId, objWSCrodip_response)
+            'Select Case codeResponse
+            '    Case 0 ' OK
+            '        ' construction de l'objet
+            '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
+            '        For Each objWSCrodip_responseItem In objWSCrodip_response
+            '            If objWSCrodip_responseItem.InnerText() <> "" Then
+            '                objIdent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+            '            End If
+            '        Next
+            '    Case 1 ' NOK
+            '        CSDebug.dispError("Erreur - PulverisateurManager - Code 1 : Non-Trouvée")
+            '    Case 9 ' BADREQUEST
+            '        CSDebug.dispError("Erreur - PulverisateurManager - Code 9 : Bad Request")
+            'End Select
         Catch ex As Exception
             CSDebug.dispError("IDentifiantPulveristeurManager.getWSIdentifiantPulverisateurById (" & pId & "): " & ex.Message)
             objIdent = Nothing
@@ -268,14 +268,14 @@ Public Class IdentifiantPulverisateurManager
 
             'rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
             'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve)
-            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                Case 1 ' NOK
-                    CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("sendWSIdentifiantPulverisateur - Code 9 : Bad Request")
-            End Select
+            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
+            'Select Case codeResponse
+            '    Case 0 ' OK
+            '    Case 1 ' NOK
+            '        CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")
+            '    Case 9 ' BADREQUEST
+            '        CSDebug.dispError("sendWSIdentifiantPulverisateur - Code 9 : Bad Request")
+            'End Select
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("IdentifiantPulverisateurManager.SendWSIdentifiantPulverisateur (" & pIdentPulve.ToString() & ") ERR: " & ex.Message)

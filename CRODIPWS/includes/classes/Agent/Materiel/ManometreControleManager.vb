@@ -1,61 +1,31 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
+Imports System.ServiceModel
+Imports System.Xml.Serialization
 Public Class ManometreControleManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal manometrecontrole_id As String) As ManometreControle
-        Dim objManometreControle As New ManometreControle
-        Try
-
-            ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetManometreControle(pAgent.id, manometrecontrole_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If Not String.IsNullOrEmpty(objWSCrodip_responseItem.InnerText()) Then
-                            objManometreControle.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("ManometreControleManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("ManometreControleManager - Code 9 : Bad Request")
-            End Select
-        Catch ex As Exception
-            CSDebug.dispError("ManometreControleManager - getWSManometreControleById : " & ex.Message)
-        End Try
-        Return objManometreControle
-
+    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal pmanometrecontrole_uid As Integer) As ManometreControle
+        Dim oreturn As ManometreControle
+        oreturn = getWSByKey(Of ManometreControle)(pmanometrecontrole_uid, "")
+        Return oreturn
     End Function
 
-    Public Shared Function sendWSManometreControle(pAgent As Agent, ByVal manometrecontrole As ManometreControle, ByRef updatedObject As Object) As Integer
+    Public Shared Function SendWSManometreControle(pAgent As Agent, ByVal pManometreControle As ManometreControle, ByRef pReturn As ManometreControle) As Integer
+        Dim nreturn As Integer
         Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendManometreControle(pAgent.id, manometrecontrole, updatedObject)
+            nreturn = SendWS(Of ManometreControle)(pManometreControle, pReturn)
+
         Catch ex As Exception
             CSDebug.dispFatal("sendWSManometreControle : " & ex.Message)
-            Return -1
+            nreturn = -1
         End Try
+        Return nreturn
     End Function
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As ManometreControle
-        Dim objManometreControle As New ManometreControle
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
-                objManometreControle.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
-            End If
-        Next
-
-        Return objManometreControle
-    End Function
 
 #End Region
 
@@ -63,13 +33,13 @@ Public Class ManometreControleManager
 
     Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
+        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
         If pAgent.idStructure <> 0 Then
 
             Dim oCSDB As New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT AgentManoControle.numeroNational FROM AgentManoControle WHERE AgentManoControle.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoControle.numeroNational DESC"
+            bddCommande.CommandText = "SELECT AgentManoControle.numeroNational FROM AgentManoControle WHERE AgentManoControle.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY AgentManoControle.numeroNational DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -79,12 +49,12 @@ Public Class ManometreControleManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManoControleManager - newId : " & ex.Message & vbNewLine)
             End Try
@@ -133,7 +103,7 @@ Public Class ManometreControleManager
                 If Not objManometreControle.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreControle.idCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & objManometreControle.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objManometreControle.uidstructure & ""
                 If Not objManometreControle.marque Is Nothing Then
                     paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreControle.marque) & "'"
                 End If
@@ -169,16 +139,16 @@ Public Class ManometreControleManager
                 paramsQuery = paramsQuery & " , nbControles=" & objManometreControle.nbControles & ""
                 paramsQuery = paramsQuery & " , nbControlesTotal=" & objManometreControle.nbControlesTotal & ""
 
-                If Not objManometreControle.AgentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , agentSuppression='" & objManometreControle.AgentSuppression & "'"
+                If Not objManometreControle.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , agentSuppression='" & objManometreControle.agentSuppression & "'"
                 End If
-                If Not objManometreControle.RaisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreControle.RaisonSuppression & "'"
+                If Not objManometreControle.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , raisonSuppression='" & objManometreControle.raisonSuppression & "'"
                 End If
-                If Not String.IsNullOrEmpty(objManometreControle.DateSuppression) Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreControle.DateSuppression) & "'"
+                If Not String.IsNullOrEmpty(objManometreControle.dateSuppression) Then
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objManometreControle.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , jamaisServi=" & objManometreControle.JamaisServi & ""
+                paramsQuery = paramsQuery & " , jamaisServi=" & objManometreControle.jamaisServi & ""
                 If objManometreControle.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objManometreControle.DateActivation) & "'"
                 End If
@@ -744,7 +714,7 @@ Public Class ManometreControleManager
 
         ' déclarations
         Dim bReturn As Boolean = False
-        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim objWSCrodip_response As New Object
         Debug.Assert("FONCTION ManoMetreControleManager.getlstPoolByID Non implémentée")
         '' Appel au WS

@@ -1,6 +1,24 @@
 ﻿Imports System.Xml.Serialization
-
+<XmlInclude(GetType(Materiel))>
 Public Class root
+    Private _uid As Integer
+    Public Property uid() As Integer
+        Get
+            Return _uid
+        End Get
+        Set(ByVal value As Integer)
+            _uid = value
+        End Set
+    End Property
+    Private _aid As String
+    Public Property aid() As String
+        Get
+            Return _aid
+        End Get
+        Set(ByVal value As String)
+            _aid = value
+        End Set
+    End Property
     Private _dateModificationAgent As DateTime
     <XmlIgnoreAttribute()>
     Public Property dateModificationAgent() As Date

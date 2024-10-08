@@ -31,7 +31,7 @@ Public MustInherit Class FVMateriel
         _FVFileName = ""
     End Sub
     Sub New(ByVal pAgent As Agent)
-        idAgentControleur = pAgent.id
+        idAgentControleur = pAgent.uid
     End Sub
 
     Public Property id() As String

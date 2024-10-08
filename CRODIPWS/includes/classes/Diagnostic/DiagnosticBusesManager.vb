@@ -110,7 +110,7 @@ Public Class DiagnosticBusesManager
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendDiagnosticBuses(pAgent.id, tmpArr, updatedObject)
+            'Return objWSCrodip.SendDiagnosticBuses(pAgent.id, tmpArr, updatedObject)
         Catch ex As Exception
             Dim strMessExt As String = ""
             If (ex.InnerException IsNot Nothing) Then

@@ -164,14 +164,20 @@
     <Setting Name="GPSRepertoireExport" Type="System.String" Scope="Application">
       <Value Profile="(Default)">MESURESGPS</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20240605170000</Value>
-    </Setting>
     <Setting Name="AppercuRecap" Type="System.String" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AcquisitionGPS" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20240715170000</Value>
+    </Setting>
+    <Setting Name="Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
+    </Setting>
+    <Setting Name="Logiciel_Crodip_Agent_WSCODIP4_CrodipServer" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://admin.crodip.net/server</Value>
     </Setting>
   </Settings>
 </SettingsFile>

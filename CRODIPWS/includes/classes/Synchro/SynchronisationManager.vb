@@ -101,7 +101,7 @@ Public Class SynchronisationManager
         CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
 
-            objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(DateDernSynhcro), isUpdateAvailable, isComplete, objWSUpdates)
+            'objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(DateDernSynhcro), isUpdateAvailable, isComplete, objWSUpdates)
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try

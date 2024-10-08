@@ -1515,13 +1515,23 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ReglagePulve.settings</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WSCrodip2\Reference.vb">
+    <Compile Include="Service References\WSCRODIP2\Reference.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="StartApplication.vb" />
+    <Compile Include="Web References\WSCODIP4\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSCRODIP3\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\WSCrodip_prod\Reference.vb">
       <SubType>code</SubType>
       <DesignTime>True</DesignTime>
@@ -1531,6 +1541,315 @@
     <Compile Include="Application\Signature\frmSignClientWacom.vb">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="Service References\WSCRODIP2\configuration91.svcinfo" />
+    <None Include="Service References\WSCRODIP2\configuration.svcinfo" />
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetAutoTestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetControleBancMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetControleManoMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticBusesDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticBusesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticMano542Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticTroncons833Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetExploitationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetExploitationTOPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetIdentifiantPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetIncrementDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolAgentListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBalanceListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBuseListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolChronoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolDistanceListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoControleListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoEtalonListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolMasseListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolPcListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPrestationCategorieResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPrestationTarifResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielCodesAPEResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielManometreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielTerritoireResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetSoftwareUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetStructureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetSynchroDateTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetVersionLogicielAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendAutoTestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendControleBancMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendControleManoMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticBusesDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticBusesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticMano542Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticTroncons833Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendExploitationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendExploitationTOPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendIdentifiantPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolManoControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolManoEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPrestationCategorieResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPrestationTarifResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendStructureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SetDateSynchroAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.UpdatesAvailableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
     <Content Include="wgssSTU.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1657,6 +1976,7 @@
     <None Include="Resources\LogoCRODIPIMG.bmp" />
     <None Include="Resources\puce_h1.jpg" />
     <None Include="Resources\btn_Signture.jpg" />
+    <None Include="Service References\WSCRODIP2\crodip.wsdl" />
     <None Include="SynchroFVMano" />
     <None Include="Resources\ico_pdf.jpg" />
     <Content Include="toleranceBuses.xml" />
@@ -2199,15 +2519,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ReglagePulve.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Service References\WSCrodip2\configuration91.svcinfo" />
-    <None Include="Service References\WSCrodip2\configuration.svcinfo" />
-    <None Include="Service References\WSCrodip2\Crodip_agent.WSCrodip2.IdentifiantPulverisateur.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\WSCrodip2\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
     <None Include="SynchroFVBanc" />
     <None Include="updates.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -2248,7 +2559,6 @@
     <Content Include="public\docs\fiche_terrain_rampe.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\WSCrodip2\crodip.wsdl" />
     <EmbeddedResource Include="Application\agent\Bancs\HistoBanc.resx">
       <DependentUpon>HistoBanc.vb</DependentUpon>
     </EmbeddedResource>
@@ -2709,6 +3019,16 @@
     <None Include="cr\ds_Etat_SM.xsx">
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </None>
+    <None Include="Web References\WSCODIP4\crodip.wsdl" />
+    <None Include="Web References\WSCODIP4\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Web References\WSCRODIP3\crodip.wsdl" />
+    <None Include="Web References\WSCRODIP3\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
     <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
     <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -2730,6 +3050,28 @@
       </CachedAppSettingsObjectName>
       <CachedSettingsPropName>
       </CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://admin-pp.crodip.net/new.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSCRODIP3\</RelPath>
+      <UpdateFromURL>http://admin-pp.crodip.net/new.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://admin.crodip.fr/new.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSCODIP4\</RelPath>
+      <UpdateFromURL>https://admin.crodip.fr/new.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Logiciel_Crodip_Agent_WSCODIP4_CrodipServer</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
@@ -2757,9 +3099,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WSCrodip2\" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Application\exploitant\fichevie\" />
   </ItemGroup>
   <ItemGroup>
@@ -2771,6 +3110,9 @@
       <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
       <Name>CRODIP_ControlLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WSCRODIP2\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

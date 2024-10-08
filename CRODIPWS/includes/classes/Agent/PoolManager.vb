@@ -98,8 +98,8 @@ idCRODIPPC = @idCRODIPPC,
             With oParam
                 .ParameterName = "@idStructure"
                 .DbType = DbType.Int32
-                If pPool.idStructure > 0 Then
-                    .Value = pPool.idStructure
+                If pPool.uidstructure > 0 Then
+                    .Value = pPool.uidstructure
                 Else
                     .Value = DBNull.Value
                 End If

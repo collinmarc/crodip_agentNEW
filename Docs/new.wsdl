@@ -4275,6 +4275,7 @@
 		</wsdl:operation>
 		
 		<!--ajout du 11/04/2024 ID WEB CONCEPT-->
+		<!---Suppression MCO 
 		<wsdl:operation name="GetPc">
 			<soap:operation soapAction="http://www.example.org/crodip/getPc" />
 			<wsdl:input><soap:body use="literal"/></wsdl:input>
@@ -4285,6 +4286,7 @@
 			<wsdl:input><soap:body use="literal"/></wsdl:input>
 			<wsdl:output><soap:body use="literal"/></wsdl:output>
 		</wsdl:operation>
+		-->
 		
 		<!--ajout du 04/09/2024 ID WEB CONCEPT-->
 		<wsdl:operation name="GetPc">

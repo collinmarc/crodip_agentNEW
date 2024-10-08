@@ -2,6 +2,7 @@ Imports System.Collections.Generic
 Imports System.Linq
 
 Public Class Structuree
+    Inherits root
 
     Private _id As Integer
     Private _idCrodip As String
@@ -419,7 +420,7 @@ Public Class Structuree
 
             Dim oPool As New Pool
             oPool.idCrodip = Me.id & "-0"
-            oPool.idStructure = Me.id
+            oPool.uidstructure = Me.id
             CSDebug.dispInfo("Creation du Pool [" & Me.id & "]")
             PoolManager.Save(oPool)
 
@@ -428,7 +429,7 @@ Public Class Structuree
             For Each oAgent As Agent In lst.Where(Function(A)
                                                       Return A.idStructure = Me.id
                                                   End Function)
-                CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
+                CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.uid & "]")
 
                 oAgent.idCRODIPPool = oPool.idCrodip
                 AgentManager.save(oAgent)

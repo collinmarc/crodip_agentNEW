@@ -3,59 +3,29 @@ Imports System.Data.Common
 
 Public Class BuseManager
 
+    Inherits RootManager
+
 #Region "Methodes Web Service"
-    Public Shared Function getWSBuseById(pAgent As Agent, ByVal buse_id As String) As Buse
-        Dim objBuse As New Buse
+
+    Public Shared Function getWSBuseById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Buse
+        Dim oreturn As Buse
+        oreturn = getWSByKey(Of Buse)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSBuse(pAgent As Agent, ByVal pManometre As Buse, ByRef pReturn As Buse) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of Buse)(pManometre, pReturn)
 
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetBuse(pAgent.id, buse_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If objWSCrodip_responseItem.InnerText() <> "" Then
-                            objBuse.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("Erreur - BuseManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("Erreur - BuseManager - Code 9 : Bad Request")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("Erreur - BuseManager - getWSBuseById : " & ex.Message)
+            CSDebug.dispFatal("sendWSBuse : " & ex.Message)
+            nreturn = -1
         End Try
-        Return objBuse
-
+        Return nreturn
     End Function
 
-    Public Shared Function sendWSBuse(pAgent As Agent, ByVal buse As Buse) As Integer
-        Try
-            ' Appel au Web Service
-            Dim UpdatedObject As New Object()
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendBuse(pAgent.id, buse, UpdatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As Buse
-        Dim objBuse As New Buse
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
-                objBuse.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
-            End If
-        Next
-
-        Return objBuse
-    End Function
 #End Region
 
 #Region "Methodes Locales"
@@ -70,12 +40,12 @@ Public Class BuseManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
         ' déclarations
-        Dim tmpObjectId As String = agentCourant.idStructure & "-" & agentCourant.id & "-1"
+        Dim tmpObjectId As String = agentCourant.idStructure & "-" & agentCourant.uid & "-1"
         If agentCourant.idStructure <> 0 Then
 
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT numeroNational FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY AgentBuseEtalon.numeroNational DESC"
+            bddCommande.CommandText = "SELECT numeroNational FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational LIKE '" & agentCourant.idStructure & "-" & agentCourant.uid & "-%' ORDER BY AgentBuseEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -85,12 +55,12 @@ Public Class BuseManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(agentCourant.idStructure & "-" & agentCourant.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(agentCourant.idStructure & "-" & agentCourant.uid & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = agentCourant.idStructure & "-" & agentCourant.id & "-" & (newId + 1)
+                tmpObjectId = agentCourant.idStructure & "-" & agentCourant.uid & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("BuseManager - newId : " & ex.Message & vbNewLine)
             End Try
@@ -141,7 +111,7 @@ Public Class BuseManager
                     paramsQuery = paramsQuery & " , idCrodip='" & objBuseEtalon.idCrodip & "'"
 
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.uidstructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
                     paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
                 End If
@@ -156,16 +126,16 @@ Public Class BuseManager
                 paramsQuery = paramsQuery & " , etat=" & objBuseEtalon.etat & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & objBuseEtalon.isSupprime & ""
                 paramsQuery = paramsQuery & " , isUtilise=" & objBuseEtalon.isUtilise & ""
-                If Not objBuseEtalon.AgentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , agentSuppression='" & objBuseEtalon.AgentSuppression & "'"
+                If Not objBuseEtalon.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , agentSuppression='" & objBuseEtalon.agentSuppression & "'"
                 End If
-                If Not objBuseEtalon.RaisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , raisonSuppression='" & objBuseEtalon.RaisonSuppression & "'"
+                If Not objBuseEtalon.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , raisonSuppression='" & objBuseEtalon.raisonSuppression & "'"
                 End If
-                If Not objBuseEtalon.DateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBuseEtalon.DateSuppression) & "'"
+                If Not objBuseEtalon.dateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBuseEtalon.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.JamaisServi & ""
+                paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.jamaisServi & ""
                 If objBuseEtalon.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.DateActivation) & "'"
                 End If

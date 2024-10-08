@@ -55,7 +55,7 @@ Public Class DiagnosticTroncons833Manager
             Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
             'For Each odiag833 As DiagnosticTroncons833 In objDiagnosticTroncons833.Liste
             'on transmet la liste des diag 833
-            nreturn = objWSCrodip.SendDiagnosticTroncons833(pAgent.id, tmpArr, updatedObject)
+            'nreturn = objWSCrodip.SendDiagnosticTroncons833(pAgent.id, tmpArr, updatedObject)
 
             'Next
         Catch ex As Exception

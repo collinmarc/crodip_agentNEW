@@ -4,166 +4,25 @@ Imports System.Data.Common
 Public Class StructureManager
     Inherits RootManager
 
-#Region "Methodes acces Web Service"
+#Region "Methodes Web Service"
 
-    Public Shared Function getWSStructureeById(pAgent As Agent, ByVal structuree_id As String) As Object
-        Dim objStructuree As New Structuree
+    Public Shared Function getWSStructureeById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Structuree
+        Dim oreturn As Structuree
+        oreturn = getWSByKey(Of Structuree)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSStructuree(pAgent As Agent, ByVal pobj As Structuree, ByRef pReturn As Structuree) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of Structuree)(pobj, pReturn)
 
-            ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetStructure(pAgent.id, structuree_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        Select Case objWSCrodip_responseItem.Name()
-                            Case "id"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                                End If
-                            Case "idCrodip"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.idCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "nom"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.nom = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "type"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.type = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "nomResponsable"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.nomResponsable = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "nomContact"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.nomContact = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "prenomContact"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.prenomContact = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "adresse"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.adresse = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "codePostal"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.codePostal = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "commune"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.commune = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "codeInsee"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.codeInsee = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "telephoneFixe"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.telephoneFixe = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "telephonePortable"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.telephonePortable = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "telephoneFax"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.telephoneFax = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "eMail"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.eMail = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "commentaire"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.commentaire = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "dateModificationCrodip"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                            Case "dateModificationAgent"
-                                If objWSCrodip_responseItem.InnerText() <> "" Then
-                                    objStructuree.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-                                End If
-                        End Select
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("StructureeManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("StructureeManager - Code 9 : Bad Request")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("StructureeManager - getWSStructureeById : " & ex.Message)
+            CSDebug.dispFatal("sendWSStructuree : " & ex.Message)
+            nreturn = -1
         End Try
-        Return objStructuree
-
+        Return nreturn
     End Function
-
-    Public Shared Function sendWSStructuree(pagent As Agent, ByVal structuree As Structuree, ByRef updatedObject As Object) As Integer
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendStructure(pagent.id, structuree, updatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
-
-    Public Shared Function xml2object(ByVal arrXml As Object) As Structuree
-        Dim objStructuree As New Structuree
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    objStructuree.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idCrodip"
-                    objStructuree.idCrodip = CType(tmpSerializeItem.InnerText, String)
-                Case "nom"
-                    objStructuree.nom = CType(tmpSerializeItem.InnerText, String)
-                Case "type"
-                    objStructuree.type = CType(tmpSerializeItem.InnerText, String)
-                Case "nomResponsable"
-                    objStructuree.nomResponsable = CType(tmpSerializeItem.InnerText, String)
-                Case "nomContact"
-                    objStructuree.nomContact = CType(tmpSerializeItem.InnerText, String)
-                Case "prenomContact"
-                    objStructuree.prenomContact = CType(tmpSerializeItem.InnerText, String)
-                Case "adresse"
-                    objStructuree.adresse = CType(tmpSerializeItem.InnerText, String)
-                Case "codePostal"
-                    objStructuree.codePostal = CType(tmpSerializeItem.InnerText, String)
-                Case "commune"
-                    objStructuree.commune = CType(tmpSerializeItem.InnerText, String)
-                Case "codeInsee"
-                    objStructuree.codeInsee = CType(tmpSerializeItem.InnerText, String)
-                Case "telephoneFixe"
-                    objStructuree.telephoneFixe = CType(tmpSerializeItem.InnerText, String)
-                Case "telephonePortable"
-                    objStructuree.telephonePortable = CType(tmpSerializeItem.InnerText, String)
-                Case "telephoneFax"
-                    objStructuree.telephoneFax = CType(tmpSerializeItem.InnerText, String)
-                Case "eMail"
-                    objStructuree.eMail = CType(tmpSerializeItem.InnerText, String)
-                Case "commentaire"
-                    objStructuree.commentaire = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationCrodip"
-                    objStructuree.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationAgent"
-                    objStructuree.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
-
-        Return objStructuree
-    End Function
-
 #End Region
 
 #Region "Methodes acces Local"

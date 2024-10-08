@@ -1,6 +1,6 @@
 ﻿Imports System.Data.Common
 Public Class CrodipManager
-
+    Inherits RootManager
 
     Public Shared Function AddParameter(pCmd As DbCommand, pName As String, pValue As Object, Optional pdbType As DbType = DbType.Object) As DbParameter
         Dim oParam As DbParameter = pCmd.CreateParameter()

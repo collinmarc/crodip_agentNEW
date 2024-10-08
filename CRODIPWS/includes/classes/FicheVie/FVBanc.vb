@@ -15,7 +15,7 @@ Public Class FVBanc
     End Sub
     Sub New(ByVal pAgent As Agent)
 
-        idAgentControleur = pAgent.id
+        idAgentControleur = pAgent.uid
     End Sub
 
 

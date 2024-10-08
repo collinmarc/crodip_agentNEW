@@ -20,7 +20,7 @@ Public Class DiagnosticItemManager
     ''' Le WS rend une collection qui est ajoutée au diagnistic courant
     Public Shared Function getWSDiagnosticItemsByDiagnosticId(ByVal pAgent As Agent, ByVal diagnostic_id As String) As Diagnostic
         Debug.Assert(pAgent IsNot Nothing)
-        Debug.Assert(Not String.IsNullOrEmpty(pAgent.id))
+        Debug.Assert(Not String.IsNullOrEmpty(pAgent.uid))
         Debug.Assert(Not String.IsNullOrEmpty(diagnostic_id))
 
         Dim objDiagnosticItem As DiagnosticItem
@@ -39,7 +39,7 @@ Public Class DiagnosticItemManager
                 ' Appel au WS
                 Dim objWSCrodip_responseItem As System.Xml.XmlNode
                 Dim objWSCrodip_responseItem2 As System.Xml.XmlNode()
-                Dim codeResponse As Integer = objWSCrodip.GetDiagnosticItems(pAgent.id, diagnostic_id, objWSCrodip_response)
+                Dim codeResponse As Integer = objWSCrodip.GetDiagnosticItems(pAgent.uid, diagnostic_id, objWSCrodip_response)
                 Select Case codeResponse
                     Case 0 ' OK
                         'Parcours de la collection des DiagItem
@@ -75,7 +75,7 @@ Public Class DiagnosticItemManager
 
             ' Appel au WS
             Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendDiagnosticItems(pAgent.id, tmpArr, updatedObject)
+            'Return objWSCrodip.SendDiagnosticItems(pAgent.id, tmpArr, updatedObject)
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticItemManager.sendWSDiagnosticItem ERR" & ex.Message & ":" & ex.InnerException.Message)
             Return -1

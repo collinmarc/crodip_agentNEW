@@ -26,7 +26,7 @@ Public Class Banc
     End Property
     Sub New()
         MyBase.New()
-        JamaisServi = True
+        jamaisServi = True
         _lstPools = New List(Of Pool)
     End Sub
 
@@ -122,9 +122,9 @@ Public Class Banc
                     'Le banc est marqué comme supprimé
 
                     bReturn = True
-                    Me.AgentSuppression = pAgentSuppression.nom
-                    Me.RaisonSuppression = pRaison
-                    Me.DateSuppression = Now()
+                    Me.agentSuppression = pAgentSuppression.nom
+                    Me.raisonSuppression = pRaison
+                    Me.dateSuppression = Now()
                     Me.isSupprime = True
                     bReturn = BancManager.save(Me)
                 End If
@@ -146,7 +146,7 @@ Public Class Banc
                     Me.id = pcolValue.ToString() 'Public id As String
                     Me.numeroNational = pcolValue.ToString() 'Public id As String
                 Case "idstructure".Trim().ToUpper()
-                    Me.idStructure = pcolValue.ToString() 'Public idAgent As String
+                    Me.uidstructure = pcolValue.ToString() 'Public idAgent As String
                 Case "marque".Trim().ToUpper()
                     Me.marque = pcolValue.ToString() 'Public marque As String
                 Case "modele".Trim().ToUpper()
@@ -174,20 +174,20 @@ Public Class Banc
                 Case "issupprime".Trim().ToUpper()
                     Me.isSupprime = CType(pcolValue, Boolean) 'Public isSupprime As Boolean
                 Case "agentsuppression".Trim().ToUpper()
-                    Me.AgentSuppression = pcolValue.ToString()
+                    Me.agentSuppression = pcolValue.ToString()
                 Case "raisonsuppression".Trim().ToUpper()
-                    Me.RaisonSuppression = pcolValue.ToString()
+                    Me.raisonSuppression = pcolValue.ToString()
                 Case "datesuppression".Trim().ToUpper()
                     Dim strDateMin As String = CSDate.ToCRODIPString("")
                     Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
                     If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                        Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                        Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
                     Else
-                        Me.DateSuppression = ""
+                        Me.dateSuppression = ""
                     End If
 
                 Case "jamaisServi".Trim().ToUpper()
-                    Me.JamaisServi = pcolValue
+                    Me.jamaisServi = pcolValue
                 Case "dateActivation".Trim().ToUpper()
                     Me.DateActivation = pcolValue
                 Case "ModuleAcquisition".Trim().ToUpper()
@@ -345,7 +345,7 @@ Public Class Banc
             Me.marque & "|" & _
             Me.modele & "|" & _
             Me.dateAchat & "|" & _
-            Me.idStructure & "|" & _
+            Me.uidstructure & "|" & _
             Me.DateActivation & "|" & _
             Me.dateDernierControleS & "|" & _
             Me.dateModificationAgent & "|" & _

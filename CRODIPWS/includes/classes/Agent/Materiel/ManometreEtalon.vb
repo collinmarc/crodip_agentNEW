@@ -49,7 +49,7 @@ Public Class ManometreEtalon
                 Case "idCrodip".Trim().ToUpper()
                     Me.idCrodip = CType(pcolValue, String)
                 Case "idStructure".Trim().ToUpper()
-                    Me.idStructure = CType(pcolValue, Integer)
+                    Me.uidstructure = CType(pcolValue, Integer)
                 Case "marque".Trim().ToUpper()
                     Me.marque = CType(pcolValue, String)
                 Case "classe".Trim().ToUpper()
@@ -83,19 +83,19 @@ Public Class ManometreEtalon
                         Me.nbControlesTotal = CType(pcolValue, Integer)
                     End If
                 Case "agentsuppression".Trim().ToUpper()
-                    Me.AgentSuppression = pcolValue.ToString()
+                    Me.agentSuppression = pcolValue.ToString()
                 Case "raisonsuppression".Trim().ToUpper()
-                    Me.RaisonSuppression = pcolValue.ToString()
+                    Me.raisonSuppression = pcolValue.ToString()
                 Case "datesuppression".Trim().ToUpper()
                     Dim strDateMin As String = CSDate.ToCRODIPString("")
                     Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
                     If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                        Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                        Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
                     Else
-                        Me.DateSuppression = ""
+                        Me.dateSuppression = ""
                     End If
                 Case "jamaisServi".Trim().ToUpper()
-                    Me.JamaisServi = pcolValue
+                    Me.jamaisServi = pcolValue
                 Case "dateActivation".Trim().ToUpper()
                     Me.DateActivation = pcolValue
             End Select
@@ -156,14 +156,14 @@ Public Class ManometreEtalon
             newFicheVieManoEtalon.idManometre = Me.idCrodip
             newFicheVieManoEtalon.type = pType
             newFicheVieManoEtalon.auteur = "AGENT"
-            newFicheVieManoEtalon.idAgentControleur = pAgent.id
+            newFicheVieManoEtalon.idAgentControleur = pAgent.uid
             newFicheVieManoEtalon.caracteristiques =
             Me.idCrodip & "|" &
             Me.marque & "|" &
             Me.classe & "|" &
             Me.type & "|" &
             Me.fondEchelle & "|" &
-            Me.idStructure & "|" &
+            Me.uidstructure & "|" &
             Me.isSynchro & "|" &
             Me.dateDernierControleS & "|" &
             Me.dateModificationAgent & "|" &

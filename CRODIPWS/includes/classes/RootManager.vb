@@ -1,47 +1,83 @@
 ﻿Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
+Imports System.Xml.Serialization
 'Imports System.Text.Json.Serialization
 'Imports System.Threading.Tasks
 'Imports RestSharp
 'Imports RestSharp.Authenticators
-Public Class LoginUserResponse
-    Public Property auth As Boolean
-    Public Property token As String
-    Public Property message As String
-
-End Class
-Public Class setResponse
-    Public Property message As String
-End Class
-
-Public Class auth
-    Public Property login As String
-    Public Property password As String
-    Public Sub New(pLogin As String, pPassword As String)
-        login = pLogin
-        password = pPassword
-    End Sub
-
-End Class
-
-Public Class getListResponse(Of T)
-    ' Public Property totalItems As Long
-    Public Property list As List(Of T)
-    '  Public Property totalPages As Long
-    '   Public Property currentPage As Long
-    '    Public Property numberByPage As Long
-
-    Public Sub New()
-        list = New List(Of T)()
-    End Sub
-End Class
 Public Class RootManager
-    'Protected Shared _restOptions As RestClientOptions
-    Protected Shared _user As auth
-    '    Protected Shared _client As RestClient
-    Protected Shared BaseUrl As String = "https://api-pp.crodip.fr"
-    Protected Shared _token As String
-    Protected Shared _bConnecte As Boolean
+    'Protected Shared BaseUrl As String = "https://admin-pp.crodip.net"
+    Protected Shared Function getWSByKey(Of T As root)(puid As Integer, paid As String) As T
+        Dim oreturn As T = Nothing
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim tXmlnodes As Xml.XmlNode()
+            '' déclarations
+            Dim typeT As Type = GetType(T)
+            Dim nomMethode As String = "Get" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            If methode IsNot Nothing Then
+                Dim Params As Object() = {puid, paid, tXmlnodes}
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                tXmlnodes = Params(2)
+            End If
+            Select Case codeResponse
+                Case 0 ' OK
+                    Dim ser As New XmlSerializer(GetType(T))
+                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                        oreturn = ser.Deserialize(reader)
+                    End Using
+                Case 1 ' NOK
+                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+        Finally
+        End Try
+        Return oreturn
+
+
+    End Function
+    Protected Shared Function SendWS(Of T As root)(pobj As T, ByRef pobjreturn As T) As Integer
+        Dim oreturn As T = Nothing
+        Dim codeResponse As Integer = 99
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim pInfo As String = ""
+            Dim puid As Integer
+
+            'Determination du Nom de la méthode : exemple SendManometreControle
+            Dim typeT As Type = GetType(T)
+            Dim nomMethode As String = "Send" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            If methode IsNot Nothing Then
+                'Invocation de la méthode
+                Dim Params As Object() = {pobj, pInfo, puid}
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+            End If
+            Select Case codeResponse
+                Case 2 ' UPDATE OK
+                    pobj = getWSByKey(Of T)(CType(pobj, root).uid, CType(pobj, root).aid)
+                Case 4 ' CREATE OK
+                    pobj = getWSByKey(Of T)(CType(pobj, root).uid, CType(pobj, root).aid)
+                Case 1 ' NOK
+                    CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
+                Case 0 ' PAS DE MAJ
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - sendWS : ", ex)
+        Finally
+        End Try
+        Return codeResponse
+
+
+    End Function
     Protected Shared Function getByKey(Of T As {root, New})(pSQL As String) As T
         Dim oReturn As T = Nothing
         Try

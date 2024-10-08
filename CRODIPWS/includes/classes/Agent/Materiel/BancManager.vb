@@ -1,67 +1,27 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
 Public Class BancManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSBancById(poAgent As Agent, ByVal banc_id As String) As Banc
-        Dim objBanc As New Banc
+    Public Shared Function getWSBancById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Banc
+        Dim oreturn As Banc
+        oreturn = getWSByKey(Of Banc)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSBanc(pAgent As Agent, ByVal pManometre As Banc, ByRef pReturn As Banc) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of Banc)(pManometre, pReturn)
 
-            ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            Dim bReturn As Boolean
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetBanc(poAgent.id, banc_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If objWSCrodip_responseItem.InnerText() <> "" Then
-                            bReturn = objBanc.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                            Debug.Assert(bReturn) ' Must be true
-                        End If
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("Erreur - BancManager - Code 1 : Non-Trouvée (" & banc_id & ")")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("Erreur - BancManager - Code 9 : Bad Request (" & banc_id & ")")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("Erreur - BancManager - getWSBancById (" & banc_id & ") : " & ex.Message)
+            CSDebug.dispFatal("sendWSBanc : " & ex.Message)
+            nreturn = -1
         End Try
-        Return objBanc
-
+        Return nreturn
     End Function
-
-    Public Shared Function sendWSBanc(pAgent As Agent, ByVal banc As Banc) As Integer
-        Try
-            Dim updatedObject As New Object
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendBanc(pAgent.id, banc, updatedObject)
-        Catch ex As Exception
-            CSDebug.dispError("BancManager.sendWSBanc Error " & ex.Message)
-            If ex.InnerException IsNot Nothing Then
-                CSDebug.dispError("BancManager.sendWSBanc Error " & ex.InnerException.Message)
-            End If
-        End Try
-    End Function
-
-    Public Shared Function xml2object(ByVal arrXml As Object) As Banc
-        Dim objBanc As New Banc
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
-                objBanc.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
-            End If
-        Next
-
-        Return objBanc
-    End Function
-
 #End Region
 
 #Region "Methodes Locales"
@@ -71,11 +31,11 @@ Public Class BancManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
 
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
+        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
         If pAgent.idStructure <> 0 Then
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY BancMesure.id DESC"
+            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY BancMesure.id DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -85,13 +45,13 @@ Public Class BancManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
                 tmpListProfils.Close()
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("BancManager - getnewIdForTestOnly : " & ex.Message & vbNewLine)
             End Try
@@ -136,7 +96,7 @@ Public Class BancManager
                         objBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                     End If
 
-                    paramsQuery = paramsQuery & " , idStructure=" & objBanc.idStructure & ""
+                    paramsQuery = paramsQuery & " , idStructure=" & objBanc.uidstructure & ""
 
                     If Not objBanc.marque Is Nothing Then
                         paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objBanc.marque) & "'"
@@ -157,23 +117,23 @@ Public Class BancManager
                     paramsQuery = paramsQuery & " , isSupprime=" & objBanc.isSupprime & ""
                     paramsQuery = paramsQuery & " , nbControles=" & objBanc.nbControles & ""
                     paramsQuery = paramsQuery & " , nbControlesTotal=" & objBanc.nbControlesTotal & ""
-                    If Not objBanc.AgentSuppression Is Nothing Then
-                        paramsQuery = paramsQuery & " , agentSuppression='" & objBanc.AgentSuppression & "'"
+                    If Not objBanc.agentSuppression Is Nothing Then
+                        paramsQuery = paramsQuery & " , agentSuppression='" & objBanc.agentSuppression & "'"
                     Else
                         paramsQuery = paramsQuery & " , agentSuppression=''"
                     End If
-                    If Not objBanc.RaisonSuppression Is Nothing Then
-                        paramsQuery = paramsQuery & " , raisonSuppression='" & objBanc.RaisonSuppression & "'"
+                    If Not objBanc.raisonSuppression Is Nothing Then
+                        paramsQuery = paramsQuery & " , raisonSuppression='" & objBanc.raisonSuppression & "'"
                     Else
                         paramsQuery = paramsQuery & " , raisonSuppression=''"
                     End If
-                    If objBanc.DateSuppression <> "" Then
-                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.TOCRODIPString(objBanc.DateSuppression) & "'"
+                    If objBanc.dateSuppression <> "" Then
+                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.TOCRODIPString(objBanc.dateSuppression) & "'"
                     Else
                         paramsQuery = paramsQuery & " , dateSuppression=''"
                     End If
 
-                    paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.JamaisServi & ""
+                    paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.jamaisServi & ""
                     If objBanc.DateActivation <> Nothing Then
                         paramsQuery = paramsQuery & " , dateActivation='" & CSDate.TOCRODIPString(objBanc.DateActivation) & "'"
                     End If

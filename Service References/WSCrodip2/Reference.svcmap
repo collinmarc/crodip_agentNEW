@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dfd4c5ea-cfd3-4606-8596-f2c818be8705" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e9c42aef-ee21-46c6-936b-c1878ab2fb8f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -18,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://admin-pp.crodip.fr/new.wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://admin-pp.crodip.net/new.wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="crodip.wsdl" MetadataType="Wsdl" ID="d7cdae21-0342-4438-a36f-e21f05471bba" SourceId="1" SourceUrl="http://admin-pp.crodip.fr/new.wsdl" />
+    <MetadataFile FileName="crodip.wsdl" MetadataType="Wsdl" ID="95e5f688-aa0f-4f64-beca-1b5ea2fc9af7" SourceId="1" SourceUrl="https://admin-pp.crodip.net/new.wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

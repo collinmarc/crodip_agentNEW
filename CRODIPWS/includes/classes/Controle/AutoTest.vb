@@ -1,10 +1,11 @@
 ﻿Imports System.Data.Common
 Imports System.Web.Services
 Imports System.Xml.Serialization
-
-<Serializable(), XmlInclude(GetType(AutoTest))> _
-<XmlInclude(GetType(AutoTest))> _
+<Serializable(), XmlInclude(GetType(AutoTest))>
+<XmlInclude(GetType(AutoTest))>
 Public Class AutoTest
+    Inherits root
+
     Private _id As Integer
     Private _idStructure As Integer
     Private _IdAgent As String
@@ -25,7 +26,7 @@ Public Class AutoTest
     Public Sub New(pAgent As Agent)
         _id = -1
         _Etat = -1
-        NumAgent = pAgent.id
+        NumAgent = pAgent.uid
         IdStructure = pAgent.idStructure
         _dateModificationAgent = Date.Now()
         _dateModificationCrodip = CDate("01/01/1970")
@@ -35,8 +36,8 @@ Public Class AutoTest
         _Etat = -1
         Type = "MANOC"
         IdMateriel = pMano.idCrodip
-        IdStructure = pMano.idStructure
-        NumAgent = pAgent.id
+        IdStructure = pMano.uidstructure
+        NumAgent = pAgent.uid
         Traca = pMano.Traca
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
@@ -44,16 +45,16 @@ Public Class AutoTest
         _Etat = -1
         Type = "MANOE"
         IdMateriel = pMano.idCrodip
-        IdStructure = pMano.idStructure
-        NumAgent = pAgent.id
+        IdStructure = pMano.uidstructure
+        NumAgent = pAgent.uid
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
         _id = -1
         _Etat = -1
         Type = "BANC"
         IdMateriel = pBanc.id
-        IdStructure = pBanc.idStructure
-        NumAgent = pAgent.id
+        IdStructure = pBanc.uidstructure
+        NumAgent = pAgent.uid
     End Sub
     Public Property Id() As Integer
         Get

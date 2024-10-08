@@ -2,18 +2,18 @@ Imports System.Collections.Generic
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-<Serializable(), XmlInclude(GetType(Manometre))>
+<Serializable(), XmlInclude(GetType(ManometreControle))>
 Public Class Manometre
     Inherits Materiel
 
-    Protected m_marque As String
-    Protected m_classe As String
-    Protected m_type As String
-    Protected m_fondEchelle As String
-    Protected m_isSynchro As Boolean
-    Protected m_isUtilise As Boolean
-    Protected m_nbControles As Integer
-    Protected m_nbControlesTotal As Integer
+    Protected m_marque As String = ""
+    Protected m_classe As String = ""
+    Protected m_type As String = ""
+    Protected m_fondEchelle As String = ""
+    Protected m_isSynchro As Boolean = False
+    Protected m_isUtilise As Boolean = False
+    Protected m_nbControles As Integer = 0
+    Protected m_nbControlesTotal As Integer = 0
 
 
     Sub New()
@@ -38,7 +38,6 @@ Public Class Manometre
             m_classe = Value
         End Set
     End Property
-
     Public Property type() As String
         Get
             Return m_type
@@ -57,13 +56,22 @@ Public Class Manometre
         End Set
     End Property
 
-
+    <XmlIgnore>
     Public Property isSynchro() As Boolean
         Get
             Return m_isSynchro
         End Get
         Set(ByVal Value As Boolean)
             m_isSynchro = Value
+        End Set
+    End Property
+    <XmlElement("isSynchro")>
+    Public Property isSynchroWS() As Integer
+        Get
+            Return CInt(m_isSynchro)
+        End Get
+        Set(ByVal Value As Integer)
+            m_isSynchro = CBool(Value)
         End Set
     End Property
 
@@ -79,24 +87,25 @@ Public Class Manometre
         End Set
     End Property
 
-    Public Property nbControles() As Integer
+    Public Property nbControles() As String
         Get
             Return m_nbControles
         End Get
-        Set(ByVal Value As Integer)
-            m_nbControles = Value
+        Set(ByVal Value As String)
+            'm_nbControles = Value
         End Set
     End Property
 
-    Public Property nbControlesTotal() As Integer
+    Public Property nbControlesTotal() As String
         Get
             Return m_nbControlesTotal
         End Get
-        Set(ByVal Value As Integer)
-            m_nbControlesTotal = Value
+        Set(ByVal Value As String)
+            '            m_nbControlesTotal = Value
         End Set
     End Property
     Private _lstPools As List(Of Pool)
+    <XmlIgnore()>
     Public Property lstPools() As List(Of Pool)
         Get
             Return _lstPools

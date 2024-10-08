@@ -1,4 +1,5 @@
 Imports System.Data.Common
+Imports System.IO
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
@@ -7,15 +8,17 @@ Public Class ManometreControle
     Inherits Manometre
     Implements IComparable
 
-    Private _resolution As String
-    Private _resolutionLecture As String
-    'Private arrPressions_6bar() As String = {0, 1.2, 2.4, 3.6, 4.8, 6}
-    'Private arrPressions_10bar() As String = {0, 2, 4, 6, 8, 10}
-    'Private arrPressions_20bar() As String = {0, 4, 8, 12, 16, 20}
-    'Private arrPressions_25bar() As String = {0, 5, 10, 15, 20, 25}
-    'Private arrPressions_default() As String = {0, 2, 4, 6, 8, 10}
-    'Private arrPressions() As String
-
+    Private _resolution As String = ""
+    Private _resolutionLecture As String = ""
+    Private _IdManometre As String = ""
+    Public Property idManometre() As String
+        Get
+            Return _IdManometre
+        End Get
+        Set(ByVal value As String)
+            _IdManometre = value
+        End Set
+    End Property
     Private m_bIsUpdated As Boolean
     Sub New()
         m_bIsUpdated = False
@@ -31,7 +34,6 @@ Public Class ManometreControle
             _controle = value
         End Set
     End Property
-
 
     Public Property resolution() As String
         Get
@@ -73,7 +75,17 @@ Public Class ManometreControle
         Set
         End Set
     End Property
+    <XmlElement("bAjusteur")>
+    Public Property bAjusteurWS() As Integer
+        Get
+            Return CInt(_bAjusteur)
+        End Get
+        Set(ByVal value As Integer)
+            _bAjusteur = CBool(value)
+        End Set
+    End Property
     Private _bAjusteur As Boolean
+    <XmlIgnore>
     Public Property bAjusteur() As Boolean
         Get
             Return _bAjusteur
@@ -158,7 +170,7 @@ Public Class ManometreControle
             Return getPressionCtrl(6)
         End Get
     End Property
-    Private _typeTraca As String
+    Private _typeTraca As String = ""
     Public Property typeTraca() As String
         Get
             Return _typeTraca
@@ -167,6 +179,7 @@ Public Class ManometreControle
             _typeTraca = value
         End Set
     End Property
+    <XmlIgnore()>
     Public Property IsTypeTracaH() As Boolean
         Get
             If Not String.IsNullOrEmpty(typeTraca) Then
@@ -182,6 +195,7 @@ Public Class ManometreControle
             End If
         End Set
     End Property
+    <XmlIgnore()>
     Public Property IsTypeTracaB() As Boolean
         Get
             If Not String.IsNullOrEmpty(typeTraca) Then
@@ -197,6 +211,7 @@ Public Class ManometreControle
             End If
         End Set
     End Property
+    <XmlIgnore()>
     Public Property IsTypeRaccordRA() As Boolean
         Get
             If Not String.IsNullOrEmpty(typeRaccord) Then
@@ -212,6 +227,7 @@ Public Class ManometreControle
             End If
         End Set
     End Property
+    <XmlIgnore()>
     Public Property IsTypeRaccordRV() As Boolean
         Get
             If Not String.IsNullOrEmpty(typeRaccord) Then
@@ -227,8 +243,8 @@ Public Class ManometreControle
             End If
         End Set
     End Property
-
     Private _numTraca As Integer
+    <XmlIgnoreAttribute()>
     Public Property numTraca() As Integer
         Get
             Return _numTraca
@@ -237,7 +253,18 @@ Public Class ManometreControle
             _numTraca = value
         End Set
     End Property
-    Private _typeRaccord As String
+    <XmlElement("numTraca")>
+    Public Property numTracaS() As String
+        Get
+            Return numTraca.ToString()
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                numTraca = CInt(value)
+            End If
+        End Set
+    End Property
+    Private _typeRaccord As String = ""
     Public Property typeRaccord() As String
         Get
             Return _typeRaccord
@@ -246,7 +273,6 @@ Public Class ManometreControle
             _typeRaccord = value
         End Set
     End Property
-    Private newPropertyValue As String
     Public ReadOnly Property Traca() As String
         Get
             If String.IsNullOrEmpty(typeTraca) Then
@@ -265,7 +291,7 @@ Public Class ManometreControle
             Case "idCrodip".Trim.ToUpper()
                 Me.idCrodip = pValue.ToString() 'Public numeroNational As String
             Case "idStructure".Trim.ToUpper()
-                Me.idStructure = pValue.ToString() 'Public idAgent As String
+                Me.uidstructure = pValue.ToString() 'Public idAgent As String
             Case "marque".Trim.ToUpper()
                 Me.marque = pValue.ToString() 'Public marque As String
             Case "classe".Trim.ToUpper()
@@ -313,19 +339,19 @@ Public Class ManometreControle
             Case "resolutionLecture".Trim.ToUpper()
                 Me.resolutionLecture = pValue.ToString()
             Case "agentsuppression".Trim().ToUpper()
-                Me.AgentSuppression = pValue.ToString()
+                Me.agentSuppression = pValue.ToString()
             Case "raisonsuppression".Trim().ToUpper()
-                Me.RaisonSuppression = pValue.ToString()
+                Me.raisonSuppression = pValue.ToString()
             Case "datesuppression".Trim().ToUpper()
                 Dim strDateMin As String = CSDate.ToCRODIPString("")
                 Dim strDateValue As String = CSDate.ToCRODIPString(pValue)
                 If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                    Me.DateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                    Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
                 Else
-                    Me.DateSuppression = ""
+                    Me.dateSuppression = ""
                 End If
             Case "jamaisServi".Trim().ToUpper()
-                Me.JamaisServi = pValue
+                Me.jamaisServi = pValue
             Case "dateActivation".Trim().ToUpper()
                 Me.DateActivation = pValue
             Case "typeTraca".Trim().ToUpper()
@@ -339,9 +365,9 @@ Public Class ManometreControle
     End Function
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
         Me.creerFicheVieSuppression(pAgentSuppression)
-        Me.AgentSuppression = pAgentSuppression.nom
-        Me.RaisonSuppression = pRaison
-        Me.DateSuppression = Now.ToString()
+        Me.agentSuppression = pAgentSuppression.nom
+        Me.raisonSuppression = pRaison
+        Me.dateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
         ManometreControleManager.save(Me)
@@ -475,18 +501,18 @@ Public Class ManometreControle
             oFV.idManometre = Me.idCrodip
             oFV.type = pType
             oFV.auteur = "AGENT"
-            oFV.idAgentControleur = pAgent.id
-            oFV.caracteristiques = _
-            Me.idCrodip & "|" & _
-            Me.marque & "|" & _
-            Me.classe & "|" & _
-            Me.type & "|" & _
-            Me.fondEchelle & "|" & _
-            Me.idStructure & "|" & _
-            Me.isSynchro & "|" & _
-            Me.dateDernierControleS & "|" & _
-            Me.dateModificationAgent & "|" & _
-            Me.dateModificationCrodip
+            oFV.idAgentControleur = pAgent.uid
+            oFV.caracteristiques =
+        Me.idCrodip & "|" &
+        Me.marque & "|" &
+        Me.classe & "|" &
+        Me.type & "|" &
+        Me.fondEchelle & "|" &
+        Me.uidstructure & "|" &
+        Me.isSynchro & "|" &
+        Me.dateDernierControleS & "|" &
+        Me.dateModificationAgent & "|" &
+        Me.dateModificationCrodip
             oFV.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
             oFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             FVManometreControleManager.save(oFV)
@@ -542,4 +568,5 @@ Public Class ManometreControle
             Return Me.numTraca.CompareTo(obj.numTraca)
         End If
     End Function
+
 End Class

@@ -2,64 +2,27 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class PulverisateurManager
+    Inherits RootManager
 
-#Region "Methodes acces Web Service"
+#Region "Methodes Web Service"
 
-    Public Shared Function getWSPulverisateurById(pAgentId As String, ByVal pulverisateur_id As String) As Pulverisateur
-        Dim objPulverisateur As New Pulverisateur
+    Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Pulverisateur
+        Dim oreturn As Pulverisateur
+        oreturn = getWSByKey(Of Pulverisateur)(pmanometre_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function SendWSPulverisateur(pAgent As Agent, ByVal pobj As Pulverisateur, ByRef pReturn As Pulverisateur) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of Pulverisateur)(pobj, pReturn)
 
-            ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetPulverisateur(pAgentId, pulverisateur_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If objWSCrodip_responseItem.InnerText() <> "" Then
-                            objPulverisateur.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("Erreur - PulverisateurManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("Erreur - PulverisateurManager - Code 9 : Bad Request")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("Erreur - PulverisateurManager - getWSPulverisateurById (" & pulverisateur_id & "): " & ex.Message)
-            objPulverisateur = Nothing
+            CSDebug.dispFatal("sendWSPulverisateur : " & ex.Message)
+            nreturn = -1
         End Try
-        Return objPulverisateur
-
+        Return nreturn
     End Function
-
-    Public Shared Function sendWSPulverisateur(pAgent As Agent, ByVal pulverisateur As Pulverisateur) As Integer
-        Try
-            Dim updatedObject As New Object
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendPulverisateur(pAgent.id, pulverisateur, updatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
-
-    Public Shared Function xml2object(ByVal arrXml As Object) As Pulverisateur
-        Dim objPulverisateur As New Pulverisateur
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            If tmpSerializeItem.InnerText() <> "" Then
-                objPulverisateur.Fill(tmpSerializeItem.Name(), tmpSerializeItem.InnerText())
-            End If
-        Next
-
-        Return objPulverisateur
-    End Function
-
 #End Region
 
 #Region "Methodes acces Local"
@@ -103,7 +66,7 @@ Public Class PulverisateurManager
 
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
-        Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
+        Debug.Assert(pAgent.uid <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
         Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
@@ -137,7 +100,7 @@ Public Class PulverisateurManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
+            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.uid & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -147,12 +110,12 @@ Public Class PulverisateurManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpPulveId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpPulveId.Replace(curAgent.idStructure & "-" & curAgent.id & "-", ""))
+                    tmpId = CInt(tmpPulveId.Replace(curAgent.idStructure & "-" & curAgent.uid & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpPulveId = curAgent.idStructure & "-" & curAgent.id & "-" & (newId + 1)
+                tmpPulveId = curAgent.idStructure & "-" & curAgent.uid & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("PulverisateurManager - getNewId : " & ex.Message)
             End Try

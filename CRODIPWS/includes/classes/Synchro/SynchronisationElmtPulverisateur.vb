@@ -41,7 +41,7 @@ Public Class SynchronisationElmtPulverisateur
             Dim tmpObject As New Pulverisateur
             Try
                 SetStatus("Réception MAJ Pulvérisateur n°" & Me.IdentifiantChaine & "...")
-                tmpObject = PulverisateurManager.getWSPulverisateurById(pAgent.id, Me.IdentifiantChaine)
+                tmpObject = PulverisateurManager.getWSPulverisateurById(pAgent.uid, Me.IdentifiantChaine)
                 If tmpObject IsNot Nothing Then
                     PulverisateurManager.save(tmpObject, "0", pAgent, True)
                 End If

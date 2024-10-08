@@ -341,8 +341,8 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Agent
                     Try
                         setStatus("Réception MAJ Agent n°" & pElement.identifiantChaine & "...")
-                        tmpObject = AgentManager.getWSAgentById(pElement.identifiantChaine)
-                        If tmpObject.id <> 0 Then
+                        tmpObject = AgentManager.getWSById(Nothing, pElement.uid)
+                        If tmpObject.uid <> 0 Then
                             pAgent = tmpObject
                             CSDebug.dispInfo("Synchronisation::runDescSynchro(GetAgent) Mot de passe = " & tmpObject.motDePasse)
                             AgentManager.save(tmpObject, True)

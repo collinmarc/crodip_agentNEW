@@ -12,513 +12,842 @@ Option Strict On
 Option Explicit On
 
 
-Namespace WSCrodip2
+Namespace WSCRODIP2
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ServiceModel.ServiceContractAttribute([Namespace]:="http://www.example.org/crodip/", ConfigurationName:="WSCrodip2.CrodipServer")>  _
+     System.ServiceModel.ServiceContractAttribute([Namespace]:="http://www.example.org/crodip/", ConfigurationName:="WSCRODIP2.CrodipServer")>  _
     Public Interface CrodipServer
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendLogsRequest) du message SendLogsRequest ne correspond pas à la valeur par défaut (SendLogs)
-        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendLogs", ReplyAction:="*"),  _
-         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendLogs(ByVal request As WSCrodip2.SendLogsRequest) As WSCrodip2.SendLogsResponse
-        
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetAgentRequest) du message GetAgentRequest ne correspond pas à la valeur par défaut (GetAgent)
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getAgent", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetAgent(ByVal request As WSCrodip2.GetAgentRequest) As WSCrodip2.GetAgentResponse
+        Function GetAgent(ByVal request As WSCRODIP2.GetAgentRequest) As WSCRODIP2.GetAgentResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendAgentRequest) du message SendAgentRequest ne correspond pas à la valeur par défaut (SendAgent)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getAgent", ReplyAction:="*")>  _
+        Function GetAgentAsync(ByVal request As WSCRODIP2.GetAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetAgentResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendAgent", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendAgent(ByVal request As WSCrodip2.SendAgentRequest) As WSCrodip2.SendAgentResponse
+        Function SendAgent(ByVal request As WSCRODIP2.SendAgentRequest) As WSCRODIP2.SendAgentResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendAgent", ReplyAction:="*")>  _
+        Function SendAgentAsync(ByVal request As WSCRODIP2.SendAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendAgentResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPc", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPc(ByVal request As WSCRODIP2.GetPcRequest) As WSCRODIP2.GetPcResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPc", ReplyAction:="*")>  _
+        Function GetPcAsync(ByVal request As WSCRODIP2.GetPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPcResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPc", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPc(ByVal request As WSCRODIP2.SendPcRequest) As WSCRODIP2.SendPcResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPc", ReplyAction:="*")>  _
+        Function SendPcAsync(ByVal request As WSCRODIP2.SendPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPcResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getMasse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetMasse(ByVal request As WSCRODIP2.GetMasseRequest) As WSCRODIP2.GetMasseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getMasse", ReplyAction:="*")>  _
+        Function GetMasseAsync(ByVal request As WSCRODIP2.GetMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetMasseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendMasse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendMasse(ByVal request As WSCRODIP2.SendMasseRequest) As WSCRODIP2.SendMasseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendMasse", ReplyAction:="*")>  _
+        Function SendMasseAsync(ByVal request As WSCRODIP2.SendMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendMasseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getBalance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetBalance(ByVal request As WSCRODIP2.GetBalanceRequest) As WSCRODIP2.GetBalanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getBalance", ReplyAction:="*")>  _
+        Function GetBalanceAsync(ByVal request As WSCRODIP2.GetBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBalanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendBalance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendBalance(ByVal request As WSCRODIP2.SendBalanceRequest) As WSCRODIP2.SendBalanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendBalance", ReplyAction:="*")>  _
+        Function SendBalanceAsync(ByVal request As WSCRODIP2.SendBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBalanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getDistance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetDistance(ByVal request As WSCRODIP2.GetDistanceRequest) As WSCRODIP2.GetDistanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getDistance", ReplyAction:="*")>  _
+        Function GetDistanceAsync(ByVal request As WSCRODIP2.GetDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDistanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendDistance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendDistance(ByVal request As WSCRODIP2.SendDistanceRequest) As WSCRODIP2.SendDistanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendDistance", ReplyAction:="*")>  _
+        Function SendDistanceAsync(ByVal request As WSCRODIP2.SendDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDistanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getChrono", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetChrono(ByVal request As WSCRODIP2.GetChronoRequest) As WSCRODIP2.GetChronoResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getChrono", ReplyAction:="*")>  _
+        Function GetChronoAsync(ByVal request As WSCRODIP2.GetChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetChronoResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendChrono", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendChrono(ByVal request As WSCRODIP2.SendChronoRequest) As WSCRODIP2.SendChronoResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendChrono", ReplyAction:="*")>  _
+        Function SendChronoAsync(ByVal request As WSCRODIP2.SendChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendChronoResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPool", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPool(ByVal request As WSCRODIP2.GetPoolRequest) As WSCRODIP2.GetPoolResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPool", ReplyAction:="*")>  _
+        Function GetPoolAsync(ByVal request As WSCRODIP2.GetPoolRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPool", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPool(ByVal request As WSCRODIP2.SendPoolRequest) As WSCRODIP2.SendPoolResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPool", ReplyAction:="*")>  _
+        Function SendPoolAsync(ByVal request As WSCRODIP2.SendPoolRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolAgent", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolAgent(ByVal request As WSCRODIP2.GetPoolAgentRequest) As WSCRODIP2.GetPoolAgentResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolAgent", ReplyAction:="*")>  _
+        Function GetPoolAgentAsync(ByVal request As WSCRODIP2.GetPoolAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolAgentResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolAgent", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolAgent(ByVal request As WSCRODIP2.SendPoolAgentRequest) As WSCRODIP2.SendPoolAgentResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolAgent", ReplyAction:="*")>  _
+        Function SendPoolAgentAsync(ByVal request As WSCRODIP2.SendPoolAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolAgentResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolPc", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolPc(ByVal request As WSCRODIP2.GetPoolPcRequest) As WSCRODIP2.GetPoolPcResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolPc", ReplyAction:="*")>  _
+        Function GetPoolPcAsync(ByVal request As WSCRODIP2.GetPoolPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolPcResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolPc", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolPc(ByVal request As WSCRODIP2.SendPoolPcRequest) As WSCRODIP2.SendPoolPcResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolPc", ReplyAction:="*")>  _
+        Function SendPoolPcAsync(ByVal request As WSCRODIP2.SendPoolPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolPcResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolMasse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolMasse(ByVal request As WSCRODIP2.GetPoolMasseRequest) As WSCRODIP2.GetPoolMasseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolMasse", ReplyAction:="*")>  _
+        Function GetPoolMasseAsync(ByVal request As WSCRODIP2.GetPoolMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolMasseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolMasse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolMasse(ByVal request As WSCRODIP2.SendPoolMasseRequest) As WSCRODIP2.SendPoolMasseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolMasse", ReplyAction:="*")>  _
+        Function SendPoolMasseAsync(ByVal request As WSCRODIP2.SendPoolMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolMasseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBalance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolBalance(ByVal request As WSCRODIP2.GetPoolBalanceRequest) As WSCRODIP2.GetPoolBalanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBalance", ReplyAction:="*")>  _
+        Function GetPoolBalanceAsync(ByVal request As WSCRODIP2.GetPoolBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBalanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolBalance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolBalance(ByVal request As WSCRODIP2.SendPoolBalanceRequest) As WSCRODIP2.SendPoolBalanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolBalance", ReplyAction:="*")>  _
+        Function SendPoolBalanceAsync(ByVal request As WSCRODIP2.SendPoolBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolBalanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolDistance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolDistance(ByVal request As WSCRODIP2.GetPoolDistanceRequest) As WSCRODIP2.GetPoolDistanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolDistance", ReplyAction:="*")>  _
+        Function GetPoolDistanceAsync(ByVal request As WSCRODIP2.GetPoolDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolDistanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolDistance", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolDistance(ByVal request As WSCRODIP2.SendPoolDistanceRequest) As WSCRODIP2.SendPoolDistanceResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolDistance", ReplyAction:="*")>  _
+        Function SendPoolDistanceAsync(ByVal request As WSCRODIP2.SendPoolDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolDistanceResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolChrono", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolChrono(ByVal request As WSCRODIP2.GetPoolChronoRequest) As WSCRODIP2.GetPoolChronoResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolChrono", ReplyAction:="*")>  _
+        Function GetPoolChronoAsync(ByVal request As WSCRODIP2.GetPoolChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolChronoResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolChrono", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolChrono(ByVal request As WSCRODIP2.SendPoolChronoRequest) As WSCRODIP2.SendPoolChronoResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolChrono", ReplyAction:="*")>  _
+        Function SendPoolChronoAsync(ByVal request As WSCRODIP2.SendPoolChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolChronoResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoControle", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolManoControle(ByVal request As WSCRODIP2.GetPoolManoControleRequest) As WSCRODIP2.GetPoolManoControleResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoControle", ReplyAction:="*")>  _
+        Function GetPoolManoControleAsync(ByVal request As WSCRODIP2.GetPoolManoControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoControleResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolManoControle", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolManoControle(ByVal request As WSCRODIP2.SendPoolManoControleRequest) As WSCRODIP2.SendPoolManoControleResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolManoControle", ReplyAction:="*")>  _
+        Function SendPoolManoControleAsync(ByVal request As WSCRODIP2.SendPoolManoControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolManoControleResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoEtalon", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolManoEtalon(ByVal request As WSCRODIP2.GetPoolManoEtalonRequest) As WSCRODIP2.GetPoolManoEtalonResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoEtalon", ReplyAction:="*")>  _
+        Function GetPoolManoEtalonAsync(ByVal request As WSCRODIP2.GetPoolManoEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoEtalonResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolManoEtalon", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolManoEtalon(ByVal request As WSCRODIP2.SendPoolManoEtalonRequest) As WSCRODIP2.SendPoolManoEtalonResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolManoEtalon", ReplyAction:="*")>  _
+        Function SendPoolManoEtalonAsync(ByVal request As WSCRODIP2.SendPoolManoEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolManoEtalonResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBuse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolBuse(ByVal request As WSCRODIP2.GetPoolBuseRequest) As WSCRODIP2.GetPoolBuseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBuse", ReplyAction:="*")>  _
+        Function GetPoolBuseAsync(ByVal request As WSCRODIP2.GetPoolBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBuseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolBuse", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function SendPoolBuse(ByVal request As WSCRODIP2.SendPoolBuseRequest) As WSCRODIP2.SendPoolBuseResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendPoolBuse", ReplyAction:="*")>  _
+        Function SendPoolBuseAsync(ByVal request As WSCRODIP2.SendPoolBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolBuseResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolList(ByVal request As WSCRODIP2.GetPoolListRequest) As WSCRODIP2.GetPoolListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolList", ReplyAction:="*")>  _
+        Function GetPoolListAsync(ByVal request As WSCRODIP2.GetPoolListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolAgentList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolAgentList(ByVal request As WSCRODIP2.GetPoolAgentListRequest) As WSCRODIP2.GetPoolAgentListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolAgentList", ReplyAction:="*")>  _
+        Function GetPoolAgentListAsync(ByVal request As WSCRODIP2.GetPoolAgentListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolAgentListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolPcList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolPcList(ByVal request As WSCRODIP2.GetPoolPcListRequest) As WSCRODIP2.GetPoolPcListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolPcList", ReplyAction:="*")>  _
+        Function GetPoolPcListAsync(ByVal request As WSCRODIP2.GetPoolPcListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolPcListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolMasseList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolMasseList(ByVal request As WSCRODIP2.GetPoolMasseListRequest) As WSCRODIP2.GetPoolMasseListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolMasseList", ReplyAction:="*")>  _
+        Function GetPoolMasseListAsync(ByVal request As WSCRODIP2.GetPoolMasseListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolMasseListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBalanceList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolBalanceList(ByVal request As WSCRODIP2.GetPoolBalanceListRequest) As WSCRODIP2.GetPoolBalanceListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBalanceList", ReplyAction:="*")>  _
+        Function GetPoolBalanceListAsync(ByVal request As WSCRODIP2.GetPoolBalanceListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBalanceListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolDistanceList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolDistanceList(ByVal request As WSCRODIP2.GetPoolDistanceListRequest) As WSCRODIP2.GetPoolDistanceListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolDistanceList", ReplyAction:="*")>  _
+        Function GetPoolDistanceListAsync(ByVal request As WSCRODIP2.GetPoolDistanceListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolDistanceListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolChronoList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolChronoList(ByVal request As WSCRODIP2.GetPoolChronoListRequest) As WSCRODIP2.GetPoolChronoListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolChronoList", ReplyAction:="*")>  _
+        Function GetPoolChronoListAsync(ByVal request As WSCRODIP2.GetPoolChronoListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolChronoListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoControleList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolManoControleList(ByVal request As WSCRODIP2.GetPoolManoControleListRequest) As WSCRODIP2.GetPoolManoControleListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoControleList", ReplyAction:="*")>  _
+        Function GetPoolManoControleListAsync(ByVal request As WSCRODIP2.GetPoolManoControleListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoControleListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoEtalonList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolManoEtalonList(ByVal request As WSCRODIP2.GetPoolManoEtalonListRequest) As WSCRODIP2.GetPoolManoEtalonListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolManoEtalonList", ReplyAction:="*")>  _
+        Function GetPoolManoEtalonListAsync(ByVal request As WSCRODIP2.GetPoolManoEtalonListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoEtalonListResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBuseList", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetPoolBuseList(ByVal request As WSCRODIP2.GetPoolBuseListRequest) As WSCRODIP2.GetPoolBuseListResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getPoolBuseList", ReplyAction:="*")>  _
+        Function GetPoolBuseListAsync(ByVal request As WSCRODIP2.GetPoolBuseListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBuseListResponse)
         
         'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SetDateSynchroAgentRequest) du message SetDateSynchroAgentRequest ne correspond pas à la valeur par défaut (SetDateSynchroAgent)
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SetDateSynchroAgent", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SetDateSynchroAgent(ByVal request As WSCrodip2.SetDateSynchroAgentRequest) As WSCrodip2.SetDateSynchroAgentResponse
+        Function SetDateSynchroAgent(ByVal request As WSCRODIP2.SetDateSynchroAgentRequest) As WSCRODIP2.SetDateSynchroAgentResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetPrestationCategorieRequest) du message GetPrestationCategorieRequest ne correspond pas à la valeur par défaut (GetPrestationCategorie)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SetDateSynchroAgent", ReplyAction:="*")>  _
+        Function SetDateSynchroAgentAsync(ByVal request As WSCRODIP2.SetDateSynchroAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SetDateSynchroAgentResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPrestationCategorie", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetPrestationCategorie(ByVal request As WSCrodip2.GetPrestationCategorieRequest) As WSCrodip2.GetPrestationCategorieResponse
+        Function GetPrestationCategorie(ByVal request As WSCRODIP2.GetPrestationCategorieRequest) As WSCRODIP2.GetPrestationCategorieResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendPrestationCategorieRequest) du message SendPrestationCategorieRequest ne correspond pas à la valeur par défaut (SendPrestationCategorie)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPrestationCategorie", ReplyAction:="*")>  _
+        Function GetPrestationCategorieAsync(ByVal request As WSCRODIP2.GetPrestationCategorieRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPrestationCategorieResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPrestationCategorie", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendPrestationCategorie(ByVal request As WSCrodip2.SendPrestationCategorieRequest) As WSCrodip2.SendPrestationCategorieResponse
+        Function SendPrestationCategorie(ByVal request As WSCRODIP2.SendPrestationCategorieRequest) As WSCRODIP2.SendPrestationCategorieResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetPrestationTarifRequest) du message GetPrestationTarifRequest ne correspond pas à la valeur par défaut (GetPrestationTarif)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPrestationCategorie", ReplyAction:="*")>  _
+        Function SendPrestationCategorieAsync(ByVal request As WSCRODIP2.SendPrestationCategorieRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPrestationCategorieResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPrestationTarif", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetPrestationTarif(ByVal request As WSCrodip2.GetPrestationTarifRequest) As WSCrodip2.GetPrestationTarifResponse
+        Function GetPrestationTarif(ByVal request As WSCRODIP2.GetPrestationTarifRequest) As WSCRODIP2.GetPrestationTarifResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendPrestationTarifRequest) du message SendPrestationTarifRequest ne correspond pas à la valeur par défaut (SendPrestationTarif)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPrestationTarif", ReplyAction:="*")>  _
+        Function GetPrestationTarifAsync(ByVal request As WSCRODIP2.GetPrestationTarifRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPrestationTarifResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPrestationTarif", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendPrestationTarif(ByVal request As WSCrodip2.SendPrestationTarifRequest) As WSCrodip2.SendPrestationTarifResponse
+        Function SendPrestationTarif(ByVal request As WSCRODIP2.SendPrestationTarifRequest) As WSCRODIP2.SendPrestationTarifResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetBuseRequest) du message GetBuseRequest ne correspond pas à la valeur par défaut (GetBuse)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPrestationTarif", ReplyAction:="*")>  _
+        Function SendPrestationTarifAsync(ByVal request As WSCRODIP2.SendPrestationTarifRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPrestationTarifResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetBuse", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetBuse(ByVal request As WSCrodip2.GetBuseRequest) As WSCrodip2.GetBuseResponse
+        Function GetBuse(ByVal request As WSCRODIP2.GetBuseRequest) As WSCRODIP2.GetBuseResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendBuseRequest) du message SendBuseRequest ne correspond pas à la valeur par défaut (SendBuse)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetBuse", ReplyAction:="*")>  _
+        Function GetBuseAsync(ByVal request As WSCRODIP2.GetBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBuseResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendBuse", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendBuse(ByVal request As WSCrodip2.SendBuseRequest) As WSCrodip2.SendBuseResponse
+        Function SendBuse(ByVal request As WSCRODIP2.SendBuseRequest) As WSCRODIP2.SendBuseResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetManometreControleRequest) du message GetManometreControleRequest ne correspond pas à la valeur par défaut (GetManometreControle)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendBuse", ReplyAction:="*")>  _
+        Function SendBuseAsync(ByVal request As WSCRODIP2.SendBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBuseResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetManometre", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetManometreControle(ByVal request As WSCrodip2.GetManometreControleRequest) As WSCrodip2.GetManometreControleResponse
+        Function GetManometreControle(ByVal request As WSCRODIP2.GetManometreControleRequest) As WSCRODIP2.GetManometreControleResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendManometreControleRequest) du message SendManometreControleRequest ne correspond pas à la valeur par défaut (SendManometreControle)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetManometre", ReplyAction:="*")>  _
+        Function GetManometreControleAsync(ByVal request As WSCRODIP2.GetManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetManometreControleResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendManometre", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendManometreControle(ByVal request As WSCrodip2.SendManometreControleRequest) As WSCrodip2.SendManometreControleResponse
+        Function SendManometreControle(ByVal request As WSCRODIP2.SendManometreControleRequest) As WSCRODIP2.SendManometreControleResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetManometreEtalonRequest) du message GetManometreEtalonRequest ne correspond pas à la valeur par défaut (GetManometreEtalon)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendManometre", ReplyAction:="*")>  _
+        Function SendManometreControleAsync(ByVal request As WSCRODIP2.SendManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendManometreControleResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetManometre", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetManometreEtalon(ByVal request As WSCrodip2.GetManometreEtalonRequest) As WSCrodip2.GetManometreEtalonResponse
+        Function GetManometreEtalon(ByVal request As WSCRODIP2.GetManometreEtalonRequest) As WSCRODIP2.GetManometreEtalonResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendManometreEtalonRequest) du message SendManometreEtalonRequest ne correspond pas à la valeur par défaut (SendManometreEtalon)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetManometre", ReplyAction:="*")>  _
+        Function GetManometreEtalonAsync(ByVal request As WSCRODIP2.GetManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetManometreEtalonResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendManometre", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendManometreEtalon(ByVal request As WSCrodip2.SendManometreEtalonRequest) As WSCrodip2.SendManometreEtalonResponse
+        Function SendManometreEtalon(ByVal request As WSCRODIP2.SendManometreEtalonRequest) As WSCRODIP2.SendManometreEtalonResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetBancRequest) du message GetBancRequest ne correspond pas à la valeur par défaut (GetBanc)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendManometre", ReplyAction:="*")>  _
+        Function SendManometreEtalonAsync(ByVal request As WSCRODIP2.SendManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendManometreEtalonResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetBanc", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetBanc(ByVal request As WSCrodip2.GetBancRequest) As WSCrodip2.GetBancResponse
+        Function GetBanc(ByVal request As WSCRODIP2.GetBancRequest) As WSCRODIP2.GetBancResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendBancRequest) du message SendBancRequest ne correspond pas à la valeur par défaut (SendBanc)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetBanc", ReplyAction:="*")>  _
+        Function GetBancAsync(ByVal request As WSCRODIP2.GetBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBancResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendBanc", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendBanc(ByVal request As WSCrodip2.SendBancRequest) As WSCrodip2.SendBancResponse
+        Function SendBanc(ByVal request As WSCRODIP2.SendBancRequest) As WSCRODIP2.SendBancResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticRequest) du message GetDiagnosticRequest ne correspond pas à la valeur par défaut (GetDiagnostic)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendBanc", ReplyAction:="*")>  _
+        Function SendBancAsync(ByVal request As WSCRODIP2.SendBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBancResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnostic", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnostic(ByVal request As WSCrodip2.GetDiagnosticRequest) As WSCrodip2.GetDiagnosticResponse
+        Function GetDiagnostic(ByVal request As WSCRODIP2.GetDiagnosticRequest) As WSCRODIP2.GetDiagnosticResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticRequest) du message SendDiagnosticRequest ne correspond pas à la valeur par défaut (SendDiagnostic)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnostic", ReplyAction:="*")>  _
+        Function GetDiagnosticAsync(ByVal request As WSCRODIP2.GetDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnostic", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnostic(ByVal request As WSCrodip2.SendDiagnosticRequest) As WSCrodip2.SendDiagnosticResponse
+        Function SendDiagnostic(ByVal request As WSCRODIP2.SendDiagnosticRequest) As WSCRODIP2.SendDiagnosticResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticItemsRequest) du message GetDiagnosticItemsRequest ne correspond pas à la valeur par défaut (GetDiagnosticItems)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnostic", ReplyAction:="*")>  _
+        Function SendDiagnosticAsync(ByVal request As WSCRODIP2.SendDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticItems", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnosticItems(ByVal request As WSCrodip2.GetDiagnosticItemsRequest) As WSCrodip2.GetDiagnosticItemsResponse
+        Function GetDiagnosticItems(ByVal request As WSCRODIP2.GetDiagnosticItemsRequest) As WSCRODIP2.GetDiagnosticItemsResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticItemsRequest) du message SendDiagnosticItemsRequest ne correspond pas à la valeur par défaut (SendDiagnosticItems)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticItems", ReplyAction:="*")>  _
+        Function GetDiagnosticItemsAsync(ByVal request As WSCRODIP2.GetDiagnosticItemsRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticItemsResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticItems", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnosticItems(ByVal request As WSCrodip2.SendDiagnosticItemsRequest) As WSCrodip2.SendDiagnosticItemsResponse
+        Function SendDiagnosticItems(ByVal request As WSCRODIP2.SendDiagnosticItemsRequest) As WSCRODIP2.SendDiagnosticItemsResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendAutoTestRequest) du message SendAutoTestRequest ne correspond pas à la valeur par défaut (SendAutoTest)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticItems", ReplyAction:="*")>  _
+        Function SendDiagnosticItemsAsync(ByVal request As WSCRODIP2.SendDiagnosticItemsRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticItemsResponse)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetAutoTest", ReplyAction:="*"),  _
+         System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
+        Function GetAutoTest(ByVal request As WSCRODIP2.GetAutoTestRequest) As WSCRODIP2.GetAutoTestResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetAutoTest", ReplyAction:="*")>  _
+        Function GetAutoTestAsync(ByVal request As WSCRODIP2.GetAutoTestRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetAutoTestResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendAutoTest", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendAutoTest(ByVal request As WSCrodip2.SendAutoTestRequest) As WSCrodip2.SendAutoTestResponse
+        Function SendAutoTest(ByVal request As WSCRODIP2.SendAutoTestRequest) As WSCRODIP2.SendAutoTestResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticBusesRequest) du message GetDiagnosticBusesRequest ne correspond pas à la valeur par défaut (GetDiagnosticBuses)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendAutoTest", ReplyAction:="*")>  _
+        Function SendAutoTestAsync(ByVal request As WSCRODIP2.SendAutoTestRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendAutoTestResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticBuses", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnosticBuses(ByVal request As WSCrodip2.GetDiagnosticBusesRequest) As WSCrodip2.GetDiagnosticBusesResponse
+        Function GetDiagnosticBuses(ByVal request As WSCRODIP2.GetDiagnosticBusesRequest) As WSCRODIP2.GetDiagnosticBusesResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticBusesRequest) du message SendDiagnosticBusesRequest ne correspond pas à la valeur par défaut (SendDiagnosticBuses)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticBuses", ReplyAction:="*")>  _
+        Function GetDiagnosticBusesAsync(ByVal request As WSCRODIP2.GetDiagnosticBusesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticBusesResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticBuses", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnosticBuses(ByVal request As WSCrodip2.SendDiagnosticBusesRequest) As WSCrodip2.SendDiagnosticBusesResponse
+        Function SendDiagnosticBuses(ByVal request As WSCRODIP2.SendDiagnosticBusesRequest) As WSCRODIP2.SendDiagnosticBusesResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticBusesDetailRequest) du message GetDiagnosticBusesDetailRequest ne correspond pas à la valeur par défaut (GetDiagnosticBusesDetail)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticBuses", ReplyAction:="*")>  _
+        Function SendDiagnosticBusesAsync(ByVal request As WSCRODIP2.SendDiagnosticBusesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticBusesResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticBusesDetail", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnosticBusesDetail(ByVal request As WSCrodip2.GetDiagnosticBusesDetailRequest) As WSCrodip2.GetDiagnosticBusesDetailResponse
+        Function GetDiagnosticBusesDetail(ByVal request As WSCRODIP2.GetDiagnosticBusesDetailRequest) As WSCRODIP2.GetDiagnosticBusesDetailResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticBusesDetailRequest) du message SendDiagnosticBusesDetailRequest ne correspond pas à la valeur par défaut (SendDiagnosticBusesDetail)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticBusesDetail", ReplyAction:="*")>  _
+        Function GetDiagnosticBusesDetailAsync(ByVal request As WSCRODIP2.GetDiagnosticBusesDetailRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticBusesDetailResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticBusesDetail", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnosticBusesDetail(ByVal request As WSCrodip2.SendDiagnosticBusesDetailRequest) As WSCrodip2.SendDiagnosticBusesDetailResponse
+        Function SendDiagnosticBusesDetail(ByVal request As WSCRODIP2.SendDiagnosticBusesDetailRequest) As WSCRODIP2.SendDiagnosticBusesDetailResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticMano542Request) du message GetDiagnosticMano542Request ne correspond pas à la valeur par défaut (GetDiagnosticMano542)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticBusesDetail", ReplyAction:="*")>  _
+        Function SendDiagnosticBusesDetailAsync(ByVal request As WSCRODIP2.SendDiagnosticBusesDetailRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticBusesDetailResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticMano542", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnosticMano542(ByVal request As WSCrodip2.GetDiagnosticMano542Request) As WSCrodip2.GetDiagnosticMano542Response
+        Function GetDiagnosticMano542(ByVal request As WSCRODIP2.GetDiagnosticMano542Request) As WSCRODIP2.GetDiagnosticMano542Response
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticMano542Request) du message SendDiagnosticMano542Request ne correspond pas à la valeur par défaut (SendDiagnosticMano542)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticMano542", ReplyAction:="*")>  _
+        Function GetDiagnosticMano542Async(ByVal request As WSCRODIP2.GetDiagnosticMano542Request) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticMano542Response)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticMano542", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnosticMano542(ByVal request As WSCrodip2.SendDiagnosticMano542Request) As WSCrodip2.SendDiagnosticMano542Response
+        Function SendDiagnosticMano542(ByVal request As WSCRODIP2.SendDiagnosticMano542Request) As WSCRODIP2.SendDiagnosticMano542Response
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetDiagnosticTroncons833Request) du message GetDiagnosticTroncons833Request ne correspond pas à la valeur par défaut (GetDiagnosticTroncons833)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticMano542", ReplyAction:="*")>  _
+        Function SendDiagnosticMano542Async(ByVal request As WSCRODIP2.SendDiagnosticMano542Request) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticMano542Response)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticTroncons833", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetDiagnosticTroncons833(ByVal request As WSCrodip2.GetDiagnosticTroncons833Request) As WSCrodip2.GetDiagnosticTroncons833Response
+        Function GetDiagnosticTroncons833(ByVal request As WSCRODIP2.GetDiagnosticTroncons833Request) As WSCRODIP2.GetDiagnosticTroncons833Response
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendDiagnosticTroncons833Request) du message SendDiagnosticTroncons833Request ne correspond pas à la valeur par défaut (SendDiagnosticTroncons833)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetDiagnosticTroncons833", ReplyAction:="*")>  _
+        Function GetDiagnosticTroncons833Async(ByVal request As WSCRODIP2.GetDiagnosticTroncons833Request) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticTroncons833Response)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticTroncons833", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendDiagnosticTroncons833(ByVal request As WSCrodip2.SendDiagnosticTroncons833Request) As WSCrodip2.SendDiagnosticTroncons833Response
+        Function SendDiagnosticTroncons833(ByVal request As WSCRODIP2.SendDiagnosticTroncons833Request) As WSCRODIP2.SendDiagnosticTroncons833Response
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetExploitationRequest) du message GetExploitationRequest ne correspond pas à la valeur par défaut (GetExploitation)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendDiagnosticTroncons833", ReplyAction:="*")>  _
+        Function SendDiagnosticTroncons833Async(ByVal request As WSCRODIP2.SendDiagnosticTroncons833Request) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticTroncons833Response)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getExploitation", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetExploitation(ByVal request As WSCrodip2.GetExploitationRequest) As WSCrodip2.GetExploitationResponse
+        Function GetExploitation(ByVal request As WSCRODIP2.GetExploitationRequest) As WSCRODIP2.GetExploitationResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendExploitationRequest) du message SendExploitationRequest ne correspond pas à la valeur par défaut (SendExploitation)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getExploitation", ReplyAction:="*")>  _
+        Function GetExploitationAsync(ByVal request As WSCRODIP2.GetExploitationRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetExploitationResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendExploitation", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendExploitation(ByVal request As WSCrodip2.SendExploitationRequest) As WSCrodip2.SendExploitationResponse
+        Function SendExploitation(ByVal request As WSCRODIP2.SendExploitationRequest) As WSCRODIP2.SendExploitationResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetExploitationTOPulverisateurRequest) du message GetExploitationTOPulverisateurRequest ne correspond pas à la valeur par défaut (GetExploitationTOPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendExploitation", ReplyAction:="*")>  _
+        Function SendExploitationAsync(ByVal request As WSCRODIP2.SendExploitationRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendExploitationResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getExploitationTOPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetExploitationTOPulverisateur(ByVal request As WSCrodip2.GetExploitationTOPulverisateurRequest) As WSCrodip2.GetExploitationTOPulverisateurResponse
+        Function GetExploitationTOPulverisateur(ByVal request As WSCRODIP2.GetExploitationTOPulverisateurRequest) As WSCRODIP2.GetExploitationTOPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendExploitationTOPulverisateurRequest) du message SendExploitationTOPulverisateurRequest ne correspond pas à la valeur par défaut (SendExploitationTOPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/getExploitationTOPulverisateur", ReplyAction:="*")>  _
+        Function GetExploitationTOPulverisateurAsync(ByVal request As WSCRODIP2.GetExploitationTOPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetExploitationTOPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendExploitationTOPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendExploitationTOPulverisateur(ByVal request As WSCrodip2.SendExploitationTOPulverisateurRequest) As WSCrodip2.SendExploitationTOPulverisateurResponse
+        Function SendExploitationTOPulverisateur(ByVal request As WSCRODIP2.SendExploitationTOPulverisateurRequest) As WSCRODIP2.SendExploitationTOPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetControleBancMesureRequest) du message GetControleBancMesureRequest ne correspond pas à la valeur par défaut (GetControleBancMesure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/sendExploitationTOPulverisateur", ReplyAction:="*")>  _
+        Function SendExploitationTOPulverisateurAsync(ByVal request As WSCRODIP2.SendExploitationTOPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendExploitationTOPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetControleBancMesure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetControleBancMesure(ByVal request As WSCrodip2.GetControleBancMesureRequest) As WSCrodip2.GetControleBancMesureResponse
+        Function GetControleBancMesure(ByVal request As WSCRODIP2.GetControleBancMesureRequest) As WSCRODIP2.GetControleBancMesureResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendControleBancMesureRequest) du message SendControleBancMesureRequest ne correspond pas à la valeur par défaut (SendControleBancMesure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetControleBancMesure", ReplyAction:="*")>  _
+        Function GetControleBancMesureAsync(ByVal request As WSCRODIP2.GetControleBancMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetControleBancMesureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendControleBancMesure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendControleBancMesure(ByVal request As WSCrodip2.SendControleBancMesureRequest) As WSCrodip2.SendControleBancMesureResponse
+        Function SendControleBancMesure(ByVal request As WSCRODIP2.SendControleBancMesureRequest) As WSCRODIP2.SendControleBancMesureResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetControleManoMesureRequest) du message GetControleManoMesureRequest ne correspond pas à la valeur par défaut (GetControleManoMesure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendControleBancMesure", ReplyAction:="*")>  _
+        Function SendControleBancMesureAsync(ByVal request As WSCRODIP2.SendControleBancMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendControleBancMesureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetControleManoMesure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetControleManoMesure(ByVal request As WSCrodip2.GetControleManoMesureRequest) As WSCrodip2.GetControleManoMesureResponse
+        Function GetControleManoMesure(ByVal request As WSCRODIP2.GetControleManoMesureRequest) As WSCRODIP2.GetControleManoMesureResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendControleManoMesureRequest) du message SendControleManoMesureRequest ne correspond pas à la valeur par défaut (SendControleManoMesure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetControleManoMesure", ReplyAction:="*")>  _
+        Function GetControleManoMesureAsync(ByVal request As WSCRODIP2.GetControleManoMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetControleManoMesureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendControleManoMesure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendControleManoMesure(ByVal request As WSCrodip2.SendControleManoMesureRequest) As WSCrodip2.SendControleManoMesureResponse
+        Function SendControleManoMesure(ByVal request As WSCRODIP2.SendControleManoMesureRequest) As WSCRODIP2.SendControleManoMesureResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetFVBancRequest) du message GetFVBancRequest ne correspond pas à la valeur par défaut (GetFVBanc)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendControleManoMesure", ReplyAction:="*")>  _
+        Function SendControleManoMesureAsync(ByVal request As WSCRODIP2.SendControleManoMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendControleManoMesureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVBanc", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetFVBanc(ByVal request As WSCrodip2.GetFVBancRequest) As WSCrodip2.GetFVBancResponse
+        Function GetFVBanc(ByVal request As WSCRODIP2.GetFVBancRequest) As WSCRODIP2.GetFVBancResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendFVBancRequest) du message SendFVBancRequest ne correspond pas à la valeur par défaut (SendFVBanc)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVBanc", ReplyAction:="*")>  _
+        Function GetFVBancAsync(ByVal request As WSCRODIP2.GetFVBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVBancResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVBanc", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendFVBanc(ByVal request As WSCrodip2.SendFVBancRequest) As WSCrodip2.SendFVBancResponse
+        Function SendFVBanc(ByVal request As WSCRODIP2.SendFVBancRequest) As WSCRODIP2.SendFVBancResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetFVManometreControleRequest) du message GetFVManometreControleRequest ne correspond pas à la valeur par défaut (GetFVManometreControle)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVBanc", ReplyAction:="*")>  _
+        Function SendFVBancAsync(ByVal request As WSCRODIP2.SendFVBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVBancResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVManometreControle", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetFVManometreControle(ByVal request As WSCrodip2.GetFVManometreControleRequest) As WSCrodip2.GetFVManometreControleResponse
+        Function GetFVManometreControle(ByVal request As WSCRODIP2.GetFVManometreControleRequest) As WSCRODIP2.GetFVManometreControleResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendFVManometreControleRequest) du message SendFVManometreControleRequest ne correspond pas à la valeur par défaut (SendFVManometreControle)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVManometreControle", ReplyAction:="*")>  _
+        Function GetFVManometreControleAsync(ByVal request As WSCRODIP2.GetFVManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVManometreControleResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVManometreControle", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendFVManometreControle(ByVal request As WSCrodip2.SendFVManometreControleRequest) As WSCrodip2.SendFVManometreControleResponse
+        Function SendFVManometreControle(ByVal request As WSCRODIP2.SendFVManometreControleRequest) As WSCRODIP2.SendFVManometreControleResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetFVManometreEtalonRequest) du message GetFVManometreEtalonRequest ne correspond pas à la valeur par défaut (GetFVManometreEtalon)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVManometreControle", ReplyAction:="*")>  _
+        Function SendFVManometreControleAsync(ByVal request As WSCRODIP2.SendFVManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVManometreControleResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVManometreEtalon", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetFVManometreEtalon(ByVal request As WSCrodip2.GetFVManometreEtalonRequest) As WSCrodip2.GetFVManometreEtalonResponse
+        Function GetFVManometreEtalon(ByVal request As WSCRODIP2.GetFVManometreEtalonRequest) As WSCRODIP2.GetFVManometreEtalonResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendFVManometreEtalonRequest) du message SendFVManometreEtalonRequest ne correspond pas à la valeur par défaut (SendFVManometreEtalon)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetFVManometreEtalon", ReplyAction:="*")>  _
+        Function GetFVManometreEtalonAsync(ByVal request As WSCRODIP2.GetFVManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVManometreEtalonResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVManometreEtalon", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendFVManometreEtalon(ByVal request As WSCrodip2.SendFVManometreEtalonRequest) As WSCrodip2.SendFVManometreEtalonResponse
+        Function SendFVManometreEtalon(ByVal request As WSCRODIP2.SendFVManometreEtalonRequest) As WSCRODIP2.SendFVManometreEtalonResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetIdentifiantPulverisateurRequest) du message GetIdentifiantPulverisateurRequest ne correspond pas à la valeur par défaut (GetIdentifiantPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendFVManometreEtalon", ReplyAction:="*")>  _
+        Function SendFVManometreEtalonAsync(ByVal request As WSCRODIP2.SendFVManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVManometreEtalonResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetIdentifiantPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetIdentifiantPulverisateur(ByVal request As WSCrodip2.GetIdentifiantPulverisateurRequest) As WSCrodip2.GetIdentifiantPulverisateurResponse
+        Function GetIdentifiantPulverisateur(ByVal request As WSCRODIP2.GetIdentifiantPulverisateurRequest) As WSCRODIP2.GetIdentifiantPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendIdentifiantPulverisateurRequest) du message SendIdentifiantPulverisateurRequest ne correspond pas à la valeur par défaut (SendIdentifiantPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetIdentifiantPulverisateur", ReplyAction:="*")>  _
+        Function GetIdentifiantPulverisateurAsync(ByVal request As WSCRODIP2.GetIdentifiantPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetIdentifiantPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendIdentifiantPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendIdentifiantPulverisateur(ByVal request As WSCrodip2.SendIdentifiantPulverisateurRequest) As WSCrodip2.SendIdentifiantPulverisateurResponse
+        Function SendIdentifiantPulverisateur(ByVal request As WSCRODIP2.SendIdentifiantPulverisateurRequest) As WSCRODIP2.SendIdentifiantPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetPulverisateurRequest) du message GetPulverisateurRequest ne correspond pas à la valeur par défaut (GetPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendIdentifiantPulverisateur", ReplyAction:="*")>  _
+        Function SendIdentifiantPulverisateurAsync(ByVal request As WSCRODIP2.SendIdentifiantPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendIdentifiantPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetPulverisateur(ByVal request As WSCrodip2.GetPulverisateurRequest) As WSCrodip2.GetPulverisateurResponse
+        Function GetPulverisateur(ByVal request As WSCRODIP2.GetPulverisateurRequest) As WSCRODIP2.GetPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendPulverisateurRequest) du message SendPulverisateurRequest ne correspond pas à la valeur par défaut (SendPulverisateur)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetPulverisateur", ReplyAction:="*")>  _
+        Function GetPulverisateurAsync(ByVal request As WSCRODIP2.GetPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendPulverisateur(ByVal request As WSCrodip2.SendPulverisateurRequest) As WSCrodip2.SendPulverisateurResponse
+        Function SendPulverisateur(ByVal request As WSCRODIP2.SendPulverisateurRequest) As WSCRODIP2.SendPulverisateurResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetStructureRequest) du message GetStructureRequest ne correspond pas à la valeur par défaut (GetStructure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendPulverisateur", ReplyAction:="*")>  _
+        Function SendPulverisateurAsync(ByVal request As WSCRODIP2.SendPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetStructure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetStructure(ByVal request As WSCrodip2.GetStructureRequest) As WSCrodip2.GetStructureResponse
+        Function GetStructure(ByVal request As WSCRODIP2.GetStructureRequest) As WSCRODIP2.GetStructureResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (SendStructureRequest) du message SendStructureRequest ne correspond pas à la valeur par défaut (SendStructure)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetStructure", ReplyAction:="*")>  _
+        Function GetStructureAsync(ByVal request As WSCRODIP2.GetStructureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetStructureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendStructure", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function SendStructure(ByVal request As WSCrodip2.SendStructureRequest) As WSCrodip2.SendStructureResponse
+        Function SendStructure(ByVal request As WSCRODIP2.SendStructureRequest) As WSCRODIP2.SendStructureResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/SendStructure", ReplyAction:="*")>  _
+        Function SendStructureAsync(ByVal request As WSCRODIP2.SendStructureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendStructureResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielBuse", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielBuse(ByVal request As WSCrodip2.GetReferentielBuseRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetReferentielBuseResponse
+        Function GetReferentielBuse(ByVal request As WSCRODIP2.GetReferentielBuseRequest) As WSCRODIP2.GetReferentielBuseResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielBuse", ReplyAction:="*")>  _
+        Function GetReferentielBuseAsync(ByVal request As WSCRODIP2.GetReferentielBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielBuseResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielManometre", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielManometre(ByVal request As WSCrodip2.GetReferentielManometreRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetReferentielManometreResponse
+        Function GetReferentielManometre(ByVal request As WSCRODIP2.GetReferentielManometreRequest) As WSCRODIP2.GetReferentielManometreResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielManometre", ReplyAction:="*")>  _
+        Function GetReferentielManometreAsync(ByVal request As WSCRODIP2.GetReferentielManometreRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielManometreResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateur", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielPulverisateur(ByVal request As WSCrodip2.GetReferentielPulverisateurRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetReferentielPulverisateurResponse
+        Function GetReferentielPulverisateur(ByVal request As WSCRODIP2.GetReferentielPulverisateurRequest) As WSCRODIP2.GetReferentielPulverisateurResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateur", ReplyAction:="*")>  _
+        Function GetReferentielPulverisateurAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielTerritoire", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielTerritoire(ByVal request As WSCrodip2.GetReferentielTerritoireRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetReferentielTerritoireResponse
+        Function GetReferentielTerritoire(ByVal request As WSCRODIP2.GetReferentielTerritoireRequest) As WSCRODIP2.GetReferentielTerritoireResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielTerritoire", ReplyAction:="*")>  _
+        Function GetReferentielTerritoireAsync(ByVal request As WSCRODIP2.GetReferentielTerritoireRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielTerritoireResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetVersionLogicielAgent", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetVersionLogicielAgent(ByVal request As WSCrodip2.GetVersionLogicielAgentRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetVersionLogicielAgentResponse
+        Function GetVersionLogicielAgent(ByVal request As WSCRODIP2.GetVersionLogicielAgentRequest) As WSCRODIP2.GetVersionLogicielAgentResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetVersionLogicielAgent", ReplyAction:="*")>  _
+        Function GetVersionLogicielAgentAsync(ByVal request As WSCRODIP2.GetVersionLogicielAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetVersionLogicielAgentResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetSoftwareUpdate", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetSoftwareUpdate(ByVal request As WSCrodip2.GetSoftwareUpdateRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetSoftwareUpdateResponse
+        Function GetSoftwareUpdate(ByVal request As WSCRODIP2.GetSoftwareUpdateRequest) As WSCRODIP2.GetSoftwareUpdateResponse
         
-        'CODEGEN : Le paramètre 'result' nécessite des informations de schéma supplémentaires qui ne peuvent pas être capturées en utilisant le mode du paramètre. L'attribut spécifique est 'System.Xml.Serialization.XmlElementAttribute'.
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetSoftwareUpdate", ReplyAction:="*")>  _
+        Function GetSoftwareUpdateAsync(ByVal request As WSCRODIP2.GetSoftwareUpdateRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetSoftwareUpdateResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetSynchroDateTime", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetSynchroDateTime(ByVal request As WSCrodip2.GetSynchroDateTimeRequest) As <System.ServiceModel.MessageParameterAttribute(Name:="result")> WSCrodip2.GetSynchroDateTimeResponse
+        Function GetSynchroDateTime(ByVal request As WSCRODIP2.GetSynchroDateTimeRequest) As WSCRODIP2.GetSynchroDateTimeResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetIncrementDiagnosticRequest) du message GetIncrementDiagnosticRequest ne correspond pas à la valeur par défaut (GetIncrementDiagnostic)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetSynchroDateTime", ReplyAction:="*")>  _
+        Function GetSynchroDateTimeAsync(ByVal request As WSCRODIP2.GetSynchroDateTimeRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetSynchroDateTimeResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetIncrementDiagnostic", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetIncrementDiagnostic(ByVal request As WSCrodip2.GetIncrementDiagnosticRequest) As WSCrodip2.GetIncrementDiagnosticResponse
+        Function GetIncrementDiagnostic(ByVal request As WSCRODIP2.GetIncrementDiagnosticRequest) As WSCRODIP2.GetIncrementDiagnosticResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (UpdatesAvailableRequest) du message UpdatesAvailableRequest ne correspond pas à la valeur par défaut (UpdatesAvailable)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetIncrementDiagnostic", ReplyAction:="*")>  _
+        Function GetIncrementDiagnosticAsync(ByVal request As WSCRODIP2.GetIncrementDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetIncrementDiagnosticResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/UpdatesAvailable", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function UpdatesAvailable(ByVal request As WSCrodip2.UpdatesAvailableRequest) As WSCrodip2.UpdatesAvailableResponse
+        Function UpdatesAvailable(ByVal request As WSCRODIP2.UpdatesAvailableRequest) As WSCRODIP2.UpdatesAvailableResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetReferentielPulverisateurTypesCategoriesRequest) du message GetReferentielPulverisateurTypesCategoriesRequest ne correspond pas à la valeur par défaut (GetReferentielPulverisateurTypesCategories)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/UpdatesAvailable", ReplyAction:="*")>  _
+        Function UpdatesAvailableAsync(ByVal request As WSCRODIP2.UpdatesAvailableRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.UpdatesAvailableResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielPulverisateurTypesCategories(ByVal request As WSCrodip2.GetReferentielPulverisateurTypesCategoriesRequest) As WSCrodip2.GetReferentielPulverisateurTypesCategoriesResponse
+        Function GetReferentielPulverisateurTypesCategories(ByVal request As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest) As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetReferentielCodesAPERequest) du message GetReferentielCodesAPERequest ne correspond pas à la valeur par défaut (GetReferentielCodesAPE)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", ReplyAction:="*")>  _
+        Function GetReferentielPulverisateurTypesCategoriesAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielCodesAPE", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielCodesAPE(ByVal request As WSCrodip2.GetReferentielCodesAPERequest) As WSCrodip2.GetReferentielCodesAPEResponse
+        Function GetReferentielCodesAPE(ByVal request As WSCRODIP2.GetReferentielCodesAPERequest) As WSCRODIP2.GetReferentielCodesAPEResponse
         
-        'CODEGEN : La génération du contrat de message depuis le nom de wrapper (GetReferentielPulverisateurMarquesModelesRequest) du message GetReferentielPulverisateurMarquesModelesRequest ne correspond pas à la valeur par défaut (GetReferentielPulverisateurMarquesModeles)
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielCodesAPE", ReplyAction:="*")>  _
+        Function GetReferentielCodesAPEAsync(ByVal request As WSCRODIP2.GetReferentielCodesAPERequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielCodesAPEResponse)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", ReplyAction:="*"),  _
          System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults:=true)>  _
-        Function GetReferentielPulverisateurMarquesModeles(ByVal request As WSCrodip2.GetReferentielPulverisateurMarquesModelesRequest) As WSCrodip2.GetReferentielPulverisateurMarquesModelesResponse
+        Function GetReferentielPulverisateurMarquesModeles(ByVal request As WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest) As WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse
+        
+        'CODEGEN : Génération du contrat de message dans la mesure où l'opération compte plusieurs valeurs de retour.
+        <System.ServiceModel.OperationContractAttribute(Action:="http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", ReplyAction:="*")>  _
+        Function GetReferentielPulverisateurMarquesModelesAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse)
     End Interface
     
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0"),  _
-     System.SerializableAttribute(),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     System.Xml.Serialization.XmlTypeAttribute([Namespace]:="http://www.example.org/crodip/")>  _
-    Partial Public Class IdentifiantPulverisateur
-        Inherits Object
-        Implements System.ComponentModel.INotifyPropertyChanged
-        
-        Private idField As Integer
-        
-        Private idStructureField As Integer
-        
-        Private numeroNationalField As String
-        
-        Private etatField As String
-        
-        Private dateUtilisationField As String
-        
-        Private libelleField As String
-        
-        Private dateModificationAgentField As String
-        
-        Private dateModificationCrodipField As String
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=0)>  _
-        Public Property id() As Integer
-            Get
-                Return Me.idField
-            End Get
-            Set
-                Me.idField = value
-                Me.RaisePropertyChanged("id")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=1)>  _
-        Public Property idStructure() As Integer
-            Get
-                Return Me.idStructureField
-            End Get
-            Set
-                Me.idStructureField = value
-                Me.RaisePropertyChanged("idStructure")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=2)>  _
-        Public Property numeroNational() As String
-            Get
-                Return Me.numeroNationalField
-            End Get
-            Set
-                Me.numeroNationalField = value
-                Me.RaisePropertyChanged("numeroNational")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=3)>  _
-        Public Property etat() As String
-            Get
-                Return Me.etatField
-            End Get
-            Set
-                Me.etatField = value
-                Me.RaisePropertyChanged("etat")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=4)>  _
-        Public Property dateUtilisation() As String
-            Get
-                Return Me.dateUtilisationField
-            End Get
-            Set
-                Me.dateUtilisationField = value
-                Me.RaisePropertyChanged("dateUtilisation")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=5)>  _
-        Public Property libelle() As String
-            Get
-                Return Me.libelleField
-            End Get
-            Set
-                Me.libelleField = value
-                Me.RaisePropertyChanged("libelle")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=6)>  _
-        Public Property dateModificationAgent() As String
-            Get
-                Return Me.dateModificationAgentField
-            End Get
-            Set
-                Me.dateModificationAgentField = value
-                Me.RaisePropertyChanged("dateModificationAgent")
-            End Set
-        End Property
-        
-        '''<remarks/>
-        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified, Order:=7)>  _
-        Public Property dateModificationCrodip() As String
-            Get
-                Return Me.dateModificationCrodipField
-            End Get
-            Set
-                Me.dateModificationCrodipField = value
-                Me.RaisePropertyChanged("dateModificationCrodip")
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
-     System.ServiceModel.MessageContractAttribute(WrapperName:="SendLogsRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
-    Partial Public Class SendLogsRequest
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public Logs As Object
-        
-        Public Sub New()
-            MyBase.New
-        End Sub
-        
-        Public Sub New(ByVal Logs As Object)
-            MyBase.New
-            Me.Logs = Logs
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
-     System.ServiceModel.MessageContractAttribute(WrapperName:="SendLogsResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
-    Partial Public Class SendLogsResponse
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public result As Integer
-        
-        Public Sub New()
-            MyBase.New
-        End Sub
-        
-        Public Sub New(ByVal result As Integer)
-            MyBase.New
-            Me.result = result
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetAgentRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetAgentRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public numeroNational As String
+        Public idProfilAgent As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal numeroNational As String)
+        Public Sub New(ByVal idProfilAgent As String)
             MyBase.New
-            Me.numeroNational = numeroNational
+            Me.idProfilAgent = idProfilAgent
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetAgentResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetAgentResponse
         
@@ -528,22 +857,31 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Agent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public availablePools() As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Agent As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal Agent As Object, ByVal availablePools() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.Agent = Agent
+            Me.availablePools = availablePools
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendAgentRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendAgentRequest
         
@@ -563,7 +901,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendAgentResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendAgentResponse
         
@@ -573,16 +910,2096 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Agent As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Agent As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal Agent As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.Agent = Agent
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPcRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPcRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPcResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPcResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Pc As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Pc As Object)
+            MyBase.New
+            Me.result = result
+            Me.Pc = Pc
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPcRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPcRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PcRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PcRequest As Object)
+            MyBase.New
+            Me.PcRequest = PcRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPcResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPcResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Pc As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Pc As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Pc = Pc
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetMasseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetMasseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetMasseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetMasseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Masse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Masse As Object)
+            MyBase.New
+            Me.result = result
+            Me.Masse = Masse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendMasseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendMasseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public MasseRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal MasseRequest As Object)
+            MyBase.New
+            Me.MasseRequest = MasseRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendMasseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendMasseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Masse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Masse As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Masse = Masse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetBalanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetBalanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetBalanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetBalanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Balance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Balance As Object)
+            MyBase.New
+            Me.result = result
+            Me.Balance = Balance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendBalanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendBalanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public BalanceRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal BalanceRequest As Object)
+            MyBase.New
+            Me.BalanceRequest = BalanceRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendBalanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendBalanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Balance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Balance As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Balance = Balance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetDistanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetDistanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetDistanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetDistanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Distance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Distance As Object)
+            MyBase.New
+            Me.result = result
+            Me.Distance = Distance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendDistanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendDistanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public DistanceRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal DistanceRequest As Object)
+            MyBase.New
+            Me.DistanceRequest = DistanceRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendDistanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendDistanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Distance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Distance As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Distance = Distance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetChronoRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetChronoRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetChronoResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetChronoResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Chrono As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Chrono As Object)
+            MyBase.New
+            Me.result = result
+            Me.Chrono = Chrono
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendChronoRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendChronoRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public ChronoRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal ChronoRequest As Object)
+            MyBase.New
+            Me.ChronoRequest = ChronoRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendChronoResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendChronoResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Chrono As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Chrono As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Chrono = Chrono
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Pool As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal Pool As Object)
+            MyBase.New
+            Me.result = result
+            Me.Pool = Pool
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolRequest As Object)
+            MyBase.New
+            Me.PoolRequest = PoolRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Pool As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Pool As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.Pool = Pool
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolAgentRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolAgentRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolAgentResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolAgentResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolAgent As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolAgent As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolAgent = PoolAgent
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolAgentRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolAgentRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolAgentRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolAgentRequest As Object)
+            MyBase.New
+            Me.PoolAgentRequest = PoolAgentRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolAgentResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolAgentResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolAgent As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolAgent As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolAgent = PoolAgent
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolPcRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolPcRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolPcResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolPcResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolPc As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolPc As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolPc = PoolPc
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolPcRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolPcRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolPcRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolPcRequest As Object)
+            MyBase.New
+            Me.PoolPcRequest = PoolPcRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolPcResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolPcResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolPc As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolPc As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolPc = PoolPc
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolMasseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolMasseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolMasseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolMasseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolMasse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolMasse As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolMasse = PoolMasse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolMasseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolMasseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolMasseRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolMasseRequest As Object)
+            MyBase.New
+            Me.PoolMasseRequest = PoolMasseRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolMasseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolMasseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolMasse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolMasse As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolMasse = PoolMasse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBalanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBalanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBalanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBalanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBalance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolBalance As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolBalance = PoolBalance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolBalanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolBalanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBalanceRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolBalanceRequest As Object)
+            MyBase.New
+            Me.PoolBalanceRequest = PoolBalanceRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolBalanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolBalanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBalance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolBalance As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolBalance = PoolBalance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolDistanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolDistanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolDistanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolDistanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolDistance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolDistance As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolDistance = PoolDistance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolDistanceRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolDistanceRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolDistanceRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolDistanceRequest As Object)
+            MyBase.New
+            Me.PoolDistanceRequest = PoolDistanceRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolDistanceResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolDistanceResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolDistance As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolDistance As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolDistance = PoolDistance
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolChronoRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolChronoRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolChronoResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolChronoResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolChrono As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolChrono As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolChrono = PoolChrono
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolChronoRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolChronoRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolChronoRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolChronoRequest As Object)
+            MyBase.New
+            Me.PoolChronoRequest = PoolChronoRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolChronoResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolChronoResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolChrono As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolChrono As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolChrono = PoolChrono
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoControleRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoControleResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoControle As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolManoControle As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolManoControle = PoolManoControle
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolManoControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolManoControleRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoControleRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolManoControleRequest As Object)
+            MyBase.New
+            Me.PoolManoControleRequest = PoolManoControleRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolManoControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolManoControleResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoControle As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolManoControle As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolManoControle = PoolManoControle
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoEtalonRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoEtalonResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoEtalon As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolManoEtalon As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolManoEtalon = PoolManoEtalon
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolManoEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolManoEtalonRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoEtalonRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolManoEtalonRequest As Object)
+            MyBase.New
+            Me.PoolManoEtalonRequest = PoolManoEtalonRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolManoEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolManoEtalonResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoEtalon As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolManoEtalon As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolManoEtalon = PoolManoEtalon
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBuseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBuseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBuseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBuseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBuse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolBuse As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolBuse = PoolBuse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolBuseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolBuseRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBuseRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal PoolBuseRequest As Object)
+            MyBase.New
+            Me.PoolBuseRequest = PoolBuseRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendPoolBuseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendPoolBuseResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBuse As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PoolBuse As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.PoolBuse = PoolBuse
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolList = PoolList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolAgentListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolAgentListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidagent As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Integer, ByVal aidagent As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.aidagent = aidagent
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolAgentListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolAgentListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolAgentList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolAgentList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolAgentList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolAgentList = PoolAgentList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolPcListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolPcListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidpc As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidpc As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidpc As Integer, ByVal aidpc As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidpc = uidpc
+            Me.aidpc = aidpc
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolPcListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolPcListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolPcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolPcList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolPcList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolPcList = PoolPcList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolMasseListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolMasseListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidmasse As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidmasse As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidmasse As Integer, ByVal aidmasse As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidmasse = uidmasse
+            Me.aidmasse = aidmasse
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolMasseListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolMasseListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolMasseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolMasseList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolMasseList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolMasseList = PoolMasseList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBalanceListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBalanceListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidbalance As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidbalance As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidbalance As Integer, ByVal aidbalance As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidbalance = uidbalance
+            Me.aidbalance = aidbalance
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBalanceListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBalanceListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolBalanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBalanceList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolBalanceList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolBalanceList = PoolBalanceList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolDistanceListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolDistanceListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uiddistance As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aiddistance As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uiddistance As Integer, ByVal aiddistance As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uiddistance = uiddistance
+            Me.aiddistance = aiddistance
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolDistanceListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolDistanceListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolDistanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolDistanceList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolDistanceList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolDistanceList = PoolDistanceList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolChronoListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolChronoListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidchrono As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidchrono As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidchrono As Integer, ByVal aidchrono As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidchrono = uidchrono
+            Me.aidchrono = aidchrono
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolChronoListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolChronoListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolChronoList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolChronoList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolChronoList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolChronoList = PoolChronoList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoControleListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoControleListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidmanoc As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidmanoc As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidmanoc As Integer, ByVal aidmanoc As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidmanoc = uidmanoc
+            Me.aidmanoc = aidmanoc
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoControleListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoControleListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolManoControleList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoControleList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolManoControleList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolManoControleList = PoolManoControleList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoEtalonListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoEtalonListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidmanoe As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidmanoe As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidmanoe As Integer, ByVal aidmanoe As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidmanoe = uidmanoe
+            Me.aidmanoe = aidmanoe
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolManoEtalonListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolManoEtalonListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolManoEtalonList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolManoEtalonList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolManoEtalonList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolManoEtalonList = PoolManoEtalonList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBuseListRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBuseListRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidbuse As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aidbuse As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidstructure As Integer
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uidagent As Object, ByVal uidbuse As Integer, ByVal aidbuse As String, ByVal uidstructure As Integer)
+            MyBase.New
+            Me.uidagent = uidagent
+            Me.uidbuse = uidbuse
+            Me.aidbuse = aidbuse
+            Me.uidstructure = uidstructure
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetPoolBuseListResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetPoolBuseListResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute("PoolBuseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public PoolBuseList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal PoolBuseList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.PoolBuseList = PoolBuseList
         End Sub
     End Class
     
@@ -594,7 +3011,7 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As Object
+        Public uidagent As Object
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
@@ -604,9 +3021,9 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As Object, ByVal dateDerniereSynchro As Object)
+        Public Sub New(ByVal uidagent As Object, ByVal dateDerniereSynchro As Object)
             MyBase.New
-            Me.agentId = agentId
+            Me.uidagent = uidagent
             Me.dateDerniereSynchro = dateDerniereSynchro
         End Sub
     End Class
@@ -633,37 +3050,30 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPrestationCategorieRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPrestationCategorieRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idStructure As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String, ByVal idStructure As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
-            Me.idStructure = idStructure
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPrestationCategorieResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPrestationCategorieResponse
         
@@ -688,15 +3098,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPrestationCategorieRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPrestationCategorieRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public PrestationCategorieRequest As Object
         
@@ -704,16 +3109,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal PrestationCategorieRequest As Object)
+        Public Sub New(ByVal PrestationCategorieRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.PrestationCategorieRequest = PrestationCategorieRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPrestationCategorieResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPrestationCategorieResponse
         
@@ -723,57 +3126,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public PrestationCategorie As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal PrestationCategorie As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PrestationCategorie As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.PrestationCategorie = PrestationCategorie
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPrestationTarifRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPrestationTarifRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idStructure As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idCategorie As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String, ByVal idStructure As String, ByVal idCategorie As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
-            Me.idStructure = idStructure
-            Me.idCategorie = idCategorie
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPrestationTarifResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPrestationTarifResponse
         
@@ -798,15 +3199,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPrestationTarifRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPrestationTarifRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public PrestationTarifRequest As Object
         
@@ -814,16 +3210,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal PrestationTarifRequest As Object)
+        Public Sub New(ByVal PrestationTarifRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.PrestationTarifRequest = PrestationTarifRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPrestationTarifResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPrestationTarifResponse
         
@@ -833,47 +3227,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public PrestationTarif As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal PrestationTarif As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal PrestationTarif As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.PrestationTarif = PrestationTarif
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetBuseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetBuseRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public numeroNational As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal numeroNational As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.numeroNational = numeroNational
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetBuseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetBuseResponse
         
@@ -898,15 +3300,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendBuseRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendBuseRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public BuseRequest As Object
         
@@ -914,16 +3311,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal BuseRequest As Object)
+        Public Sub New(ByVal BuseRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.BuseRequest = BuseRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendBuseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendBuseResponse
         
@@ -933,47 +3328,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Buse As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Buse As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Buse As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.Buse = Buse
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetManometreControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetManometreControleRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public numeroNational As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal numeroNational As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.numeroNational = numeroNational
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetManometreControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetManometreControleResponse
         
@@ -998,32 +3401,25 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendManometreControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendManometreControleRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public ManometreControleRequest As Object
+        Public ManometreControle As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ManometreControleRequest As Object)
+        Public Sub New(ByVal ManometreControle As Object)
             MyBase.New
-            Me.agentId = agentId
-            Me.ManometreControleRequest = ManometreControleRequest
+            Me.ManometreControle = ManometreControle
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendManometreControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendManometreControleResponse
         
@@ -1033,47 +3429,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ManometreControle As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal ManometreControle As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal ManometreControle As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.ManometreControle = ManometreControle
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetManometreEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetManometreEtalonRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public numeroNational As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal numeroNational As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.numeroNational = numeroNational
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetManometreEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetManometreEtalonResponse
         
@@ -1098,15 +3502,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendManometreEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendManometreEtalonRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ManometreEtalonRequest As Object
         
@@ -1114,16 +3513,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ManometreEtalonRequest As Object)
+        Public Sub New(ByVal ManometreEtalonRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.ManometreEtalonRequest = ManometreEtalonRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendManometreEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendManometreEtalonResponse
         
@@ -1133,47 +3530,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ManometreEtalon As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal ManometreEtalon As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal ManometreEtalon As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.ManometreEtalon = ManometreEtalon
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetBancRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetBancRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetBancResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetBancResponse
         
@@ -1198,15 +3603,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendBancRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendBancRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public BancRequest As Object
         
@@ -1214,16 +3614,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal BancRequest As Object)
+        Public Sub New(ByVal BancRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.BancRequest = BancRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendBancResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendBancResponse
         
@@ -1233,47 +3631,60 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Banc As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Banc As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Banc As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.Banc = Banc
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uidagent As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uidagent As Integer, ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uidagent = uidagent
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticResponse
         
@@ -1298,15 +3709,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public DiagnosticRequest As Object
         
@@ -1314,16 +3720,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal DiagnosticRequest As Object)
+        Public Sub New(ByVal DiagnosticRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.DiagnosticRequest = DiagnosticRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticResponse
         
@@ -1333,47 +3737,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Diagnostic As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Diagnostic As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Diagnostic As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.Diagnostic = Diagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticItemsRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticItemsRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uiddiagnostic As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idDiagnostic As String
+        Public aiddiagnostic As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal idDiagnostic As String)
+        Public Sub New(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.idDiagnostic = idDiagnostic
+            Me.uiddiagnostic = uiddiagnostic
+            Me.aiddiagnostic = aiddiagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticItemsResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticItemsResponse
         
@@ -1398,59 +3810,8 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticItemsRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticItemsRequest
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
-         System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public arrayItems() As Object
-        
-        Public Sub New()
-            MyBase.New
-        End Sub
-        
-        Public Sub New(ByVal agentId As String, ByVal arrayItems() As Object)
-            MyBase.New
-            Me.agentId = agentId
-            Me.arrayItems = arrayItems
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
-     System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticItemsResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
-    Partial Public Class SendDiagnosticItemsResponse
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public result As Integer
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
-         System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public DiagnosticItemsList() As Object
-        
-        Public Sub New()
-            MyBase.New
-        End Sub
-        
-        Public Sub New(ByVal result As Integer, ByVal DiagnosticItemsList() As Object)
-            MyBase.New
-            Me.result = result
-            Me.DiagnosticItemsList = DiagnosticItemsList
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
-     System.ServiceModel.MessageContractAttribute(WrapperName:="SendAutoTestRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
-    Partial Public Class SendAutoTestRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
@@ -1468,7 +3829,102 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticItemsResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendDiagnosticItemsResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public DiagnosticItemsList() As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal DiagnosticItemsList() As Object)
+            MyBase.New
+            Me.result = result
+            Me.info = info
+            Me.DiagnosticItemsList = DiagnosticItemsList
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetAutoTestRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetAutoTestRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public aid As String
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
+            MyBase.New
+            Me.uid = uid
+            Me.aid = aid
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="GetAutoTestResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class GetAutoTestResponse
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public result As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public AutoTest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal result As Integer, ByVal AutoTest As Object)
+            MyBase.New
+            Me.result = result
+            Me.AutoTest = AutoTest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+     System.ServiceModel.MessageContractAttribute(WrapperName:="SendAutoTestRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
+    Partial Public Class SendAutoTestRequest
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public AutoTestRequest As Object
+        
+        Public Sub New()
+            MyBase.New
+        End Sub
+        
+        Public Sub New(ByVal AutoTestRequest As Object)
+            MyBase.New
+            Me.AutoTestRequest = AutoTestRequest
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendAutoTestResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendAutoTestResponse
         
@@ -1476,44 +3932,57 @@ Namespace WSCrodip2
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public result As Integer
         
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public AutoTest As Object
+        
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal AutoTest As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
+            Me.AutoTest = AutoTest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticBusesRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticBusesRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uiddiagnostic As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idDiagnostic As String
+        Public aiddiagnostic As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal idDiagnostic As String)
+        Public Sub New(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.idDiagnostic = idDiagnostic
+            Me.uiddiagnostic = uiddiagnostic
+            Me.aiddiagnostic = aiddiagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticBusesResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticBusesResponse
         
@@ -1538,15 +4007,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticBusesRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticBusesRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public arrayBuses() As Object
         
@@ -1554,16 +4018,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal arrayBuses() As Object)
+        Public Sub New(ByVal arrayBuses() As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.arrayBuses = arrayBuses
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticBusesResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticBusesResponse
         
@@ -1572,6 +4034,10 @@ Namespace WSCrodip2
         Public result As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
          System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public DiagnosticBusesList() As Object
         
@@ -1579,41 +4045,40 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal DiagnosticBusesList() As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal DiagnosticBusesList() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.DiagnosticBusesList = DiagnosticBusesList
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticBusesDetailRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticBusesDetailRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uiddiagnostic As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idDiagnostic As String
+        Public aiddiagnostic As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal idDiagnostic As String)
+        Public Sub New(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.idDiagnostic = idDiagnostic
+            Me.uiddiagnostic = uiddiagnostic
+            Me.aiddiagnostic = aiddiagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticBusesDetailResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticBusesDetailResponse
         
@@ -1638,15 +4103,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticBusesDetailRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticBusesDetailRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public arrayBuses() As Object
         
@@ -1654,16 +4114,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal arrayBuses() As Object)
+        Public Sub New(ByVal arrayBuses() As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.arrayBuses = arrayBuses
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticBusesDetailResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticBusesDetailResponse
         
@@ -1672,6 +4130,10 @@ Namespace WSCrodip2
         Public result As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
          System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesDetailList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public DiagnosticBusesDetailList() As Object
         
@@ -1679,41 +4141,40 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal DiagnosticBusesDetailList() As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal DiagnosticBusesDetailList() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.DiagnosticBusesDetailList = DiagnosticBusesDetailList
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticMano542Request", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticMano542Request
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uiddiagnostic As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idDiagnostic As String
+        Public aiddiagnostic As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal idDiagnostic As String)
+        Public Sub New(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.idDiagnostic = idDiagnostic
+            Me.uiddiagnostic = uiddiagnostic
+            Me.aiddiagnostic = aiddiagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticMano542Response", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticMano542Response
         
@@ -1738,15 +4199,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticMano542Request", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticMano542Request
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute("arrayMano542", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public arrayMano542() As Object
         
@@ -1754,16 +4210,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal arrayMano542() As Object)
+        Public Sub New(ByVal arrayMano542() As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.arrayMano542 = arrayMano542
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticMano542Response", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticMano542Response
         
@@ -1772,6 +4226,10 @@ Namespace WSCrodip2
         Public result As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
          System.Xml.Serialization.XmlElementAttribute("DiagnosticMano542List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public DiagnosticMano542List() As Object
         
@@ -1779,41 +4237,40 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal DiagnosticMano542List() As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal DiagnosticMano542List() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.DiagnosticMano542List = DiagnosticMano542List
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticTroncons833Request", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticTroncons833Request
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uiddiagnostic As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public idDiagnostic As String
+        Public aiddiagnostic As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal idDiagnostic As String)
+        Public Sub New(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.idDiagnostic = idDiagnostic
+            Me.uiddiagnostic = uiddiagnostic
+            Me.aiddiagnostic = aiddiagnostic
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetDiagnosticTroncons833Response", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetDiagnosticTroncons833Response
         
@@ -1838,15 +4295,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticTroncons833Request", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticTroncons833Request
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute("arrayTroncons833", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public arrayTroncons833() As Object
         
@@ -1854,16 +4306,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal arrayTroncons833() As Object)
+        Public Sub New(ByVal arrayTroncons833() As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.arrayTroncons833 = arrayTroncons833
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendDiagnosticTroncons833Response", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendDiagnosticTroncons833Response
         
@@ -1872,6 +4322,10 @@ Namespace WSCrodip2
         Public result As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
          System.Xml.Serialization.XmlElementAttribute("DiagnosticTroncons833List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public DiagnosticTroncons833List() As Object
         
@@ -1879,41 +4333,40 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal DiagnosticTroncons833List() As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal DiagnosticTroncons833List() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.DiagnosticTroncons833List = DiagnosticTroncons833List
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetExploitationRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetExploitationRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetExploitationResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetExploitationResponse
         
@@ -1938,15 +4391,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendExploitationRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendExploitationRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ExploitationRequest As Object
         
@@ -1954,16 +4402,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ExploitationRequest As Object)
+        Public Sub New(ByVal ExploitationRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.ExploitationRequest = ExploitationRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendExploitationResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendExploitationResponse
         
@@ -1973,47 +4419,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Exploitation As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Exploitation As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Exploitation As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.Exploitation = Exploitation
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetExploitationTOPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetExploitationTOPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetExploitationTOPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetExploitationTOPulverisateurResponse
         
@@ -2038,15 +4492,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendExploitationTOPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendExploitationTOPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ExploitationTOPulverisateurRequest As Object
         
@@ -2054,16 +4503,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ExploitationTOPulverisateurRequest As Object)
+        Public Sub New(ByVal ExploitationTOPulverisateurRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.ExploitationTOPulverisateurRequest = ExploitationTOPulverisateurRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendExploitationTOPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendExploitationTOPulverisateurResponse
         
@@ -2073,47 +4520,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ExploitationTOPulverisateur As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal ExploitationTOPulverisateur As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal ExploitationTOPulverisateur As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.ExploitationTOPulverisateur = ExploitationTOPulverisateur
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetControleBancMesureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetControleBancMesureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetControleBancMesureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetControleBancMesureResponse
         
@@ -2138,15 +4593,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendControleBancMesureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendControleBancMesureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ControleBancMesureRequest As Object
         
@@ -2154,16 +4604,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ControleBancMesureRequest As Object)
+        Public Sub New(ByVal ControleBancMesureRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.ControleBancMesureRequest = ControleBancMesureRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendControleBancMesureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendControleBancMesureResponse
         
@@ -2173,47 +4621,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ControleBancMesure As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal ControleBancMesure As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal ControleBancMesure As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.ControleBancMesure = ControleBancMesure
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetControleManoMesureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetControleManoMesureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetControleManoMesureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetControleManoMesureResponse
         
@@ -2238,15 +4694,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendControleManoMesureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendControleManoMesureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ControleManoMesureRequest As Object
         
@@ -2254,16 +4705,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal ControleManoMesureRequest As Object)
+        Public Sub New(ByVal ControleManoMesureRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.ControleManoMesureRequest = ControleManoMesureRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendControleManoMesureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendControleManoMesureResponse
         
@@ -2273,47 +4722,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public ControleManoMesure As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal ControleManoMesure As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal ControleManoMesure As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.ControleManoMesure = ControleManoMesure
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVBancRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVBancRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVBancResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVBancResponse
         
@@ -2338,15 +4795,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVBancRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVBancRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVBancRequest As Object
         
@@ -2354,16 +4806,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal FVBancRequest As Object)
+        Public Sub New(ByVal FVBancRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.FVBancRequest = FVBancRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVBancResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVBancResponse
         
@@ -2373,47 +4823,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVBanc As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal FVBanc As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal FVBanc As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.FVBanc = FVBanc
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVManometreControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVManometreControleRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVManometreControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVManometreControleResponse
         
@@ -2438,15 +4896,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVManometreControleRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVManometreControleRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVManometreControleRequest As Object
         
@@ -2454,16 +4907,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal FVManometreControleRequest As Object)
+        Public Sub New(ByVal FVManometreControleRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.FVManometreControleRequest = FVManometreControleRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVManometreControleResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVManometreControleResponse
         
@@ -2473,47 +4924,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVManometreControle As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal FVManometreControle As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal FVManometreControle As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.FVManometreControle = FVManometreControle
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVManometreEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVManometreEtalonRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetFVManometreEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetFVManometreEtalonResponse
         
@@ -2538,15 +4997,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVManometreEtalonRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVManometreEtalonRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVManometreEtalonRequest As Object
         
@@ -2554,16 +5008,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal FVManometreEtalonRequest As Object)
+        Public Sub New(ByVal FVManometreEtalonRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.FVManometreEtalonRequest = FVManometreEtalonRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendFVManometreEtalonResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendFVManometreEtalonResponse
         
@@ -2573,47 +5025,60 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public FVManometreEtalon As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal FVManometreEtalon As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal FVManometreEtalon As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.FVManometreEtalon = FVManometreEtalon
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetIdentifiantPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetIdentifiantPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidagent As Integer
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
+            Me.uidagent = uidagent
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetIdentifiantPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetIdentifiantPulverisateurResponse
         
@@ -2623,13 +5088,13 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur
+        Public IdentifiantPulverisateur As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur)
+        Public Sub New(ByVal result As Integer, ByVal IdentifiantPulverisateur As Object)
             MyBase.New
             Me.result = result
             Me.IdentifiantPulverisateur = IdentifiantPulverisateur
@@ -2638,32 +5103,25 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendIdentifiantPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendIdentifiantPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur
+        Public IdentifiantPulverisateurRequest As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur)
+        Public Sub New(ByVal IdentifiantPulverisateurRequest As Object)
             MyBase.New
-            Me.agentId = agentId
-            Me.IdentifiantPulverisateur = IdentifiantPulverisateur
+            Me.IdentifiantPulverisateurRequest = IdentifiantPulverisateurRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendIdentifiantPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendIdentifiantPulverisateurResponse
         
@@ -2673,47 +5131,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public IdentifiantPulverisateur As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal IdentifiantPulverisateur As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.IdentifiantPulverisateur = IdentifiantPulverisateur
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As String
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As String)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetPulverisateurResponse
         
@@ -2738,15 +5204,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPulverisateurRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPulverisateurRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public PulverisateurRequest As Object
         
@@ -2754,16 +5215,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal PulverisateurRequest As Object)
+        Public Sub New(ByVal PulverisateurRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.PulverisateurRequest = PulverisateurRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendPulverisateurResponse
         
@@ -2773,47 +5232,55 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public Pulverisateur As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal Pulverisateur As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal Pulverisateur As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.Pulverisateur = Pulverisateur
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetStructureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetStructureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
+        Public uid As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public id As Integer
+        Public aid As String
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal id As Integer)
+        Public Sub New(ByVal uid As Integer, ByVal aid As String)
             MyBase.New
-            Me.agentId = agentId
-            Me.id = id
+            Me.uid = uid
+            Me.aid = aid
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetStructureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetStructureResponse
         
@@ -2838,15 +5305,10 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendStructureRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendStructureRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
-         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agentId As String
-        
-        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public StructureRequest As Object
         
@@ -2854,16 +5316,14 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agentId As String, ByVal StructureRequest As Object)
+        Public Sub New(ByVal StructureRequest As Object)
             MyBase.New
-            Me.agentId = agentId
             Me.StructureRequest = StructureRequest
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="SendStructureResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class SendStructureResponse
         
@@ -2873,22 +5333,31 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public info As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uid As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public [Structure] As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal [Structure] As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal uid As Integer, ByVal [Structure] As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
+            Me.uid = uid
             Me.[Structure] = [Structure]
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielBuse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielBuseRequest
         
@@ -2908,7 +5377,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielBuseResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielBuseResponse
         
@@ -2933,7 +5401,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielManometre", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielManometreRequest
         
@@ -2953,7 +5420,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielManometreResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielManometreResponse
         
@@ -2978,7 +5444,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateur", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurRequest
         
@@ -2998,7 +5463,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateurResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurResponse
         
@@ -3023,7 +5487,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielTerritoire", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielTerritoireRequest
         
@@ -3043,7 +5506,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielTerritoireResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielTerritoireResponse
         
@@ -3068,7 +5530,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetVersionLogicielAgent", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetVersionLogicielAgentRequest
         
@@ -3079,7 +5540,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetVersionLogicielAgentResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetVersionLogicielAgentResponse
         
@@ -3104,7 +5564,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetSoftwareUpdate", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetSoftwareUpdateRequest
         
@@ -3124,7 +5583,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetSoftwareUpdateResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetSoftwareUpdateResponse
         
@@ -3149,7 +5607,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetSynchroDateTime", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetSynchroDateTimeRequest
         
@@ -3160,7 +5617,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetSynchroDateTimeResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetSynchroDateTimeResponse
         
@@ -3185,7 +5641,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetIncrementDiagnosticRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetIncrementDiagnosticRequest
         
@@ -3205,7 +5660,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetIncrementDiagnosticResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetIncrementDiagnosticResponse
         
@@ -3230,15 +5684,26 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="UpdatesAvailableRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class UpdatesAvailableRequest
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=0),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public agent As String
+        Public idProfilAgent As String
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidpool As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public uidpc As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public idRegistre As String
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=4),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public lastUpdateDateTime As String
         
@@ -3246,16 +5711,18 @@ Namespace WSCrodip2
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal agent As String, ByVal lastUpdateDateTime As String)
+        Public Sub New(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String)
             MyBase.New
-            Me.agent = agent
+            Me.idProfilAgent = idProfilAgent
+            Me.uidpool = uidpool
+            Me.uidpc = uidpc
+            Me.idRegistre = idRegistre
             Me.lastUpdateDateTime = lastUpdateDateTime
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="UpdatesAvailableResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class UpdatesAvailableResponse
         
@@ -3265,32 +5732,46 @@ Namespace WSCrodip2
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=1),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public isUpdateAvailable As Integer
+        Public info As String
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=2),  _
          System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
-        Public isComplete As Integer
+        Public isUpdateAvailable As Integer
         
         <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=3),  _
+         System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public isComplete As Integer
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=4),  _
          System.Xml.Serialization.XmlElementAttribute("updatesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
         Public updatesList() As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=5),  _
+         System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public availablePools() As Object
+        
+        <System.ServiceModel.MessageBodyMemberAttribute([Namespace]:="http://www.example.org/crodip/", Order:=6),  _
+         System.Xml.Serialization.XmlElementAttribute("availablePcs", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public availablePcs() As Object
         
         Public Sub New()
             MyBase.New
         End Sub
         
-        Public Sub New(ByVal result As Integer, ByVal isUpdateAvailable As Integer, ByVal isComplete As Integer, ByVal updatesList() As Object)
+        Public Sub New(ByVal result As Integer, ByVal info As String, ByVal isUpdateAvailable As Integer, ByVal isComplete As Integer, ByVal updatesList() As Object, ByVal availablePools() As Object, ByVal availablePcs() As Object)
             MyBase.New
             Me.result = result
+            Me.info = info
             Me.isUpdateAvailable = isUpdateAvailable
             Me.isComplete = isComplete
             Me.updatesList = updatesList
+            Me.availablePools = availablePools
+            Me.availablePcs = availablePcs
         End Sub
     End Class
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateurTypesCategoriesRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurTypesCategoriesRequest
         
@@ -3310,7 +5791,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateurTypesCategoriesResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurTypesCategoriesResponse
         
@@ -3340,7 +5820,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielCodesAPERequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielCodesAPERequest
         
@@ -3360,7 +5839,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielCodesAPEResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielCodesAPEResponse
         
@@ -3390,7 +5868,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateurMarquesModelesRequest", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurMarquesModelesRequest
         
@@ -3410,7 +5887,6 @@ Namespace WSCrodip2
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
-     System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced),  _
      System.ServiceModel.MessageContractAttribute(WrapperName:="GetReferentielPulverisateurMarquesModelesResponse", WrapperNamespace:="http://www.example.org/crodip/", IsWrapped:=true)>  _
     Partial Public Class GetReferentielPulverisateurMarquesModelesResponse
         
@@ -3440,875 +5916,1938 @@ Namespace WSCrodip2
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
     Public Interface CrodipServerChannel
-        Inherits WSCrodip2.CrodipServer, System.ServiceModel.IClientChannel
+        Inherits WSCRODIP2.CrodipServer, System.ServiceModel.IClientChannel
     End Interface
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+
+    <System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>
     Partial Public Class CrodipServerClient
-        Inherits System.ServiceModel.ClientBase(Of WSCrodip2.CrodipServer)
-        Implements WSCrodip2.CrodipServer
-        
+        Inherits System.ServiceModel.ClientBase(Of WSCRODIP2.CrodipServer)
+        Implements WSCRODIP2.CrodipServer
+
         Public Sub New()
             MyBase.New
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String)
             MyBase.New(endpointConfigurationName)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendLogs(ByVal request As WSCrodip2.SendLogsRequest) As WSCrodip2.SendLogsResponse Implements WSCrodip2.CrodipServer.SendLogs
-            Return MyBase.Channel.SendLogs(request)
-        End Function
-        
-        Public Function SendLogs(ByVal Logs As Object) As Integer
-            Dim inValue As WSCrodip2.SendLogsRequest = New WSCrodip2.SendLogsRequest()
-            inValue.Logs = Logs
-            Dim retVal As WSCrodip2.SendLogsResponse = CType(Me,WSCrodip2.CrodipServer).SendLogs(inValue)
-            Return retVal.result
-        End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetAgent(ByVal request As WSCrodip2.GetAgentRequest) As WSCrodip2.GetAgentResponse Implements WSCrodip2.CrodipServer.GetAgent
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetAgent(ByVal request As WSCRODIP2.GetAgentRequest) As WSCRODIP2.GetAgentResponse Implements WSCRODIP2.CrodipServer.GetAgent
             Return MyBase.Channel.GetAgent(request)
         End Function
-        
-        Public Function GetAgent(ByVal numeroNational As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Agent As Object) As Integer
-            Dim inValue As WSCrodip2.GetAgentRequest = New WSCrodip2.GetAgentRequest()
-            inValue.numeroNational = numeroNational
-            Dim retVal As WSCrodip2.GetAgentResponse = CType(Me,WSCrodip2.CrodipServer).GetAgent(inValue)
+
+        Public Function GetAgent(ByVal idProfilAgent As String, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Agent As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef availablePools() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetAgentRequest = New WSCRODIP2.GetAgentRequest()
+            inValue.idProfilAgent = idProfilAgent
+            Dim retVal As WSCRODIP2.GetAgentResponse = CType(Me, WSCRODIP2.CrodipServer).GetAgent(inValue)
+            info = retVal.info
             Agent = retVal.Agent
+            availablePools = retVal.availablePools
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendAgent(ByVal request As WSCrodip2.SendAgentRequest) As WSCrodip2.SendAgentResponse Implements WSCrodip2.CrodipServer.SendAgent
+
+        Public Function GetAgentAsync(ByVal request As WSCRODIP2.GetAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetAgentResponse) Implements WSCRODIP2.CrodipServer.GetAgentAsync
+            Return MyBase.Channel.GetAgentAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendAgent(ByVal request As WSCRODIP2.SendAgentRequest) As WSCRODIP2.SendAgentResponse Implements WSCRODIP2.CrodipServer.SendAgent
             Return MyBase.Channel.SendAgent(request)
         End Function
-        
-        Public Function SendAgent(ByVal AgentRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Agent As Object) As Integer
-            Dim inValue As WSCrodip2.SendAgentRequest = New WSCrodip2.SendAgentRequest()
+
+        Public Function SendAgent(ByVal AgentRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Agent As Object) As Integer
+            Dim inValue As WSCRODIP2.SendAgentRequest = New WSCRODIP2.SendAgentRequest()
             inValue.AgentRequest = AgentRequest
-            Dim retVal As WSCrodip2.SendAgentResponse = CType(Me,WSCrodip2.CrodipServer).SendAgent(inValue)
+            Dim retVal As WSCRODIP2.SendAgentResponse = CType(Me, WSCRODIP2.CrodipServer).SendAgent(inValue)
+            info = retVal.info
             Agent = retVal.Agent
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SetDateSynchroAgent(ByVal request As WSCrodip2.SetDateSynchroAgentRequest) As WSCrodip2.SetDateSynchroAgentResponse Implements WSCrodip2.CrodipServer.SetDateSynchroAgent
+
+        Public Function SendAgentAsync(ByVal request As WSCRODIP2.SendAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendAgentResponse) Implements WSCRODIP2.CrodipServer.SendAgentAsync
+            Return MyBase.Channel.SendAgentAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPc(ByVal request As WSCRODIP2.GetPcRequest) As WSCRODIP2.GetPcResponse Implements WSCRODIP2.CrodipServer.GetPc
+            Return MyBase.Channel.GetPc(request)
+        End Function
+
+        Public Function GetPc(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Pc As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPcRequest = New WSCRODIP2.GetPcRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPcResponse = CType(Me, WSCRODIP2.CrodipServer).GetPc(inValue)
+            Pc = retVal.Pc
+            Return retVal.result
+        End Function
+
+        Public Function GetPcAsync(ByVal request As WSCRODIP2.GetPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPcResponse) Implements WSCRODIP2.CrodipServer.GetPcAsync
+            Return MyBase.Channel.GetPcAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPc(ByVal request As WSCRODIP2.SendPcRequest) As WSCRODIP2.SendPcResponse Implements WSCRODIP2.CrodipServer.SendPc
+            Return MyBase.Channel.SendPc(request)
+        End Function
+
+        Public Function SendPc(ByVal PcRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Pc As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPcRequest = New WSCRODIP2.SendPcRequest()
+            inValue.PcRequest = PcRequest
+            Dim retVal As WSCRODIP2.SendPcResponse = CType(Me, WSCRODIP2.CrodipServer).SendPc(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Pc = retVal.Pc
+            Return retVal.result
+        End Function
+
+        Public Function SendPcAsync(ByVal request As WSCRODIP2.SendPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPcResponse) Implements WSCRODIP2.CrodipServer.SendPcAsync
+            Return MyBase.Channel.SendPcAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetMasse(ByVal request As WSCRODIP2.GetMasseRequest) As WSCRODIP2.GetMasseResponse Implements WSCRODIP2.CrodipServer.GetMasse
+            Return MyBase.Channel.GetMasse(request)
+        End Function
+
+        Public Function GetMasse(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Masse As Object) As Integer
+            Dim inValue As WSCRODIP2.GetMasseRequest = New WSCRODIP2.GetMasseRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetMasseResponse = CType(Me, WSCRODIP2.CrodipServer).GetMasse(inValue)
+            Masse = retVal.Masse
+            Return retVal.result
+        End Function
+
+        Public Function GetMasseAsync(ByVal request As WSCRODIP2.GetMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetMasseResponse) Implements WSCRODIP2.CrodipServer.GetMasseAsync
+            Return MyBase.Channel.GetMasseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendMasse(ByVal request As WSCRODIP2.SendMasseRequest) As WSCRODIP2.SendMasseResponse Implements WSCRODIP2.CrodipServer.SendMasse
+            Return MyBase.Channel.SendMasse(request)
+        End Function
+
+        Public Function SendMasse(ByVal MasseRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Masse As Object) As Integer
+            Dim inValue As WSCRODIP2.SendMasseRequest = New WSCRODIP2.SendMasseRequest()
+            inValue.MasseRequest = MasseRequest
+            Dim retVal As WSCRODIP2.SendMasseResponse = CType(Me, WSCRODIP2.CrodipServer).SendMasse(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Masse = retVal.Masse
+            Return retVal.result
+        End Function
+
+        Public Function SendMasseAsync(ByVal request As WSCRODIP2.SendMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendMasseResponse) Implements WSCRODIP2.CrodipServer.SendMasseAsync
+            Return MyBase.Channel.SendMasseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetBalance(ByVal request As WSCRODIP2.GetBalanceRequest) As WSCRODIP2.GetBalanceResponse Implements WSCRODIP2.CrodipServer.GetBalance
+            Return MyBase.Channel.GetBalance(request)
+        End Function
+
+        Public Function GetBalance(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Balance As Object) As Integer
+            Dim inValue As WSCRODIP2.GetBalanceRequest = New WSCRODIP2.GetBalanceRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetBalanceResponse = CType(Me, WSCRODIP2.CrodipServer).GetBalance(inValue)
+            Balance = retVal.Balance
+            Return retVal.result
+        End Function
+
+        Public Function GetBalanceAsync(ByVal request As WSCRODIP2.GetBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBalanceResponse) Implements WSCRODIP2.CrodipServer.GetBalanceAsync
+            Return MyBase.Channel.GetBalanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendBalance(ByVal request As WSCRODIP2.SendBalanceRequest) As WSCRODIP2.SendBalanceResponse Implements WSCRODIP2.CrodipServer.SendBalance
+            Return MyBase.Channel.SendBalance(request)
+        End Function
+
+        Public Function SendBalance(ByVal BalanceRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Balance As Object) As Integer
+            Dim inValue As WSCRODIP2.SendBalanceRequest = New WSCRODIP2.SendBalanceRequest()
+            inValue.BalanceRequest = BalanceRequest
+            Dim retVal As WSCRODIP2.SendBalanceResponse = CType(Me, WSCRODIP2.CrodipServer).SendBalance(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Balance = retVal.Balance
+            Return retVal.result
+        End Function
+
+        Public Function SendBalanceAsync(ByVal request As WSCRODIP2.SendBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBalanceResponse) Implements WSCRODIP2.CrodipServer.SendBalanceAsync
+            Return MyBase.Channel.SendBalanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDistance(ByVal request As WSCRODIP2.GetDistanceRequest) As WSCRODIP2.GetDistanceResponse Implements WSCRODIP2.CrodipServer.GetDistance
+            Return MyBase.Channel.GetDistance(request)
+        End Function
+
+        Public Function GetDistance(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Distance As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDistanceRequest = New WSCRODIP2.GetDistanceRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetDistanceResponse = CType(Me, WSCRODIP2.CrodipServer).GetDistance(inValue)
+            Distance = retVal.Distance
+            Return retVal.result
+        End Function
+
+        Public Function GetDistanceAsync(ByVal request As WSCRODIP2.GetDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDistanceResponse) Implements WSCRODIP2.CrodipServer.GetDistanceAsync
+            Return MyBase.Channel.GetDistanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDistance(ByVal request As WSCRODIP2.SendDistanceRequest) As WSCRODIP2.SendDistanceResponse Implements WSCRODIP2.CrodipServer.SendDistance
+            Return MyBase.Channel.SendDistance(request)
+        End Function
+
+        Public Function SendDistance(ByVal DistanceRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Distance As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDistanceRequest = New WSCRODIP2.SendDistanceRequest()
+            inValue.DistanceRequest = DistanceRequest
+            Dim retVal As WSCRODIP2.SendDistanceResponse = CType(Me, WSCRODIP2.CrodipServer).SendDistance(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Distance = retVal.Distance
+            Return retVal.result
+        End Function
+
+        Public Function SendDistanceAsync(ByVal request As WSCRODIP2.SendDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDistanceResponse) Implements WSCRODIP2.CrodipServer.SendDistanceAsync
+            Return MyBase.Channel.SendDistanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetChrono(ByVal request As WSCRODIP2.GetChronoRequest) As WSCRODIP2.GetChronoResponse Implements WSCRODIP2.CrodipServer.GetChrono
+            Return MyBase.Channel.GetChrono(request)
+        End Function
+
+        Public Function GetChrono(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Chrono As Object) As Integer
+            Dim inValue As WSCRODIP2.GetChronoRequest = New WSCRODIP2.GetChronoRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetChronoResponse = CType(Me, WSCRODIP2.CrodipServer).GetChrono(inValue)
+            Chrono = retVal.Chrono
+            Return retVal.result
+        End Function
+
+        Public Function GetChronoAsync(ByVal request As WSCRODIP2.GetChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetChronoResponse) Implements WSCRODIP2.CrodipServer.GetChronoAsync
+            Return MyBase.Channel.GetChronoAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendChrono(ByVal request As WSCRODIP2.SendChronoRequest) As WSCRODIP2.SendChronoResponse Implements WSCRODIP2.CrodipServer.SendChrono
+            Return MyBase.Channel.SendChrono(request)
+        End Function
+
+        Public Function SendChrono(ByVal ChronoRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Chrono As Object) As Integer
+            Dim inValue As WSCRODIP2.SendChronoRequest = New WSCRODIP2.SendChronoRequest()
+            inValue.ChronoRequest = ChronoRequest
+            Dim retVal As WSCRODIP2.SendChronoResponse = CType(Me, WSCRODIP2.CrodipServer).SendChrono(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Chrono = retVal.Chrono
+            Return retVal.result
+        End Function
+
+        Public Function SendChronoAsync(ByVal request As WSCRODIP2.SendChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendChronoResponse) Implements WSCRODIP2.CrodipServer.SendChronoAsync
+            Return MyBase.Channel.SendChronoAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPool(ByVal request As WSCRODIP2.GetPoolRequest) As WSCRODIP2.GetPoolResponse Implements WSCRODIP2.CrodipServer.GetPool
+            Return MyBase.Channel.GetPool(request)
+        End Function
+
+        Public Function GetPool(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Pool As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolRequest = New WSCRODIP2.GetPoolRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolResponse = CType(Me, WSCRODIP2.CrodipServer).GetPool(inValue)
+            Pool = retVal.Pool
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolAsync(ByVal request As WSCRODIP2.GetPoolRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolResponse) Implements WSCRODIP2.CrodipServer.GetPoolAsync
+            Return MyBase.Channel.GetPoolAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPool(ByVal request As WSCRODIP2.SendPoolRequest) As WSCRODIP2.SendPoolResponse Implements WSCRODIP2.CrodipServer.SendPool
+            Return MyBase.Channel.SendPool(request)
+        End Function
+
+        Public Function SendPool(ByVal PoolRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Pool As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolRequest = New WSCRODIP2.SendPoolRequest()
+            inValue.PoolRequest = PoolRequest
+            Dim retVal As WSCRODIP2.SendPoolResponse = CType(Me, WSCRODIP2.CrodipServer).SendPool(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            Pool = retVal.Pool
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolAsync(ByVal request As WSCRODIP2.SendPoolRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolResponse) Implements WSCRODIP2.CrodipServer.SendPoolAsync
+            Return MyBase.Channel.SendPoolAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolAgent(ByVal request As WSCRODIP2.GetPoolAgentRequest) As WSCRODIP2.GetPoolAgentResponse Implements WSCRODIP2.CrodipServer.GetPoolAgent
+            Return MyBase.Channel.GetPoolAgent(request)
+        End Function
+
+        Public Function GetPoolAgent(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolAgent As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolAgentRequest = New WSCRODIP2.GetPoolAgentRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolAgentResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolAgent(inValue)
+            PoolAgent = retVal.PoolAgent
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolAgentAsync(ByVal request As WSCRODIP2.GetPoolAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolAgentResponse) Implements WSCRODIP2.CrodipServer.GetPoolAgentAsync
+            Return MyBase.Channel.GetPoolAgentAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolAgent(ByVal request As WSCRODIP2.SendPoolAgentRequest) As WSCRODIP2.SendPoolAgentResponse Implements WSCRODIP2.CrodipServer.SendPoolAgent
+            Return MyBase.Channel.SendPoolAgent(request)
+        End Function
+
+        Public Function SendPoolAgent(ByVal PoolAgentRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolAgent As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolAgentRequest = New WSCRODIP2.SendPoolAgentRequest()
+            inValue.PoolAgentRequest = PoolAgentRequest
+            Dim retVal As WSCRODIP2.SendPoolAgentResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolAgent(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolAgent = retVal.PoolAgent
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolAgentAsync(ByVal request As WSCRODIP2.SendPoolAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolAgentResponse) Implements WSCRODIP2.CrodipServer.SendPoolAgentAsync
+            Return MyBase.Channel.SendPoolAgentAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolPc(ByVal request As WSCRODIP2.GetPoolPcRequest) As WSCRODIP2.GetPoolPcResponse Implements WSCRODIP2.CrodipServer.GetPoolPc
+            Return MyBase.Channel.GetPoolPc(request)
+        End Function
+
+        Public Function GetPoolPc(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolPc As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolPcRequest = New WSCRODIP2.GetPoolPcRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolPcResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolPc(inValue)
+            PoolPc = retVal.PoolPc
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolPcAsync(ByVal request As WSCRODIP2.GetPoolPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolPcResponse) Implements WSCRODIP2.CrodipServer.GetPoolPcAsync
+            Return MyBase.Channel.GetPoolPcAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolPc(ByVal request As WSCRODIP2.SendPoolPcRequest) As WSCRODIP2.SendPoolPcResponse Implements WSCRODIP2.CrodipServer.SendPoolPc
+            Return MyBase.Channel.SendPoolPc(request)
+        End Function
+
+        Public Function SendPoolPc(ByVal PoolPcRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolPc As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolPcRequest = New WSCRODIP2.SendPoolPcRequest()
+            inValue.PoolPcRequest = PoolPcRequest
+            Dim retVal As WSCRODIP2.SendPoolPcResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolPc(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolPc = retVal.PoolPc
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolPcAsync(ByVal request As WSCRODIP2.SendPoolPcRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolPcResponse) Implements WSCRODIP2.CrodipServer.SendPoolPcAsync
+            Return MyBase.Channel.SendPoolPcAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolMasse(ByVal request As WSCRODIP2.GetPoolMasseRequest) As WSCRODIP2.GetPoolMasseResponse Implements WSCRODIP2.CrodipServer.GetPoolMasse
+            Return MyBase.Channel.GetPoolMasse(request)
+        End Function
+
+        Public Function GetPoolMasse(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolMasse As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolMasseRequest = New WSCRODIP2.GetPoolMasseRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolMasseResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolMasse(inValue)
+            PoolMasse = retVal.PoolMasse
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolMasseAsync(ByVal request As WSCRODIP2.GetPoolMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolMasseResponse) Implements WSCRODIP2.CrodipServer.GetPoolMasseAsync
+            Return MyBase.Channel.GetPoolMasseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolMasse(ByVal request As WSCRODIP2.SendPoolMasseRequest) As WSCRODIP2.SendPoolMasseResponse Implements WSCRODIP2.CrodipServer.SendPoolMasse
+            Return MyBase.Channel.SendPoolMasse(request)
+        End Function
+
+        Public Function SendPoolMasse(ByVal PoolMasseRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolMasse As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolMasseRequest = New WSCRODIP2.SendPoolMasseRequest()
+            inValue.PoolMasseRequest = PoolMasseRequest
+            Dim retVal As WSCRODIP2.SendPoolMasseResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolMasse(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolMasse = retVal.PoolMasse
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolMasseAsync(ByVal request As WSCRODIP2.SendPoolMasseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolMasseResponse) Implements WSCRODIP2.CrodipServer.SendPoolMasseAsync
+            Return MyBase.Channel.SendPoolMasseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolBalance(ByVal request As WSCRODIP2.GetPoolBalanceRequest) As WSCRODIP2.GetPoolBalanceResponse Implements WSCRODIP2.CrodipServer.GetPoolBalance
+            Return MyBase.Channel.GetPoolBalance(request)
+        End Function
+
+        Public Function GetPoolBalance(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBalance As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolBalanceRequest = New WSCRODIP2.GetPoolBalanceRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolBalanceResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolBalance(inValue)
+            PoolBalance = retVal.PoolBalance
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolBalanceAsync(ByVal request As WSCRODIP2.GetPoolBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBalanceResponse) Implements WSCRODIP2.CrodipServer.GetPoolBalanceAsync
+            Return MyBase.Channel.GetPoolBalanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolBalance(ByVal request As WSCRODIP2.SendPoolBalanceRequest) As WSCRODIP2.SendPoolBalanceResponse Implements WSCRODIP2.CrodipServer.SendPoolBalance
+            Return MyBase.Channel.SendPoolBalance(request)
+        End Function
+
+        Public Function SendPoolBalance(ByVal PoolBalanceRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBalance As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolBalanceRequest = New WSCRODIP2.SendPoolBalanceRequest()
+            inValue.PoolBalanceRequest = PoolBalanceRequest
+            Dim retVal As WSCRODIP2.SendPoolBalanceResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolBalance(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolBalance = retVal.PoolBalance
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolBalanceAsync(ByVal request As WSCRODIP2.SendPoolBalanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolBalanceResponse) Implements WSCRODIP2.CrodipServer.SendPoolBalanceAsync
+            Return MyBase.Channel.SendPoolBalanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolDistance(ByVal request As WSCRODIP2.GetPoolDistanceRequest) As WSCRODIP2.GetPoolDistanceResponse Implements WSCRODIP2.CrodipServer.GetPoolDistance
+            Return MyBase.Channel.GetPoolDistance(request)
+        End Function
+
+        Public Function GetPoolDistance(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolDistance As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolDistanceRequest = New WSCRODIP2.GetPoolDistanceRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolDistanceResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolDistance(inValue)
+            PoolDistance = retVal.PoolDistance
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolDistanceAsync(ByVal request As WSCRODIP2.GetPoolDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolDistanceResponse) Implements WSCRODIP2.CrodipServer.GetPoolDistanceAsync
+            Return MyBase.Channel.GetPoolDistanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolDistance(ByVal request As WSCRODIP2.SendPoolDistanceRequest) As WSCRODIP2.SendPoolDistanceResponse Implements WSCRODIP2.CrodipServer.SendPoolDistance
+            Return MyBase.Channel.SendPoolDistance(request)
+        End Function
+
+        Public Function SendPoolDistance(ByVal PoolDistanceRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolDistance As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolDistanceRequest = New WSCRODIP2.SendPoolDistanceRequest()
+            inValue.PoolDistanceRequest = PoolDistanceRequest
+            Dim retVal As WSCRODIP2.SendPoolDistanceResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolDistance(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolDistance = retVal.PoolDistance
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolDistanceAsync(ByVal request As WSCRODIP2.SendPoolDistanceRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolDistanceResponse) Implements WSCRODIP2.CrodipServer.SendPoolDistanceAsync
+            Return MyBase.Channel.SendPoolDistanceAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolChrono(ByVal request As WSCRODIP2.GetPoolChronoRequest) As WSCRODIP2.GetPoolChronoResponse Implements WSCRODIP2.CrodipServer.GetPoolChrono
+            Return MyBase.Channel.GetPoolChrono(request)
+        End Function
+
+        Public Function GetPoolChrono(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolChrono As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolChronoRequest = New WSCRODIP2.GetPoolChronoRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolChronoResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolChrono(inValue)
+            PoolChrono = retVal.PoolChrono
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolChronoAsync(ByVal request As WSCRODIP2.GetPoolChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolChronoResponse) Implements WSCRODIP2.CrodipServer.GetPoolChronoAsync
+            Return MyBase.Channel.GetPoolChronoAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolChrono(ByVal request As WSCRODIP2.SendPoolChronoRequest) As WSCRODIP2.SendPoolChronoResponse Implements WSCRODIP2.CrodipServer.SendPoolChrono
+            Return MyBase.Channel.SendPoolChrono(request)
+        End Function
+
+        Public Function SendPoolChrono(ByVal PoolChronoRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolChrono As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolChronoRequest = New WSCRODIP2.SendPoolChronoRequest()
+            inValue.PoolChronoRequest = PoolChronoRequest
+            Dim retVal As WSCRODIP2.SendPoolChronoResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolChrono(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolChrono = retVal.PoolChrono
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolChronoAsync(ByVal request As WSCRODIP2.SendPoolChronoRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolChronoResponse) Implements WSCRODIP2.CrodipServer.SendPoolChronoAsync
+            Return MyBase.Channel.SendPoolChronoAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolManoControle(ByVal request As WSCRODIP2.GetPoolManoControleRequest) As WSCRODIP2.GetPoolManoControleResponse Implements WSCRODIP2.CrodipServer.GetPoolManoControle
+            Return MyBase.Channel.GetPoolManoControle(request)
+        End Function
+
+        Public Function GetPoolManoControle(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoControle As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolManoControleRequest = New WSCRODIP2.GetPoolManoControleRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolManoControleResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolManoControle(inValue)
+            PoolManoControle = retVal.PoolManoControle
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolManoControleAsync(ByVal request As WSCRODIP2.GetPoolManoControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoControleResponse) Implements WSCRODIP2.CrodipServer.GetPoolManoControleAsync
+            Return MyBase.Channel.GetPoolManoControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolManoControle(ByVal request As WSCRODIP2.SendPoolManoControleRequest) As WSCRODIP2.SendPoolManoControleResponse Implements WSCRODIP2.CrodipServer.SendPoolManoControle
+            Return MyBase.Channel.SendPoolManoControle(request)
+        End Function
+
+        Public Function SendPoolManoControle(ByVal PoolManoControleRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoControle As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolManoControleRequest = New WSCRODIP2.SendPoolManoControleRequest()
+            inValue.PoolManoControleRequest = PoolManoControleRequest
+            Dim retVal As WSCRODIP2.SendPoolManoControleResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolManoControle(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolManoControle = retVal.PoolManoControle
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolManoControleAsync(ByVal request As WSCRODIP2.SendPoolManoControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolManoControleResponse) Implements WSCRODIP2.CrodipServer.SendPoolManoControleAsync
+            Return MyBase.Channel.SendPoolManoControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolManoEtalon(ByVal request As WSCRODIP2.GetPoolManoEtalonRequest) As WSCRODIP2.GetPoolManoEtalonResponse Implements WSCRODIP2.CrodipServer.GetPoolManoEtalon
+            Return MyBase.Channel.GetPoolManoEtalon(request)
+        End Function
+
+        Public Function GetPoolManoEtalon(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolManoEtalonRequest = New WSCRODIP2.GetPoolManoEtalonRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolManoEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolManoEtalon(inValue)
+            PoolManoEtalon = retVal.PoolManoEtalon
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolManoEtalonAsync(ByVal request As WSCRODIP2.GetPoolManoEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoEtalonResponse) Implements WSCRODIP2.CrodipServer.GetPoolManoEtalonAsync
+            Return MyBase.Channel.GetPoolManoEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolManoEtalon(ByVal request As WSCRODIP2.SendPoolManoEtalonRequest) As WSCRODIP2.SendPoolManoEtalonResponse Implements WSCRODIP2.CrodipServer.SendPoolManoEtalon
+            Return MyBase.Channel.SendPoolManoEtalon(request)
+        End Function
+
+        Public Function SendPoolManoEtalon(ByVal PoolManoEtalonRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolManoEtalonRequest = New WSCRODIP2.SendPoolManoEtalonRequest()
+            inValue.PoolManoEtalonRequest = PoolManoEtalonRequest
+            Dim retVal As WSCRODIP2.SendPoolManoEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolManoEtalon(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolManoEtalon = retVal.PoolManoEtalon
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolManoEtalonAsync(ByVal request As WSCRODIP2.SendPoolManoEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolManoEtalonResponse) Implements WSCRODIP2.CrodipServer.SendPoolManoEtalonAsync
+            Return MyBase.Channel.SendPoolManoEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolBuse(ByVal request As WSCRODIP2.GetPoolBuseRequest) As WSCRODIP2.GetPoolBuseResponse Implements WSCRODIP2.CrodipServer.GetPoolBuse
+            Return MyBase.Channel.GetPoolBuse(request)
+        End Function
+
+        Public Function GetPoolBuse(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBuse As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolBuseRequest = New WSCRODIP2.GetPoolBuseRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPoolBuseResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolBuse(inValue)
+            PoolBuse = retVal.PoolBuse
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolBuseAsync(ByVal request As WSCRODIP2.GetPoolBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBuseResponse) Implements WSCRODIP2.CrodipServer.GetPoolBuseAsync
+            Return MyBase.Channel.GetPoolBuseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPoolBuse(ByVal request As WSCRODIP2.SendPoolBuseRequest) As WSCRODIP2.SendPoolBuseResponse Implements WSCRODIP2.CrodipServer.SendPoolBuse
+            Return MyBase.Channel.SendPoolBuse(request)
+        End Function
+
+        Public Function SendPoolBuse(ByVal PoolBuseRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBuse As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPoolBuseRequest = New WSCRODIP2.SendPoolBuseRequest()
+            inValue.PoolBuseRequest = PoolBuseRequest
+            Dim retVal As WSCRODIP2.SendPoolBuseResponse = CType(Me, WSCRODIP2.CrodipServer).SendPoolBuse(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            PoolBuse = retVal.PoolBuse
+            Return retVal.result
+        End Function
+
+        Public Function SendPoolBuseAsync(ByVal request As WSCRODIP2.SendPoolBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPoolBuseResponse) Implements WSCRODIP2.CrodipServer.SendPoolBuseAsync
+            Return MyBase.Channel.SendPoolBuseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolList(ByVal request As WSCRODIP2.GetPoolListRequest) As WSCRODIP2.GetPoolListResponse Implements WSCRODIP2.CrodipServer.GetPoolList
+            Return MyBase.Channel.GetPoolList(request)
+        End Function
+
+        Public Function GetPoolList(ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolListRequest = New WSCRODIP2.GetPoolListRequest()
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolList(inValue)
+            PoolList = retVal.PoolList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolListAsync(ByVal request As WSCRODIP2.GetPoolListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolListResponse) Implements WSCRODIP2.CrodipServer.GetPoolListAsync
+            Return MyBase.Channel.GetPoolListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolAgentList(ByVal request As WSCRODIP2.GetPoolAgentListRequest) As WSCRODIP2.GetPoolAgentListResponse Implements WSCRODIP2.CrodipServer.GetPoolAgentList
+            Return MyBase.Channel.GetPoolAgentList(request)
+        End Function
+
+        Public Function GetPoolAgentList(ByVal uidagent As Integer, ByVal aidagent As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolAgentList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolAgentListRequest = New WSCRODIP2.GetPoolAgentListRequest()
+            inValue.uidagent = uidagent
+            inValue.aidagent = aidagent
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolAgentListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolAgentList(inValue)
+            PoolAgentList = retVal.PoolAgentList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolAgentListAsync(ByVal request As WSCRODIP2.GetPoolAgentListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolAgentListResponse) Implements WSCRODIP2.CrodipServer.GetPoolAgentListAsync
+            Return MyBase.Channel.GetPoolAgentListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolPcList(ByVal request As WSCRODIP2.GetPoolPcListRequest) As WSCRODIP2.GetPoolPcListResponse Implements WSCRODIP2.CrodipServer.GetPoolPcList
+            Return MyBase.Channel.GetPoolPcList(request)
+        End Function
+
+        Public Function GetPoolPcList(ByVal uidagent As Object, ByVal uidpc As Integer, ByVal aidpc As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolPcList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolPcListRequest = New WSCRODIP2.GetPoolPcListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidpc = uidpc
+            inValue.aidpc = aidpc
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolPcListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolPcList(inValue)
+            PoolPcList = retVal.PoolPcList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolPcListAsync(ByVal request As WSCRODIP2.GetPoolPcListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolPcListResponse) Implements WSCRODIP2.CrodipServer.GetPoolPcListAsync
+            Return MyBase.Channel.GetPoolPcListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolMasseList(ByVal request As WSCRODIP2.GetPoolMasseListRequest) As WSCRODIP2.GetPoolMasseListResponse Implements WSCRODIP2.CrodipServer.GetPoolMasseList
+            Return MyBase.Channel.GetPoolMasseList(request)
+        End Function
+
+        Public Function GetPoolMasseList(ByVal uidagent As Object, ByVal uidmasse As Integer, ByVal aidmasse As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolMasseList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolMasseListRequest = New WSCRODIP2.GetPoolMasseListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidmasse = uidmasse
+            inValue.aidmasse = aidmasse
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolMasseListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolMasseList(inValue)
+            PoolMasseList = retVal.PoolMasseList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolMasseListAsync(ByVal request As WSCRODIP2.GetPoolMasseListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolMasseListResponse) Implements WSCRODIP2.CrodipServer.GetPoolMasseListAsync
+            Return MyBase.Channel.GetPoolMasseListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolBalanceList(ByVal request As WSCRODIP2.GetPoolBalanceListRequest) As WSCRODIP2.GetPoolBalanceListResponse Implements WSCRODIP2.CrodipServer.GetPoolBalanceList
+            Return MyBase.Channel.GetPoolBalanceList(request)
+        End Function
+
+        Public Function GetPoolBalanceList(ByVal uidagent As Object, ByVal uidbalance As Integer, ByVal aidbalance As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBalanceList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolBalanceListRequest = New WSCRODIP2.GetPoolBalanceListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidbalance = uidbalance
+            inValue.aidbalance = aidbalance
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolBalanceListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolBalanceList(inValue)
+            PoolBalanceList = retVal.PoolBalanceList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolBalanceListAsync(ByVal request As WSCRODIP2.GetPoolBalanceListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBalanceListResponse) Implements WSCRODIP2.CrodipServer.GetPoolBalanceListAsync
+            Return MyBase.Channel.GetPoolBalanceListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolDistanceList(ByVal request As WSCRODIP2.GetPoolDistanceListRequest) As WSCRODIP2.GetPoolDistanceListResponse Implements WSCRODIP2.CrodipServer.GetPoolDistanceList
+            Return MyBase.Channel.GetPoolDistanceList(request)
+        End Function
+
+        Public Function GetPoolDistanceList(ByVal uidagent As Object, ByVal uiddistance As Integer, ByVal aiddistance As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolDistanceList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolDistanceListRequest = New WSCRODIP2.GetPoolDistanceListRequest()
+            inValue.uidagent = uidagent
+            inValue.uiddistance = uiddistance
+            inValue.aiddistance = aiddistance
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolDistanceListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolDistanceList(inValue)
+            PoolDistanceList = retVal.PoolDistanceList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolDistanceListAsync(ByVal request As WSCRODIP2.GetPoolDistanceListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolDistanceListResponse) Implements WSCRODIP2.CrodipServer.GetPoolDistanceListAsync
+            Return MyBase.Channel.GetPoolDistanceListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolChronoList(ByVal request As WSCRODIP2.GetPoolChronoListRequest) As WSCRODIP2.GetPoolChronoListResponse Implements WSCRODIP2.CrodipServer.GetPoolChronoList
+            Return MyBase.Channel.GetPoolChronoList(request)
+        End Function
+
+        Public Function GetPoolChronoList(ByVal uidagent As Object, ByVal uidchrono As Integer, ByVal aidchrono As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolChronoList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolChronoListRequest = New WSCRODIP2.GetPoolChronoListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidchrono = uidchrono
+            inValue.aidchrono = aidchrono
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolChronoListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolChronoList(inValue)
+            PoolChronoList = retVal.PoolChronoList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolChronoListAsync(ByVal request As WSCRODIP2.GetPoolChronoListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolChronoListResponse) Implements WSCRODIP2.CrodipServer.GetPoolChronoListAsync
+            Return MyBase.Channel.GetPoolChronoListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolManoControleList(ByVal request As WSCRODIP2.GetPoolManoControleListRequest) As WSCRODIP2.GetPoolManoControleListResponse Implements WSCRODIP2.CrodipServer.GetPoolManoControleList
+            Return MyBase.Channel.GetPoolManoControleList(request)
+        End Function
+
+        Public Function GetPoolManoControleList(ByVal uidagent As Object, ByVal uidmanoc As Integer, ByVal aidmanoc As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoControleList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolManoControleListRequest = New WSCRODIP2.GetPoolManoControleListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidmanoc = uidmanoc
+            inValue.aidmanoc = aidmanoc
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolManoControleListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolManoControleList(inValue)
+            PoolManoControleList = retVal.PoolManoControleList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolManoControleListAsync(ByVal request As WSCRODIP2.GetPoolManoControleListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoControleListResponse) Implements WSCRODIP2.CrodipServer.GetPoolManoControleListAsync
+            Return MyBase.Channel.GetPoolManoControleListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolManoEtalonList(ByVal request As WSCRODIP2.GetPoolManoEtalonListRequest) As WSCRODIP2.GetPoolManoEtalonListResponse Implements WSCRODIP2.CrodipServer.GetPoolManoEtalonList
+            Return MyBase.Channel.GetPoolManoEtalonList(request)
+        End Function
+
+        Public Function GetPoolManoEtalonList(ByVal uidagent As Object, ByVal uidmanoe As Integer, ByVal aidmanoe As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolManoEtalonList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolManoEtalonListRequest = New WSCRODIP2.GetPoolManoEtalonListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidmanoe = uidmanoe
+            inValue.aidmanoe = aidmanoe
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolManoEtalonListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolManoEtalonList(inValue)
+            PoolManoEtalonList = retVal.PoolManoEtalonList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolManoEtalonListAsync(ByVal request As WSCRODIP2.GetPoolManoEtalonListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolManoEtalonListResponse) Implements WSCRODIP2.CrodipServer.GetPoolManoEtalonListAsync
+            Return MyBase.Channel.GetPoolManoEtalonListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPoolBuseList(ByVal request As WSCRODIP2.GetPoolBuseListRequest) As WSCRODIP2.GetPoolBuseListResponse Implements WSCRODIP2.CrodipServer.GetPoolBuseList
+            Return MyBase.Channel.GetPoolBuseList(request)
+        End Function
+
+        Public Function GetPoolBuseList(ByVal uidagent As Object, ByVal uidbuse As Integer, ByVal aidbuse As String, ByVal uidstructure As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PoolBuseList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPoolBuseListRequest = New WSCRODIP2.GetPoolBuseListRequest()
+            inValue.uidagent = uidagent
+            inValue.uidbuse = uidbuse
+            inValue.aidbuse = aidbuse
+            inValue.uidstructure = uidstructure
+            Dim retVal As WSCRODIP2.GetPoolBuseListResponse = CType(Me, WSCRODIP2.CrodipServer).GetPoolBuseList(inValue)
+            PoolBuseList = retVal.PoolBuseList
+            Return retVal.result
+        End Function
+
+        Public Function GetPoolBuseListAsync(ByVal request As WSCRODIP2.GetPoolBuseListRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPoolBuseListResponse) Implements WSCRODIP2.CrodipServer.GetPoolBuseListAsync
+            Return MyBase.Channel.GetPoolBuseListAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SetDateSynchroAgent(ByVal request As WSCRODIP2.SetDateSynchroAgentRequest) As WSCRODIP2.SetDateSynchroAgentResponse Implements WSCRODIP2.CrodipServer.SetDateSynchroAgent
             Return MyBase.Channel.SetDateSynchroAgent(request)
         End Function
-        
-        Public Function SetDateSynchroAgent(ByVal agentId As Object, ByVal dateDerniereSynchro As Object) As Integer
-            Dim inValue As WSCrodip2.SetDateSynchroAgentRequest = New WSCrodip2.SetDateSynchroAgentRequest()
-            inValue.agentId = agentId
+
+        Public Function SetDateSynchroAgent(ByVal uidagent As Object, ByVal dateDerniereSynchro As Object) As Integer
+            Dim inValue As WSCRODIP2.SetDateSynchroAgentRequest = New WSCRODIP2.SetDateSynchroAgentRequest()
+            inValue.uidagent = uidagent
             inValue.dateDerniereSynchro = dateDerniereSynchro
-            Dim retVal As WSCrodip2.SetDateSynchroAgentResponse = CType(Me,WSCrodip2.CrodipServer).SetDateSynchroAgent(inValue)
+            Dim retVal As WSCRODIP2.SetDateSynchroAgentResponse = CType(Me, WSCRODIP2.CrodipServer).SetDateSynchroAgent(inValue)
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetPrestationCategorie(ByVal request As WSCrodip2.GetPrestationCategorieRequest) As WSCrodip2.GetPrestationCategorieResponse Implements WSCrodip2.CrodipServer.GetPrestationCategorie
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SetDateSynchroAgentAsync(ByVal request As WSCRODIP2.SetDateSynchroAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SetDateSynchroAgentResponse) Implements WSCRODIP2.CrodipServer.SetDateSynchroAgentAsync
+            Return MyBase.Channel.SetDateSynchroAgentAsync(request)
+        End Function
+
+        Public Function SetDateSynchroAgentAsync(ByVal uidagent As Object, ByVal dateDerniereSynchro As Object) As System.Threading.Tasks.Task(Of WSCRODIP2.SetDateSynchroAgentResponse)
+            Dim inValue As WSCRODIP2.SetDateSynchroAgentRequest = New WSCRODIP2.SetDateSynchroAgentRequest()
+            inValue.uidagent = uidagent
+            inValue.dateDerniereSynchro = dateDerniereSynchro
+            Return CType(Me, WSCRODIP2.CrodipServer).SetDateSynchroAgentAsync(inValue)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPrestationCategorie(ByVal request As WSCRODIP2.GetPrestationCategorieRequest) As WSCRODIP2.GetPrestationCategorieResponse Implements WSCRODIP2.CrodipServer.GetPrestationCategorie
             Return MyBase.Channel.GetPrestationCategorie(request)
         End Function
-        
-        Public Function GetPrestationCategorie(ByVal agentId As String, ByVal id As String, ByVal idStructure As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationCategorie As Object) As Integer
-            Dim inValue As WSCrodip2.GetPrestationCategorieRequest = New WSCrodip2.GetPrestationCategorieRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            inValue.idStructure = idStructure
-            Dim retVal As WSCrodip2.GetPrestationCategorieResponse = CType(Me,WSCrodip2.CrodipServer).GetPrestationCategorie(inValue)
+
+        Public Function GetPrestationCategorie(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationCategorie As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPrestationCategorieRequest = New WSCRODIP2.GetPrestationCategorieRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPrestationCategorieResponse = CType(Me, WSCRODIP2.CrodipServer).GetPrestationCategorie(inValue)
             PrestationCategorie = retVal.PrestationCategorie
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendPrestationCategorie(ByVal request As WSCrodip2.SendPrestationCategorieRequest) As WSCrodip2.SendPrestationCategorieResponse Implements WSCrodip2.CrodipServer.SendPrestationCategorie
+
+        Public Function GetPrestationCategorieAsync(ByVal request As WSCRODIP2.GetPrestationCategorieRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPrestationCategorieResponse) Implements WSCRODIP2.CrodipServer.GetPrestationCategorieAsync
+            Return MyBase.Channel.GetPrestationCategorieAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPrestationCategorie(ByVal request As WSCRODIP2.SendPrestationCategorieRequest) As WSCRODIP2.SendPrestationCategorieResponse Implements WSCRODIP2.CrodipServer.SendPrestationCategorie
             Return MyBase.Channel.SendPrestationCategorie(request)
         End Function
-        
-        Public Function SendPrestationCategorie(ByVal agentId As String, ByVal PrestationCategorieRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationCategorie As Object) As Integer
-            Dim inValue As WSCrodip2.SendPrestationCategorieRequest = New WSCrodip2.SendPrestationCategorieRequest()
-            inValue.agentId = agentId
+
+        Public Function SendPrestationCategorie(ByVal PrestationCategorieRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationCategorie As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPrestationCategorieRequest = New WSCRODIP2.SendPrestationCategorieRequest()
             inValue.PrestationCategorieRequest = PrestationCategorieRequest
-            Dim retVal As WSCrodip2.SendPrestationCategorieResponse = CType(Me,WSCrodip2.CrodipServer).SendPrestationCategorie(inValue)
+            Dim retVal As WSCRODIP2.SendPrestationCategorieResponse = CType(Me, WSCRODIP2.CrodipServer).SendPrestationCategorie(inValue)
+            info = retVal.info
+            uid = retVal.uid
             PrestationCategorie = retVal.PrestationCategorie
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetPrestationTarif(ByVal request As WSCrodip2.GetPrestationTarifRequest) As WSCrodip2.GetPrestationTarifResponse Implements WSCrodip2.CrodipServer.GetPrestationTarif
+
+        Public Function SendPrestationCategorieAsync(ByVal request As WSCRODIP2.SendPrestationCategorieRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPrestationCategorieResponse) Implements WSCRODIP2.CrodipServer.SendPrestationCategorieAsync
+            Return MyBase.Channel.SendPrestationCategorieAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPrestationTarif(ByVal request As WSCRODIP2.GetPrestationTarifRequest) As WSCRODIP2.GetPrestationTarifResponse Implements WSCRODIP2.CrodipServer.GetPrestationTarif
             Return MyBase.Channel.GetPrestationTarif(request)
         End Function
-        
-        Public Function GetPrestationTarif(ByVal agentId As String, ByVal id As String, ByVal idStructure As String, ByVal idCategorie As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationTarif As Object) As Integer
-            Dim inValue As WSCrodip2.GetPrestationTarifRequest = New WSCrodip2.GetPrestationTarifRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            inValue.idStructure = idStructure
-            inValue.idCategorie = idCategorie
-            Dim retVal As WSCrodip2.GetPrestationTarifResponse = CType(Me,WSCrodip2.CrodipServer).GetPrestationTarif(inValue)
+
+        Public Function GetPrestationTarif(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationTarif As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPrestationTarifRequest = New WSCRODIP2.GetPrestationTarifRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPrestationTarifResponse = CType(Me, WSCRODIP2.CrodipServer).GetPrestationTarif(inValue)
             PrestationTarif = retVal.PrestationTarif
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendPrestationTarif(ByVal request As WSCrodip2.SendPrestationTarifRequest) As WSCrodip2.SendPrestationTarifResponse Implements WSCrodip2.CrodipServer.SendPrestationTarif
+
+        Public Function GetPrestationTarifAsync(ByVal request As WSCRODIP2.GetPrestationTarifRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPrestationTarifResponse) Implements WSCRODIP2.CrodipServer.GetPrestationTarifAsync
+            Return MyBase.Channel.GetPrestationTarifAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPrestationTarif(ByVal request As WSCRODIP2.SendPrestationTarifRequest) As WSCRODIP2.SendPrestationTarifResponse Implements WSCRODIP2.CrodipServer.SendPrestationTarif
             Return MyBase.Channel.SendPrestationTarif(request)
         End Function
-        
-        Public Function SendPrestationTarif(ByVal agentId As String, ByVal PrestationTarifRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationTarif As Object) As Integer
-            Dim inValue As WSCrodip2.SendPrestationTarifRequest = New WSCrodip2.SendPrestationTarifRequest()
-            inValue.agentId = agentId
+
+        Public Function SendPrestationTarif(ByVal PrestationTarifRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef PrestationTarif As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPrestationTarifRequest = New WSCRODIP2.SendPrestationTarifRequest()
             inValue.PrestationTarifRequest = PrestationTarifRequest
-            Dim retVal As WSCrodip2.SendPrestationTarifResponse = CType(Me,WSCrodip2.CrodipServer).SendPrestationTarif(inValue)
+            Dim retVal As WSCRODIP2.SendPrestationTarifResponse = CType(Me, WSCRODIP2.CrodipServer).SendPrestationTarif(inValue)
+            info = retVal.info
+            uid = retVal.uid
             PrestationTarif = retVal.PrestationTarif
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetBuse(ByVal request As WSCrodip2.GetBuseRequest) As WSCrodip2.GetBuseResponse Implements WSCrodip2.CrodipServer.GetBuse
+
+        Public Function SendPrestationTarifAsync(ByVal request As WSCRODIP2.SendPrestationTarifRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPrestationTarifResponse) Implements WSCRODIP2.CrodipServer.SendPrestationTarifAsync
+            Return MyBase.Channel.SendPrestationTarifAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetBuse(ByVal request As WSCRODIP2.GetBuseRequest) As WSCRODIP2.GetBuseResponse Implements WSCRODIP2.CrodipServer.GetBuse
             Return MyBase.Channel.GetBuse(request)
         End Function
-        
-        Public Function GetBuse(ByVal agentId As String, ByVal numeroNational As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Buse As Object) As Integer
-            Dim inValue As WSCrodip2.GetBuseRequest = New WSCrodip2.GetBuseRequest()
-            inValue.agentId = agentId
-            inValue.numeroNational = numeroNational
-            Dim retVal As WSCrodip2.GetBuseResponse = CType(Me,WSCrodip2.CrodipServer).GetBuse(inValue)
+
+        Public Function GetBuse(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Buse As Object) As Integer
+            Dim inValue As WSCRODIP2.GetBuseRequest = New WSCRODIP2.GetBuseRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetBuseResponse = CType(Me, WSCRODIP2.CrodipServer).GetBuse(inValue)
             Buse = retVal.Buse
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendBuse(ByVal request As WSCrodip2.SendBuseRequest) As WSCrodip2.SendBuseResponse Implements WSCrodip2.CrodipServer.SendBuse
+
+        Public Function GetBuseAsync(ByVal request As WSCRODIP2.GetBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBuseResponse) Implements WSCRODIP2.CrodipServer.GetBuseAsync
+            Return MyBase.Channel.GetBuseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendBuse(ByVal request As WSCRODIP2.SendBuseRequest) As WSCRODIP2.SendBuseResponse Implements WSCRODIP2.CrodipServer.SendBuse
             Return MyBase.Channel.SendBuse(request)
         End Function
-        
-        Public Function SendBuse(ByVal agentId As String, ByVal BuseRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Buse As Object) As Integer
-            Dim inValue As WSCrodip2.SendBuseRequest = New WSCrodip2.SendBuseRequest()
-            inValue.agentId = agentId
+
+        Public Function SendBuse(ByVal BuseRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Buse As Object) As Integer
+            Dim inValue As WSCRODIP2.SendBuseRequest = New WSCRODIP2.SendBuseRequest()
             inValue.BuseRequest = BuseRequest
-            Dim retVal As WSCrodip2.SendBuseResponse = CType(Me,WSCrodip2.CrodipServer).SendBuse(inValue)
+            Dim retVal As WSCRODIP2.SendBuseResponse = CType(Me, WSCRODIP2.CrodipServer).SendBuse(inValue)
+            info = retVal.info
+            uid = retVal.uid
             Buse = retVal.Buse
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetManometreControle(ByVal request As WSCrodip2.GetManometreControleRequest) As WSCrodip2.GetManometreControleResponse Implements WSCrodip2.CrodipServer.GetManometreControle
+
+        Public Function SendBuseAsync(ByVal request As WSCRODIP2.SendBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBuseResponse) Implements WSCRODIP2.CrodipServer.SendBuseAsync
+            Return MyBase.Channel.SendBuseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetManometreControle(ByVal request As WSCRODIP2.GetManometreControleRequest) As WSCRODIP2.GetManometreControleResponse Implements WSCRODIP2.CrodipServer.GetManometreControle
             Return MyBase.Channel.GetManometreControle(request)
         End Function
-        
-        Public Function GetManometreControle(ByVal agentId As String, ByVal numeroNational As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreControle As Object) As Integer
-            Dim inValue As WSCrodip2.GetManometreControleRequest = New WSCrodip2.GetManometreControleRequest()
-            inValue.agentId = agentId
-            inValue.numeroNational = numeroNational
-            Dim retVal As WSCrodip2.GetManometreControleResponse = CType(Me,WSCrodip2.CrodipServer).GetManometreControle(inValue)
+
+        Public Function GetManometreControle(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreControle As Object) As Integer
+            Dim inValue As WSCRODIP2.GetManometreControleRequest = New WSCRODIP2.GetManometreControleRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetManometreControleResponse = CType(Me, WSCRODIP2.CrodipServer).GetManometreControle(inValue)
             ManometreControle = retVal.ManometreControle
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendManometreControle(ByVal request As WSCrodip2.SendManometreControleRequest) As WSCrodip2.SendManometreControleResponse Implements WSCrodip2.CrodipServer.SendManometreControle
+
+        Public Function GetManometreControleAsync(ByVal request As WSCRODIP2.GetManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetManometreControleResponse) Implements WSCRODIP2.CrodipServer.GetManometreControleAsync
+            Return MyBase.Channel.GetManometreControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendManometreControle(ByVal request As WSCRODIP2.SendManometreControleRequest) As WSCRODIP2.SendManometreControleResponse Implements WSCRODIP2.CrodipServer.SendManometreControle
             Return MyBase.Channel.SendManometreControle(request)
         End Function
-        
-        Public Function SendManometreControle(ByVal agentId As String, ByVal ManometreControleRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreControle As Object) As Integer
-            Dim inValue As WSCrodip2.SendManometreControleRequest = New WSCrodip2.SendManometreControleRequest()
-            inValue.agentId = agentId
-            inValue.ManometreControleRequest = ManometreControleRequest
-            Dim retVal As WSCrodip2.SendManometreControleResponse = CType(Me,WSCrodip2.CrodipServer).SendManometreControle(inValue)
+
+        Public Function SendManometreControle(ByRef ManometreControle As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer) As Integer
+            Dim inValue As WSCRODIP2.SendManometreControleRequest = New WSCRODIP2.SendManometreControleRequest()
+            inValue.ManometreControle = ManometreControle
+            Dim retVal As WSCRODIP2.SendManometreControleResponse = CType(Me, WSCRODIP2.CrodipServer).SendManometreControle(inValue)
+            info = retVal.info
+            uid = retVal.uid
             ManometreControle = retVal.ManometreControle
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetManometreEtalon(ByVal request As WSCrodip2.GetManometreEtalonRequest) As WSCrodip2.GetManometreEtalonResponse Implements WSCrodip2.CrodipServer.GetManometreEtalon
+
+        Public Function SendManometreControleAsync(ByVal request As WSCRODIP2.SendManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendManometreControleResponse) Implements WSCRODIP2.CrodipServer.SendManometreControleAsync
+            Return MyBase.Channel.SendManometreControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetManometreEtalon(ByVal request As WSCRODIP2.GetManometreEtalonRequest) As WSCRODIP2.GetManometreEtalonResponse Implements WSCRODIP2.CrodipServer.GetManometreEtalon
             Return MyBase.Channel.GetManometreEtalon(request)
         End Function
-        
-        Public Function GetManometreEtalon(ByVal agentId As String, ByVal numeroNational As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreEtalon As Object) As Integer
-            Dim inValue As WSCrodip2.GetManometreEtalonRequest = New WSCrodip2.GetManometreEtalonRequest()
-            inValue.agentId = agentId
-            inValue.numeroNational = numeroNational
-            Dim retVal As WSCrodip2.GetManometreEtalonResponse = CType(Me,WSCrodip2.CrodipServer).GetManometreEtalon(inValue)
+
+        Public Function GetManometreEtalon(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.GetManometreEtalonRequest = New WSCRODIP2.GetManometreEtalonRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetManometreEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).GetManometreEtalon(inValue)
             ManometreEtalon = retVal.ManometreEtalon
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendManometreEtalon(ByVal request As WSCrodip2.SendManometreEtalonRequest) As WSCrodip2.SendManometreEtalonResponse Implements WSCrodip2.CrodipServer.SendManometreEtalon
+
+        Public Function GetManometreEtalonAsync(ByVal request As WSCRODIP2.GetManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetManometreEtalonResponse) Implements WSCRODIP2.CrodipServer.GetManometreEtalonAsync
+            Return MyBase.Channel.GetManometreEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendManometreEtalon(ByVal request As WSCRODIP2.SendManometreEtalonRequest) As WSCRODIP2.SendManometreEtalonResponse Implements WSCRODIP2.CrodipServer.SendManometreEtalon
             Return MyBase.Channel.SendManometreEtalon(request)
         End Function
-        
-        Public Function SendManometreEtalon(ByVal agentId As String, ByVal ManometreEtalonRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreEtalon As Object) As Integer
-            Dim inValue As WSCrodip2.SendManometreEtalonRequest = New WSCrodip2.SendManometreEtalonRequest()
-            inValue.agentId = agentId
+
+        Public Function SendManometreEtalon(ByVal ManometreEtalonRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef ManometreEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.SendManometreEtalonRequest = New WSCRODIP2.SendManometreEtalonRequest()
             inValue.ManometreEtalonRequest = ManometreEtalonRequest
-            Dim retVal As WSCrodip2.SendManometreEtalonResponse = CType(Me,WSCrodip2.CrodipServer).SendManometreEtalon(inValue)
+            Dim retVal As WSCRODIP2.SendManometreEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).SendManometreEtalon(inValue)
+            info = retVal.info
+            uid = retVal.uid
             ManometreEtalon = retVal.ManometreEtalon
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetBanc(ByVal request As WSCrodip2.GetBancRequest) As WSCrodip2.GetBancResponse Implements WSCrodip2.CrodipServer.GetBanc
+
+        Public Function SendManometreEtalonAsync(ByVal request As WSCRODIP2.SendManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendManometreEtalonResponse) Implements WSCRODIP2.CrodipServer.SendManometreEtalonAsync
+            Return MyBase.Channel.SendManometreEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetBanc(ByVal request As WSCRODIP2.GetBancRequest) As WSCRODIP2.GetBancResponse Implements WSCRODIP2.CrodipServer.GetBanc
             Return MyBase.Channel.GetBanc(request)
         End Function
-        
-        Public Function GetBanc(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Banc As Object) As Integer
-            Dim inValue As WSCrodip2.GetBancRequest = New WSCrodip2.GetBancRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetBancResponse = CType(Me,WSCrodip2.CrodipServer).GetBanc(inValue)
+
+        Public Function GetBanc(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Banc As Object) As Integer
+            Dim inValue As WSCRODIP2.GetBancRequest = New WSCRODIP2.GetBancRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetBancResponse = CType(Me, WSCRODIP2.CrodipServer).GetBanc(inValue)
             Banc = retVal.Banc
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendBanc(ByVal request As WSCrodip2.SendBancRequest) As WSCrodip2.SendBancResponse Implements WSCrodip2.CrodipServer.SendBanc
+
+        Public Function GetBancAsync(ByVal request As WSCRODIP2.GetBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetBancResponse) Implements WSCRODIP2.CrodipServer.GetBancAsync
+            Return MyBase.Channel.GetBancAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendBanc(ByVal request As WSCRODIP2.SendBancRequest) As WSCRODIP2.SendBancResponse Implements WSCRODIP2.CrodipServer.SendBanc
             Return MyBase.Channel.SendBanc(request)
         End Function
-        
-        Public Function SendBanc(ByVal agentId As String, ByVal BancRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Banc As Object) As Integer
-            Dim inValue As WSCrodip2.SendBancRequest = New WSCrodip2.SendBancRequest()
-            inValue.agentId = agentId
+
+        Public Function SendBanc(ByVal BancRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Banc As Object) As Integer
+            Dim inValue As WSCRODIP2.SendBancRequest = New WSCRODIP2.SendBancRequest()
             inValue.BancRequest = BancRequest
-            Dim retVal As WSCrodip2.SendBancResponse = CType(Me,WSCrodip2.CrodipServer).SendBanc(inValue)
+            Dim retVal As WSCRODIP2.SendBancResponse = CType(Me, WSCRODIP2.CrodipServer).SendBanc(inValue)
+            info = retVal.info
+            uid = retVal.uid
             Banc = retVal.Banc
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnostic(ByVal request As WSCrodip2.GetDiagnosticRequest) As WSCrodip2.GetDiagnosticResponse Implements WSCrodip2.CrodipServer.GetDiagnostic
+
+        Public Function SendBancAsync(ByVal request As WSCRODIP2.SendBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendBancResponse) Implements WSCRODIP2.CrodipServer.SendBancAsync
+            Return MyBase.Channel.SendBancAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnostic(ByVal request As WSCRODIP2.GetDiagnosticRequest) As WSCRODIP2.GetDiagnosticResponse Implements WSCRODIP2.CrodipServer.GetDiagnostic
             Return MyBase.Channel.GetDiagnostic(request)
         End Function
-        
-        Public Function GetDiagnostic(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Diagnostic As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticRequest = New WSCrodip2.GetDiagnosticRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetDiagnosticResponse = CType(Me,WSCrodip2.CrodipServer).GetDiagnostic(inValue)
+
+        Public Function GetDiagnostic(ByVal uidagent As Integer, ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Diagnostic As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticRequest = New WSCRODIP2.GetDiagnosticRequest()
+            inValue.uidagent = uidagent
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetDiagnosticResponse = CType(Me, WSCRODIP2.CrodipServer).GetDiagnostic(inValue)
             Diagnostic = retVal.Diagnostic
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnostic(ByVal request As WSCrodip2.SendDiagnosticRequest) As WSCrodip2.SendDiagnosticResponse Implements WSCrodip2.CrodipServer.SendDiagnostic
+
+        Public Function GetDiagnosticAsync(ByVal request As WSCRODIP2.GetDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticResponse) Implements WSCRODIP2.CrodipServer.GetDiagnosticAsync
+            Return MyBase.Channel.GetDiagnosticAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnostic(ByVal request As WSCRODIP2.SendDiagnosticRequest) As WSCRODIP2.SendDiagnosticResponse Implements WSCRODIP2.CrodipServer.SendDiagnostic
             Return MyBase.Channel.SendDiagnostic(request)
         End Function
-        
-        Public Function SendDiagnostic(ByVal agentId As String, ByVal DiagnosticRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Diagnostic As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticRequest = New WSCrodip2.SendDiagnosticRequest()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnostic(ByVal DiagnosticRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Diagnostic As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticRequest = New WSCRODIP2.SendDiagnosticRequest()
             inValue.DiagnosticRequest = DiagnosticRequest
-            Dim retVal As WSCrodip2.SendDiagnosticResponse = CType(Me,WSCrodip2.CrodipServer).SendDiagnostic(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticResponse = CType(Me, WSCRODIP2.CrodipServer).SendDiagnostic(inValue)
+            info = retVal.info
+            uid = retVal.uid
             Diagnostic = retVal.Diagnostic
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnosticItems(ByVal request As WSCrodip2.GetDiagnosticItemsRequest) As WSCrodip2.GetDiagnosticItemsResponse Implements WSCrodip2.CrodipServer.GetDiagnosticItems
+
+        Public Function SendDiagnosticAsync(ByVal request As WSCRODIP2.SendDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticResponse) Implements WSCRODIP2.CrodipServer.SendDiagnosticAsync
+            Return MyBase.Channel.SendDiagnosticAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnosticItems(ByVal request As WSCRODIP2.GetDiagnosticItemsRequest) As WSCRODIP2.GetDiagnosticItemsResponse Implements WSCRODIP2.CrodipServer.GetDiagnosticItems
             Return MyBase.Channel.GetDiagnosticItems(request)
         End Function
-        
-        Public Function GetDiagnosticItems(ByVal agentId As String, ByVal idDiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticItemsList() As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticItemsRequest = New WSCrodip2.GetDiagnosticItemsRequest()
-            inValue.agentId = agentId
-            inValue.idDiagnostic = idDiagnostic
-            Dim retVal As WSCrodip2.GetDiagnosticItemsResponse = CType(Me,WSCrodip2.CrodipServer).GetDiagnosticItems(inValue)
+
+        Public Function GetDiagnosticItems(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticItemsList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticItemsRequest = New WSCRODIP2.GetDiagnosticItemsRequest()
+            inValue.uiddiagnostic = uiddiagnostic
+            inValue.aiddiagnostic = aiddiagnostic
+            Dim retVal As WSCRODIP2.GetDiagnosticItemsResponse = CType(Me, WSCRODIP2.CrodipServer).GetDiagnosticItems(inValue)
             DiagnosticItemsList = retVal.DiagnosticItemsList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnosticItems(ByVal request As WSCrodip2.SendDiagnosticItemsRequest) As WSCrodip2.SendDiagnosticItemsResponse Implements WSCrodip2.CrodipServer.SendDiagnosticItems
+
+        Public Function GetDiagnosticItemsAsync(ByVal request As WSCRODIP2.GetDiagnosticItemsRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticItemsResponse) Implements WSCRODIP2.CrodipServer.GetDiagnosticItemsAsync
+            Return MyBase.Channel.GetDiagnosticItemsAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnosticItems(ByVal request As WSCRODIP2.SendDiagnosticItemsRequest) As WSCRODIP2.SendDiagnosticItemsResponse Implements WSCRODIP2.CrodipServer.SendDiagnosticItems
             Return MyBase.Channel.SendDiagnosticItems(request)
         End Function
-        
-        Public Function SendDiagnosticItems(ByVal agentId As String, ByVal arrayItems() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticItemsList() As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticItemsRequest = New WSCrodip2.SendDiagnosticItemsRequest()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnosticItems(ByVal arrayItems() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticItemsList() As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticItemsRequest = New WSCRODIP2.SendDiagnosticItemsRequest()
             inValue.arrayItems = arrayItems
-            Dim retVal As WSCrodip2.SendDiagnosticItemsResponse = CType(Me,WSCrodip2.CrodipServer).SendDiagnosticItems(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticItemsResponse = CType(Me, WSCRODIP2.CrodipServer).SendDiagnosticItems(inValue)
+            info = retVal.info
             DiagnosticItemsList = retVal.DiagnosticItemsList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendAutoTest(ByVal request As WSCrodip2.SendAutoTestRequest) As WSCrodip2.SendAutoTestResponse Implements WSCrodip2.CrodipServer.SendAutoTest
+
+        Public Function SendDiagnosticItemsAsync(ByVal request As WSCRODIP2.SendDiagnosticItemsRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticItemsResponse) Implements WSCRODIP2.CrodipServer.SendDiagnosticItemsAsync
+            Return MyBase.Channel.SendDiagnosticItemsAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetAutoTest(ByVal request As WSCRODIP2.GetAutoTestRequest) As WSCRODIP2.GetAutoTestResponse Implements WSCRODIP2.CrodipServer.GetAutoTest
+            Return MyBase.Channel.GetAutoTest(request)
+        End Function
+
+        Public Function GetAutoTest(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef AutoTest As Object) As Integer
+            Dim inValue As WSCRODIP2.GetAutoTestRequest = New WSCRODIP2.GetAutoTestRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetAutoTestResponse = CType(Me, WSCRODIP2.CrodipServer).GetAutoTest(inValue)
+            AutoTest = retVal.AutoTest
+            Return retVal.result
+        End Function
+
+        Public Function GetAutoTestAsync(ByVal request As WSCRODIP2.GetAutoTestRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetAutoTestResponse) Implements WSCRODIP2.CrodipServer.GetAutoTestAsync
+            Return MyBase.Channel.GetAutoTestAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendAutoTest(ByVal request As WSCRODIP2.SendAutoTestRequest) As WSCRODIP2.SendAutoTestResponse Implements WSCRODIP2.CrodipServer.SendAutoTest
             Return MyBase.Channel.SendAutoTest(request)
         End Function
-        
-        Public Function SendAutoTest(ByVal arrayItems() As Object) As Integer
-            Dim inValue As WSCrodip2.SendAutoTestRequest = New WSCrodip2.SendAutoTestRequest()
-            inValue.arrayItems = arrayItems
-            Dim retVal As WSCrodip2.SendAutoTestResponse = CType(Me,WSCrodip2.CrodipServer).SendAutoTest(inValue)
+
+        Public Function SendAutoTest(ByVal AutoTestRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef AutoTest As Object) As Integer
+            Dim inValue As WSCRODIP2.SendAutoTestRequest = New WSCRODIP2.SendAutoTestRequest()
+            inValue.AutoTestRequest = AutoTestRequest
+            Dim retVal As WSCRODIP2.SendAutoTestResponse = CType(Me, WSCRODIP2.CrodipServer).SendAutoTest(inValue)
+            info = retVal.info
+            uid = retVal.uid
+            AutoTest = retVal.AutoTest
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnosticBuses(ByVal request As WSCrodip2.GetDiagnosticBusesRequest) As WSCrodip2.GetDiagnosticBusesResponse Implements WSCrodip2.CrodipServer.GetDiagnosticBuses
+
+        Public Function SendAutoTestAsync(ByVal request As WSCRODIP2.SendAutoTestRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendAutoTestResponse) Implements WSCRODIP2.CrodipServer.SendAutoTestAsync
+            Return MyBase.Channel.SendAutoTestAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnosticBuses(ByVal request As WSCRODIP2.GetDiagnosticBusesRequest) As WSCRODIP2.GetDiagnosticBusesResponse Implements WSCRODIP2.CrodipServer.GetDiagnosticBuses
             Return MyBase.Channel.GetDiagnosticBuses(request)
         End Function
-        
-        Public Function GetDiagnosticBuses(ByVal agentId As String, ByVal idDiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesList() As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticBusesRequest = New WSCrodip2.GetDiagnosticBusesRequest()
-            inValue.agentId = agentId
-            inValue.idDiagnostic = idDiagnostic
-            Dim retVal As WSCrodip2.GetDiagnosticBusesResponse = CType(Me,WSCrodip2.CrodipServer).GetDiagnosticBuses(inValue)
+
+        Public Function GetDiagnosticBuses(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticBusesRequest = New WSCRODIP2.GetDiagnosticBusesRequest()
+            inValue.uiddiagnostic = uiddiagnostic
+            inValue.aiddiagnostic = aiddiagnostic
+            Dim retVal As WSCRODIP2.GetDiagnosticBusesResponse = CType(Me, WSCRODIP2.CrodipServer).GetDiagnosticBuses(inValue)
             DiagnosticBusesList = retVal.DiagnosticBusesList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnosticBuses(ByVal request As WSCrodip2.SendDiagnosticBusesRequest) As WSCrodip2.SendDiagnosticBusesResponse Implements WSCrodip2.CrodipServer.SendDiagnosticBuses
+
+        Public Function GetDiagnosticBusesAsync(ByVal request As WSCRODIP2.GetDiagnosticBusesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticBusesResponse) Implements WSCRODIP2.CrodipServer.GetDiagnosticBusesAsync
+            Return MyBase.Channel.GetDiagnosticBusesAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnosticBuses(ByVal request As WSCRODIP2.SendDiagnosticBusesRequest) As WSCRODIP2.SendDiagnosticBusesResponse Implements WSCRODIP2.CrodipServer.SendDiagnosticBuses
             Return MyBase.Channel.SendDiagnosticBuses(request)
         End Function
-        
-        Public Function SendDiagnosticBuses(ByVal agentId As String, ByVal arrayBuses() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesList() As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticBusesRequest = New WSCrodip2.SendDiagnosticBusesRequest()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnosticBuses(ByVal arrayBuses() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesList() As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticBusesRequest = New WSCRODIP2.SendDiagnosticBusesRequest()
             inValue.arrayBuses = arrayBuses
-            Dim retVal As WSCrodip2.SendDiagnosticBusesResponse = CType(Me,WSCrodip2.CrodipServer).SendDiagnosticBuses(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticBusesResponse = CType(Me, WSCRODIP2.CrodipServer).SendDiagnosticBuses(inValue)
+            info = retVal.info
             DiagnosticBusesList = retVal.DiagnosticBusesList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnosticBusesDetail(ByVal request As WSCrodip2.GetDiagnosticBusesDetailRequest) As WSCrodip2.GetDiagnosticBusesDetailResponse Implements WSCrodip2.CrodipServer.GetDiagnosticBusesDetail
+
+        Public Function SendDiagnosticBusesAsync(ByVal request As WSCRODIP2.SendDiagnosticBusesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticBusesResponse) Implements WSCRODIP2.CrodipServer.SendDiagnosticBusesAsync
+            Return MyBase.Channel.SendDiagnosticBusesAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnosticBusesDetail(ByVal request As WSCRODIP2.GetDiagnosticBusesDetailRequest) As WSCRODIP2.GetDiagnosticBusesDetailResponse Implements WSCRODIP2.CrodipServer.GetDiagnosticBusesDetail
             Return MyBase.Channel.GetDiagnosticBusesDetail(request)
         End Function
-        
-        Public Function GetDiagnosticBusesDetail(ByVal agentId As String, ByVal idDiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesDetailList() As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticBusesDetailRequest = New WSCrodip2.GetDiagnosticBusesDetailRequest()
-            inValue.agentId = agentId
-            inValue.idDiagnostic = idDiagnostic
-            Dim retVal As WSCrodip2.GetDiagnosticBusesDetailResponse = CType(Me,WSCrodip2.CrodipServer).GetDiagnosticBusesDetail(inValue)
+
+        Public Function GetDiagnosticBusesDetail(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesDetailList() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticBusesDetailRequest = New WSCRODIP2.GetDiagnosticBusesDetailRequest()
+            inValue.uiddiagnostic = uiddiagnostic
+            inValue.aiddiagnostic = aiddiagnostic
+            Dim retVal As WSCRODIP2.GetDiagnosticBusesDetailResponse = CType(Me, WSCRODIP2.CrodipServer).GetDiagnosticBusesDetail(inValue)
             DiagnosticBusesDetailList = retVal.DiagnosticBusesDetailList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnosticBusesDetail(ByVal request As WSCrodip2.SendDiagnosticBusesDetailRequest) As WSCrodip2.SendDiagnosticBusesDetailResponse Implements WSCrodip2.CrodipServer.SendDiagnosticBusesDetail
+
+        Public Function GetDiagnosticBusesDetailAsync(ByVal request As WSCRODIP2.GetDiagnosticBusesDetailRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticBusesDetailResponse) Implements WSCRODIP2.CrodipServer.GetDiagnosticBusesDetailAsync
+            Return MyBase.Channel.GetDiagnosticBusesDetailAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnosticBusesDetail(ByVal request As WSCRODIP2.SendDiagnosticBusesDetailRequest) As WSCRODIP2.SendDiagnosticBusesDetailResponse Implements WSCRODIP2.CrodipServer.SendDiagnosticBusesDetail
             Return MyBase.Channel.SendDiagnosticBusesDetail(request)
         End Function
-        
-        Public Function SendDiagnosticBusesDetail(ByVal agentId As String, ByVal arrayBuses() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesDetailList() As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticBusesDetailRequest = New WSCrodip2.SendDiagnosticBusesDetailRequest()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnosticBusesDetail(ByVal arrayBuses() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticBusesDetailList() As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticBusesDetailRequest = New WSCRODIP2.SendDiagnosticBusesDetailRequest()
             inValue.arrayBuses = arrayBuses
-            Dim retVal As WSCrodip2.SendDiagnosticBusesDetailResponse = CType(Me,WSCrodip2.CrodipServer).SendDiagnosticBusesDetail(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticBusesDetailResponse = CType(Me, WSCRODIP2.CrodipServer).SendDiagnosticBusesDetail(inValue)
+            info = retVal.info
             DiagnosticBusesDetailList = retVal.DiagnosticBusesDetailList
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnosticMano542(ByVal request As WSCrodip2.GetDiagnosticMano542Request) As WSCrodip2.GetDiagnosticMano542Response Implements WSCrodip2.CrodipServer.GetDiagnosticMano542
+
+        Public Function SendDiagnosticBusesDetailAsync(ByVal request As WSCRODIP2.SendDiagnosticBusesDetailRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticBusesDetailResponse) Implements WSCRODIP2.CrodipServer.SendDiagnosticBusesDetailAsync
+            Return MyBase.Channel.SendDiagnosticBusesDetailAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnosticMano542(ByVal request As WSCRODIP2.GetDiagnosticMano542Request) As WSCRODIP2.GetDiagnosticMano542Response Implements WSCRODIP2.CrodipServer.GetDiagnosticMano542
             Return MyBase.Channel.GetDiagnosticMano542(request)
         End Function
-        
-        Public Function GetDiagnosticMano542(ByVal agentId As String, ByVal idDiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticMano542List() As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticMano542Request = New WSCrodip2.GetDiagnosticMano542Request()
-            inValue.agentId = agentId
-            inValue.idDiagnostic = idDiagnostic
-            Dim retVal As WSCrodip2.GetDiagnosticMano542Response = CType(Me,WSCrodip2.CrodipServer).GetDiagnosticMano542(inValue)
+
+        Public Function GetDiagnosticMano542(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticMano542List() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticMano542Request = New WSCRODIP2.GetDiagnosticMano542Request()
+            inValue.uiddiagnostic = uiddiagnostic
+            inValue.aiddiagnostic = aiddiagnostic
+            Dim retVal As WSCRODIP2.GetDiagnosticMano542Response = CType(Me, WSCRODIP2.CrodipServer).GetDiagnosticMano542(inValue)
             DiagnosticMano542List = retVal.DiagnosticMano542List
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnosticMano542(ByVal request As WSCrodip2.SendDiagnosticMano542Request) As WSCrodip2.SendDiagnosticMano542Response Implements WSCrodip2.CrodipServer.SendDiagnosticMano542
+
+        Public Function GetDiagnosticMano542Async(ByVal request As WSCRODIP2.GetDiagnosticMano542Request) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticMano542Response) Implements WSCRODIP2.CrodipServer.GetDiagnosticMano542Async
+            Return MyBase.Channel.GetDiagnosticMano542Async(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnosticMano542(ByVal request As WSCRODIP2.SendDiagnosticMano542Request) As WSCRODIP2.SendDiagnosticMano542Response Implements WSCRODIP2.CrodipServer.SendDiagnosticMano542
             Return MyBase.Channel.SendDiagnosticMano542(request)
         End Function
-        
-        Public Function SendDiagnosticMano542(ByVal agentId As String, ByVal arrayMano542() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticMano542List() As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticMano542Request = New WSCrodip2.SendDiagnosticMano542Request()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnosticMano542(ByVal arrayMano542() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticMano542List() As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticMano542Request = New WSCRODIP2.SendDiagnosticMano542Request()
             inValue.arrayMano542 = arrayMano542
-            Dim retVal As WSCrodip2.SendDiagnosticMano542Response = CType(Me,WSCrodip2.CrodipServer).SendDiagnosticMano542(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticMano542Response = CType(Me, WSCRODIP2.CrodipServer).SendDiagnosticMano542(inValue)
+            info = retVal.info
             DiagnosticMano542List = retVal.DiagnosticMano542List
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetDiagnosticTroncons833(ByVal request As WSCrodip2.GetDiagnosticTroncons833Request) As WSCrodip2.GetDiagnosticTroncons833Response Implements WSCrodip2.CrodipServer.GetDiagnosticTroncons833
+
+        Public Function SendDiagnosticMano542Async(ByVal request As WSCRODIP2.SendDiagnosticMano542Request) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticMano542Response) Implements WSCRODIP2.CrodipServer.SendDiagnosticMano542Async
+            Return MyBase.Channel.SendDiagnosticMano542Async(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetDiagnosticTroncons833(ByVal request As WSCRODIP2.GetDiagnosticTroncons833Request) As WSCRODIP2.GetDiagnosticTroncons833Response Implements WSCRODIP2.CrodipServer.GetDiagnosticTroncons833
             Return MyBase.Channel.GetDiagnosticTroncons833(request)
         End Function
-        
-        Public Function GetDiagnosticTroncons833(ByVal agentId As String, ByVal idDiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticTroncons833List() As Object) As Integer
-            Dim inValue As WSCrodip2.GetDiagnosticTroncons833Request = New WSCrodip2.GetDiagnosticTroncons833Request()
-            inValue.agentId = agentId
-            inValue.idDiagnostic = idDiagnostic
-            Dim retVal As WSCrodip2.GetDiagnosticTroncons833Response = CType(Me,WSCrodip2.CrodipServer).GetDiagnosticTroncons833(inValue)
+
+        Public Function GetDiagnosticTroncons833(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticTroncons833List() As Object) As Integer
+            Dim inValue As WSCRODIP2.GetDiagnosticTroncons833Request = New WSCRODIP2.GetDiagnosticTroncons833Request()
+            inValue.uiddiagnostic = uiddiagnostic
+            inValue.aiddiagnostic = aiddiagnostic
+            Dim retVal As WSCRODIP2.GetDiagnosticTroncons833Response = CType(Me, WSCRODIP2.CrodipServer).GetDiagnosticTroncons833(inValue)
             DiagnosticTroncons833List = retVal.DiagnosticTroncons833List
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendDiagnosticTroncons833(ByVal request As WSCrodip2.SendDiagnosticTroncons833Request) As WSCrodip2.SendDiagnosticTroncons833Response Implements WSCrodip2.CrodipServer.SendDiagnosticTroncons833
+
+        Public Function GetDiagnosticTroncons833Async(ByVal request As WSCRODIP2.GetDiagnosticTroncons833Request) As System.Threading.Tasks.Task(Of WSCRODIP2.GetDiagnosticTroncons833Response) Implements WSCRODIP2.CrodipServer.GetDiagnosticTroncons833Async
+            Return MyBase.Channel.GetDiagnosticTroncons833Async(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendDiagnosticTroncons833(ByVal request As WSCRODIP2.SendDiagnosticTroncons833Request) As WSCRODIP2.SendDiagnosticTroncons833Response Implements WSCRODIP2.CrodipServer.SendDiagnosticTroncons833
             Return MyBase.Channel.SendDiagnosticTroncons833(request)
         End Function
-        
-        Public Function SendDiagnosticTroncons833(ByVal agentId As String, ByVal arrayTroncons833() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticTroncons833List() As Object) As Integer
-            Dim inValue As WSCrodip2.SendDiagnosticTroncons833Request = New WSCrodip2.SendDiagnosticTroncons833Request()
-            inValue.agentId = agentId
+
+        Public Function SendDiagnosticTroncons833(ByVal arrayTroncons833() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef DiagnosticTroncons833List() As Object) As Integer
+            Dim inValue As WSCRODIP2.SendDiagnosticTroncons833Request = New WSCRODIP2.SendDiagnosticTroncons833Request()
             inValue.arrayTroncons833 = arrayTroncons833
-            Dim retVal As WSCrodip2.SendDiagnosticTroncons833Response = CType(Me,WSCrodip2.CrodipServer).SendDiagnosticTroncons833(inValue)
+            Dim retVal As WSCRODIP2.SendDiagnosticTroncons833Response = CType(Me, WSCRODIP2.CrodipServer).SendDiagnosticTroncons833(inValue)
+            info = retVal.info
             DiagnosticTroncons833List = retVal.DiagnosticTroncons833List
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetExploitation(ByVal request As WSCrodip2.GetExploitationRequest) As WSCrodip2.GetExploitationResponse Implements WSCrodip2.CrodipServer.GetExploitation
+
+        Public Function SendDiagnosticTroncons833Async(ByVal request As WSCRODIP2.SendDiagnosticTroncons833Request) As System.Threading.Tasks.Task(Of WSCRODIP2.SendDiagnosticTroncons833Response) Implements WSCRODIP2.CrodipServer.SendDiagnosticTroncons833Async
+            Return MyBase.Channel.SendDiagnosticTroncons833Async(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetExploitation(ByVal request As WSCRODIP2.GetExploitationRequest) As WSCRODIP2.GetExploitationResponse Implements WSCRODIP2.CrodipServer.GetExploitation
             Return MyBase.Channel.GetExploitation(request)
         End Function
-        
-        Public Function GetExploitation(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Exploitation As Object) As Integer
-            Dim inValue As WSCrodip2.GetExploitationRequest = New WSCrodip2.GetExploitationRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetExploitationResponse = CType(Me,WSCrodip2.CrodipServer).GetExploitation(inValue)
+
+        Public Function GetExploitation(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Exploitation As Object) As Integer
+            Dim inValue As WSCRODIP2.GetExploitationRequest = New WSCRODIP2.GetExploitationRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetExploitationResponse = CType(Me, WSCRODIP2.CrodipServer).GetExploitation(inValue)
             Exploitation = retVal.Exploitation
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendExploitation(ByVal request As WSCrodip2.SendExploitationRequest) As WSCrodip2.SendExploitationResponse Implements WSCrodip2.CrodipServer.SendExploitation
+
+        Public Function GetExploitationAsync(ByVal request As WSCRODIP2.GetExploitationRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetExploitationResponse) Implements WSCRODIP2.CrodipServer.GetExploitationAsync
+            Return MyBase.Channel.GetExploitationAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendExploitation(ByVal request As WSCRODIP2.SendExploitationRequest) As WSCRODIP2.SendExploitationResponse Implements WSCRODIP2.CrodipServer.SendExploitation
             Return MyBase.Channel.SendExploitation(request)
         End Function
-        
-        Public Function SendExploitation(ByVal agentId As String, ByVal ExploitationRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Exploitation As Object) As Integer
-            Dim inValue As WSCrodip2.SendExploitationRequest = New WSCrodip2.SendExploitationRequest()
-            inValue.agentId = agentId
+
+        Public Function SendExploitation(ByVal ExploitationRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Exploitation As Object) As Integer
+            Dim inValue As WSCRODIP2.SendExploitationRequest = New WSCRODIP2.SendExploitationRequest()
             inValue.ExploitationRequest = ExploitationRequest
-            Dim retVal As WSCrodip2.SendExploitationResponse = CType(Me,WSCrodip2.CrodipServer).SendExploitation(inValue)
+            Dim retVal As WSCRODIP2.SendExploitationResponse = CType(Me, WSCRODIP2.CrodipServer).SendExploitation(inValue)
+            info = retVal.info
+            uid = retVal.uid
             Exploitation = retVal.Exploitation
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetExploitationTOPulverisateur(ByVal request As WSCrodip2.GetExploitationTOPulverisateurRequest) As WSCrodip2.GetExploitationTOPulverisateurResponse Implements WSCrodip2.CrodipServer.GetExploitationTOPulverisateur
+
+        Public Function SendExploitationAsync(ByVal request As WSCRODIP2.SendExploitationRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendExploitationResponse) Implements WSCRODIP2.CrodipServer.SendExploitationAsync
+            Return MyBase.Channel.SendExploitationAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetExploitationTOPulverisateur(ByVal request As WSCRODIP2.GetExploitationTOPulverisateurRequest) As WSCRODIP2.GetExploitationTOPulverisateurResponse Implements WSCRODIP2.CrodipServer.GetExploitationTOPulverisateur
             Return MyBase.Channel.GetExploitationTOPulverisateur(request)
         End Function
-        
-        Public Function GetExploitationTOPulverisateur(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ExploitationTOPulverisateur As Object) As Integer
-            Dim inValue As WSCrodip2.GetExploitationTOPulverisateurRequest = New WSCrodip2.GetExploitationTOPulverisateurRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetExploitationTOPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).GetExploitationTOPulverisateur(inValue)
+
+        Public Function GetExploitationTOPulverisateur(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ExploitationTOPulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.GetExploitationTOPulverisateurRequest = New WSCRODIP2.GetExploitationTOPulverisateurRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetExploitationTOPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).GetExploitationTOPulverisateur(inValue)
             ExploitationTOPulverisateur = retVal.ExploitationTOPulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendExploitationTOPulverisateur(ByVal request As WSCrodip2.SendExploitationTOPulverisateurRequest) As WSCrodip2.SendExploitationTOPulverisateurResponse Implements WSCrodip2.CrodipServer.SendExploitationTOPulverisateur
+
+        Public Function GetExploitationTOPulverisateurAsync(ByVal request As WSCRODIP2.GetExploitationTOPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetExploitationTOPulverisateurResponse) Implements WSCRODIP2.CrodipServer.GetExploitationTOPulverisateurAsync
+            Return MyBase.Channel.GetExploitationTOPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendExploitationTOPulverisateur(ByVal request As WSCRODIP2.SendExploitationTOPulverisateurRequest) As WSCRODIP2.SendExploitationTOPulverisateurResponse Implements WSCRODIP2.CrodipServer.SendExploitationTOPulverisateur
             Return MyBase.Channel.SendExploitationTOPulverisateur(request)
         End Function
-        
-        Public Function SendExploitationTOPulverisateur(ByVal agentId As String, ByVal ExploitationTOPulverisateurRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef ExploitationTOPulverisateur As Object) As Integer
-            Dim inValue As WSCrodip2.SendExploitationTOPulverisateurRequest = New WSCrodip2.SendExploitationTOPulverisateurRequest()
-            inValue.agentId = agentId
+
+        Public Function SendExploitationTOPulverisateur(ByVal ExploitationTOPulverisateurRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef ExploitationTOPulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.SendExploitationTOPulverisateurRequest = New WSCRODIP2.SendExploitationTOPulverisateurRequest()
             inValue.ExploitationTOPulverisateurRequest = ExploitationTOPulverisateurRequest
-            Dim retVal As WSCrodip2.SendExploitationTOPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).SendExploitationTOPulverisateur(inValue)
+            Dim retVal As WSCRODIP2.SendExploitationTOPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).SendExploitationTOPulverisateur(inValue)
+            info = retVal.info
+            uid = retVal.uid
             ExploitationTOPulverisateur = retVal.ExploitationTOPulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetControleBancMesure(ByVal request As WSCrodip2.GetControleBancMesureRequest) As WSCrodip2.GetControleBancMesureResponse Implements WSCrodip2.CrodipServer.GetControleBancMesure
+
+        Public Function SendExploitationTOPulverisateurAsync(ByVal request As WSCRODIP2.SendExploitationTOPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendExploitationTOPulverisateurResponse) Implements WSCRODIP2.CrodipServer.SendExploitationTOPulverisateurAsync
+            Return MyBase.Channel.SendExploitationTOPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetControleBancMesure(ByVal request As WSCRODIP2.GetControleBancMesureRequest) As WSCRODIP2.GetControleBancMesureResponse Implements WSCRODIP2.CrodipServer.GetControleBancMesure
             Return MyBase.Channel.GetControleBancMesure(request)
         End Function
-        
-        Public Function GetControleBancMesure(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleBancMesure As Object) As Integer
-            Dim inValue As WSCrodip2.GetControleBancMesureRequest = New WSCrodip2.GetControleBancMesureRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetControleBancMesureResponse = CType(Me,WSCrodip2.CrodipServer).GetControleBancMesure(inValue)
+
+        Public Function GetControleBancMesure(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleBancMesure As Object) As Integer
+            Dim inValue As WSCRODIP2.GetControleBancMesureRequest = New WSCRODIP2.GetControleBancMesureRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetControleBancMesureResponse = CType(Me, WSCRODIP2.CrodipServer).GetControleBancMesure(inValue)
             ControleBancMesure = retVal.ControleBancMesure
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendControleBancMesure(ByVal request As WSCrodip2.SendControleBancMesureRequest) As WSCrodip2.SendControleBancMesureResponse Implements WSCrodip2.CrodipServer.SendControleBancMesure
+
+        Public Function GetControleBancMesureAsync(ByVal request As WSCRODIP2.GetControleBancMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetControleBancMesureResponse) Implements WSCRODIP2.CrodipServer.GetControleBancMesureAsync
+            Return MyBase.Channel.GetControleBancMesureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendControleBancMesure(ByVal request As WSCRODIP2.SendControleBancMesureRequest) As WSCRODIP2.SendControleBancMesureResponse Implements WSCRODIP2.CrodipServer.SendControleBancMesure
             Return MyBase.Channel.SendControleBancMesure(request)
         End Function
-        
-        Public Function SendControleBancMesure(ByVal agentId As String, ByVal ControleBancMesureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleBancMesure As Object) As Integer
-            Dim inValue As WSCrodip2.SendControleBancMesureRequest = New WSCrodip2.SendControleBancMesureRequest()
-            inValue.agentId = agentId
+
+        Public Function SendControleBancMesure(ByVal ControleBancMesureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleBancMesure As Object) As Integer
+            Dim inValue As WSCRODIP2.SendControleBancMesureRequest = New WSCRODIP2.SendControleBancMesureRequest()
             inValue.ControleBancMesureRequest = ControleBancMesureRequest
-            Dim retVal As WSCrodip2.SendControleBancMesureResponse = CType(Me,WSCrodip2.CrodipServer).SendControleBancMesure(inValue)
+            Dim retVal As WSCRODIP2.SendControleBancMesureResponse = CType(Me, WSCRODIP2.CrodipServer).SendControleBancMesure(inValue)
+            info = retVal.info
+            uid = retVal.uid
             ControleBancMesure = retVal.ControleBancMesure
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetControleManoMesure(ByVal request As WSCrodip2.GetControleManoMesureRequest) As WSCrodip2.GetControleManoMesureResponse Implements WSCrodip2.CrodipServer.GetControleManoMesure
+
+        Public Function SendControleBancMesureAsync(ByVal request As WSCRODIP2.SendControleBancMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendControleBancMesureResponse) Implements WSCRODIP2.CrodipServer.SendControleBancMesureAsync
+            Return MyBase.Channel.SendControleBancMesureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetControleManoMesure(ByVal request As WSCRODIP2.GetControleManoMesureRequest) As WSCRODIP2.GetControleManoMesureResponse Implements WSCRODIP2.CrodipServer.GetControleManoMesure
             Return MyBase.Channel.GetControleManoMesure(request)
         End Function
-        
-        Public Function GetControleManoMesure(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleManoMesure As Object) As Integer
-            Dim inValue As WSCrodip2.GetControleManoMesureRequest = New WSCrodip2.GetControleManoMesureRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetControleManoMesureResponse = CType(Me,WSCrodip2.CrodipServer).GetControleManoMesure(inValue)
+
+        Public Function GetControleManoMesure(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleManoMesure As Object) As Integer
+            Dim inValue As WSCRODIP2.GetControleManoMesureRequest = New WSCRODIP2.GetControleManoMesureRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetControleManoMesureResponse = CType(Me, WSCRODIP2.CrodipServer).GetControleManoMesure(inValue)
             ControleManoMesure = retVal.ControleManoMesure
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendControleManoMesure(ByVal request As WSCrodip2.SendControleManoMesureRequest) As WSCrodip2.SendControleManoMesureResponse Implements WSCrodip2.CrodipServer.SendControleManoMesure
+
+        Public Function GetControleManoMesureAsync(ByVal request As WSCRODIP2.GetControleManoMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetControleManoMesureResponse) Implements WSCRODIP2.CrodipServer.GetControleManoMesureAsync
+            Return MyBase.Channel.GetControleManoMesureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendControleManoMesure(ByVal request As WSCRODIP2.SendControleManoMesureRequest) As WSCRODIP2.SendControleManoMesureResponse Implements WSCRODIP2.CrodipServer.SendControleManoMesure
             Return MyBase.Channel.SendControleManoMesure(request)
         End Function
-        
-        Public Function SendControleManoMesure(ByVal agentId As String, ByVal ControleManoMesureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleManoMesure As Object) As Integer
-            Dim inValue As WSCrodip2.SendControleManoMesureRequest = New WSCrodip2.SendControleManoMesureRequest()
-            inValue.agentId = agentId
+
+        Public Function SendControleManoMesure(ByVal ControleManoMesureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef ControleManoMesure As Object) As Integer
+            Dim inValue As WSCRODIP2.SendControleManoMesureRequest = New WSCRODIP2.SendControleManoMesureRequest()
             inValue.ControleManoMesureRequest = ControleManoMesureRequest
-            Dim retVal As WSCrodip2.SendControleManoMesureResponse = CType(Me,WSCrodip2.CrodipServer).SendControleManoMesure(inValue)
+            Dim retVal As WSCRODIP2.SendControleManoMesureResponse = CType(Me, WSCRODIP2.CrodipServer).SendControleManoMesure(inValue)
+            info = retVal.info
+            uid = retVal.uid
             ControleManoMesure = retVal.ControleManoMesure
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetFVBanc(ByVal request As WSCrodip2.GetFVBancRequest) As WSCrodip2.GetFVBancResponse Implements WSCrodip2.CrodipServer.GetFVBanc
+
+        Public Function SendControleManoMesureAsync(ByVal request As WSCRODIP2.SendControleManoMesureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendControleManoMesureResponse) Implements WSCRODIP2.CrodipServer.SendControleManoMesureAsync
+            Return MyBase.Channel.SendControleManoMesureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetFVBanc(ByVal request As WSCRODIP2.GetFVBancRequest) As WSCRODIP2.GetFVBancResponse Implements WSCRODIP2.CrodipServer.GetFVBanc
             Return MyBase.Channel.GetFVBanc(request)
         End Function
-        
-        Public Function GetFVBanc(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVBanc As Object) As Integer
-            Dim inValue As WSCrodip2.GetFVBancRequest = New WSCrodip2.GetFVBancRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetFVBancResponse = CType(Me,WSCrodip2.CrodipServer).GetFVBanc(inValue)
+
+        Public Function GetFVBanc(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVBanc As Object) As Integer
+            Dim inValue As WSCRODIP2.GetFVBancRequest = New WSCRODIP2.GetFVBancRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetFVBancResponse = CType(Me, WSCRODIP2.CrodipServer).GetFVBanc(inValue)
             FVBanc = retVal.FVBanc
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendFVBanc(ByVal request As WSCrodip2.SendFVBancRequest) As WSCrodip2.SendFVBancResponse Implements WSCrodip2.CrodipServer.SendFVBanc
+
+        Public Function GetFVBancAsync(ByVal request As WSCRODIP2.GetFVBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVBancResponse) Implements WSCRODIP2.CrodipServer.GetFVBancAsync
+            Return MyBase.Channel.GetFVBancAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendFVBanc(ByVal request As WSCRODIP2.SendFVBancRequest) As WSCRODIP2.SendFVBancResponse Implements WSCRODIP2.CrodipServer.SendFVBanc
             Return MyBase.Channel.SendFVBanc(request)
         End Function
-        
-        Public Function SendFVBanc(ByVal agentId As String, ByVal FVBancRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef FVBanc As Object) As Integer
-            Dim inValue As WSCrodip2.SendFVBancRequest = New WSCrodip2.SendFVBancRequest()
-            inValue.agentId = agentId
+
+        Public Function SendFVBanc(ByVal FVBancRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef FVBanc As Object) As Integer
+            Dim inValue As WSCRODIP2.SendFVBancRequest = New WSCRODIP2.SendFVBancRequest()
             inValue.FVBancRequest = FVBancRequest
-            Dim retVal As WSCrodip2.SendFVBancResponse = CType(Me,WSCrodip2.CrodipServer).SendFVBanc(inValue)
+            Dim retVal As WSCRODIP2.SendFVBancResponse = CType(Me, WSCRODIP2.CrodipServer).SendFVBanc(inValue)
+            info = retVal.info
+            uid = retVal.uid
             FVBanc = retVal.FVBanc
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetFVManometreControle(ByVal request As WSCrodip2.GetFVManometreControleRequest) As WSCrodip2.GetFVManometreControleResponse Implements WSCrodip2.CrodipServer.GetFVManometreControle
+
+        Public Function SendFVBancAsync(ByVal request As WSCRODIP2.SendFVBancRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVBancResponse) Implements WSCRODIP2.CrodipServer.SendFVBancAsync
+            Return MyBase.Channel.SendFVBancAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetFVManometreControle(ByVal request As WSCRODIP2.GetFVManometreControleRequest) As WSCRODIP2.GetFVManometreControleResponse Implements WSCRODIP2.CrodipServer.GetFVManometreControle
             Return MyBase.Channel.GetFVManometreControle(request)
         End Function
-        
-        Public Function GetFVManometreControle(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreControle As Object) As Integer
-            Dim inValue As WSCrodip2.GetFVManometreControleRequest = New WSCrodip2.GetFVManometreControleRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetFVManometreControleResponse = CType(Me,WSCrodip2.CrodipServer).GetFVManometreControle(inValue)
+
+        Public Function GetFVManometreControle(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreControle As Object) As Integer
+            Dim inValue As WSCRODIP2.GetFVManometreControleRequest = New WSCRODIP2.GetFVManometreControleRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetFVManometreControleResponse = CType(Me, WSCRODIP2.CrodipServer).GetFVManometreControle(inValue)
             FVManometreControle = retVal.FVManometreControle
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendFVManometreControle(ByVal request As WSCrodip2.SendFVManometreControleRequest) As WSCrodip2.SendFVManometreControleResponse Implements WSCrodip2.CrodipServer.SendFVManometreControle
+
+        Public Function GetFVManometreControleAsync(ByVal request As WSCRODIP2.GetFVManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVManometreControleResponse) Implements WSCRODIP2.CrodipServer.GetFVManometreControleAsync
+            Return MyBase.Channel.GetFVManometreControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendFVManometreControle(ByVal request As WSCRODIP2.SendFVManometreControleRequest) As WSCRODIP2.SendFVManometreControleResponse Implements WSCRODIP2.CrodipServer.SendFVManometreControle
             Return MyBase.Channel.SendFVManometreControle(request)
         End Function
-        
-        Public Function SendFVManometreControle(ByVal agentId As String, ByVal FVManometreControleRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreControle As Object) As Integer
-            Dim inValue As WSCrodip2.SendFVManometreControleRequest = New WSCrodip2.SendFVManometreControleRequest()
-            inValue.agentId = agentId
+
+        Public Function SendFVManometreControle(ByVal FVManometreControleRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreControle As Object) As Integer
+            Dim inValue As WSCRODIP2.SendFVManometreControleRequest = New WSCRODIP2.SendFVManometreControleRequest()
             inValue.FVManometreControleRequest = FVManometreControleRequest
-            Dim retVal As WSCrodip2.SendFVManometreControleResponse = CType(Me,WSCrodip2.CrodipServer).SendFVManometreControle(inValue)
+            Dim retVal As WSCRODIP2.SendFVManometreControleResponse = CType(Me, WSCRODIP2.CrodipServer).SendFVManometreControle(inValue)
+            info = retVal.info
+            uid = retVal.uid
             FVManometreControle = retVal.FVManometreControle
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetFVManometreEtalon(ByVal request As WSCrodip2.GetFVManometreEtalonRequest) As WSCrodip2.GetFVManometreEtalonResponse Implements WSCrodip2.CrodipServer.GetFVManometreEtalon
+
+        Public Function SendFVManometreControleAsync(ByVal request As WSCRODIP2.SendFVManometreControleRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVManometreControleResponse) Implements WSCRODIP2.CrodipServer.SendFVManometreControleAsync
+            Return MyBase.Channel.SendFVManometreControleAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetFVManometreEtalon(ByVal request As WSCRODIP2.GetFVManometreEtalonRequest) As WSCRODIP2.GetFVManometreEtalonResponse Implements WSCRODIP2.CrodipServer.GetFVManometreEtalon
             Return MyBase.Channel.GetFVManometreEtalon(request)
         End Function
-        
-        Public Function GetFVManometreEtalon(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreEtalon As Object) As Integer
-            Dim inValue As WSCrodip2.GetFVManometreEtalonRequest = New WSCrodip2.GetFVManometreEtalonRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetFVManometreEtalonResponse = CType(Me,WSCrodip2.CrodipServer).GetFVManometreEtalon(inValue)
+
+        Public Function GetFVManometreEtalon(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.GetFVManometreEtalonRequest = New WSCRODIP2.GetFVManometreEtalonRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetFVManometreEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).GetFVManometreEtalon(inValue)
             FVManometreEtalon = retVal.FVManometreEtalon
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendFVManometreEtalon(ByVal request As WSCrodip2.SendFVManometreEtalonRequest) As WSCrodip2.SendFVManometreEtalonResponse Implements WSCrodip2.CrodipServer.SendFVManometreEtalon
+
+        Public Function GetFVManometreEtalonAsync(ByVal request As WSCRODIP2.GetFVManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetFVManometreEtalonResponse) Implements WSCRODIP2.CrodipServer.GetFVManometreEtalonAsync
+            Return MyBase.Channel.GetFVManometreEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendFVManometreEtalon(ByVal request As WSCRODIP2.SendFVManometreEtalonRequest) As WSCRODIP2.SendFVManometreEtalonResponse Implements WSCRODIP2.CrodipServer.SendFVManometreEtalon
             Return MyBase.Channel.SendFVManometreEtalon(request)
         End Function
-        
-        Public Function SendFVManometreEtalon(ByVal agentId As String, ByVal FVManometreEtalonRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreEtalon As Object) As Integer
-            Dim inValue As WSCrodip2.SendFVManometreEtalonRequest = New WSCrodip2.SendFVManometreEtalonRequest()
-            inValue.agentId = agentId
+
+        Public Function SendFVManometreEtalon(ByVal FVManometreEtalonRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef FVManometreEtalon As Object) As Integer
+            Dim inValue As WSCRODIP2.SendFVManometreEtalonRequest = New WSCRODIP2.SendFVManometreEtalonRequest()
             inValue.FVManometreEtalonRequest = FVManometreEtalonRequest
-            Dim retVal As WSCrodip2.SendFVManometreEtalonResponse = CType(Me,WSCrodip2.CrodipServer).SendFVManometreEtalon(inValue)
+            Dim retVal As WSCRODIP2.SendFVManometreEtalonResponse = CType(Me, WSCRODIP2.CrodipServer).SendFVManometreEtalon(inValue)
+            info = retVal.info
+            uid = retVal.uid
             FVManometreEtalon = retVal.FVManometreEtalon
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetIdentifiantPulverisateur(ByVal request As WSCrodip2.GetIdentifiantPulverisateurRequest) As WSCrodip2.GetIdentifiantPulverisateurResponse Implements WSCrodip2.CrodipServer.GetIdentifiantPulverisateur
+
+        Public Function SendFVManometreEtalonAsync(ByVal request As WSCRODIP2.SendFVManometreEtalonRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendFVManometreEtalonResponse) Implements WSCRODIP2.CrodipServer.SendFVManometreEtalonAsync
+            Return MyBase.Channel.SendFVManometreEtalonAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetIdentifiantPulverisateur(ByVal request As WSCRODIP2.GetIdentifiantPulverisateurRequest) As WSCRODIP2.GetIdentifiantPulverisateurResponse Implements WSCRODIP2.CrodipServer.GetIdentifiantPulverisateur
             Return MyBase.Channel.GetIdentifiantPulverisateur(request)
         End Function
-        
-        Public Function GetIdentifiantPulverisateur(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur) As Integer
-            Dim inValue As WSCrodip2.GetIdentifiantPulverisateurRequest = New WSCrodip2.GetIdentifiantPulverisateurRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetIdentifiantPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).GetIdentifiantPulverisateur(inValue)
+
+        Public Function GetIdentifiantPulverisateur(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef IdentifiantPulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.GetIdentifiantPulverisateurRequest = New WSCRODIP2.GetIdentifiantPulverisateurRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            inValue.uidagent = uidagent
+            Dim retVal As WSCRODIP2.GetIdentifiantPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).GetIdentifiantPulverisateur(inValue)
             IdentifiantPulverisateur = retVal.IdentifiantPulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendIdentifiantPulverisateur(ByVal request As WSCrodip2.SendIdentifiantPulverisateurRequest) As WSCrodip2.SendIdentifiantPulverisateurResponse Implements WSCrodip2.CrodipServer.SendIdentifiantPulverisateur
+
+        Public Function GetIdentifiantPulverisateurAsync(ByVal request As WSCRODIP2.GetIdentifiantPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetIdentifiantPulverisateurResponse) Implements WSCRODIP2.CrodipServer.GetIdentifiantPulverisateurAsync
+            Return MyBase.Channel.GetIdentifiantPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendIdentifiantPulverisateur(ByVal request As WSCRODIP2.SendIdentifiantPulverisateurRequest) As WSCRODIP2.SendIdentifiantPulverisateurResponse Implements WSCRODIP2.CrodipServer.SendIdentifiantPulverisateur
             Return MyBase.Channel.SendIdentifiantPulverisateur(request)
         End Function
-        
-        Public Function SendIdentifiantPulverisateur(ByVal agentId As String, ByRef IdentifiantPulverisateur As WSCrodip2.IdentifiantPulverisateur) As Integer
-            Dim inValue As WSCrodip2.SendIdentifiantPulverisateurRequest = New WSCrodip2.SendIdentifiantPulverisateurRequest()
-            inValue.agentId = agentId
-            inValue.IdentifiantPulverisateur = IdentifiantPulverisateur
-            Dim retVal As WSCrodip2.SendIdentifiantPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).SendIdentifiantPulverisateur(inValue)
+
+        Public Function SendIdentifiantPulverisateur(ByVal IdentifiantPulverisateurRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef IdentifiantPulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.SendIdentifiantPulverisateurRequest = New WSCRODIP2.SendIdentifiantPulverisateurRequest()
+            inValue.IdentifiantPulverisateurRequest = IdentifiantPulverisateurRequest
+            Dim retVal As WSCRODIP2.SendIdentifiantPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).SendIdentifiantPulverisateur(inValue)
+            info = retVal.info
+            uid = retVal.uid
             IdentifiantPulverisateur = retVal.IdentifiantPulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetPulverisateur(ByVal request As WSCrodip2.GetPulverisateurRequest) As WSCrodip2.GetPulverisateurResponse Implements WSCrodip2.CrodipServer.GetPulverisateur
+
+        Public Function SendIdentifiantPulverisateurAsync(ByVal request As WSCRODIP2.SendIdentifiantPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendIdentifiantPulverisateurResponse) Implements WSCRODIP2.CrodipServer.SendIdentifiantPulverisateurAsync
+            Return MyBase.Channel.SendIdentifiantPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetPulverisateur(ByVal request As WSCRODIP2.GetPulverisateurRequest) As WSCRODIP2.GetPulverisateurResponse Implements WSCRODIP2.CrodipServer.GetPulverisateur
             Return MyBase.Channel.GetPulverisateur(request)
         End Function
-        
-        Public Function GetPulverisateur(ByVal agentId As String, ByVal id As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Pulverisateur As Object) As Integer
-            Dim inValue As WSCrodip2.GetPulverisateurRequest = New WSCrodip2.GetPulverisateurRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).GetPulverisateur(inValue)
+
+        Public Function GetPulverisateur(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef Pulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.GetPulverisateurRequest = New WSCRODIP2.GetPulverisateurRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).GetPulverisateur(inValue)
             Pulverisateur = retVal.Pulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendPulverisateur(ByVal request As WSCrodip2.SendPulverisateurRequest) As WSCrodip2.SendPulverisateurResponse Implements WSCrodip2.CrodipServer.SendPulverisateur
+
+        Public Function GetPulverisateurAsync(ByVal request As WSCRODIP2.GetPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetPulverisateurResponse) Implements WSCRODIP2.CrodipServer.GetPulverisateurAsync
+            Return MyBase.Channel.GetPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendPulverisateur(ByVal request As WSCRODIP2.SendPulverisateurRequest) As WSCRODIP2.SendPulverisateurResponse Implements WSCRODIP2.CrodipServer.SendPulverisateur
             Return MyBase.Channel.SendPulverisateur(request)
         End Function
-        
-        Public Function SendPulverisateur(ByVal agentId As String, ByVal PulverisateurRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef Pulverisateur As Object) As Integer
-            Dim inValue As WSCrodip2.SendPulverisateurRequest = New WSCrodip2.SendPulverisateurRequest()
-            inValue.agentId = agentId
+
+        Public Function SendPulverisateur(ByVal PulverisateurRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef Pulverisateur As Object) As Integer
+            Dim inValue As WSCRODIP2.SendPulverisateurRequest = New WSCRODIP2.SendPulverisateurRequest()
             inValue.PulverisateurRequest = PulverisateurRequest
-            Dim retVal As WSCrodip2.SendPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).SendPulverisateur(inValue)
+            Dim retVal As WSCRODIP2.SendPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).SendPulverisateur(inValue)
+            info = retVal.info
+            uid = retVal.uid
             Pulverisateur = retVal.Pulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetStructure(ByVal request As WSCrodip2.GetStructureRequest) As WSCrodip2.GetStructureResponse Implements WSCrodip2.CrodipServer.GetStructure
+
+        Public Function SendPulverisateurAsync(ByVal request As WSCRODIP2.SendPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendPulverisateurResponse) Implements WSCRODIP2.CrodipServer.SendPulverisateurAsync
+            Return MyBase.Channel.SendPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetStructure(ByVal request As WSCRODIP2.GetStructureRequest) As WSCRODIP2.GetStructureResponse Implements WSCRODIP2.CrodipServer.GetStructure
             Return MyBase.Channel.GetStructure(request)
         End Function
-        
-        Public Function GetStructure(ByVal agentId As String, ByVal id As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef [Structure] As Object) As Integer
-            Dim inValue As WSCrodip2.GetStructureRequest = New WSCrodip2.GetStructureRequest()
-            inValue.agentId = agentId
-            inValue.id = id
-            Dim retVal As WSCrodip2.GetStructureResponse = CType(Me,WSCrodip2.CrodipServer).GetStructure(inValue)
+
+        Public Function GetStructure(ByVal uid As Integer, ByVal aid As String, <System.Runtime.InteropServices.OutAttribute()> ByRef [Structure] As Object) As Integer
+            Dim inValue As WSCRODIP2.GetStructureRequest = New WSCRODIP2.GetStructureRequest()
+            inValue.uid = uid
+            inValue.aid = aid
+            Dim retVal As WSCRODIP2.GetStructureResponse = CType(Me, WSCRODIP2.CrodipServer).GetStructure(inValue)
             [Structure] = retVal.[Structure]
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_SendStructure(ByVal request As WSCrodip2.SendStructureRequest) As WSCrodip2.SendStructureResponse Implements WSCrodip2.CrodipServer.SendStructure
+
+        Public Function GetStructureAsync(ByVal request As WSCRODIP2.GetStructureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetStructureResponse) Implements WSCRODIP2.CrodipServer.GetStructureAsync
+            Return MyBase.Channel.GetStructureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_SendStructure(ByVal request As WSCRODIP2.SendStructureRequest) As WSCRODIP2.SendStructureResponse Implements WSCRODIP2.CrodipServer.SendStructure
             Return MyBase.Channel.SendStructure(request)
         End Function
-        
-        Public Function SendStructure(ByVal agentId As String, ByVal StructureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef [Structure] As Object) As Integer
-            Dim inValue As WSCrodip2.SendStructureRequest = New WSCrodip2.SendStructureRequest()
-            inValue.agentId = agentId
+
+        Public Function SendStructure(ByVal StructureRequest As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef uid As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef [Structure] As Object) As Integer
+            Dim inValue As WSCRODIP2.SendStructureRequest = New WSCRODIP2.SendStructureRequest()
             inValue.StructureRequest = StructureRequest
-            Dim retVal As WSCrodip2.SendStructureResponse = CType(Me,WSCrodip2.CrodipServer).SendStructure(inValue)
+            Dim retVal As WSCRODIP2.SendStructureResponse = CType(Me, WSCRODIP2.CrodipServer).SendStructure(inValue)
+            info = retVal.info
+            uid = retVal.uid
             [Structure] = retVal.[Structure]
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielBuse(ByVal request As WSCrodip2.GetReferentielBuseRequest) As WSCrodip2.GetReferentielBuseResponse Implements WSCrodip2.CrodipServer.GetReferentielBuse
+
+        Public Function SendStructureAsync(ByVal request As WSCRODIP2.SendStructureRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.SendStructureResponse) Implements WSCRODIP2.CrodipServer.SendStructureAsync
+            Return MyBase.Channel.SendStructureAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielBuse(ByVal request As WSCRODIP2.GetReferentielBuseRequest) As WSCRODIP2.GetReferentielBuseResponse Implements WSCRODIP2.CrodipServer.GetReferentielBuse
             Return MyBase.Channel.GetReferentielBuse(request)
         End Function
-        
+
         Public Function GetReferentielBuse(ByVal agentId As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ReferentielBuse As Object) As Integer
-            Dim inValue As WSCrodip2.GetReferentielBuseRequest = New WSCrodip2.GetReferentielBuseRequest()
+            Dim inValue As WSCRODIP2.GetReferentielBuseRequest = New WSCRODIP2.GetReferentielBuseRequest()
             inValue.agentId = agentId
-            Dim retVal As WSCrodip2.GetReferentielBuseResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielBuse(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielBuseResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielBuse(inValue)
             ReferentielBuse = retVal.ReferentielBuse
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielManometre(ByVal request As WSCrodip2.GetReferentielManometreRequest) As WSCrodip2.GetReferentielManometreResponse Implements WSCrodip2.CrodipServer.GetReferentielManometre
+
+        Public Function GetReferentielBuseAsync(ByVal request As WSCRODIP2.GetReferentielBuseRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielBuseResponse) Implements WSCRODIP2.CrodipServer.GetReferentielBuseAsync
+            Return MyBase.Channel.GetReferentielBuseAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielManometre(ByVal request As WSCRODIP2.GetReferentielManometreRequest) As WSCRODIP2.GetReferentielManometreResponse Implements WSCRODIP2.CrodipServer.GetReferentielManometre
             Return MyBase.Channel.GetReferentielManometre(request)
         End Function
-        
+
         Public Function GetReferentielManometre(ByVal agentId As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ReferentielManometre As Object) As Integer
-            Dim inValue As WSCrodip2.GetReferentielManometreRequest = New WSCrodip2.GetReferentielManometreRequest()
+            Dim inValue As WSCRODIP2.GetReferentielManometreRequest = New WSCRODIP2.GetReferentielManometreRequest()
             inValue.agentId = agentId
-            Dim retVal As WSCrodip2.GetReferentielManometreResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielManometre(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielManometreResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielManometre(inValue)
             ReferentielManometre = retVal.ReferentielManometre
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielPulverisateur(ByVal request As WSCrodip2.GetReferentielPulverisateurRequest) As WSCrodip2.GetReferentielPulverisateurResponse Implements WSCrodip2.CrodipServer.GetReferentielPulverisateur
+
+        Public Function GetReferentielManometreAsync(ByVal request As WSCRODIP2.GetReferentielManometreRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielManometreResponse) Implements WSCRODIP2.CrodipServer.GetReferentielManometreAsync
+            Return MyBase.Channel.GetReferentielManometreAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielPulverisateur(ByVal request As WSCRODIP2.GetReferentielPulverisateurRequest) As WSCRODIP2.GetReferentielPulverisateurResponse Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateur
             Return MyBase.Channel.GetReferentielPulverisateur(request)
         End Function
-        
+
         Public Function GetReferentielPulverisateur(ByVal agentId As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ReferentielPulverisateur As Object) As Integer
-            Dim inValue As WSCrodip2.GetReferentielPulverisateurRequest = New WSCrodip2.GetReferentielPulverisateurRequest()
+            Dim inValue As WSCRODIP2.GetReferentielPulverisateurRequest = New WSCRODIP2.GetReferentielPulverisateurRequest()
             inValue.agentId = agentId
-            Dim retVal As WSCrodip2.GetReferentielPulverisateurResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielPulverisateur(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielPulverisateurResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielPulverisateur(inValue)
             ReferentielPulverisateur = retVal.ReferentielPulverisateur
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielTerritoire(ByVal request As WSCrodip2.GetReferentielTerritoireRequest) As WSCrodip2.GetReferentielTerritoireResponse Implements WSCrodip2.CrodipServer.GetReferentielTerritoire
+
+        Public Function GetReferentielPulverisateurAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurResponse) Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateurAsync
+            Return MyBase.Channel.GetReferentielPulverisateurAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielTerritoire(ByVal request As WSCRODIP2.GetReferentielTerritoireRequest) As WSCRODIP2.GetReferentielTerritoireResponse Implements WSCRODIP2.CrodipServer.GetReferentielTerritoire
             Return MyBase.Channel.GetReferentielTerritoire(request)
         End Function
-        
+
         Public Function GetReferentielTerritoire(ByVal agentId As String, <System.Runtime.InteropServices.OutAttribute()> ByRef ReferentielTerritoire As Object) As Integer
-            Dim inValue As WSCrodip2.GetReferentielTerritoireRequest = New WSCrodip2.GetReferentielTerritoireRequest()
+            Dim inValue As WSCRODIP2.GetReferentielTerritoireRequest = New WSCRODIP2.GetReferentielTerritoireRequest()
             inValue.agentId = agentId
-            Dim retVal As WSCrodip2.GetReferentielTerritoireResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielTerritoire(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielTerritoireResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielTerritoire(inValue)
             ReferentielTerritoire = retVal.ReferentielTerritoire
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetVersionLogicielAgent(ByVal request As WSCrodip2.GetVersionLogicielAgentRequest) As WSCrodip2.GetVersionLogicielAgentResponse Implements WSCrodip2.CrodipServer.GetVersionLogicielAgent
+
+        Public Function GetReferentielTerritoireAsync(ByVal request As WSCRODIP2.GetReferentielTerritoireRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielTerritoireResponse) Implements WSCRODIP2.CrodipServer.GetReferentielTerritoireAsync
+            Return MyBase.Channel.GetReferentielTerritoireAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetVersionLogicielAgent(ByVal request As WSCRODIP2.GetVersionLogicielAgentRequest) As WSCRODIP2.GetVersionLogicielAgentResponse Implements WSCRODIP2.CrodipServer.GetVersionLogicielAgent
             Return MyBase.Channel.GetVersionLogicielAgent(request)
         End Function
-        
+
         Public Function GetVersionLogicielAgent(<System.Runtime.InteropServices.OutAttribute()> ByRef VersionLogicielAgent As Object) As Integer
-            Dim inValue As WSCrodip2.GetVersionLogicielAgentRequest = New WSCrodip2.GetVersionLogicielAgentRequest()
-            Dim retVal As WSCrodip2.GetVersionLogicielAgentResponse = CType(Me,WSCrodip2.CrodipServer).GetVersionLogicielAgent(inValue)
+            Dim inValue As WSCRODIP2.GetVersionLogicielAgentRequest = New WSCRODIP2.GetVersionLogicielAgentRequest()
+            Dim retVal As WSCRODIP2.GetVersionLogicielAgentResponse = CType(Me, WSCRODIP2.CrodipServer).GetVersionLogicielAgent(inValue)
             VersionLogicielAgent = retVal.VersionLogicielAgent
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetSoftwareUpdate(ByVal request As WSCrodip2.GetSoftwareUpdateRequest) As WSCrodip2.GetSoftwareUpdateResponse Implements WSCrodip2.CrodipServer.GetSoftwareUpdate
+
+        Public Function GetVersionLogicielAgentAsync(ByVal request As WSCRODIP2.GetVersionLogicielAgentRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetVersionLogicielAgentResponse) Implements WSCRODIP2.CrodipServer.GetVersionLogicielAgentAsync
+            Return MyBase.Channel.GetVersionLogicielAgentAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetSoftwareUpdate(ByVal request As WSCRODIP2.GetSoftwareUpdateRequest) As WSCRODIP2.GetSoftwareUpdateResponse Implements WSCRODIP2.CrodipServer.GetSoftwareUpdate
             Return MyBase.Channel.GetSoftwareUpdate(request)
         End Function
-        
+
         Public Function GetSoftwareUpdate(ByVal version As String, <System.Runtime.InteropServices.OutAttribute()> ByRef infos As Object) As Integer
-            Dim inValue As WSCrodip2.GetSoftwareUpdateRequest = New WSCrodip2.GetSoftwareUpdateRequest()
+            Dim inValue As WSCRODIP2.GetSoftwareUpdateRequest = New WSCRODIP2.GetSoftwareUpdateRequest()
             inValue.version = version
-            Dim retVal As WSCrodip2.GetSoftwareUpdateResponse = CType(Me,WSCrodip2.CrodipServer).GetSoftwareUpdate(inValue)
+            Dim retVal As WSCRODIP2.GetSoftwareUpdateResponse = CType(Me, WSCRODIP2.CrodipServer).GetSoftwareUpdate(inValue)
             infos = retVal.infos
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetSynchroDateTime(ByVal request As WSCrodip2.GetSynchroDateTimeRequest) As WSCrodip2.GetSynchroDateTimeResponse Implements WSCrodip2.CrodipServer.GetSynchroDateTime
+
+        Public Function GetSoftwareUpdateAsync(ByVal request As WSCRODIP2.GetSoftwareUpdateRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetSoftwareUpdateResponse) Implements WSCRODIP2.CrodipServer.GetSoftwareUpdateAsync
+            Return MyBase.Channel.GetSoftwareUpdateAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetSynchroDateTime(ByVal request As WSCRODIP2.GetSynchroDateTimeRequest) As WSCRODIP2.GetSynchroDateTimeResponse Implements WSCRODIP2.CrodipServer.GetSynchroDateTime
             Return MyBase.Channel.GetSynchroDateTime(request)
         End Function
-        
+
         Public Function GetSynchroDateTime(<System.Runtime.InteropServices.OutAttribute()> ByRef SynchroDateTime As Object) As Integer
-            Dim inValue As WSCrodip2.GetSynchroDateTimeRequest = New WSCrodip2.GetSynchroDateTimeRequest()
-            Dim retVal As WSCrodip2.GetSynchroDateTimeResponse = CType(Me,WSCrodip2.CrodipServer).GetSynchroDateTime(inValue)
+            Dim inValue As WSCRODIP2.GetSynchroDateTimeRequest = New WSCRODIP2.GetSynchroDateTimeRequest()
+            Dim retVal As WSCRODIP2.GetSynchroDateTimeResponse = CType(Me, WSCRODIP2.CrodipServer).GetSynchroDateTime(inValue)
             SynchroDateTime = retVal.SynchroDateTime
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetIncrementDiagnostic(ByVal request As WSCrodip2.GetIncrementDiagnosticRequest) As WSCrodip2.GetIncrementDiagnosticResponse Implements WSCrodip2.CrodipServer.GetIncrementDiagnostic
+
+        Public Function GetSynchroDateTimeAsync(ByVal request As WSCRODIP2.GetSynchroDateTimeRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetSynchroDateTimeResponse) Implements WSCRODIP2.CrodipServer.GetSynchroDateTimeAsync
+            Return MyBase.Channel.GetSynchroDateTimeAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetIncrementDiagnostic(ByVal request As WSCRODIP2.GetIncrementDiagnosticRequest) As WSCRODIP2.GetIncrementDiagnosticResponse Implements WSCRODIP2.CrodipServer.GetIncrementDiagnostic
             Return MyBase.Channel.GetIncrementDiagnostic(request)
         End Function
-        
+
         Public Function GetIncrementDiagnostic(ByVal agentId As String, <System.Runtime.InteropServices.OutAttribute()> ByRef result As Integer) As Object
-            Dim inValue As WSCrodip2.GetIncrementDiagnosticRequest = New WSCrodip2.GetIncrementDiagnosticRequest()
+            Dim inValue As WSCRODIP2.GetIncrementDiagnosticRequest = New WSCRODIP2.GetIncrementDiagnosticRequest()
             inValue.agentId = agentId
-            Dim retVal As WSCrodip2.GetIncrementDiagnosticResponse = CType(Me,WSCrodip2.CrodipServer).GetIncrementDiagnostic(inValue)
+            Dim retVal As WSCRODIP2.GetIncrementDiagnosticResponse = CType(Me, WSCRODIP2.CrodipServer).GetIncrementDiagnostic(inValue)
             result = retVal.result
             Return retVal.increment
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_UpdatesAvailable(ByVal request As WSCrodip2.UpdatesAvailableRequest) As WSCrodip2.UpdatesAvailableResponse Implements WSCrodip2.CrodipServer.UpdatesAvailable
+
+        Public Function GetIncrementDiagnosticAsync(ByVal request As WSCRODIP2.GetIncrementDiagnosticRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetIncrementDiagnosticResponse) Implements WSCRODIP2.CrodipServer.GetIncrementDiagnosticAsync
+            Return MyBase.Channel.GetIncrementDiagnosticAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_UpdatesAvailable(ByVal request As WSCRODIP2.UpdatesAvailableRequest) As WSCRODIP2.UpdatesAvailableResponse Implements WSCRODIP2.CrodipServer.UpdatesAvailable
             Return MyBase.Channel.UpdatesAvailable(request)
         End Function
-        
-        Public Function UpdatesAvailable(ByVal agent As String, ByVal lastUpdateDateTime As String, <System.Runtime.InteropServices.OutAttribute()> ByRef isUpdateAvailable As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef isComplete As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef updatesList() As Object) As Integer
-            Dim inValue As WSCrodip2.UpdatesAvailableRequest = New WSCrodip2.UpdatesAvailableRequest()
-            inValue.agent = agent
+
+        Public Function UpdatesAvailable(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String, <System.Runtime.InteropServices.OutAttribute()> ByRef info As String, <System.Runtime.InteropServices.OutAttribute()> ByRef isUpdateAvailable As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef isComplete As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef updatesList() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef availablePools() As Object, <System.Runtime.InteropServices.OutAttribute()> ByRef availablePcs() As Object) As Integer
+            Dim inValue As WSCRODIP2.UpdatesAvailableRequest = New WSCRODIP2.UpdatesAvailableRequest()
+            inValue.idProfilAgent = idProfilAgent
+            inValue.uidpool = uidpool
+            inValue.uidpc = uidpc
+            inValue.idRegistre = idRegistre
             inValue.lastUpdateDateTime = lastUpdateDateTime
-            Dim retVal As WSCrodip2.UpdatesAvailableResponse = CType(Me,WSCrodip2.CrodipServer).UpdatesAvailable(inValue)
+            Dim retVal As WSCRODIP2.UpdatesAvailableResponse = CType(Me, WSCRODIP2.CrodipServer).UpdatesAvailable(inValue)
+            info = retVal.info
             isUpdateAvailable = retVal.isUpdateAvailable
             isComplete = retVal.isComplete
             updatesList = retVal.updatesList
+            availablePools = retVal.availablePools
+            availablePcs = retVal.availablePcs
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielPulverisateurTypesCategories(ByVal request As WSCrodip2.GetReferentielPulverisateurTypesCategoriesRequest) As WSCrodip2.GetReferentielPulverisateurTypesCategoriesResponse Implements WSCrodip2.CrodipServer.GetReferentielPulverisateurTypesCategories
+
+        Public Function UpdatesAvailableAsync(ByVal request As WSCRODIP2.UpdatesAvailableRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.UpdatesAvailableResponse) Implements WSCRODIP2.CrodipServer.UpdatesAvailableAsync
+            Return MyBase.Channel.UpdatesAvailableAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielPulverisateurTypesCategories(ByVal request As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest) As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateurTypesCategories
             Return MyBase.Channel.GetReferentielPulverisateurTypesCategories(request)
         End Function
-        
+
         Public Function GetReferentielPulverisateurTypesCategories(ByVal [date] As String, <System.Runtime.InteropServices.OutAttribute()> ByRef aJour As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef url As String) As Integer
-            Dim inValue As WSCrodip2.GetReferentielPulverisateurTypesCategoriesRequest = New WSCrodip2.GetReferentielPulverisateurTypesCategoriesRequest()
+            Dim inValue As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest = New WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest()
             inValue.[date] = [date]
-            Dim retVal As WSCrodip2.GetReferentielPulverisateurTypesCategoriesResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielPulverisateurTypesCategories(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielPulverisateurTypesCategories(inValue)
             aJour = retVal.aJour
             url = retVal.url
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielCodesAPE(ByVal request As WSCrodip2.GetReferentielCodesAPERequest) As WSCrodip2.GetReferentielCodesAPEResponse Implements WSCrodip2.CrodipServer.GetReferentielCodesAPE
+
+        Public Function GetReferentielPulverisateurTypesCategoriesAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurTypesCategoriesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse) Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateurTypesCategoriesAsync
+            Return MyBase.Channel.GetReferentielPulverisateurTypesCategoriesAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielCodesAPE(ByVal request As WSCRODIP2.GetReferentielCodesAPERequest) As WSCRODIP2.GetReferentielCodesAPEResponse Implements WSCRODIP2.CrodipServer.GetReferentielCodesAPE
             Return MyBase.Channel.GetReferentielCodesAPE(request)
         End Function
-        
+
         Public Function GetReferentielCodesAPE(ByVal [date] As String, <System.Runtime.InteropServices.OutAttribute()> ByRef aJour As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef url As String) As Integer
-            Dim inValue As WSCrodip2.GetReferentielCodesAPERequest = New WSCrodip2.GetReferentielCodesAPERequest()
+            Dim inValue As WSCRODIP2.GetReferentielCodesAPERequest = New WSCRODIP2.GetReferentielCodesAPERequest()
             inValue.[date] = [date]
-            Dim retVal As WSCrodip2.GetReferentielCodesAPEResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielCodesAPE(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielCodesAPEResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielCodesAPE(inValue)
             aJour = retVal.aJour
             url = retVal.url
             Return retVal.result
         End Function
-        
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Function WSCrodip2_CrodipServer_GetReferentielPulverisateurMarquesModeles(ByVal request As WSCrodip2.GetReferentielPulverisateurMarquesModelesRequest) As WSCrodip2.GetReferentielPulverisateurMarquesModelesResponse Implements WSCrodip2.CrodipServer.GetReferentielPulverisateurMarquesModeles
+
+        Public Function GetReferentielCodesAPEAsync(ByVal request As WSCRODIP2.GetReferentielCodesAPERequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielCodesAPEResponse) Implements WSCRODIP2.CrodipServer.GetReferentielCodesAPEAsync
+            Return MyBase.Channel.GetReferentielCodesAPEAsync(request)
+        End Function
+
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
+        Function WSCRODIP2_CrodipServer_GetReferentielPulverisateurMarquesModeles(ByVal request As WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest) As WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateurMarquesModeles
             Return MyBase.Channel.GetReferentielPulverisateurMarquesModeles(request)
         End Function
-        
+
         Public Function GetReferentielPulverisateurMarquesModeles(ByVal [date] As String, <System.Runtime.InteropServices.OutAttribute()> ByRef aJour As Integer, <System.Runtime.InteropServices.OutAttribute()> ByRef url As String) As Integer
-            Dim inValue As WSCrodip2.GetReferentielPulverisateurMarquesModelesRequest = New WSCrodip2.GetReferentielPulverisateurMarquesModelesRequest()
+            Dim inValue As WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest = New WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest()
             inValue.[date] = [date]
-            Dim retVal As WSCrodip2.GetReferentielPulverisateurMarquesModelesResponse = CType(Me,WSCrodip2.CrodipServer).GetReferentielPulverisateurMarquesModeles(inValue)
+            Dim retVal As WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse = CType(Me, WSCRODIP2.CrodipServer).GetReferentielPulverisateurMarquesModeles(inValue)
             aJour = retVal.aJour
             url = retVal.url
             Return retVal.result
         End Function
+
+        Public Function GetReferentielPulverisateurMarquesModelesAsync(ByVal request As WSCRODIP2.GetReferentielPulverisateurMarquesModelesRequest) As System.Threading.Tasks.Task(Of WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse) Implements WSCRODIP2.CrodipServer.GetReferentielPulverisateurMarquesModelesAsync
+            Return MyBase.Channel.GetReferentielPulverisateurMarquesModelesAsync(request)
+        End Function
     End Class
+    Public Class AgentRequest
+        Private _uid As Integer
+        Public Property uid() As Integer
+            Get
+                Return _uid
+            End Get
+            Set(ByVal value As Integer)
+                _uid = value
+            End Set
+        End Property
+        Private _aid As String
+        Public Property aid() As String
+            Get
+                Return _aid
+            End Get
+            Set(ByVal value As String)
+                _aid = value
+            End Set
+        End Property
+        Private _Nom As String
+        Public Property nom() As String
+            Get
+                Return _Nom
+            End Get
+            Set(ByVal value As String)
+                _Nom = value
+            End Set
+        End Property
+    End Class
+
 End Namespace

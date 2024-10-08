@@ -5,17 +5,17 @@ Imports System.Collections.Generic
 Public MustInherit Class Materiel
     Inherits root
     'Protected _id As Integer
-    Protected _numeroNational As String
-    Protected _idCrodip As String
-    Protected _idStructure As Integer
-    Protected _isSupprime As Boolean
-    Protected _AgentSuppression As String
-    Protected _RaisonSuppression As String
-    Protected _DateSuppression As String
-    Protected _JamaisServi As Boolean
-    Protected _DateActivation As Nullable(Of Date)
-    Protected _dateDernierControle As String
-    Protected _etat As Boolean
+    Protected _numeroNational As String = ""
+    Protected _idCrodip As String = ""
+    Protected _idStructure As Integer = 0
+    Protected _isSupprime As Boolean = False
+    Protected _AgentSuppression As String = ""
+    Protected _RaisonSuppression As String = ""
+    Protected _DateSuppression As String = ""
+    Protected _JamaisServi As Boolean = False
+    Protected _DateActivation As Nullable(Of Date) = Nothing
+    Protected _dateDernierControle As String = ""
+    Protected _etat As Boolean = False
 
 
 
@@ -42,6 +42,7 @@ Public MustInherit Class Materiel
     '        _id = value
     '    End Set
     'End Property
+    <XmlIgnore()>
     Public Property numeroNational() As String
         Get
             Return _numeroNational
@@ -51,6 +52,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
 
+    <XmlIgnore()>
     Public Property idCrodip() As String
         Get
             Return _idCrodip
@@ -59,8 +61,7 @@ Public MustInherit Class Materiel
             _idCrodip = Value
         End Set
     End Property
-
-    Public Property idStructure() As Integer
+    Public Property uidstructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -69,8 +70,17 @@ Public MustInherit Class Materiel
         End Set
     End Property
 
-
-    Public Property isSupprime() As Boolean
+    <XmlIgnore()>
+    Public Property isSupprime() As Integer
+        Get
+            Return CInt(_isSupprime)
+        End Get
+        Set(ByVal Value As Integer)
+            _isSupprime = CBool(Value)
+        End Set
+    End Property
+    <XmlElement("isSupprime")>
+    Public Property isSupprimeWS() As Boolean
         Get
             Return _isSupprime
         End Get
@@ -80,7 +90,7 @@ Public MustInherit Class Materiel
     End Property
 
 
-    Public Property AgentSuppression() As String
+    Public Property agentSuppression() As String
         Get
             Return _AgentSuppression
         End Get
@@ -89,7 +99,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
 
-    Public Property RaisonSuppression() As String
+    Public Property raisonSuppression() As String
         Get
             Return _RaisonSuppression
         End Get
@@ -97,7 +107,7 @@ Public MustInherit Class Materiel
             _RaisonSuppression = Value
         End Set
     End Property
-    Public Property DateSuppression() As String
+    Public Property dateSuppression() As String
         Get
             Return _DateSuppression
         End Get
@@ -106,7 +116,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
 
-    Public Property JamaisServi() As Boolean
+    Public Property jamaisServi() As Boolean
         Get
             Return _JamaisServi
         End Get
@@ -133,7 +143,9 @@ Public MustInherit Class Materiel
             Return CSDate.GetDateForWS(_DateActivation.GetValueOrDefault())
         End Get
         Set(ByVal Value As String)
-            _DateActivation = Value
+            If Value <> "" Then
+                _DateActivation = Value
+            End If
         End Set
     End Property
     <XmlElement("dateDernierControle")>
@@ -174,7 +186,16 @@ Public MustInherit Class Materiel
         End If
         Return bReturn
     End Function
-
+    <XmlElement("etat")>
+    Public Property etatWS() As Integer
+        Get
+            Return CInt(_etat)
+        End Get
+        Set(ByVal Value As Integer)
+            _etat = CBool(Value)
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property etat() As Boolean
         Get
             Return _etat
@@ -183,7 +204,7 @@ Public MustInherit Class Materiel
             _etat = Value
         End Set
     End Property
-
+    <XmlIgnore()>
     Public Overridable Property Libelle() As String
         Get
             Return "Matériel : " + numeroNational
@@ -205,7 +226,7 @@ Public MustInherit Class Materiel
                     Case "idCrodip".Trim().ToUpper()
                         Me.idCrodip = pcolValue.ToString()
                     Case "idstructure".Trim().ToUpper()
-                        Me.idStructure = pcolValue.ToString()
+                        Me.uidstructure = pcolValue.ToString()
                     Case "etat".Trim().ToUpper()
                         Me.etat = CType(pcolValue, Boolean)
                     Case "issupprime".Trim().ToUpper()
@@ -213,20 +234,20 @@ Public MustInherit Class Materiel
                     Case "issupprime".Trim().ToUpper()
                         Me.isSupprime = CType(pcolValue, Boolean)
                     Case "agentsuppression".Trim().ToUpper()
-                        Me.AgentSuppression = pcolValue.ToString()
+                        Me.agentSuppression = pcolValue.ToString()
                     Case "raisonsuppression".Trim().ToUpper()
-                        Me.RaisonSuppression = pcolValue.ToString()
+                        Me.raisonSuppression = pcolValue.ToString()
                     Case "datesuppression".Trim().ToUpper()
                         Dim strDateMin As String = CSDate.ToCRODIPString("")
                         Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
                         If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                            Me.DateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                            Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
                         Else
-                            Me.DateSuppression = ""
+                            Me.dateSuppression = ""
                         End If
 
                     Case "jamaisServi".Trim().ToUpper()
-                        Me.JamaisServi = pcolValue
+                        Me.jamaisServi = pcolValue
                     Case "dateActivation".Trim().ToUpper()
                         Me.DateActivation = pcolValue
                     Case Else
@@ -246,7 +267,7 @@ Public MustInherit Class Materiel
         Debug.Assert(pAgent IsNot Nothing, "Agent initialisé")
         Dim bReturn As Boolean
         Try
-            JamaisServi = False
+            jamaisServi = False
             etat = True
             DateActivation = pDateActivation
 

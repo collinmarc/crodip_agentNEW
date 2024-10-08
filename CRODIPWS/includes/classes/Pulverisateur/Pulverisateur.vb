@@ -6,7 +6,9 @@ Imports CRODIP_ControlLibrary
 
 <Serializable(), XmlInclude(GetType(Pulverisateur))>
 Public Class Pulverisateur
+    Inherits root
     Implements ICloneable
+
 
     Public Shared CO_PRORIETE As String = "Co-Propriété"
     Public Shared TYPEPULVE_ARBRES As String = "Arbres"

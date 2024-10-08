@@ -7,11 +7,24 @@ Public Class AgentPCManager
 
 #Region "Methodes Web Service"
 
+    Public Shared Function getWSAgentPCById(pAgent As Agent, ByVal pmanometre_uid As Integer) As AgentPC
+        Dim oreturn As AgentPC
+        oreturn = getWSByKey(Of AgentPC)(pmanometre_uid, "")
+        Return oreturn
+    End Function
 
+    Public Shared Function SendWSAgentPC(pAgent As Agent, ByVal pManometre As AgentPC, ByRef pReturn As AgentPC) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = SendWS(Of AgentPC)(pManometre, pReturn)
 
-
+        Catch ex As Exception
+            CSDebug.dispFatal("sendWSAgentPC : " & ex.Message)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
 #End Region
-
 #Region "Methodes Locales"
     ''' Cette méthode n'est plus utilisée depuis la 2.5.4.3 , car les matériels sont créés sur le Serveur 
 
@@ -44,8 +57,8 @@ Public Class AgentPCManager
                 End If
 
 
-                If objAgentPC.idStructure <> 0 Then
-                    paramsQuery = paramsQuery & " , idStructure=" & objAgentPC.idStructure & ""
+                If objAgentPC.uidstructure <> 0 Then
+                    paramsQuery = paramsQuery & " , idStructure=" & objAgentPC.uidstructure & ""
                 End If
                 If Not objAgentPC.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objAgentPC.idCrodip) & "'"
