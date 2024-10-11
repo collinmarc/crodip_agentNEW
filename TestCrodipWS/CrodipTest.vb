@@ -101,9 +101,9 @@ Public Class CRODIPTest
         m_oBanc = BancManager.getBancById(m_idStructure & "-" & m_IdAgent & "-1")
         If m_oBanc.id = "" Then
             'Si il n'existe pas on le récupère du WS
-            m_oBanc = BancManager.getWSBancById(m_oAgent, m_idStructure & "-" & m_IdAgent & "-1")
+            m_oBanc = BancManager.WSgetById(0, m_idStructure & "-" & m_IdAgent & "-1")
             'Si il n'existe pas sur le WS , je je créé en base (Normalement impossible)
-            If m_oBanc.id = "" Then
+            If m_oBanc Is Nothing Then
                 CSDebug.dispError("Le banc n'existe pas je le recree, (Normalement impossible)")
                 m_oBanc = New CRODIPWS.Banc()
                 m_oBanc.id = BancManager.FTO_getNewId(m_oAgent)

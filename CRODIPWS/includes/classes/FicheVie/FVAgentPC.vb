@@ -9,7 +9,7 @@ Public Class FVAgentPC
     End Sub
     Sub New(ByVal pAgent As Agent)
 
-        idAgentControleur = pAgent.uid
+        idAgentControleur = pAgent.id
     End Sub
 
 

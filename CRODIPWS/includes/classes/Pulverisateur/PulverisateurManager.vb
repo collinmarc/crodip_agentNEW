@@ -66,7 +66,7 @@ Public Class PulverisateurManager
 
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
-        Debug.Assert(pAgent.uid <> 0, "L'agent id doit être renseigné")
+        Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
         Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
@@ -100,7 +100,7 @@ Public Class PulverisateurManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.uid & "-%' ORDER BY `Pulverisateur`.`id` DESC"
+            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -110,12 +110,12 @@ Public Class PulverisateurManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpPulveId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpPulveId.Replace(curAgent.idStructure & "-" & curAgent.uid & "-", ""))
+                    tmpId = CInt(tmpPulveId.Replace(curAgent.idStructure & "-" & curAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpPulveId = curAgent.idStructure & "-" & curAgent.uid & "-" & (newId + 1)
+                tmpPulveId = curAgent.idStructure & "-" & curAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("PulverisateurManager - getNewId : " & ex.Message)
             End Try

@@ -22,572 +22,568 @@ Imports System.Xml.Serialization
 'Ce code source a été automatiquement généré par Microsoft.VSDesigner, Version 4.0.30319.42000.
 '
 Namespace WSCRODIP
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.ComponentModel.DesignerCategoryAttribute("code"),
-     System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>  _
     Partial Public Class CrodipServer
         Inherits System.Web.Services.Protocols.SoapHttpClientProtocol
-
+        
         Private GetAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPcOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPcOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetMasseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendMasseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetBalanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendBalanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDistanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDistanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetChronoOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendChronoOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolPcOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolPcOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolMasseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolMasseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolBalanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolBalanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolDistanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolDistanceOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolChronoOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolChronoOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolManoControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolManoControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolManoEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolManoEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolBuseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPoolBuseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolAgentListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolPcListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolMasseListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolBalanceListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolDistanceListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolChronoListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolManoControleListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolManoEtalonListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPoolBuseListOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SetDateSynchroAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPrestationCategorieOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPrestationCategorieOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPrestationTarifOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPrestationTarifOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetBuseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendBuseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetManometreControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendManometreControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetBancOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendBancOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticItemsOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticItemsOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetAutoTestOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendAutoTestOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticBusesOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticBusesOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticBusesDetailOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticBusesDetailOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticMano542OperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticMano542OperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetDiagnosticTroncons833OperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendDiagnosticTroncons833OperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetExploitationOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendExploitationOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetExploitationTOPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendExploitationTOPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetControleBancMesureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendControleBancMesureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetControleManoMesureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendControleManoMesureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetFVBancOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendFVBancOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetFVManometreControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendFVManometreControleOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetFVManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendFVManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetIdentifiantPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendIdentifiantPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetStructureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private SendStructureOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielBuseOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielManometreOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielTerritoireOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetVersionLogicielAgentOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetSoftwareUpdateOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetSynchroDateTimeOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private GetIncrementDiagnosticOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private UpdatesAvailableOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielPulverisateurTypesCategoriesOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielCodesAPEOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private GetReferentielPulverisateurMarquesModelesOperationCompleted As System.Threading.SendOrPostCallback
-
+        
         Private useDefaultCredentialsSetExplicitly As Boolean
-
+        
         '''<remarks/>
         Public Sub New()
             MyBase.New
             Me.Url = Global.CRODIPWS.My.MySettings.Default.CRODIPWS_WSCRODIP_CrodipServer
-            If (Me.IsLocalFileSystemWebService(Me.Url) = True) Then
-                Me.UseDefaultCredentials = True
-                Me.useDefaultCredentialsSetExplicitly = False
+            If (Me.IsLocalFileSystemWebService(Me.Url) = true) Then
+                Me.UseDefaultCredentials = true
+                Me.useDefaultCredentialsSetExplicitly = false
             Else
-                Me.useDefaultCredentialsSetExplicitly = True
+                Me.useDefaultCredentialsSetExplicitly = true
             End If
         End Sub
-
+        
         Public Shadows Property Url() As String
             Get
                 Return MyBase.Url
             End Get
             Set
-                If (((Me.IsLocalFileSystemWebService(MyBase.Url) = True) _
-                            AndAlso (Me.useDefaultCredentialsSetExplicitly = False)) _
-                            AndAlso (Me.IsLocalFileSystemWebService(value) = False)) Then
-                    MyBase.UseDefaultCredentials = False
+                If (((Me.IsLocalFileSystemWebService(MyBase.Url) = true)  _
+                            AndAlso (Me.useDefaultCredentialsSetExplicitly = false))  _
+                            AndAlso (Me.IsLocalFileSystemWebService(value) = false)) Then
+                    MyBase.UseDefaultCredentials = false
                 End If
                 MyBase.Url = value
             End Set
         End Property
-
+        
         Public Shadows Property UseDefaultCredentials() As Boolean
             Get
                 Return MyBase.UseDefaultCredentials
             End Get
             Set
                 MyBase.UseDefaultCredentials = value
-                Me.useDefaultCredentialsSetExplicitly = True
+                Me.useDefaultCredentialsSetExplicitly = true
             End Set
         End Property
-
+        
         '''<remarks/>
         Public Event GetAgentCompleted As GetAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendAgentCompleted As SendAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPcCompleted As GetPcCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPcCompleted As SendPcCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetMasseCompleted As GetMasseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendMasseCompleted As SendMasseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetBalanceCompleted As GetBalanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendBalanceCompleted As SendBalanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDistanceCompleted As GetDistanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDistanceCompleted As SendDistanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetChronoCompleted As GetChronoCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendChronoCompleted As SendChronoCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolCompleted As GetPoolCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolCompleted As SendPoolCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolAgentCompleted As GetPoolAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolAgentCompleted As SendPoolAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolPcCompleted As GetPoolPcCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolPcCompleted As SendPoolPcCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolMasseCompleted As GetPoolMasseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolMasseCompleted As SendPoolMasseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolBalanceCompleted As GetPoolBalanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolBalanceCompleted As SendPoolBalanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolDistanceCompleted As GetPoolDistanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolDistanceCompleted As SendPoolDistanceCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolChronoCompleted As GetPoolChronoCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolChronoCompleted As SendPoolChronoCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolManoControleCompleted As GetPoolManoControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolManoControleCompleted As SendPoolManoControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolManoEtalonCompleted As GetPoolManoEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolManoEtalonCompleted As SendPoolManoEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolBuseCompleted As GetPoolBuseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPoolBuseCompleted As SendPoolBuseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolListCompleted As GetPoolListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolAgentListCompleted As GetPoolAgentListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolPcListCompleted As GetPoolPcListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolMasseListCompleted As GetPoolMasseListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolBalanceListCompleted As GetPoolBalanceListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolDistanceListCompleted As GetPoolDistanceListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolChronoListCompleted As GetPoolChronoListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolManoControleListCompleted As GetPoolManoControleListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolManoEtalonListCompleted As GetPoolManoEtalonListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPoolBuseListCompleted As GetPoolBuseListCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SetDateSynchroAgentCompleted As SetDateSynchroAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPrestationCategorieCompleted As GetPrestationCategorieCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPrestationCategorieCompleted As SendPrestationCategorieCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPrestationTarifCompleted As GetPrestationTarifCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPrestationTarifCompleted As SendPrestationTarifCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetBuseCompleted As GetBuseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendBuseCompleted As SendBuseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetManometreControleCompleted As GetManometreControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendManometreControleCompleted As SendManometreControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetManometreEtalonCompleted As GetManometreEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendManometreEtalonCompleted As SendManometreEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetBancCompleted As GetBancCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendBancCompleted As SendBancCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticCompleted As GetDiagnosticCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticCompleted As SendDiagnosticCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticItemsCompleted As GetDiagnosticItemsCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticItemsCompleted As SendDiagnosticItemsCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetAutoTestCompleted As GetAutoTestCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendAutoTestCompleted As SendAutoTestCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticBusesCompleted As GetDiagnosticBusesCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticBusesCompleted As SendDiagnosticBusesCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticBusesDetailCompleted As GetDiagnosticBusesDetailCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticBusesDetailCompleted As SendDiagnosticBusesDetailCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticMano542Completed As GetDiagnosticMano542CompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticMano542Completed As SendDiagnosticMano542CompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetDiagnosticTroncons833Completed As GetDiagnosticTroncons833CompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendDiagnosticTroncons833Completed As SendDiagnosticTroncons833CompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetExploitationCompleted As GetExploitationCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendExploitationCompleted As SendExploitationCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetExploitationTOPulverisateurCompleted As GetExploitationTOPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendExploitationTOPulverisateurCompleted As SendExploitationTOPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetControleBancMesureCompleted As GetControleBancMesureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendControleBancMesureCompleted As SendControleBancMesureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetControleManoMesureCompleted As GetControleManoMesureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendControleManoMesureCompleted As SendControleManoMesureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetFVBancCompleted As GetFVBancCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendFVBancCompleted As SendFVBancCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetFVManometreControleCompleted As GetFVManometreControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendFVManometreControleCompleted As SendFVManometreControleCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetFVManometreEtalonCompleted As GetFVManometreEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendFVManometreEtalonCompleted As SendFVManometreEtalonCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetIdentifiantPulverisateurCompleted As GetIdentifiantPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendIdentifiantPulverisateurCompleted As SendIdentifiantPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetPulverisateurCompleted As GetPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendPulverisateurCompleted As SendPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetStructureCompleted As GetStructureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event SendStructureCompleted As SendStructureCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielBuseCompleted As GetReferentielBuseCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielManometreCompleted As GetReferentielManometreCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielPulverisateurCompleted As GetReferentielPulverisateurCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielTerritoireCompleted As GetReferentielTerritoireCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetVersionLogicielAgentCompleted As GetVersionLogicielAgentCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetSoftwareUpdateCompleted As GetSoftwareUpdateCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetSynchroDateTimeCompleted As GetSynchroDateTimeCompletedEventHandler
-
-        '''<remarks/>
-        Public Event GetIncrementDiagnosticCompleted As GetIncrementDiagnosticCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event UpdatesAvailableCompleted As UpdatesAvailableCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielPulverisateurTypesCategoriesCompleted As GetReferentielPulverisateurTypesCategoriesCompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielCodesAPECompleted As GetReferentielCodesAPECompletedEventHandler
-
+        
         '''<remarks/>
         Public Event GetReferentielPulverisateurMarquesModelesCompleted As GetReferentielPulverisateurMarquesModelesCompletedEventHandler
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getAgent", RequestElementName:="GetAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getAgent", RequestElementName:="GetAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idProfilAgent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Agent As Object, <System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePools() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetAgent", New Object() {idProfilAgent})
-            info = CType(results(1), String)
-            Agent = CType(results(2), Object)
-            availablePools = CType(results(3), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Agent = CType(results(2),Object)
+            availablePools = CType(results(3),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetAgentAsync(ByVal idProfilAgent As String)
             Me.GetAgentAsync(idProfilAgent, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetAgentAsync(ByVal idProfilAgent As String, ByVal userState As Object)
             If (Me.GetAgentOperationCompleted Is Nothing) Then
@@ -595,28 +591,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetAgent", New Object() {idProfilAgent}, Me.GetAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetAgentCompleted(Me, New GetAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendAgent", RequestElementName:="SendAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal AgentRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Agent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendAgent", RequestElementName:="SendAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal AgentRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendAgent", New Object() {AgentRequest})
-            info = CType(results(1), String)
-            Agent = CType(results(2), Object)
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendAgentAsync(ByVal AgentRequest As Object)
             Me.SendAgentAsync(AgentRequest, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendAgentAsync(ByVal AgentRequest As Object, ByVal userState As Object)
             If (Me.SendAgentOperationCompleted Is Nothing) Then
@@ -624,27 +619,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendAgent", New Object() {AgentRequest}, Me.SendAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendAgentCompleted(Me, New SendAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPc", RequestElementName:="GetPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPc", RequestElementName:="GetPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPc", New Object() {uid, aid})
-            Pc = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Pc = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPcAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPcAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPcAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPcOperationCompleted Is Nothing) Then
@@ -652,57 +647,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPc", New Object() {uid, aid}, Me.GetPcOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPcOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPcCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPcCompleted(Me, New GetPcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPc", RequestElementName:="SendPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PcRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPc", New Object() {PcRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Pc = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPc", RequestElementName:="SendPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Pc As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPc", New Object() {Pc})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPcAsync(ByVal PcRequest As Object)
-            Me.SendPcAsync(PcRequest, Nothing)
+        Public Overloads Sub SendPcAsync(ByVal Pc As Object)
+            Me.SendPcAsync(Pc, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPcAsync(ByVal PcRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPcAsync(ByVal Pc As Object, ByVal userState As Object)
             If (Me.SendPcOperationCompleted Is Nothing) Then
                 Me.SendPcOperationCompleted = AddressOf Me.OnSendPcOperationCompleted
             End If
-            Me.InvokeAsync("SendPc", New Object() {PcRequest}, Me.SendPcOperationCompleted, userState)
+            Me.InvokeAsync("SendPc", New Object() {Pc}, Me.SendPcOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPcOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPcCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPcCompleted(Me, New SendPcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getMasse", RequestElementName:="GetMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getMasse", RequestElementName:="GetMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Masse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetMasse", New Object() {uid, aid})
-            Masse = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Masse = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetMasseAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetMasseAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetMasseAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetMasseOperationCompleted Is Nothing) Then
@@ -710,57 +704,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetMasse", New Object() {uid, aid}, Me.GetMasseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetMasseOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetMasseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetMasseCompleted(Me, New GetMasseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendMasse", RequestElementName:="SendMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal MasseRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Masse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendMasse", New Object() {MasseRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Masse = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendMasse", RequestElementName:="SendMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Masse As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendMasse", New Object() {Masse})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendMasseAsync(ByVal MasseRequest As Object)
-            Me.SendMasseAsync(MasseRequest, Nothing)
+        Public Overloads Sub SendMasseAsync(ByVal Masse As Object)
+            Me.SendMasseAsync(Masse, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendMasseAsync(ByVal MasseRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendMasseAsync(ByVal Masse As Object, ByVal userState As Object)
             If (Me.SendMasseOperationCompleted Is Nothing) Then
                 Me.SendMasseOperationCompleted = AddressOf Me.OnSendMasseOperationCompleted
             End If
-            Me.InvokeAsync("SendMasse", New Object() {MasseRequest}, Me.SendMasseOperationCompleted, userState)
+            Me.InvokeAsync("SendMasse", New Object() {Masse}, Me.SendMasseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendMasseOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendMasseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendMasseCompleted(Me, New SendMasseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getBalance", RequestElementName:="GetBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getBalance", RequestElementName:="GetBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Balance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetBalance", New Object() {uid, aid})
-            Balance = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Balance = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetBalanceAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetBalanceAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetBalanceAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetBalanceOperationCompleted Is Nothing) Then
@@ -768,57 +761,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetBalance", New Object() {uid, aid}, Me.GetBalanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetBalanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetBalanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetBalanceCompleted(Me, New GetBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendBalance", RequestElementName:="SendBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal BalanceRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Balance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendBalance", New Object() {BalanceRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Balance = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendBalance", RequestElementName:="SendBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Balance As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendBalance", New Object() {Balance})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBalanceAsync(ByVal BalanceRequest As Object)
-            Me.SendBalanceAsync(BalanceRequest, Nothing)
+        Public Overloads Sub SendBalanceAsync(ByVal Balance As Object)
+            Me.SendBalanceAsync(Balance, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBalanceAsync(ByVal BalanceRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendBalanceAsync(ByVal Balance As Object, ByVal userState As Object)
             If (Me.SendBalanceOperationCompleted Is Nothing) Then
                 Me.SendBalanceOperationCompleted = AddressOf Me.OnSendBalanceOperationCompleted
             End If
-            Me.InvokeAsync("SendBalance", New Object() {BalanceRequest}, Me.SendBalanceOperationCompleted, userState)
+            Me.InvokeAsync("SendBalance", New Object() {Balance}, Me.SendBalanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendBalanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendBalanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendBalanceCompleted(Me, New SendBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getDistance", RequestElementName:="GetDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getDistance", RequestElementName:="GetDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Distance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDistance", New Object() {uid, aid})
-            Distance = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Distance = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDistanceAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetDistanceAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDistanceAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetDistanceOperationCompleted Is Nothing) Then
@@ -826,57 +818,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDistance", New Object() {uid, aid}, Me.GetDistanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDistanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDistanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDistanceCompleted(Me, New GetDistanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendDistance", RequestElementName:="SendDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal DistanceRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Distance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendDistance", New Object() {DistanceRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Distance = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendDistance", RequestElementName:="SendDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Distance As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendDistance", New Object() {Distance})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendDistanceAsync(ByVal DistanceRequest As Object)
-            Me.SendDistanceAsync(DistanceRequest, Nothing)
+        Public Overloads Sub SendDistanceAsync(ByVal Distance As Object)
+            Me.SendDistanceAsync(Distance, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendDistanceAsync(ByVal DistanceRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendDistanceAsync(ByVal Distance As Object, ByVal userState As Object)
             If (Me.SendDistanceOperationCompleted Is Nothing) Then
                 Me.SendDistanceOperationCompleted = AddressOf Me.OnSendDistanceOperationCompleted
             End If
-            Me.InvokeAsync("SendDistance", New Object() {DistanceRequest}, Me.SendDistanceOperationCompleted, userState)
+            Me.InvokeAsync("SendDistance", New Object() {Distance}, Me.SendDistanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDistanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDistanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDistanceCompleted(Me, New SendDistanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getChrono", RequestElementName:="GetChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getChrono", RequestElementName:="GetChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Chrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetChrono", New Object() {uid, aid})
-            Chrono = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Chrono = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetChronoAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetChronoAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetChronoAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetChronoOperationCompleted Is Nothing) Then
@@ -884,57 +875,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetChrono", New Object() {uid, aid}, Me.GetChronoOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetChronoOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetChronoCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetChronoCompleted(Me, New GetChronoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendChrono", RequestElementName:="SendChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ChronoRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Chrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendChrono", New Object() {ChronoRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Chrono = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendChrono", RequestElementName:="SendChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Chrono As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendChrono", New Object() {Chrono})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendChronoAsync(ByVal ChronoRequest As Object)
-            Me.SendChronoAsync(ChronoRequest, Nothing)
+        Public Overloads Sub SendChronoAsync(ByVal Chrono As Object)
+            Me.SendChronoAsync(Chrono, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendChronoAsync(ByVal ChronoRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendChronoAsync(ByVal Chrono As Object, ByVal userState As Object)
             If (Me.SendChronoOperationCompleted Is Nothing) Then
                 Me.SendChronoOperationCompleted = AddressOf Me.OnSendChronoOperationCompleted
             End If
-            Me.InvokeAsync("SendChrono", New Object() {ChronoRequest}, Me.SendChronoOperationCompleted, userState)
+            Me.InvokeAsync("SendChrono", New Object() {Chrono}, Me.SendChronoOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendChronoOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendChronoCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendChronoCompleted(Me, New SendChronoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPool", RequestElementName:="GetPoolRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPool", RequestElementName:="GetPoolRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPool(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pool As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPool", New Object() {uid, aid})
-            Pool = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Pool = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolOperationCompleted Is Nothing) Then
@@ -942,57 +932,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPool", New Object() {uid, aid}, Me.GetPoolOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolCompleted(Me, New GetPoolCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPool", RequestElementName:="SendPoolRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPool(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pool As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPool", New Object() {PoolRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Pool = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPool", RequestElementName:="SendPoolRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPool(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Pool As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPool", New Object() {Pool})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolAsync(ByVal PoolRequest As Object)
-            Me.SendPoolAsync(PoolRequest, Nothing)
+        Public Overloads Sub SendPoolAsync(ByVal Pool As Object)
+            Me.SendPoolAsync(Pool, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolAsync(ByVal PoolRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolAsync(ByVal Pool As Object, ByVal userState As Object)
             If (Me.SendPoolOperationCompleted Is Nothing) Then
                 Me.SendPoolOperationCompleted = AddressOf Me.OnSendPoolOperationCompleted
             End If
-            Me.InvokeAsync("SendPool", New Object() {PoolRequest}, Me.SendPoolOperationCompleted, userState)
+            Me.InvokeAsync("SendPool", New Object() {Pool}, Me.SendPoolOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolCompleted(Me, New SendPoolCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgent", RequestElementName:="GetPoolAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgent", RequestElementName:="GetPoolAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolAgent", New Object() {uid, aid})
-            PoolAgent = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolAgent = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAgentAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolAgentAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAgentAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolAgentOperationCompleted Is Nothing) Then
@@ -1000,57 +989,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolAgent", New Object() {uid, aid}, Me.GetPoolAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolAgentCompleted(Me, New GetPoolAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolAgent", RequestElementName:="SendPoolAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolAgentRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolAgent", New Object() {PoolAgentRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolAgent = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolAgent", RequestElementName:="SendPoolAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolAgent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolAgent", New Object() {PoolAgent})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolAgentAsync(ByVal PoolAgentRequest As Object)
-            Me.SendPoolAgentAsync(PoolAgentRequest, Nothing)
+        Public Overloads Sub SendPoolAgentAsync(ByVal PoolAgent As Object)
+            Me.SendPoolAgentAsync(PoolAgent, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolAgentAsync(ByVal PoolAgentRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolAgentAsync(ByVal PoolAgent As Object, ByVal userState As Object)
             If (Me.SendPoolAgentOperationCompleted Is Nothing) Then
                 Me.SendPoolAgentOperationCompleted = AddressOf Me.OnSendPoolAgentOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolAgent", New Object() {PoolAgentRequest}, Me.SendPoolAgentOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolAgent", New Object() {PoolAgent}, Me.SendPoolAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolAgentCompleted(Me, New SendPoolAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPc", RequestElementName:="GetPoolPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPc", RequestElementName:="GetPoolPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolPc", New Object() {uid, aid})
-            PoolPc = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolPc = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolPcAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolPcAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolPcAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolPcOperationCompleted Is Nothing) Then
@@ -1058,57 +1046,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolPc", New Object() {uid, aid}, Me.GetPoolPcOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolPcOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolPcCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolPcCompleted(Me, New GetPoolPcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolPc", RequestElementName:="SendPoolPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolPcRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolPc", New Object() {PoolPcRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolPc = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolPc", RequestElementName:="SendPoolPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolPc As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolPc", New Object() {PoolPc})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolPcAsync(ByVal PoolPcRequest As Object)
-            Me.SendPoolPcAsync(PoolPcRequest, Nothing)
+        Public Overloads Sub SendPoolPcAsync(ByVal PoolPc As Object)
+            Me.SendPoolPcAsync(PoolPc, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolPcAsync(ByVal PoolPcRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolPcAsync(ByVal PoolPc As Object, ByVal userState As Object)
             If (Me.SendPoolPcOperationCompleted Is Nothing) Then
                 Me.SendPoolPcOperationCompleted = AddressOf Me.OnSendPoolPcOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolPc", New Object() {PoolPcRequest}, Me.SendPoolPcOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolPc", New Object() {PoolPc}, Me.SendPoolPcOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolPcOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolPcCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolPcCompleted(Me, New SendPoolPcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasse", RequestElementName:="GetPoolMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasse", RequestElementName:="GetPoolMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolMasse", New Object() {uid, aid})
-            PoolMasse = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolMasse = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolMasseAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolMasseAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolMasseAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolMasseOperationCompleted Is Nothing) Then
@@ -1116,57 +1103,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolMasse", New Object() {uid, aid}, Me.GetPoolMasseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolMasseOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolMasseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolMasseCompleted(Me, New GetPoolMasseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolMasse", RequestElementName:="SendPoolMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolMasseRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolMasse", New Object() {PoolMasseRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolMasse = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolMasse", RequestElementName:="SendPoolMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolMasse As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolMasse", New Object() {PoolMasse})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolMasseAsync(ByVal PoolMasseRequest As Object)
-            Me.SendPoolMasseAsync(PoolMasseRequest, Nothing)
+        Public Overloads Sub SendPoolMasseAsync(ByVal PoolMasse As Object)
+            Me.SendPoolMasseAsync(PoolMasse, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolMasseAsync(ByVal PoolMasseRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolMasseAsync(ByVal PoolMasse As Object, ByVal userState As Object)
             If (Me.SendPoolMasseOperationCompleted Is Nothing) Then
                 Me.SendPoolMasseOperationCompleted = AddressOf Me.OnSendPoolMasseOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolMasse", New Object() {PoolMasseRequest}, Me.SendPoolMasseOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolMasse", New Object() {PoolMasse}, Me.SendPoolMasseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolMasseOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolMasseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolMasseCompleted(Me, New SendPoolMasseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalance", RequestElementName:="GetPoolBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalance", RequestElementName:="GetPoolBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBalance", New Object() {uid, aid})
-            PoolBalance = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolBalance = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBalanceAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolBalanceAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBalanceAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolBalanceOperationCompleted Is Nothing) Then
@@ -1174,57 +1160,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolBalance", New Object() {uid, aid}, Me.GetPoolBalanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolBalanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolBalanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolBalanceCompleted(Me, New GetPoolBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolBalance", RequestElementName:="SendPoolBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolBalanceRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolBalance", New Object() {PoolBalanceRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolBalance = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolBalance", RequestElementName:="SendPoolBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolBalance As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolBalance", New Object() {PoolBalance})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolBalanceAsync(ByVal PoolBalanceRequest As Object)
-            Me.SendPoolBalanceAsync(PoolBalanceRequest, Nothing)
+        Public Overloads Sub SendPoolBalanceAsync(ByVal PoolBalance As Object)
+            Me.SendPoolBalanceAsync(PoolBalance, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolBalanceAsync(ByVal PoolBalanceRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolBalanceAsync(ByVal PoolBalance As Object, ByVal userState As Object)
             If (Me.SendPoolBalanceOperationCompleted Is Nothing) Then
                 Me.SendPoolBalanceOperationCompleted = AddressOf Me.OnSendPoolBalanceOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolBalance", New Object() {PoolBalanceRequest}, Me.SendPoolBalanceOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolBalance", New Object() {PoolBalance}, Me.SendPoolBalanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolBalanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolBalanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolBalanceCompleted(Me, New SendPoolBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistance", RequestElementName:="GetPoolDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistance", RequestElementName:="GetPoolDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolDistance", New Object() {uid, aid})
-            PoolDistance = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolDistance = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolDistanceAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolDistanceAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolDistanceAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolDistanceOperationCompleted Is Nothing) Then
@@ -1232,57 +1217,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolDistance", New Object() {uid, aid}, Me.GetPoolDistanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolDistanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolDistanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolDistanceCompleted(Me, New GetPoolDistanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolDistance", RequestElementName:="SendPoolDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolDistanceRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolDistance", New Object() {PoolDistanceRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolDistance = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolDistance", RequestElementName:="SendPoolDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolDistance As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolDistance", New Object() {PoolDistance})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolDistanceAsync(ByVal PoolDistanceRequest As Object)
-            Me.SendPoolDistanceAsync(PoolDistanceRequest, Nothing)
+        Public Overloads Sub SendPoolDistanceAsync(ByVal PoolDistance As Object)
+            Me.SendPoolDistanceAsync(PoolDistance, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolDistanceAsync(ByVal PoolDistanceRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolDistanceAsync(ByVal PoolDistance As Object, ByVal userState As Object)
             If (Me.SendPoolDistanceOperationCompleted Is Nothing) Then
                 Me.SendPoolDistanceOperationCompleted = AddressOf Me.OnSendPoolDistanceOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolDistance", New Object() {PoolDistanceRequest}, Me.SendPoolDistanceOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolDistance", New Object() {PoolDistance}, Me.SendPoolDistanceOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolDistanceOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolDistanceCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolDistanceCompleted(Me, New SendPoolDistanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChrono", RequestElementName:="GetPoolChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChrono", RequestElementName:="GetPoolChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolChrono", New Object() {uid, aid})
-            PoolChrono = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolChrono = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolChronoAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolChronoAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolChronoAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolChronoOperationCompleted Is Nothing) Then
@@ -1290,57 +1274,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolChrono", New Object() {uid, aid}, Me.GetPoolChronoOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolChronoOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolChronoCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolChronoCompleted(Me, New GetPoolChronoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolChrono", RequestElementName:="SendPoolChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolChronoRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolChrono", New Object() {PoolChronoRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolChrono = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolChrono", RequestElementName:="SendPoolChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolChrono As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolChrono", New Object() {PoolChrono})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolChronoAsync(ByVal PoolChronoRequest As Object)
-            Me.SendPoolChronoAsync(PoolChronoRequest, Nothing)
+        Public Overloads Sub SendPoolChronoAsync(ByVal PoolChrono As Object)
+            Me.SendPoolChronoAsync(PoolChrono, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolChronoAsync(ByVal PoolChronoRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolChronoAsync(ByVal PoolChrono As Object, ByVal userState As Object)
             If (Me.SendPoolChronoOperationCompleted Is Nothing) Then
                 Me.SendPoolChronoOperationCompleted = AddressOf Me.OnSendPoolChronoOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolChrono", New Object() {PoolChronoRequest}, Me.SendPoolChronoOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolChrono", New Object() {PoolChrono}, Me.SendPoolChronoOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolChronoOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolChronoCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolChronoCompleted(Me, New SendPoolChronoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControle", RequestElementName:="GetPoolManoControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControle", RequestElementName:="GetPoolManoControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolManoControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoControle", New Object() {uid, aid})
-            PoolManoControle = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolManoControle = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoControleAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolManoControleAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoControleAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolManoControleOperationCompleted Is Nothing) Then
@@ -1348,57 +1331,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolManoControle", New Object() {uid, aid}, Me.GetPoolManoControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolManoControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolManoControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolManoControleCompleted(Me, New GetPoolManoControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolManoControle", RequestElementName:="SendPoolManoControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolManoControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolManoControleRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolManoControle", New Object() {PoolManoControleRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolManoControle = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolManoControle", RequestElementName:="SendPoolManoControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolManoControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolManoControle As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolManoControle", New Object() {PoolManoControle})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolManoControleAsync(ByVal PoolManoControleRequest As Object)
-            Me.SendPoolManoControleAsync(PoolManoControleRequest, Nothing)
+        Public Overloads Sub SendPoolManoControleAsync(ByVal PoolManoControle As Object)
+            Me.SendPoolManoControleAsync(PoolManoControle, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolManoControleAsync(ByVal PoolManoControleRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolManoControleAsync(ByVal PoolManoControle As Object, ByVal userState As Object)
             If (Me.SendPoolManoControleOperationCompleted Is Nothing) Then
                 Me.SendPoolManoControleOperationCompleted = AddressOf Me.OnSendPoolManoControleOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolManoControle", New Object() {PoolManoControleRequest}, Me.SendPoolManoControleOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolManoControle", New Object() {PoolManoControle}, Me.SendPoolManoControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolManoControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolManoControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolManoControleCompleted(Me, New SendPoolManoControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalon", RequestElementName:="GetPoolManoEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalon", RequestElementName:="GetPoolManoEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolManoEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoEtalon", New Object() {uid, aid})
-            PoolManoEtalon = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolManoEtalon = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoEtalonAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolManoEtalonAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoEtalonAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolManoEtalonOperationCompleted Is Nothing) Then
@@ -1406,57 +1388,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolManoEtalon", New Object() {uid, aid}, Me.GetPoolManoEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolManoEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolManoEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolManoEtalonCompleted(Me, New GetPoolManoEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolManoEtalon", RequestElementName:="SendPoolManoEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolManoEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolManoEtalonRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolManoEtalon", New Object() {PoolManoEtalonRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolManoEtalon = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolManoEtalon", RequestElementName:="SendPoolManoEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolManoEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolManoEtalon As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolManoEtalon", New Object() {PoolManoEtalon})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolManoEtalonAsync(ByVal PoolManoEtalonRequest As Object)
-            Me.SendPoolManoEtalonAsync(PoolManoEtalonRequest, Nothing)
+        Public Overloads Sub SendPoolManoEtalonAsync(ByVal PoolManoEtalon As Object)
+            Me.SendPoolManoEtalonAsync(PoolManoEtalon, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolManoEtalonAsync(ByVal PoolManoEtalonRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolManoEtalonAsync(ByVal PoolManoEtalon As Object, ByVal userState As Object)
             If (Me.SendPoolManoEtalonOperationCompleted Is Nothing) Then
                 Me.SendPoolManoEtalonOperationCompleted = AddressOf Me.OnSendPoolManoEtalonOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolManoEtalon", New Object() {PoolManoEtalonRequest}, Me.SendPoolManoEtalonOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolManoEtalon", New Object() {PoolManoEtalon}, Me.SendPoolManoEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolManoEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolManoEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolManoEtalonCompleted(Me, New SendPoolManoEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuse", RequestElementName:="GetPoolBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuse", RequestElementName:="GetPoolBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBuse", New Object() {uid, aid})
-            PoolBuse = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PoolBuse = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBuseAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPoolBuseAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBuseAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPoolBuseOperationCompleted Is Nothing) Then
@@ -1464,57 +1445,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolBuse", New Object() {uid, aid}, Me.GetPoolBuseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolBuseOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolBuseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolBuseCompleted(Me, New GetPoolBuseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolBuse", RequestElementName:="SendPoolBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPoolBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolBuseRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPoolBuse", New Object() {PoolBuseRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PoolBuse = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendPoolBuse", RequestElementName:="SendPoolBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPoolBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PoolBuse As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPoolBuse", New Object() {PoolBuse})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolBuseAsync(ByVal PoolBuseRequest As Object)
-            Me.SendPoolBuseAsync(PoolBuseRequest, Nothing)
+        Public Overloads Sub SendPoolBuseAsync(ByVal PoolBuse As Object)
+            Me.SendPoolBuseAsync(PoolBuse, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPoolBuseAsync(ByVal PoolBuseRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPoolBuseAsync(ByVal PoolBuse As Object, ByVal userState As Object)
             If (Me.SendPoolBuseOperationCompleted Is Nothing) Then
                 Me.SendPoolBuseOperationCompleted = AddressOf Me.OnSendPoolBuseOperationCompleted
             End If
-            Me.InvokeAsync("SendPoolBuse", New Object() {PoolBuseRequest}, Me.SendPoolBuseOperationCompleted, userState)
+            Me.InvokeAsync("SendPoolBuse", New Object() {PoolBuse}, Me.SendPoolBuseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPoolBuseOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPoolBuseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPoolBuseCompleted(Me, New SendPoolBuseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolList", RequestElementName:="GetPoolListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolList", RequestElementName:="GetPoolListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolList", New Object() {uidstructure})
-            PoolList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolListAsync(ByVal uidstructure As Integer)
             Me.GetPoolListAsync(uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolListAsync(ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolListOperationCompleted Is Nothing) Then
@@ -1522,27 +1502,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolList", New Object() {uidstructure}, Me.GetPoolListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolListCompleted(Me, New GetPoolListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgentList", RequestElementName:="GetPoolAgentListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgentList", RequestElementName:="GetPoolAgentListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolAgentList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidagent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolAgentList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgentList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolAgentList", New Object() {uidagent, aidagent, uidstructure})
-            PoolAgentList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolAgentList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAgentListAsync(ByVal uidagent As Integer, ByVal aidagent As String, ByVal uidstructure As Integer)
             Me.GetPoolAgentListAsync(uidagent, aidagent, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolAgentListAsync(ByVal uidagent As Integer, ByVal aidagent As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolAgentListOperationCompleted Is Nothing) Then
@@ -1550,27 +1530,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolAgentList", New Object() {uidagent, aidagent, uidstructure}, Me.GetPoolAgentListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolAgentListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolAgentListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolAgentListCompleted(Me, New GetPoolAgentListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPcList", RequestElementName:="GetPoolPcListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPcList", RequestElementName:="GetPoolPcListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolPcList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidpc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolPcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPcList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolPcList", New Object() {uidagent, uidpc, aidpc, uidstructure})
-            PoolPcList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolPcList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolPcListAsync(ByVal uidagent As Object, ByVal uidpc As Integer, ByVal aidpc As String, ByVal uidstructure As Integer)
             Me.GetPoolPcListAsync(uidagent, uidpc, aidpc, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolPcListAsync(ByVal uidagent As Object, ByVal uidpc As Integer, ByVal aidpc As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolPcListOperationCompleted Is Nothing) Then
@@ -1578,27 +1558,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolPcList", New Object() {uidagent, uidpc, aidpc, uidstructure}, Me.GetPoolPcListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolPcListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolPcListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolPcListCompleted(Me, New GetPoolPcListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasseList", RequestElementName:="GetPoolMasseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasseList", RequestElementName:="GetPoolMasseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolMasseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmasse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmasse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolMasseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolMasseList", New Object() {uidagent, uidmasse, aidmasse, uidstructure})
-            PoolMasseList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolMasseList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolMasseListAsync(ByVal uidagent As Object, ByVal uidmasse As Integer, ByVal aidmasse As String, ByVal uidstructure As Integer)
             Me.GetPoolMasseListAsync(uidagent, uidmasse, aidmasse, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolMasseListAsync(ByVal uidagent As Object, ByVal uidmasse As Integer, ByVal aidmasse As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolMasseListOperationCompleted Is Nothing) Then
@@ -1606,27 +1586,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolMasseList", New Object() {uidagent, uidmasse, aidmasse, uidstructure}, Me.GetPoolMasseListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolMasseListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolMasseListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolMasseListCompleted(Me, New GetPoolMasseListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalanceList", RequestElementName:="GetPoolBalanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalanceList", RequestElementName:="GetPoolBalanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolBalanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbalance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbalance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolBalanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBalanceList", New Object() {uidagent, uidbalance, aidbalance, uidstructure})
-            PoolBalanceList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolBalanceList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBalanceListAsync(ByVal uidagent As Object, ByVal uidbalance As Integer, ByVal aidbalance As String, ByVal uidstructure As Integer)
             Me.GetPoolBalanceListAsync(uidagent, uidbalance, aidbalance, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBalanceListAsync(ByVal uidagent As Object, ByVal uidbalance As Integer, ByVal aidbalance As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolBalanceListOperationCompleted Is Nothing) Then
@@ -1634,27 +1614,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolBalanceList", New Object() {uidagent, uidbalance, aidbalance, uidstructure}, Me.GetPoolBalanceListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolBalanceListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolBalanceListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolBalanceListCompleted(Me, New GetPoolBalanceListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistanceList", RequestElementName:="GetPoolDistanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistanceList", RequestElementName:="GetPoolDistanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolDistanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddistance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddistance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolDistanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolDistanceList", New Object() {uidagent, uiddistance, aiddistance, uidstructure})
-            PoolDistanceList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolDistanceList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolDistanceListAsync(ByVal uidagent As Object, ByVal uiddistance As Integer, ByVal aiddistance As String, ByVal uidstructure As Integer)
             Me.GetPoolDistanceListAsync(uidagent, uiddistance, aiddistance, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolDistanceListAsync(ByVal uidagent As Object, ByVal uiddistance As Integer, ByVal aiddistance As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolDistanceListOperationCompleted Is Nothing) Then
@@ -1662,27 +1642,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolDistanceList", New Object() {uidagent, uiddistance, aiddistance, uidstructure}, Me.GetPoolDistanceListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolDistanceListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolDistanceListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolDistanceListCompleted(Me, New GetPoolDistanceListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChronoList", RequestElementName:="GetPoolChronoListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChronoList", RequestElementName:="GetPoolChronoListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolChronoList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidchrono As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidchrono As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolChronoList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChronoList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolChronoList", New Object() {uidagent, uidchrono, aidchrono, uidstructure})
-            PoolChronoList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolChronoList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolChronoListAsync(ByVal uidagent As Object, ByVal uidchrono As Integer, ByVal aidchrono As String, ByVal uidstructure As Integer)
             Me.GetPoolChronoListAsync(uidagent, uidchrono, aidchrono, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolChronoListAsync(ByVal uidagent As Object, ByVal uidchrono As Integer, ByVal aidchrono As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolChronoListOperationCompleted Is Nothing) Then
@@ -1690,27 +1670,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolChronoList", New Object() {uidagent, uidchrono, aidchrono, uidstructure}, Me.GetPoolChronoListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolChronoListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolChronoListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolChronoListCompleted(Me, New GetPoolChronoListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControleList", RequestElementName:="GetPoolManoControleListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControleList", RequestElementName:="GetPoolManoControleListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolManoControleList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolManoControleList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControleList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoControleList", New Object() {uidagent, uidmanoc, aidmanoc, uidstructure})
-            PoolManoControleList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolManoControleList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoControleListAsync(ByVal uidagent As Object, ByVal uidmanoc As Integer, ByVal aidmanoc As String, ByVal uidstructure As Integer)
             Me.GetPoolManoControleListAsync(uidagent, uidmanoc, aidmanoc, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoControleListAsync(ByVal uidagent As Object, ByVal uidmanoc As Integer, ByVal aidmanoc As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolManoControleListOperationCompleted Is Nothing) Then
@@ -1718,27 +1698,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolManoControleList", New Object() {uidagent, uidmanoc, aidmanoc, uidstructure}, Me.GetPoolManoControleListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolManoControleListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolManoControleListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolManoControleListCompleted(Me, New GetPoolManoControleListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalonList", RequestElementName:="GetPoolManoEtalonListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalonList", RequestElementName:="GetPoolManoEtalonListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolManoEtalonList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoe As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoe As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolManoEtalonList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalonList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoEtalonList", New Object() {uidagent, uidmanoe, aidmanoe, uidstructure})
-            PoolManoEtalonList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolManoEtalonList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoEtalonListAsync(ByVal uidagent As Object, ByVal uidmanoe As Integer, ByVal aidmanoe As String, ByVal uidstructure As Integer)
             Me.GetPoolManoEtalonListAsync(uidagent, uidmanoe, aidmanoe, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolManoEtalonListAsync(ByVal uidagent As Object, ByVal uidmanoe As Integer, ByVal aidmanoe As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolManoEtalonListOperationCompleted Is Nothing) Then
@@ -1746,27 +1726,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolManoEtalonList", New Object() {uidagent, uidmanoe, aidmanoe, uidstructure}, Me.GetPoolManoEtalonListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolManoEtalonListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolManoEtalonListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolManoEtalonListCompleted(Me, New GetPoolManoEtalonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuseList", RequestElementName:="GetPoolBuseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuseList", RequestElementName:="GetPoolBuseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPoolBuseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbuse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbuse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolBuseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBuseList", New Object() {uidagent, uidbuse, aidbuse, uidstructure})
-            PoolBuseList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            PoolBuseList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBuseListAsync(ByVal uidagent As Object, ByVal uidbuse As Integer, ByVal aidbuse As String, ByVal uidstructure As Integer)
             Me.GetPoolBuseListAsync(uidagent, uidbuse, aidbuse, uidstructure, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPoolBuseListAsync(ByVal uidagent As Object, ByVal uidbuse As Integer, ByVal aidbuse As String, ByVal uidstructure As Integer, ByVal userState As Object)
             If (Me.GetPoolBuseListOperationCompleted Is Nothing) Then
@@ -1774,26 +1754,26 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPoolBuseList", New Object() {uidagent, uidbuse, aidbuse, uidstructure}, Me.GetPoolBuseListOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPoolBuseListOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPoolBuseListCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPoolBuseListCompleted(Me, New GetPoolBuseListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SetDateSynchroAgent", RequestElementName:="SetDateSynchroAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SetDateSynchroAgent", RequestElementName:="SetDateSynchroAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function SetDateSynchroAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal dateDerniereSynchro As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SetDateSynchroAgent", New Object() {uidagent, dateDerniereSynchro})
-            Return CType(results(0), Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SetDateSynchroAgentAsync(ByVal uidagent As Object, ByVal dateDerniereSynchro As Object)
             Me.SetDateSynchroAgentAsync(uidagent, dateDerniereSynchro, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SetDateSynchroAgentAsync(ByVal uidagent As Object, ByVal dateDerniereSynchro As Object, ByVal userState As Object)
             If (Me.SetDateSynchroAgentOperationCompleted Is Nothing) Then
@@ -1801,27 +1781,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SetDateSynchroAgent", New Object() {uidagent, dateDerniereSynchro}, Me.SetDateSynchroAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSetDateSynchroAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.SetDateSynchroAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SetDateSynchroAgentCompleted(Me, New SetDateSynchroAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPrestationCategorie", RequestElementName:="GetPrestationCategorieRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPrestationCategorie", RequestElementName:="GetPrestationCategorieRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPrestationCategorie(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PrestationCategorie As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPrestationCategorie", New Object() {uid, aid})
-            PrestationCategorie = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PrestationCategorie = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPrestationCategorieAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPrestationCategorieAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPrestationCategorieAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPrestationCategorieOperationCompleted Is Nothing) Then
@@ -1829,57 +1809,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPrestationCategorie", New Object() {uid, aid}, Me.GetPrestationCategorieOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPrestationCategorieOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPrestationCategorieCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPrestationCategorieCompleted(Me, New GetPrestationCategorieCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPrestationCategorie", RequestElementName:="SendPrestationCategorieRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPrestationCategorie(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PrestationCategorieRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PrestationCategorie As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPrestationCategorie", New Object() {PrestationCategorieRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PrestationCategorie = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPrestationCategorie", RequestElementName:="SendPrestationCategorieRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPrestationCategorie(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PrestationCategorie As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPrestationCategorie", New Object() {PrestationCategorie})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPrestationCategorieAsync(ByVal PrestationCategorieRequest As Object)
-            Me.SendPrestationCategorieAsync(PrestationCategorieRequest, Nothing)
+        Public Overloads Sub SendPrestationCategorieAsync(ByVal PrestationCategorie As Object)
+            Me.SendPrestationCategorieAsync(PrestationCategorie, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPrestationCategorieAsync(ByVal PrestationCategorieRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPrestationCategorieAsync(ByVal PrestationCategorie As Object, ByVal userState As Object)
             If (Me.SendPrestationCategorieOperationCompleted Is Nothing) Then
                 Me.SendPrestationCategorieOperationCompleted = AddressOf Me.OnSendPrestationCategorieOperationCompleted
             End If
-            Me.InvokeAsync("SendPrestationCategorie", New Object() {PrestationCategorieRequest}, Me.SendPrestationCategorieOperationCompleted, userState)
+            Me.InvokeAsync("SendPrestationCategorie", New Object() {PrestationCategorie}, Me.SendPrestationCategorieOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPrestationCategorieOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPrestationCategorieCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPrestationCategorieCompleted(Me, New SendPrestationCategorieCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPrestationTarif", RequestElementName:="GetPrestationTarifRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPrestationTarif", RequestElementName:="GetPrestationTarifRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPrestationTarif(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PrestationTarif As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPrestationTarif", New Object() {uid, aid})
-            PrestationTarif = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            PrestationTarif = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPrestationTarifAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPrestationTarifAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPrestationTarifAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPrestationTarifOperationCompleted Is Nothing) Then
@@ -1887,57 +1866,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPrestationTarif", New Object() {uid, aid}, Me.GetPrestationTarifOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPrestationTarifOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPrestationTarifCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPrestationTarifCompleted(Me, New GetPrestationTarifCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPrestationTarif", RequestElementName:="SendPrestationTarifRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPrestationTarif(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PrestationTarifRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PrestationTarif As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPrestationTarif", New Object() {PrestationTarifRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            PrestationTarif = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPrestationTarif", RequestElementName:="SendPrestationTarifRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPrestationTarif(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PrestationTarif As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPrestationTarif", New Object() {PrestationTarif})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPrestationTarifAsync(ByVal PrestationTarifRequest As Object)
-            Me.SendPrestationTarifAsync(PrestationTarifRequest, Nothing)
+        Public Overloads Sub SendPrestationTarifAsync(ByVal PrestationTarif As Object)
+            Me.SendPrestationTarifAsync(PrestationTarif, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPrestationTarifAsync(ByVal PrestationTarifRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPrestationTarifAsync(ByVal PrestationTarif As Object, ByVal userState As Object)
             If (Me.SendPrestationTarifOperationCompleted Is Nothing) Then
                 Me.SendPrestationTarifOperationCompleted = AddressOf Me.OnSendPrestationTarifOperationCompleted
             End If
-            Me.InvokeAsync("SendPrestationTarif", New Object() {PrestationTarifRequest}, Me.SendPrestationTarifOperationCompleted, userState)
+            Me.InvokeAsync("SendPrestationTarif", New Object() {PrestationTarif}, Me.SendPrestationTarifOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPrestationTarifOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPrestationTarifCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPrestationTarifCompleted(Me, New SendPrestationTarifCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetBuse", RequestElementName:="GetBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetBuse", RequestElementName:="GetBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Buse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetBuse", New Object() {uid, aid})
-            Buse = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Buse = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetBuseAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetBuseAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetBuseAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetBuseOperationCompleted Is Nothing) Then
@@ -1945,57 +1923,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetBuse", New Object() {uid, aid}, Me.GetBuseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetBuseOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetBuseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetBuseCompleted(Me, New GetBuseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendBuse", RequestElementName:="SendBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal BuseRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Buse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendBuse", New Object() {BuseRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Buse = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendBuse", RequestElementName:="SendBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Buse As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendBuse", New Object() {Buse})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBuseAsync(ByVal BuseRequest As Object)
-            Me.SendBuseAsync(BuseRequest, Nothing)
+        Public Overloads Sub SendBuseAsync(ByVal Buse As Object)
+            Me.SendBuseAsync(Buse, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBuseAsync(ByVal BuseRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendBuseAsync(ByVal Buse As Object, ByVal userState As Object)
             If (Me.SendBuseOperationCompleted Is Nothing) Then
                 Me.SendBuseOperationCompleted = AddressOf Me.OnSendBuseOperationCompleted
             End If
-            Me.InvokeAsync("SendBuse", New Object() {BuseRequest}, Me.SendBuseOperationCompleted, userState)
+            Me.InvokeAsync("SendBuse", New Object() {Buse}, Me.SendBuseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendBuseOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendBuseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendBuseCompleted(Me, New SendBuseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetManometreControle", New Object() {uid, aid})
-            ManometreControle = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ManometreControle = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetManometreControleAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetManometreControleAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetManometreControleAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetManometreControleOperationCompleted Is Nothing) Then
@@ -2003,28 +1980,28 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetManometreControle", New Object() {uid, aid}, Me.GetManometreControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetManometreControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetManometreControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetManometreControleCompleted(Me, New GetManometreControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.ManometreControle)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometre", RequestElementName:="SendManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometre", RequestElementName:="SendManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function SendManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ManometreControle As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendManometreControle", New Object() {ManometreControle})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendManometreControleAsync(ByVal ManometreControle As Object)
             Me.SendManometreControleAsync(ManometreControle, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendManometreControleAsync(ByVal ManometreControle As Object, ByVal userState As Object)
             If (Me.SendManometreControleOperationCompleted Is Nothing) Then
@@ -2032,27 +2009,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendManometreControle", New Object() {ManometreControle}, Me.SendManometreControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendManometreControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendManometreControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendManometreControleCompleted(Me, New SendManometreControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetManometreEtalon", New Object() {uid, aid})
-            ManometreEtalon = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ManometreEtalon = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetManometreEtalonAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetManometreEtalonAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetManometreEtalonAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetManometreEtalonOperationCompleted Is Nothing) Then
@@ -2060,57 +2037,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetManometreEtalon", New Object() {uid, aid}, Me.GetManometreEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetManometreEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetManometreEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetManometreEtalonCompleted(Me, New GetManometreEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometre", RequestElementName:="SendManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ManometreEtalonRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendManometreEtalon", New Object() {ManometreEtalonRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            ManometreEtalon = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometreEtalon", RequestElementName:="SendManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ManometreEtalon As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendManometreEtalon", New Object() {ManometreEtalon})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendManometreEtalonAsync(ByVal ManometreEtalonRequest As Object)
-            Me.SendManometreEtalonAsync(ManometreEtalonRequest, Nothing)
+        Public Overloads Sub SendManometreEtalonAsync(ByVal ManometreEtalon As Object)
+            Me.SendManometreEtalonAsync(ManometreEtalon, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendManometreEtalonAsync(ByVal ManometreEtalonRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendManometreEtalonAsync(ByVal ManometreEtalon As Object, ByVal userState As Object)
             If (Me.SendManometreEtalonOperationCompleted Is Nothing) Then
                 Me.SendManometreEtalonOperationCompleted = AddressOf Me.OnSendManometreEtalonOperationCompleted
             End If
-            Me.InvokeAsync("SendManometreEtalon", New Object() {ManometreEtalonRequest}, Me.SendManometreEtalonOperationCompleted, userState)
+            Me.InvokeAsync("SendManometreEtalon", New Object() {ManometreEtalon}, Me.SendManometreEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendManometreEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendManometreEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendManometreEtalonCompleted(Me, New SendManometreEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetBanc", RequestElementName:="GetBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetBanc", RequestElementName:="GetBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Banc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetBanc", New Object() {uid, aid})
-            Banc = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Banc = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetBancAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetBancAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetBancAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetBancOperationCompleted Is Nothing) Then
@@ -2118,57 +2094,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetBanc", New Object() {uid, aid}, Me.GetBancOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetBancOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetBancCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetBancCompleted(Me, New GetBancCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendBanc", RequestElementName:="SendBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal BancRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Banc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendBanc", New Object() {BancRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Banc = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendBanc", RequestElementName:="SendBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Banc As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendBanc", New Object() {Banc})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBancAsync(ByVal BancRequest As Object)
-            Me.SendBancAsync(BancRequest, Nothing)
+        Public Overloads Sub SendBancAsync(ByVal Banc As Object)
+            Me.SendBancAsync(Banc, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendBancAsync(ByVal BancRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendBancAsync(ByVal Banc As Object, ByVal userState As Object)
             If (Me.SendBancOperationCompleted Is Nothing) Then
                 Me.SendBancOperationCompleted = AddressOf Me.OnSendBancOperationCompleted
             End If
-            Me.InvokeAsync("SendBanc", New Object() {BancRequest}, Me.SendBancOperationCompleted, userState)
+            Me.InvokeAsync("SendBanc", New Object() {Banc}, Me.SendBancOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendBancOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendBancCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendBancCompleted(Me, New SendBancCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnostic", RequestElementName:="GetDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnostic", RequestElementName:="GetDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Diagnostic As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnostic", New Object() {uidagent, uid, aid})
-            Diagnostic = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Diagnostic = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticAsync(ByVal uidagent As Integer, ByVal uid As Integer, ByVal aid As String)
             Me.GetDiagnosticAsync(uidagent, uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticAsync(ByVal uidagent As Integer, ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetDiagnosticOperationCompleted Is Nothing) Then
@@ -2176,57 +2151,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnostic", New Object() {uidagent, uid, aid}, Me.GetDiagnosticOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticCompleted(Me, New GetDiagnosticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnostic", RequestElementName:="SendDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal DiagnosticRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Diagnostic As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendDiagnostic", New Object() {DiagnosticRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Diagnostic = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnostic", RequestElementName:="SendDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Diagnostic As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendDiagnostic", New Object() {Diagnostic})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticAsync(ByVal DiagnosticRequest As Object)
-            Me.SendDiagnosticAsync(DiagnosticRequest, Nothing)
+        Public Overloads Sub SendDiagnosticAsync(ByVal Diagnostic As Object)
+            Me.SendDiagnosticAsync(Diagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticAsync(ByVal DiagnosticRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendDiagnosticAsync(ByVal Diagnostic As Object, ByVal userState As Object)
             If (Me.SendDiagnosticOperationCompleted Is Nothing) Then
                 Me.SendDiagnosticOperationCompleted = AddressOf Me.OnSendDiagnosticOperationCompleted
             End If
-            Me.InvokeAsync("SendDiagnostic", New Object() {DiagnosticRequest}, Me.SendDiagnosticOperationCompleted, userState)
+            Me.InvokeAsync("SendDiagnostic", New Object() {Diagnostic}, Me.SendDiagnosticOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticCompleted(Me, New SendDiagnosticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticItems", RequestElementName:="GetDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticItems", RequestElementName:="GetDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddiagnostic As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticItemsList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticItems", New Object() {uiddiagnostic, aiddiagnostic})
-            DiagnosticItemsList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            DiagnosticItemsList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticItemsAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             Me.GetDiagnosticItemsAsync(uiddiagnostic, aiddiagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticItemsAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, ByVal userState As Object)
             If (Me.GetDiagnosticItemsOperationCompleted Is Nothing) Then
@@ -2234,28 +2208,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnosticItems", New Object() {uiddiagnostic, aiddiagnostic}, Me.GetDiagnosticItemsOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticItemsOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticItemsCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticItemsCompleted(Me, New GetDiagnosticItemsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticItems", RequestElementName:="SendDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayItems() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticItemsList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticItems", RequestElementName:="SendDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayItems() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendDiagnosticItems", New Object() {arrayItems})
-            info = CType(results(1), String)
-            DiagnosticItemsList = CType(results(2), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object)
             Me.SendDiagnosticItemsAsync(arrayItems, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticItemsOperationCompleted Is Nothing) Then
@@ -2263,27 +2236,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendDiagnosticItems", New Object() {arrayItems}, Me.SendDiagnosticItemsOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticItemsOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticItemsCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticItemsCompleted(Me, New SendDiagnosticItemsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetAutoTest", RequestElementName:="GetAutoTestRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetAutoTest", RequestElementName:="GetAutoTestRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetAutoTest(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef AutoTest As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetAutoTest", New Object() {uid, aid})
-            AutoTest = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            AutoTest = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetAutoTestAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetAutoTestAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetAutoTestAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetAutoTestOperationCompleted Is Nothing) Then
@@ -2291,57 +2264,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetAutoTest", New Object() {uid, aid}, Me.GetAutoTestOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetAutoTestOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetAutoTestCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetAutoTestCompleted(Me, New GetAutoTestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendAutoTest", RequestElementName:="SendAutoTestRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendAutoTest(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal AutoTestRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef AutoTest As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendAutoTest", New Object() {AutoTestRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            AutoTest = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendAutoTest", RequestElementName:="SendAutoTestRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendAutoTest(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal AutoTest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendAutoTest", New Object() {AutoTest})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendAutoTestAsync(ByVal AutoTestRequest As Object)
-            Me.SendAutoTestAsync(AutoTestRequest, Nothing)
+        Public Overloads Sub SendAutoTestAsync(ByVal AutoTest As Object)
+            Me.SendAutoTestAsync(AutoTest, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendAutoTestAsync(ByVal AutoTestRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendAutoTestAsync(ByVal AutoTest As Object, ByVal userState As Object)
             If (Me.SendAutoTestOperationCompleted Is Nothing) Then
                 Me.SendAutoTestOperationCompleted = AddressOf Me.OnSendAutoTestOperationCompleted
             End If
-            Me.InvokeAsync("SendAutoTest", New Object() {AutoTestRequest}, Me.SendAutoTestOperationCompleted, userState)
+            Me.InvokeAsync("SendAutoTest", New Object() {AutoTest}, Me.SendAutoTestOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendAutoTestOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendAutoTestCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendAutoTestCompleted(Me, New SendAutoTestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBuses", RequestElementName:="GetDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBuses", RequestElementName:="GetDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnosticBuses(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddiagnostic As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticBuses", New Object() {uiddiagnostic, aiddiagnostic})
-            DiagnosticBusesList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            DiagnosticBusesList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticBusesAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             Me.GetDiagnosticBusesAsync(uiddiagnostic, aiddiagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticBusesAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, ByVal userState As Object)
             If (Me.GetDiagnosticBusesOperationCompleted Is Nothing) Then
@@ -2349,28 +2321,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnosticBuses", New Object() {uiddiagnostic, aiddiagnostic}, Me.GetDiagnosticBusesOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticBusesOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticBusesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticBusesCompleted(Me, New GetDiagnosticBusesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBuses", RequestElementName:="SendDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticBuses(<System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBuses", RequestElementName:="SendDiagnosticBusesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnosticBuses(<System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendDiagnosticBuses", New Object() {arrayBuses})
-            info = CType(results(1), String)
-            DiagnosticBusesList = CType(results(2), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticBusesAsync(ByVal arrayBuses() As Object)
             Me.SendDiagnosticBusesAsync(arrayBuses, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticBusesAsync(ByVal arrayBuses() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticBusesOperationCompleted Is Nothing) Then
@@ -2378,27 +2349,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendDiagnosticBuses", New Object() {arrayBuses}, Me.SendDiagnosticBusesOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticBusesOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticBusesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticBusesCompleted(Me, New SendDiagnosticBusesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBusesDetail", RequestElementName:="GetDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticBusesDetail", RequestElementName:="GetDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnosticBusesDetail(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddiagnostic As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesDetailList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesDetailList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticBusesDetail", New Object() {uiddiagnostic, aiddiagnostic})
-            DiagnosticBusesDetailList = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            DiagnosticBusesDetailList = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticBusesDetailAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             Me.GetDiagnosticBusesDetailAsync(uiddiagnostic, aiddiagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticBusesDetailAsync(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, ByVal userState As Object)
             If (Me.GetDiagnosticBusesDetailOperationCompleted Is Nothing) Then
@@ -2406,28 +2377,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnosticBusesDetail", New Object() {uiddiagnostic, aiddiagnostic}, Me.GetDiagnosticBusesDetailOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticBusesDetailOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticBusesDetailCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticBusesDetailCompleted(Me, New GetDiagnosticBusesDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBusesDetail", RequestElementName:="SendDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticBusesDetail(<System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticBusesDetailList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticBusesDetailList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticBusesDetail", RequestElementName:="SendDiagnosticBusesDetailRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnosticBusesDetail(<System.Xml.Serialization.XmlElementAttribute("arrayBuses", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayBuses() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendDiagnosticBusesDetail", New Object() {arrayBuses})
-            info = CType(results(1), String)
-            DiagnosticBusesDetailList = CType(results(2), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticBusesDetailAsync(ByVal arrayBuses() As Object)
             Me.SendDiagnosticBusesDetailAsync(arrayBuses, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticBusesDetailAsync(ByVal arrayBuses() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticBusesDetailOperationCompleted Is Nothing) Then
@@ -2435,27 +2405,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendDiagnosticBusesDetail", New Object() {arrayBuses}, Me.SendDiagnosticBusesDetailOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticBusesDetailOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticBusesDetailCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticBusesDetailCompleted(Me, New SendDiagnosticBusesDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticMano542", RequestElementName:="GetDiagnosticMano542Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticMano542", RequestElementName:="GetDiagnosticMano542Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnosticMano542(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddiagnostic As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticMano542List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticMano542List() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticMano542", New Object() {uiddiagnostic, aiddiagnostic})
-            DiagnosticMano542List = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            DiagnosticMano542List = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticMano542Async(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             Me.GetDiagnosticMano542Async(uiddiagnostic, aiddiagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticMano542Async(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, ByVal userState As Object)
             If (Me.GetDiagnosticMano542OperationCompleted Is Nothing) Then
@@ -2463,28 +2433,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnosticMano542", New Object() {uiddiagnostic, aiddiagnostic}, Me.GetDiagnosticMano542OperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticMano542OperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticMano542CompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticMano542Completed(Me, New GetDiagnosticMano542CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticMano542", RequestElementName:="SendDiagnosticMano542Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticMano542(<System.Xml.Serialization.XmlElementAttribute("arrayMano542", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayMano542() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticMano542List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticMano542List() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticMano542", RequestElementName:="SendDiagnosticMano542Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnosticMano542(<System.Xml.Serialization.XmlElementAttribute("arrayMano542", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayMano542() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendDiagnosticMano542", New Object() {arrayMano542})
-            info = CType(results(1), String)
-            DiagnosticMano542List = CType(results(2), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticMano542Async(ByVal arrayMano542() As Object)
             Me.SendDiagnosticMano542Async(arrayMano542, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticMano542Async(ByVal arrayMano542() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticMano542OperationCompleted Is Nothing) Then
@@ -2492,27 +2461,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendDiagnosticMano542", New Object() {arrayMano542}, Me.SendDiagnosticMano542OperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticMano542OperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticMano542CompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticMano542Completed(Me, New SendDiagnosticMano542CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticTroncons833", RequestElementName:="GetDiagnosticTroncons833Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetDiagnosticTroncons833", RequestElementName:="GetDiagnosticTroncons833Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetDiagnosticTroncons833(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddiagnostic As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddiagnostic As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticTroncons833List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticTroncons833List() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDiagnosticTroncons833", New Object() {uiddiagnostic, aiddiagnostic})
-            DiagnosticTroncons833List = CType(results(1), Object())
-            Return CType(results(0), Integer)
+            DiagnosticTroncons833List = CType(results(1),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticTroncons833Async(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String)
             Me.GetDiagnosticTroncons833Async(uiddiagnostic, aiddiagnostic, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetDiagnosticTroncons833Async(ByVal uiddiagnostic As Integer, ByVal aiddiagnostic As String, ByVal userState As Object)
             If (Me.GetDiagnosticTroncons833OperationCompleted Is Nothing) Then
@@ -2520,28 +2489,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetDiagnosticTroncons833", New Object() {uiddiagnostic, aiddiagnostic}, Me.GetDiagnosticTroncons833OperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetDiagnosticTroncons833OperationCompleted(ByVal arg As Object)
             If (Not (Me.GetDiagnosticTroncons833CompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetDiagnosticTroncons833Completed(Me, New GetDiagnosticTroncons833CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticTroncons833", RequestElementName:="SendDiagnosticTroncons833Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticTroncons833(<System.Xml.Serialization.XmlElementAttribute("arrayTroncons833", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayTroncons833() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("DiagnosticTroncons833List", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef DiagnosticTroncons833List() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticTroncons833", RequestElementName:="SendDiagnosticTroncons833Request", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendDiagnosticTroncons833(<System.Xml.Serialization.XmlElementAttribute("arrayTroncons833", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayTroncons833() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("SendDiagnosticTroncons833", New Object() {arrayTroncons833})
-            info = CType(results(1), String)
-            DiagnosticTroncons833List = CType(results(2), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticTroncons833Async(ByVal arrayTroncons833() As Object)
             Me.SendDiagnosticTroncons833Async(arrayTroncons833, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub SendDiagnosticTroncons833Async(ByVal arrayTroncons833() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticTroncons833OperationCompleted Is Nothing) Then
@@ -2549,27 +2517,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("SendDiagnosticTroncons833", New Object() {arrayTroncons833}, Me.SendDiagnosticTroncons833OperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendDiagnosticTroncons833OperationCompleted(ByVal arg As Object)
             If (Not (Me.SendDiagnosticTroncons833CompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendDiagnosticTroncons833Completed(Me, New SendDiagnosticTroncons833CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitation", RequestElementName:="GetExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitation", RequestElementName:="GetExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetExploitation", New Object() {uid, aid})
-            Exploitation = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Exploitation = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetExploitationAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetExploitationAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetExploitationAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetExploitationOperationCompleted Is Nothing) Then
@@ -2577,57 +2545,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetExploitation", New Object() {uid, aid}, Me.GetExploitationOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetExploitationOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetExploitationCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetExploitationCompleted(Me, New GetExploitationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendExploitation", RequestElementName:="SendExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ExploitationRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendExploitation", New Object() {ExploitationRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Exploitation = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendExploitation", RequestElementName:="SendExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Exploitation As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendExploitation", New Object() {Exploitation})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendExploitationAsync(ByVal ExploitationRequest As Object)
-            Me.SendExploitationAsync(ExploitationRequest, Nothing)
+        Public Overloads Sub SendExploitationAsync(ByVal Exploitation As Object)
+            Me.SendExploitationAsync(Exploitation, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendExploitationAsync(ByVal ExploitationRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendExploitationAsync(ByVal Exploitation As Object, ByVal userState As Object)
             If (Me.SendExploitationOperationCompleted Is Nothing) Then
                 Me.SendExploitationOperationCompleted = AddressOf Me.OnSendExploitationOperationCompleted
             End If
-            Me.InvokeAsync("SendExploitation", New Object() {ExploitationRequest}, Me.SendExploitationOperationCompleted, userState)
+            Me.InvokeAsync("SendExploitation", New Object() {Exploitation}, Me.SendExploitationOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendExploitationOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendExploitationCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendExploitationCompleted(Me, New SendExploitationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitationTOPulverisateur", RequestElementName:="GetExploitationTOPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitationTOPulverisateur", RequestElementName:="GetExploitationTOPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetExploitationTOPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ExploitationTOPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetExploitationTOPulverisateur", New Object() {uid, aid})
-            ExploitationTOPulverisateur = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ExploitationTOPulverisateur = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetExploitationTOPulverisateurAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetExploitationTOPulverisateurAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetExploitationTOPulverisateurAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetExploitationTOPulverisateurOperationCompleted Is Nothing) Then
@@ -2635,57 +2602,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetExploitationTOPulverisateur", New Object() {uid, aid}, Me.GetExploitationTOPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetExploitationTOPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetExploitationTOPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetExploitationTOPulverisateurCompleted(Me, New GetExploitationTOPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendExploitationTOPulverisateur", RequestElementName:="SendExploitationTOPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendExploitationTOPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ExploitationTOPulverisateurRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ExploitationTOPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendExploitationTOPulverisateur", New Object() {ExploitationTOPulverisateurRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            ExploitationTOPulverisateur = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendExploitationTOPulverisateur", RequestElementName:="SendExploitationTOPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendExploitationTOPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ExploitationTOPulverisateur As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendExploitationTOPulverisateur", New Object() {ExploitationTOPulverisateur})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendExploitationTOPulverisateurAsync(ByVal ExploitationTOPulverisateurRequest As Object)
-            Me.SendExploitationTOPulverisateurAsync(ExploitationTOPulverisateurRequest, Nothing)
+        Public Overloads Sub SendExploitationTOPulverisateurAsync(ByVal ExploitationTOPulverisateur As Object)
+            Me.SendExploitationTOPulverisateurAsync(ExploitationTOPulverisateur, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendExploitationTOPulverisateurAsync(ByVal ExploitationTOPulverisateurRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendExploitationTOPulverisateurAsync(ByVal ExploitationTOPulverisateur As Object, ByVal userState As Object)
             If (Me.SendExploitationTOPulverisateurOperationCompleted Is Nothing) Then
                 Me.SendExploitationTOPulverisateurOperationCompleted = AddressOf Me.OnSendExploitationTOPulverisateurOperationCompleted
             End If
-            Me.InvokeAsync("SendExploitationTOPulverisateur", New Object() {ExploitationTOPulverisateurRequest}, Me.SendExploitationTOPulverisateurOperationCompleted, userState)
+            Me.InvokeAsync("SendExploitationTOPulverisateur", New Object() {ExploitationTOPulverisateur}, Me.SendExploitationTOPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendExploitationTOPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendExploitationTOPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendExploitationTOPulverisateurCompleted(Me, New SendExploitationTOPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleBancMesure", RequestElementName:="GetControleBancMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleBancMesure", RequestElementName:="GetControleBancMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetControleBancMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleBancMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetControleBancMesure", New Object() {uid, aid})
-            ControleBancMesure = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ControleBancMesure = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetControleBancMesureAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetControleBancMesureAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetControleBancMesureAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetControleBancMesureOperationCompleted Is Nothing) Then
@@ -2693,57 +2659,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetControleBancMesure", New Object() {uid, aid}, Me.GetControleBancMesureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetControleBancMesureOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetControleBancMesureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetControleBancMesureCompleted(Me, New GetControleBancMesureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendControleBancMesure", RequestElementName:="SendControleBancMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendControleBancMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ControleBancMesureRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleBancMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendControleBancMesure", New Object() {ControleBancMesureRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            ControleBancMesure = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendControleBancMesure", RequestElementName:="SendControleBancMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendControleBancMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ControleBancMesure As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendControleBancMesure", New Object() {ControleBancMesure})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendControleBancMesureAsync(ByVal ControleBancMesureRequest As Object)
-            Me.SendControleBancMesureAsync(ControleBancMesureRequest, Nothing)
+        Public Overloads Sub SendControleBancMesureAsync(ByVal ControleBancMesure As Object)
+            Me.SendControleBancMesureAsync(ControleBancMesure, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendControleBancMesureAsync(ByVal ControleBancMesureRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendControleBancMesureAsync(ByVal ControleBancMesure As Object, ByVal userState As Object)
             If (Me.SendControleBancMesureOperationCompleted Is Nothing) Then
                 Me.SendControleBancMesureOperationCompleted = AddressOf Me.OnSendControleBancMesureOperationCompleted
             End If
-            Me.InvokeAsync("SendControleBancMesure", New Object() {ControleBancMesureRequest}, Me.SendControleBancMesureOperationCompleted, userState)
+            Me.InvokeAsync("SendControleBancMesure", New Object() {ControleBancMesure}, Me.SendControleBancMesureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendControleBancMesureOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendControleBancMesureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendControleBancMesureCompleted(Me, New SendControleBancMesureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleManoMesure", RequestElementName:="GetControleManoMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleManoMesure", RequestElementName:="GetControleManoMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetControleManoMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleManoMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetControleManoMesure", New Object() {uid, aid})
-            ControleManoMesure = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ControleManoMesure = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetControleManoMesureAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetControleManoMesureAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetControleManoMesureAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetControleManoMesureOperationCompleted Is Nothing) Then
@@ -2751,57 +2716,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetControleManoMesure", New Object() {uid, aid}, Me.GetControleManoMesureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetControleManoMesureOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetControleManoMesureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetControleManoMesureCompleted(Me, New GetControleManoMesureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendControleManoMesure", RequestElementName:="SendControleManoMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendControleManoMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ControleManoMesureRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleManoMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendControleManoMesure", New Object() {ControleManoMesureRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            ControleManoMesure = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendControleManoMesure", RequestElementName:="SendControleManoMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendControleManoMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ControleManoMesure As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendControleManoMesure", New Object() {ControleManoMesure})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendControleManoMesureAsync(ByVal ControleManoMesureRequest As Object)
-            Me.SendControleManoMesureAsync(ControleManoMesureRequest, Nothing)
+        Public Overloads Sub SendControleManoMesureAsync(ByVal ControleManoMesure As Object)
+            Me.SendControleManoMesureAsync(ControleManoMesure, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendControleManoMesureAsync(ByVal ControleManoMesureRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendControleManoMesureAsync(ByVal ControleManoMesure As Object, ByVal userState As Object)
             If (Me.SendControleManoMesureOperationCompleted Is Nothing) Then
                 Me.SendControleManoMesureOperationCompleted = AddressOf Me.OnSendControleManoMesureOperationCompleted
             End If
-            Me.InvokeAsync("SendControleManoMesure", New Object() {ControleManoMesureRequest}, Me.SendControleManoMesureOperationCompleted, userState)
+            Me.InvokeAsync("SendControleManoMesure", New Object() {ControleManoMesure}, Me.SendControleManoMesureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendControleManoMesureOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendControleManoMesureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendControleManoMesureCompleted(Me, New SendControleManoMesureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVBanc", RequestElementName:="GetFVBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVBanc", RequestElementName:="GetFVBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetFVBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVBanc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVBanc", New Object() {uid, aid})
-            FVBanc = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            FVBanc = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVBancAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetFVBancAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVBancAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetFVBancOperationCompleted Is Nothing) Then
@@ -2809,57 +2773,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetFVBanc", New Object() {uid, aid}, Me.GetFVBancOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetFVBancOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetFVBancCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetFVBancCompleted(Me, New GetFVBancCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVBanc", RequestElementName:="SendFVBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendFVBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVBancRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVBanc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendFVBanc", New Object() {FVBancRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            FVBanc = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVBanc", RequestElementName:="SendFVBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendFVBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVBanc As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendFVBanc", New Object() {FVBanc})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVBancAsync(ByVal FVBancRequest As Object)
-            Me.SendFVBancAsync(FVBancRequest, Nothing)
+        Public Overloads Sub SendFVBancAsync(ByVal FVBanc As Object)
+            Me.SendFVBancAsync(FVBanc, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVBancAsync(ByVal FVBancRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendFVBancAsync(ByVal FVBanc As Object, ByVal userState As Object)
             If (Me.SendFVBancOperationCompleted Is Nothing) Then
                 Me.SendFVBancOperationCompleted = AddressOf Me.OnSendFVBancOperationCompleted
             End If
-            Me.InvokeAsync("SendFVBanc", New Object() {FVBancRequest}, Me.SendFVBancOperationCompleted, userState)
+            Me.InvokeAsync("SendFVBanc", New Object() {FVBanc}, Me.SendFVBancOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendFVBancOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendFVBancCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendFVBancCompleted(Me, New SendFVBancCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreControle", RequestElementName:="GetFVManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreControle", RequestElementName:="GetFVManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetFVManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVManometreControle", New Object() {uid, aid})
-            FVManometreControle = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            FVManometreControle = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVManometreControleAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetFVManometreControleAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVManometreControleAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetFVManometreControleOperationCompleted Is Nothing) Then
@@ -2867,57 +2830,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetFVManometreControle", New Object() {uid, aid}, Me.GetFVManometreControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetFVManometreControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetFVManometreControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetFVManometreControleCompleted(Me, New GetFVManometreControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVManometreControle", RequestElementName:="SendFVManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendFVManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVManometreControleRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendFVManometreControle", New Object() {FVManometreControleRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            FVManometreControle = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVManometreControle", RequestElementName:="SendFVManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendFVManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVManometreControle As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendFVManometreControle", New Object() {FVManometreControle})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVManometreControleAsync(ByVal FVManometreControleRequest As Object)
-            Me.SendFVManometreControleAsync(FVManometreControleRequest, Nothing)
+        Public Overloads Sub SendFVManometreControleAsync(ByVal FVManometreControle As Object)
+            Me.SendFVManometreControleAsync(FVManometreControle, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVManometreControleAsync(ByVal FVManometreControleRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendFVManometreControleAsync(ByVal FVManometreControle As Object, ByVal userState As Object)
             If (Me.SendFVManometreControleOperationCompleted Is Nothing) Then
                 Me.SendFVManometreControleOperationCompleted = AddressOf Me.OnSendFVManometreControleOperationCompleted
             End If
-            Me.InvokeAsync("SendFVManometreControle", New Object() {FVManometreControleRequest}, Me.SendFVManometreControleOperationCompleted, userState)
+            Me.InvokeAsync("SendFVManometreControle", New Object() {FVManometreControle}, Me.SendFVManometreControleOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendFVManometreControleOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendFVManometreControleCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendFVManometreControleCompleted(Me, New SendFVManometreControleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreEtalon", RequestElementName:="GetFVManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreEtalon", RequestElementName:="GetFVManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetFVManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVManometreEtalon", New Object() {uid, aid})
-            FVManometreEtalon = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            FVManometreEtalon = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVManometreEtalonAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetFVManometreEtalonAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetFVManometreEtalonAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetFVManometreEtalonOperationCompleted Is Nothing) Then
@@ -2925,57 +2887,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetFVManometreEtalon", New Object() {uid, aid}, Me.GetFVManometreEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetFVManometreEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetFVManometreEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetFVManometreEtalonCompleted(Me, New GetFVManometreEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVManometreEtalon", RequestElementName:="SendFVManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendFVManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVManometreEtalonRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendFVManometreEtalon", New Object() {FVManometreEtalonRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            FVManometreEtalon = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendFVManometreEtalon", RequestElementName:="SendFVManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendFVManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FVManometreEtalon As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendFVManometreEtalon", New Object() {FVManometreEtalon})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVManometreEtalonAsync(ByVal FVManometreEtalonRequest As Object)
-            Me.SendFVManometreEtalonAsync(FVManometreEtalonRequest, Nothing)
+        Public Overloads Sub SendFVManometreEtalonAsync(ByVal FVManometreEtalon As Object)
+            Me.SendFVManometreEtalonAsync(FVManometreEtalon, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendFVManometreEtalonAsync(ByVal FVManometreEtalonRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendFVManometreEtalonAsync(ByVal FVManometreEtalon As Object, ByVal userState As Object)
             If (Me.SendFVManometreEtalonOperationCompleted Is Nothing) Then
                 Me.SendFVManometreEtalonOperationCompleted = AddressOf Me.OnSendFVManometreEtalonOperationCompleted
             End If
-            Me.InvokeAsync("SendFVManometreEtalon", New Object() {FVManometreEtalonRequest}, Me.SendFVManometreEtalonOperationCompleted, userState)
+            Me.InvokeAsync("SendFVManometreEtalon", New Object() {FVManometreEtalon}, Me.SendFVManometreEtalonOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendFVManometreEtalonOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendFVManometreEtalonCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendFVManometreEtalonCompleted(Me, New SendFVManometreEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIdentifiantPulverisateur", RequestElementName:="GetIdentifiantPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIdentifiantPulverisateur", RequestElementName:="GetIdentifiantPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetIdentifiantPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetIdentifiantPulverisateur", New Object() {uid, aid, uidagent})
-            IdentifiantPulverisateur = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            IdentifiantPulverisateur = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetIdentifiantPulverisateurAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer)
             Me.GetIdentifiantPulverisateurAsync(uid, aid, uidagent, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetIdentifiantPulverisateurAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer, ByVal userState As Object)
             If (Me.GetIdentifiantPulverisateurOperationCompleted Is Nothing) Then
@@ -2983,57 +2944,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetIdentifiantPulverisateur", New Object() {uid, aid, uidagent}, Me.GetIdentifiantPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetIdentifiantPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetIdentifiantPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetIdentifiantPulverisateurCompleted(Me, New GetIdentifiantPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendIdentifiantPulverisateur", RequestElementName:="SendIdentifiantPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendIdentifiantPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal IdentifiantPulverisateurRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendIdentifiantPulverisateur", New Object() {IdentifiantPulverisateurRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            IdentifiantPulverisateur = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendIdentifiantPulverisateur", RequestElementName:="SendIdentifiantPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendIdentifiantPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal IdentifiantPulverisateur As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendIdentifiantPulverisateur", New Object() {IdentifiantPulverisateur})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendIdentifiantPulverisateurAsync(ByVal IdentifiantPulverisateurRequest As Object)
-            Me.SendIdentifiantPulverisateurAsync(IdentifiantPulverisateurRequest, Nothing)
+        Public Overloads Sub SendIdentifiantPulverisateurAsync(ByVal IdentifiantPulverisateur As Object)
+            Me.SendIdentifiantPulverisateurAsync(IdentifiantPulverisateur, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendIdentifiantPulverisateurAsync(ByVal IdentifiantPulverisateurRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendIdentifiantPulverisateurAsync(ByVal IdentifiantPulverisateur As Object, ByVal userState As Object)
             If (Me.SendIdentifiantPulverisateurOperationCompleted Is Nothing) Then
                 Me.SendIdentifiantPulverisateurOperationCompleted = AddressOf Me.OnSendIdentifiantPulverisateurOperationCompleted
             End If
-            Me.InvokeAsync("SendIdentifiantPulverisateur", New Object() {IdentifiantPulverisateurRequest}, Me.SendIdentifiantPulverisateurOperationCompleted, userState)
+            Me.InvokeAsync("SendIdentifiantPulverisateur", New Object() {IdentifiantPulverisateur}, Me.SendIdentifiantPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendIdentifiantPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendIdentifiantPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendIdentifiantPulverisateurCompleted(Me, New SendIdentifiantPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPulverisateur", RequestElementName:="GetPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPulverisateur", RequestElementName:="GetPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPulverisateur", New Object() {uid, aid})
-            Pulverisateur = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            Pulverisateur = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetPulverisateurAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetPulverisateurAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetPulverisateurAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetPulverisateurOperationCompleted Is Nothing) Then
@@ -3041,57 +3001,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetPulverisateur", New Object() {uid, aid}, Me.GetPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetPulverisateurCompleted(Me, New GetPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPulverisateur", RequestElementName:="SendPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal PulverisateurRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendPulverisateur", New Object() {PulverisateurRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            Pulverisateur = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendPulverisateur", RequestElementName:="SendPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Pulverisateur As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendPulverisateur", New Object() {Pulverisateur})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPulverisateurAsync(ByVal PulverisateurRequest As Object)
-            Me.SendPulverisateurAsync(PulverisateurRequest, Nothing)
+        Public Overloads Sub SendPulverisateurAsync(ByVal Pulverisateur As Object)
+            Me.SendPulverisateurAsync(Pulverisateur, Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendPulverisateurAsync(ByVal PulverisateurRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendPulverisateurAsync(ByVal Pulverisateur As Object, ByVal userState As Object)
             If (Me.SendPulverisateurOperationCompleted Is Nothing) Then
                 Me.SendPulverisateurOperationCompleted = AddressOf Me.OnSendPulverisateurOperationCompleted
             End If
-            Me.InvokeAsync("SendPulverisateur", New Object() {PulverisateurRequest}, Me.SendPulverisateurOperationCompleted, userState)
+            Me.InvokeAsync("SendPulverisateur", New Object() {Pulverisateur}, Me.SendPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPulverisateurCompleted(Me, New SendPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetStructure", RequestElementName:="GetStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetStructure", RequestElementName:="GetStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetStructure", New Object() {uid, aid})
-            [Structure] = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            [Structure] = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetStructureAsync(ByVal uid As Integer, ByVal aid As String)
             Me.GetStructureAsync(uid, aid, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetStructureAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
             If (Me.GetStructureOperationCompleted Is Nothing) Then
@@ -3099,57 +3058,56 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetStructure", New Object() {uid, aid}, Me.GetStructureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetStructureOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetStructureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetStructureCompleted(Me, New GetStructureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendStructure", RequestElementName:="SendStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal StructureRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendStructure", New Object() {StructureRequest})
-            info = CType(results(1), String)
-            uid = CType(results(2), Integer)
-            [Structure] = CType(results(3), Object)
-            Return CType(results(0), Integer)
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendStructure", RequestElementName:="SendStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function SendStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [Structure] As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendStructure", New Object() {[Structure]})
+            info = CType(results(1),String)
+            uid = CType(results(2),Integer)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
-        Public Overloads Sub SendStructureAsync(ByVal StructureRequest As Object)
-            Me.SendStructureAsync(StructureRequest, Nothing)
+        Public Overloads Sub SendStructureAsync(ByVal [Structure] As Object)
+            Me.SendStructureAsync([Structure], Nothing)
         End Sub
-
+        
         '''<remarks/>
-        Public Overloads Sub SendStructureAsync(ByVal StructureRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendStructureAsync(ByVal [Structure] As Object, ByVal userState As Object)
             If (Me.SendStructureOperationCompleted Is Nothing) Then
                 Me.SendStructureOperationCompleted = AddressOf Me.OnSendStructureOperationCompleted
             End If
-            Me.InvokeAsync("SendStructure", New Object() {StructureRequest}, Me.SendStructureOperationCompleted, userState)
+            Me.InvokeAsync("SendStructure", New Object() {[Structure]}, Me.SendStructureOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnSendStructureOperationCompleted(ByVal arg As Object)
             If (Not (Me.SendStructureCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendStructureCompleted(Me, New SendStructureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielBuse", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielBuse", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielBuse", New Object() {agentId})
-            ReferentielBuse = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ReferentielBuse = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielBuseAsync(ByVal agentId As String)
             Me.GetReferentielBuseAsync(agentId, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielBuseAsync(ByVal agentId As String, ByVal userState As Object)
             If (Me.GetReferentielBuseOperationCompleted Is Nothing) Then
@@ -3157,27 +3115,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielBuse", New Object() {agentId}, Me.GetReferentielBuseOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielBuseOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielBuseCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielBuseCompleted(Me, New GetReferentielBuseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielManometre", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielManometre", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielManometre(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielManometre As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielManometre", New Object() {agentId})
-            ReferentielManometre = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ReferentielManometre = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielManometreAsync(ByVal agentId As String)
             Me.GetReferentielManometreAsync(agentId, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielManometreAsync(ByVal agentId As String, ByVal userState As Object)
             If (Me.GetReferentielManometreOperationCompleted Is Nothing) Then
@@ -3185,27 +3143,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielManometre", New Object() {agentId}, Me.GetReferentielManometreOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielManometreOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielManometreCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielManometreCompleted(Me, New GetReferentielManometreCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateur", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateur", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateur", New Object() {agentId})
-            ReferentielPulverisateur = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ReferentielPulverisateur = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurAsync(ByVal agentId As String)
             Me.GetReferentielPulverisateurAsync(agentId, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurAsync(ByVal agentId As String, ByVal userState As Object)
             If (Me.GetReferentielPulverisateurOperationCompleted Is Nothing) Then
@@ -3213,27 +3171,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielPulverisateur", New Object() {agentId}, Me.GetReferentielPulverisateurOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielPulverisateurOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielPulverisateurCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielPulverisateurCompleted(Me, New GetReferentielPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielTerritoire", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielTerritoire", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielTerritoire(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielTerritoire As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielTerritoire", New Object() {agentId})
-            ReferentielTerritoire = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            ReferentielTerritoire = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielTerritoireAsync(ByVal agentId As String)
             Me.GetReferentielTerritoireAsync(agentId, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielTerritoireAsync(ByVal agentId As String, ByVal userState As Object)
             If (Me.GetReferentielTerritoireOperationCompleted Is Nothing) Then
@@ -3241,27 +3199,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielTerritoire", New Object() {agentId}, Me.GetReferentielTerritoireOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielTerritoireOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielTerritoireCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielTerritoireCompleted(Me, New GetReferentielTerritoireCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetVersionLogicielAgent", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetVersionLogicielAgent", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetVersionLogicielAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef VersionLogicielAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetVersionLogicielAgent", New Object(-1) {})
-            VersionLogicielAgent = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            VersionLogicielAgent = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetVersionLogicielAgentAsync()
             Me.GetVersionLogicielAgentAsync(Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetVersionLogicielAgentAsync(ByVal userState As Object)
             If (Me.GetVersionLogicielAgentOperationCompleted Is Nothing) Then
@@ -3269,27 +3227,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetVersionLogicielAgent", New Object(-1) {}, Me.GetVersionLogicielAgentOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetVersionLogicielAgentOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetVersionLogicielAgentCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetVersionLogicielAgentCompleted(Me, New GetVersionLogicielAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSoftwareUpdate", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSoftwareUpdate", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetSoftwareUpdate(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal version As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef infos As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetSoftwareUpdate", New Object() {version})
-            infos = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            infos = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetSoftwareUpdateAsync(ByVal version As String)
             Me.GetSoftwareUpdateAsync(version, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetSoftwareUpdateAsync(ByVal version As String, ByVal userState As Object)
             If (Me.GetSoftwareUpdateOperationCompleted Is Nothing) Then
@@ -3297,27 +3255,27 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetSoftwareUpdate", New Object() {version}, Me.GetSoftwareUpdateOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetSoftwareUpdateOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetSoftwareUpdateCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetSoftwareUpdateCompleted(Me, New GetSoftwareUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSynchroDateTime", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSynchroDateTime", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetSynchroDateTime(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef SynchroDateTime As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetSynchroDateTime", New Object(-1) {})
-            SynchroDateTime = CType(results(1), Object)
-            Return CType(results(0), Integer)
+            SynchroDateTime = CType(results(1),Object)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetSynchroDateTimeAsync()
             Me.GetSynchroDateTimeAsync(Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetSynchroDateTimeAsync(ByVal userState As Object)
             If (Me.GetSynchroDateTimeOperationCompleted Is Nothing) Then
@@ -3325,60 +3283,32 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetSynchroDateTime", New Object(-1) {}, Me.GetSynchroDateTimeOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetSynchroDateTimeOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetSynchroDateTimeCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetSynchroDateTimeCompleted(Me, New GetSynchroDateTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIncrementDiagnostic", RequestElementName:="GetIncrementDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetIncrementDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef result As Integer) As <System.Xml.Serialization.XmlElementAttribute("increment", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Object
-            Dim results() As Object = Me.Invoke("GetIncrementDiagnostic", New Object() {agentId})
-            result = CType(results(1), Integer)
-            Return CType(results(0), Object)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub GetIncrementDiagnosticAsync(ByVal agentId As String)
-            Me.GetIncrementDiagnosticAsync(agentId, Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub GetIncrementDiagnosticAsync(ByVal agentId As String, ByVal userState As Object)
-            If (Me.GetIncrementDiagnosticOperationCompleted Is Nothing) Then
-                Me.GetIncrementDiagnosticOperationCompleted = AddressOf Me.OnGetIncrementDiagnosticOperationCompleted
-            End If
-            Me.InvokeAsync("GetIncrementDiagnostic", New Object() {agentId}, Me.GetIncrementDiagnosticOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnGetIncrementDiagnosticOperationCompleted(ByVal arg As Object)
-            If (Not (Me.GetIncrementDiagnosticCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent GetIncrementDiagnosticCompleted(Me, New GetIncrementDiagnosticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/UpdatesAvailable", RequestElementName:="UpdatesAvailableRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/UpdatesAvailable", RequestElementName:="UpdatesAvailableRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function UpdatesAvailable(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idProfilAgent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpool As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idRegistre As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal lastUpdateDateTime As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isUpdateAvailable As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isComplete As Integer, <System.Xml.Serialization.XmlElementAttribute("updatesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef updatesList() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePools() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePcs", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePcs() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime})
-            info = CType(results(1), String)
-            isUpdateAvailable = CType(results(2), Integer)
-            isComplete = CType(results(3), Integer)
-            updatesList = CType(results(4), Object())
-            availablePools = CType(results(5), Object())
-            availablePcs = CType(results(6), Object())
-            Return CType(results(0), Integer)
+            info = CType(results(1),String)
+            isUpdateAvailable = CType(results(2),Integer)
+            isComplete = CType(results(3),Integer)
+            updatesList = CType(results(4),Object())
+            availablePools = CType(results(5),Object())
+            availablePcs = CType(results(6),Object())
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String)
             Me.UpdatesAvailableAsync(idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime, Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String, ByVal userState As Object)
             If (Me.UpdatesAvailableOperationCompleted Is Nothing) Then
@@ -3386,28 +3316,28 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime}, Me.UpdatesAvailableOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnUpdatesAvailableOperationCompleted(ByVal arg As Object)
             If (Not (Me.UpdatesAvailableCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent UpdatesAvailableCompleted(Me, New UpdatesAvailableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", RequestElementName:="GetReferentielPulverisateurTypesCategoriesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", RequestElementName:="GetReferentielPulverisateurTypesCategoriesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielPulverisateurTypesCategories(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateurTypesCategories", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
+            aJour = CType(results(1),Integer)
+            url = CType(results(2),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String)
             Me.GetReferentielPulverisateurTypesCategoriesAsync([date], Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String, ByVal userState As Object)
             If (Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted Is Nothing) Then
@@ -3415,28 +3345,28 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielPulverisateurTypesCategories", New Object() {[date]}, Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielPulverisateurTypesCategoriesOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielPulverisateurTypesCategoriesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielPulverisateurTypesCategoriesCompleted(Me, New GetReferentielPulverisateurTypesCategoriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielCodesAPE", RequestElementName:="GetReferentielCodesAPERequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielCodesAPE", RequestElementName:="GetReferentielCodesAPERequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielCodesAPE(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielCodesAPE", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
+            aJour = CType(results(1),Integer)
+            url = CType(results(2),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String)
             Me.GetReferentielCodesAPEAsync([date], Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String, ByVal userState As Object)
             If (Me.GetReferentielCodesAPEOperationCompleted Is Nothing) Then
@@ -3444,28 +3374,28 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielCodesAPE", New Object() {[date]}, Me.GetReferentielCodesAPEOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielCodesAPEOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielCodesAPECompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielCodesAPECompleted(Me, New GetReferentielCodesAPECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", RequestElementName:="GetReferentielPulverisateurMarquesModelesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", RequestElementName:="GetReferentielPulverisateurMarquesModelesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
         Public Function GetReferentielPulverisateurMarquesModeles(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateurMarquesModeles", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
+            aJour = CType(results(1),Integer)
+            url = CType(results(2),String)
+            Return CType(results(0),Integer)
         End Function
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String)
             Me.GetReferentielPulverisateurMarquesModelesAsync([date], Nothing)
         End Sub
-
+        
         '''<remarks/>
         Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String, ByVal userState As Object)
             If (Me.GetReferentielPulverisateurMarquesModelesOperationCompleted Is Nothing) Then
@@ -3473,4004 +3403,3665 @@ Namespace WSCRODIP
             End If
             Me.InvokeAsync("GetReferentielPulverisateurMarquesModeles", New Object() {[date]}, Me.GetReferentielPulverisateurMarquesModelesOperationCompleted, userState)
         End Sub
-
+        
         Private Sub OnGetReferentielPulverisateurMarquesModelesOperationCompleted(ByVal arg As Object)
             If (Not (Me.GetReferentielPulverisateurMarquesModelesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetReferentielPulverisateurMarquesModelesCompleted(Me, New GetReferentielPulverisateurMarquesModelesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
-
+        
         '''<remarks/>
         Public Shadows Sub CancelAsync(ByVal userState As Object)
             MyBase.CancelAsync(userState)
         End Sub
-
+        
         Private Function IsLocalFileSystemWebService(ByVal url As String) As Boolean
-            If ((url Is Nothing) _
+            If ((url Is Nothing)  _
                         OrElse (url Is String.Empty)) Then
-                Return False
+                Return false
             End If
             Dim wsUri As System.Uri = New System.Uri(url)
-            If ((wsUri.Port >= 1024) _
+            If ((wsUri.Port >= 1024)  _
                         AndAlso (String.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) = 0)) Then
-                Return True
+                Return true
             End If
-            Return False
+            Return false
         End Function
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Agent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property availablePools() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object())
+                Return CType(Me.results(3),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SendAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Agent() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object)
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPcCompletedEventHandler(ByVal sender As Object, ByVal e As GetPcCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Pc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPcCompletedEventHandler(ByVal sender As Object, ByVal e As SendPcCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Pc() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetMasseCompletedEventHandler(ByVal sender As Object, ByVal e As GetMasseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Masse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendMasseCompletedEventHandler(ByVal sender As Object, ByVal e As SendMasseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Masse() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetBalanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Balance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendBalanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Balance() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetDistanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Distance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendDistanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Distance() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetChronoCompletedEventHandler(ByVal sender As Object, ByVal e As GetChronoCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Chrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendChronoCompletedEventHandler(ByVal sender As Object, ByVal e As SendChronoCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Chrono() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Pool() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Pool() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolAgent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolAgent() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolPcCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolPcCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolPc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolPcCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolPcCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolPc() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolMasseCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolMasseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolMasse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolMasseCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolMasseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolMasse() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBalanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolBalance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolBalanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolBalance() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolDistanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolDistance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolDistanceCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolDistance() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolChronoCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolChronoCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolChrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolChronoCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolChronoCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolChrono() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolManoControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolManoControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolManoControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolManoControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolManoControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolManoControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolManoControle() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolManoEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolManoEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolManoEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolManoEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolManoEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolManoEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolManoEtalon() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBuseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolBuse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPoolBuseCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolBuseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPoolBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PoolBuse() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolAgentListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolAgentListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolAgentListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolAgentList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolPcListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolPcListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolPcListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolPcList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolMasseListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolMasseListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolMasseListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolMasseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolBalanceListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBalanceListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolBalanceListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolBalanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolDistanceListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolDistanceListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolDistanceListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolDistanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolChronoListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolChronoListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolChronoListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolChronoList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolManoControleListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoControleListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolManoControleListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolManoControleList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolManoEtalonListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoEtalonListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolManoEtalonListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolManoEtalonList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPoolBuseListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBuseListCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPoolBuseListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PoolBuseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SetDateSynchroAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SetDateSynchroAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SetDateSynchroAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPrestationCategorieCompletedEventHandler(ByVal sender As Object, ByVal e As GetPrestationCategorieCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPrestationCategorieCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PrestationCategorie() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPrestationCategorieCompletedEventHandler(ByVal sender As Object, ByVal e As SendPrestationCategorieCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPrestationCategorieCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PrestationCategorie() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPrestationTarifCompletedEventHandler(ByVal sender As Object, ByVal e As GetPrestationTarifCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPrestationTarifCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property PrestationTarif() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPrestationTarifCompletedEventHandler(ByVal sender As Object, ByVal e As SendPrestationTarifCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPrestationTarifCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property PrestationTarif() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetBuseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Buse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendBuseCompletedEventHandler(ByVal sender As Object, ByVal e As SendBuseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Buse() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetManometreControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ManometreControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendManometreControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetManometreEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ManometreEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendManometreEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property ManometreEtalon() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetBancCompletedEventHandler(ByVal sender As Object, ByVal e As GetBancCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Banc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendBancCompletedEventHandler(ByVal sender As Object, ByVal e As SendBancCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Banc() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Diagnostic() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Diagnostic() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticItemsCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticItemsCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticItemsCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property DiagnosticItemsList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticItemsCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticItemsCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticItemsCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property DiagnosticItemsList() As Object()
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object())
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetAutoTestCompletedEventHandler(ByVal sender As Object, ByVal e As GetAutoTestCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetAutoTestCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property AutoTest() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendAutoTestCompletedEventHandler(ByVal sender As Object, ByVal e As SendAutoTestCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendAutoTestCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property AutoTest() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticBusesCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticBusesCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticBusesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property DiagnosticBusesList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticBusesCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticBusesCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticBusesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property DiagnosticBusesList() As Object()
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object())
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticBusesDetailCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticBusesDetailCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticBusesDetailCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property DiagnosticBusesDetailList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticBusesDetailCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticBusesDetailCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticBusesDetailCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property DiagnosticBusesDetailList() As Object()
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object())
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticMano542CompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticMano542CompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticMano542CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property DiagnosticMano542List() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticMano542CompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticMano542CompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticMano542CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property DiagnosticMano542List() As Object()
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object())
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetDiagnosticTroncons833CompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticTroncons833CompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetDiagnosticTroncons833CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property DiagnosticTroncons833List() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object())
+                Return CType(Me.results(1),Object())
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendDiagnosticTroncons833CompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticTroncons833CompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendDiagnosticTroncons833CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property DiagnosticTroncons833List() As Object()
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Object())
+                Return CType(Me.results(1),String)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetExploitationCompletedEventHandler(ByVal sender As Object, ByVal e As GetExploitationCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetExploitationCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Exploitation() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendExploitationCompletedEventHandler(ByVal sender As Object, ByVal e As SendExploitationCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendExploitationCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Exploitation() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetExploitationTOPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetExploitationTOPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetExploitationTOPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ExploitationTOPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendExploitationTOPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendExploitationTOPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendExploitationTOPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property ExploitationTOPulverisateur() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetControleBancMesureCompletedEventHandler(ByVal sender As Object, ByVal e As GetControleBancMesureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetControleBancMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ControleBancMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendControleBancMesureCompletedEventHandler(ByVal sender As Object, ByVal e As SendControleBancMesureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendControleBancMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property ControleBancMesure() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetControleManoMesureCompletedEventHandler(ByVal sender As Object, ByVal e As GetControleManoMesureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetControleManoMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ControleManoMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendControleManoMesureCompletedEventHandler(ByVal sender As Object, ByVal e As SendControleManoMesureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendControleManoMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property ControleManoMesure() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetFVBancCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVBancCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetFVBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property FVBanc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendFVBancCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVBancCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendFVBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property FVBanc() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetFVManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVManometreControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetFVManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property FVManometreControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendFVManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVManometreControleCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendFVManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property FVManometreControle() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetFVManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVManometreEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetFVManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property FVManometreEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendFVManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVManometreEtalonCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendFVManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property FVManometreEtalon() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetIdentifiantPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetIdentifiantPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetIdentifiantPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property IdentifiantPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendIdentifiantPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendIdentifiantPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendIdentifiantPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property IdentifiantPulverisateur() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property Pulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property Pulverisateur() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetStructureCompletedEventHandler(ByVal sender As Object, ByVal e As GetStructureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetStructureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property [Structure]() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub SendStructureCompletedEventHandler(ByVal sender As Object, ByVal e As SendStructureCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendStructureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), String)
+                Return CType(Me.results(1),String)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2), Integer)
-            End Get
-        End Property
-
-        '''<remarks/>
-        Public ReadOnly Property [Structure]() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3), Object)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetReferentielBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielBuseCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetReferentielBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ReferentielBuse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetReferentielManometreCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielManometreCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetReferentielManometreCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ReferentielManometre() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetReferentielPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielPulverisateurCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetReferentielPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ReferentielPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetReferentielTerritoireCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielTerritoireCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetReferentielTerritoireCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property ReferentielTerritoire() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetVersionLogicielAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetVersionLogicielAgentCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetVersionLogicielAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property VersionLogicielAgent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetSoftwareUpdateCompletedEventHandler(ByVal sender As Object, ByVal e As GetSoftwareUpdateCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetSoftwareUpdateCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property infos() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetSynchroDateTimeCompletedEventHandler(ByVal sender As Object, ByVal e As GetSynchroDateTimeCompletedEventArgs)
-
+    
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class GetSynchroDateTimeCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+        
         Private results() As Object
-
+        
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
+        
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Integer)
+                Return CType(Me.results(0),Integer)
             End Get
         End Property
-
+        
         '''<remarks/>
         Public ReadOnly Property SynchroDateTime() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1), Object)
+                Return CType(Me.results(1),Object)
             End Get
         End Property
     End Class
-
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
-    Public Delegate Sub GetIncrementDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As GetIncrementDiagnosticCompletedEventArgs)
-
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
-     System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.ComponentModel.DesignerCategoryAttribute("code")>
-    Partial Public Class GetIncrementDiagnosticCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-
-        Private results() As Object
-
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-
-        '''<remarks/>
-        Public Overloads ReadOnly Property Result() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0), Object)
-            End Get
-        End Property
-
-        '''<remarks/>
-        'Public Overloads ReadOnly Property result() As Integer
-        '    Get
-        '        Me.RaiseExceptionIfNecessary
-        '        Return CType(Me.results(1), Integer)
-        '    End Get
-        'End Property
-    End Class
-
+    
     '''<remarks/>
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub UpdatesAvailableCompletedEventHandler(ByVal sender As Object, ByVal e As UpdatesAvailableCompletedEventArgs)

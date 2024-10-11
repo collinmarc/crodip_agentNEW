@@ -48,7 +48,7 @@ Public Class SynchronisationElmtDiag
             Dim oDiag As New Diagnostic
             Try
                 SetStatus("Réception MAJ contrôle n°" & Me.IdentifiantChaine & "...")
-                oDiag = DiagnosticManager.getWSDiagnosticById(pAgent, Me.IdentifiantChaine)
+                oDiag = DiagnosticManager.getWSDiagnosticById(pAgent.id, Me.IdentifiantChaine)
                 DiagnosticManager.save(oDiag, True)
 
                 bReturn = True
@@ -78,7 +78,7 @@ Public Class SynchronisationElmtDiag
             Dim tmpObject As DiagnosticBuses
             Try
                 SetStatus("Réception MAJ buse de contrôle n°" & Me.IdentifiantChaine & "...")
-                tmpObjectList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(pAgent.uid, Me.IdentifiantChaine)
+                tmpObjectList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(pAgent.id, Me.IdentifiantChaine)
                 Dim oCSDB As New CSDb(True)
                 For Each tmpObject In tmpObjectList.Liste
                     DiagnosticBusesManager.save(tmpObject, oCSDB, True)
@@ -95,7 +95,7 @@ Public Class SynchronisationElmtDiag
             Dim tmpObject As New DiagnosticBusesDetail
             Try
                 SetStatus("Réception MAJ détail des buse de contrôle n°" & Me.IdentifiantChaine & "...")
-                tmpObjectList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(pAgent.uid, Me.IdentifiantChaine)
+                tmpObjectList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(pAgent.id, Me.IdentifiantChaine)
                 For Each tmpObject In tmpObjectList.Liste
                     DiagnosticBusesDetailManager.save(tmpObject, True)
                 Next
@@ -111,7 +111,7 @@ Public Class SynchronisationElmtDiag
             Try
                 SetStatus("Réception MAJ DiagnosticMano542 n°" & Me.IdentifiantChaine & "...")
                 Dim oCSDB As New CSDb(True)
-                tmpObjectList = DiagnosticMano542Manager.getWSDiagnosticMano542ByDiagId(pAgent.uid, Me.IdentifiantChaine)
+                tmpObjectList = DiagnosticMano542Manager.getWSDiagnosticMano542ByDiagId(pAgent.id, Me.IdentifiantChaine)
                 For Each tmpObject In tmpObjectList.Liste
                     DiagnosticMano542Manager.save(tmpObject, oCSDB, True)
                 Next
@@ -128,7 +128,7 @@ Public Class SynchronisationElmtDiag
             Try
                 SetStatus("Réception MAJ DiagnosticTroncons833 n°" & Me.IdentifiantChaine & "...")
                 Dim oCSDB As New CSDb(True)
-                oListManotroncon833 = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ByDiagId(pAgent.uid, Me.IdentifiantChaine)
+                oListManotroncon833 = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ByDiagId(pAgent.id, Me.IdentifiantChaine)
                 For Each oManoTroncon833 In oListManotroncon833.Liste
                     DiagnosticTroncons833Manager.save(oManoTroncon833, oCSDB, True)
                 Next

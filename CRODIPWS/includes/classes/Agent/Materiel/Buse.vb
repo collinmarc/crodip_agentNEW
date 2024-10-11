@@ -13,6 +13,14 @@ Public Class Buse
     Private _dateAchat As String = ""
     Private _isUtilise As Boolean = False
 
+    Public Property idBuse() As String
+        Get
+            Return numeroNational
+        End Get
+        Set(ByVal value As String)
+            numeroNational = value
+        End Set
+    End Property
 
     Sub New()
         _lstPools = New List(Of Pool)
@@ -55,6 +63,7 @@ Public Class Buse
         End Set
     End Property
 
+    <XmlIgnore>
     Public Property isSynchro() As Boolean
         Get
             Return _isSynchro
@@ -63,13 +72,25 @@ Public Class Buse
             _isSynchro = Value
         End Set
     End Property
+    <XmlElement("isSynchro")>
+    Public Property isSynchroWS() As Integer
+        Get
+            Return CInt(_isSynchro)
+        End Get
+        Set(ByVal Value As Integer)
+            _isSynchro = CBool(Value)
+        End Set
+    End Property
+
 
     Public Property dateAchat() As String
         Get
             Return _dateAchat
         End Get
         Set(ByVal Value As String)
-            _dateAchat = Value
+            If Value <> "" Then
+                _dateAchat = Value
+            End If
         End Set
     End Property
     Public Property isUtilise() As Boolean
@@ -80,7 +101,7 @@ Public Class Buse
             _isUtilise = Value
         End Set
     End Property
-
+    <XmlIgnore>
     Public Overrides Property Libelle() As String
         Get
             Return idCrodip + " (" & Me.couleur & ")"

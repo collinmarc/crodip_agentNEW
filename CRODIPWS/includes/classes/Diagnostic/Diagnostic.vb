@@ -2541,7 +2541,7 @@ Public Class Diagnostic
             organismePresCodePostal = structureCourante.codePostal
             organismePresCommune = structureCourante.commune
 
-            inspecteurId = pAgent.uid
+            inspecteurId = pAgent.id
             inspecteurNom = pAgent.nom
             inspecteurPrenom = pAgent.prenom
             inspecteurNumeroNational = pAgent.numeroNational

@@ -340,15 +340,15 @@ Public Class Banc
             newFicheVieBanc.idBancMesure = Me.id
             newFicheVieBanc.type = pType
             newFicheVieBanc.auteur = "AGENT"
-            newFicheVieBanc.caracteristiques = _
-            Me.id & "|" & _
-            Me.marque & "|" & _
-            Me.modele & "|" & _
-            Me.dateAchat & "|" & _
-            Me.uidstructure & "|" & _
-            Me.DateActivation & "|" & _
-            Me.dateDernierControleS & "|" & _
-            Me.dateModificationAgent & "|" & _
+            newFicheVieBanc.caracteristiques =
+            Me.id & "|" &
+            Me.marque & "|" &
+            Me.modele & "|" &
+            Me.dateAchat & "|" &
+            Me.uidstructure & "|" &
+            Me.DateActivation & "|" &
+            Me.dateDernierControleS & "|" &
+            Me.dateModificationAgent & "|" &
             Me.dateModificationCrodip
             newFicheVieBanc.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
             newFicheVieBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString

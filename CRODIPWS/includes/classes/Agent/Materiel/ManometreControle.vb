@@ -10,15 +10,6 @@ Public Class ManometreControle
 
     Private _resolution As String = ""
     Private _resolutionLecture As String = ""
-    Private _IdManometre As String = ""
-    Public Property idManometre() As String
-        Get
-            Return _IdManometre
-        End Get
-        Set(ByVal value As String)
-            _IdManometre = value
-        End Set
-    End Property
     Private m_bIsUpdated As Boolean
     Sub New()
         m_bIsUpdated = False
@@ -501,7 +492,7 @@ Public Class ManometreControle
             oFV.idManometre = Me.idCrodip
             oFV.type = pType
             oFV.auteur = "AGENT"
-            oFV.idAgentControleur = pAgent.uid
+            oFV.idAgentControleur = pAgent.id
             oFV.caracteristiques =
         Me.idCrodip & "|" &
         Me.marque & "|" &

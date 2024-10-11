@@ -556,6 +556,12 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Web References\WSCRODIP\crodip.wsdl" />
     <None Include="Web References\WSCRODIP\Reference.map">
@@ -582,6 +588,9 @@
     <Folder Include="sqlite\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Déclaration des WSCRODIP.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://admin-pp.crodip.net/new.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WSCRODIP\</RelPath>
@@ -593,9 +602,6 @@
       <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>CRODIPWS_WSCRODIP_CrodipServer</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Déclaration des WSCRODIP.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

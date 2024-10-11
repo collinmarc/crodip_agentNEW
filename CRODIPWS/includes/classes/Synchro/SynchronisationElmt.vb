@@ -110,17 +110,17 @@ Public Class SynchronisationElmt
         Try
             Select Case PNAme.ToUpper.Trim()
                 Case "type".ToUpper.Trim()
-                    If type = "" Then
-                        type = Trim(pValue)
+                    If Type = "" Then
+                        Type = Trim(pValue)
                     End If
                 Case "identifiantEntier".ToUpper.Trim()
                     If Not String.IsNullOrEmpty(pValue) Then
-                        identifiantEntier = CInt(Trim(pValue))
+                        IdentifiantEntier = CInt(Trim(pValue))
                     End If
                 Case "identifiantChaine".ToUpper.Trim()
-                    identifiantChaine = Trim(pValue)
+                    IdentifiantChaine = Trim(pValue)
                 Case "valeurAuxiliaire".ToUpper.Trim()
-                    valeurAuxiliaire = Trim(pValue)
+                    ValeurAuxiliaire = Trim(pValue)
                 Case "md5".ToUpper.Trim()
                     _checksumMD5 = Trim(pValue)
                 Case "update".ToUpper.Trim()
@@ -178,14 +178,14 @@ Public Class SynchronisationElmt
         Dim pElement As SynchronisationElmt
         Dim bReturn As Boolean
         pElement = Me
-        Select Case pElement.type.ToUpper().Trim()
+        Select Case pElement.Type.ToUpper().Trim()
 
             Case "GetPrestationCategorie".ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescPrestation) Then
 
                     Dim tmpObject As New PrestationCategorie
                     Try
-                        setStatus("Réception MAJ Catégorie de prestation n°" & pElement.identifiantChaine & "...")
+                        SetStatus("Réception MAJ Catégorie de prestation n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = PrestationCategorieManager.getWSPrestationCategorieById(pAgent, CType(pElement.IdentifiantChaine, Integer))
                         If tmpObject.libelle <> "" Then
                             PrestationCategorieManager.save(tmpObject, pAgent, True)
@@ -201,10 +201,10 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New PrestationTarif
                     Try
                         ' Récup id's
-                        Dim tmpSplit() As String = pElement.identifiantChaine.Split("-")
+                        Dim tmpSplit() As String = pElement.IdentifiantChaine.Split("-")
                         Dim idObject As Integer = CType(tmpSplit(0), Integer)
                         Dim idCategorie As Integer = CType(tmpSplit(1), Integer)
-                        setStatus("Réception MAJ Tarif de prestation n°" & idObject & "...")
+                        SetStatus("Réception MAJ Tarif de prestation n°" & idObject & "...")
                         tmpObject = PrestationTarifManager.getWSPrestationTarifById(idObject, idCategorie, pAgent)
                         If tmpObject.description <> "" Then
                             PrestationTarifManager.save(tmpObject, pAgent, True)
@@ -232,7 +232,7 @@ Public Class SynchronisationElmt
             Case "GetReferentielManometre".ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
                     Try
-                        setStatus("Réception MAJ référentiel des marques de mmanomètre...")
+                        SetStatus("Réception MAJ référentiel des marques de mmanomètre...")
                         ReferentielManometreManager.getWSReferentielManometre(_Agent)
                         bReturn = True
                     Catch ex As Exception
@@ -254,7 +254,7 @@ Public Class SynchronisationElmt
             Case "GetReferentielPulverisateurMarquesModeles".ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
                     Try
-                        setStatus("Réception MAJ référentiel des marques et des modèles de pulvérisateur...")
+                        SetStatus("Réception MAJ référentiel des marques et des modèles de pulvérisateur...")
                         ReferentielPulverisateurManager.getWSReferentielPulverisateurMarquesModeles()
                         bReturn = True
                     Catch ex As Exception
@@ -265,7 +265,7 @@ Public Class SynchronisationElmt
             Case "GetReferentielPulverisateurTypesCategories".ToUpper().Trim()
                 If (m_SynchroBoolean.m_bSynchDescReferentiel) Then
                     Try
-                        setStatus("Réception MAJ référentiel des types et des catgories de pulvérisateur...")
+                        SetStatus("Réception MAJ référentiel des types et des catgories de pulvérisateur...")
                         ReferentielPulverisateurManager.getWSReferentielPulverisateurTypesCategories()
                         bReturn = True
                     Catch ex As Exception
@@ -340,9 +340,9 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescAgent) Then
                     Dim tmpObject As New Agent
                     Try
-                        setStatus("Réception MAJ Agent n°" & pElement.identifiantChaine & "...")
-                        tmpObject = AgentManager.getWSById(Nothing, pElement.uid)
-                        If tmpObject.uid <> 0 Then
+                        SetStatus("Réception MAJ Agent n°" & pElement.IdentifiantChaine & "...")
+                        tmpObject = AgentManager.getWSAgentById(pElement.IdentifiantChaine)
+                        If tmpObject.id <> 0 Then
                             pAgent = tmpObject
                             CSDebug.dispInfo("Synchronisation::runDescSynchro(GetAgent) Mot de passe = " & tmpObject.motDePasse)
                             AgentManager.save(tmpObject, True)
@@ -358,19 +358,21 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescBuse) Then
                     Dim oBuseE As Buse
                     Try
-                        setStatus("Réception MAJ Buse n°" & pElement.identifiantChaine & "...")
-                        oBuseE = BuseManager.getWSBuseById(_Agent, pElement.IdentifiantChaine)
+                        SetStatus("Réception MAJ Buse n°" & pElement.IdentifiantChaine & "...")
+                        oBuseE = BuseManager.WSgetById(pElement.IdentifiantChaine)
                         Dim bOld As Boolean = oBuseE.etat
                         'Modif du 6/12/2018
                         'Recalcul de l'état des buses après synhcro
                         If oBuseE.getAlerte() = GlobalsCRODIP.ALERTE.NOIRE Then
                             oBuseE.Desactiver()
-                            BuseManager.sendWSBuse(_Agent, oBuseE)
+                            Dim objReturn As Buse
+                            BuseManager.WSSend(oBuseE, objReturn)
+                            oBuseE = objReturn
                         Else
                             oBuseE.etat = True
                         End If
 
-                        If My.Settings.GestionDesPools Then
+                        If My.Settings.GestiondesPools Then
                             BuseManager.getLstPoolById(oBuseE)
                         End If
                         BuseManager.save(oBuseE, True)
@@ -386,9 +388,9 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescMano) Then
                     Dim tmpObject As New ManometreControle
                     Try
-                        setStatus("Réception MAJ Manomètre de Controle n°" & pElement.identifiantChaine & "...")
-                        tmpObject = ManometreControleManager.getWSManometreControleById(pAgent, pElement.identifiantChaine)
-                        If My.Settings.GestionDesPools Then
+                        SetStatus("Réception MAJ Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
+                        tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantChaine)
+                        If My.Settings.GestiondesPools Then
                             ManometreControleManager.getLstPoolById(tmpObject)
                         End If
                         ManometreControleManager.save(tmpObject, True)
@@ -435,7 +437,7 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescFV) Then
                     Dim tmpObject As New FVManometreControle()
                     Try
-                        setStatus("Réception MAJ Fiche de vie Manomètre de Controle n°" & pElement.identifiantChaine & "...")
+                        SetStatus("Réception MAJ Fiche de vie Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = FVManometreControleManager.getWSFVManometreControleById(_Agent, pElement.IdentifiantChaine)
                         FVManometreControleManager.save(tmpObject, True)
                         bReturn = True
@@ -449,9 +451,9 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescFV) Then
                     Dim tmpObject As New ManometreEtalon
                     Try
-                        setStatus("Réception MAJ Manomètre Etalon n°" & pElement.identifiantChaine & "...")
-                        tmpObject = ManometreEtalonManager.getWSManometreEtalonById(pAgent, pElement.identifiantChaine)
-                        If My.Settings.GestionDesPools Then
+                        SetStatus("Réception MAJ Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
+                        tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantChaine)
+                        If My.Settings.GestiondesPools Then
                             ManometreEtalonManager.getLstPoolById(tmpObject)
                         End If
                         ManometreEtalonManager.save(tmpObject, True)
@@ -466,7 +468,7 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescFV) Then
                     Dim tmpObject As New FVManometreEtalon(New Agent())
                     Try
-                        setStatus("Réception MAJ Fiche de vie Manomètre Etalon n°" & pElement.identifiantChaine & "...")
+                        SetStatus("Réception MAJ Fiche de vie Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = FVManometreEtalonManager.getWSFVManometreEtalonById(_Agent, pElement.IdentifiantChaine)
                         FVManometreEtalonManager.save(tmpObject, True)
                         bReturn = True
@@ -480,9 +482,9 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescBanc) Then
                     Dim tmpObject As New Banc
                     Try
-                        setStatus("Réception MAJ Banc n°" & pElement.identifiantChaine & "...")
-                        tmpObject = BancManager.getWSBancById(pAgent, pElement.IdentifiantChaine)
-                        If My.Settings.GestionDesPools Then
+                        SetStatus("Réception MAJ Banc n°" & pElement.IdentifiantChaine & "...")
+                        tmpObject = BancManager.WSgetById(pElement.IdentifiantChaine)
+                        If My.Settings.GestiondesPools Then
                             BancManager.getLstPoolById(tmpObject)
                         End If
 
@@ -497,17 +499,17 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescFV) Then
                     Dim tmpObject As New FVBanc(pAgent)
                     Try
-                        setStatus("Réception MAJ Fiche de vie Banc n°" & pElement.identifiantChaine & "...")
+                        SetStatus("Réception MAJ Fiche de vie Banc n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = FVBancManager.getWSFVBancById(_Agent, pElement.IdentifiantChaine)
                         If Not tmpObject Is Nothing Then
                             FVBancManager.save(tmpObject, True)
                         Else
-                            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetFVBanc) : [" & pElement.identifiantChaine & "]" & "Banc introuvable sur le server")
+                            CSDebug.dispFatal("Synchronisation::runDescSynchro(GetFVBanc) : [" & pElement.IdentifiantChaine & "]" & "Banc introuvable sur le server")
 
                         End If
                         bReturn = True
                     Catch ex As Exception
-                        CSDebug.dispError("Synchronisation::runDescSynchro(GetFVBanc) : [" & pElement.identifiantChaine & "]" & ex.Message.ToString)
+                        CSDebug.dispError("Synchronisation::runDescSynchro(GetFVBanc) : [" & pElement.IdentifiantChaine & "]" & ex.Message.ToString)
                         bReturn = False
                     End Try
                 End If
@@ -515,7 +517,7 @@ Public Class SynchronisationElmt
                 If (m_SynchroBoolean.m_bSynchDescAgent) Then
                     Dim tmpObject As New Structuree
                     Try
-                        setStatus("Réception MAJ Organisme n°" & pElement.identifiantEntier & "...")
+                        SetStatus("Réception MAJ Organisme n°" & pElement.IdentifiantEntier & "...")
                         tmpObject = StructureManager.getWSStructureeById(pAgent, pElement.IdentifiantEntier)
                         StructureManager.save(tmpObject, True)
                         bReturn = True

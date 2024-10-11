@@ -209,8 +209,8 @@ Public Class Synchronisation
             Dim tmpObject As New Agent
             Try
                 'Statusbar_display("Réception MAJ Agent n°" & agent.numeroNational & "...")
-                tmpObject = AgentManager.getWSById(m_Agent, m_Agent.uid)
-                If tmpObject.uid <> 0 Then
+                tmpObject = AgentManager.getWSAgentById(m_Agent.id)
+                If tmpObject.id <> 0 Then
                     If m_Agent.isActif <> tmpObject.isActif Then
                         m_Agent.isActif = tmpObject.isActif
                     End If
@@ -299,8 +299,8 @@ Public Class Synchronisation
                     Try
                         Dim UpdatedObject As New Object
                         Dim tmpAgentUpdated As Agent
-                        Notice("Agent n°" & tmpUpdateAgent.uid)
-                        Dim response As Integer = AgentManager.SendWSAgent(tmpUpdateAgent, tmpUpdateAgent, tmpAgentUpdated)
+                        Notice("Agent n°" & tmpUpdateAgent.id)
+                        Dim response As Integer = AgentManager.sendWSAgent(tmpUpdateAgent, tmpAgentUpdated)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSAgent) - Erreur Locale")
@@ -311,11 +311,11 @@ Public Class Synchronisation
                                 'm_Agent = tmpAgentUpdated
                                 'agentCourant = m_Agent
                                 AgentManager.save(tmpAgentUpdated, True)
-                                m_Agent = AgentManager.getAgentById(tmpAgentUpdated.uid)
+                                m_Agent = AgentManager.getAgentById(tmpAgentUpdated.id)
                             Case 1 ' NOK
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.uid & " Erreur : Agent inconnu.")
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.id & " Erreur : Agent inconnu.")
                             Case 3 ' NOAGENT
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.uid & " Erreur : Agent inconnu.")
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.id & " Erreur : Agent inconnu.")
                             Case 9 ' BADREQUEST
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSAgent) - Le web service a répondu : BadRequest")
                         End Select
@@ -450,7 +450,7 @@ Public Class Synchronisation
                     For Each tmpUpdateBuse As Buse In arrUpdatesBuse
                         Try
                             Notice("Buse n°" & tmpUpdateBuse.numeroNational)
-                            Dim response As Integer = BuseManager.SendWSBuse(m_Agent, tmpUpdateBuse, pBuseReturn)
+                            Dim response As Integer = BuseManager.WSSend(tmpUpdateBuse, pBuseReturn)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Erreur Locale" & vbNewLine)
@@ -477,7 +477,7 @@ Public Class Synchronisation
                         Try
                             Dim UpdatedObject As New Object
                             Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
-                            Dim response As Integer = ManometreControleManager.SendWSManometreControle(m_Agent, tmpUpdateManometreControle, UpdatedObject)
+                            Dim response As Integer = ManometreControleManager.WSSend(tmpUpdateManometreControle, UpdatedObject)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
@@ -505,7 +505,7 @@ Public Class Synchronisation
                         Try
                             Dim UpdatedObject As New Object
                             Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
-                            Dim response As Integer = ManometreEtalonManager.SendWSManometreEtalon(m_Agent, tmpUpdateManometreEtalon, pUpdated)
+                            Dim response As Integer = ManometreEtalonManager.WSSend(tmpUpdateManometreEtalon, UpdatedObject)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
@@ -532,7 +532,7 @@ Public Class Synchronisation
                         Try
                             Dim UpdatedObject As New Object
                             Notice("Banc de mesure n°" & tmpUpdateBanc.id)
-                            Dim response As Integer = BancManager.SendWSBanc(m_Agent, tmpUpdateBanc, pBanc)
+                            Dim response As Integer = BancManager.WSSend(tmpUpdateBanc, UpdatedObject)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")
@@ -574,8 +574,9 @@ Public Class Synchronisation
             End If
             If (m_SynchroBoolean.m_bSynchAscAutotests) Then
                 ' Synchro des AutoTest()
+
                 Notice("Controles Reguliers ")
-                Dim bReturn As Boolean = AutoTestManager.SendWSAutoTest(m_Agent,)
+                Dim bReturn As Boolean = AutoTestManager.sendWSControlesReguliers(m_Agent)
                 If Not bReturn Then
                     CSDebug.dispError("Synchronisation::runAscSynchro(sendWSControlesReguliers) - Erreur Locale")
                 End If
@@ -989,7 +990,7 @@ Public Class Synchronisation
 
         'On récupère les éléments à synchroniser de chaque Agent
         For Each oAgent As Agent In oList.items
-            If oAgent.uid <> m_Agent.uid Then
+            If oAgent.id <> m_Agent.id Then
                 lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
 
                 'et on les fusionne dans la liste Globale
@@ -1031,7 +1032,7 @@ Public Class Synchronisation
             'On récupère les éléments à synchroniser de chaque Agent
             For Each oAgent As Agent In oList.items
                 If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
-                    CSDebug.dispInfo("getListasynchroniser(" & oAgent.uid & ")")
+                    CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
 
                     lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
 
@@ -1096,10 +1097,10 @@ Public Class Synchronisation
             Next
 
             'On recharge l'agent courant
-            m_Agent = AgentManager.getAgentById(m_Agent.uid)
+            m_Agent = AgentManager.getAgentById(m_Agent.id)
             '            agentCourant = m_Agent
             'Si l'agent n'est pas supprimé
-            If Not String.IsNullOrEmpty(m_Agent.uid) Then
+            If Not String.IsNullOrEmpty(m_Agent.id) Then
                 'On synchronise les élements non traité (<> GetAgent)
                 For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
                     If oSynchroElmt.Traitee = False Then
@@ -1185,8 +1186,8 @@ Public Class Synchronisation
                     oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)
                     AgentManager.save(oAgent, True)
                     'Maj de la date de dernière synchro de l'agent sur le SRV
-                    CSDebug.dispInfo("MAJ date dernier Synchro ID=" & oAgent.uid & ",DateDernSynchro=" & oAgent.dateDerniereSynchro)
-                    objWSCrodip.SetDateSynchroAgent(oAgent.uid, oAgent.dateDerniereSynchro)
+                    CSDebug.dispInfo("MAJ date dernier Synchro ID=" & oAgent.id & ",DateDernSynchro=" & oAgent.dateDerniereSynchro)
+                    objWSCrodip.SetDateSynchroAgent(oAgent.id, oAgent.dateDerniereSynchro)
                 End If
             Next
             bReturn = True

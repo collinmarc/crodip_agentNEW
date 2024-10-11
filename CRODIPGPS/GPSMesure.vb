@@ -47,6 +47,11 @@
             End If
         End Set
     End Property
+    Public ReadOnly Property TempAffichage As Decimal
+        Get
+            Return Decimal.Round(_temps, 3)
+        End Get
+    End Property
     Private _temps As Decimal
     Public Property Temps() As Decimal
         Get

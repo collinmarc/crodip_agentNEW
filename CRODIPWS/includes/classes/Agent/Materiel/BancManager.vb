@@ -4,17 +4,16 @@ Public Class BancManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-
-    Public Shared Function getWSBancById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Banc
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Banc
         Dim oreturn As Banc
-        oreturn = getWSByKey(Of Banc)(pmanometre_uid, "")
+        oreturn = getWSByKey(Of Banc)(p_uid, paid)
         Return oreturn
     End Function
 
-    Public Shared Function SendWSBanc(pAgent As Agent, ByVal pManometre As Banc, ByRef pReturn As Banc) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As Banc, ByRef pobjOut As Banc) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Banc)(pManometre, pReturn)
+            nreturn = SendWS(Of Banc)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSBanc : " & ex.Message)
@@ -22,6 +21,67 @@ Public Class BancManager
         End Try
         Return nreturn
     End Function
+
+    'Public Shared Function getWSBancById(poAgent As Agent, ByVal banc_id As String) As Banc
+    '    Dim objBanc As New Banc
+    '    Try
+
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        Dim bReturn As Boolean
+    '        ' Appel au WS
+    '        Dim codeResponse As Integer = objWSCrodip.GetBanc(poAgent.id, banc_id, objWSCrodip_response)
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '                        bReturn = objBanc.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+    '                        Debug.Assert(bReturn) ' Must be true
+    '                    End If
+    '                Next
+    '            Case 1 ' NOK
+    '                CSDebug.dispError("Erreur - BancManager - Code 1 : Non-Trouvée (" & banc_id & ")")
+    '            Case 9 ' BADREQUEST
+    '                CSDebug.dispError("Erreur - BancManager - Code 9 : Bad Request (" & banc_id & ")")
+    '        End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispError("Erreur - BancManager - getWSBancById (" & banc_id & ") : " & ex.Message)
+    '    End Try
+    '    Return objBanc
+
+    'End Function
+
+    'Public Shared Function sendWSBanc(pAgent As Agent, ByVal banc As Banc) As Integer
+    '    Try
+    '        Dim updatedObject As New Object
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim sinfo As String
+    '        Dim uid As Integer
+    '        Return objWSCrodip.SendBanc(banc, sinfo, uid)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("BancManager.sendWSBanc Error " & ex.Message)
+    '        If ex.InnerException IsNot Nothing Then
+    '            CSDebug.dispError("BancManager.sendWSBanc Error " & ex.InnerException.Message)
+    '        End If
+    '    End Try
+    'End Function
+
+    'Public Shared Function xml2object(ByVal arrXml As Object) As Banc
+    '    Dim objBanc As New Banc
+
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
+    '            objBanc.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
+    '        End If
+    '    Next
+
+    '    Return objBanc
+    'End Function
+
 #End Region
 
 #Region "Methodes Locales"
@@ -31,11 +91,11 @@ Public Class BancManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
 
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
+        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY BancMesure.id DESC"
+            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY BancMesure.id DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -45,13 +105,13 @@ Public Class BancManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
                 tmpListProfils.Close()
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
+                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("BancManager - getnewIdForTestOnly : " & ex.Message & vbNewLine)
             End Try
@@ -105,10 +165,10 @@ Public Class BancManager
                         paramsQuery = paramsQuery & " , modele='" & CSDb.secureString(objBanc.modele) & "'"
                     End If
                     If objBanc.dateDernierControleS IsNot Nothing Then
-                        paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.TOCRODIPString(objBanc.dateDernierControleS) & "'"
+                        paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objBanc.dateDernierControleS) & "'"
                     End If
                     If Not objBanc.dateAchat Is Nothing Then
-                        paramsQuery = paramsQuery & " , dateAchat='" & CSDate.TOCRODIPString(objBanc.dateAchat) & "'"
+                        paramsQuery = paramsQuery & " , dateAchat='" & CSDate.ToCRODIPString(objBanc.dateAchat) & "'"
                     End If
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBanc.dateModificationAgent) & "'"
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBanc.dateModificationCrodip) & "'"
@@ -128,14 +188,14 @@ Public Class BancManager
                         paramsQuery = paramsQuery & " , raisonSuppression=''"
                     End If
                     If objBanc.dateSuppression <> "" Then
-                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.TOCRODIPString(objBanc.dateSuppression) & "'"
+                        paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBanc.dateSuppression) & "'"
                     Else
                         paramsQuery = paramsQuery & " , dateSuppression=''"
                     End If
 
                     paramsQuery = paramsQuery & " , jamaisServi=" & objBanc.jamaisServi & ""
                     If objBanc.DateActivation <> Nothing Then
-                        paramsQuery = paramsQuery & " , dateActivation='" & CSDate.TOCRODIPString(objBanc.DateActivation) & "'"
+                        paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBanc.DateActivation) & "'"
                     End If
                     paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.ModuleAcquisition & "'"
 
@@ -600,7 +660,7 @@ Public Class BancManager
 
         ' déclarations
         Dim bReturn As Boolean = False
-        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim objWSCrodip_response As New Object
         Debug.Assert("FONCTION BancManager.getlstPoolByID Non implémentée")
         '' Appel au WS

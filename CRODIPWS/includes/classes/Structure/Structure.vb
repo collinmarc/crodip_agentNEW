@@ -429,7 +429,7 @@ Public Class Structuree
             For Each oAgent As Agent In lst.Where(Function(A)
                                                       Return A.idStructure = Me.id
                                                   End Function)
-                CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.uid & "]")
+                CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
 
                 oAgent.idCRODIPPool = oPool.idCrodip
                 AgentManager.save(oAgent)

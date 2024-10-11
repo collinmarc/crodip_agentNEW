@@ -14,7 +14,7 @@ Public Class FVBancManager
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetFVBanc(pAgent.uid, fvbanc_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetFVBanc(pAgent.id, fvbanc_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -347,13 +347,13 @@ Public Class FVBancManager
         Dim oAgent As Agent
         Dim tmpObjectId As String = ""
         oAgent = AgentManager.getAgentById(pIdAgent)
-        If oAgent.uid = pIdAgent Then
+        If oAgent.id = pIdAgent Then
             If oAgent.idStructure <> 0 Then
                 Dim bdd As New CSDb(True)
 
                 Try
                     ' On récupère les résultats
-                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.uid & "-%' ORDER BY `id` DESC")
+                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
                     ' Puis on les parcours
                     Dim newId As Integer = 0
                     While oDataReader.Read()
@@ -368,7 +368,7 @@ Public Class FVBancManager
                     End While
                     oDataReader.Close()
                     newId = newId + 1
-                    tmpObjectId = oAgent.idStructure & "-" & oAgent.uid & "-" & (newId + 1)
+                    tmpObjectId = oAgent.idStructure & "-" & oAgent.id & "-" & (newId + 1)
                 Catch ex As Exception ' On intercepte l'erreur
                     CSDebug.dispError("FVBancManager.getnewId ERR : " & ex.Message)
                 End Try

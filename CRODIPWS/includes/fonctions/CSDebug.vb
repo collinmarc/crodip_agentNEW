@@ -35,6 +35,12 @@ Public Class CSDebug
         displayMsg("[Info] - " & infoMsg)
         ' End If
     End Sub
+    Public Shared Sub dispTrace(ByVal infoMsg As String)
+        logger.Trace(infoMsg)
+        'If GLOB_ENV_DEBUGLVL >= 3 Then
+        displayMsg("[Trace] - " & infoMsg)
+        ' End If
+    End Sub
 
     Public Shared Sub dispFatal(ByVal pErrorMsg As String, ex As Exception)
         Dim errorMessage As String
@@ -103,7 +109,7 @@ Public Class CSDebug
         timeString = timeString & "[" & Date.Now.ToLongTimeString & "]"
         msg = timeString & "" & msg
 
-        Console.Write(msg & vbNewLine)
+        Trace.Write(msg & vbNewLine)
 
     End Sub
 

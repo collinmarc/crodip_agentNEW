@@ -26,7 +26,7 @@ Public Class AutoTest
     Public Sub New(pAgent As Agent)
         _id = -1
         _Etat = -1
-        NumAgent = pAgent.uid
+        NumAgent = pAgent.id
         IdStructure = pAgent.idStructure
         _dateModificationAgent = Date.Now()
         _dateModificationCrodip = CDate("01/01/1970")
@@ -37,7 +37,7 @@ Public Class AutoTest
         Type = "MANOC"
         IdMateriel = pMano.idCrodip
         IdStructure = pMano.uidstructure
-        NumAgent = pAgent.uid
+        NumAgent = pAgent.id
         Traca = pMano.Traca
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
@@ -46,7 +46,7 @@ Public Class AutoTest
         Type = "MANOE"
         IdMateriel = pMano.idCrodip
         IdStructure = pMano.uidstructure
-        NumAgent = pAgent.uid
+        NumAgent = pAgent.id
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
         _id = -1
@@ -54,7 +54,7 @@ Public Class AutoTest
         Type = "BANC"
         IdMateriel = pBanc.id
         IdStructure = pBanc.uidstructure
-        NumAgent = pAgent.uid
+        NumAgent = pAgent.id
     End Sub
     Public Property Id() As Integer
         Get

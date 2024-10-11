@@ -301,7 +301,7 @@ Partial Class Form1
         '
         Me.tbTemps.AnimateReadOnly = False
         Me.tbTemps.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.tbTemps.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Temps", True))
+        Me.tbTemps.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "TempAffichage", True))
         Me.tbTemps.Depth = 0
         Me.tbTemps.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbTemps.Enabled = False

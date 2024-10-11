@@ -21,7 +21,7 @@ End Class
 
 <Serializable(), XmlInclude(GetType(Agent))>
 Public Class Agent
-    Inherits root
+
     Private _id As Integer
     Private _numeroNational As String
     Private _motDePasse As String
@@ -85,7 +85,7 @@ Public Class Agent
         dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchro(pidStructure))
     End Sub
 
-    Public Property uid() As Integer
+    Public Property id() As Integer
         Get
             Return _id
         End Get
@@ -93,24 +93,7 @@ Public Class Agent
             _id = Value
         End Set
     End Property
-    Private _aid As String
-    Public Property aid() As String
-        Get
-            Return _aid
-        End Get
-        Set(ByVal value As String)
-            _aid = value
-        End Set
-    End Property
-    Private _idDataPulve As String
-    Public Property idDataPulve() As String
-        Get
-            Return _idDataPulve
-        End Get
-        Set(ByVal value As String)
-            _idDataPulve = value
-        End Set
-    End Property
+
     Public Property numeroNational() As String
         Get
             Return _numeroNational
@@ -406,7 +389,7 @@ Public Class Agent
         Try
             Select Case pcolName.Trim().ToUpper()
                 Case "id".Trim().ToUpper()
-                    Me.uid = pValue
+                    Me.id = pValue
                 Case "numeroNational".Trim().ToUpper()
                     Me.numeroNational = pValue.ToString()
                 Case "motDePasse".Trim().ToUpper()
@@ -491,8 +474,8 @@ Public Class Agent
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function deleteDiagnostic() As Boolean
-        Debug.Assert(uid > 0, " le paramètre AgentID doit être initialisé")
-        CSDebug.dispError("Suppression des Diagnostiques de l'agent " & uid)
+        Debug.Assert(id > 0, " le paramètre AgentID doit être initialisé")
+        CSDebug.dispError("Suppression des Diagnostiques de l'agent " & id)
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
         Dim bReturn As Boolean
@@ -502,7 +485,7 @@ Public Class Agent
             oCsdb = New CSDb(True)
 
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT id from Diagnostic WHERE inspecteurid=" & uid.ToString() & ""
+            bddCommande.CommandText = "SELECT id from Diagnostic WHERE inspecteurid=" & id.ToString() & ""
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
                 idDiag = oDR.GetString(0)
@@ -515,7 +498,7 @@ Public Class Agent
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("Agent.deleteDiagnostic (" & uid.ToString() & ") Error: " & ex.Message.ToString)
+            CSDebug.dispFatal("Agent.deleteDiagnostic (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
         If Not oCsdb Is Nothing Then
@@ -535,11 +518,11 @@ Public Class Agent
         Dim oDR As DbDataReader
         Dim idPulve As String
         Try
-            CSDebug.dispError("Suppression des Pulvérisateurs de l'agent " & uid)
+            CSDebug.dispError("Suppression des Pulvérisateurs de l'agent " & id)
             oCsdb = New CSDb(True)
 
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT id from pulverisateur WHERE id like " & ControlChars.Quote & "%-" & uid.ToString() & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT id from pulverisateur WHERE id like " & ControlChars.Quote & "%-" & id.ToString() & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While (oDR.Read())
                 idPulve = oDR.GetString(0)
@@ -551,7 +534,7 @@ Public Class Agent
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("Agent.deletePulverisateur (" & uid.ToString() & ") Error: " & ex.Message.ToString)
+            CSDebug.dispFatal("Agent.deletePulverisateur (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
         If Not oCsdb Is Nothing Then
@@ -571,11 +554,11 @@ Public Class Agent
         Dim oDR As DbDataReader
         Dim idExploit As String
         Try
-            CSDebug.dispError("Suppression des Exploitations de l'agent " & uid)
+            CSDebug.dispError("Suppression des Exploitations de l'agent " & id)
             oCsdb = New CSDb(True)
 
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT id from Exploitation WHERE id like " & ControlChars.Quote & "%-" & uid.ToString() & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT id from Exploitation WHERE id like " & ControlChars.Quote & "%-" & id.ToString() & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While (oDR.Read())
                 idExploit = oDR.GetString(0)
@@ -587,7 +570,7 @@ Public Class Agent
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("Agent.deletePulverisateur (" & uid.ToString() & ") Error: " & ex.Message.ToString)
+            CSDebug.dispFatal("Agent.deletePulverisateur (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
         If Not oCsdb Is Nothing Then
@@ -603,7 +586,7 @@ Public Class Agent
     Private Function deleteMateriel() As Boolean
         Dim bReturn As Boolean
         Try
-            CSDebug.dispError("Suppression du materiel  de l'agent " & uid)
+            CSDebug.dispError("Suppression du materiel  de l'agent " & id)
             bReturn = deleteBuse()
             If bReturn Then
                 bReturn = deleteManoControle()
@@ -618,7 +601,7 @@ Public Class Agent
                 bReturn = deleteControleRegulier()
             End If
         Catch ex As Exception
-            CSDebug.dispFatal("AgentManager.deleteMateriel (" & uid.ToString() & ") Error: " & ex.Message.ToString)
+            CSDebug.dispFatal("AgentManager.deleteMateriel (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
         Return bReturn
@@ -637,7 +620,7 @@ Public Class Agent
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT numeroNational from AgentBuseEtalon where numeroNational like " & ControlChars.Quote & "%-" & uid & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT numeroNational from AgentBuseEtalon where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
                 BuseManager.delete(oDR.GetString(0))
@@ -645,7 +628,7 @@ Public Class Agent
             oDR.Close()
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("AgentManager.deleteBuse (" & uid.ToString() & ") Error: " & ex.Message.ToString)
+            CSDebug.dispFatal("AgentManager.deleteBuse (" & id.ToString() & ") Error: " & ex.Message.ToString)
             bReturn = False
         End Try
         If Not oCsdb Is Nothing Then
@@ -667,7 +650,7 @@ Public Class Agent
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT numeroNational from AgentMAnoControle where numeroNational like " & ControlChars.Quote & "%-" & uid & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT numeroNational from AgentMAnoControle where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
 
@@ -697,7 +680,7 @@ Public Class Agent
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT numeroNational from AgentMAnoEtalon where numeroNational like " & ControlChars.Quote & "%-" & uid & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT numeroNational from AgentMAnoEtalon where numeroNational like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
                 'Suppression des ControleManoMesure
@@ -738,7 +721,7 @@ Public Class Agent
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT id from BancMesure where id like " & ControlChars.Quote & "%-" & uid & "-%" & ControlChars.Quote
+            bddCommande.CommandText = "SELECT id from BancMesure where id like " & ControlChars.Quote & "%-" & id & "-%" & ControlChars.Quote
             oDR = bddCommande.ExecuteReader()
             While oDR.Read()
                 BancManager.delete(oDR.GetString(0))
@@ -766,7 +749,7 @@ Public Class Agent
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "DELETE FROM controle_regulier where ctrg_numagent ='" & uid & "'"
+            bddCommande.CommandText = "DELETE FROM controle_regulier where ctrg_numagent ='" & id & "'"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -785,7 +768,7 @@ Public Class Agent
         Try
 
             If pTouteslesInfos Then
-                Me.uid = pAgent.uid
+                Me.id = pAgent.id
                 Me.numeroNational = pAgent.numeroNational
                 Me.idStructure = pAgent.idStructure
                 Me.telephonePortable = pAgent.telephonePortable
@@ -825,7 +808,7 @@ Public Class Agent
             If obj.GetType().Equals(Me.GetType()) Then
                 Dim oagent As Agent
                 oagent = CType(obj, Agent)
-                bReturn = (Me.uid = oagent.uid)
+                bReturn = (Me.id = oagent.id)
 
             End If
         End If
@@ -862,42 +845,4 @@ Public Class Agent
 
         Return bReturn
     End Function
-End Class
-Public Class AgentRequest
-    Private _uid As String
-    Public Property uid() As Integer
-        Get
-            Return _uid
-        End Get
-        Set(ByVal value As Integer)
-            _uid = value
-        End Set
-    End Property
-    Private _aid As String
-    Public Property aid() As String
-        Get
-            Return _aid
-        End Get
-        Set(ByVal value As String)
-            _aid = value
-        End Set
-    End Property
-    Private _idProfilAgent As Integer
-    Public Property idProfilAgent() As Integer
-        Get
-            Return _idProfilAgent
-        End Get
-        Set(ByVal value As Integer)
-            _idProfilAgent = value
-        End Set
-    End Property
-    Private _nom As String
-    Public Property nom() As String
-        Get
-            Return _nom
-        End Get
-        Set(ByVal value As String)
-            _nom = value
-        End Set
-    End Property
 End Class

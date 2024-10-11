@@ -34,6 +34,7 @@ Public MustInherit Class Materiel
         _JamaisServi = False
 
     End Sub
+
     'Public Property id() As Integer
     '    Get
     '        Return _id
@@ -154,7 +155,9 @@ Public MustInherit Class Materiel
             Return _dateDernierControle
         End Get
         Set(ByVal Value As String)
-            _dateDernierControle = Value
+            If Value <> "" Then
+                _dateDernierControle = Value
+            End If
         End Set
     End Property
     <XmlIgnoreAttribute()>
@@ -195,7 +198,7 @@ Public MustInherit Class Materiel
             _etat = CBool(Value)
         End Set
     End Property
-    <XmlIgnore()>
+    <XmlIgnoreAttribute()>
     Public Property etat() As Boolean
         Get
             Return _etat
@@ -204,7 +207,7 @@ Public MustInherit Class Materiel
             _etat = Value
         End Set
     End Property
-    <XmlIgnore()>
+    <XmlIgnoreAttribute()>
     Public Overridable Property Libelle() As String
         Get
             Return "Matériel : " + numeroNational

@@ -5,7 +5,7 @@ Imports System.Xml.Serialization
 Public Class ManometreEtalon
     Inherits Manometre
 
-    Private _incertitudeEtalon As String
+    Private _incertitudeEtalon As String = ""
 
     Sub New()
 
@@ -20,7 +20,7 @@ Public Class ManometreEtalon
             _incertitudeEtalon = Value
         End Set
     End Property
-
+    <XmlIgnoreAttribute()>
     Public ReadOnly Property incertitudeEtalon_d() As Double
         Get
             Try
@@ -156,7 +156,7 @@ Public Class ManometreEtalon
             newFicheVieManoEtalon.idManometre = Me.idCrodip
             newFicheVieManoEtalon.type = pType
             newFicheVieManoEtalon.auteur = "AGENT"
-            newFicheVieManoEtalon.idAgentControleur = pAgent.uid
+            newFicheVieManoEtalon.idAgentControleur = pAgent.id
             newFicheVieManoEtalon.caracteristiques =
             Me.idCrodip & "|" &
             Me.marque & "|" &

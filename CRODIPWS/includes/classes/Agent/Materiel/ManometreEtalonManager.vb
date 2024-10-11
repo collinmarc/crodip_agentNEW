@@ -5,17 +5,16 @@ Public Class ManometreEtalonManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-
-    Public Shared Function getWSManometreEtalonById(pAgent As Agent, ByVal pmanometre_uid As Integer) As ManometreEtalon
+    Public Shared Function WSgetById(ByVal p_uid As Integer) As ManometreEtalon
         Dim oreturn As ManometreEtalon
-        oreturn = getWSByKey(Of ManometreEtalon)(pmanometre_uid, "")
+        oreturn = getWSByKey(Of ManometreEtalon)(p_uid, "")
         Return oreturn
     End Function
 
-    Public Shared Function SendWSManometreEtalon(pAgent As Agent, ByVal pManometre As ManometreEtalon, ByRef pReturn As ManometreEtalon) As Integer
+    Public Shared Function WSSend(ByVal pManometreEtalon As ManometreEtalon, ByRef pReturn As ManometreEtalon) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of ManometreEtalon)(pManometre, pReturn)
+            nreturn = SendWS(Of ManometreEtalon)(pManometreEtalon, pReturn)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSManometreEtalon : " & ex.Message)
@@ -24,6 +23,60 @@ Public Class ManometreEtalonManager
         Return nreturn
     End Function
 
+    'Public Shared Function getWSManometreEtalonById(pAgent As Agent, ByVal manometreetalon_id As String) As ManometreEtalon
+    '    Dim objManometreEtalon As New ManometreEtalon
+    '    Try
+
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        Dim codeResponse As Integer = objWSCrodip.GetManometreEtalon(pAgent.id, manometreetalon_id, objWSCrodip_response)
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    If (objWSCrodip_responseItem.InnerText() <> "") Then
+    '                        objManometreEtalon.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+    '                    End If
+
+    '                Next
+    '            Case 1 ' NOK
+    '                CSDebug.dispError("ManometreEtalonManager - Code 1 : Non-Trouvée")
+    '            Case 9 ' BADREQUEST
+    '                CSDebug.dispError("ManometreEtalonManager - Code 9 : Bad Request")
+    '        End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispError("ManometreEtalonManager - getWSManometreEtalonById : " & ex.Message)
+    '    End Try
+    '    Return objManometreEtalon
+
+    'End Function
+
+    'Public Shared Function sendWSManometreEtalon(pAgent As Agent, ByVal manometreetalon As ManometreEtalon) As Integer
+    '    Try
+    '        Dim updatedObject As New Object
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim info As String = ""
+    '        Return objWSCrodip.SendManometreEtalon(manometreetalon, info, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+
+    'Public Shared Function xml2object(ByVal arrXml As Object) As ManometreEtalon
+    '    Dim objManometreEtalon As New ManometreEtalon
+
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
+    '            objManometreEtalon.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
+    '        End If
+    '    Next
+
+    '    Return objManometreEtalon
+    'End Function
 
 #End Region
 
@@ -31,13 +84,13 @@ Public Class ManometreEtalonManager
 
     Public Shared Function getNewNumeroNationalForTestOnly(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
+        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
 
             Dim bddCommande As DbCommand
             Dim oCSDB As New CSDb(True)
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
+            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -47,12 +100,12 @@ Public Class ManometreEtalonManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
+                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManoEtalon - newId : " & ex.Message & vbNewLine)
             End Try

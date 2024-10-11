@@ -19,7 +19,14 @@ Public Class Manometre
     Sub New()
         _lstPools = New List(Of Pool)()
     End Sub
-
+    Public Property idManometre() As String
+        Get
+            Return numeroNational
+        End Get
+        Set(ByVal value As String)
+            numeroNational = value
+        End Set
+    End Property
 
     Public Property marque() As String
         Get

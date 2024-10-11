@@ -3,28 +3,122 @@ Imports System.Linq
 
 Public Class AgentManager
     Inherits RootManager
+#Region "Methodes acces Web Service"
 
-#Region "Methodes Web Service"
-
-    Public Shared Function getWSById(pAgent As Agent, ByVal puid As Integer) As Agent
-        Dim oreturn As Agent
-        oreturn = getWSByKey(Of Agent)(puid, "")
-        Return oreturn
-    End Function
-
-    Public Shared Function SendWSAgent(pAgent As Agent, ByVal pobj As Agent, ByRef pReturn As Agent) As Integer
-        Dim nreturn As Integer
+    'Public Shared Function RESTlogin(pAgent As Agent) As Boolean
+    '    Return RootManager.RESTConnect(pAgent)
+    'End Function
+    ' Methode OK
+    Public Shared Function getWSAgentById(ByVal agent_id As String) As Agent
+        Dim objAgent As New Agent
         Try
-            nreturn = SendWS(Of Agent)(pobj, pReturn)
 
+            ' déclarations
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip_response As New Object
+            ' Appel au WS
+            'Dim codeResponse As Integer = objWSCrodip.GetAgent(agent_id, objWSCrodip_response)
+            Dim codeResponse As Integer
+            Select Case codeResponse
+                Case 0 ' OK
+                    '                    SynchronisationManager.LogSynchroElmt(objWSCrodip_response)
+                    ' construction de l'objet
+                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
+                    For Each objWSCrodip_responseItem In objWSCrodip_response
+                        If Not String.IsNullOrEmpty(objWSCrodip_responseItem.InnerText()) Then
+                            objAgent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+                        End If
+                    Next
+                Case 1 ' NOK
+                    objAgent.id = -1
+                    CSDebug.dispError("Erreur - AgentManager - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    objAgent.id = -1
+                    CSDebug.dispError("Erreur - AgentManager - Code 9 : Bad Request")
+                Case 3
+                    objAgent.id = -1
+                    CSDebug.dispError("Erreur - AgentManager - Code 3 : Pas de mise à jour")
+            End Select
+            ''' TODO pour test MCO
+            '           objWSCrodip.sendWSAgent(objWSCrodip_response, Nothing)
         Catch ex As Exception
-            CSDebug.dispFatal("sendWSAgent : " & ex.Message)
-            nreturn = -1
+            CSDebug.dispError("AgentManager - getWSAgentById : " & ex.Message)
+            objAgent = New Agent
         End Try
-        Return nreturn
-    End Function
-#End Region
+        Return objAgent
 
+    End Function
+
+    'test   
+    'Re test
+    ' Methode OK
+    Public Shared Function sendWSAgent(ByVal agent As Agent, ByRef updatedObject As Object) As Integer
+        Try
+            ' Appel au Web Service
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Return objWSCrodip.SendAgent(agent, updatedObject)
+        Catch ex As Exception
+            CSDebug.dispFatal("AgentManager::sendWSAgent : " & ex.Message)
+            Return -1
+        End Try
+    End Function
+
+    Public Shared Function xml2object(ByVal arrXml As Object) As Agent
+        Dim objAgent As New Agent
+
+        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+            If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
+                objAgent.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
+            End If
+        Next
+
+        Return objAgent
+    End Function
+
+    ' Methode NOK
+    'Public Shared Function getWSUpdates(ByVal agent_id As String, ByVal lastUpdateDateTime As String) As Object
+    '    Dim objWSCrodip_response As Object
+    '    Try
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+    '        ' Appel au WS
+    '        Dim isUpdateAvailable As Integer
+    '        Dim isComplete As Integer
+    '        objWSCrodip.UpdatesAvailable(agent_id, lastUpdateDateTime, isUpdateAvailable, isComplete, objWSCrodip_response)
+    '    Catch ex As Exception
+    '        'Return False
+    '        objWSCrodip_response = -1
+    '        CSDebug.dispFatal("AgentManager - getWSUpdates : " & ex.Message.ToString)
+    '    End Try
+    '    Return objWSCrodip_response
+    'End Function
+
+    'Public Shared Function setDateSynchroAgent(ByVal agent As Agent)
+    '    Try
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+    '        ' Appel au WS
+    '        objWSCrodip.SetDateSynchroAgent(agent.id, CSDate.access2mysql(agent.dateDerniereSynchro))
+    '    Catch ex As Exception
+    '        CSDebug.dispFatal("AgentManager - setDateSynchroAgent : " & ex.Message.ToString)
+    '    End Try
+    'End Function
+
+    'Public Shared Function updateDateSynchroAgent2(ByVal agent As Agent)
+    '    Try
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+    '        ' Appel au WS
+    '        Dim synchroDateTime As Object
+    '        objWSCrodip.GetSynchroDateTime(synchroDateTime)
+    '        agent.dateDerniereSynchro = synchroDateTime(0).InnerText()
+    '    Catch ex As Exception
+    '        CSDebug.dispFatal("AgentManager - setDateSynchroAgent : " & ex.Message.ToString)
+    '    End Try
+    '    Return agent
+    'End Function
+
+#End Region
 
 #Region "Methodes acces Local"
 
@@ -272,7 +366,7 @@ Public Class AgentManager
         Try
             bReturn = False
             If agent.isSupprime Then
-                bReturn = delete(agent.uid)
+                bReturn = delete(agent.id)
 
             Else
 
@@ -283,7 +377,7 @@ Public Class AgentManager
                 Dim nb As Integer = bddCommande.ExecuteScalar()
                 If nb = 0 Then
                     oCsdb.free()
-                    createAgent(agent.uid, agent.numeroNational, agent.nom, agent.idStructure)
+                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.idStructure)
                     oCsdb = New CSDb(True)
                     bddCommande = oCsdb.getConnection.CreateCommand()
                 End If
@@ -296,7 +390,7 @@ Public Class AgentManager
                     agent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
 
-                paramsQuery = paramsQuery & " id=" & agent.uid
+                paramsQuery = paramsQuery & " id=" & agent.id
                 If Not agent.numeroNational Is Nothing Then
                     paramsQuery = paramsQuery & ", numeroNational='" & CSDb.secureString(agent.numeroNational) & "'"
                 End If
@@ -371,7 +465,7 @@ Public Class AgentManager
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE Agent SET dateModificationCrodip='" & CSDate.ToCRODIPString(newDate) & "',dateModificationAgent='" & CSDate.ToCRODIPString(newDate) & "' WHERE id=" & agent.uid & ""
+            dbLink.queryString = "UPDATE Agent SET dateModificationCrodip='" & CSDate.ToCRODIPString(newDate) & "',dateModificationAgent='" & CSDate.ToCRODIPString(newDate) & "' WHERE id=" & agent.id & ""
             dbLink.Execute()
         Catch ex As Exception
             CSDebug.dispFatal("AgentManager::setSynchro : " & ex.Message)

@@ -8,13 +8,13 @@ Public Class ManometreControleManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSManometreControleById(pAgent As Agent, ByVal pmanometrecontrole_uid As Integer) As ManometreControle
+    Public Shared Function WSgetById(ByVal pmanometrecontrole_uid As Integer) As ManometreControle
         Dim oreturn As ManometreControle
         oreturn = getWSByKey(Of ManometreControle)(pmanometrecontrole_uid, "")
         Return oreturn
     End Function
 
-    Public Shared Function SendWSManometreControle(pAgent As Agent, ByVal pManometreControle As ManometreControle, ByRef pReturn As ManometreControle) As Integer
+    Public Shared Function WSSend(ByVal pManometreControle As ManometreControle, ByRef pReturn As ManometreControle) As Integer
         Dim nreturn As Integer
         Try
             nreturn = SendWS(Of ManometreControle)(pManometreControle, pReturn)
@@ -31,44 +31,44 @@ Public Class ManometreControleManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
-        ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
-        If pAgent.idStructure <> 0 Then
+    'Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
+    '    ' déclarations
+    '    Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
+    '    If pAgent.idStructure <> 0 Then
 
-            Dim oCSDB As New CSDb(True)
-            Dim bddCommande As DbCommand
-            bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT AgentManoControle.numeroNational FROM AgentManoControle WHERE AgentManoControle.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY AgentManoControle.numeroNational DESC"
-            Try
-                ' On récupère les résultats
-                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
-                ' Puis on les parcours
-                Dim newId As Integer = 0
-                While tmpListProfils.Read()
-                    ' On récupère le dernier ID
-                    Dim tmpId As Integer = 0
-                    tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
-                    If tmpId > newId Then
-                        newId = tmpId
-                    End If
-                End While
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
-            Catch ex As Exception ' On intercepte l'erreur
-                CSDebug.dispError("ManoControleManager - newId : " & ex.Message & vbNewLine)
-            End Try
+    '        Dim oCSDB As New CSDb(True)
+    '        Dim bddCommande As DbCommand
+    '        bddCommande = oCSDB.getConnection().CreateCommand()
+    '        bddCommande.CommandText = "SELECT AgentManoControle.numeroNational FROM AgentManoControle WHERE AgentManoControle.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoControle.numeroNational DESC"
+    '        Try
+    '            ' On récupère les résultats
+    '            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+    '            ' Puis on les parcours
+    '            Dim newId As Integer = 0
+    '            While tmpListProfils.Read()
+    '                ' On récupère le dernier ID
+    '                Dim tmpId As Integer = 0
+    '                tmpObjectId = tmpListProfils.Item(0).ToString
+    '                tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+    '                If tmpId > newId Then
+    '                    newId = tmpId
+    '                End If
+    '            End While
+    '            tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+    '        Catch ex As Exception ' On intercepte l'erreur
+    '            CSDebug.dispError("ManoControleManager - newId : " & ex.Message & vbNewLine)
+    '        End Try
 
-            ' Test pour fermeture de connection BDD
-            If Not oCSDB Is Nothing Then
-                ' On ferme la connexion
-                oCSDB.free()
-            End If
+    '        ' Test pour fermeture de connection BDD
+    '        If Not oCSDB Is Nothing Then
+    '            ' On ferme la connexion
+    '            oCSDB.free()
+    '        End If
 
-        End If
-        'on retourne le nouvel id
-        Return tmpObjectId
-    End Function
+    '    End If
+    '    'on retourne le nouvel id
+    '    Return tmpObjectId
+    'End Function
 
     Public Shared Function save(ByVal objManometreControle As ManometreControle, Optional bSynhcro As Boolean = False) As Boolean
 

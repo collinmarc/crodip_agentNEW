@@ -13,7 +13,7 @@ Public Class FVManometreControleManager
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response As New Object
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(pAgent.uid, fvmanometrecontrole_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(pAgent.id, fvmanometrecontrole_id, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -334,26 +334,26 @@ Public Class FVManometreControleManager
 
     Public Shared Function getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.uid & "-1"
+        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
         If pAgent.idStructure <> 0 Then
 
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreControle WHERE id LIKE '" & pAgent.idStructure & "-" & pAgent.uid & "-%' ORDER BY id DESC")
+                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreControle WHERE id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY id DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.uid & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
                 tmpListProfils.Close()
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.uid & "-" & (newId + 1)
+                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("FVManometreControleManager - newId : " & ex.Message & vbNewLine)

@@ -32,10 +32,15 @@ Public Class root
     <XmlElement("dateModificationAgent")>
     Public Property dateModificationAgentS() As String
         Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
+            Return CSDate.GetDateForWS(dateModificationAgent)
         End Get
         Set(ByVal Value As String)
-            _dateModificationAgent = Value
+            If Value <> "" Then
+                Try
+                    dateModificationAgent = Value
+                Catch
+                End Try
+            End If
         End Set
     End Property
     Private _dateModificationCrodip As DateTime
@@ -51,13 +56,20 @@ Public Class root
     <XmlElement("dateModificationCrodip")>
     Public Property dateModificationCrodipS() As String
         Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
+            Return CSDate.GetDateForWS(dateModificationCrodip)
         End Get
         Set(ByVal Value As String)
-            _dateModificationCrodip = Value
+            If Value <> "" Then
+                Try
+                    dateModificationCrodip = Value
+                Catch
+                End Try
+            End If
         End Set
     End Property
     Public Sub New()
+        uid = 0
+        aid = ""
         dateModificationAgent = DateTime.MinValue
         dateModificationCrodip = DateTime.MinValue
     End Sub
