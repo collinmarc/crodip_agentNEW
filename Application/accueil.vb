@@ -6604,7 +6604,11 @@ Public Class accueil
                     If opulve.controleEtat <> "0" Then
                         btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
                     Else
-                        btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+                        If opulve.dateProchainControleAsDate < Now Or opulve.dateProchainControleAsDate Is Nothing Then
+                            btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
+                        Else
+                            btn_ficheClient_diagnostic_nouvelleCV.Enabled = Not agentCourant.isGestionnaire
+                        End If
                     End If
                     btn_ficheClient_diagnostic_voir.Enabled = Not agentCourant.isGestionnaire
                     'btnSupprPulve.Enabled = Not agentCourant.isGestionnaire

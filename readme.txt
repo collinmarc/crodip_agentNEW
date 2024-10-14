@@ -2,6 +2,7 @@
 MASTER
 
 BUILD 20240715170000
+	0001714: Contrat Commercial : Manque Fin de phrase
 	0001710: CRODIPGPS : Calculer la vitesse sur des fractions de secondes
 	0001709: interdire la CV sur les Diag de plus de 4 mois
 	0001708: CRODIPGPS : Ajout D'unrepertoire de sauvegarde automatique
