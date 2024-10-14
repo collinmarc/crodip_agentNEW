@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = BancManager.WSSend(oBanc, oreturn)
         Assert.AreEqual(2, nReturn)
-        oBanc = BancManager.WSgetById(2197)
+        oBanc = BancManager.WSgetById(2)
         Assert.AreEqual(oBanc.marque, marque)
 
     End Sub

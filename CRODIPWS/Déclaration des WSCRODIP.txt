@@ -7,10 +7,14 @@ le recréer par Ajouter / reference de service
 	Espace de nom = WSCRODIP
 
 Modifier le reference.vb (Afficher tous les fichiers)
-ajouter sur chaque send au dessus du nom de méthode 
+ajouter Avant la déclaration de la classe CRODIPserver 
 		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
-Modifier la classe GetIncrementDiagnosticCompletedEventArgs
-en mettant en commentaire la methode GetResult as integer
+
+		<XmlInclude(GetType(CRODIPWS.ManometreControle)),
+        XmlInclude(GetType(CRODIPWS.ManometreEtalon)),
+        XmlInclude(GetType(CRODIPWS.Banc)),
+        XmlInclude(GetType(CRODIPWS.Buse)),
+
 
 Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer
 

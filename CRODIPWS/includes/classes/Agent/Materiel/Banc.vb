@@ -15,13 +15,13 @@ Public Class Banc
     Private _nbControles As Integer
     Private _nbControlesTotal As Integer
     Private _ModuleAcquisition As String
-
+    <XmlIgnore>
     Public Overloads Property id() As String
         Get
-            Return _id
+            Return uid
         End Get
         Set(ByVal value As String)
-            _id = value
+            uid = value
         End Set
     End Property
     Sub New()
@@ -31,6 +31,7 @@ Public Class Banc
     End Sub
 
     Private _lstPools As List(Of Pool)
+    <XmlIgnore>
     Public Property lstPools() As List(Of Pool)
         Get
             Return _lstPools
@@ -76,8 +77,18 @@ Public Class Banc
             _isUtilise = Value
         End Set
     End Property
-
-
+    <XmlElement("nbControles")>
+    Public Property nbControlesWS() As Nullable(Of Integer)
+        Get
+            Return _nbControles
+        End Get
+        Set(ByVal Value As Nullable(Of Integer))
+            If Value IsNot Nothing Then
+                _nbControles = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property nbControles() As Integer
         Get
             Return _nbControles
@@ -87,6 +98,18 @@ Public Class Banc
         End Set
     End Property
 
+    <XmlElement("nbControlesTotal")>
+    Public Property nbControlesTotalWS() As Nullable(Of Integer)
+        Get
+            Return _nbControlesTotal
+        End Get
+        Set(ByVal Value As Nullable(Of Integer))
+            If Value IsNot Nothing Then
+                _nbControlesTotal = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property nbControlesTotal() As Integer
         Get
             Return _nbControlesTotal

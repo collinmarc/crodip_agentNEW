@@ -26,7 +26,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = ManometreEtalonManager.WSSend(oMano, oreturn)
         Assert.AreEqual(2, nReturn)
-        oMano = ManometreEtalonManager.WSgetById(2197)
+        oMano = ManometreEtalonManager.WSgetById(150)
         Assert.AreEqual(oMano.marque, marque)
         Assert.AreEqual(oMano.classe, "CL8")
 

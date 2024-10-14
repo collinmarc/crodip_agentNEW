@@ -144,7 +144,7 @@ Public MustInherit Class Materiel
             Return CSDate.GetDateForWS(_DateActivation.GetValueOrDefault())
         End Get
         Set(ByVal Value As String)
-            If Value <> "" Then
+            If Value <> "" And Value <> "0000-00-00 00:00:00" Then
                 _DateActivation = Value
             End If
         End Set

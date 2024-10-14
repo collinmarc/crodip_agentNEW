@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = BuseManager.WSSend(oBuse, oreturn)
         Assert.AreEqual(2, nReturn)
-        oBuse = BuseManager.WSgetById(2197)
+        oBuse = BuseManager.WSgetById(1473)
         Assert.AreEqual(oBuse.couleur, couleur)
 
     End Sub
