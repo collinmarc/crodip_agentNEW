@@ -65,7 +65,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire/_parametres")>  _
         Public ReadOnly Property RepertoireParametres() As String
             Get
                 Return CType(Me("RepertoireParametres"),String)
@@ -281,7 +281,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4080")>  _
         Public ReadOnly Property SecurityProtocol() As String
             Get
                 Return CType(Me("SecurityProtocol"),String)
@@ -290,7 +290,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public ReadOnly Property Expect100Continue() As String
             Get
                 Return CType(Me("Expect100Continue"),String)
@@ -340,6 +340,24 @@ Namespace My
         Public ReadOnly Property CRODIPWS_WSCRODIP_CrodipServer() As String
             Get
                 Return CType(Me("CRODIPWS_WSCRODIP_CrodipServer"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
+        Public ReadOnly Property Mode() As String
+            Get
+                Return CType(Me("Mode"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("PDFs")>  _
+        Public ReadOnly Property StockPDF() As String
+            Get
+                Return CType(Me("StockPDF"),String)
             End Get
         End Property
     End Class

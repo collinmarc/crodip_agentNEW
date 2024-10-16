@@ -207,7 +207,7 @@ Public Class PrestationCategorieManager
         Try
             '####################################################
             '## Execution de la requete
-            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.idStructure & "','" & CSDate.TOCRODIPString(Date.Now) & "')"
+            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.uidStructure & "','" & CSDate.TOCRODIPString(Date.Now) & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -439,7 +439,7 @@ Public Class PrestationCategorieManager
             '## Execution de la requete
             Dim tmpResults As DbDataReader
             '            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
-            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & pAgent.idStructure & " ORDER BY PrestationCategorie.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & pAgent.uidStructure & " ORDER BY PrestationCategorie.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()

@@ -21,6 +21,7 @@ End Class
 
 <Serializable(), XmlInclude(GetType(Agent))>
 Public Class Agent
+    Inherits root
 
     Private _id As Integer
     Private _numeroNational As String
@@ -78,22 +79,31 @@ Public Class Agent
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
-        _id = pId
-        _numeroNational = pNumeroNational
-        _nom = pnom
-        _idStructure = pidStructure
+        aid = pId
+        numeroNational = pNumeroNational
+        nom = pnom
+        uidStructure = pidStructure
         dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchro(pidStructure))
     End Sub
-
+    <XmlIgnore>
     Public Property id() As Integer
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As Integer)
-            _id = Value
+            aid = Value
         End Set
     End Property
 
+    Public Property idProfilAgent() As String
+        Get
+            Return numeroNational
+        End Get
+        Set(ByVal Value As String)
+            numeroNational = Value
+        End Set
+    End Property
+    <XmlIgnore>
     Public Property numeroNational() As String
         Get
             Return _numeroNational
@@ -129,8 +139,7 @@ Public Class Agent
             _prenom = Value
         End Set
     End Property
-
-    Public Property idStructure() As Integer
+    Public Property uidStructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -193,23 +202,23 @@ Public Class Agent
         End Set
     End Property
 
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
+    'Public Property dateModificationAgent() As String
+    '    Get
+    '        Return _dateModificationAgent
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _dateModificationAgent = Value
+    '    End Set
+    'End Property
 
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
+    'Public Property dateModificationCrodip() As String
+    '    Get
+    '        Return _dateModificationCrodip
+    '    End Get
+    '    Set(ByVal Value As String)
+    '        _dateModificationCrodip = Value
+    '    End Set
+    'End Property
 
     Public Property versionLogiciel() As String
         Get
@@ -260,9 +269,9 @@ Public Class Agent
         Get
             Try
 
-                Dim oStructure As Structuree
-                oStructure = New Structuree
-                oStructure = StructureManager.getStructureById(idStructure)
+                Dim oStructure As [Structure]
+                oStructure = New [Structure]
+                oStructure = StructureManager.getStructureById(uidStructure)
                 Return oStructure.nom
             Catch ex As Exception
                 Return ""
@@ -287,7 +296,7 @@ Public Class Agent
             _droitsPulves = value
         End Set
     End Property
-
+    <XmlIgnore()>
     Public Property isGestionnaire As Boolean
         Get
             Return _IsGestionnaire
@@ -399,7 +408,7 @@ Public Class Agent
                 Case "prenom".Trim().ToUpper()
                     Me.prenom = pValue.ToString()
                 Case "idStructure".Trim().ToUpper()
-                    Me.idStructure = pValue
+                    Me.uidStructure = pValue
                 Case "telephonePortable".Trim().ToUpper()
                     Me.telephonePortable = pValue.ToString()
                 Case "eMail".Trim().ToUpper()
@@ -770,7 +779,7 @@ Public Class Agent
             If pTouteslesInfos Then
                 Me.id = pAgent.id
                 Me.numeroNational = pAgent.numeroNational
-                Me.idStructure = pAgent.idStructure
+                Me.uidStructure = pAgent.uidStructure
                 Me.telephonePortable = pAgent.telephonePortable
                 Me.eMail = pAgent.eMail
                 Me.statut = pAgent.statut

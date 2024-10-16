@@ -84,13 +84,13 @@ Public Class ManometreEtalonManager
 
     Public Shared Function getNewNumeroNationalForTestOnly(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
-        If pAgent.idStructure <> 0 Then
+        Dim tmpObjectId As String = pAgent.uidStructure & "-" & pAgent.id & "-1"
+        If pAgent.uidStructure <> 0 Then
 
             Dim bddCommande As DbCommand
             Dim oCSDB As New CSDb(True)
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
+            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.uidStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -100,12 +100,12 @@ Public Class ManometreEtalonManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.uidStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.uidStructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManoEtalon - newId : " & ex.Message & vbNewLine)
             End Try
@@ -506,7 +506,7 @@ Public Class ManometreEtalonManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE (AgentManoEtalon.dateModificationAgent<>AgentManoEtalon.dateModificationCrodip or dateModificationCrodip is null) AND AgentManoEtalon.idStructure=" & agent.idStructure
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE (AgentManoEtalon.dateModificationAgent<>AgentManoEtalon.dateModificationCrodip or dateModificationCrodip is null) AND AgentManoEtalon.idStructure=" & agent.uidStructure
 
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -548,7 +548,7 @@ Public Class ManometreEtalonManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getManometreEtalonByStructureId(pAgent.idStructure, isShowAll)
+            arrResponse = getManometreEtalonByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools du mano
@@ -562,7 +562,7 @@ Public Class ManometreEtalonManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.idStructure)
+            arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)
             'Charegement de la Liste des pools du mano

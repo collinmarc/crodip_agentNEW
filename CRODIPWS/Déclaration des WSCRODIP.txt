@@ -10,10 +10,14 @@ Modifier le reference.vb (Afficher tous les fichiers)
 ajouter Avant la déclaration de la classe CRODIPserver 
 		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
 
-		<XmlInclude(GetType(CRODIPWS.ManometreControle)),
+    <XmlInclude(GetType(CRODIPWS.ManometreControle)),
         XmlInclude(GetType(CRODIPWS.ManometreEtalon)),
         XmlInclude(GetType(CRODIPWS.Banc)),
         XmlInclude(GetType(CRODIPWS.Buse)),
+        XmlInclude(GetType(CRODIPWS.Agent)),
+        XmlInclude(GetType(CRODIPWS.Structure)),
+        XmlInclude(GetType(CRODIPWS.Exploitation)),
+        XmlInclude(GetType(CRODIPWS.Pulverisateur)),
 
 
 Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer

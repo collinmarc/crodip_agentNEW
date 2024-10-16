@@ -72,7 +72,7 @@ Public Class RootManager
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-                    pobjreturn = getWSByKey(Of T)(CType(pobj, root).uid, CType(pobj, root).aid)
+                    pobjreturn = getWSByKey(Of T)(puid, CType(pobj, root).aid)
                 Case 4 ' CREATE OK
                     pobjreturn = getWSByKey(Of T)(puid, "")
                 Case 1 ' NOK

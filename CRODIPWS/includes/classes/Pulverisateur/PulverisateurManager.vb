@@ -5,17 +5,16 @@ Public Class PulverisateurManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-
-    Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Pulverisateur
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Pulverisateur
         Dim oreturn As Pulverisateur
-        oreturn = getWSByKey(Of Pulverisateur)(pmanometre_uid, "")
+        oreturn = getWSByKey(Of Pulverisateur)(p_uid, paid)
         Return oreturn
     End Function
 
-    Public Shared Function SendWSPulverisateur(pAgent As Agent, ByVal pobj As Pulverisateur, ByRef pReturn As Pulverisateur) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As Pulverisateur, ByRef pobjOut As Pulverisateur) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Pulverisateur)(pobj, pReturn)
+            nreturn = SendWS(Of Pulverisateur)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSPulverisateur : " & ex.Message)
@@ -23,6 +22,24 @@ Public Class PulverisateurManager
         End Try
         Return nreturn
     End Function
+
+    'Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Pulverisateur
+    '    Dim oreturn As Pulverisateur
+    '    oreturn = getWSByKey(Of Pulverisateur)(pmanometre_uid, "")
+    '    Return oreturn
+    'End Function
+
+    'Public Shared Function SendWSPulverisateur(pAgent As Agent, ByVal pobj As Pulverisateur, ByRef pReturn As Pulverisateur) As Integer
+    '    Dim nreturn As Integer
+    '    Try
+    '        nreturn = SendWS(Of Pulverisateur)(pobj, pReturn)
+
+    '    Catch ex As Exception
+    '        CSDebug.dispFatal("sendWSPulverisateur : " & ex.Message)
+    '        nreturn = -1
+    '    End Try
+    '    Return nreturn
+    'End Function
 #End Region
 
 #Region "Methodes acces Local"
@@ -67,16 +84,16 @@ Public Class PulverisateurManager
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
-        Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
         Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
-        Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
+        Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
         idPC = pAgent.oPool.idCRODIPPC
         Dim Racine As String = idCrodipStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 
-        If pAgent.idStructure <> 0 Then
+        If pAgent.uidStructure <> 0 Then
 
             ' On test si la table est vide
 
@@ -100,7 +117,7 @@ Public Class PulverisateurManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.idStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
+            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.uidStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -110,12 +127,12 @@ Public Class PulverisateurManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpPulveId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpPulveId.Replace(curAgent.idStructure & "-" & curAgent.id & "-", ""))
+                    tmpId = CInt(tmpPulveId.Replace(curAgent.uidStructure & "-" & curAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpPulveId = curAgent.idStructure & "-" & curAgent.id & "-" & (newId + 1)
+                tmpPulveId = curAgent.uidStructure & "-" & curAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("PulverisateurManager - getNewId : " & ex.Message)
             End Try
@@ -142,7 +159,7 @@ Public Class PulverisateurManager
     Private Shared Function createPulve(ByVal poPulve As Pulverisateur, ByVal client_id As String, ByVal pAgent As Agent) As Boolean
         Debug.Assert(poPulve IsNot Nothing)
         Debug.Assert(Not String.IsNullOrEmpty(poPulve.id), "L'id du pulve doit être renseigné")
-        Debug.Assert(poPulve.idStructure <> -1, "L'idStructure du pulve doit être renseigné")
+        Debug.Assert(poPulve.uidStructure <> -1, "L'idStructure du pulve doit être renseigné")
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
@@ -150,7 +167,7 @@ Public Class PulverisateurManager
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.idStructure & "')"
+            bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.uidStructure & "')"
             bddCommande.ExecuteNonQuery()
             oCSDB.free()
             'En synchro, le ClientId n'est pas connu
@@ -188,7 +205,7 @@ Public Class PulverisateurManager
                 ' On test si le Pulverisateur existe ou non
                 Dim existsPulverisateur As Object
                 If Not pAgent.isGestionnaire Then
-                    pPulve.idStructure = pAgent.idStructure
+                    pPulve.uidStructure = pAgent.uidStructure
                 End If
                 existsPulverisateur = PulverisateurManager.getPulverisateurById(pPulve.id)
                 If existsPulverisateur.id = "" Then
@@ -291,13 +308,13 @@ Public Class PulverisateurManager
                 If Not pPulve.dateProchainControle Is Nothing And pPulve.dateProchainControle <> "" And pPulve.dateProchainControle <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateProchainControle='" & CSDate.ToCRODIPString(pPulve.dateProchainControle) & "'"
                 End If
-                If Not pPulve.dateModificationCrodip Is Nothing And pPulve.dateModificationCrodip <> "" Then
+                If Not pPulve.dateModificationCrodipS Is Nothing And pPulve.dateModificationCrodip <> "" Then
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pPulve.dateModificationCrodip) & "'"
                 End If
-                If Not pPulve.dateModificationAgent Is Nothing And pPulve.dateModificationAgent <> "" Then
+                If Not pPulve.dateModificationAgentS Is Nothing And pPulve.dateModificationAgent <> "" Then
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pPulve.dateModificationAgent) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & pPulve.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & pPulve.uidStructure & ""
                 ' Emplacement Identification
                 If Not pPulve.emplacementIdentification Is Nothing Then
                     paramsQuery = paramsQuery & " , emplacementIdentification='" & CSDb.secureString(pPulve.emplacementIdentification) & "'"
@@ -594,7 +611,7 @@ Public Class PulverisateurManager
 
             strQuery = "SELECT p.*,  e.raisonSociale,e.prenomExploitant,e.nomExploitant,e.codePostal, e.commune"
             strQuery = strQuery & " From Pulverisateur p inner  join ExploitationTOPulverisateur e2p on e2p.idPulverisateur = p.id inner join Exploitation e on e2p.idExploitation = e.id "
-            strQuery = strQuery & " WHERE e2p.isSupprimecoProp=0 and p.idStructure = " & pAgent.idStructure
+            strQuery = strQuery & " WHERE e2p.isSupprimecoProp=0 and p.idStructure = " & pAgent.uidStructure
             strQuery = strQuery & " ORDER BY  P.dateProchainControle ASC"
 
             Dim oDataReader As DbDataReader = bdd.getResult2s(strQuery)
@@ -645,7 +662,7 @@ Public Class PulverisateurManager
             Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
                                       & " FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur On ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation On ExploitationTOPulverisateur.idExploitation = Exploitation.id "
             '            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) Or Diagnostic.controleDateFin Is NULL) And "
-            strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.idStructure
+            strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.uidStructure
             If Not pTous Then
                 strQuery = strQuery & " And  Not ExploitationTOPulverisateur.isSupprimeCoProp"
             End If
@@ -693,7 +710,7 @@ Public Class PulverisateurManager
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent<>dateModificationCrodip Or  dateModificationCrodip Is null)"
-        bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.idStructure
+        bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats

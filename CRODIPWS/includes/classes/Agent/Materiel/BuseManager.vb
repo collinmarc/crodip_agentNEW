@@ -90,12 +90,12 @@ Public Class BuseManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
         ' déclarations
-        Dim tmpObjectId As String = agentCourant.idStructure & "-" & agentCourant.id & "-1"
-        If agentCourant.idStructure <> 0 Then
+        Dim tmpObjectId As String = agentCourant.uidStructure & "-" & agentCourant.id & "-1"
+        If agentCourant.uidStructure <> 0 Then
 
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT numeroNational FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational LIKE '" & agentCourant.idStructure & "-" & agentCourant.id & "-%' ORDER BY AgentBuseEtalon.numeroNational DESC"
+            bddCommande.CommandText = "SELECT numeroNational FROM AgentBuseEtalon WHERE AgentBuseEtalon.numeroNational LIKE '" & agentCourant.uidStructure & "-" & agentCourant.id & "-%' ORDER BY AgentBuseEtalon.numeroNational DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -105,12 +105,12 @@ Public Class BuseManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(agentCourant.idStructure & "-" & agentCourant.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(agentCourant.uidStructure & "-" & agentCourant.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = agentCourant.idStructure & "-" & agentCourant.id & "-" & (newId + 1)
+                tmpObjectId = agentCourant.uidStructure & "-" & agentCourant.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("BuseManager - newId : " & ex.Message & vbNewLine)
             End Try
@@ -419,7 +419,7 @@ Public Class BuseManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE (dateModificationAgent<>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.idStructure
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE (dateModificationAgent<>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.uidStructure
 
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -573,7 +573,7 @@ Public Class BuseManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getBusesByStructureId(pAgent.idStructure, isShowAll)
+            arrResponse = getBusesByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools 
@@ -587,7 +587,7 @@ Public Class BuseManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.idStructure)
+            arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getBusesByPoolIdJamaisServi(pAgent.idCRODIPPool)
             'Charegement de la Liste des pools du mano

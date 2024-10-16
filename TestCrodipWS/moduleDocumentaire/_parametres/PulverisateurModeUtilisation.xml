@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <PulverisateurModeUtilisation>
+      <id>1</id>
+      <libelle>Individuel</libelle>
+    <saisieNbre>False</saisieNbre>
+    <Valeurs>1</Valeurs>
+  </PulverisateurModeUtilisation>
+  <PulverisateurModeUtilisation>
+    <id>2</id>
+    <libelle>Co-Propriété</libelle>
+    <saisieNbre>True</saisieNbre>
+    <Valeurs>2,3,4,5,6,7,8,9,10,11,12,13,14,15</Valeurs>
+  </PulverisateurModeUtilisation>
+  <PulverisateurModeUtilisation>
+    <id>3</id>
+    <libelle>CUMA</libelle>
+    <saisieNbre>True</saisieNbre>
+    <Valeurs>2,3,4,5,6,7,8,9,10,11,12,13,14,15</Valeurs>
+  </PulverisateurModeUtilisation>
+  <PulverisateurModeUtilisation>
+    <id>4</id>
+    <libelle>Entrepreneur</libelle>
+    <saisieNbre>True</saisieNbre>
+    <Valeurs>2,3,4,5,6,7,8,9,10,11,12,13,14,15</Valeurs>
+  </PulverisateurModeUtilisation>
+  <PulverisateurModeUtilisation>
+    <id>5</id>
+    <libelle>Inconnu</libelle>
+    <saisieNbre>False</saisieNbre>
+    <Valeurs>1</Valeurs>
+  </PulverisateurModeUtilisation>
+</root>

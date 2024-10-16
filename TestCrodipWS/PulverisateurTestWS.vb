@@ -1,0 +1,68 @@
+﻿Imports System.Text
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports CRODIPWS
+Imports System.Xml.Serialization
+Imports System.IO
+Imports System.Net.Http
+
+<TestClass()> Public Class PulverisateurTestWS
+    Inherits CRODIPTest
+
+    <TestMethod()> Public Sub getWS()
+        Dim Pulverisateur As CRODIPWS.Pulverisateur
+        Pulverisateur = PulverisateurManager.WSgetById(112000)
+        Assert.IsNotNull(Pulverisateur)
+        Assert.AreEqual(112000, Pulverisateur.uid)
+
+    End Sub
+    <TestMethod()> Public Sub sendWS()
+        Dim oPulverisateur As CRODIPWS.Pulverisateur
+        oPulverisateur = PulverisateurManager.WSgetById(112000)
+        Assert.IsNotNull(oPulverisateur)
+        oPulverisateur.marque = "TESTUMCO"
+        Dim oreturn As CRODIPWS.Pulverisateur
+        Dim nReturn As Integer
+        nReturn = PulverisateurManager.WSSend(oPulverisateur, oreturn)
+        Assert.AreEqual(2, nReturn)
+        oPulverisateur = PulverisateurManager.WSgetById(112000)
+        Assert.AreEqual("TESTUMCO", oPulverisateur.marque)
+
+    End Sub
+    <TestMethod()> Public Sub CRUDWS()
+        Dim nreturn As Integer
+        Dim oPulverisateur As New Pulverisateur()
+        oPulverisateur.marque = "TU_MCO"
+
+        ' Création de l'objet
+        Dim oReturn As Pulverisateur
+        nreturn = PulverisateurManager.WSSend(oPulverisateur, oReturn)
+        Assert.AreEqual(4, nreturn)
+        Assert.IsNotNull(oReturn.uid)
+
+        'Lecture de l'objet
+        oPulverisateur = PulverisateurManager.WSgetById(oReturn.uid)
+        Assert.AreEqual("TU_MCO", oPulverisateur.marque)
+
+        'Update de l'objet
+        oPulverisateur.marque = "TU_UPDATE"
+        nreturn = PulverisateurManager.WSSend(oPulverisateur, oReturn)
+        Assert.AreEqual(oPulverisateur.uid, oReturn.uid)
+        Assert.AreEqual(2, nreturn)
+        Assert.AreEqual("TU_UPDATE", oPulverisateur.marque)
+
+    End Sub
+    <TestMethod()> Public Sub WSSerialize()
+        Dim oPulverisateur As New CRODIPWS.Pulverisateur()
+        oPulverisateur.marque = "TU_MCO"
+        Dim serializer As New XmlSerializer(oPulverisateur.GetType())
+        Using writer As New StringWriter()
+            serializer.Serialize(writer, oPulverisateur)
+            Dim xmlOutput As String = writer.ToString()
+            ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
+            Trace.WriteLine(xmlOutput)
+        End Using
+
+    End Sub
+
+
+End Class

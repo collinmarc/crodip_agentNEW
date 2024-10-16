@@ -209,7 +209,7 @@ Public Class Synchronisation
             Dim tmpObject As New Agent
             Try
                 'Statusbar_display("Réception MAJ Agent n°" & agent.numeroNational & "...")
-                tmpObject = AgentManager.getWSAgentById(m_Agent.id)
+                tmpObject = AgentManager.WSgetByNumeroNational(m_Agent.numeroNational)
                 If tmpObject.id <> 0 Then
                     If m_Agent.isActif <> tmpObject.isActif Then
                         m_Agent.isActif = tmpObject.isActif
@@ -300,7 +300,7 @@ Public Class Synchronisation
                         Dim UpdatedObject As New Object
                         Dim tmpAgentUpdated As Agent
                         Notice("Agent n°" & tmpUpdateAgent.id)
-                        Dim response As Integer = AgentManager.sendWSAgent(tmpUpdateAgent, tmpAgentUpdated)
+                        Dim response As Integer = AgentManager.WSSend(tmpUpdateAgent, tmpAgentUpdated)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSAgent) - Erreur Locale")
@@ -328,12 +328,12 @@ Public Class Synchronisation
 
                 ' Synchro d'une structure
                 ' On récupère les mises à jours
-                Dim arrUpdatesStructuree() As Structuree = StructureManager.getUpdates(m_Agent)
-                For Each tmpUpdateStructuree As Structuree In arrUpdatesStructuree
+                Dim arrUpdatesStructuree() As [Structure] = StructureManager.getUpdates(m_Agent)
+                For Each tmpUpdateStructuree As [Structure] In arrUpdatesStructuree
                     Try
                         Dim UpdatedObject As New Object
                         Notice("Organisme n°" & tmpUpdateStructuree.id)
-                        Dim response As Integer = StructureManager.sendWSStructuree(m_Agent, tmpUpdateStructuree, UpdatedObject)
+                        Dim response As Integer = StructureManager.WSSend(tmpUpdateStructuree, UpdatedObject)
                         Select Case response
                             Case -1 ' ERROR
                                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSStructuree) - Erreur Locale")
@@ -599,7 +599,7 @@ Public Class Synchronisation
         Try
             Dim UpdatedObject As Pulverisateur
             Notice("Pulverisateur n°" & pPulverisateur.id)
-            Dim response As Integer = PulverisateurManager.SendWSPulverisateur(m_Agent, pPulverisateur, UpdatedObject)
+            Dim response As Integer = PulverisateurManager.WSSend(pPulverisateur, UpdatedObject)
             Select Case response
                 Case -1 ' ERROR
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
@@ -623,7 +623,7 @@ Public Class Synchronisation
     Public Sub RunAscSynchroExploit2Pulve(pExploitationTOPulverisateur As ExploitationTOPulverisateur)
         Dim UpdatedObject As New Object
         Notice("ExploitationToPulverisateur n°" & pExploitationTOPulverisateur.idPulverisateur)
-        Dim response As Integer = ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_Agent, pExploitationTOPulverisateur, UpdatedObject)
+        Dim response As Integer = ExploitationTOPulverisateurManager.WSSend(pExploitationTOPulverisateur, UpdatedObject)
         Select Case response
             Case -1 ' ERROR
                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
@@ -646,7 +646,7 @@ Public Class Synchronisation
             Notice("Exploitation n°" & oExploitation.id)
 
             Dim UpdatedObject As New Object
-            Dim response As Integer = ExploitationManager.sendWSExploitation(m_Agent, oExploitation, UpdatedObject)
+            Dim response As Integer = ExploitationManager.WSSend(oExploitation, UpdatedObject)
             Select Case response
                 Case -1 ' ERROR
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
@@ -789,7 +789,7 @@ Public Class Synchronisation
                 pDiag.diagnosticItemsLst = Nothing
                 Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
                 pDiag.diagnosticBusesList = Nothing
-                Dim response As Integer = DiagnosticManager.sendWSDiagnostic(pAgent, pDiag, UpdatedObject)
+                Dim response As Integer = DiagnosticManager.WSSend(pDiag, UpdatedObject)
                 'Après Synchro on replace les propriétés
                 pDiag.diagnosticItemsLst = oDiagItemList
                 pDiag.diagnosticBusesList = oDiagBusesList
@@ -986,7 +986,7 @@ Public Class Synchronisation
         lstElementsASynchronisertotal = getListeElementsASynchroniserDESC(m_Agent)
 
         Dim oList As AgentList
-        oList = AgentManager.getAgentList(m_Agent.idStructure)
+        oList = AgentManager.getAgentList(m_Agent.uidStructure)
 
         'On récupère les éléments à synchroniser de chaque Agent
         For Each oAgent As Agent In oList.items
@@ -1027,7 +1027,7 @@ Public Class Synchronisation
             CSDebug.dispInfo("Debut synchro descendante")
             SynchronisationManager.LogSynchroStart("DESC")
             Dim oList As AgentList
-            oList = AgentManager.getAgentList(m_Agent.idStructure)
+            oList = AgentManager.getAgentList(m_Agent.uidStructure)
 
             'On récupère les éléments à synchroniser de chaque Agent
             For Each oAgent As Agent In oList.items
@@ -1180,7 +1180,7 @@ Public Class Synchronisation
             dtSRV.AddSeconds(10)
             'Maj des agents
             Dim oList As AgentList
-            oList = AgentManager.getAgentList(m_Agent.idStructure)
+            oList = AgentManager.getAgentList(m_Agent.uidStructure)
             For Each oAgent As Agent In oList.items
                 If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
                     oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)

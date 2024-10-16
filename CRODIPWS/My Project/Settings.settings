@@ -6,7 +6,7 @@
       <Value Profile="(Default)">zsx</Value>
     </Setting>
     <Setting Name="RepertoireParametres" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">moduledocumentaire/_parametres</Value>
     </Setting>
     <Setting Name="GestiondesPools" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
@@ -78,10 +78,10 @@
       <Value Profile="(Default)">.db3</Value>
     </Setting>
     <Setting Name="SecurityProtocol" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">4080</Value>
     </Setting>
     <Setting Name="Expect100Continue" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="checkNetwork" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
@@ -97,6 +97,12 @@
     </Setting>
     <Setting Name="CRODIPWS_WSCRODIP_CrodipServer" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
+    </Setting>
+    <Setting Name="Mode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NORMAL</Value>
+    </Setting>
+    <Setting Name="StockPDF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PDFs</Value>
     </Setting>
   </Settings>
 </SettingsFile>

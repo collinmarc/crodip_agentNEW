@@ -25,7 +25,7 @@ Public Class CRODIPTest
 
     Private testContextInstance As TestContext
     Protected m_oAgent As Agent
-    Protected m_oStructure As Structuree
+    Protected m_oStructure As [Structure]
 
     Protected m_oExploitation As Exploitation
     Protected m_oPulve As Pulverisateur
@@ -71,14 +71,14 @@ Public Class CRODIPTest
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
-        '        GlobalsCRODIP.Init()
+        GlobalsCRODIP.Init()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
         oCSDB.free()
 
         'Création de la Structure
-        m_oStructure = New Structuree()
+        m_oStructure = New [Structure]()
         m_oStructure.id = m_idStructure
         m_oStructure.idCrodip = "8888"
         m_oStructure.nom = "Structure TestsUnitaires"
@@ -86,7 +86,7 @@ Public Class CRODIPTest
 
         'Creation d'un agent
         m_oAgent = New Agent(m_IdAgent, "TESTUNIT", "TEST", m_oStructure.id)
-        m_oAgent.idStructure = m_idStructure
+        m_oAgent.uidStructure = m_idStructure
         m_oAgent.nom = "Agent de test unitaires"
         m_oAgent.prenom = "Agent de test unitaires"
         m_oAgent.telephonePortable = "0606060606"
@@ -107,7 +107,7 @@ Public Class CRODIPTest
                 CSDebug.dispError("Le banc n'existe pas je le recree, (Normalement impossible)")
                 m_oBanc = New CRODIPWS.Banc()
                 m_oBanc.id = BancManager.FTO_getNewId(m_oAgent)
-                m_oBanc.uidstructure = m_oAgent.idStructure
+                m_oBanc.uidstructure = m_oAgent.uidStructure
             End If
             m_oBanc.uidstructure = m_idStructure
             BancManager.save(m_oBanc)
@@ -120,7 +120,7 @@ Public Class CRODIPTest
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-    <TestCleanup()> _
+    <TestCleanup()>
     Public Sub MyTestCleanup()
 
     End Sub
@@ -155,7 +155,7 @@ Public Class CRODIPTest
     Protected Function createPulve(pExploit As Exploitation) As Pulverisateur
         Dim poPulve As New Pulverisateur
         poPulve.numeroNational = "E001123456"
-        poPulve.idStructure = m_oAgent.idStructure
+        poPulve.uidStructure = m_oAgent.uidStructure
         poPulve.ancienIdentifiant = "ANCID"
         poPulve.marque = "MARQUEPULVE"
         poPulve.modele = "MODELEPULVE"
@@ -186,7 +186,7 @@ Public Class CRODIPTest
         'poPulve.isDPAEDebit = True
         poPulve.regulation = "DPM"
         poPulve.regulationOptions = "Pression"
-        poPulve.pulverisation = "Jet projeté"
+        poPulve.pulverisation = Pulverisateur.CATEGORIEPULVE_FACEPARFACE
         poPulve.emplacementIdentification = "Emplacement"
 
         poPulve.buseMarque = "BUSEMARQUE"
@@ -477,7 +477,7 @@ Public Class CRODIPTest
         'Création de 3 Identifiant Pulvé
         obj = New IdentifiantPulverisateur
         obj.id = IdentifiantPulverisateurManager.getNextId()
-        obj.idStructure = m_oAgent.idStructure
+        obj.idStructure = m_oAgent.uidStructure
         obj.numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR & pNumNat
         obj.SetEtatINUTILISE()
         obj.dateUtilisation = ""

@@ -6,16 +6,16 @@ Public Class StructureManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSStructureeById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Structuree
-        Dim oreturn As Structuree
-        oreturn = getWSByKey(Of Structuree)(pmanometre_uid, "")
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As [Structure]
+        Dim oreturn As [Structure]
+        oreturn = getWSByKey(Of [Structure])(p_uid, paid)
         Return oreturn
     End Function
 
-    Public Shared Function SendWSStructuree(pAgent As Agent, ByVal pobj As Structuree, ByRef pReturn As Structuree) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As [Structure], ByRef pobjOut As [Structure]) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Structuree)(pobj, pReturn)
+            nreturn = SendWS(Of [Structure])(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSStructuree : " & ex.Message)
@@ -23,13 +23,15 @@ Public Class StructureManager
         End Try
         Return nreturn
     End Function
+
+
 #End Region
 
 #Region "Methodes acces Local"
 
-    Public Shared Function getStructureById(ByVal structure_id As Integer) As Structuree
+    Public Shared Function getStructureById(ByVal structure_id As Integer) As [Structure]
         ' déclarations
-        Dim tmpStructure As New Structuree
+        Dim tmpStructure As New [Structure]
         If structure_id <> 0 Then
 
             Dim oCSDB As New CSDb(True)
@@ -152,7 +154,7 @@ Public Class StructureManager
         End Try
     End Sub
 
-    Public Shared Sub save(ByVal objStructure As Structuree, Optional bSyncro As Boolean = False)
+    Public Shared Sub save(ByVal objStructure As [Structure], Optional bSyncro As Boolean = False)
         If objStructure.id <> 0 Then
 
 
@@ -220,12 +222,12 @@ Public Class StructureManager
             If Not objStructure.commentaire Is Nothing Then
                 paramsQuery = paramsQuery & " , commentaire='" & CSDb.secureString(objStructure.commentaire) & "'"
             End If
-            If Not objStructure.dateModificationAgent Is Nothing Then
-                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(objStructure.dateModificationAgent) & "'"
-            End If
-            If Not objStructure.dateModificationCrodip Is Nothing Then
-                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(objStructure.dateModificationCrodip) & "'"
-            End If
+            '            If Not objStructure.dateModificationAgent Is Nothing Then
+            paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objStructure.dateModificationAgent) & "'"
+            '           End If
+            '          If Not objStructure.dateModificationCrodip Is Nothing Then
+            paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objStructure.dateModificationCrodip) & "'"
+            '         End If
             bddCommande.CommandText = "UPDATE Structure SET " & paramsQuery & " WHERE id=" & objStructure.id & ""
             bddCommande.ExecuteNonQuery()
 
@@ -233,7 +235,7 @@ Public Class StructureManager
         End If
     End Sub
 
-    Public Shared Sub setSynchro(ByVal objStructure As Structuree)
+    Public Shared Sub setSynchro(ByVal objStructure As [Structure])
         Try
             Dim dbLink As New CSDb(True)
             Dim newDate As String = Date.Now.ToString
@@ -245,12 +247,12 @@ Public Class StructureManager
         End Try
     End Sub
 
-    Public Shared Function getUpdates(ByVal agent As Agent) As Structuree()
+    Public Shared Function getUpdates(ByVal agent As Agent) As [Structure]()
         ' déclarations
-        Dim arrItems(0) As Structuree
+        Dim arrItems(0) As [Structure]
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Structure WHERE (Structure.dateModificationAgent<>Structure.dateModificationCrodip or Structure.dateModificationCrodip is null) AND Structure.id=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM Structure WHERE (Structure.dateModificationAgent<>Structure.dateModificationCrodip or Structure.dateModificationCrodip is null) AND Structure.id=" & agent.uidStructure
 
         Try
             ' On récupère les résultats
@@ -259,7 +261,7 @@ Public Class StructureManager
             ' Puis on les parcours
             While tmpListProfils.Read()
                 ' On rempli notre tableau
-                Dim tmpStructuree As New Structuree
+                Dim tmpStructuree As New [Structure]
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     Select Case tmpListProfils.GetName(tmpColId)
@@ -318,8 +320,8 @@ Public Class StructureManager
         Return arrItems
     End Function
 
-    Public Shared Function getList() As List(Of Structuree)
-        Dim lstReturn As New List(Of Structuree)
+    Public Shared Function getList() As List(Of [Structure])
+        Dim lstReturn As New List(Of [Structure])
 
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand
@@ -329,7 +331,7 @@ Public Class StructureManager
             Dim oDR As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
             While oDR.Read()
-                Dim oStruct As New Structuree()
+                Dim oStruct As New [Structure]()
                 ' On rempli notre tableau
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()

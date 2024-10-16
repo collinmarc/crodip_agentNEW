@@ -1,0 +1,4396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LstParamCtrlDiag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListeParam>
+    <ParamCtrlDiag>
+      <Code>1</Code>
+      <Libelle>Examens préliminaires</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1</Code>
+      <Libelle>Etat du matériel</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>1.1.1</Code>
+      <Libelle>Fonctionnment du pulvérisateur</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.2</Code>
+      <Libelle>Propreté du matériel</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.3</Code>
+      <Libelle>Contexte</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2</Code>
+      <Libelle>Eléments de sécurité</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>1.2.1</Code>
+      <Libelle>Transmissions hydrauliques entre tracteur pulvé</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.2</Code>
+      <Libelle>Transmissions mécaniques entre tracteur et pulvé</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.3</Code>
+      <Libelle>Transmissions mécaniques au niveau du pulvé</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4</Code>
+      <Libelle>Fixation au chassis</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.5</Code>
+      <Libelle>débrayage du/des ventilateurs</Libelle>
+    </ParamCtrlDiag>
+	<!--Ajout 09032023 -->
+	<ParamCtrlDiag>
+      <Code>1.2.6</Code>
+      <Libelle>Installation électrique de l'usine</Libelle>
+    </ParamCtrlDiag>
+	<!--Fin Ajout 09032023 -->
+
+    <!-- Etat Général -->
+    <ParamCtrlDiag>
+      <Code>2</Code>
+      <Libelle>Etat Général</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1</Code>
+      <Libelle>Dispositif d'attelage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.1</Code>
+      <Libelle>Déformations</Libelle>
+      <LibelleLong>Déformation du dispositif d'attelage</LibelleLong>
+      <Actif>true</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2</Code>
+      <Libelle>Modifications</Libelle>
+      <LibelleLong>Modifications du dispositif d'attelage</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3</Code>
+      <Libelle>Corrosion</Libelle>
+      <LibelleLong>Corrosion du dispositif d'attelage</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2</Code>
+      <Libelle>Chassis et pièces de structures</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1</Code>
+      <Libelle>Déformations</Libelle>
+      <LibelleLong>Déformations du chassis et Pièces de structures</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2</Code>
+      <Libelle>Lésions sur pièces métalliques</Libelle>
+      <LibelleLong>Lésions sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3</Code>
+      <Libelle>Lésions soudures</Libelle>
+      <LibelleLong>Lésions aux soudures du chassis et pièces de structures</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4</Code>
+      <Libelle>Corrosion</Libelle>
+      <LibelleLong>Corrosion sur pièces métalliques du chassis et Pièces de structures</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5</Code>
+      <Libelle>Jeux aux articulations</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4</Code>
+      <Libelle>Transmission au niveau du pulvé</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1</Code>
+      <Libelle>Transmissions hydrauliques</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5</Code>
+      <Libelle>Pneumatiques</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1</Code>
+      <Libelle>Montage-Maintenance</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2</Code>
+      <Libelle>Usure</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3</Code>
+      <Libelle>Fuites de bouillie</Libelle>
+      <LibelleLong>Fuites de bouillie de pulvérisation</LibelleLong>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1</Code>
+      <Libelle>Fuites mineures</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2</Code>
+      <Libelle>Fuites majeures</Libelle>
+    </ParamCtrlDiag>
+	<!-- Ajout 09032023 -->
+		 <ParamCtrlDiag>
+      <Code>2.6</Code>
+      <Libelle>Installation électrique</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.1</Code>
+      <Libelle>Etat des câbles</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2</Code>
+      <Libelle>Présence de tableaux et fusibles</Libelle>
+    </ParamCtrlDiag>
+   <ParamCtrlDiag>
+      <Code>2.7</Code>
+      <Libelle>Supports des composants du circuit de traitement de semence</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.1</Code>
+      <Libelle>Stabilité des supports</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2</Code>
+      <Libelle>Déformations</Libelle>
+    </ParamCtrlDiag>
+	    <ParamCtrlDiag>
+      <Code>2.7.3</Code>
+      <Libelle>Modifications</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4</Code>
+      <Libelle>Corrosion</Libelle>
+    </ParamCtrlDiag>
+	<!-- Fin Ajout 09032023 -->
+
+    <!-- Pompe -->
+    <ParamCtrlDiag>
+      <Code>3</Code>
+      <Libelle>Pompe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1.1</Code>
+      <Libelle>Fuite d'huile</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1</Code>
+      <Libelle>Pulsations</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2</Code>
+      <Libelle>Cloche à air</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.3</Code>
+      <Libelle>Débit</Libelle>
+    </ParamCtrlDiag>
+    <!-- Cuve recevant les bouillies-->
+    <ParamCtrlDiag>
+      <Code>4</Code>
+      <Libelle>Cuve recevant les bouillies phytosanitaires</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1</Code>
+      <Libelle>Bouchons</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2</Code>
+      <Libelle>Adéquation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2</Code>
+      <Libelle>Indicateur de niveau</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3</Code>
+      <Libelle>Incorporateur de produit</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.2</Code>
+      <Libelle>Nettoyage des emballages</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4</Code>
+      <Libelle>Remplissage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.1</Code>
+      <Libelle>Tamis de remplissage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.2</Code>
+      <Libelle>Dispositif anti retour</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5</Code>
+      <Libelle>Vidange</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.1</Code>
+      <Libelle>Vannes de vidange</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.2</Code>
+      <Libelle>Récupération de la bouillie</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6</Code>
+      <Libelle>Dispositif de rincage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.1</Code>
+      <Libelle>Cuve de rincage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.2</Code>
+      <Libelle>Nettoyage interne de la bouillie</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.3</Code>
+      <Libelle>Nettoyage externe du pulvérisateur</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.4</Code>
+      <Libelle>Nettoyage des circuits</Libelle>
+    </ParamCtrlDiag>
+
+    <!-- 5 Appareillage de mesure, commandes et système de régulation-->
+    <ParamCtrlDiag>
+      <Code>5</Code>
+      <Libelle>Appareillage de mesure, commandes et système de régulation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1</Code>
+      <Libelle>Fermeture générale de la pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2</Code>
+      <Libelle>Fermeture partielle de la pulvérisation au niveau des sections</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2</Code>
+      <Libelle>Retours compensatoires</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3</Code>
+      <Libelle>Dispositif(s) de régulation de la pression</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4</Code>
+      <Libelle>Indicateur de pression</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5</Code>
+      <Libelle>Indicateurs utilisés pour la régulation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1</Code>
+      <Libelle>Vitesse d'avancement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2</Code>
+      <Libelle>Débit</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6</Code>
+      <Libelle>Autres indicateurs</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.7</Code>
+      <Libelle>Réglage du volume par hectare</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.7.1</Code>
+      <Libelle>Intégration des erreurs individuelles</Libelle>
+    </ParamCtrlDiag>
+    <!-- Flexibles canalisation filtres -->
+    <ParamCtrlDiag>
+      <Code>6</Code>
+      <Libelle>Flexibles et canalisations</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1</Code>
+      <Libelle>Flexibles de distribution</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7</Code>
+      <Libelle>Filtres</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1</Code>
+      <Libelle>Filtres à l'aspiration</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2</Code>
+      <Libelle>Filtres central au refoulement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3</Code>
+      <Libelle>Filtres au niveau des sections de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4</Code>
+      <Libelle>Filtres aux buses</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <!-- Rampes de pulverisation -->
+    <ParamCtrlDiag>
+      <Code>8</Code>
+      <Libelle>Rampes de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1</Code>
+      <Libelle>Structure de rampe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1</Code>
+      <Libelle>Déformations sur le plan vertical</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2</Code>
+      <Libelle>Déformations sur le plan horizontal</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3</Code>
+      <Libelle>Protection des buses extrémités</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4</Code>
+      <Libelle>Déformations</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5</Code>
+      <Libelle>Lésions aux soudures</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6</Code>
+      <Libelle>Corrosion de la rampe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.7</Code>
+      <Libelle>Lésion sur pièces métalliques</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2</Code>
+      <Libelle>Comportement de la rampe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.1</Code>
+      <Libelle>Jeux aux articulations</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2</Code>
+      <Libelle>Stabilité</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3</Code>
+      <Libelle>Réglage en hauteur</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3</Code>
+      <Libelle>Porte-jets / Diffuseurs</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1</Code>
+      <Libelle>Disposition</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <!-- Mano/ Tronçons -->
+    <!-- Jets/Soufflerie-->
+    <ParamCtrlDiag>
+      <Code>9</Code>
+      <Libelle>Buses de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1</Code>
+      <Libelle>Matériel</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1</Code>
+      <Libelle>Nature du montage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2</Code>
+      <Libelle>Orientation du montage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1</Code>
+      <Libelle>Régularité</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2</Code>
+      <Libelle>Débit</Libelle>
+    </ParamCtrlDiag>
+    <!-- Soufflerie-->
+    <ParamCtrlDiag>
+      <Code>10</Code>
+      <Libelle>Soufflerie</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1</Code>
+      <Libelle>Ventilateur</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2</Code>
+      <Libelle>Distribution de l'air</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1</Code>
+      <Libelle>Gaines d'adduction de l'air</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2</Code>
+      <Libelle>Sortie d'air</Libelle>
+    </ParamCtrlDiag>
+    <!-- Accesoires -->
+    <ParamCtrlDiag>
+      <Code>11</Code>
+      <Libelle>Sécurité routière</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1</Code>
+      <Libelle>Eclairage</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.1</Code>
+      <Libelle>Feux de position arrière</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.2</Code>
+      <Libelle>Feux de croisement (avant)</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.3</Code>
+      <Libelle>Indicateurs de direction</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.4</Code>
+      <Libelle>Dispositif de feux tournants</Libelle>
+      <Actif>false</Actif>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>12</Code>
+      <Libelle>Accessoires</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1</Code>
+      <Libelle>Injection directe</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.1</Code>
+      <Libelle>Cuve de produit</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.2</Code>
+      <Libelle>Dispositif de dosage</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.3</Code>
+      <Libelle>Dispositif de rincage spécifique</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2</Code>
+      <Libelle>Pistolet ou lance</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3</Code>
+      <Libelle>Chariot de pulvérisation</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1</Code>
+      <Libelle>Etat</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2</Code>
+      <Libelle>Fonctionnement</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4</Code>
+      <Libelle>Cuve lave-mains</Libelle>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4.1</Code>
+      <Libelle>Cuve lave-mains</Libelle>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.1.1</Code>
+      <Libelle>Non fonctionnement</Libelle>
+      <LibelleLong>Le pulvérisateur n'est pas en état de fonctionnement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.1.2</Code>
+      <Libelle>Fuites excessives</Libelle>
+      <LibelleLong>Le pulvérisateur présente des fuites excessives</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.1.3</Code>
+      <Libelle>Défaut de remplissage</Libelle>
+      <LibelleLong>Le pulvérisateur ne possède pas un volume d'eau suffisant pour le contrôle</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.2.1</Code>
+      <Libelle>Extérieur sale</Libelle>
+      <LibelleLong>Le matériel présente des traces de produits sur l'extérieur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.2.2</Code>
+      <Libelle>Intérieur sale</Libelle>
+      <LibelleLong>Le matériel présente des traces de produits à l'intérieur de la cuve</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.2.3</Code>
+      <Libelle>Filtres non vérifiés</Libelle>
+      <LibelleLong>Les filtres n'ont pas été nettoyés avant le contrôle</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>1.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.3.1</Code>
+      <Libelle>Absence du propriétaire</Libelle>
+      <LibelleLong>L'utilisateur principal du pulvérisateur n'est pas présent lors de la remise du matériel à l'inspecteur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.3.2</Code>
+      <Libelle>Non suivi de l'inspection</Libelle>
+      <LibelleLong>Le propriétaire ou son représentant ne suit pas l'intégralité de l'inspection</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.3.3</Code>
+      <Libelle>Tracteur absent</Libelle>
+      <LibelleLong>Le tracteur habituellement utilisé pour les traitements n'est pas présent (DPA)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.1.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.1.1</Code>
+      <Libelle>Dispositif anti-décrochage défectueux</Libelle>
+      <LibelleLong>Le verrouillage des raccords hydrauliques est défectueux lors de la mise sous pression</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.1.2</Code>
+      <Libelle>Usure importante</Libelle>
+      <LibelleLong>Les flexibles hydrauliques présentent des traces d'usures importantes</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.1.3</Code>
+      <Libelle>Pliures excessives</Libelle>
+      <LibelleLong>Les flexibles hydrauliques forment des pliures anormales</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+
+    <ParamCtrlDiag>
+      <Code>1.2.2.1</Code>
+      <Libelle>Protection insuffisante de l'arbre tournant</Libelle>
+      <LibelleLong>La protection de l'arbre tournant est absente ou défectueuse </LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.2.2</Code>
+      <Libelle>Immobilisation impossible ou douteuse de la protection</Libelle>
+      <LibelleLong>L'arbre tournant n'est pas correctement immobilisé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.2.3</Code>
+      <Libelle>Protection insuffisante accouplement coté tracteur</Libelle>
+      <LibelleLong>Le bol de protection côté tracteur est absent ou endommagé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.2.4</Code>
+      <Libelle>Protection insuffisante accouplement coté pulvé</Libelle>
+      <LibelleLong>Le bol de protection côté pulvérisateur est absent ou endommagé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+
+    <ParamCtrlDiag>
+      <Code>1.2.3.1</Code>
+      <Libelle>Protection insuffisante d'arbre(s) tournant(s)</Libelle>
+      <LibelleLong>Possibilité d'entrer en contact avec un arbre en mouvement sur le pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.3.2</Code>
+      <Libelle>Protection insuffsante d'autre(s) pièce(s) mobile(s)</Libelle>
+      <LibelleLong>Possibilité d'entrer en contact avec des pièces en mouvement sur le pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.1</Code>
+      <Libelle>Cuve non solidaire du chassis</Libelle>
+      <LibelleLong>La fixation de la cuve au châssis n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.2</Code>
+      <Libelle>Pompe non solidaire du chassis</Libelle>
+      <LibelleLong>La fixation de la pompe au châssis n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.3</Code>
+      <Libelle>Element de structure non solidaire du chassis</Libelle>
+      <LibelleLong>La fixation des différents éléments de structure n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.4</Code>
+      <Libelle>Ventilateur non solidaire du chassis</Libelle>
+      <LibelleLong>La fixation du ventilateur au châssis n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.5</Code>
+      <Libelle>Modification structurelle importante</Libelle>
+      <LibelleLong>Le châssis ou la structure a subis de lourdes modifications portant atteinte à la solidité ou rigidité de l'ensemble"</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.6</Code>
+      <Libelle>Support de rampe/distribution non solidaire du chassis</Libelle>
+      <LibelleLong>Les supports de rampes ne sont pas suffisamment solidaires au châssis ou à la structure</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.7</Code>
+      <Libelle>Blocage des rampes transport non assuré</Libelle>
+      <LibelleLong>Le maintien de la rampe ne peut être suffisamment maintenu durant la phase de transport</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+
+    <ParamCtrlDiag>
+      <Code>1.2.5.1</Code>
+      <Libelle>Débrayage impossible</Libelle>
+      <LibelleLong>Le ventilateur ne peut être débrayé sur les pulvérisateurs postérieurs à 1995</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.5.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+	<!-- Ajout 09032023 -->
+	<ParamCtrlDiag>
+      <Code>1.2.6.1</Code>
+      <Libelle>Installation électrique non vérifié</Libelle>
+      <LibelleLong>Le rapport de vérification obligatoire des installations électrique du bâtiment n'est pas à jour et remis à l'inspecteur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>3</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>1.2.6.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong></LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- fin Ajout -->
+
+    <ParamCtrlDiag>
+      <Code>2.1.1.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <LibelleLong>Le dispositif d'attelage présente des traces de déformations par rapport à sa conception d'origine sans porter préjudice à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.1.2</Code>
+      <Libelle>Déformation majeure</Libelle>
+      <LibelleLong>Le dispositif d'attelage présente des traces de déformations portant préjudice à l'ensemble sur la rigidité, solidité ou position de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2.1</Code>
+      <Libelle>Modification mineure</Libelle>
+      <LibelleLong>Le dispositif d'attelage a été modifié par rapport à sa conception d'origine sans porter préjudice à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2.2</Code>
+      <Libelle>Modification majeure</Libelle>
+      <LibelleLong>Le dispositif d'attelage présente des modifications portant préjudice à l'ensemble sur la rigidité, solidité ou position de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <LibelleLong>L'attelage présente des traces de corrosion perforante sans porter préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <LibelleLong>L'attelage présente des traces de corrosion perforante portant préjudice à la solidité, rigidité de l'ensemble ou à la position de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.1.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.1</Code>
+      <Libelle>Mineure</Libelle>
+      <LibelleLong>Le châssis ou des éléments de structure présente des traces de déformations sans porter préjudice à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.2</Code>
+      <Libelle>Majeure</Libelle>
+      <LibelleLong>Le châssis ou des éléments de structure présente des traces de déformations portant atteinte à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.3</Code>
+      <Libelle>Majeure: support rampe</Libelle>
+      <LibelleLong>Les  supports de rampe présentent des traces de déformation portant atteinte à l'ensemble</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2.1</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <LibelleLong>La structure présente des amorces de rupture sans porter préjudice à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2.2</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <LibelleLong>La structure présente des amorces de rupture portant préjudice à l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3.1</Code>
+      <Libelle>Mineure</Libelle>
+      <LibelleLong>Une ou plusieurs soudure présente(nt) une amorce de rupture, sans porter préjudice au matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3.2</Code>
+      <Libelle>Majeure</Libelle>
+      <LibelleLong>Une ou plusieurs soudure présente(nt) une amorce de rupture, portant préjudice au matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4.1</Code>
+      <Libelle>Mineure</Libelle>
+      <LibelleLong>La structure présente des traces de corrosion perforante, ne portant pas préjudice au pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4.2</Code>
+      <Libelle>Majeure</Libelle>
+      <LibelleLong>La structure présente des traces de corrosion perforante, portant préjudice au pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5.1</Code>
+      <Libelle>Faible</Libelle>
+      <LibelleLong>Une ou plusieurs articulations présente(nt) un jeu anormal n'affectant pas le comportement du pulvérisateur</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5.2</Code>
+      <Libelle>Important</Libelle>
+      <LibelleLong>Une ou plusieurs articulations présente(nt) un jeu anormal modifiant le comportement du pulvérisateur</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.2.5.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.1</Code>
+      <Libelle>A la pompe</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau de la pompe (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.2</Code>
+      <Libelle>A la cuve de bouillie</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau de la cuve (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.3</Code>
+      <Libelle>Aux circuits de com. et régulation</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des commandes de distribution (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.4</Code>
+      <Libelle>Aux conduites véhiculant la bouillie</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des conduites véhiculant la bouillie, ou des conduites constamment en charge (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.5</Code>
+      <Libelle>Aux porte-jet</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des buses, diffuseurs, porte-jet (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.6</Code>
+      <Libelle>Aux appareil. de mesure du pulvé</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des appareillages de mesures (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.7</Code>
+      <Libelle>Au dispositif d'inc. des produits</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau du dispositif d'incorporation (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.8</Code>
+      <Libelle>Nombre total supérieur à 3</Libelle>
+      <LibelleLong>Plus de trois fuites mineures ont été relevées sur l'appareil</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.1.9</Code>
+      <Libelle>Aux filtres</Libelle>
+      <LibelleLong>Le pulvérisateur présente entre une et trois fuites mineure(s) de bouillie au niveau des filtres (écoulement discontinu au maximum une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.1</Code>
+      <Libelle>A la pompe</Libelle>
+      <LibelleLong>La pompe présente au moins une fuite majeure (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.2</Code>
+      <Libelle>A la cuve de bouillie</Libelle>
+      <LibelleLong>La cuve de bouillie présente au moins une fuite majeure (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.3</Code>
+      <Libelle>Aux circuits de com. et régulation</Libelle>
+      <LibelleLong>Les commandes de distribution présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.4</Code>
+      <Libelle>Aux conduites véhiculant la bouillie</Libelle>
+      <LibelleLong>Les conduites véhiculant la bouillie, ou des conduites constamment en charge présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.5</Code>
+      <Libelle>Aux porte-jet</Libelle>
+      <LibelleLong>Les buses, les diffuseurs ou porte-jet, présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.6</Code>
+      <Libelle>Aux appareil. de mesure du pulvé</Libelle>
+      <LibelleLong>L'appareillage de mesure, présente au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.7</Code>
+      <Libelle>Au dispositif d'inc. des produits</Libelle>
+      <LibelleLong>Le dispositif d'incorporation du produit, présente au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.3.2.9</Code>
+      <Libelle>Aux filtres</Libelle>
+      <LibelleLong>Les filtres, présentent au moins une fuite majeure de bouillie (un écoulement continu ou égouttement de plus d'une goutte toutes les 5 secondes)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.1</Code>
+      <Libelle>Dispo. anti-décrochage déf.</Libelle>
+      <LibelleLong>Le verrouillage des raccords hydrauliques ne présente pas une tenue suffisante lors de la mise sous pression</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.2</Code>
+      <Libelle>Usure importante</Libelle>
+      <LibelleLong>Les conduites hydrauliques présentent une usure très marquée (toile apparente…)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.3</Code>
+      <Libelle>Pliures excessives</Libelle>
+      <LibelleLong>Les conduites hydrauliques présentent des pliures </LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.4</Code>
+      <Libelle>Fuite de fluide hydraulique</Libelle>
+      <LibelleLong>Le circuit hydraulique interne du pulvérisateur présente des traces de fuites ou suintement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.4.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1.1</Code>
+      <Libelle>Dissymétrie gauche/droite</Libelle>
+      <LibelleLong>Le montage des pneumatiques sur un même essieu du pulvérisateur présente des caractéristiques différentes</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1.2</Code>
+      <Libelle>Pression de gonflage inad.</Libelle>
+      <LibelleLong>La pression des pneumatiques du pulvérisateur est inadaptée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2.1</Code>
+      <Libelle>Endommagés</Libelle>
+      <LibelleLong>Les pneumatiques présentent de profondes entailles ou cicatrices</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2.2</Code>
+      <Libelle>Usure maximale</Libelle>
+      <LibelleLong>Les pneumatiques ont atteint un degré d'usure maximale. Visibilité de la trame intérieure du pneumatique</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.5.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	<!-- Ajout 09032023 -->
+		<ParamCtrlDiag>
+      <Code>2.6.1.1</Code>
+      <Libelle>Câbles électriques détériorés</Libelle>
+      <LibelleLong>Le câblage du circuit électrique présente des usures ou détériotations</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	<ParamCtrlDiag>
+      <Code>2.6.2.1</Code>
+      <Libelle>Tableau électrique: Abs différentiel</Libelle>
+      <LibelleLong>Le tableau électrique ne comporte pas de différentiel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2.2</Code>
+      <Libelle>Fusibles électriques: Non dédié</Libelle>
+      <LibelleLong>Le circuit électrique ne dispose pas de fusibles dédiés</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.6.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.1.1</Code>
+      <Libelle>Stabilité des supports des composant du circuit non efficace</Libelle>
+      <LibelleLong>Les éléments et composant, supportant les différents éléments du circuit de pulvérisation, ne sont pas stables et ou vibrent pendant le fonctionnement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.2.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, sans porter préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
+	  <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2.2</Code>
+      <Libelle>Déformation majeure</Libelle>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de déformations, portant préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.3.1</Code>
+      <Libelle>Modification mineure</Libelle>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés sans porter préjudices à la solidité, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.3.2</Code>
+      <Libelle>Modification majeure</Libelle>
+      <LibelleLong>Les éléments de support du circuit de pulvérisation ont été modifiés et portent préjudices à la solidité, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	 <ParamCtrlDiag>
+      <Code>2.7.4.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, sans porter préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <LibelleLong>le châssis ou élément(s) de structure du circuit de pulvérisation présente des traces de corrodion perforante, portant préjudice à la solidité, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>2.7.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <NiveauCauseMax>-1</NiveauCauseMax>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+	
+	<!--Fin Ajout -->
+    <ParamCtrlDiag>
+      <Code>3.1.1.1</Code>
+      <Libelle>Fuite mineure</Libelle>
+      <LibelleLong>La pompe présente des traces de suintement d'huile</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1.1.2</Code>
+      <Libelle>Fuite majeure</Libelle>
+      <LibelleLong>La pompe présente au moins une fuite d'huile provoquant un égouttement régulier.</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1.1</Code>
+      <Libelle>Pulsation mineure</Libelle>
+      <LibelleLong>La pompe engendre des pulsations supérieur à 5% et inférieur à 10% de la pression de travail moyenne</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1.2</Code>
+      <Libelle>Pulsation majeure</Libelle>
+      <LibelleLong>La pompe engendre des pulsations supérieures ou égal à 10% de la pression de travail moyenne</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.1</Code>
+      <Libelle>Pression de gonf. inadaptée</Libelle>
+      <LibelleLong>Si pulsation majeure (3212) et si la pression de gonflage de la cloche à air n'est pas comprise entre 30 et 70% de la pression de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.2</Code>
+      <Libelle>Membrane défectueuse</Libelle>
+      <LibelleLong>Un liquide s'échappe de la cloche à air lorsque l'on appuie sur la valve de gonflage</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.3</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Si pulsation majeure (3212) et si aucun dispositif d'amortissement équipe l'appareil</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.3.1</Code>
+      <Libelle>Agitation insuffisante</Libelle>
+      <LibelleLong>Aucun remous n'est visible à la surface de l'eau en cuve au régime nominal de la pompe</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>3.2.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Les orifices de remplissages de la cuve de bouillie ne sont pas équipés de bouchons</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.2</Code>
+      <Libelle>Fêlé</Libelle>
+      <LibelleLong>Un des bouchons de la cuve de bouillie est fêlé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.3</Code>
+      <Libelle>Cassé</Libelle>
+      <LibelleLong>Un des bouchons de la cuve de bouillie est cassé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.4</Code>
+      <Libelle>Percé</Libelle>
+      <LibelleLong>Un des bouchons de la cuve de bouillie  a été percé postérieurement et qu'il ne peut être obstrué</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2.1</Code>
+      <Libelle>Inadapté</Libelle>
+      <LibelleLong>Un des bouchons de la cuve de bouille n'est pas adapté à une fermeture étanche de la cuve</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2.2</Code>
+      <Libelle>Mauv. maintien</Libelle>
+      <LibelleLong>Un des bouchons de la cuve de bouillie ne peut être maintenu en position fermé par quelconque solution technique (filetage, friction,…)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif n'équipe l'appareil pour assurer la connaissance de niveau en cuve depuis l'extérieur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>L'indicateur de niveau ne peut fournir une indication fiable quel que soit le niveau en cuve</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.3</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <LibelleLong>La lecture sur l'indicateur de niveau n'est pas clairement visible (valeurs effacées, salissure,…)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <!-- 4.3.1 -->
+    <ParamCtrlDiag>
+      <Code>4.3.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé (appareil postérieur à 1995) et dont la hauteur de l'orifice de remplissage est > 1,5 m</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif d'incorporation installé ne peut être mis en fonctionnement: vannes cassées, circuit obstrué,… </LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.3</Code>
+      <Libelle>Absence - Facultatif</Libelle>
+      <LibelleLong>Aucun dispositif d'incorporation des produits n'est installé sur un appareil pour lequel il n'est pas obligatoire</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.4</Code>
+      <Libelle>Non fonctionnel- Facultatif</Libelle>
+      <LibelleLong>Le dispositif d'incorporation installé ne peut être mis en fonctionnement: vannes cassées, circuit obstrué,… ce défaut concerne les appareils pour lesquels cet accessoire n'est pas obligatoire</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong/>
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <!-- 4.3.2 -->
+    <ParamCtrlDiag>
+      <Code>4.3.2.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de nettoyage des emballages n'est disponible l'appareil</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.2.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de nettoyage des emballages de PP ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.3.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.4.1-->
+    <ParamCtrlDiag>
+      <Code>4.4.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Il n'existe aucun tamis au niveau de l'orifice de remplissage de la cuve de bouillie</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.1.2</Code>
+      <Libelle>Element filtrant défectueux</Libelle>
+      <LibelleLong>le tamis au niveau de l'orifice de remplissage est déchiré ou perforé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.4.2-->
+    <ParamCtrlDiag>
+      <Code>4.4.2.1</Code>
+      <Libelle>Absent ou non fonctionnel</Libelle>
+      <LibelleLong>Il n'est pas possible d'assurer le remplissage du pulvé depuis la pompe de celui-ci sans risque de retour vers le milieu ext.</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.4.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+<!-- 4.5.1-->
+    <ParamCtrlDiag>
+      <Code>4.5.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Il n'existe aucun dispositif permettant la vidange de la cuve</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.1.2</Code>
+      <Libelle>Non fonctionnelle</Libelle>
+      <LibelleLong>Le dispositif de vidange ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.1.3</Code>
+      <Libelle>Non protégée</Libelle>
+      <LibelleLong>La vanne de vidange n'est pas protégée et une ouverture intempestive peut survenir en cours de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    
+    <ParamCtrlDiag>
+      <Code>4.5.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.5.2-->
+    <ParamCtrlDiag>
+      <Code>4.5.2.1</Code>
+      <Libelle>Impossible</Libelle>
+      <LibelleLong>Aucun dispositif ne permet de récupérer de la bouillie contenue dans la cuve</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.5.2.2</Code>
+      <Libelle>Non étanche</Libelle>
+      <LibelleLong>La récupération de la bouillie  ne peut s'effectuer sans contamination extérieure (pulvé, environnement...)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+   
+    <ParamCtrlDiag>
+      <Code>4.5.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.6.1-->
+    <ParamCtrlDiag>
+      <Code>4.6.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucune cuve de rinçage n'équipe le pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.1.2</Code>
+      <Libelle>Capacité insuffisante</Libelle>
+      <LibelleLong>La capacité de la cuve de rinçage n'atteint pas les 10% de la capacité de la cuve principale</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.1.3</Code>
+      <Libelle>transfert non fonctionnel</Libelle>
+      <LibelleLong>Le transfert de l'eau de la cuve de rinçage vers les autres parties du pulvérisateur n'est pas possible</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+   
+    <ParamCtrlDiag>
+      <Code>4.6.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.6.2-->
+    <ParamCtrlDiag>
+      <Code>4.6.2.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de nettoyage des parois internes de la cuve de bouillie n'est présent (roto buse,...)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.2.2</Code>
+      <Libelle>non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de nettoyage interne ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  
+    <ParamCtrlDiag>
+      <Code>4.6.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.6.3-->
+    <ParamCtrlDiag>
+      <Code>4.6.3.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de nettoyage externe n'est présent</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.3.2</Code>
+      <Libelle>non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de nettoyage externe ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  
+    <ParamCtrlDiag>
+      <Code>4.6.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!-- 4.6.4-->
+    <ParamCtrlDiag>
+      <Code>4.6.4.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de nettoyage direct des circuits de pulvérisation (sans transfert dans la cuve) n'est présent</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>4.6.4.2</Code>
+      <Libelle>non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de nettoyage direct des circuits ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  
+    <ParamCtrlDiag>
+      <Code>4.6.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!--5.1.1 -->
+  <ParamCtrlDiag>
+      <Code>5.1.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif spécifique équipe l'appareil (plus de 3 sections) pour la fermeture générale de la pulvérisation: la coupure doit être possible dans un délai inférieur à 5 s</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1.1.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>L'écoulement aux sorties ne s'interrompt 5 s après avoir mis en œuvre la commande ou si le circuit ne s'établit pas de façon régulière 5 s après la manœuvre d'ouverture</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Il n'existe pas de fermeture sectorielle; il doit être possible de fermer la pulvérisation au moins en 2 secteurs</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1.2</Code>
+      <Libelle>Non foncti.</Libelle>
+      <LibelleLong>L'écoulement aux sorties ne s'interrompt 5 s après avoir mis en œuvre commande ou si le circuit ne s'établit pas de façon régulière 5 s après la manœuvre d'ouverture</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif sur l'appareil permet de corriger l'augmentation de pression liée à la fermeture d'une section de pulvérisation </LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Un des dipositifs permettant de corriger l'augmentation de pression liée à la fermeture d'une autre section n'est pas fonctionnel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.3</Code>
+      <Libelle>Mauvais équilibre</Libelle>
+      <LibelleLong>La fermeture d'une autre section de pulvérisation entraine une augmentation supérieur à 10% de la pression initiale</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de réglage de la pression n'équipe l'appareil</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1.2</Code>
+      <Libelle>Non foncti.</Libelle>
+      <LibelleLong>Le dispositif de réglage de la pression ne peut être manœuvré, ou sa mise en œuvre ne permet pas de faire varier la pression sur sa plage usuelle de travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.1</Code>
+      <Libelle>Faible instab. pression</Libelle>
+      <LibelleLong>Après réglage de la pression de travail et sans modification des paramètres de fonctionnement, la pression moyenne de travail a évolué en moins de 5 min entre 5 et 10%</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.2</Code>
+      <Libelle>Forte instab. pression</Libelle>
+      <LibelleLong>Après réglage de la pression de travail et sans modification des paramètres de fonctionnement, la pression moyenne de travail a évolué de plus de 10% en moins de 5 min</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.3</Code>
+      <Libelle>Non retour à la P initiale</Libelle>
+      <LibelleLong>Après fermeture puis réouverture de la pulvérisation, la P ne revient pas à la P initiale avec une tolérance de 10%</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.3.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Aucun dispositif de mesure de la pression de travail équipe l'appareil </LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.2</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <LibelleLong>Le diamètre de l'afficheur analogique est inf à 63 mm (si positionné à portée de main ou entre 3pts et tracteur), ou inf à 100 mm (si positionné ailleurs)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.3</Code>
+      <Libelle>Plage mesure inadaptée</Libelle>
+      <LibelleLong>La plage de mesure de la pression excède de plus de 50% la valeur de la pression maximale admissible</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.4</Code>
+      <Libelle>Graduation inadaptées</Libelle>
+      <LibelleLong>La plage de pression entre deux graduations excède: 0,2 bar jusqu'à 5 bar et/ou 1 bar entre 5 et 20 bar et/ou 2 bar au-delà de 20 bar</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Aucune valeur de pression ne peu être lue sur l'afficheur et/ou la lecture est rendue hasardeuse par la dégradation du matériel (verre opaque,…)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.2</Code>
+      <Libelle>Imprécision faible</Libelle>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché est comprise entre 0,1 et 0,2 bar (entre 1et 2 bar) et entre 5 et 10% (si &gt; 2 bar) ou écart constant et &lt; 0,5 bar ou &lt; 1 bar pour une plage de P &gt;= 10 bar</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.3</Code>
+      <Libelle>Imprécision importante</Libelle>
+      <LibelleLong>Ecart variable entre la P. réelle et la P. affiché >0,2 bar (entre 1et 2 bar) et >10% (si > 2 bar) ou écart constant et > 0,5 bar ou > 1 bar pour une plage de P > 10bar</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.4.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Aucune valeur de vitesse d'avancement ne peut être lue sur l'afficheur ou par le boitier de régulation et/ou le capteur présente des traces de dégradation sérieuse</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1.2</Code>
+      <Libelle>Imprécision</Libelle>
+      <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle de la vitesse d'avancement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Aucune valeur de débit ne peut être lue sur l'afficheur ou par le boitier de régulation et/ou le capteur présent des traces de dégradation sérieuse</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2.2</Code>
+      <Libelle>Imprécision</Libelle>
+      <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle du débit</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.5.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Aucune valeur liée au capteur ne peut être lue sur l'afficheur ou le capteur présente des traces manifestes de dégradation sérieuse</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1.2</Code>
+      <Libelle>Mauvaise lisibilité</Libelle>
+      <LibelleLong>Le diamètre de l'afficheur analogique est &lt; 63 mm (si positionné à portée de main), ou &lt; 100 mm (si positionné ailleurs) et/ou lecture rendue hasardeuse</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2.1</Code>
+      <Libelle>Imprecision vitesse</Libelle>
+      <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle de la vitesse d'avancement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2.2</Code>
+      <Libelle>Imprecision débit</Libelle>
+      <LibelleLong>L'écart entre la valeur lue par l'indicateur s'écarte de plus de 5 % de la valeur réelle du débit</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.6.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <ParamCtrlDiag>
+      <Code>5.7.1.1</Code>
+      <Libelle>Imprecision Faible</Libelle>
+      <LibelleLong>Le cumul des erreurs liées aux différents capteur provoque une imprécision du réglage du vol/ha  sup ou égal à 5 % et inférieur à 10%</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.7.1.2</Code>
+      <Libelle>Imprecision importante</Libelle>
+      <LibelleLong>Le cumul des erreurs liées aux différents capteurs provoque une imprécision du réglage du vol/ha  sup ou égal à 10%</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>5.7.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    
+  <ParamCtrlDiag>
+      <Code>6.1.1.1</Code>
+      <Libelle>Pliures importantes</Libelle>
+      <LibelleLong>Au moins une courbure provoque une pliure du flexible</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.2</Code>
+      <Libelle>Usure mineure</Libelle>
+      <LibelleLong>Au moins une trace d'abrasion de la gaine extérieure est nettement visible</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.3</Code>
+      <Libelle>Usure majeure</Libelle>
+      <LibelleLong>Au moins une trace d'abrasion de la gaine extérieure rend la trame intérieure de la conduite nettement visible</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>6.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Il n'existe aucun filtre au niveau du circuit d'aspiration, entre cuve et pompe</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.2</Code>
+      <Libelle>Non isolable</Libelle>
+      <LibelleLong>Le démontage du filtre provoque un écoulement de liquide qui perdure dans le temps: l'égouttement se poursuit au-delà de 15s après la fin du démontage</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.3</Code>
+      <Libelle>Non démontable</Libelle>
+      <LibelleLong>Le démontage risque la casse du matériel (filtre à l'aspiration)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.4</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers du filtre d'aspiration ou si la position ou le modèle est indapaté</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.5</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Il n'existe aucun filtre au niveau du circuit central de refoulement, entre pompe et dispositif de régulation le défaut est noté si présence à l'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.2</Code>
+      <Libelle>Non isolable</Libelle>
+      <LibelleLong>Le démontage du filtre provoque un écoulement de liquide qui perdure dans le temps: l'égouttement se poursuit au-delà de 15s après la fin du démontage</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.3</Code>
+      <Libelle>Non démontable</Libelle>
+      <LibelleLong>Le démontage risque la casse du matériel (filtre central au refoulement)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.4</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers du filtre au refoulement ou si la position ou le modèle est indapaté</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.5</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Il n'existe aucun filtre au niveau des différents circuits de distribution, le défaut est noté si présence à l'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.2</Code>
+      <Libelle>Non démontable</Libelle>
+      <LibelleLong>Le démontage risque la casse du matériel (filtre aux sections de pulvérisation)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.3</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers l'élément filtrant</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.4</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Il n'existe aucun filtre au niveau des porte-jets, le défaut est noté si présence à l'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.2</Code>
+      <Libelle>Non démontable</Libelle>
+      <LibelleLong>Le démontage risque la casse du matériel (filtre aux buses)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.3</Code>
+      <Libelle>Défaut de joint</Libelle>
+      <LibelleLong>Aucun joint n'est présent pour assurer l'étanchéité et/ou le passage de l'intégralité du liquide au travers les filtres aux buses ou si la position ou le modèle est indapaté</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.4</Code>
+      <Libelle>Elément défectueux</Libelle>
+      <LibelleLong>L'élément assurant la filtration est absent, perforé ou déformé (cette déformation ne lui permettant plus d'assurer correctement son rôle)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.5</Code>
+      <Libelle>Montage hétérogène</Libelle>
+      <LibelleLong>Les filtres installés ne sont pas tous identiques</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>7.4.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.1</Code>
+      <Libelle>Courbure faible R horizontale</Libelle>
+      <LibelleLong>La rampe n'est pas rectiligne et la flèche maximale est comprise entre 5 et 10 cm</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.2</Code>
+      <Libelle>Courbure importante R horizontale</Libelle>
+      <LibelleLong>La rampe n'est pas rectiligne et la flèche maximale est supérieure 10 cm (si L inférieur 20 m) ou supérieur à  0.5% de la largeur de la rampe (si L supérieur ou égal à 20 m)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.3</Code>
+      <Libelle>Défaut de parallelisme faible</Libelle>
+      <LibelleLong>La rampe n'est pas  parallèle au sol; la différence de hauteur entre le point le plus haut et le point le plus bas de la rampe est &lt; 20cm</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.4</Code>
+      <Libelle>Défaut de parallelisme important</Libelle>
+      <LibelleLong>La rampe n'est pas  parallèle au sol; la différence de hauteur entre le point le plus haut et le point le plus bas de la rampe est >= 20cm</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.1</Code>
+      <Libelle>Ecart de position faible</Libelle>
+      <LibelleLong>L'écart, sur le plan H entre la position de l'extrémité de rampe et sa position normale est supérieur à 2.5% de la largeur de la rampe et inférieur ou égal à 5% </LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.2</Code>
+      <Libelle>Ecart de position important</Libelle>
+      <LibelleLong>L'écart, sur le plan H entre la position de l'extrémité de rampe et sa position normale est > supérieur à 5% de la largeur de la rampe </LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.3</Code>
+      <Libelle>Courbure faible R verticale</Libelle>
+      <LibelleLong>La rampe n'est pas rectiligne et la flèche maximale est inf ou égal à 10 cm</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.4</Code>
+      <Libelle>Courbure importante R verticale</Libelle>
+      <LibelleLong>La rampe n'est pas rectiligne et la flèche maximale est sup à 10 cm</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3.1</Code>
+      <Libelle>Tronçons escamotables défectueux (>=12m)</Libelle>
+      <LibelleLong>La rampe (L >=12 m) ne s'efface pas lors du contact avec 1 obstacle vertical situé à plus de 90% de la demi largeur de la rampe par rapport à l'axe d'avancement</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3.2</Code>
+      <Libelle>Contact avec le sol non protégé(>=6m)</Libelle>
+      <LibelleLong>La buse d'extrémité peut entrer en contact avec le sol (rampe dont L > 6 m)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4.1</Code>
+      <Libelle>Déformation faible</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4.2</Code>
+      <Libelle>Déformation importante</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5.1</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <LibelleLong>Une ou plusieurs soudures présente(nt) une amorce de rupture, mais ne portant pas préjudice à la solidité ou à la rigidité du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5.2</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <LibelleLong>Une ou plusieurs soudures présente(nt) une amorce de rupture portant préjudice à la solidité ou à la rigidité du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.5.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6.1</Code>
+      <Libelle>Corrosion mineure</Libelle>
+      <LibelleLong>La structure de rampe ou l'équipement de distribution présente des traces de corrosion perforante sans porter préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6.2</Code>
+      <Libelle>Corrosion majeure</Libelle>
+      <LibelleLong>La structure de rampe ou l'équipement de distribution présente des traces de corrosion perforante portant préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.6.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.7.1</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces métallique du support de rampe ou des supports de porte-jets, présentent une ou plusieurs amorces de rupture, mais ne portant pas préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.7.2</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces métallique du support de rampe ou des sipports de porte-jets, présentent une ou plusieurs amorces de rupture, portant préjudice à la solidité ou rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.1.7.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+  <ParamCtrlDiag>
+      <Code>8.2.1.1</Code>
+      <Libelle>Jeux importants</Libelle>
+      <LibelleLong>Les jeux aux articulations permettent un débattement libre de la rampe de plus de 50 cm à son extrémité</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2.1</Code>
+      <Libelle>Dispositif de stabilisation non fonctionnel</Libelle>
+      <LibelleLong>Aucun dispositif ne permet le retour de la rampe (L >= 12m) en position normale de travail après une modification de sa position initiale sur le plan vertical</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2.2</Code>
+      <Libelle>Mauvais fonctionnement</Libelle>
+      <LibelleLong>Des points durs apparaissent lors de la manœuvre de la rampe (en position de travail) sur un plan vertical ( L rampe >=12m)</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.1</Code>
+      <Libelle>Impossible</Libelle>
+      <LibelleLong>Le réglage en hauteur de la rampe n'est pas possible</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.2</Code>
+      <Libelle>Mauvais état</Libelle>
+      <LibelleLong>Le dispositif de réglage en hauteur de la rampe présente des traces de corrosion perforante, ou des déformations mécaniques</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.3</Code>
+      <Libelle>Mauvais fonctionnement</Libelle>
+      <LibelleLong>Le dispositif de réglage en hauteur de la rampe présente des points durs ou de blocage lors de sa manœuvre</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.4</Code>
+      <Libelle>Inadapté</Libelle>
+      <LibelleLong>Le dispositif de réglage en hauteur de la rampe ne permet pas d'ajuster la hauteur de travail aux cultures effectivement traitées (entre 50 et 70 cm et 10 à 25 pour les traitements localisés)</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.2.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.1</Code>
+      <Libelle>Dissymétrie de montage</Libelle>
+      <LibelleLong>Les porte-jets ne sont pas installés de façon symétrique par rapport à l'axe d'avancement. Différence > 2% par rapport à la position symétrique</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.2</Code>
+      <Libelle>Irrégularité des espacements intra gpe buse</Libelle>
+      <LibelleLong>Au moins l'un des écartements entre deux porte-jets successifs s'écarte de plus de 5% de sa valeur nominale</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.3</Code>
+      <Libelle>Mauvais aplomb (rampe)</Libelle>
+      <LibelleLong>Au moins l'un des porte-jets s'écarte de plus de 10° de l'aplomb vertical</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.4</Code>
+      <Libelle>Irrégularité groupe de buses</Libelle>
+      <LibelleLong>Au moins l'un des écartements entre deux groupes successifs de porte-jets s'écarte de plus de 5% de sa valeur nominale</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.1</Code>
+      <Libelle>Félure</Libelle>
+      <LibelleLong>Au moins l'un des porte-jets présente une fêlure</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.2</Code>
+      <Libelle>Casse</Libelle>
+      <LibelleLong>Au moins l'un des porte-jets est cassé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.3</Code>
+      <Libelle>Usure</Libelle>
+      <LibelleLong>Au moins l'un des porte-jets présente une fixation du jet usée : arête de baïonnette émoussée ou filetage foiré</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.1</Code>
+      <Libelle>Antigoutte défectueux</Libelle>
+      <LibelleLong>A la fermeture du circuit, un écoulement se poursuit sur au moins un des porte-jet après  5 secondes, ou si à l'ouverture la régularité des jets n'est pas atteinte en 5s</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.2</Code>
+      <Libelle>Hétérogénéité d'alimentation</Libelle>
+      <LibelleLong>La P mesurée à la sortie d'au moins un porte-jet s'écarte de plus de 10% de la moyenne des pressions mesurées au niveau des autres tronçons</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>true</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.3</Code>
+      <Libelle>Ecart de pression</Libelle>
+      <LibelleLong>La P mesurée à la sortie d'au moins un porte-jet s'écarte de plus de 10% de la valeur mesurée à l'emplacement de l'indicateur de P de l'appareil</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>true</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.4</Code>
+      <Libelle>Antigoutte absent</Libelle>
+      <LibelleLong>Aucun dispositif d'arrêt de l'écoulement n'existe quand la vanne générale est coupée (Appareils postérieurs à 1995)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>8.3.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.1</Code>
+      <Libelle>Hétérogénéité de marque</Libelle>
+      <LibelleLong>Les buses installées sur l'appareil ne sont pas toutes de la même marque</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.2</Code>
+      <Libelle>Hétérogénéité de matériau</Libelle>
+      <LibelleLong>Les buses installées sur l'appareil ne sont pas toutes constituées du même matériau</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.3</Code>
+      <Libelle>Hétérogénéité de type</Libelle>
+      <LibelleLong>Les buses installées sur l'appareil ne sont pas toutes constituées du même type (jet plat, jet conique,…)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.4</Code>
+      <Libelle>Hétérogénéité d'angle</Libelle>
+      <LibelleLong>Les buses installées sur l'appareil ne forment pas toutes un même jet de pulvérisation</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.5</Code>
+      <Libelle>Hétérogénéité de calibre</Libelle>
+      <LibelleLong>Les buses installées sur l'appareil ne sont pas toutes du même calibre</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2.1</Code>
+      <Libelle>Hétérogénéité</Libelle>
+      <LibelleLong>Les buses (à jet plat) installées ne sont pas toutes orientées de la même façon. L'orientation étant repérée par rapport à l'axe de la rampe</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2.2</Code>
+      <Libelle>Incorrecte</Libelle>
+      <LibelleLong>L'axe de la fente de sortie ne forme pas un angle compris entre 3 et 7° avec l'axe de la rampe pour au moins une buse (à jet plat) installée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1.1</Code>
+      <Libelle>Obstacle dans les jets</Libelle>
+      <LibelleLong>Une partie de la pulvérisation est interceptée par des composantes du pulvérisateur (châssis, conduites,…) provoquant un égouttement de plus D'1 goutte toutes les 5s</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1.2</Code>
+      <Libelle>Panache hétérogène</Libelle>
+      <LibelleLong>La pulvérisation présente une hétérogénéité visuelle dans sa distribution spatiale ou quantitative</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2.1</Code>
+      <Libelle>Usure partielle</Libelle>
+      <LibelleLong>Moins de 33% des buses présentent un débit s'écartant de plus de 10% (15% si D&lt; 1l/min) par rapport à la valeur nominale indiquée par le constructeur. Si le débit constructeur n'est pas disponible un seuil de 5% sera retenu</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2.2</Code>
+      <Libelle>Usure globale</Libelle>
+      <LibelleLong>Plus de 33% des buses présentent un débit s'écartant de plus de 10% ( 15% si D &lt; 1 l/min) par rapport à la valeur nominale indiquée par le constructeur. Si le débit constructeur n'est pas disponible un seuil de 5% sera retenu</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>true</Cause1>
+      <Cause2>true</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>9.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.1</Code>
+      <Libelle>Caisson déformé</Libelle>
+      <LibelleLong>Le caisson du ventilateur présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.2</Code>
+      <Libelle>Caisson perforé</Libelle>
+      <LibelleLong>Le caisson du ventilateur présente au moins une perforation non fonctionnelle</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.3</Code>
+      <Libelle>Caisson désaxé</Libelle>
+      <LibelleLong>L'axe du caisson du ventilateur n'est pas dans celui de la transmission mécanique de mouvement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.4</Code>
+      <Libelle>Redresseur d'air déformé</Libelle>
+      <LibelleLong>Au moins l'un des dispositifs de redressement d'air présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.5</Code>
+      <Libelle>Redresseur d'air cassé</Libelle>
+      <LibelleLong>Au moins l'un des dispositifs de redressement d'air est cassé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.6</Code>
+      <Libelle>Pâle déformée</Libelle>
+      <LibelleLong>Au moins l'une des pales du ventilateur présente une déformation anormale par rapport à sa conception d'origine</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.7</Code>
+      <Libelle>Pâle déteriorée</Libelle>
+      <LibelleLong>Au moins l'une des pales du ventilateur présente une fêlure ou une cassure</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2.1</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Le ventilateur ne peut être mis en fonctionnement (rotation)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2.2</Code>
+      <Libelle>Flux d'air insuffisant</Libelle>
+      <LibelleLong>Le ventilateur génère un flux d'air de faible intensité par rapport à une machine similaire</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.1</Code>
+      <Libelle>Mal fixée</Libelle>
+      <LibelleLong>Au moins l'une des gaines d'adduction d'air n'est pas correctement fixée; usure accélérée ou celle d'autre(s) organe(s) du pulvérisateur</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.2</Code>
+      <Libelle>Non étanche</Libelle>
+      <LibelleLong>Des fuites d'air sont ressenties soit sur le cheminement de la gaine, soit au niveau des raccordements au ventilateur ou aux sorties</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.3</Code>
+      <Libelle>Obstruée</Libelle>
+      <LibelleLong>Des obstacles ou pliures excessives limitent la circulation de l'air dans les gaines</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <!--10.2.2-->
+    <ParamCtrlDiag>
+      <Code>10.2.2.1</Code>
+      <Libelle>Mal fixée</Libelle>
+      <LibelleLong>Au moins l'une des sorties d'air n'est pas correctement fixée; cela pouvant engendrer une modification de son positionnement au cours du travail</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.2</Code>
+      <Libelle>Déteriorée</Libelle>
+      <LibelleLong>Au moins l'une des sorties d'air présente une fêlure ou une cassure</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.3</Code>
+      <Libelle>Obstruée</Libelle>
+      <LibelleLong>Des obstacles limitent la sortie d'air</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>10.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!--11.1.1-->
+    <ParamCtrlDiag>
+      <Code>11.1.1.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Le matériel automoteur ou traînés ne dispose pas d'éclairage routier. Egalement constaté sur le matériel portés si l'emcombrement masque l'éclairage</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.1.2</Code>
+      <Libelle>Eclairage défectueux</Libelle>
+      <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des feux arrières est absente, cassée ou ne fonctionne plus</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.1.3</Code>
+      <Libelle>Endommagés</Libelle>
+      <LibelleLong>Au moins l'un des vitrages rouge de feux arrière est absent ou cassé</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+<!--11.1.2-->
+    <ParamCtrlDiag>
+      <Code>11.1.2.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>L'automoteur ne dispose pas d'éclairage routier à l'avant</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.2.2</Code>
+      <Libelle>Eclairage défectueuse</Libelle>
+      <LibelleLong>Au moins l'une des ampoules de l'automoteur assurant l'éclairage des feux de croisement est absent, casée ou ne fonctionne plus, également si la lumière émise n'est pas blanche ou jaune</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.2.3</Code>
+      <Libelle>Endommagés</Libelle>
+      <LibelleLong>Au moins l'une des vitrage des feux de croisement de l'automoteur est absent ou cassé</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+ <!--11.1.3-->
+    <ParamCtrlDiag>
+      <Code>11.1.3.1</Code>
+      <Libelle>Absents</Libelle>
+      <LibelleLong>L'automoteur ou traîné ne dispose pas de dispositif indiquant le changement de direction. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.3.2</Code>
+      <Libelle>Eclairage Défecteux</Libelle>
+      <LibelleLong>Au moins l'une des ampoules assurant l'éclairage des indicateurs de direction est absente, cassé ou ne fonctionne plus </LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.3.3</Code>
+      <Libelle>Endommagés</Libelle>
+      <LibelleLong>Au moins l'une des vitrage des indicateurs de direction est absent ou cassé</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--11.1.4-->
+    <ParamCtrlDiag>
+      <Code>11.1.4.1</Code>
+      <Libelle>Absents</Libelle>
+      <LibelleLong>L'automoteur ne dispose pas de feux tournant. Il sera également constaté sur les autres appareils si l'encombrement masque partiellement ou totalement le dispositif du tracteur (visible à 50 m)</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.4.2</Code>
+      <Libelle>Eclairage Défecteux</Libelle>
+      <LibelleLong>Le dispositif de feux tournants ne fonctionne pas correctement</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.2.2.3</Code>
+      <Libelle>Endommagés</Libelle>
+      <LibelleLong>Endommagés</LibelleLong>
+      <Actif>false</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>11.1.4.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>false</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--12.1.1-->
+    <ParamCtrlDiag>
+      <Code>12.1.1.1</Code>
+      <Libelle>Fuite</Libelle>
+      <LibelleLong>La cuve recevant les PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.1.2</Code>
+      <Libelle>Fermeture non étanche</Libelle>
+      <LibelleLong>La fermeture de la cuve recevant les PP n'est pas parfaitement étanche</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.1.3</Code>
+      <Libelle>Fixation hasardeuse</Libelle>
+      <LibelleLong>La fixation de la cuve recevant les PP n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--12.1.2-->
+    <ParamCtrlDiag>
+      <Code>12.1.2.1</Code>
+      <Libelle>Fuite</Libelle>
+      <LibelleLong>Le dispositif de dosage de PP présente au moins une fuite (quelle que soit l'intensité)</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.2.2</Code>
+      <Libelle>Fixation hasardeuse</Libelle>
+      <LibelleLong>La fixation du dispositif de dosage des PP n'est pas correctement assurée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.2.3</Code>
+      <Libelle>Débit</Libelle>
+      <LibelleLong>Le débit du dispositif de dosage de PP s'écarte de plus de 5% de la valeur programmée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--12.1.3-->
+    <ParamCtrlDiag>
+      <Code>12.1.3.1</Code>
+      <Libelle>Absent</Libelle>
+      <LibelleLong>Aucun dispositif ne permet le rinçage de l'ensemble d'injection directe</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.3.2</Code>
+      <Libelle>Non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de rinçagede l'ensemble injection directe ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.1.3.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!-- 12.2.1-->
+    <ParamCtrlDiag>
+      <Code>12.2.1.1</Code>
+      <Libelle>Dispositif d'arrêt et ouverture détérioré</Libelle>
+      <LibelleLong>Le dispositif d'ouverture et fermeture de la pulvérisation ne fonctionne pas correctemet: Ouverture ou fermeture totale en moins de 3s après actionnement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.1.2</Code>
+      <Libelle>Gâchette défectueuse</Libelle>
+      <LibelleLong>La gâchette est endommagée ou sa manoeuvre présente des points durs</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.1.3</Code>
+      <Libelle>Vérrouillage défectueux</Libelle>
+      <LibelleLong>Le verouillage en position fermée de la gâchette est non fonctionnel ou s'il est possible de verrouiller la position d'ouverture</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!-- 12.2.2 -->
+    <ParamCtrlDiag>
+      <Code>12.2.2.1</Code>
+      <Libelle>Réglage du débit non fonctionnel</Libelle>
+      <LibelleLong>Le dispositif de réglage du débit ne foncitonne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.2.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--12.3.1-->
+    <ParamCtrlDiag>
+      <Code>12.3.1.1</Code>
+      <Libelle>Déformation mineure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des déformations par rapport à leur conception d'origine, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.2</Code>
+      <Libelle>Déformation majeure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des déformations par rapport à leur conception d'origine, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.3</Code>
+      <Libelle>Lésion mineure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent une ou plusieurs amorces de rupture, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.4</Code>
+      <Libelle>Lésion majeure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent une ou plusieurs amorces de rupture, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.5</Code>
+      <Libelle>Lésion aux soudures mineure</Libelle>
+      <LibelleLong>Une ou plusieurs soudure de la structure du chariot,présentent une amorces de rupture, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.6</Code>
+      <Libelle>Lésion  aux soudures majeure</Libelle>
+      <LibelleLong>Une ou plusieurs soudure de la structure du chariot,présentent une amorces de rupture, portant préjudice à la soliditié, rigidité de l'ensemble ou la position de travail du matériel</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.7</Code>
+      <Libelle>Corosion mineure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des traces de corrosion perforante, mais ne portant pas préjudice à la soliditié, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.8</Code>
+      <Libelle>Corosion majeure</Libelle>
+      <LibelleLong>Une ou plusieurs pièces du châssis ou éléments de strucutre du chariot présentent des traces de corrosion perforante, portant préjudice à la soliditié, rigidité de l'ensemble</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+  <!--12.3.2-->
+    <ParamCtrlDiag>
+      <Code>12.3.2.1</Code>
+      <Libelle>Dispositif de déplacement détérioré</Libelle>
+      <LibelleLong>Le dispositif de déplacement ne fonctionne pas correctement ou est dans un état d'usure prononcé</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2.2</Code>
+      <Libelle>Dispositif d'entrainement détérioré</Libelle>
+      <LibelleLong>Le dispositif d'entraînement du chariot de pulvérisation ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2.3</Code>
+      <Libelle>Dispositif de programmation de la vitesse détérioré</Libelle>
+      <LibelleLong>Le dispositif de programmation de la vitesse d'avancement ne fonctionne pas correctement ou  si la vitesse réelle de déplacement s'écarte de plus de 5% de la vitesse programmée</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2.4</Code>
+      <Libelle>Dispositif d'ouverture/fermeture de la pulvarisation détérioré</Libelle>
+      <LibelleLong>Le dispositif automatique d'ouverture / fermeture de la pulvérisation ne fonctionne pas correctement</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>2</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.3.2.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    <!--12.4.1-->
+    <ParamCtrlDiag>
+      <Code>12.4.1.1</Code>
+      <Libelle>Absence</Libelle>
+      <LibelleLong>Le pulvérisateur n'est pas équipé d'un réservoir d'eau claire totalement indépendant des circuits de pulvérisation</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>4</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4.1.2</Code>
+      <Libelle>Capacité insuffisante (inf à 15l)</Libelle>
+      <LibelleLong>la capacité du réservoir d'eau claire présente une contenance inférieure à 15 litres</LibelleLong>
+      <Actif>true</Actif>
+      <DefaultCategorie>1</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+    <ParamCtrlDiag>
+      <Code>12.4.1.0</Code>
+      <Libelle>OK</Libelle>
+      <LibelleLong />
+      <Actif>true</Actif>
+      <DefaultCategorie>0</DefaultCategorie>
+      <Cause1>false</Cause1>
+      <Cause2>false</Cause2>
+      <Cause3>false</Cause3>
+    </ParamCtrlDiag>
+
+    
+  </ListeParam>
+</LstParamCtrlDiag> 

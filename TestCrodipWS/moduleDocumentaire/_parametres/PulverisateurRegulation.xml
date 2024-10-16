@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <PulverisateurRegulation>
+      <id>1</id>
+      <libelle>PRESSION CONSTANTE</libelle>
+  </PulverisateurRegulation>
+  <PulverisateurRegulation>
+    <id>2</id>
+    <libelle>DPM</libelle>
+  </PulverisateurRegulation>
+  <PulverisateurRegulation>
+    <id>3</id>
+    <libelle>DPAM</libelle>
+  </PulverisateurRegulation>
+  <PulverisateurRegulation>
+    <id>4</id>
+    <libelle>DPAE</libelle>
+    <options>
+      <option>Débit</option>
+      <option>Pression</option>
+    </options>
+  </PulverisateurRegulation>
+  <PulverisateurRegulation>
+    <id>6</id>
+    <libelle>DPM ASSISTE</libelle>
+  </PulverisateurRegulation>
+</root>

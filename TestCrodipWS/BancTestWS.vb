@@ -43,18 +43,45 @@ Imports System.Net.Http
 
         'Lecture de l'objet
         oBanc = BancManager.WSgetById(oReturn.uid)
+        Assert.AreEqual(22, oBanc.uidstructure)
+        Assert.AreEqual("TESTMCO", oBanc.marque)
 
         'Update de l'objet
         oBanc.marque = "TESTUPDATE"
         nreturn = BancManager.WSSend(oBanc, oReturn)
         Assert.AreEqual(oBanc.uid, oReturn.uid)
         Assert.AreEqual(2, nreturn)
+        Assert.AreEqual(22, oBanc.uidstructure)
+        Assert.AreEqual("TESTUPDATE", oBanc.marque)
 
-        'test sans modification
-        oBanc = oReturn
+    End Sub
+    <TestMethod()> Public Sub CRUDWSnbControle()
+        Dim nreturn As Integer
+        Dim oBanc As New Banc()
+        oBanc.uidstructure = 22
+        oBanc.nbControles = 0
+        oBanc.nbControlesTotal = 0
+
+        ' Création de l'objet
+        Dim oReturn As Banc
         nreturn = BancManager.WSSend(oBanc, oReturn)
-        'Assert.AreEqual(0, nreturn)
+        Assert.AreEqual(4, nreturn)
+        Assert.IsNotNull(oReturn.uid)
 
+        'Lecture de l'objet
+        oBanc = BancManager.WSgetById(oReturn.uid)
+        Assert.AreEqual(22, oBanc.uidstructure)
+        Assert.AreEqual(0, oBanc.nbControles)
+        Assert.AreEqual(0, oBanc.nbControlesTotal)
+
+        'Update de l'objet
+        oBanc.nbControles = 10
+        oBanc.nbControlesTotal = 15
+        nreturn = BancManager.WSSend(oBanc, oReturn)
+        Assert.AreEqual(oBanc.uid, oReturn.uid)
+        Assert.AreEqual(2, nreturn)
+        Assert.AreEqual(10, oBanc.nbControles)
+        Assert.AreEqual(15, oBanc.nbControlesTotal)
 
     End Sub
     <TestMethod()> Public Sub WSSerialize()

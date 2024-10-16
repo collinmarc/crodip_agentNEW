@@ -24,11 +24,17 @@ Imports System.Xml.Serialization
 Namespace WSCRODIP
 
     '''<remarks/>
-    <XmlInclude(GetType(CRODIPWS.ManometreControle)),
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+            XmlInclude(GetType(CRODIPWS.ManometreControle)),
         XmlInclude(GetType(CRODIPWS.ManometreEtalon)),
         XmlInclude(GetType(CRODIPWS.Banc)),
         XmlInclude(GetType(CRODIPWS.Buse)),
-        System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+        XmlInclude(GetType(CRODIPWS.Agent)),
+        XmlInclude(GetType(CRODIPWS.Structure)),
+        XmlInclude(GetType(CRODIPWS.Exploitation)),
+        XmlInclude(GetType(CRODIPWS.Pulverisateur)),
+        XmlInclude(GetType(CRODIPWS.ExploitationTOPulverisateur)),
+        XmlInclude(GetType(CRODIPWS.Diagnostic)),
      System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer
@@ -604,23 +610,23 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendAgent", RequestElementName:="SendAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal AgentRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendAgent", New Object() {AgentRequest})
+        Public Function SendAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Agent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendAgent", New Object() {Agent})
             info = CType(results(1), String)
             Return CType(results(0), Integer)
         End Function
 
         '''<remarks/>
-        Public Overloads Sub SendAgentAsync(ByVal AgentRequest As Object)
-            Me.SendAgentAsync(AgentRequest, Nothing)
+        Public Overloads Sub SendAgentAsync(ByVal Agent As Object)
+            Me.SendAgentAsync(Agent, Nothing)
         End Sub
 
         '''<remarks/>
-        Public Overloads Sub SendAgentAsync(ByVal AgentRequest As Object, ByVal userState As Object)
+        Public Overloads Sub SendAgentAsync(ByVal Agent As Object, ByVal userState As Object)
             If (Me.SendAgentOperationCompleted Is Nothing) Then
                 Me.SendAgentOperationCompleted = AddressOf Me.OnSendAgentOperationCompleted
             End If
-            Me.InvokeAsync("SendAgent", New Object() {AgentRequest}, Me.SendAgentOperationCompleted, userState)
+            Me.InvokeAsync("SendAgent", New Object() {Agent}, Me.SendAgentOperationCompleted, userState)
         End Sub
 
         Private Sub OnSendAgentOperationCompleted(ByVal arg As Object)

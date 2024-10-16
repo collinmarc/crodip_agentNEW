@@ -1,7 +1,8 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports System.Xml.Serialization
 
-Public Class Structuree
+Public Class [Structure]
     Inherits root
 
     Private _id As Integer
@@ -20,8 +21,6 @@ Public Class Structuree
     Private _telephoneFax As String
     Private _eMail As String
     Private _commentaire As String
-    Private _dateModificationCrodip As String
-    Private _dateModificationAgent As String
     Private m_DernNumFact As String
 
 
@@ -31,7 +30,7 @@ Public Class Structuree
         nom = ""
     End Sub
 #Region "Properties"
-
+    <XmlIgnore()>
     Public Property id() As Integer
         Get
             Return _id
@@ -40,7 +39,7 @@ Public Class Structuree
             _id = Value
         End Set
     End Property
-
+    <XmlIgnore()>
     Public Property idCrodip() As String
         Get
             Return _idCrodip
@@ -176,23 +175,6 @@ Public Class Structuree
         End Set
     End Property
 
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
     Private _ModeReglement As String = ""
     Public Property modereglement() As String
         Get
@@ -427,7 +409,7 @@ Public Class Structuree
             Dim lst As List(Of Agent)
             lst = AgentManager.getAgentList(Me.id).items
             For Each oAgent As Agent In lst.Where(Function(A)
-                                                      Return A.idStructure = Me.id
+                                                      Return A.uidStructure = Me.id
                                                   End Function)
                 CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
 

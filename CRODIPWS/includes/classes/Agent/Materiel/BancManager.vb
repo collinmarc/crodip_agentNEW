@@ -91,11 +91,11 @@ Public Class BancManager
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
 
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
-        If pAgent.idStructure <> 0 Then
+        Dim tmpObjectId As String = pAgent.uidStructure & "-" & pAgent.id & "-1"
+        If pAgent.uidStructure <> 0 Then
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY BancMesure.id DESC"
+            bddCommande.CommandText = "SELECT BancMesure.id FROM BancMesure WHERE BancMesure.id LIKE '" & pAgent.uidStructure & "-" & pAgent.id & "-%' ORDER BY BancMesure.id DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -105,13 +105,13 @@ Public Class BancManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.uidStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
                 tmpListProfils.Close()
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.uidStructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("BancManager - getnewIdForTestOnly : " & ex.Message & vbNewLine)
             End Try
@@ -308,7 +308,7 @@ Public Class BancManager
         Dim arrItems(0) As Banc
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM BancMesure WHERE (BancMesure.dateModificationAgent<>BancMesure.dateModificationCrodip or dateModificationCrodip is null) AND BancMesure.idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM BancMesure WHERE (BancMesure.dateModificationAgent<>BancMesure.dateModificationCrodip or dateModificationCrodip is null) AND BancMesure.idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats
@@ -442,7 +442,7 @@ Public Class BancManager
                                 End Sub)
 
         Else
-            arrResponse = BancManager.getBancByStructureId(pAgent.idStructure, isShowAll)
+            arrResponse = BancManager.getBancByStructureId(pAgent.uidStructure, isShowAll)
         End If
         Return arrResponse
     End Function

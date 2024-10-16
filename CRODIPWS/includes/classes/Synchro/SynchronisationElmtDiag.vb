@@ -48,7 +48,7 @@ Public Class SynchronisationElmtDiag
             Dim oDiag As New Diagnostic
             Try
                 SetStatus("Réception MAJ contrôle n°" & Me.IdentifiantChaine & "...")
-                oDiag = DiagnosticManager.getWSDiagnosticById(pAgent.id, Me.IdentifiantChaine)
+                oDiag = DiagnosticManager.WSgetById(pAgent.uid, Me.IdentifiantChaine)
                 DiagnosticManager.save(oDiag, True)
 
                 bReturn = True

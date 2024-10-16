@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ListOfCodeAPE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <lst>
+    <CodeAPE>
+      <Code>0111Z</Code>
+      <Libelle>Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0112Z</Code>
+      <Libelle>Culture du riz</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0113Z</Code>
+      <Libelle>Culture de légumes, de melons, de racines et de tubercules </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0114Z</Code>
+      <Libelle>Culture de la canne à sucre </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0115Z</Code>
+      <Libelle>Culture du tabac </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0116Z</Code>
+      <Libelle>Culture de plantes à fibres </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0119Z</Code>
+      <Libelle>Autres cultures non permanentes (ex : fourrage)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0121Z</Code>
+      <Libelle>Culture de la vigne </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0122Z</Code>
+      <Libelle>Culture de fruits tropicaux et subtropicaux </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0123Z</Code>
+      <Libelle>Culture d'agrumes </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0124Z</Code>
+      <Libelle>Culture de fruits à pépins et à noyau </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0125Z</Code>
+      <Libelle>Culture d'autres fruits d'arbres ou d'arbustes et de fruits à coque </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0126Z</Code>
+      <Libelle>Culture de fruits oléagineux </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0127Z</Code>
+      <Libelle>Culture de plantes à boissons </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0128Z</Code>
+      <Libelle>Culture de plantes à épices, aromatiques, médicinales et pharmaceutiques </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0129Z</Code>
+      <Libelle>Autres cultures permanentes </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0130Z</Code>
+      <Libelle>Reproduction de plantes (pépinières)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0141Z</Code>
+      <Libelle>Élevage de vaches laitières </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0142Z</Code>
+      <Libelle>Élevage d'autres bovins et de buffles </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0143Z</Code>
+      <Libelle>Élevage de chevaux et d'autres équidés </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0144Z</Code>
+      <Libelle>Élevage de chameaux et d'autres camélidés </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0145Z</Code>
+      <Libelle>Élevage d'ovins et de caprins </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0146Z</Code>
+      <Libelle>Élevage de porcins </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0147Z</Code>
+      <Libelle>Élevage de volailles </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0149Z</Code>
+      <Libelle>Élevage d'autres animaux </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0150Z</Code>
+      <Libelle>Cultures et élevage associés </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0151Z</Code>
+      <Libelle>Cultures annuelles et arboriculture associées</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0152Z</Code>
+      <Libelle>Cultures annuelles et viticulture associées</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0153Z</Code>
+      <Libelle>Cultures pérennes et élevages associés</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0161Z</Code>
+      <Libelle>Activités de soutien aux cultures (ex : ETA)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0162Z</Code>
+      <Libelle>Activités de soutien à la production animale </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0163Z</Code>
+      <Libelle>Traitement primaire des récoltes </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0164Z</Code>
+      <Libelle>Traitement des semences </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0170Z</Code>
+      <Libelle>Chasse, piégeage et services annexes </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>1101Z</Code>
+      <Libelle>Production de boissons alcooliques distillées</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0210Z</Code>
+      <Libelle>Sylviculture et autres activités forestières</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>0240Z</Code>
+      <Libelle>Services de soutien à l’exploitation forestière</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>2015Z</Code>
+      <Libelle>Fabrication de produits azotés et d’engrais</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>2020Z</Code>
+      <Libelle> Fabrication de pesticides et d’autres produits   agrochimiques</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>2830Z</Code>
+      <Libelle>Fabrication de machines agricoles et forestières</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>3312Z</Code>
+      <Libelle>Réparation de machines et équipements mécaniques (ex : artisans)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>3319Z</Code>
+      <Libelle>Réparation d’autres équipements</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>4621Z</Code>
+      <Libelle>Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d’aliments pour bétail</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>4631Z</Code>
+      <Libelle>Commerce de gros (commerce interentreprises) de fruits et de légumes</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>4661Z</Code>
+      <Libelle>Commerce de gros (commerce interentreprises) de matériel agricole (ex : concessionnaires)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>4675Z</Code>
+      <Libelle>Commerce de gros (commerce interentreprises) de produits chimiques</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>5530Z</Code>
+      <Libelle>Terrains de camping et parcs pour caravanes ou de véhicules de loisirs</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>9377Z</Code>
+      <Libelle>Gestion d’installations sportives (ex : golfs, stades et autres terrains sportifs ou de loisirs)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>6820Z</Code>
+      <Libelle>Locations de terrains et d’autres biens immobiliers</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>7120B</Code>
+      <Libelle>Analyses, essais et inspections techniques </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>7219Z</Code>
+      <Libelle>Recherche-développement en autres sciences physiques et naturelles (ex : INRA)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>8299Z</Code>
+      <Libelle>Activités de soutien technique (instituts techniques, centres d’expérimentation…)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>7731Z</Code>
+      <Libelle>Location et location-bail de machines et équipements agricoles (ex : CUMA)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>8129A</Code>
+      <Libelle>Désinfection, désinsectisation, dératisation</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>8130Z</Code>
+      <Libelle>Services d’aménagement paysager (ex : sociétés d’entretien des espaces verts…)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>8411Z</Code>
+      <Libelle>Administration publique générale (ex : Mairies) </Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>8532Z</Code>
+      <Libelle>Enseignement secondaire technique ou professionnel (ex : lycée agricole)</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>9710Z</Code>
+      <Libelle>Salariés ayant une activité agricole</Libelle>
+    </CodeAPE>
+    <CodeAPE>
+      <Code>9711Z</Code>
+      <Libelle>Retraité ayant une activité agricole</Libelle>
+    </CodeAPE>
+  </lst>
+</ListOfCodeAPE>

@@ -22,7 +22,7 @@ Public Class SynchronisationManager
             Dim bddCommande As DbCommand
             bddCommande = CSDb.getConnection().CreateCommand()
             ' Création du nouveau log
-            bddCommande.CommandText = "INSERT INTO `Synchronisation` (`idAgent`,`sensSynchronisation`,`dateSynchronisation`,`logSynchronisation`) VALUES (" & CSDb.secureString(pagent.idStructure) & ",'" & CSDb.secureString(_sens) & "','" & CSDate.ToCRODIPString(Date.Now) & "','" & CSDb.secureString(_log) & "')"
+            bddCommande.CommandText = "INSERT INTO `Synchronisation` (`idAgent`,`sensSynchronisation`,`dateSynchronisation`,`logSynchronisation`) VALUES (" & CSDb.secureString(pagent.uidStructure) & ",'" & CSDb.secureString(_sens) & "','" & CSDate.ToCRODIPString(Date.Now) & "','" & CSDb.secureString(_log) & "')"
             bddCommande.ExecuteNonQuery()
 
 
@@ -91,8 +91,8 @@ Public Class SynchronisationManager
         Dim isComplete As Integer
 
         Dim DateDernSynhcro As DateTime
-        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.idStructure)
-        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.idStructure)
+        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.uidStructure)
+        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.uidStructure)
         CSDebug.dispInfo("Dernière date de synchro =   " & DateDernSynhcro.ToShortDateString())
         'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
         '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)

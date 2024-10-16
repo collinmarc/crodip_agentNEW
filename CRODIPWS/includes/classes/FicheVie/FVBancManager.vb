@@ -348,12 +348,12 @@ Public Class FVBancManager
         Dim tmpObjectId As String = ""
         oAgent = AgentManager.getAgentById(pIdAgent)
         If oAgent.id = pIdAgent Then
-            If oAgent.idStructure <> 0 Then
+            If oAgent.uidStructure <> 0 Then
                 Dim bdd As New CSDb(True)
 
                 Try
                     ' On récupère les résultats
-                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.idStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
+                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.uidStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
                     ' Puis on les parcours
                     Dim newId As Integer = 0
                     While oDataReader.Read()
@@ -368,7 +368,7 @@ Public Class FVBancManager
                     End While
                     oDataReader.Close()
                     newId = newId + 1
-                    tmpObjectId = oAgent.idStructure & "-" & oAgent.id & "-" & (newId + 1)
+                    tmpObjectId = oAgent.uidStructure & "-" & oAgent.id & "-" & (newId + 1)
                 Catch ex As Exception ' On intercepte l'erreur
                     CSDebug.dispError("FVBancManager.getnewId ERR : " & ex.Message)
                 End Try
@@ -464,7 +464,7 @@ Public Class FVBancManager
         bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT FichevieBancMesure.* FROM FichevieBancMesure INNER JOIN BancMesure ON FichevieBancMesure.idBancMesure = BancMesure.id "
         bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieBancMesure.dateModificationAgent<>FichevieBancMesure.dateModificationCrodip Or FichevieBancMesure.dateModificationCrodip is Null )"
-        bddCommande.CommandText = bddCommande.CommandText & " And BancMesure.idStructure = " & pAgent.idStructure
+        bddCommande.CommandText = bddCommande.CommandText & " And BancMesure.idStructure = " & pAgent.uidStructure
 
         Try
             ' On récupère les résultats

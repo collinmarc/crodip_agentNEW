@@ -374,7 +374,7 @@ Public Class ManometreControleManager
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand
         bddCommande = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE( AgentManoControle.dateModificationAgent>AgentManoControle.dateModificationCrodip or dateModificationCrodip is null) AND AgentManoControle.idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE( AgentManoControle.dateModificationAgent>AgentManoControle.dateModificationCrodip or dateModificationCrodip is null) AND AgentManoControle.idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats
@@ -524,11 +524,11 @@ Public Class ManometreControleManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
+            arrResponse = getManoControleByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
             If arrResponse.Count = 0 Then
-                arrResponse = getManoControleByStructureIdJamaisServi(pAgent.idStructure)
+                arrResponse = getManoControleByStructureIdJamaisServi(pAgent.uidStructure)
             End If
             'Charegement de la Liste des pools du mano
             arrResponse.ForEach(Sub(M)
@@ -542,7 +542,7 @@ Public Class ManometreControleManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
         If Not My.Settings.GestiondesPools Then
-            arrResponse = getManoControleByStructureId(pAgent.idStructure, isShowAll)
+            arrResponse = getManoControleByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools du mano

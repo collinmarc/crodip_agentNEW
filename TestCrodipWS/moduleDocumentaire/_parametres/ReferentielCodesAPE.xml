@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <CODEAPE>
+    <libelle>0111Z</libelle>
+    <libelle_long>Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0112Z</libelle>
+    <libelle_long>Culture du riz</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0113Z</libelle>
+    <libelle_long>Culture de légumes, de melons, de racines et de tubercules</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0114Z</libelle>
+    <libelle_long>Culture de la canne à sucre</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0115Z</libelle>
+    <libelle_long>Culture du tabac</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0116Z</libelle>
+    <libelle_long>Culture de plantes à fibres</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0119Z</libelle>
+    <libelle_long>Autres cultures non permanentes (ex : fourrage)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0121Z</libelle>
+    <libelle_long>Culture de la vigne</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0122Z</libelle>
+    <libelle_long>Culture de fruits tropicaux et subtropicaux</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0123Z</libelle>
+    <libelle_long>Culture d'agrumes</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0124Z</libelle>
+    <libelle_long>Culture de fruits à pépins et à noyau</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0125Z</libelle>
+    <libelle_long>Culture d'autres fruits d'arbres ou d'arbustes et de fruits à coque</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0126Z</libelle>
+    <libelle_long>Culture de fruits oléagineux</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0127Z</libelle>
+    <libelle_long>Culture de plantes à boissons</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0128Z</libelle>
+    <libelle_long>Culture de plantes à épices, aromatiques, médicinales et pharmaceutiques</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0129Z</libelle>
+    <libelle_long>Autres cultures permanentes</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0130Z</libelle>
+    <libelle_long>Reproduction de plantes (pépinières)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0141Z</libelle>
+    <libelle_long>Élevage de vaches laitières</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0142Z</libelle>
+    <libelle_long>Élevage d'autres bovins et de buffles</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0143Z</libelle>
+    <libelle_long>Élevage de chevaux et d'autres équidés</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0144Z</libelle>
+    <libelle_long>Élevage de chameaux et d'autres camélidés</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0145Z</libelle>
+    <libelle_long>Élevage d'ovins et de caprins</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0146Z</libelle>
+    <libelle_long>Élevage de porcins</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0147Z</libelle>
+    <libelle_long>Élevage de volailles</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0149Z</libelle>
+    <libelle_long>Élevage d'autres animaux</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0150Z</libelle>
+    <libelle_long>Cultures et élevage associés</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0151Z</libelle>
+    <libelle_long>Cultures annuelles et arboriculture associées</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0152Z</libelle>
+    <libelle_long>Cultures annuelles et viticulture associées</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0153Z</libelle>
+    <libelle_long>Cultures pérennes et élevages associés</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0161Z</libelle>
+    <libelle_long>Activités de soutien aux cultures (ex : ETA)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0162Z</libelle>
+    <libelle_long>Activités de soutien à la production animale</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0163Z</libelle>
+    <libelle_long>Traitement primaire des récoltes</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0164Z</libelle>
+    <libelle_long>Traitement des semences</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0170Z</libelle>
+    <libelle_long>Chasse, piégeage et services annexes</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0210Z</libelle>
+    <libelle_long>Sylviculture et autres activités forestières</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>0240Z</libelle>
+    <libelle_long>Services de soutien à l'exploitation forestière</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>1101Z</libelle>
+    <libelle_long>Production de boissons alcooliques distillées</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>2015Z</libelle>
+    <libelle_long>Fabrication de produits azotés et d'engrais</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>2020Z</libelle>
+    <libelle_long>Fabrication de pesticides et d'autres produits agrochimiques</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>2830Z</libelle>
+    <libelle_long>Fabrication de machines agricoles et forestières</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>3312Z</libelle>
+    <libelle_long>Réparation de machines et équipements mécaniques (ex : artisans)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>3319Z</libelle>
+    <libelle_long>Réparation d'autres équipements</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>4621Z</libelle>
+    <libelle_long>Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d'aliments pour bétail</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>4631Z</libelle>
+    <libelle_long>Commerce de gros (commerce interentreprises) de fruits et de légumes</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>4661Z</libelle>
+    <libelle_long>Commerce de gros (commerce interentreprises) de matériel agricole (ex : concessionnaires)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>4675Z</libelle>
+    <libelle_long>Commerce de gros (commerce interentreprises) de produits chimiques</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>5530Z</libelle>
+    <libelle_long>Terrains de camping et parcs pour caravanes ou de véhicules de loisirs</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>6820Z</libelle>
+    <libelle_long>Locations de terrains et d'autres biens immobiliers</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>7120B</libelle>
+    <libelle_long>Analyses, essais et inspections techniques</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>7219Z</libelle>
+    <libelle_long>Recherche-développement en autres sciences physiques et naturelles (ex : INRA)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>7731Z</libelle>
+    <libelle_long>Location et location-bail de machines et équipements agricoles (ex : CUMA)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>8129A</libelle>
+    <libelle_long>Désinfection, désinsectisation, dératisation</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>8130Z</libelle>
+    <libelle_long>Services d'aménagement paysager (ex : sociétés d'entretien des espaces verts...)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>8299Z</libelle>
+    <libelle_long>Activités de soutien technique (instituts techniques, centres d'expérimentation...)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>8411Z</libelle>
+    <libelle_long>Administration publique générale (ex : Mairies)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>8532Z</libelle>
+    <libelle_long>Enseignement secondaire technique ou professionnel (ex : lycée agricole)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>9377Z</libelle>
+    <libelle_long>Gestion d'installations sportives (ex : golfs, stades et autres terrains sportifs ou de loisirs)</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>9710Z</libelle>
+    <libelle_long>Salariés ayant une activité agricole</libelle_long>
+  </CODEAPE>
+  <CODEAPE>
+    <libelle>9711Z</libelle>
+    <libelle_long>Retraité ayant une activité agricole</libelle_long>
+  </CODEAPE>
+</root>

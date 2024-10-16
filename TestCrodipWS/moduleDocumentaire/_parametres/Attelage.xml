@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Attelage>
+		<id>1</id>
+		<libelle>PORTE</libelle>
+  </Attelage>
+  <Attelage>
+		<id>2</id>
+		<libelle>TRAINE</libelle>
+  </Attelage>
+  <Attelage>
+		<id>3</id>
+		<libelle>AUTOMOTEUR</libelle>
+  </Attelage>
+  <Attelage>
+		<id>4</id>
+		<libelle>SEMI PORTE</libelle>
+  </Attelage>
+  <Attelage>
+		<id>5</id>
+		<libelle>INTEGRE</libelle>
+  </Attelage>
+  <Attelage>
+		<id>6</id>
+		<libelle>TESTMCO</libelle>
+  </Attelage>
+</root>
+

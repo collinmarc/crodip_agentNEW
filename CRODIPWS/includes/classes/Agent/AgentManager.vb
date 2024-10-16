@@ -1,79 +1,165 @@
 Imports System.Data.Common
+Imports System.IO
 Imports System.Linq
+Imports System.Xml.Serialization
 
 Public Class AgentManager
     Inherits RootManager
 #Region "Methodes acces Web Service"
+    Public Shared Function WSgetById(ByVal p_uid As Integer) As Agent
+        Dim oreturn As Agent
+        oreturn = getWSByKey(Of Agent)(p_uid, "")
+        Return oreturn
+    End Function
+
+    Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String) As Agent
+        Dim oreturn As Agent
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim tXmlnodes As Xml.XmlNode()
+            Dim lstPools As Object
+            '' déclarations
+            Dim typeT As Type = GetType(Agent)
+            Dim nomMethode As String = "Get" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim pInfo As String = ""
+            codeResponse = objWSCrodip.GetAgent(pIdProfileAgent, pInfo, tXmlnodes, lstPools)
+            Select Case codeResponse
+                Case 0 Or 4 ' OK
+                    Dim ser As New XmlSerializer(GetType(Agent))
+                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                        oreturn = ser.Deserialize(reader)
+                    End Using
+                Case 1 ' NOK
+                    CSDebug.dispError("getWSByKey2 - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("getWSByKey2 - Code 9 : Bad Request")
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - getWSbyKey2 : ", ex)
+        Finally
+        End Try
+        Return oreturn
+
+
+    End Function
+
+    Public Shared Function WSSend(ByVal pAgentIn As Agent, ByRef pReturn As Agent) As Integer
+        Dim oreturn As Agent = Nothing
+        Dim codeResponse As Integer = 99
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim pInfo As String = ""
+            Dim puid As Integer
+
+            'Determination du Nom de la méthode : exemple SendManometreControle
+            Dim typeT As Type = GetType(Agent)
+            Dim nomMethode As String = "Send" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            If methode IsNot Nothing Then
+                'Invocation de la méthode
+                Dim serializer As New XmlSerializer(pAgentIn.GetType())
+                Using writer As New StringWriter()
+                    serializer.Serialize(writer, pAgentIn)
+                    Dim xmlOutput As String = writer.ToString()
+                    ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
+                    CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                End Using
+
+                Dim Params As Object() = {pAgentIn, pInfo}
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                pInfo = DirectCast(Params(1), String)
+                '                puid = DirectCast(Params(2), Integer)
+                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+            End If
+            Select Case codeResponse
+                Case 2 ' UPDATE OK
+'                    pobjreturn = getWSByKey(Of T)(CType(pobj, root).uid, CType(pobj, root).aid)
+                Case 4 ' CREATE OK
+                    'pReturn = WSgetByNumeroNational(Of T)(puid, "")
+                Case 1 ' NOK
+                    CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
+                Case 0 ' PAS DE MAJ
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - sendWS : ", ex)
+        Finally
+        End Try
+        Return codeResponse
+    End Function
 
     'Public Shared Function RESTlogin(pAgent As Agent) As Boolean
     '    Return RootManager.RESTConnect(pAgent)
     'End Function
     ' Methode OK
-    Public Shared Function getWSAgentById(ByVal agent_id As String) As Agent
-        Dim objAgent As New Agent
-        Try
+    'Public Shared Function getWSAgentById(ByVal agent_id As String) As Agent
+    '    Dim objAgent As New Agent
+    '    Try
 
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            'Dim codeResponse As Integer = objWSCrodip.GetAgent(agent_id, objWSCrodip_response)
-            Dim codeResponse As Integer
-            Select Case codeResponse
-                Case 0 ' OK
-                    '                    SynchronisationManager.LogSynchroElmt(objWSCrodip_response)
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If Not String.IsNullOrEmpty(objWSCrodip_responseItem.InnerText()) Then
-                            objAgent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
-                Case 1 ' NOK
-                    objAgent.id = -1
-                    CSDebug.dispError("Erreur - AgentManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    objAgent.id = -1
-                    CSDebug.dispError("Erreur - AgentManager - Code 9 : Bad Request")
-                Case 3
-                    objAgent.id = -1
-                    CSDebug.dispError("Erreur - AgentManager - Code 3 : Pas de mise à jour")
-            End Select
-            ''' TODO pour test MCO
-            '           objWSCrodip.sendWSAgent(objWSCrodip_response, Nothing)
-        Catch ex As Exception
-            CSDebug.dispError("AgentManager - getWSAgentById : " & ex.Message)
-            objAgent = New Agent
-        End Try
-        Return objAgent
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        'Dim codeResponse As Integer = objWSCrodip.GetAgent(agent_id, objWSCrodip_response)
+    '        Dim codeResponse As Integer
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                '                    SynchronisationManager.LogSynchroElmt(objWSCrodip_response)
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    If Not String.IsNullOrEmpty(objWSCrodip_responseItem.InnerText()) Then
+    '                        objAgent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+    '                    End If
+    '                Next
+    '            Case 1 ' NOK
+    '                objAgent.id = -1
+    '                CSDebug.dispError("Erreur - AgentManager - Code 1 : Non-Trouvée")
+    '            Case 9 ' BADREQUEST
+    '                objAgent.id = -1
+    '                CSDebug.dispError("Erreur - AgentManager - Code 9 : Bad Request")
+    '            Case 3
+    '                objAgent.id = -1
+    '                CSDebug.dispError("Erreur - AgentManager - Code 3 : Pas de mise à jour")
+    '        End Select
+    '        ''' TODO pour test MCO
+    '        '           objWSCrodip.sendWSAgent(objWSCrodip_response, Nothing)
+    '    Catch ex As Exception
+    '        CSDebug.dispError("AgentManager - getWSAgentById : " & ex.Message)
+    '        objAgent = New Agent
+    '    End Try
+    '    Return objAgent
 
-    End Function
+    'End Function
 
-    'test   
-    'Re test
-    ' Methode OK
-    Public Shared Function sendWSAgent(ByVal agent As Agent, ByRef updatedObject As Object) As Integer
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Return objWSCrodip.SendAgent(agent, updatedObject)
-        Catch ex As Exception
-            CSDebug.dispFatal("AgentManager::sendWSAgent : " & ex.Message)
-            Return -1
-        End Try
-    End Function
+    ''test   
+    ''Re test
+    '' Methode OK
+    'Public Shared Function sendWSAgent(ByVal agent As Agent, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Return objWSCrodip.SendAgent(agent, updatedObject)
+    '    Catch ex As Exception
+    '        CSDebug.dispFatal("AgentManager::sendWSAgent : " & ex.Message)
+    '        Return -1
+    '    End Try
+    'End Function
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As Agent
-        Dim objAgent As New Agent
+    'Public Shared Function xml2object(ByVal arrXml As Object) As Agent
+    '    Dim objAgent As New Agent
 
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
-                objAgent.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
-            End If
-        Next
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        If Not String.IsNullOrEmpty(tmpSerializeItem.InnerText) Then
+    '            objAgent.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
+    '        End If
+    '    Next
 
-        Return objAgent
-    End Function
+    '    Return objAgent
+    'End Function
 
     ' Methode NOK
     'Public Shared Function getWSUpdates(ByVal agent_id As String, ByVal lastUpdateDateTime As String) As Object
@@ -377,7 +463,7 @@ Public Class AgentManager
                 Dim nb As Integer = bddCommande.ExecuteScalar()
                 If nb = 0 Then
                     oCsdb.free()
-                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.idStructure)
+                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.uidStructure)
                     oCsdb = New CSDb(True)
                     bddCommande = oCsdb.getConnection.CreateCommand()
                 End If
@@ -403,7 +489,7 @@ Public Class AgentManager
                 If Not agent.prenom Is Nothing Then
                     paramsQuery = paramsQuery & " , prenom='" & CSDb.secureString(agent.prenom) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & agent.idStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & agent.uidStructure & ""
                 If Not agent.telephonePortable Is Nothing Then
                     paramsQuery = paramsQuery & " , telephonePortable='" & CSDb.secureString(agent.telephonePortable) & "'"
                 End If
@@ -422,10 +508,10 @@ Public Class AgentManager
                 If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.ToCRODIPString(agent.dateDerniereSynchro) & "'"
                 End If
-                If Not agent.dateModificationAgent Is Nothing And agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
+                If agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(agent.dateModificationAgent) & "'"
                 End If
-                If Not agent.dateModificationCrodip Is Nothing And agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
+                If agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(agent.dateModificationCrodip) & "'"
                 End If
                 If Not agent.versionLogiciel Is Nothing Then
@@ -487,7 +573,7 @@ Public Class AgentManager
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Agent WHERE (dateModificationAgent<>dateModificationCrodip Or dateModificationCrodip is null) AND idStructure=" & agent.idStructure
+        bddCommande.CommandText = "SELECT * FROM Agent WHERE (dateModificationAgent<>dateModificationCrodip Or dateModificationCrodip is null) AND idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats

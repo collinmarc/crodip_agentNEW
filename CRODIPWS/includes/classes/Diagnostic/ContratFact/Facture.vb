@@ -12,7 +12,7 @@ Public Class Facture
         'oDiagnostic = New Diagnostic()
         idFacture = ""
     End Sub
-    Public Sub New(pStructure As Structuree)
+    Public Sub New(pStructure As [Structure])
         Me.New()
         Me.idStructure = pStructure.id
         modeReglement = pStructure.modereglement
@@ -27,7 +27,7 @@ Public Class Facture
         Me.modeReglement = pStructure.modereglement
 
     End Sub
-    Public Sub New(poDiag As Diagnostic, pStructure As Structuree)
+    Public Sub New(poDiag As Diagnostic, pStructure As [Structure])
         Me.New(pStructure)
         Me.Commentaire = poDiag.oContratCommercial.Commentaire
         Me.idDiag = poDiag.id
@@ -41,7 +41,7 @@ Public Class Facture
 
     End Sub
 
-    Public Function setNumeroFacture(pStructure As Structuree) As Boolean
+    Public Function setNumeroFacture(pStructure As [Structure]) As Boolean
         Dim bReturn As Boolean
         Try
 

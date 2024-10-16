@@ -224,26 +224,26 @@ Public Class FVManometreEtalonManager
 
     Public Shared Function getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.idStructure & "-" & pAgent.id & "-1"
-        If pAgent.idStructure <> 0 Then
+        Dim tmpObjectId As String = pAgent.uidStructure & "-" & pAgent.id & "-1"
+        If pAgent.uidStructure <> 0 Then
 
             Try
                 ' On récupère les résultats
                 Dim bdd As New CSDb(True)
-                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreEtalon WHERE id LIKE '" & pAgent.idStructure & "-" & pAgent.id & "-%' ORDER BY id DESC")
+                Dim tmpListProfils As DbDataReader = bdd.getResult2s("SELECT id FROM FichevieManometreEtalon WHERE id LIKE '" & pAgent.uidStructure & "-" & pAgent.id & "-%' ORDER BY id DESC")
                 ' Puis on les parcours
                 Dim newId As Integer = 0
                 While tmpListProfils.Read()
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.idStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.uidStructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
                 tmpListProfils.Close()
-                tmpObjectId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.uidStructure & "-" & pAgent.id & "-" & (newId + 1)
                 bdd.free()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("FVManometreEtalonManager - newId : " & ex.Message & vbNewLine)
@@ -368,7 +368,7 @@ Public Class FVManometreEtalonManager
         bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT FichevieManometreEtalon.* FROM FichevieManometreEtalon INNER JOIN AgentManoEtalon ON FichevieManometreEtalon.idManometre = AgentManoEtalon.idCrodip "
         bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieManometreEtalon.dateModificationAgent<>FichevieManometreEtalon.dateModificationCrodip  or FichevieManometreEtalon.dateModificationCrodip is null)"
-        bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoEtalon.idStructure=" & agent.idStructure
+        bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoEtalon.idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats

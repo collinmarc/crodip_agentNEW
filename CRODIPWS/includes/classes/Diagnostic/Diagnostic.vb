@@ -2277,6 +2277,24 @@ Public Class Diagnostic
         End Set
     End Property
     <XmlElement("totalHT")>
+    Public Property TotalHTS As String
+        Get
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalHT
+            Else
+                Return 0
+            End If
+
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" Then
+                If oContratCommercial IsNot Nothing Then
+                    oContratCommercial.TotalHT = CDec(Value)
+                End If
+            End If
+        End Set
+    End Property
+    <XmlIgnore>
     Public Property TotalHT As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2292,7 +2310,7 @@ Public Class Diagnostic
             End If
         End Set
     End Property
-    <XmlElement("totalTVA")>
+    <XmlIgnore>
     Public Property TotalTVA As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2310,6 +2328,24 @@ Public Class Diagnostic
     End Property
     'le Total TTC du diag est transmis via le champ controleTarif
     <XmlElement("totalTTC")>
+    Public Property TotalTTCs As String
+        Get
+            If oContratCommercial IsNot Nothing Then
+                Return oContratCommercial.TotalTTC
+            Else
+                Return 0
+            End If
+
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" Then
+                If oContratCommercial IsNot Nothing Then
+                    oContratCommercial.TotalTTC = Value
+                End If
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property TotalTTC As Decimal
         Get
             If oContratCommercial IsNot Nothing Then
@@ -2390,6 +2426,17 @@ Public Class Diagnostic
         End Set
     End Property
     <XmlElement("isCVImmediate")>
+    Public Property isContrevisiteImmediateS() As String
+        Get
+            Return IIf(_isContreVisiteImmediate, "0", "1")
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" Then
+                _isContreVisiteImmediate = (Value = "0")
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property isContrevisiteImmediate() As Boolean
         Get
             Return _isContreVisiteImmediate
@@ -2526,12 +2573,12 @@ Public Class Diagnostic
         Try
 
 
-            organismePresId = pAgent.idStructure
-            Dim structureCourante As Structuree
+            organismePresId = pAgent.uidStructure
+            Dim structureCourante As [Structure]
             Try
-                structureCourante = StructureManager.getStructureById(pAgent.idStructure)
+                structureCourante = StructureManager.getStructureById(pAgent.uidStructure)
             Catch ex As Exception
-                structureCourante = New Structuree
+                structureCourante = New [Structure]
             End Try
             organismePresNumero = structureCourante.idCrodip
             organismePresNom = structureCourante.nom

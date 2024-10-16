@@ -1,52 +1,93 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
 Imports System.Net
+Imports System.Xml.Serialization
 
 Public Class DiagnosticManager
     Inherits CrodipManager
 
 #Region "Methodes acces Web Service"
-
-    Public Shared Function getWSDiagnosticById(ByVal pAgentID As Integer, ByVal diagnostic_id As String) As Diagnostic
-        Dim objDiagnostic As New Diagnostic
+    Public Shared Function WSgetById(puidagent As Integer, ByVal p_uid As Integer, Optional paid As String = "") As Diagnostic
+        Dim oreturn As Diagnostic = Nothing
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
         Try
-
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnostic(pAgentID, diagnostic_id, "", objWSCrodip_response)
+            Dim tXmlnodes As Xml.XmlNode()
+            '' déclarations
+            Dim typeT As Type = GetType(Diagnostic)
+            Dim nomMethode As String = "Get" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            If methode IsNot Nothing Then
+                Dim Params As Object() = {puidagent, p_uid, paid, tXmlnodes}
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                tXmlnodes = Params(3)
+            End If
             Select Case codeResponse
                 Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        If objWSCrodip_responseItem.InnerText() <> "" Then
-                            objDiagnostic.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                        End If
-                    Next
+                    Dim ser As New XmlSerializer(GetType(Diagnostic))
+                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                        oreturn = ser.Deserialize(reader)
+                    End Using
                 Case 1 ' NOK
-                    'MsgBox("Erreur - DiagnosticManager - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    'MsgBox("Erreur - DiagnosticManager - Code 9 : Bad Request")
+                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            MsgBox("Erreur - DiagnosticManager - getWSDiagnosticById : " & ex.Message)
+            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+        Finally
         End Try
-        Return objDiagnostic
-
+        Return oreturn
     End Function
 
-    Public Shared Function sendWSDiagnostic(pAgent As Agent, ByVal diagnostic As Diagnostic, ByRef updatedObject As Object) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As Diagnostic, ByRef pobjOut As Diagnostic) As Integer
+        Dim oreturn As Diagnostic = Nothing
+        Dim codeResponse As Integer = 99
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
         Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim pinfo As String = ""
-            Return objWSCrodip.SendDiagnostic(diagnostic, pinfo, updatedObject)
+            Dim pInfo As String = ""
+            Dim puid As Integer
+
+            'Determination du Nom de la méthode : exemple SendManometreControle
+            Dim typeT As Type = GetType(Diagnostic)
+            Dim nomMethode As String = "Send" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            If methode IsNot Nothing Then
+                'Invocation de la méthode
+                Dim serializer As New XmlSerializer(pObjIn.GetType())
+                Using writer As New StringWriter()
+                    serializer.Serialize(writer, pObjIn)
+                    Dim xmlOutput As String = writer.ToString()
+                    ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
+                    CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                End Using
+
+                Dim Params As Object() = {pObjIn, pInfo, puid}
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                pInfo = DirectCast(Params(1), String)
+                puid = DirectCast(Params(2), Integer)
+                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+            End If
+            Select Case codeResponse
+                Case 2 ' UPDATE OK
+                    pobjOut = CType(WSgetById(0, puid, CType(pObjIn, root).aid), Diagnostic)
+                Case 4 ' CREATE OK
+                    pobjOut = WSgetById(0, puid, "")
+                Case 1 ' NOK
+                    CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
+                Case 0 ' PAS DE MAJ
+            End Select
         Catch ex As Exception
-            Return -1
+            CSDebug.dispError("RootManager - sendWS : ", ex)
+        Finally
         End Try
+        Return codeResponse
+
     End Function
+
     ''' <summary>
     ''' envoi des Etats rattachés au diag au serveur
     ''' Envoi par FTP, si cela ne fonctionne pas
@@ -692,7 +733,7 @@ Public Class DiagnosticManager
         ' On test si la connexion est déjà ouverte ou non
         bddCommande = oCsdb.getConnection().CreateCommand
         '        bddCommande.CommandText = "SELECT * FROM Diagnostic WHERE Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip AND Diagnostic.inspecteurId=" & agent.id
-        bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.idStructure
+        bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.uidStructure
         bddCommande.CommandText = bddCommande.CommandText & " AND (Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip OR Diagnostic.dateModificationCrodip is null)"
         Try
             ' On récupère les résultats
@@ -934,10 +975,10 @@ Public Class DiagnosticManager
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
-        Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
         Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
-        Dim idStructure As String = StructureManager.getStructureById(pAgent.idStructure).idCrodip
+        Dim idStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
         idPC = pAgent.oPool.getAgentPC().idCrodip
         Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
@@ -959,11 +1000,11 @@ Public Class DiagnosticManager
     Public Shared Function getNewIdOLD(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
-        Debug.Assert(pAgent.idStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
         ' déclarations
-        Dim tmpDiagnosticId As String = pAgent.idStructure.ToString() & "-" & pAgent.id.ToString() & "-1"
+        Dim tmpDiagnosticId As String = pAgent.uidStructure.ToString() & "-" & pAgent.id.ToString() & "-1"
         Dim oCSDb As New CSDb(True)
-        If pAgent.idStructure <> 0 Then
+        If pAgent.uidStructure <> 0 Then
 
             ' On test si la table est vide
 
@@ -973,38 +1014,38 @@ Public Class DiagnosticManager
             'SELECT MAX(CAST (REPLACE(Id,'524-1182-','') as INT)) as ID  from Diagnostic where inspecteurId = 1182 ORDER BY ID DESC
 
             Dim bddCommande As DbCommand
-                ' On test si la connexion est déjà ouverte ou non
-                bddCommande = oCSDb.getConnection().CreateCommand
-                bddCommande.CommandText = "SELECT id FROM Diagnostic WHERE InspecteurId = " & pAgent.id & " ORDER BY id DESC"
-                Try
-                    ' On récupère les résultats
-                    Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
-                    ' Puis on les parcours
-                    Dim newId As Integer = 0
-                    While oDataReader.Read()
-                        ' On récupère le dernier ID
-                        'Récupéer lID à l'aide d'un split
-                        Dim tmpId As Integer = 0
-                        Dim tabId As String()
-                        tmpDiagnosticId = oDataReader.Item(0).ToString
-                        tabId = tmpDiagnosticId.Split("-")
-                        If IsNumeric(tabId(2)) Then
-                            tmpId = CInt(tabId(2))
-                        Else
-                            tmpId = 1
-                        End If
-                        If tmpId > newId Then
-                            newId = tmpId
-                        End If
-                    End While
-                    tmpDiagnosticId = pAgent.idStructure & "-" & pAgent.id & "-" & (newId + 1)
-                Catch ex As Exception ' On intercepte l'erreur
-                    tmpDiagnosticId = pAgent.idStructure & "-" & pAgent.id & "-0"
-                    CSDebug.dispFatal("DiagnosticManager - newId (On récupère le dernier ID) : ", ex)
-                End Try
+            ' On test si la connexion est déjà ouverte ou non
+            bddCommande = oCSDb.getConnection().CreateCommand
+            bddCommande.CommandText = "SELECT id FROM Diagnostic WHERE InspecteurId = " & pAgent.id & " ORDER BY id DESC"
+            Try
+                ' On récupère les résultats
+                Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                Dim newId As Integer = 0
+                While oDataReader.Read()
+                    ' On récupère le dernier ID
+                    'Récupéer lID à l'aide d'un split
+                    Dim tmpId As Integer = 0
+                    Dim tabId As String()
+                    tmpDiagnosticId = oDataReader.Item(0).ToString
+                    tabId = tmpDiagnosticId.Split("-")
+                    If IsNumeric(tabId(2)) Then
+                        tmpId = CInt(tabId(2))
+                    Else
+                        tmpId = 1
+                    End If
+                    If tmpId > newId Then
+                        newId = tmpId
+                    End If
+                End While
+                tmpDiagnosticId = pAgent.uidStructure & "-" & pAgent.id & "-" & (newId + 1)
+            Catch ex As Exception ' On intercepte l'erreur
+                tmpDiagnosticId = pAgent.uidStructure & "-" & pAgent.id & "-0"
+                CSDebug.dispFatal("DiagnosticManager - newId (On récupère le dernier ID) : ", ex)
+            End Try
 
-                oCSDb.free()
-            End If
+            oCSDb.free()
+        End If
 
         'on retourne le nouvel id
         Return tmpDiagnosticId

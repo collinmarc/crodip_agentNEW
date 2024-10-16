@@ -27,15 +27,15 @@ Public Class Pulverisateur
     Public Const TYPEVALEURPULVE_LARGEUR As String = "LARGEUR"
     Public Const TYPEVALEURPULVE_RANG As String = "RANG"
 
-    Public Shared PULVERISATION_JETPORTE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
-    Public Shared PULVERISATION_JETPROJETE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
-    Public Shared PULVERISATION_PNEUMATIQUE As String = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
+    Public Shared PULVERISATION_JETPORTE As String
+    Public Shared PULVERISATION_JETPROJETE As String
+    Public Shared PULVERISATION_PNEUMATIQUE As String
 
-    Public Shared ATTELAGE_PORTE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
-    Public Shared ATTELAGE_TRAINE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
-    Public Shared ATTELAGE_AUTOMOTEUR As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
-    Public Shared ATTELAGE_SEMIPORTE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
-    Public Shared ATTELAGE_INTEGRE As String = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
+    Public Shared ATTELAGE_PORTE As String
+    Public Shared ATTELAGE_TRAINE As String
+    Public Shared ATTELAGE_AUTOMOTEUR As String
+    Public Shared ATTELAGE_SEMIPORTE As String
+    Public Shared ATTELAGE_INTEGRE As String
 
     'Public Shared FONCTIONNEMENT_BUSES_STANDARD As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=1]/text").InnerText
     'Public Shared FONCTIONNEMENT_BUSES_PASTILLE As String = GlobalsCRODIP.GLOB_XML_FONCTIONNEMENTBUSES_BUSES.getXmlNode("//type[1]/fonctionnement/item[id=2]/text").InnerText
@@ -133,6 +133,18 @@ Public Class Pulverisateur
     Private _isPompesDoseuses As Boolean = False
     Private _nbPompesDoseuses As Integer
     Private _numChassis As String
+    Public Shared Sub initConstantes()
+        PULVERISATION_JETPORTE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
+        PULVERISATION_JETPROJETE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
+        PULVERISATION_PNEUMATIQUE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=3]/libelle").InnerText
+
+        ATTELAGE_PORTE = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=1]/libelle").InnerText
+        ATTELAGE_TRAINE = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=2]/libelle").InnerText
+        ATTELAGE_AUTOMOTEUR = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=3]/libelle").InnerText
+        ATTELAGE_SEMIPORTE = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=4]/libelle").InnerText
+        ATTELAGE_INTEGRE = GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE.getXmlNode("//Attelage[id=5]/libelle").InnerText
+
+    End Sub
 
     Sub New()
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
@@ -141,16 +153,15 @@ Public Class Pulverisateur
         Else
             numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR
         End If
-        _idStructure = -1
         dateProchainControle = Nothing
         controleEtat = controleEtatOK
     End Sub
     Public Property id() As String
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As String)
-            _id = Value
+            aid = Value
         End Set
     End Property
 
@@ -202,7 +213,7 @@ Public Class Pulverisateur
         Return bReturn
 
     End Function
-
+    <XmlIgnore()>
     Public ReadOnly Property isDiagRampe() As Boolean
         Get
             'On réalise un diag en mode Rampe si on est en Culture basses(type) ou en rampe (categorie)
@@ -619,26 +630,7 @@ Public Class Pulverisateur
             _dateProchainControle = Value
         End Set
     End Property
-
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-
-    Public Property idStructure() As Integer
+    Public Property uidStructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -1101,7 +1093,7 @@ Public Class Pulverisateur
                 Case "dateModificationAgent".ToUpper().Trim()
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
                 Case "idStructure".ToUpper().Trim()
-                    Me.idStructure = pColValue
+                    Me.uidStructure = pColValue
                 Case "emplacementIdentification".ToUpper().Trim()
                     Me.emplacementIdentification = pColValue
                 Case "ancienIdentifiant".ToUpper().Trim()

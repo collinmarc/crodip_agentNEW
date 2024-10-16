@@ -1065,7 +1065,7 @@
       <xsd:element name="SendAgentRequest">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element element="tns:Agent" name="AgentRequest" />
+            <xsd:element element="tns:Agent" name="Agent" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>

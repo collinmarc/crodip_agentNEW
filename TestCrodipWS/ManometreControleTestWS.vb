@@ -45,17 +45,19 @@ Imports System.Net.Http
 
         'Lecture de l'objet
         oMano = ManometreControleManager.WSgetById(oReturn.uid)
+        Assert.AreEqual("MANO22", oMano.numeroNational)
+        Assert.AreEqual("TESTMCO", oMano.marque)
 
         'Update de l'objet
         oMano.marque = "TESTUPDATE"
         nreturn = ManometreControleManager.WSSend(oMano, oReturn)
         Assert.AreEqual(oMano.uid, oReturn.uid)
         Assert.AreEqual(2, nreturn)
+        'Lecture de l'objet
+        oMano = ManometreControleManager.WSgetById(oReturn.uid)
+        Assert.AreEqual("MANO22", oMano.numeroNational)
+        Assert.AreEqual("TESTUPDATE", oMano.marque)
 
-        'test sans modification
-        oMano = oReturn
-        nreturn = ManometreControleManager.WSSend(oMano, oReturn)
-        'Assert.AreEqual(0, nreturn)
 
 
     End Sub

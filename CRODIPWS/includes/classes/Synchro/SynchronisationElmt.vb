@@ -341,7 +341,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Agent
                     Try
                         SetStatus("Réception MAJ Agent n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = AgentManager.getWSAgentById(pElement.IdentifiantChaine)
+                        tmpObject = AgentManager.WSgetByNumeroNational(pElement.IdentifiantChaine)
                         If tmpObject.id <> 0 Then
                             pAgent = tmpObject
                             CSDebug.dispInfo("Synchronisation::runDescSynchro(GetAgent) Mot de passe = " & tmpObject.motDePasse)
@@ -515,10 +515,10 @@ Public Class SynchronisationElmt
                 End If
             Case "GetStructure".ToUpper().Trim() ' Synchro d'une structure
                 If (m_SynchroBoolean.m_bSynchDescAgent) Then
-                    Dim tmpObject As New Structuree
+                    Dim tmpObject As New [Structure]
                     Try
                         SetStatus("Réception MAJ Organisme n°" & pElement.IdentifiantEntier & "...")
-                        tmpObject = StructureManager.getWSStructureeById(pAgent, pElement.IdentifiantEntier)
+                        tmpObject = StructureManager.WSgetById(pElement.IdentifiantEntier)
                         StructureManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

@@ -27,7 +27,7 @@ Public Class AutoTest
         _id = -1
         _Etat = -1
         NumAgent = pAgent.id
-        IdStructure = pAgent.idStructure
+        IdStructure = pAgent.uidStructure
         _dateModificationAgent = Date.Now()
         _dateModificationCrodip = CDate("01/01/1970")
     End Sub

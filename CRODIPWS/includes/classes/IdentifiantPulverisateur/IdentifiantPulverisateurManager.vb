@@ -296,7 +296,7 @@ Public Class IdentifiantPulverisateurManager
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE (dateModificationAgent<>dateModificationCrodip  or dateModificationCrodip is null)"
-        bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.idStructure
+        bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.uidStructure
 
         Try
             ' On récupère les résultats
@@ -350,7 +350,7 @@ Public Class IdentifiantPulverisateurManager
         Dim olst As New List(Of IdentifiantPulverisateur)
 
         If Not My.Settings.GestionDesPools Then
-            olst = getListeByStructure(pAgent.idStructure)
+            olst = getListeByStructure(pAgent.uidStructure)
         Else
             olst = getListeByPool(pAgent.idCRODIPPool)
         End If
@@ -415,7 +415,7 @@ Public Class IdentifiantPulverisateurManager
         Dim olst As New List(Of IdentifiantPulverisateur)
 
         If Not My.Settings.GestionDesPools Then
-            olst = getListeInutiliseByStructure(pAgent.idStructure)
+            olst = getListeInutiliseByStructure(pAgent.uidStructure)
         Else
             olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
         End If
@@ -469,7 +469,7 @@ Public Class IdentifiantPulverisateurManager
         Dim bReturn As Boolean
         Try
             bReturn = False
-            Dim olst As List(Of IdentifiantPulverisateur) = getListeByStructure(pAgent.idStructure)
+            Dim olst As List(Of IdentifiantPulverisateur) = getListeByStructure(pAgent.uidStructure)
             For Each oIdentPulve As IdentifiantPulverisateur In olst
                 If oIdentPulve.numeroNational = pNumeroNational Then
                     If Not oIdentPulve.isEtatUTILISE Then

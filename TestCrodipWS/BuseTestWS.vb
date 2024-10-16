@@ -43,17 +43,17 @@ Imports System.Net.Http
 
         'Lecture de l'objet
         oBuse = BuseManager.WSgetById(oReturn.uid)
+        Assert.AreEqual("TESTMCO", oBuse.couleur)
 
         'Update de l'objet
         oBuse.couleur = "TESTUPDATE"
         nreturn = BuseManager.WSSend(oBuse, oReturn)
         Assert.AreEqual(oBuse.uid, oReturn.uid)
         Assert.AreEqual(2, nreturn)
+        'Lecture de l'objet
+        oBuse = BuseManager.WSgetById(oReturn.uid)
+        Assert.AreEqual("TESTUPDATE", oBuse.couleur)
 
-        'test sans modification
-        oBuse = oReturn
-        nreturn = BuseManager.WSSend(oBuse, oReturn)
-        'Assert.AreEqual(0, nreturn)
 
 
     End Sub

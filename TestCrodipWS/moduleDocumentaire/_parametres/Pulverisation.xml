@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Pulverisation>
+		<id>1</id>
+		<libelle>Jet Porté</libelle>
+  </Pulverisation>
+  <Pulverisation>
+		<id>2</id>
+		<libelle>Jet Projeté</libelle>
+  </Pulverisation>
+  <Pulverisation>
+		<id>3</id>
+		<libelle>Pneumatique</libelle>
+  </Pulverisation>
+  <Pulverisation>
+		<id>4</id>
+		<libelle>TestMCO</libelle>
+  </Pulverisation>
+</root>
