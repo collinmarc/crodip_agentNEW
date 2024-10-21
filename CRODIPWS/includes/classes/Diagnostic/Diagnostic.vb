@@ -2,9 +2,8 @@ Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports System.IO
-Imports Ionic.Zip
 
-<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemsList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem))>
+<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem))>
 Public Class Diagnostic
     Inherits root
     Implements ICloneable
@@ -145,7 +144,7 @@ Public Class Diagnostic
     Private _syntheseNbBusesUsees As String = ""
     Private _synthesePerteChargeMoyenne As String = ""
     Private _synthesePerteChargeMaxi As String = ""
-    Private _diagnosticItemLst As DiagnosticItemsList
+    Private _diagnosticItemLst As DiagnosticItemList
     Private _diagnosticBuses As DiagnosticBusesList
     Private _nbreLotsBuses As Integer
     Protected m_diagnosticMano542List As DiagnosticMano542List
@@ -317,7 +316,7 @@ Public Class Diagnostic
         controleUseCalibrateur = False
         controleManoControleNumNational = ""
 
-        _diagnosticItemLst = New DiagnosticItemsList()
+        _diagnosticItemLst = New DiagnosticItemList()
         _diagnosticBuses = New DiagnosticBusesList()
         m_diagnosticMano542List = New DiagnosticMano542List()
         m_diagnosticTroncons833 = New DiagnosticTroncons833List()
@@ -440,10 +439,10 @@ Public Class Diagnostic
 
     Public Property id() As String
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As String)
-            _id = Value
+            aid = Value
         End Set
     End Property
 
@@ -1931,11 +1930,11 @@ Public Class Diagnostic
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks>il faut garder cette propriété serializable car elle est utilisé par la methode de clone</remarks>
-    Public Property diagnosticItemsLst() As DiagnosticItemsList
+    Public Property diagnosticItemsLst() As DiagnosticItemList
         Get
             Return _diagnosticItemLst
         End Get
-        Set(ByVal Value As DiagnosticItemsList)
+        Set(ByVal Value As DiagnosticItemList)
             _diagnosticItemLst = Value
         End Set
     End Property
@@ -3291,6 +3290,8 @@ Public Class Diagnostic
 
         Try
             pDiagnosticItem.idDiagnostic = Me.id
+            pDiagnosticItem.aiddiagnostic = Me.id
+            pDiagnosticItem.uiddiagnostic = Me.uid
             diagnosticItemsLst.AddOrReplace(pDiagnosticItem)
             bReturn = True
         Catch ex As Exception

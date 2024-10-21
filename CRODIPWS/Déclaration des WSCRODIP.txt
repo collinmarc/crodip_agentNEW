@@ -10,7 +10,8 @@ Modifier le reference.vb (Afficher tous les fichiers)
 ajouter Avant la déclaration de la classe CRODIPserver 
 		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
 
-    <XmlInclude(GetType(CRODIPWS.ManometreControle)),
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+            XmlInclude(GetType(CRODIPWS.ManometreControle)),
         XmlInclude(GetType(CRODIPWS.ManometreEtalon)),
         XmlInclude(GetType(CRODIPWS.Banc)),
         XmlInclude(GetType(CRODIPWS.Buse)),
@@ -18,6 +19,17 @@ ajouter Avant la déclaration de la classe CRODIPserver
         XmlInclude(GetType(CRODIPWS.Structure)),
         XmlInclude(GetType(CRODIPWS.Exploitation)),
         XmlInclude(GetType(CRODIPWS.Pulverisateur)),
+        XmlInclude(GetType(CRODIPWS.ExploitationTOPulverisateur)),
+        XmlInclude(GetType(CRODIPWS.Diagnostic)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticItem)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticItem())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBuses)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBuses())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail())),
+     System.ComponentModel.DesignerCategoryAttribute("code"),
+     System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
+
 
 
 Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer

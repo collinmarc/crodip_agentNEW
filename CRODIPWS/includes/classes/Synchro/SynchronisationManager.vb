@@ -81,6 +81,8 @@ Public Class SynchronisationManager
     Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
         Dim oLst As New List(Of SynchronisationElmt)()
         Dim objWSUpdates As Object() = Nothing
+        Dim availablerPools As Object() = Nothing
+        Dim availablePcs As Object() = Nothing
         '= Nothing
         'Récupération des infos depuis le SRV
         ' déclarations
@@ -100,8 +102,8 @@ Public Class SynchronisationManager
         logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
-
-            'objWSCrodip.UpdatesAvailable(pAgent.numeroNational, CSDate.GetDateForWS(DateDernSynhcro), isUpdateAvailable, isComplete, objWSUpdates)
+            Dim infod As String
+            objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, 0, 0, "", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try

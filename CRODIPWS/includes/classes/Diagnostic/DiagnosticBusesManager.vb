@@ -4,16 +4,16 @@ Public Class DiagnosticBusesManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function getWSDiagnosticBusesByDiagId(pAgentId As String, ByVal diag_id As String) As DiagnosticBusesList
+    Public Shared Function WSGetList(ByVal puidDiag As String, paidDiag As String) As DiagnosticBusesList
         Dim objDiagnosticBusesList As New DiagnosticBusesList
         Dim oDiagBuses As New DiagnosticBuses
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(pAgentId, diag_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -22,54 +22,74 @@ Public Class DiagnosticBusesManager
                     For Each objWSCrodip_responseItem1 In objWSCrodip_response
                         oDiagBuses = New DiagnosticBuses()
                         For Each objWSCrodip_responseItem In objWSCrodip_responseItem1
-                            Select Case objWSCrodip_responseItem.Name()
-                                Case "id"
+                            Select Case objWSCrodip_responseItem.Name().ToUpper()
+                                Case "uid".ToUpper()
+                                    If objWSCrodip_responseItem.InnerText() <> "" Then
+                                        oDiagBuses.uid = CType(objWSCrodip_responseItem.InnerText(), Integer)
+                                    End If
+                                Case "aid".ToUpper()
+                                    If objWSCrodip_responseItem.InnerText() <> "" Then
+                                        oDiagBuses.aid = CType(objWSCrodip_responseItem.InnerText(), Integer)
+                                    End If
+                                Case "id".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
                                     End If
-                                Case "idDiagnostic"
+                                Case "idDiagnostic".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.idDiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "idLot"
+                                Case "uidDiagnostic".ToUpper()
+                                    If objWSCrodip_responseItem.InnerText() <> "" Then
+                                        oDiagBuses.uiddiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
+                                    End If
+                                Case "aidDiagnostic".ToUpper()
+                                    If objWSCrodip_responseItem.InnerText() <> "" Then
+                                        oDiagBuses.aiddiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
+                                    End If
+                                Case "idLot".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.idLot = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "marque"
+                                Case "marque".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.marque = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "nombre"
+                                Case "nombre".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.nombre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "genre"
+                                Case "genre".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.genre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "calibre"
+                                Case "calibre".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.calibre = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "ecartTolere"
+                                Case "ecartTolere".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.ecartTolere = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "couleur"
+                                Case "couleur".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.couleur = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "debitMoyen"
+                                Case "debitMoyen".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.debitMoyen = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "debitNominal"
+                                Case "debitNominal".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.debitNominal = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
-                                Case "dateModificationAgent"
+                                Case "dateModificationAgent".ToUpper()
                                     If objWSCrodip_responseItem.InnerText() <> "" Then
                                         oDiagBuses.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
+                                    End If
+                                Case "dateModificationCrodip".ToUpper()
+                                    If objWSCrodip_responseItem.InnerText() <> "" Then
+                                        oDiagBuses.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
                                     End If
                             End Select
                         Next
@@ -103,20 +123,22 @@ Public Class DiagnosticBusesManager
 
     End Function
 
-    Public Shared Function sendWSDiagnosticBuses(pAgent As Agent, ByVal objDiagnosticBuses As DiagnosticBusesList) As Integer
+    Public Shared Function WSSend(ByVal pDiag As Diagnostic) As Integer
+        'Propagation des uid
+        For Each oBuse In pDiag.diagnosticBusesList.Liste
+            oBuse.uiddiagnostic = pDiag.uid
+        Next
+
         Dim tmpArr(1)() As DiagnosticBuses
-        tmpArr(0) = objDiagnosticBuses.Liste.ToArray()
+        tmpArr(0) = pDiag.diagnosticBusesList.Liste.ToArray()
         Dim updatedObject() As Object = Nothing
         Try
             ' Appel au WS
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendDiagnosticBuses(pAgent.id, tmpArr, updatedObject)
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim pInfo As String = ""
+            Return objWSCrodip.SendDiagnosticBuses(tmpArr, pInfo)
         Catch ex As Exception
-            Dim strMessExt As String = ""
-            If (ex.InnerException IsNot Nothing) Then
-                strMessExt = ex.InnerException.Message
-            End If
-            CSDebug.dispFatal("DiagnosticBusesManager.SendWSDiagnosticBuses ERR" & ex.Message & ":" & strMessExt)
+            CSDebug.dispError("DiagnosticBusesManager.SendWSDiagnosticBuses ERR", ex)
             Return -1
         End Try
     End Function

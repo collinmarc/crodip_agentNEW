@@ -29,8 +29,9 @@ Public Class DiagnosticBusesList
     'End Property
 
 End Class
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticBuses
+    Inherits DiagnosticObjDependant
 
     Private _id As Integer
     Private _idDiagnostic As String
@@ -56,25 +57,11 @@ Public Class DiagnosticBuses
     Sub New()
         _diagnosticBusesDetail = New DiagnosticBusesDetailList()
     End Sub
-
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal Value As Integer)
-            _id = Value
-        End Set
-    End Property
-
-    Public Property idDiagnostic() As String
-        Get
-            Return _idDiagnostic
-        End Get
-        Set(ByVal Value As String)
-            _idDiagnostic = Value
-        End Set
-    End Property
-
+    Sub New(pdiag As Diagnostic)
+        _diagnosticBusesDetail = New DiagnosticBusesDetailList()
+        uiddiagnostic = pdiag.uid
+        aiddiagnostic = pdiag.aid
+    End Sub
     Public Property idLot() As String
         Get
             Return _idLot

@@ -2,7 +2,7 @@ Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticBusesDetailList
 
     Private _diagnosticBusesDetail As List(Of DiagnosticBusesDetail)
@@ -33,9 +33,8 @@ End Class
 
 <Serializable()>
 Public Class DiagnosticBusesDetail
+    Inherits DiagnosticObjDependant
 
-    Private _id As Integer
-    Private _idDiagnostic As String
     Private _idBuse As Integer
     Private _idLot As String
     Private _debit As String
@@ -45,7 +44,7 @@ Public Class DiagnosticBusesDetail
     Private _dateModificationCrodip As String
 
     Sub New()
-        _idDiagnostic = ""
+        idDiagnostic = ""
         _idBuse = 0
         _idLot = 0
         _debit = ""
@@ -56,25 +55,17 @@ Public Class DiagnosticBusesDetail
         dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
 
     End Sub
+    Sub New(pBuse As DiagnosticBuses)
+        idDiagnostic = pBuse.idDiagnostic
+        uiddiagnostic = pBuse.uiddiagnostic
+        aiddiagnostic = pBuse.aiddiagnostic
+        idBuse = pBuse.id
+        idLot = pBuse.idLot
+        dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal Value As Integer)
-            _id = Value
-        End Set
-    End Property
+        dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
 
-    Public Property idDiagnostic() As String
-        Get
-            Return _idDiagnostic
-        End Get
-        Set(ByVal Value As String)
-            _idDiagnostic = Value
-        End Set
-    End Property
-
+    End Sub
     Public Property idBuse() As Integer
         Get
             Return _idBuse
@@ -120,49 +111,20 @@ Public Class DiagnosticBusesDetail
         End Set
     End Property
 
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-    Public Function Fill(ByVal pColname As String, ByVal pcolValue As Object) As Boolean
+    Public Overrides Function Fill(ByVal pColname As String, ByVal pcolValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
             Select Case pColname.Trim().ToUpper()
+                Case "uid".Trim().ToUpper()
+                    Me.uid = CInt(pcolValue)
+                Case "aid".Trim().ToUpper()
+                    Me.aid = CInt(pcolValue)
                 Case "id".Trim().ToUpper()
                     Me.id = CInt(pcolValue)
+                Case "uidDiagnostic".Trim().ToUpper()
+                    Me.uiddiagnostic = pcolValue.ToString()
+                Case "aidDiagnostic".Trim().ToUpper()
+                    Me.aiddiagnostic = pcolValue.ToString()
                 Case "idDiagnostic".Trim().ToUpper()
                     Me.idDiagnostic = pcolValue.ToString()
                 Case "idBuse".Trim().ToUpper()

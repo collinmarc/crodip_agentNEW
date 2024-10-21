@@ -221,6 +221,7 @@
     <Compile Include="includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
     <Compile Include="includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
     <Compile Include="includes\classes\Diagnostic\Diagnostic.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticObjDependant.vb" />
     <Compile Include="includes\classes\Diagnostic\DiagnosticBuses.vb" />
     <Compile Include="includes\classes\Diagnostic\DiagnosticBusesDetail.vb" />
     <Compile Include="includes\classes\Diagnostic\DiagnosticBusesDetailManager.vb" />
@@ -402,6 +403,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="crodipAncien.wsdl" />
     <None Include="cr\dsContratCommercial.xsc">
       <DependentUpon>dsContratCommercial.xsd</DependentUpon>
     </None>
@@ -564,6 +566,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="Web References\WSCRODIP\crodip.wsdl" />
+    <None Include="Web References\WSCRODIP\GetAPIKeyResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSCRODIP\GetSynchroDateTimeResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\WSCRODIP\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>

@@ -4,19 +4,19 @@ Imports System.Collections.Generic
 Imports System.Linq
 
 
-<Serializable(), XmlInclude(GetType(DiagnosticItemsList))> _
-Public Class DiagnosticItemsList
+<Serializable()>
+Public Class DiagnosticItemList
 
-    Private _diagnosticItem As Dictionary(Of String, DiagnosticItem)
+    Private _Dic_diagnosticItem As Dictionary(Of String, DiagnosticItem)
 
     Sub New()
-        _diagnosticItem = New Dictionary(Of String, DiagnosticItem)
+        _Dic_diagnosticItem = New Dictionary(Of String, DiagnosticItem)
     End Sub
-
+    <XmlIgnore>
     Public Property items() As DiagnosticItem()
         Get
             Dim olst As New List(Of DiagnosticItem)
-            olst.AddRange(_diagnosticItem.Values)
+            olst.AddRange(_Dic_diagnosticItem.Values)
             Return olst.ToArray()
         End Get
         Set(ByVal Value As DiagnosticItem())
@@ -25,11 +25,10 @@ Public Class DiagnosticItemsList
             Next
         End Set
     End Property
-
     Public Property Values() As List(Of DiagnosticItem)
         Get
             Dim olst As New List(Of DiagnosticItem)
-            olst.AddRange(_diagnosticItem.Values)
+            olst.AddRange(_Dic_diagnosticItem.Values)
             Return olst
         End Get
         Set(ByVal Value As List(Of DiagnosticItem))
@@ -40,16 +39,16 @@ Public Class DiagnosticItemsList
     End Property
     Public Sub AddOrReplace(ByVal pDiagItem As DiagnosticItem)
         Dim key As String = pDiagItem.getItemCode()
-        If _diagnosticItem.ContainsKey(key) Then
-            _diagnosticItem(key) = pDiagItem
+        If _Dic_diagnosticItem.ContainsKey(key) Then
+            _Dic_diagnosticItem(key) = pDiagItem
         Else
-            _diagnosticItem.Add(key, pDiagItem)
+            _Dic_diagnosticItem.Add(key, pDiagItem)
         End If
     End Sub
     Public Function getItem(sKey As String) As DiagnosticItem
         Dim oReturn As DiagnosticItem
         Try
-            oReturn = _diagnosticItem(sKey)
+            oReturn = _Dic_diagnosticItem(sKey)
         Catch ex As Exception
             oReturn = Nothing
         End Try
@@ -62,7 +61,7 @@ Public Class DiagnosticItemsList
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function ContainsKey(pKey As String) As Boolean
-        Return _diagnosticItem.ContainsKey(pKey)
+        Return _Dic_diagnosticItem.ContainsKey(pKey)
     End Function
     ''' <summary>
     ''' Supprime l'élement si la clé existe, renbd Vrai si la suppression a fonctionné , False sinon
@@ -72,21 +71,21 @@ Public Class DiagnosticItemsList
     ''' <remarks></remarks>
     Public Function Remove(pDiagItem As DiagnosticItem) As Boolean
         Dim bReturn As Boolean = False
-        If _diagnosticItem.ContainsKey(pDiagItem.getItemCode()) Then
-            _diagnosticItem.Remove(pDiagItem.getItemCode())
+        If _Dic_diagnosticItem.ContainsKey(pDiagItem.getItemCode()) Then
+            _Dic_diagnosticItem.Remove(pDiagItem.getItemCode())
             bReturn = True
         End If
         Return bReturn
     End Function
     Public Function Count() As Integer
-        Return _diagnosticItem.Count
+        Return _Dic_diagnosticItem.Count
     End Function
     Public Sub Clear()
-        _diagnosticItem.Clear()
+        _Dic_diagnosticItem.Clear()
     End Sub
 End Class
-
-<Serializable(), XmlInclude(GetType(DiagnosticItem))> _
+<Serializable()>
+<XmlType(Namespace:="http://www.example.org/crodip/")>
 Public Class DiagnosticItem
 
     Private _id As String
@@ -173,13 +172,29 @@ Public Class DiagnosticItem
             _id = Value
         End Set
     End Property
-
+    Private _uidDiagnostic As Integer
+    Public Property uiddiagnostic() As Integer
+        Get
+            Return _uidDiagnostic
+        End Get
+        Set(ByVal value As Integer)
+            _uidDiagnostic = value
+        End Set
+    End Property
     Public Property idDiagnostic() As String
         Get
             Return _idDiagnostic
         End Get
         Set(ByVal Value As String)
             _idDiagnostic = Value
+        End Set
+    End Property
+    Public Property aiddiagnostic() As String
+        Get
+            Return idDiagnostic
+        End Get
+        Set(ByVal Value As String)
+            idDiagnostic = Value
         End Set
     End Property
 

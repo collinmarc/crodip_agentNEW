@@ -173,11 +173,5 @@
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
       <Value Profile="(Default)">20240715170000</Value>
     </Setting>
-    <Setting Name="Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
-    </Setting>
-    <Setting Name="Logiciel_Crodip_Agent_WSCODIP4_CrodipServer" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://admin.crodip.net/server</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

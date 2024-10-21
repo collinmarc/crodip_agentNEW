@@ -50,9 +50,6 @@
             <xsd:element name="isSupprime" type="xsd:boolean" />
             <xsd:element name="DroitsPulves" type="xsd:string" />
             <xsd:element name="isGestionnaire" type="xsd:boolean" />
-            <xsd:element name="SignatureElect" type="xsd:boolean" />
-            <xsd:element name="isSignElecActive" type="xsd:boolean" />
-            <xsd:element name="idCRODIPPOOL" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -149,7 +146,6 @@
             <xsd:element name="DateSuppression" type="xsd:string" />
             <xsd:element name="JamaisServi" type="xsd:boolean" />
             <xsd:element name="DateActivation" type="xsd:string" />
-            <xsd:element name="ModuleAcquisition" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -157,7 +153,6 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="id" type="xsd:string" />
-            <xsd:element name="typeDiagnostic" type="xsd:string" />
             <xsd:element name="inspecteurId" type="xsd:int" />
             <xsd:element name="inspecteurNom" type="xsd:string" />
             <xsd:element name="inspecteurPrenom" type="xsd:string" />
@@ -221,7 +216,7 @@
             <xsd:element name="pulverisateurCategorieIsVoute" type="xsd:boolean" />
             <xsd:element name="pulverisateurCategorieIsFaceParFace" type="xsd:boolean" />
             <xsd:element name="pulverisateurAttelage" type="xsd:string" />
-            <xsd:element name="pulverisateurRegulationIsPressionConstante" type="xsd:boolean" />
+            <xsd:element name="pulverisateurRegulationIsPressionconstante" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpm" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpa" type="xsd:boolean" />
             <xsd:element name="pulverisateurRegulationIsDpae" type="xsd:boolean" />
@@ -303,26 +298,6 @@
             <xsd:element name="buseFonctionnement" type="xsd:string" />
             <xsd:element name="pulverisateurPulverisation" type="xsd:string" />
             <xsd:element name="pulverisateurCategorie" type="xsd:string" />
-            <xsd:element name="CCFileName" type="xsd:string" />
-            <xsd:element name="pulverisateurCoupureAutoTroncons" type="xsd:string" />
-            <xsd:element name="pulverisateurReglageAutoHauteur" type="xsd:string" />
-            <xsd:element name="pulverisateurRincagecircuit" type="xsd:string" />
-            <xsd:element name="pulverisateurRattacheId" type="xsd:string" />
-            <xsd:element name="codeInsee" type="xsd:string" />
-            <xsd:element name="isSupprime" type="xsd:boolean" />
-            <xsd:element name="commentaire" type="xsd:string" />
-            <xsd:element name="accreditation" type="xsd:boolean" />
-            <xsd:element name="pulverisateurNumNational" type="xsd:string" />
-            <xsd:element name="pulverisateurNumchassis" type="xsd:string" />
-            <xsd:element name="origineDiag" type="xsd:string" />
-            <xsd:element name="isSignRIAgent" type="xsd:boolean" />
-            <xsd:element name="isSignRIClient" type="xsd:boolean" />
-            <xsd:element name="isSignCCAgent" type="xsd:boolean" />
-            <xsd:element name="isSignCCClient" type="xsd:boolean" />
-            <xsd:element name="dateSignRIAgent" type="xsd:string" />
-            <xsd:element name="dateSignRIClient" type="xsd:string" />
-            <xsd:element name="dateSignCCAgent" type="xsd:string" />
-            <xsd:element name="dateSignCCClient" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -703,20 +678,18 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="IdentifiantPulverisateur">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="id" type="xsd:int" />
-            <xsd:element name="idStructure" type="xsd:int" />
-            <xsd:element name="numeroNational" type="xsd:string" />
-            <xsd:element name="etat" type="xsd:string" />
-            <xsd:element name="dateUtilisation" type="xsd:string" />
-            <xsd:element name="libelle" type="xsd:string" />
-            <xsd:element name="dateModificationAgent" type="xsd:string" />
-            <xsd:element name="dateModificationCrodip" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
+      <xsd:complexType name="IdentifiantPulverisateur">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="idStructure" type="xsd:int" />
+          <xsd:element name="numeroNational" type="xsd:string" />
+          <xsd:element name="etat" type="xsd:string" />
+          <xsd:element name="dateUtilisation" type="xsd:string" />
+          <xsd:element name="libelle" type="xsd:string" />
+          <xsd:element name="dateModificationAgent" type="xsd:string" />
+          <xsd:element name="dateModificationCrodip" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
       <xsd:element name="Pulverisateur">
         <xsd:complexType>
           <xsd:sequence>
@@ -741,7 +714,7 @@
             <xsd:element name="isRinceBidon" type="xsd:boolean" />
             <xsd:element name="isBidonLaveMain" type="xsd:boolean" />
             <xsd:element name="isLanceLavage" type="xsd:boolean" />
-            <xsd:element name="isPressionConstante" type="xsd:boolean" />
+            <xsd:element name="isPressionconstante" type="xsd:boolean" />
             <xsd:element name="isDPM" type="xsd:boolean" />
             <xsd:element name="isDPA" type="xsd:boolean" />
             <xsd:element name="isDPAE" type="xsd:boolean" />
@@ -792,17 +765,6 @@
             <xsd:element name="controleEtat" type="xsd:string" />
             <xsd:element name="categorie" type="xsd:string" />
             <xsd:element name="pulverisation" type="xsd:string" />
-            <xsd:element name="isAspirationExt" type="xsd:int" />
-            <xsd:element name="isDispoAntiRetour" type="xsd:int" />
-            <xsd:element name="isReglageAutoHauteur" type="xsd:int" />
-            <xsd:element name="isFiltrationAspiration" type="xsd:int" />
-            <xsd:element name="isFiltrationRefoulement" type="xsd:int" />
-            <xsd:element name="isFiltrationTroncons" type="xsd:int" />
-            <xsd:element name="isFiltrationBuses" type="xsd:int" />
-            <xsd:element name="isPulveAdditionnel" type="xsd:int" />
-            <xsd:element name="pulvePrincipalNumNat" type="xsd:string" />
-            <xsd:element name="isRincagecircuit" type="xsd:int" />
-            <xsd:element name="numeroChassis" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1571,7 +1533,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
-            <xsd:element element="tns:IdentifiantPulverisateur" name="IdentifiantPulverisateur" />
+            <xsd:element name="IdentifiantPulverisateur" type="tns:IdentifiantPulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1579,7 +1541,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="agentId" type="xsd:string" />
-            <xsd:element element="tns:IdentifiantPulverisateur" name="IdentifiantPulverisateurRequest" />
+            <xsd:element name="IdentifiantPulverisateur" type="tns:IdentifiantPulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1587,7 +1549,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
-            <xsd:element element="tns:IdentifiantPulverisateur" name="IdentifiantPulverisateur" />
+            <xsd:element name="IdentifiantPulverisateur" type="tns:IdentifiantPulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -3067,7 +3029,7 @@
   </wsdl:binding>
   <wsdl:service name="CrodipServer">
     <wsdl:port name="CrodipServer" binding="tns:CrodipBinding">
-      <soap:address location="https://admin.crodip.net/server" />
+      <soap:address location="http://admin-pp.crodip.fr/server" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

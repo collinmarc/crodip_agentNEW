@@ -1,5 +1,8 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
+Imports System.Xml
+Imports System.Xml.Serialization
 
 ''' <summary>
 ''' 
@@ -14,72 +17,124 @@ Public Class DiagnosticItemManager
 
 
 #Region "Methodes acces Web Service"
+    Public Shared Function WSGetList(puidDiag As Integer, paidDiag As String) As List(Of DiagnosticItem)
+        Dim oreturn As New List(Of DiagnosticItem)
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim tXmlnodes As Object()
+            '' déclarations
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            codeResponse = objWSCrodip.GetDiagnosticItems(puidDiag, paidDiag, tXmlnodes)
+            Select Case codeResponse
+                Case 0 ' OK
+
+                    Dim oDiagItem As DiagnosticItem
+                    For Each oNode In tXmlnodes
+                        '                        Dim tab As New XmlNodeReader(tXmlnodes)
+                        Dim strXml As String = "<?xml version='1.0'?><DiagnosticItem>"
+                        For Each oItem As XmlNode In oNode
+                            strXml = strXml + oItem.OuterXml()
+                        Next
+                        strXml = strXml + "</DiagnosticItem>"
+                        'Création du DiagItem
+                        Dim ser As New XmlSerializer(GetType(DiagnosticItem))
+                        Using reader As New StringReader(strXml)
+                            oDiagItem = ser.Deserialize(reader)
+                        End Using
+                        oreturn.Add(oDiagItem)
+                    Next
+                Case 1 ' NOK
+                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+        Finally
+        End Try
+        Return oreturn
+
+
+    End Function
 
     '''
     ''' Récupération des diagnosicItems par Id de diag
     ''' Le WS rend une collection qui est ajoutée au diagnistic courant
-    Public Shared Function getWSDiagnosticItemsByDiagnosticId(ByVal pAgent As Agent, ByVal diagnostic_id As String) As Diagnostic
-        Debug.Assert(pAgent IsNot Nothing)
-        Debug.Assert(Not String.IsNullOrEmpty(pAgent.id))
-        Debug.Assert(Not String.IsNullOrEmpty(diagnostic_id))
+    'Public Shared Function getWSDiagnosticItemsByDiagnosticId(ByVal pAgent As Agent, ByVal diagnostic_id As String) As Diagnostic
+    '    Debug.Assert(pAgent IsNot Nothing)
+    '    Debug.Assert(Not String.IsNullOrEmpty(pAgent.id))
+    '    Debug.Assert(Not String.IsNullOrEmpty(diagnostic_id))
 
-        Dim objDiagnosticItem As DiagnosticItem
-        Dim objWSCrodip As WSCrodip.CrodipServer
-        Dim objWSCrodip_response() As Object = Nothing
-        Dim oDiag As Diagnostic = Nothing
-        '        Dim oLst As List(Of DiagnosticItem)
-        Try
+    '    Dim objDiagnosticItem As DiagnosticItem
+    '    Dim objWSCrodip As WSCRODIP.CrodipServer
+    '    Dim objWSCrodip_response() As Object = Nothing
+    '    Dim oDiag As Diagnostic = Nothing
+    '    '        Dim oLst As List(Of DiagnosticItem)
+    '    Try
 
-            ' déclarations
-            objWSCrodip = WebServiceCRODIP.getWS()
-            oDiag = DiagnosticManager.getDiagnosticById(diagnostic_id)
-            If oDiag.id = diagnostic_id Then
-                'Création de la liste temporaire
-                '               oLst = New List(Of DiagnosticItem)
-                ' Appel au WS
-                Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                Dim objWSCrodip_responseItem2 As System.Xml.XmlNode()
-                Dim codeResponse As Integer = objWSCrodip.GetDiagnosticItems(pAgent.id, diagnostic_id, objWSCrodip_response)
-                Select Case codeResponse
-                    Case 0 ' OK
-                        'Parcours de la collection des DiagItem
-                        For Each objWSCrodip_responseItem2 In objWSCrodip_response
-                            'Création du DiagItem
-                            objDiagnosticItem = New DiagnosticItem()
-                            For Each objWSCrodip_responseItem In objWSCrodip_responseItem2
-                                'Initialisation du diag
-                                objDiagnosticItem.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                            Next
-                            'Ajout dans la collection temporaire
-                            oDiag.AdOrReplaceDiagItem(objDiagnosticItem)
-                        Next
-                    Case 1 ' NOK
-                        'CSDebug.dispError("DiagnosticItemManager - Code 1 : Non-Trouvée")
-                    Case 9 ' BADREQUEST
-                        'CSDebug.dispError("DiagnosticItemManager - Code 9 : Bad Request")
-                End Select
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("DiagnosticItemManager - getWSDiagnosticItemById : " & ex.Message)
-        End Try
-        Return oDiag
+    '        ' déclarations
+    '        objWSCrodip = WebServiceCRODIP.getWS()
+    '        oDiag = DiagnosticManager.getDiagnosticById(diagnostic_id)
+    '        If oDiag.id = diagnostic_id Then
+    '            'Création de la liste temporaire
+    '            '               oLst = New List(Of DiagnosticItem)
+    '            ' Appel au WS
+    '            Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '            Dim objWSCrodip_responseItem2 As System.Xml.XmlNode()
+    '            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticItems(pAgent.id, diagnostic_id, objWSCrodip_response)
+    '            Select Case codeResponse
+    '                Case 0 ' OK
+    '                    'Parcours de la collection des DiagItem
+    '                    For Each objWSCrodip_responseItem2 In objWSCrodip_response
+    '                        'Création du DiagItem
+    '                        objDiagnosticItem = New DiagnosticItem()
+    '                        For Each objWSCrodip_responseItem In objWSCrodip_responseItem2
+    '                            'Initialisation du diag
+    '                            objDiagnosticItem.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+    '                        Next
+    '                        'Ajout dans la collection temporaire
+    '                        oDiag.AdOrReplaceDiagItem(objDiagnosticItem)
+    '                    Next
+    '                Case 1 ' NOK
+    '                    'CSDebug.dispError("DiagnosticItemManager - Code 1 : Non-Trouvée")
+    '                Case 9 ' BADREQUEST
+    '                    'CSDebug.dispError("DiagnosticItemManager - Code 9 : Bad Request")
+    '            End Select
+    '        End If
+    '    Catch ex As Exception
+    '        CSDebug.dispError("DiagnosticItemManager - getWSDiagnosticItemById : " & ex.Message)
+    '    End Try
+    '    Return oDiag
 
-    End Function
+    'End Function
 
-    Public Shared Function sendWSDiagnosticItem(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemsList) As Integer
+    Public Shared Function WSSend(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemList) As Integer
         Dim tmpArr(1)() As DiagnosticItem
         tmpArr(0) = objDiagnosticItems.items
         Dim updatedObject() As Object = Nothing
         'updatedObject = New Object()
+        Dim CodeResponse As Integer
         Try
 
             ' Appel au WS
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendDiagnosticItems(pAgent.id, tmpArr, updatedObject)
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            'objWSCrodip.Url = "http://admin.crodip.net" ' SERVEUR DE PROD
+            Dim pinfos As String = ""
+            CodeResponse = objWSCrodip.SendDiagnosticItems(objDiagnosticItems.items, pinfos)
+            Select Case CodeResponse
+                Case 0 ' OK
+
+                Case 1 ' NOK
+                    CSDebug.dispError("WSSend - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("WSSend - Code 9 : Bad Request")
+            End Select
+
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticItemManager.sendWSDiagnosticItem ERR" & ex.Message & ":" & ex.InnerException.Message)
-            Return -1
+            CSDebug.dispFatal("DiagnosticItemManager.sendWSDiagnosticItem ERR", ex)
+            CodeResponse = -1
         End Try
+        Return CodeResponse
     End Function
 
     Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticItem
@@ -278,55 +333,55 @@ Public Class DiagnosticItemManager
 
             ' On test si le DiagnosticItem existe ou non
             Dim existsDiagnosticItem As Boolean
-                existsDiagnosticItem = DiagnosticItemManager.existsDiagnosticItemById(pCsDb, pDiagIt.id, pDiagIt.idDiagnostic)
+            existsDiagnosticItem = DiagnosticItemManager.existsDiagnosticItemById(pCsDb, pDiagIt.id, pDiagIt.idDiagnostic)
 
-                If Not existsDiagnosticItem Then
-                    ' Si il n'existe pas, on le crée
-                    create(pDiagIt)
-                Else
+            If Not existsDiagnosticItem Then
+                ' Si il n'existe pas, on le crée
+                create(pDiagIt)
+            Else
 
-                    'Dim oCSDb As New CSDb(True)
-                    Dim bddCommande As DbCommand
-                    bddCommande = pCsDb.getConnection().CreateCommand
+                'Dim oCSDb As New CSDb(True)
+                Dim bddCommande As DbCommand
+                bddCommande = pCsDb.getConnection().CreateCommand
 
-                    ' Initialisation de la requete
-                    Dim paramsQuery As String = "id='" & pDiagIt.id & "'"
+                ' Initialisation de la requete
+                Dim paramsQuery As String = "id='" & pDiagIt.id & "'"
 
-                    ' Mise a jour de la date de derniere modification
-                    If Not bSyncro Then
-                        pDiagIt.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-                    End If
-
-                    If Not pDiagIt.idDiagnostic Is Nothing And pDiagIt.idDiagnostic <> "" Then
-                        paramsQuery = paramsQuery & " , idDiagnostic='" & CSDb.secureString(pDiagIt.idDiagnostic) & "'"
-                    End If
-                    If Not pDiagIt.idItem Is Nothing And pDiagIt.idItem <> "" Then
-                        paramsQuery = paramsQuery & " , idItem='" & CSDb.secureString(pDiagIt.idItem) & "'"
-                    End If
-                    If Not pDiagIt.itemValue Is Nothing And pDiagIt.itemValue <> "" Then
-                        paramsQuery = paramsQuery & " , itemValue='" & CSDb.secureString(pDiagIt.itemValue) & "'"
-                    End If
-                    If Not pDiagIt.itemCodeEtat Is Nothing And pDiagIt.itemCodeEtat <> "" Then
-                        paramsQuery = paramsQuery & " , itemCodeEtat='" & CSDb.secureString(pDiagIt.itemCodeEtat) & "'"
-                    End If
-                    'paramsQuery = paramsQuery & " , isItemCode1=" & objisItemCode1 & ""
-                    'paramsQuery = paramsQuery & " , isItemCode2=" & objisItemCode2 & ""
-                    paramsQuery = paramsQuery & " , cause='" & pDiagIt.cause & "'"
-                    If Not pDiagIt.dateModificationCrodip Is Nothing And pDiagIt.dateModificationCrodip <> "" Then
-                        paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.TOCRODIPString(pDiagIt.dateModificationCrodip) & "'"
-                    End If
-                    If Not pDiagIt.dateModificationAgent Is Nothing And pDiagIt.dateModificationAgent <> "" Then
-                        paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.TOCRODIPString(pDiagIt.dateModificationAgent) & "'"
-                    End If
-
-                    ' On finalise la requete et en l'execute
-                    bddCommande.CommandText = "UPDATE DiagnosticItem SET " & paramsQuery & " WHERE id='" & pDiagIt.id & "' and idDiagnostic = '" & pDiagIt.idDiagnostic & "'"
-                    bddCommande.ExecuteNonQuery()
-                    ' Test pour fermeture de connection BDD
-                    'If Not oCSDb Is Nothing Then
-                    ' On ferme la connexion
-                    ' oCSDb.free()
+                ' Mise a jour de la date de derniere modification
+                If Not bSyncro Then
+                    pDiagIt.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
+
+                If Not pDiagIt.idDiagnostic Is Nothing And pDiagIt.idDiagnostic <> "" Then
+                    paramsQuery = paramsQuery & " , idDiagnostic='" & CSDb.secureString(pDiagIt.idDiagnostic) & "'"
+                End If
+                If Not pDiagIt.idItem Is Nothing And pDiagIt.idItem <> "" Then
+                    paramsQuery = paramsQuery & " , idItem='" & CSDb.secureString(pDiagIt.idItem) & "'"
+                End If
+                If Not pDiagIt.itemValue Is Nothing And pDiagIt.itemValue <> "" Then
+                    paramsQuery = paramsQuery & " , itemValue='" & CSDb.secureString(pDiagIt.itemValue) & "'"
+                End If
+                If Not pDiagIt.itemCodeEtat Is Nothing And pDiagIt.itemCodeEtat <> "" Then
+                    paramsQuery = paramsQuery & " , itemCodeEtat='" & CSDb.secureString(pDiagIt.itemCodeEtat) & "'"
+                End If
+                'paramsQuery = paramsQuery & " , isItemCode1=" & objisItemCode1 & ""
+                'paramsQuery = paramsQuery & " , isItemCode2=" & objisItemCode2 & ""
+                paramsQuery = paramsQuery & " , cause='" & pDiagIt.cause & "'"
+                If Not pDiagIt.dateModificationCrodip Is Nothing And pDiagIt.dateModificationCrodip <> "" Then
+                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pDiagIt.dateModificationCrodip) & "'"
+                End If
+                If Not pDiagIt.dateModificationAgent Is Nothing And pDiagIt.dateModificationAgent <> "" Then
+                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pDiagIt.dateModificationAgent) & "'"
+                End If
+
+                ' On finalise la requete et en l'execute
+                bddCommande.CommandText = "UPDATE DiagnosticItem SET " & paramsQuery & " WHERE id='" & pDiagIt.id & "' and idDiagnostic = '" & pDiagIt.idDiagnostic & "'"
+                bddCommande.ExecuteNonQuery()
+                ' Test pour fermeture de connection BDD
+                'If Not oCSDb Is Nothing Then
+                ' On ferme la connexion
+                ' oCSDb.free()
+            End If
             'End If
             breturn = True
         Catch ex As Exception

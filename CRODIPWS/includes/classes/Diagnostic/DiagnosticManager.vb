@@ -71,9 +71,9 @@ Public Class DiagnosticManager
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-                    pobjOut = CType(WSgetById(0, puid, CType(pObjIn, root).aid), Diagnostic)
+                    pobjOut = WSgetById(0, puid, CType(pObjIn, root).aid)
                 Case 4 ' CREATE OK
-                    pobjOut = WSgetById(0, puid, "")
+                    pobjOut = WSgetById(0, puid, CType(pObjIn, root).aid)
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST

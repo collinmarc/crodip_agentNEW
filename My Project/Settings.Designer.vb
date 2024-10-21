@@ -598,26 +598,6 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("NumBuild"),String)
         End Get
     End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.net/server")>  _
-    Public ReadOnly Property Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer() As String
-        Get
-            Return CType(Me("Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.net/server")>  _
-    Public ReadOnly Property Logiciel_Crodip_Agent_WSCODIP4_CrodipServer() As String
-        Get
-            Return CType(Me("Logiciel_Crodip_Agent_WSCODIP4_CrodipServer"),String)
-        End Get
-    End Property
 End Class
 
 Namespace My

@@ -6,11 +6,12 @@ Imports System.IO
 Imports System.Text
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS.WSCRODIP
 ''' <summary>
 ''' 
 ''' </summary>
 ''' <remarks></remarks>
-<Serializable(), XmlInclude(GetType(Synchronisation))> _
+<Serializable(), XmlInclude(GetType(Synchronisation))>
 Public Class Synchronisation
     Inherits Observe
 
@@ -186,8 +187,8 @@ Public Class Synchronisation
                         Me.runDescSynchro()
                     End If
                     bReturn = True
-                    End If
                 End If
+            End If
         Catch Ex As Exception
             CSDebug.dispError("Synhcro.synchro ERR " & Ex.Message)
             bReturn = False
@@ -785,7 +786,7 @@ Public Class Synchronisation
                 'Transfère du diag ssi le transfert des fichier est correct
                 '============================================================
                 'On Efface les propiétés de DiagItemList et DiagBusesList car elle n'ont pas besoin d'être serialisées avec le diag vues qu'elle sont synchronisées à part
-                Dim oDiagItemList As DiagnosticItemsList = pDiag.diagnosticItemsLst
+                Dim oDiagItemList As DiagnosticItemList = pDiag.diagnosticItemsLst
                 pDiag.diagnosticItemsLst = Nothing
                 Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
                 pDiag.diagnosticBusesList = Nothing
@@ -805,7 +806,7 @@ Public Class Synchronisation
                         If pDiag.diagnosticItemsLst.Count > 0 Then
                             Dim updatedObjectDiagItem As New Object()
                             Notice("diagnostic items n°" & pDiag.id)
-                            Dim responseDiagItem As Integer = DiagnosticItemManager.sendWSDiagnosticItem(pAgent, pDiag.diagnosticItemsLst)
+                            Dim responseDiagItem As Integer = DiagnosticItemManager.WSSend(pAgent, pDiag.diagnosticItemsLst)
                             Select Case responseDiagItem
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticItem) - Erreur Locale")
@@ -836,7 +837,7 @@ Public Class Synchronisation
                             If pDiag.diagnosticBusesList.Liste.Count > 0 Then
                                 Dim updatedObjectDiagBuse As New Object
                                 Notice("diagnostic Buses n°" & pDiag.id)
-                                Dim responseDiagBuse As Object = DiagnosticBusesManager.sendWSDiagnosticBuses(pAgent, pDiag.diagnosticBusesList)
+                                Dim responseDiagBuse As Object = DiagnosticBusesManager.WSSend(pDiag)
                                 Select Case CType(responseDiagBuse, Integer)
                                     Case -1 ' ERROR
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Erreur Locale")
@@ -862,18 +863,13 @@ Public Class Synchronisation
                                 End Select
 
                                 ' Synchro des détails des buses du diag courant
-                                For Each tmpUpdateDiagnosticBuses As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                                    If Not tmpUpdateDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
-                                        If tmpUpdateDiagnosticBuses.diagnosticBusesDetailList.Liste.Count > 0 Then
-                                            Dim updatedObjectDiagBuseDetail As New Object
-                                            Notice("diagnostic Buse Detail n°" & pDiag.id)
-                                            Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(pAgent, tmpUpdateDiagnosticBuses.diagnosticBusesDetailList)
-                                            Select Case CType(responseDiagBuseDetail, Integer)
-                                                Case -1 ' ERROR
-                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
-                                                    bSynchroDiagOK = False
+                                Dim responseDiagBuseDetail As Object = DiagnosticBusesDetailManager.WSSend(pDiag)
+                                Select Case CType(responseDiagBuseDetail, Integer)
+                                    Case -1 ' ERROR
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBusesDetail) - Erreur Locale")
+                                        bSynchroDiagOK = False
 
-                                                Case 0, 2 ' OK
+                                    Case 0, 2 ' OK
                                                     'ça ne sert à rien
                                                     'For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
                                                     '    DiagnosticBusesDetailManager.setSynchro(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail))
@@ -882,18 +878,15 @@ Public Class Synchronisation
                                             '    For Each tmpXmlDiagBuseDetail As Object In updatedObjectDiagBuseDetail
                                             '        DiagnosticBusesDetailManager.save(DiagnosticBusesDetailManager.xml2object(tmpXmlDiagBuseDetail), True)
                                             '    Next
-                                                Case 1 ' NOK
-                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
-                                                    bSynchroDiagOK = False
+                                    Case 1 ' NOK
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : Non-Ok")
+                                        bSynchroDiagOK = False
 
-                                                Case 9 ' BADREQUEST
-                                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
-                                                    bSynchroDiagOK = False
+                                    Case 9 ' BADREQUEST
+                                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticBuses) - Le web service a répondu : BadRequest")
+                                        bSynchroDiagOK = False
 
-                                            End Select
-                                        End If
-                                    End If
-                                Next
+                                End Select
                                 ' FIN --- Synchro des détails des buses du diag courant
                             End If
                         End If
@@ -1164,7 +1157,8 @@ Public Class Synchronisation
             ' Récupération de la date de synchro à partir du serveur
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim synchroDateTime As Object = Nothing
-            objWSCrodip.GetSynchroDateTime(synchroDateTime)
+            Dim reponse As GetSynchroDateTimeResponse
+            reponse = objWSCrodip.GetSynchroDateTime()
             Dim sDateFromSRV As String = synchroDateTime(0).InnerText().replace("/", "-")
             Dim dtSRV As Date
             Try

@@ -127,6 +127,9 @@
   <ItemGroup>
     <Compile Include="AgentRequest2.vb" />
     <Compile Include="AgentTestWS.vb" />
+    <Compile Include="DiagnosticBuseDetailTestWS.vb" />
+    <Compile Include="DiagnosticBuseTestWS.vb" />
+    <Compile Include="DiagnosticItemTestWS.vb" />
     <Compile Include="DiagnosticTestWS.vb" />
     <Compile Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.vb">
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>

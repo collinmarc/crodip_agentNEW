@@ -35,6 +35,12 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.Pulverisateur)),
         XmlInclude(GetType(CRODIPWS.ExploitationTOPulverisateur)),
         XmlInclude(GetType(CRODIPWS.Diagnostic)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticItem)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticItem())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBuses)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBuses())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail())),
      System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer
@@ -218,6 +224,18 @@ Namespace WSCRODIP
 
         Private SendStructureOperationCompleted As System.Threading.SendOrPostCallback
 
+        Private GetSynchroDateTimeOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetAPIKeyOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private UpdatesAvailableOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetReferentielPulverisateurTypesCategoriesOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetReferentielCodesAPEOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetReferentielPulverisateurMarquesModelesOperationCompleted As System.Threading.SendOrPostCallback
+
         Private GetReferentielBuseOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetReferentielManometreOperationCompleted As System.Threading.SendOrPostCallback
@@ -229,16 +247,6 @@ Namespace WSCRODIP
         Private GetVersionLogicielAgentOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetSoftwareUpdateOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private GetSynchroDateTimeOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private UpdatesAvailableOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private GetReferentielPulverisateurTypesCategoriesOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private GetReferentielCodesAPEOperationCompleted As System.Threading.SendOrPostCallback
-
-        Private GetReferentielPulverisateurMarquesModelesOperationCompleted As System.Threading.SendOrPostCallback
 
         Private useDefaultCredentialsSetExplicitly As Boolean
 
@@ -261,10 +269,10 @@ Namespace WSCRODIP
             Set
                 If (((Me.IsLocalFileSystemWebService(MyBase.Url) = True) _
                             AndAlso (Me.useDefaultCredentialsSetExplicitly = False)) _
-                            AndAlso (Me.IsLocalFileSystemWebService(Value) = False)) Then
+                            AndAlso (Me.IsLocalFileSystemWebService(value) = False)) Then
                     MyBase.UseDefaultCredentials = False
                 End If
-                MyBase.Url = Value
+                MyBase.Url = value
             End Set
         End Property
 
@@ -273,7 +281,7 @@ Namespace WSCRODIP
                 Return MyBase.UseDefaultCredentials
             End Get
             Set
-                MyBase.UseDefaultCredentials = Value
+                MyBase.UseDefaultCredentials = value
                 Me.useDefaultCredentialsSetExplicitly = True
             End Set
         End Property
@@ -546,6 +554,24 @@ Namespace WSCRODIP
         Public Event SendStructureCompleted As SendStructureCompletedEventHandler
 
         '''<remarks/>
+        Public Event GetSynchroDateTimeCompleted As GetSynchroDateTimeCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetAPIKeyCompleted As GetAPIKeyCompletedEventHandler
+
+        '''<remarks/>
+        Public Event UpdatesAvailableCompleted As UpdatesAvailableCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetReferentielPulverisateurTypesCategoriesCompleted As GetReferentielPulverisateurTypesCategoriesCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetReferentielCodesAPECompleted As GetReferentielCodesAPECompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetReferentielPulverisateurMarquesModelesCompleted As GetReferentielPulverisateurMarquesModelesCompletedEventHandler
+
+        '''<remarks/>
         Public Event GetReferentielBuseCompleted As GetReferentielBuseCompletedEventHandler
 
         '''<remarks/>
@@ -562,21 +588,6 @@ Namespace WSCRODIP
 
         '''<remarks/>
         Public Event GetSoftwareUpdateCompleted As GetSoftwareUpdateCompletedEventHandler
-
-        '''<remarks/>
-        Public Event GetSynchroDateTimeCompleted As GetSynchroDateTimeCompletedEventHandler
-
-        '''<remarks/>
-        Public Event UpdatesAvailableCompleted As UpdatesAvailableCompletedEventHandler
-
-        '''<remarks/>
-        Public Event GetReferentielPulverisateurTypesCategoriesCompleted As GetReferentielPulverisateurTypesCategoriesCompletedEventHandler
-
-        '''<remarks/>
-        Public Event GetReferentielCodesAPECompleted As GetReferentielCodesAPECompletedEventHandler
-
-        '''<remarks/>
-        Public Event GetReferentielPulverisateurMarquesModelesCompleted As GetReferentielPulverisateurMarquesModelesCompletedEventHandler
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getAgent", RequestElementName:="GetAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
@@ -2227,23 +2238,23 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticItems", RequestElementName:="SendDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayItems() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendDiagnosticItems", New Object() {arrayItems})
+        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal DiagnosticItemsList() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendDiagnosticItems", New Object() {DiagnosticItemsList})
             info = CType(results(1), String)
             Return CType(results(0), Integer)
         End Function
 
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object)
-            Me.SendDiagnosticItemsAsync(arrayItems, Nothing)
+        Public Overloads Sub SendDiagnosticItemsAsync(ByVal DiagnosticItemsList() As Object)
+            Me.SendDiagnosticItemsAsync(DiagnosticItemsList, Nothing)
         End Sub
 
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object, ByVal userState As Object)
+        Public Overloads Sub SendDiagnosticItemsAsync(ByVal DiagnosticItemsList() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticItemsOperationCompleted Is Nothing) Then
                 Me.SendDiagnosticItemsOperationCompleted = AddressOf Me.OnSendDiagnosticItemsOperationCompleted
             End If
-            Me.InvokeAsync("SendDiagnosticItems", New Object() {arrayItems}, Me.SendDiagnosticItemsOperationCompleted, userState)
+            Me.InvokeAsync("SendDiagnosticItems", New Object() {DiagnosticItemsList}, Me.SendDiagnosticItemsOperationCompleted, userState)
         End Sub
 
         Private Sub OnSendDiagnosticItemsOperationCompleted(ByVal arg As Object)
@@ -3105,6 +3116,180 @@ Namespace WSCRODIP
         End Sub
 
         '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSynchroDateTime", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Bare)>
+        Public Function GetSynchroDateTime() As <System.Xml.Serialization.XmlElementAttribute("GetSynchroDateTimeResponse", [Namespace]:="http://www.example.org/crodip/")> GetSynchroDateTimeResponse
+            Dim results() As Object = Me.Invoke("GetSynchroDateTime", New Object(-1) {})
+            Return CType(results(0), GetSynchroDateTimeResponse)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetSynchroDateTimeAsync()
+            Me.GetSynchroDateTimeAsync(Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetSynchroDateTimeAsync(ByVal userState As Object)
+            If (Me.GetSynchroDateTimeOperationCompleted Is Nothing) Then
+                Me.GetSynchroDateTimeOperationCompleted = AddressOf Me.OnGetSynchroDateTimeOperationCompleted
+            End If
+            Me.InvokeAsync("GetSynchroDateTime", New Object(-1) {}, Me.GetSynchroDateTimeOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetSynchroDateTimeOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetSynchroDateTimeCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetSynchroDateTimeCompleted(Me, New GetSynchroDateTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetAPIKey", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Bare)>
+        Public Function GetAPIKey() As <System.Xml.Serialization.XmlElementAttribute("GetAPIKeyResponse", [Namespace]:="http://www.example.org/crodip/")> GetAPIKeyResponse
+            Dim results() As Object = Me.Invoke("GetAPIKey", New Object(-1) {})
+            Return CType(results(0), GetAPIKeyResponse)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetAPIKeyAsync()
+            Me.GetAPIKeyAsync(Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetAPIKeyAsync(ByVal userState As Object)
+            If (Me.GetAPIKeyOperationCompleted Is Nothing) Then
+                Me.GetAPIKeyOperationCompleted = AddressOf Me.OnGetAPIKeyOperationCompleted
+            End If
+            Me.InvokeAsync("GetAPIKey", New Object(-1) {}, Me.GetAPIKeyOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetAPIKeyOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetAPIKeyCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetAPIKeyCompleted(Me, New GetAPIKeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/UpdatesAvailable", RequestElementName:="UpdatesAvailableRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function UpdatesAvailable(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idProfilAgent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpool As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idRegistre As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal lastUpdateDateTime As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isUpdateAvailable As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isComplete As Integer, <System.Xml.Serialization.XmlElementAttribute("updatesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef updatesList() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePools() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePcs", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePcs() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime})
+            info = CType(results(1), String)
+            isUpdateAvailable = CType(results(2), Integer)
+            isComplete = CType(results(3), Integer)
+            updatesList = CType(results(4), Object())
+            availablePools = CType(results(5), Object())
+            availablePcs = CType(results(6), Object())
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String)
+            Me.UpdatesAvailableAsync(idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String, ByVal userState As Object)
+            If (Me.UpdatesAvailableOperationCompleted Is Nothing) Then
+                Me.UpdatesAvailableOperationCompleted = AddressOf Me.OnUpdatesAvailableOperationCompleted
+            End If
+            Me.InvokeAsync("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime}, Me.UpdatesAvailableOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnUpdatesAvailableOperationCompleted(ByVal arg As Object)
+            If (Not (Me.UpdatesAvailableCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent UpdatesAvailableCompleted(Me, New UpdatesAvailableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", RequestElementName:="GetReferentielPulverisateurTypesCategoriesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetReferentielPulverisateurTypesCategories(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetReferentielPulverisateurTypesCategories", New Object() {[date]})
+            aJour = CType(results(1), Integer)
+            url = CType(results(2), String)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String)
+            Me.GetReferentielPulverisateurTypesCategoriesAsync([date], Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String, ByVal userState As Object)
+            If (Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted Is Nothing) Then
+                Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted = AddressOf Me.OnGetReferentielPulverisateurTypesCategoriesOperationCompleted
+            End If
+            Me.InvokeAsync("GetReferentielPulverisateurTypesCategories", New Object() {[date]}, Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetReferentielPulverisateurTypesCategoriesOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetReferentielPulverisateurTypesCategoriesCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetReferentielPulverisateurTypesCategoriesCompleted(Me, New GetReferentielPulverisateurTypesCategoriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielCodesAPE", RequestElementName:="GetReferentielCodesAPERequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetReferentielCodesAPE(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetReferentielCodesAPE", New Object() {[date]})
+            aJour = CType(results(1), Integer)
+            url = CType(results(2), String)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String)
+            Me.GetReferentielCodesAPEAsync([date], Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String, ByVal userState As Object)
+            If (Me.GetReferentielCodesAPEOperationCompleted Is Nothing) Then
+                Me.GetReferentielCodesAPEOperationCompleted = AddressOf Me.OnGetReferentielCodesAPEOperationCompleted
+            End If
+            Me.InvokeAsync("GetReferentielCodesAPE", New Object() {[date]}, Me.GetReferentielCodesAPEOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetReferentielCodesAPEOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetReferentielCodesAPECompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetReferentielCodesAPECompleted(Me, New GetReferentielCodesAPECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", RequestElementName:="GetReferentielPulverisateurMarquesModelesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetReferentielPulverisateurMarquesModeles(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetReferentielPulverisateurMarquesModeles", New Object() {[date]})
+            aJour = CType(results(1), Integer)
+            url = CType(results(2), String)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String)
+            Me.GetReferentielPulverisateurMarquesModelesAsync([date], Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String, ByVal userState As Object)
+            If (Me.GetReferentielPulverisateurMarquesModelesOperationCompleted Is Nothing) Then
+                Me.GetReferentielPulverisateurMarquesModelesOperationCompleted = AddressOf Me.OnGetReferentielPulverisateurMarquesModelesOperationCompleted
+            End If
+            Me.InvokeAsync("GetReferentielPulverisateurMarquesModeles", New Object() {[date]}, Me.GetReferentielPulverisateurMarquesModelesOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetReferentielPulverisateurMarquesModelesOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetReferentielPulverisateurMarquesModelesCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetReferentielPulverisateurMarquesModelesCompleted(Me, New GetReferentielPulverisateurMarquesModelesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielBuse", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function GetReferentielBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielBuse", New Object() {agentId})
@@ -3273,154 +3458,6 @@ Namespace WSCRODIP
         End Sub
 
         '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSynchroDateTime", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetSynchroDateTime(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef SynchroDateTime As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetSynchroDateTime", New Object(-1) {})
-            SynchroDateTime = CType(results(1), Object)
-            Return CType(results(0), Integer)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub GetSynchroDateTimeAsync()
-            Me.GetSynchroDateTimeAsync(Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub GetSynchroDateTimeAsync(ByVal userState As Object)
-            If (Me.GetSynchroDateTimeOperationCompleted Is Nothing) Then
-                Me.GetSynchroDateTimeOperationCompleted = AddressOf Me.OnGetSynchroDateTimeOperationCompleted
-            End If
-            Me.InvokeAsync("GetSynchroDateTime", New Object(-1) {}, Me.GetSynchroDateTimeOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnGetSynchroDateTimeOperationCompleted(ByVal arg As Object)
-            If (Not (Me.GetSynchroDateTimeCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent GetSynchroDateTimeCompleted(Me, New GetSynchroDateTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/UpdatesAvailable", RequestElementName:="UpdatesAvailableRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function UpdatesAvailable(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idProfilAgent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpool As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal idRegistre As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal lastUpdateDateTime As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isUpdateAvailable As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef isComplete As Integer, <System.Xml.Serialization.XmlElementAttribute("updatesList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef updatesList() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePools", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePools() As Object, <System.Xml.Serialization.XmlElementAttribute("availablePcs", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef availablePcs() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime})
-            info = CType(results(1), String)
-            isUpdateAvailable = CType(results(2), Integer)
-            isComplete = CType(results(3), Integer)
-            updatesList = CType(results(4), Object())
-            availablePools = CType(results(5), Object())
-            availablePcs = CType(results(6), Object())
-            Return CType(results(0), Integer)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String)
-            Me.UpdatesAvailableAsync(idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime, Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub UpdatesAvailableAsync(ByVal idProfilAgent As String, ByVal uidpool As Integer, ByVal uidpc As Integer, ByVal idRegistre As String, ByVal lastUpdateDateTime As String, ByVal userState As Object)
-            If (Me.UpdatesAvailableOperationCompleted Is Nothing) Then
-                Me.UpdatesAvailableOperationCompleted = AddressOf Me.OnUpdatesAvailableOperationCompleted
-            End If
-            Me.InvokeAsync("UpdatesAvailable", New Object() {idProfilAgent, uidpool, uidpc, idRegistre, lastUpdateDateTime}, Me.UpdatesAvailableOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnUpdatesAvailableOperationCompleted(ByVal arg As Object)
-            If (Not (Me.UpdatesAvailableCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent UpdatesAvailableCompleted(Me, New UpdatesAvailableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", RequestElementName:="GetReferentielPulverisateurTypesCategoriesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielPulverisateurTypesCategories(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetReferentielPulverisateurTypesCategories", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String)
-            Me.GetReferentielPulverisateurTypesCategoriesAsync([date], Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielPulverisateurTypesCategoriesAsync(ByVal [date] As String, ByVal userState As Object)
-            If (Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted Is Nothing) Then
-                Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted = AddressOf Me.OnGetReferentielPulverisateurTypesCategoriesOperationCompleted
-            End If
-            Me.InvokeAsync("GetReferentielPulverisateurTypesCategories", New Object() {[date]}, Me.GetReferentielPulverisateurTypesCategoriesOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnGetReferentielPulverisateurTypesCategoriesOperationCompleted(ByVal arg As Object)
-            If (Not (Me.GetReferentielPulverisateurTypesCategoriesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent GetReferentielPulverisateurTypesCategoriesCompleted(Me, New GetReferentielPulverisateurTypesCategoriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielCodesAPE", RequestElementName:="GetReferentielCodesAPERequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielCodesAPE(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetReferentielCodesAPE", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String)
-            Me.GetReferentielCodesAPEAsync([date], Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielCodesAPEAsync(ByVal [date] As String, ByVal userState As Object)
-            If (Me.GetReferentielCodesAPEOperationCompleted Is Nothing) Then
-                Me.GetReferentielCodesAPEOperationCompleted = AddressOf Me.OnGetReferentielCodesAPEOperationCompleted
-            End If
-            Me.InvokeAsync("GetReferentielCodesAPE", New Object() {[date]}, Me.GetReferentielCodesAPEOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnGetReferentielCodesAPEOperationCompleted(ByVal arg As Object)
-            If (Not (Me.GetReferentielCodesAPECompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent GetReferentielCodesAPECompleted(Me, New GetReferentielCodesAPECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", RequestElementName:="GetReferentielPulverisateurMarquesModelesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielPulverisateurMarquesModeles(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetReferentielPulverisateurMarquesModeles", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
-            Return CType(results(0), Integer)
-        End Function
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String)
-            Me.GetReferentielPulverisateurMarquesModelesAsync([date], Nothing)
-        End Sub
-
-        '''<remarks/>
-        Public Overloads Sub GetReferentielPulverisateurMarquesModelesAsync(ByVal [date] As String, ByVal userState As Object)
-            If (Me.GetReferentielPulverisateurMarquesModelesOperationCompleted Is Nothing) Then
-                Me.GetReferentielPulverisateurMarquesModelesOperationCompleted = AddressOf Me.OnGetReferentielPulverisateurMarquesModelesOperationCompleted
-            End If
-            Me.InvokeAsync("GetReferentielPulverisateurMarquesModeles", New Object() {[date]}, Me.GetReferentielPulverisateurMarquesModelesOperationCompleted, userState)
-        End Sub
-
-        Private Sub OnGetReferentielPulverisateurMarquesModelesOperationCompleted(ByVal arg As Object)
-            If (Not (Me.GetReferentielPulverisateurMarquesModelesCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent GetReferentielPulverisateurMarquesModelesCompleted(Me, New GetReferentielPulverisateurMarquesModelesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-
-        '''<remarks/>
         Public Shadows Sub CancelAsync(ByVal userState As Object)
             MyBase.CancelAsync(userState)
         End Sub
@@ -3440,3837 +3477,3926 @@ Namespace WSCRODIP
     End Class
 
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetAgentCompletedEventArgs)
-    
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),
+     System.SerializableAttribute(),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code"),
+     System.Xml.Serialization.XmlTypeAttribute(AnonymousType:=True, [Namespace]:="http://www.example.org/crodip/")>
+    Partial Public Class GetSynchroDateTimeResponse
+
+        Private resultField As Integer
+
+        Private synchroDateTimeField As Object
+
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>
+        Public Property result() As Integer
+            Get
+                Return Me.resultField
+            End Get
+            Set
+                Me.resultField = value
+            End Set
+        End Property
+
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>
+        Public Property SynchroDateTime() As Object
+            Get
+                Return Me.synchroDateTimeField
+            End Get
+            Set
+                Me.synchroDateTimeField = value
+            End Set
+        End Property
+    End Class
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0"),
+     System.SerializableAttribute(),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code"),
+     System.Xml.Serialization.XmlTypeAttribute(AnonymousType:=True, [Namespace]:="http://www.example.org/crodip/")>
+    Partial Public Class GetAPIKeyResponse
+
+        Private resultField As Integer
+
+        Private aPIKeyField As Object
+
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>
+        Public Property result() As Integer
+            Get
+                Return Me.resultField
+            End Get
+            Set
+                Me.resultField = value
+            End Set
+        End Property
+
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>
+        Public Property APIKey() As Object
+            Get
+                Return Me.aPIKeyField
+            End Get
+            Set
+                Me.aPIKeyField = value
+            End Set
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetAgentCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Agent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Object)
+                Return CType(Me.results(2), Object)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property availablePools() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3),Object())
+                Return CType(Me.results(3), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SendAgentCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPcCompletedEventHandler(ByVal sender As Object, ByVal e As GetPcCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Pc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPcCompletedEventHandler(ByVal sender As Object, ByVal e As SendPcCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetMasseCompletedEventHandler(ByVal sender As Object, ByVal e As GetMasseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Masse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendMasseCompletedEventHandler(ByVal sender As Object, ByVal e As SendMasseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetBalanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Balance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendBalanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetDistanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Distance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendDistanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetChronoCompletedEventHandler(ByVal sender As Object, ByVal e As GetChronoCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Chrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendChronoCompletedEventHandler(ByVal sender As Object, ByVal e As SendChronoCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Pool() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolAgentCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolAgent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolAgentCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolPcCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolPcCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolPc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolPcCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolPcCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolMasseCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolMasseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolMasse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolMasseCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolMasseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolMasseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBalanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolBalance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolBalanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolBalanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolBalanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolDistanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolDistance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolDistanceCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolDistanceCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolDistanceCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolChronoCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolChronoCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolChrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolChronoCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolChronoCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolChronoCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolManoControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolManoControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolManoControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolManoControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolManoControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolManoControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolManoEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolManoEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolManoEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolManoEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolManoEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolManoEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBuseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolBuse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPoolBuseCompletedEventHandler(ByVal sender As Object, ByVal e As SendPoolBuseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPoolBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolAgentListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolAgentListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolAgentListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolAgentList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolPcListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolPcListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolPcListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolPcList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolMasseListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolMasseListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolMasseListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolMasseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolBalanceListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBalanceListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolBalanceListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolBalanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolDistanceListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolDistanceListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolDistanceListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolDistanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolChronoListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolChronoListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolChronoListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolChronoList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolManoControleListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoControleListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolManoControleListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolManoControleList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolManoEtalonListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolManoEtalonListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolManoEtalonListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolManoEtalonList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPoolBuseListCompletedEventHandler(ByVal sender As Object, ByVal e As GetPoolBuseListCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPoolBuseListCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PoolBuseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SetDateSynchroAgentCompletedEventHandler(ByVal sender As Object, ByVal e As SetDateSynchroAgentCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SetDateSynchroAgentCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPrestationCategorieCompletedEventHandler(ByVal sender As Object, ByVal e As GetPrestationCategorieCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPrestationCategorieCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PrestationCategorie() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPrestationCategorieCompletedEventHandler(ByVal sender As Object, ByVal e As SendPrestationCategorieCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPrestationCategorieCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPrestationTarifCompletedEventHandler(ByVal sender As Object, ByVal e As GetPrestationTarifCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPrestationTarifCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property PrestationTarif() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPrestationTarifCompletedEventHandler(ByVal sender As Object, ByVal e As SendPrestationTarifCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPrestationTarifCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetBuseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Buse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendBuseCompletedEventHandler(ByVal sender As Object, ByVal e As SendBuseCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendBuseCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetManometreControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property ManometreControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendManometreControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetManometreEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property ManometreEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendManometreEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetBancCompletedEventHandler(ByVal sender As Object, ByVal e As GetBancCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Banc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendBancCompletedEventHandler(ByVal sender As Object, ByVal e As SendBancCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Diagnostic() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticItemsCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticItemsCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticItemsCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property DiagnosticItemsList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticItemsCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticItemsCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticItemsCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetAutoTestCompletedEventHandler(ByVal sender As Object, ByVal e As GetAutoTestCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetAutoTestCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property AutoTest() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendAutoTestCompletedEventHandler(ByVal sender As Object, ByVal e As SendAutoTestCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendAutoTestCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticBusesCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticBusesCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticBusesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property DiagnosticBusesList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticBusesCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticBusesCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticBusesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticBusesDetailCompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticBusesDetailCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticBusesDetailCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property DiagnosticBusesDetailList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticBusesDetailCompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticBusesDetailCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticBusesDetailCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticMano542CompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticMano542CompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticMano542CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property DiagnosticMano542List() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticMano542CompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticMano542CompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticMano542CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetDiagnosticTroncons833CompletedEventHandler(ByVal sender As Object, ByVal e As GetDiagnosticTroncons833CompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetDiagnosticTroncons833CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property DiagnosticTroncons833List() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(1), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendDiagnosticTroncons833CompletedEventHandler(ByVal sender As Object, ByVal e As SendDiagnosticTroncons833CompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendDiagnosticTroncons833CompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetExploitationCompletedEventHandler(ByVal sender As Object, ByVal e As GetExploitationCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetExploitationCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Exploitation() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendExploitationCompletedEventHandler(ByVal sender As Object, ByVal e As SendExploitationCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendExploitationCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetExploitationTOPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetExploitationTOPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetExploitationTOPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property ExploitationTOPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendExploitationTOPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendExploitationTOPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendExploitationTOPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetControleBancMesureCompletedEventHandler(ByVal sender As Object, ByVal e As GetControleBancMesureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetControleBancMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property ControleBancMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendControleBancMesureCompletedEventHandler(ByVal sender As Object, ByVal e As SendControleBancMesureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendControleBancMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetControleManoMesureCompletedEventHandler(ByVal sender As Object, ByVal e As GetControleManoMesureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetControleManoMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property ControleManoMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendControleManoMesureCompletedEventHandler(ByVal sender As Object, ByVal e As SendControleManoMesureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendControleManoMesureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetFVBancCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVBancCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetFVBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property FVBanc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendFVBancCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVBancCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendFVBancCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetFVManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVManometreControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetFVManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property FVManometreControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendFVManometreControleCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVManometreControleCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendFVManometreControleCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetFVManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As GetFVManometreEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetFVManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property FVManometreEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendFVManometreEtalonCompletedEventHandler(ByVal sender As Object, ByVal e As SendFVManometreEtalonCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendFVManometreEtalonCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetIdentifiantPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetIdentifiantPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetIdentifiantPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property IdentifiantPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendIdentifiantPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendIdentifiantPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendIdentifiantPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property Pulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As SendPulverisateurCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendPulverisateurCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetStructureCompletedEventHandler(ByVal sender As Object, ByVal e As GetStructureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetStructureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property [Structure]() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub SendStructureCompletedEventHandler(ByVal sender As Object, ByVal e As SendStructureCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class SendStructureCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property uid() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetReferentielBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielBuseCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetReferentielBuseCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property ReferentielBuse() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetReferentielManometreCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielManometreCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetReferentielManometreCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property ReferentielManometre() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetReferentielPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielPulverisateurCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetReferentielPulverisateurCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property ReferentielPulverisateur() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetReferentielTerritoireCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielTerritoireCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetReferentielTerritoireCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property ReferentielTerritoire() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetVersionLogicielAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetVersionLogicielAgentCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetVersionLogicielAgentCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property VersionLogicielAgent() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub GetSoftwareUpdateCompletedEventHandler(ByVal sender As Object, ByVal e As GetSoftwareUpdateCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class GetSoftwareUpdateCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As Integer
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property infos() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetSynchroDateTimeCompletedEventHandler(ByVal sender As Object, ByVal e As GetSynchroDateTimeCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetSynchroDateTimeCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
-        Public ReadOnly Property Result() As Integer
+        Public ReadOnly Property Result() As GetSynchroDateTimeResponse
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
-            End Get
-        End Property
-        
-        '''<remarks/>
-        Public ReadOnly Property SynchroDateTime() As Object
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(0), GetSynchroDateTimeResponse)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
-    Public Delegate Sub UpdatesAvailableCompletedEventHandler(ByVal sender As Object, ByVal e As UpdatesAvailableCompletedEventArgs)
-    
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetAPIKeyCompletedEventHandler(ByVal sender As Object, ByVal e As GetAPIKeyCompletedEventArgs)
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class UpdatesAvailableCompletedEventArgs
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetAPIKeyCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As GetAPIKeyResponse
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), GetAPIKeyResponse)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub UpdatesAvailableCompletedEventHandler(ByVal sender As Object, ByVal e As UpdatesAvailableCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class UpdatesAvailableCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property info() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),String)
+                Return CType(Me.results(1), String)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property isUpdateAvailable() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),Integer)
+                Return CType(Me.results(2), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property isComplete() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(3),Integer)
+                Return CType(Me.results(3), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property updatesList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(4),Object())
+                Return CType(Me.results(4), Object())
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property availablePools() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(5),Object())
+                Return CType(Me.results(5), Object())
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property availablePcs() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(6),Object())
+                Return CType(Me.results(6), Object())
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetReferentielPulverisateurTypesCategoriesCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielPulverisateurTypesCategoriesCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetReferentielPulverisateurTypesCategoriesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(1), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(2), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetReferentielCodesAPECompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielCodesAPECompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetReferentielCodesAPECompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(1), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(2), String)
             End Get
         End Property
     End Class
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
     Public Delegate Sub GetReferentielPulverisateurMarquesModelesCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielPulverisateurMarquesModelesCompletedEventArgs)
-    
+
     '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
     Partial Public Class GetReferentielPulverisateurMarquesModelesCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
+
         Private results() As Object
-        
+
         Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-        
+
         '''<remarks/>
         Public ReadOnly Property Result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),Integer)
+                Return CType(Me.results(0), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(1), Integer)
             End Get
         End Property
-        
+
         '''<remarks/>
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(2), String)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetReferentielBuseCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielBuseCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetReferentielBuseCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property ReferentielBuse() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetReferentielManometreCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielManometreCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetReferentielManometreCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property ReferentielManometre() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetReferentielPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielPulverisateurCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetReferentielPulverisateurCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property ReferentielPulverisateur() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetReferentielTerritoireCompletedEventHandler(ByVal sender As Object, ByVal e As GetReferentielTerritoireCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetReferentielTerritoireCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property ReferentielTerritoire() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetVersionLogicielAgentCompletedEventHandler(ByVal sender As Object, ByVal e As GetVersionLogicielAgentCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetVersionLogicielAgentCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property VersionLogicielAgent() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
+            End Get
+        End Property
+    End Class
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>
+    Public Delegate Sub GetSoftwareUpdateCompletedEventHandler(ByVal sender As Object, ByVal e As GetSoftwareUpdateCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetSoftwareUpdateCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Integer)
+            End Get
+        End Property
+
+        '''<remarks/>
+        Public ReadOnly Property infos() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1), Object)
             End Get
         End Property
     End Class

@@ -431,7 +431,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element typue="xsd:string" name="aid" />
+            <xsd:element name="aid" type="xsd:string" />
             <xsd:element name="aiddiagnotic" type="xsd:string" />
             <xsd:element name="uiddiagnostic" type="xsd:int" />
             <xsd:element name="idItem" type="xsd:string" />
@@ -467,7 +467,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element typue="xsd:string" name="aid" />
+            <xsd:element name="aid" type="xsd:string" />
             <xsd:element name="aiddiagnostic" type="xsd:string" />
             <xsd:element name="uiddiagnostic" type="xsd:int" />
             <xsd:element name="idLot" type="xsd:string" />
@@ -1992,7 +1992,7 @@
       <xsd:element name="SendDiagnosticItemsRequest">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element element="tns:DiagnosticItems" minOccurs="0" maxOccurs="200" name="arrayItems" />
+            <xsd:element element="tns:DiagnosticItems" minOccurs="0" maxOccurs="200" name="DiagnosticItemsList" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -2584,6 +2584,19 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="GetAPIKeyRequest">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAPIKeyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="xsd:string" name="APIKey" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="UpdatesAvailableRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -2697,6 +2710,11 @@
         </xsd:complexType>
       </xsd:element>
       <xsd:element name="GetSynchroDateTime">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAPIKey">
         <xsd:complexType>
           <xsd:sequence />
         </xsd:complexType>
@@ -3237,24 +3255,6 @@
   <wsdl:message name="SendStructureResponse">
     <wsdl:part name="parameters" element="tns:SendStructureResponse" />
   </wsdl:message>
-  <wsdl:message name="GetReferentielBuseRequest">
-    <wsdl:part name="parameters" element="tns:GetReferentielBuseRequest" />
-  </wsdl:message>
-  <wsdl:message name="GetReferentielBuseResponse">
-    <wsdl:part name="parameters" element="tns:GetReferentielBuseResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetReferentielManometreRequest">
-    <wsdl:part name="parameters" element="tns:GetReferentielManometreRequest" />
-  </wsdl:message>
-  <wsdl:message name="GetReferentielManometreResponse">
-    <wsdl:part name="parameters" element="tns:GetReferentielManometreResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetReferentielPulverisateurRequest">
-    <wsdl:part name="parameters" element="tns:GetReferentielPulverisateurRequest" />
-  </wsdl:message>
-  <wsdl:message name="GetReferentielPulverisateurResponse">
-    <wsdl:part name="parameters" element="tns:GetReferentielPulverisateurResponse" />
-  </wsdl:message>
   <wsdl:message name="GetReferentielTerritoireRequest">
     <wsdl:part name="parameters" element="tns:GetReferentielTerritoireRequest" />
   </wsdl:message>
@@ -3274,6 +3274,10 @@
   <wsdl:message name="GetSynchroDateTimeRequest" />
   <wsdl:message name="GetSynchroDateTimeResponse">
     <wsdl:part name="parameters" element="tns:GetSynchroDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAPIKeyRequest" />
+  <wsdl:message name="GetAPIKeyResponse">
+    <wsdl:part name="parameters" element="tns:GetAPIKeyResponse" />
   </wsdl:message>
   <wsdl:message name="UpdatesAvailableRequest">
     <wsdl:part name="parameters" element="tns:UpdatesAvailableRequest" />
@@ -3299,6 +3303,24 @@
   <wsdl:message name="GetReferentielPulverisateurMarquesModelesResponse">
     <wsdl:part name="parameters" element="tns:GetReferentielPulverisateurMarquesModelesResponse" />
   </wsdl:message>
+  <wsdl:message name="GetReferentielBuseRequest">
+    <wsdl:part name="parameters" element="tns:GetReferentielBuseRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielBuseResponse">
+    <wsdl:part name="parameters" element="tns:GetReferentielBuseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielManometreRequest">
+    <wsdl:part name="parameters" element="tns:GetReferentielManometreRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielManometreResponse">
+    <wsdl:part name="parameters" element="tns:GetReferentielManometreResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielPulverisateurRequest">
+    <wsdl:part name="parameters" element="tns:GetReferentielPulverisateurRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetReferentielPulverisateurResponse">
+    <wsdl:part name="parameters" element="tns:GetReferentielPulverisateurResponse" />
+  </wsdl:message>
   <wsdl:message name="GetReferentielBuseRequest1">
     <wsdl:part name="parameters" element="tns:GetReferentielBuse" />
   </wsdl:message>
@@ -3308,7 +3330,7 @@
   <wsdl:message name="GetReferentielPulverisateurRequest1">
     <wsdl:part name="parameters" element="tns:GetReferentielPulverisateur" />
   </wsdl:message>
-  <wsdl:message name="GetReferentielTerritoireRequest2">
+  <wsdl:message name="GetReferentielTerritoireRequest1">
     <wsdl:part name="parameters" element="tns:GetReferentielTerritoire" />
   </wsdl:message>
   <wsdl:message name="GetVersionLogicielAgentRequest1">
@@ -3677,33 +3699,13 @@
       <wsdl:input message="tns:SendStructureRequest" />
       <wsdl:output message="tns:SendStructureResponse" />
     </wsdl:operation>
-    <wsdl:operation name="GetReferentielBuse">
-      <wsdl:input message="tns:GetReferentielBuseRequest1" />
-      <wsdl:output message="tns:GetReferentielBuseResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReferentielManometre">
-      <wsdl:input message="tns:GetReferentielManometreRequest1" />
-      <wsdl:output message="tns:GetReferentielManometreResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReferentielPulverisateur">
-      <wsdl:input message="tns:GetReferentielPulverisateurRequest1" />
-      <wsdl:output message="tns:GetReferentielPulverisateurResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReferentielTerritoire">
-      <wsdl:input message="tns:GetReferentielTerritoireRequest2" />
-      <wsdl:output message="tns:GetReferentielTerritoireResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="GetVersionLogicielAgent">
-      <wsdl:input message="tns:GetVersionLogicielAgentRequest1" />
-      <wsdl:output message="tns:GetVersionLogicielAgentResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSoftwareUpdate">
-      <wsdl:input message="tns:GetSoftwareUpdateRequest1" />
-      <wsdl:output message="tns:GetSoftwareUpdateResponse" />
-    </wsdl:operation>
     <wsdl:operation name="GetSynchroDateTime">
-      <wsdl:input message="tns:GetSynchroDateTimeRequest1" />
+      <wsdl:input message="tns:GetSynchroDateTimeRequest" />
       <wsdl:output message="tns:GetSynchroDateTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAPIKey">
+      <wsdl:input message="tns:GetAPIKeyRequest" />
+      <wsdl:output message="tns:GetAPIKeyResponse" />
     </wsdl:operation>
     <wsdl:operation name="UpdatesAvailable">
       <wsdl:input message="tns:UpdatesAvailableRequest" />
@@ -3720,6 +3722,30 @@
     <wsdl:operation name="GetReferentielPulverisateurMarquesModeles">
       <wsdl:input message="tns:GetReferentielPulverisateurMarquesModelesRequest" />
       <wsdl:output message="tns:GetReferentielPulverisateurMarquesModelesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielBuse">
+      <wsdl:input message="tns:GetReferentielBuseRequest1" />
+      <wsdl:output message="tns:GetReferentielBuseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielManometre">
+      <wsdl:input message="tns:GetReferentielManometreRequest1" />
+      <wsdl:output message="tns:GetReferentielManometreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielPulverisateur">
+      <wsdl:input message="tns:GetReferentielPulverisateurRequest1" />
+      <wsdl:output message="tns:GetReferentielPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferentielTerritoire">
+      <wsdl:input message="tns:GetReferentielTerritoireRequest1" />
+      <wsdl:output message="tns:GetReferentielTerritoireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersionLogicielAgent">
+      <wsdl:input message="tns:GetVersionLogicielAgentRequest1" />
+      <wsdl:output message="tns:GetVersionLogicielAgentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSoftwareUpdate">
+      <wsdl:input message="tns:GetSoftwareUpdateRequest1" />
+      <wsdl:output message="tns:GetSoftwareUpdateResponse" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CrodipBinding" type="tns:CrodipServer">
@@ -4581,6 +4607,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetSynchroDateTime">
       <soap:operation soapAction="http://www.example.org/crodip/GetSynchroDateTime" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAPIKey">
+      <soap:operation soapAction="http://www.example.org/crodip/GetAPIKey" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

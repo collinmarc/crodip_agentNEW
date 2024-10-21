@@ -5,16 +5,16 @@ Public Class DiagnosticBusesDetailManager
 #Region "Methodes Web Service"
 
     'ok
-    Public Shared Function getWSDiagnosticBusesDetailByDiagId(pAgentId As String, ByVal diag_id As String) As DiagnosticBusesDetailList
+    Public Shared Function WSGetList(ByVal puidDiag As Integer, paidDiag As String) As DiagnosticBusesDetailList
         Dim objDiagnosticBusesDetailList As New DiagnosticBusesDetailList
         Dim objDiagnosticBusesDetail As New DiagnosticBusesDetail
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(pAgentId, diag_id, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -40,47 +40,37 @@ Public Class DiagnosticBusesDetailManager
     End Function
 
     'ok
-    Public Shared Function sendWSDiagnosticBusesDetail(pAgent As Agent, ByVal objDiagnosticBusesDetail As DiagnosticBusesDetailList) As Integer
-        Dim tmpArr(1)() As DiagnosticBusesDetail
-        tmpArr(0) = objDiagnosticBusesDetail.Liste.ToArray()
-        Dim updatedObject() As Object = Nothing
-        Try
-            ' Appel au WS
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendDiagnosticBusesDetail(pAgent.id, tmpArr, updatedObject)
-        Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail ERR" & ex.Message & ":" & IIf(ex.InnerException IsNot Nothing, ex.InnerException.Message, ""))
-            Return -1
-        End Try
-    End Function
-
-    'ok
-    Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticBusesDetail
-        Dim objDiagnosticBusesDetail As New DiagnosticBusesDetail
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    objDiagnosticBusesDetail.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idDiagnostic"
-                    objDiagnosticBusesDetail.idDiagnostic = CType(tmpSerializeItem.InnerText, String)
-                Case "idBuse"
-                    objDiagnosticBusesDetail.idBuse = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idLot"
-                    objDiagnosticBusesDetail.idLot = CType(tmpSerializeItem.InnerText, String)
-                Case "debit"
-                    objDiagnosticBusesDetail.debit = CType(tmpSerializeItem.InnerText, String)
-                Case "ecart"
-                    objDiagnosticBusesDetail.ecart = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent"
-                    objDiagnosticBusesDetail.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    objDiagnosticBusesDetail.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
+    Public Shared Function WSSend(ByVal pDiag As Diagnostic) As Integer
+        'Propagation des uid
+        Dim oBuse As DiagnosticBuses
+        Dim oDetail As DiagnosticBusesDetail
+        For Each oBuse In pDiag.diagnosticBusesList.Liste
+            oBuse.uiddiagnostic = pDiag.uid
+            oBuse.aiddiagnostic = pDiag.aid
+            oBuse.idDiagnostic = pDiag.id
+            For Each oDetail In oBuse.diagnosticBusesDetailList.Liste
+                oDetail.uiddiagnostic = pDiag.uid
+                oDetail.aiddiagnostic = pDiag.aid
+                oDetail.idBuse = oBuse.id
+            Next
         Next
 
-        Return objDiagnosticBusesDetail
+        'Envoi de tous les detail de buses
+        For Each oBuse In pDiag.diagnosticBusesList.Liste
+            Dim tmpArr(1)() As DiagnosticBusesDetail
+            tmpArr(0) = oBuse.diagnosticBusesDetailList.Liste.ToArray()
+            Dim updatedObject() As Object = Nothing
+            Try
+                ' Appel au WS
+                Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+                Dim rInfos As String = ""
+                objWSCrodip.SendDiagnosticBusesDetail(tmpArr, rInfos)
+            Catch ex As Exception
+                CSDebug.dispFatal("DiagnosticBusesDetailManager.WSSend ERR", ex)
+            End Try
+        Next
     End Function
+
 
 #End Region
 
@@ -122,11 +112,11 @@ Public Class DiagnosticBusesDetailManager
                     paramsQueryColomuns = paramsQueryColomuns & " , `ecart`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticBusesDetail.ecart & "'"
                 End If
-                If Not objDiagnosticBusesDetail.dateModificationAgent Is Nothing And objDiagnosticBusesDetail.dateModificationAgent <> "" Then
+                If objDiagnosticBusesDetail.dateModificationAgentS <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBusesDetail.dateModificationAgent) & "'"
                 End If
-                If Not objDiagnosticBusesDetail.dateModificationCrodip Is Nothing And objDiagnosticBusesDetail.dateModificationCrodip <> "" Then
+                If objDiagnosticBusesDetail.dateModificationCrodipS <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBusesDetail.dateModificationCrodip) & "'"
                 End If

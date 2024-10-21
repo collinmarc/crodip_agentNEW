@@ -1522,16 +1522,6 @@
     </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="StartApplication.vb" />
-    <Compile Include="Web References\WSCODIP4\Reference.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\WSCRODIP3\Reference.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Web References\WSCrodip_prod\Reference.vb">
       <SubType>code</SubType>
       <DesignTime>True</DesignTime>
@@ -3019,16 +3009,6 @@
     <None Include="cr\ds_Etat_SM.xsx">
       <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
     </None>
-    <None Include="Web References\WSCODIP4\crodip.wsdl" />
-    <None Include="Web References\WSCODIP4\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
-    <None Include="Web References\WSCRODIP3\crodip.wsdl" />
-    <None Include="Web References\WSCRODIP3\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
     <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
     <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -3050,28 +3030,6 @@
       </CachedAppSettingsObjectName>
       <CachedSettingsPropName>
       </CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="http://admin-pp.crodip.net/new.wsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WSCRODIP3\</RelPath>
-      <UpdateFromURL>http://admin-pp.crodip.net/new.wsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Logiciel_Crodip_Agent_WSCRODIP3_CrodipServer</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="https://admin.crodip.fr/new.wsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WSCODIP4\</RelPath>
-      <UpdateFromURL>https://admin.crodip.fr/new.wsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Logiciel_Crodip_Agent_WSCODIP4_CrodipServer</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
