@@ -751,7 +751,7 @@ Public Class Synchronisation
             Try
                 Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Banc de Mesure n°" & oFVBanc.id)
-                Dim response As Integer = FVBancManager.sendWSFVBanc(m_Agent, oFVBanc, UpdatedObject)
+                Dim response As Integer = FVBancManager.WSSend(oFVBanc, UpdatedObject)
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Erreur Locale")

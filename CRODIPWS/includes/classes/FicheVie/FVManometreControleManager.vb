@@ -198,12 +198,12 @@ Public Class FVManometreControleManager
                 paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreControle.dateModif) & "'"
             End If
-            If Not pobjFV.dateModificationAgent Is Nothing Then
+            If pobjFV.dateModificationAgentS <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateModificationAgent) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreControle.dateModificationAgent) & "'"
             End If
-            If Not pobjFV.dateModificationCrodip Is Nothing Then
+            If pobjFV.dateModificationCrodipS <> "" Then
                 paramsQuery_col = paramsQuery_col & ",FVFileName"
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.FVFileName) & "'"
                 ' paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreControle.dateModificationCrodip) & "'"
@@ -299,12 +299,12 @@ Public Class FVManometreControleManager
                 'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDate.ToCRODIPString(pobjFV.dateModif) & "'"
             End If
-            If Not pobjFV.dateModificationAgent Is Nothing Then
+            If pobjFV.dateModificationAgentS <> "" Then
                 'paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
                 'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDate.ToCRODIPString(pobjFV.dateModificationAgent) & "'"
             End If
-            If Not pobjFV.dateModificationCrodip Is Nothing Then
+            If pobjFV.dateModificationCrodipS <> "" Then
                 'paramsQuery_col = paramsQuery_col & ",FVFileName"
                 'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDate.ToCRODIPString(pobjFV.dateModificationCrodip) & "'"

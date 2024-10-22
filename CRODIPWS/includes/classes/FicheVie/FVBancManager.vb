@@ -2,87 +2,105 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class FVBancManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVBanc
+        Dim oreturn As FVBanc
+        oreturn = getWSByKey(Of FVBanc)(p_uid, paid)
+        Return oreturn
+    End Function
 
-    Public Shared Function getWSFVBancById(pAgent As Agent, ByVal fvbanc_id As String) As Object
-        Dim oAgentFictif As New Agent()
-        Dim objFVBanc As New FVBanc(oAgentFictif)
+    Public Shared Function WSSend(ByVal pObjIn As FVBanc, ByRef pobjOut As FVBanc) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of FVBanc)(pObjIn, pobjOut)
 
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetFVBanc(pAgent.id, fvbanc_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        objFVBanc.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("FVBancManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("FVBancManager - Code 9 : Bad Request")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("FVBancManager - getWSFVBancById : " & ex.Message)
+            CSDebug.dispFatal("FVBancManager.WSSend : ", ex)
+            nreturn = -1
         End Try
-        Return objFVBanc
-
+        Return nreturn
     End Function
 
-    Public Shared Function sendWSFVBanc(pAgent As Agent, ByVal fvbanc As FVBanc, ByRef updatedObject As Object) As Integer
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendFVBanc(pAgent.id, fvbanc, updatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
+    'Public Shared Function getWSFVBancById(pAgent As Agent, ByVal fvbanc_id As String) As Object
+    '    Dim oAgentFictif As New Agent()
+    '    Dim objFVBanc As New FVBanc(oAgentFictif)
+    '    Try
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As FVBanc
-        Dim oagent As New Agent()
-        Dim objFVBanc As New FVBanc(oagent)
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        Dim codeResponse As Integer = objWSCrodip.GetFVBanc(pAgent.id, fvbanc_id, objWSCrodip_response)
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    objFVBanc.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+    '                Next
+    '            Case 1 ' NOK
+    '                CSDebug.dispError("FVBancManager - Code 1 : Non-Trouvée")
+    '            Case 9 ' BADREQUEST
+    '                CSDebug.dispError("FVBancManager - Code 9 : Bad Request")
+    '        End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispError("FVBancManager - getWSFVBancById : " & ex.Message)
+    '    End Try
+    '    Return objFVBanc
 
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    objFVBanc.id = CType(tmpSerializeItem.InnerText, String)
-                Case "idBancMesure"
-                    objFVBanc.idBancMesure = CType(tmpSerializeItem.InnerText, String)
-                Case "type"
-                    objFVBanc.type = CType(tmpSerializeItem.InnerText, String)
-                Case "auteur"
-                    objFVBanc.auteur = CType(tmpSerializeItem.InnerText, String)
-                Case "idAgentControleur"
-                    objFVBanc.idAgentControleur = CType(tmpSerializeItem.InnerText, Integer)
-                Case "caracteristiques"
-                    objFVBanc.caracteristiques = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModif"
-                    objFVBanc.dateModif = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "blocage"
-                    objFVBanc.blocage = CType(tmpSerializeItem.InnerText, Boolean)
-                Case "pressionControle"
-                    objFVBanc.pressionControle = CType(tmpSerializeItem.InnerText, String)
-                Case "valeursMesurees"
-                    objFVBanc.valeursMesurees = CType(tmpSerializeItem.InnerText, String)
-                Case "idManometreControle"
-                    objFVBanc.idManometreControle = CType(tmpSerializeItem.InnerText, String)
-                Case "idBuseEtalon"
-                    objFVBanc.idBuseEtalon = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent"
-                    objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    objFVBanc.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
+    'End Function
 
-        Return objFVBanc
-    End Function
+    'Public Shared Function sendWSFVBanc(pAgent As Agent, ByVal fvbanc As FVBanc, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        'Return objWSCrodip.SendFVBanc(pAgent.id, fvbanc, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+
+    'Public Shared Function xml2object(ByVal arrXml As Object) As FVBanc
+    '    Dim oagent As New Agent()
+    '    Dim objFVBanc As New FVBanc(oagent)
+
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        Select Case tmpSerializeItem.LocalName()
+    '            Case "id"
+    '                objFVBanc.id = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idBancMesure"
+    '                objFVBanc.idBancMesure = CType(tmpSerializeItem.InnerText, String)
+    '            Case "type"
+    '                objFVBanc.type = CType(tmpSerializeItem.InnerText, String)
+    '            Case "auteur"
+    '                objFVBanc.auteur = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idAgentControleur"
+    '                objFVBanc.idAgentControleur = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "caracteristiques"
+    '                objFVBanc.caracteristiques = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModif"
+    '                objFVBanc.dateModif = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "blocage"
+    '                objFVBanc.blocage = CType(tmpSerializeItem.InnerText, Boolean)
+    '            Case "pressionControle"
+    '                objFVBanc.pressionControle = CType(tmpSerializeItem.InnerText, String)
+    '            Case "valeursMesurees"
+    '                objFVBanc.valeursMesurees = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idManometreControle"
+    '                objFVBanc.idManometreControle = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idBuseEtalon"
+    '                objFVBanc.idBuseEtalon = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModificationAgent"
+    '                objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "dateModificationCrodip"
+    '                objFVBanc.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '        End Select
+    '    Next
+
+    '    Return objFVBanc
+    'End Function
 
 #End Region
 
@@ -186,14 +204,14 @@ Public Class FVBancManager
                 paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.dateModif) & "'"
                 '    paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVBanc.dateModif) & "'"
             End If
-            If Not objFVBanc.dateModificationAgent Is Nothing Then
+            If objFVBanc.dateModificationAgentS <> "" Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVBanc.dateModificationAgent) & "'"
                 '   paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVBanc.dateModificationAgent) & "'"
             End If
-            If Not objFVBanc.dateModificationCrodip Is Nothing Then
+            If objFVBanc.dateModificationCrodipS <> "" Then
                 paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVBanc.dateModificationCrodip) & "'"
                 '  paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVBanc.dateModificationCrodip) & "'"
             End If
             If Not objFVBanc.FVFileName Is Nothing Then
@@ -288,12 +306,12 @@ Public Class FVBancManager
                 'paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVBanc.dateModif) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",`dateModif`='" & CSDb.secureString(objFVBanc.dateModif) & "'"
             End If
-            If Not objFVBanc.dateModificationAgent Is Nothing Then
+            If objFVBanc.dateModificationAgentS <> "" Then
                 'paramsQuery_col = paramsQuery_col & ",`dateModificationAgent`"
                 'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationAgent`='" & CSDb.secureString(objFVBanc.dateModificationAgent) & "'"
             End If
-            If Not objFVBanc.dateModificationCrodip Is Nothing Then
+            If objFVBanc.dateModificationCrodipS <> "" Then
                 'paramsQuery_col = paramsQuery_col & ",`dateModificationCrodip`"
                 'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVBanc.dateModificationCrodip) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",`dateModificationCrodip`='" & CSDb.secureString(objFVBanc.dateModificationCrodip) & "'"
@@ -620,7 +638,7 @@ Public Class FVBancManager
         Dim bReturn As Boolean
         Try
             bReturn = True
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatFVBancUrl)
             ' Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur

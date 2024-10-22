@@ -500,7 +500,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVBanc(pAgent)
                     Try
                         SetStatus("Réception MAJ Fiche de vie Banc n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVBancManager.getWSFVBancById(_Agent, pElement.IdentifiantChaine)
+                        tmpObject = FVBancManager.WSgetById(pElement.IdentifiantChaine)
                         If Not tmpObject Is Nothing Then
                             FVBancManager.save(tmpObject, True)
                         Else

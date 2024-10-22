@@ -1,13 +1,15 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
 
-<Serializable(), XmlInclude(GetType(FVMateriel))> _
+<Serializable(), XmlInclude(GetType(FVMateriel))>
 Public MustInherit Class FVMateriel
+    Inherits root
 
     Private _id As String
     Private _type As String
     Private _auteur As String
-    Private _idAgentControleur As Integer
+    Private _aidAgentControleur As Integer
+    Private _uidAgentControleur As Integer
     Private _caracteristiques As String
     Private _dateModificationAgent As String
     Private _dateModificationCrodip As String
@@ -36,14 +38,34 @@ Public MustInherit Class FVMateriel
 
     Public Property id() As String
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As String)
-            _id = Value
+            aid = Value
         End Set
     End Property
 
-
+    Private _uidstructure As Integer
+    <XmlIgnore>
+    Public Property uidstructure() As Integer
+        Get
+            Return _uidstructure
+        End Get
+        Set(ByVal value As Integer)
+            _uidstructure = value
+        End Set
+    End Property
+    <XmlElement("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidstructure = value
+            End If
+        End Set
+    End Property
     Public Property type() As String
         Get
             Return _type
@@ -61,13 +83,29 @@ Public MustInherit Class FVMateriel
             _auteur = Value
         End Set
     End Property
-
+    <XmlIgnore>
     Public Property idAgentControleur() As Integer
         Get
-            Return _idAgentControleur
+            Return _aidAgentControleur
         End Get
         Set(ByVal Value As Integer)
-            _idAgentControleur = Value
+            _aidAgentControleur = Value
+        End Set
+    End Property
+    Public Property aidagentcontroleur() As Integer
+        Get
+            Return _aidAgentControleur
+        End Get
+        Set(ByVal Value As Integer)
+            _aidAgentControleur = Value
+        End Set
+    End Property
+    Public Property uidagentcontroleur() As Integer
+        Get
+            Return _uidAgentControleur
+        End Get
+        Set(ByVal Value As Integer)
+            _uidAgentControleur = Value
         End Set
     End Property
 
@@ -109,44 +147,6 @@ Public MustInherit Class FVMateriel
     End Property
 
 
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
     Public Property FVFileName() As String
         Get
             Return _FVFileName
@@ -162,6 +162,12 @@ Public MustInherit Class FVMateriel
         Dim bReturn As Boolean
         Try
             Select Case pColName.ToUpper().Trim()
+                Case "uid".ToUpper().Trim()
+                    Me.uid = pColValue.ToString
+                Case "aid".ToUpper().Trim()
+                    Me.aid = pColValue.ToString
+                Case "uistructure".ToUpper().Trim()
+                    Me.uidstructure = pColValue.ToString
                 Case "id".ToUpper().Trim()
                     Me.id = pColValue.ToString
                 Case "type".ToUpper().Trim()
@@ -170,6 +176,10 @@ Public MustInherit Class FVMateriel
                     Me.auteur = pColValue.ToString
                 Case "idAgentControleur".ToUpper().Trim()
                     Me.idAgentControleur = pColValue.ToString
+                Case "aidAgentControleur".ToUpper().Trim()
+                    Me.aidagentcontroleur = pColValue.ToString
+                Case "uidAgentControleur".ToUpper().Trim()
+                    Me.uidagentcontroleur = pColValue.ToString
                 Case "caracteristiques".ToUpper().Trim()
                     Me.caracteristiques = pColValue.ToString
                 Case "dateModif".ToUpper().Trim()

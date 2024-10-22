@@ -125,14 +125,14 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgentRequest2.vb" />
-    <Compile Include="AgentTestWS.vb" />
-    <Compile Include="DiagnosticBuseDetailTestWS.vb" />
-    <Compile Include="DiagnosticTroncons833TestWS.vb" />
-    <Compile Include="DiagnosticMano542TestWS.vb" />
-    <Compile Include="DiagnosticBuseTestWS.vb" />
-    <Compile Include="DiagnosticItemTestWS.vb" />
-    <Compile Include="DiagnosticTestWS.vb" />
+    <Compile Include="Agent-Structure\AgentTestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticBuseDetailTestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticTroncons833TestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticMano542TestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticBuseTestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticItemTestWS.vb" />
+    <Compile Include="Diagnostic\DiagnosticTestWS.vb" />
+    <Compile Include="FV\FVBancTestWS.vb" />
     <Compile Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.vb">
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -377,15 +377,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ExploitationTOPulverisateurtestWS.vb" />
-    <Compile Include="PulverisateurTestWS.vb" />
-    <Compile Include="ExploitationTestWS.vb" />
-    <Compile Include="StructureTestWS.vb" />
-    <Compile Include="BancTestWS.vb" />
+    <Compile Include="Exploit-Pulve\ExploitationTOPulverisateurtestWS.vb" />
+    <Compile Include="Exploit-Pulve\PulverisateurTestWS.vb" />
+    <Compile Include="Exploit-Pulve\ExploitationTestWS.vb" />
+    <Compile Include="Agent-Structure\StructureTestWS.vb" />
+    <Compile Include="Materiel\BancTestWS.vb" />
     <Compile Include="CrodipTest.vb" />
-    <Compile Include="BuseTestWS.vb" />
-    <Compile Include="ManometreEtalonTestWS.vb" />
-    <Compile Include="ManometreControleTestWS.vb" />
+    <Compile Include="Materiel\BuseTestWS.vb" />
+    <Compile Include="Materiel\ManometreEtalonTestWS.vb" />
+    <Compile Include="Materiel\ManometreControleTestWS.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

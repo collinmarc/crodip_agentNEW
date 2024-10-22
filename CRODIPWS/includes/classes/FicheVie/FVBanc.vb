@@ -17,7 +17,27 @@ Public Class FVBanc
 
         idAgentControleur = pAgent.id
     End Sub
-
+    Private _uidbancmesure As Integer
+    <XmlIgnore>
+    Public Property uidbancmesure() As Integer
+        Get
+            Return _uidbancmesure
+        End Get
+        Set(ByVal value As Integer)
+            _uidbancmesure = value
+        End Set
+    End Property
+    <XmlElement("uidbancmesure")>
+    Public Property uidbancmesureS() As String
+        Get
+            Return uidbancmesure
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidbancmesure = value
+            End If
+        End Set
+    End Property
 
     Public Property idBancMesure() As String
         Get
@@ -75,6 +95,8 @@ Public Class FVBanc
             Select Case pColName.ToUpper().Trim()
                 Case "idBancMesure".ToUpper().Trim()
                     Me.idBancMesure = pColValue.ToString
+                Case "uidBancMesure".ToUpper().Trim()
+                    Me.uidbancmesure = pColValue.ToString
                 Case "pressionControle".ToUpper().Trim()
                     Me.pressionControle = pColValue.ToString
                 Case "valeursMesurees".ToUpper().Trim()
