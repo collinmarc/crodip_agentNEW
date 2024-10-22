@@ -894,7 +894,7 @@ Public Class Synchronisation
                         If Not pDiag.diagnosticMano542List Is Nothing Then
                             If pDiag.diagnosticMano542List.Liste.Count > 0 Then
                                 Dim updatedObjectDiag542 As New Object
-                                Dim responseDiag542 As Object = DiagnosticMano542Manager.sendWSDiagnosticMano542(pAgent, pDiag.diagnosticMano542List)
+                                Dim responseDiag542 As Object = DiagnosticMano542Manager.WSSend(pDiag)
                                 Notice("diagnostic mano 542 n°" & pDiag.id)
                                 Select Case CType(responseDiag542, Integer)
                                     Case -1 ' ERROR
@@ -926,7 +926,7 @@ Public Class Synchronisation
                             If pDiag.diagnosticTroncons833.Liste.Count > 0 Then
                                 Dim updatedObjectDiag833 As New Object
                                 Notice("diagnostic Troncons 833 n°" & pDiag.id)
-                                Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(pAgent, pDiag.diagnosticTroncons833)
+                                Dim responseDiag833 As Object = DiagnosticTroncons833Manager.WSSend(pDiag)
                                 Select Case CType(responseDiag833, Integer)
                                     Case -1 ' ERROR
                                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnosticTroncons833) - Erreur Locale")

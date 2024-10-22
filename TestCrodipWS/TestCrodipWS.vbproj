@@ -128,6 +128,8 @@
     <Compile Include="AgentRequest2.vb" />
     <Compile Include="AgentTestWS.vb" />
     <Compile Include="DiagnosticBuseDetailTestWS.vb" />
+    <Compile Include="DiagnosticTroncons833TestWS.vb" />
+    <Compile Include="DiagnosticMano542TestWS.vb" />
     <Compile Include="DiagnosticBuseTestWS.vb" />
     <Compile Include="DiagnosticItemTestWS.vb" />
     <Compile Include="DiagnosticTestWS.vb" />

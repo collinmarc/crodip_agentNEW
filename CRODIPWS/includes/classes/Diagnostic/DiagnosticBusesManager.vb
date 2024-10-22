@@ -282,11 +282,11 @@ Public Class DiagnosticBusesManager
                     paramsQueryColomuns = paramsQueryColomuns & " , `debitNominal`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.debitNominal & "'"
                 End If
-                If Not objDiagnosticBuses.dateModificationAgent Is Nothing And objDiagnosticBuses.dateModificationAgent <> "" Then
+                If objDiagnosticBuses.dateModificationAgent <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBuses.dateModificationAgent) & "'"
                 End If
-                If Not objDiagnosticBuses.dateModificationCrodip Is Nothing And objDiagnosticBuses.dateModificationCrodip <> "" Then
+                If objDiagnosticBuses.dateModificationCrodip <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBuses.dateModificationCrodip) & "'"
                 End If

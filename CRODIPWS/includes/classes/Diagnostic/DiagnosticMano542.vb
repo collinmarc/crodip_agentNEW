@@ -2,7 +2,7 @@ Imports System.Web.Services
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports CRODIP_ControlLibrary
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticMano542List
 
     Private _diagnosticMano542 As List(Of DiagnosticMano542)
@@ -214,6 +214,7 @@ Public Class DiagnosticMano542List
 End Class
 <Serializable()> _
 Public Class DiagnosticMano542
+    Inherits DiagnosticObjDependant
     Public Enum ERR542 As Integer
         NONCALC = -1
         OK = 0
@@ -236,30 +237,16 @@ Public Class DiagnosticMano542
     Sub New()
 
     End Sub
+    Sub New(pdiag As Diagnostic)
+        uiddiagnostic = pdiag.uid
+        aiddiagnostic = pdiag.aid
+    End Sub
 
     Sub New(ByVal pPressionManoPulve As String, ByVal pPressionManoControle As String)
         _pressionControle = pPressionManoControle
         _pressionPulve = pPressionManoPulve
         calcEcarts()
     End Sub
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal Value As Integer)
-            _id = Value
-        End Set
-    End Property
-
-    Public Property idDiagnostic() As String
-        Get
-            Return _idDiagnostic
-        End Get
-        Set(ByVal Value As String)
-            _idDiagnostic = Value
-        End Set
-    End Property
-
     Public Property pressionPulve() As String
         Get
             Return _pressionPulve
@@ -375,6 +362,14 @@ Public Class DiagnosticMano542
         Try
 
             Select Case pColName.Trim().ToUpper()
+                Case "uid".Trim().ToUpper()
+                    Me.uid = pColValue
+                Case "aid".Trim().ToUpper()
+                    Me.aid = pColValue
+                Case "uiddiagnostic".Trim().ToUpper()
+                    Me.uiddiagnostic = pColValue
+                Case "aiddiagnostic".Trim().ToUpper()
+                    Me.aiddiagnostic = pColValue
                 Case "id".Trim().ToUpper()
                     Me.id = pColValue
                 Case "idDiagnostic".Trim().ToUpper()

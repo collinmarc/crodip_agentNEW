@@ -49,8 +49,9 @@ Public Class DiagnosticTroncons833List
         End Set
     End Property
 End Class
-<Serializable()> _
+<Serializable()>
 Public Class DiagnosticTroncons833
+    Inherits DiagnosticObjDependant
 
     Private _id As Integer
     Private _idDiagnostic As String
@@ -85,23 +86,14 @@ Public Class DiagnosticTroncons833
         idColumn = pIdColumn
         pressionSortie = pPressionSortie
     End Sub
-    Public Property id() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal Value As Integer)
-            _id = Value
-        End Set
-    End Property
+    Sub New(pDiag As Diagnostic)
 
-    Public Property idDiagnostic() As String
-        Get
-            Return _idDiagnostic
-        End Get
-        Set(ByVal Value As String)
-            _idDiagnostic = Value
-        End Set
-    End Property
+        MyClass.New()
+        idDiagnostic = pDiag.id
+        uiddiagnostic = pDiag.uid
+        aiddiagnostic = pDiag.aid
+    End Sub
+
 
     Public Property idPression() As String
         Get
@@ -130,43 +122,6 @@ Public Class DiagnosticTroncons833
         End Set
     End Property
 
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
 
 
     <XmlIgnoreAttribute()>
@@ -262,6 +217,14 @@ Public Class DiagnosticTroncons833
         Try
 
             Select Case pColName.Trim().ToUpper()
+                Case "uid".Trim().ToUpper()
+                    Me.uid = pColValue
+                Case "aid".Trim().ToUpper()
+                    Me.aid = pColValue
+                Case "uiddiagnostic".Trim().ToUpper()
+                    Me.uiddiagnostic = pColValue
+                Case "aiddiagnostic".Trim().ToUpper()
+                    Me.aiddiagnostic = pColValue
                 Case "id".Trim().ToUpper()
                     Me.id = pColValue
                 Case "idDiagnostic".Trim().ToUpper()

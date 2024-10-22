@@ -1,20 +1,20 @@
 Imports System.Data.Common
 
 Public Class DiagnosticTroncons833Manager
-
+    Inherits RootManager
 #Region "Methodes Web Service"
 
     ' o
-    Public Shared Function getWSDiagnosticTroncons833ByDiagId(pAgentId As String, pDiagId As String) As DiagnosticTroncons833List
+    Public Shared Function WSGetList(puidDiag As String, paidDiag As String) As DiagnosticTroncons833List
         Dim objDiagnosticTroncons833List As New DiagnosticTroncons833List
         Dim objDiagnosticTroncons833 As DiagnosticTroncons833
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(pAgentId, pDiagId, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -38,31 +38,33 @@ Public Class DiagnosticTroncons833Manager
                     'CSDebug.dispError("DiagnosticTroncons833Manager::getWSDiagnosticTroncons833ById - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("DiagnosticTroncons833Manager::getWSDiagnosticTroncons833ById : " & ex.Message)
+            CSDebug.dispError("DiagnosticTroncons833Manager::WSGetList : ", ex)
         End Try
         Return objDiagnosticTroncons833List
     End Function
 
     ' o
-    Public Shared Function sendWSDiagnosticTroncons833(pAgent As Agent, ByVal objDiagnosticTroncons833 As DiagnosticTroncons833List) As Integer
-        Dim tmpArr(1)() As DiagnosticTroncons833
-        tmpArr(0) = objDiagnosticTroncons833.Liste.ToArray()
-        Dim updatedObject() As Object = Nothing
-        Dim nreturn As Integer
+    Public Shared Function WSSend(pdiag As Diagnostic) As Integer
+        Dim nReturn As Integer = 99
+        'Propagation des uid
+        For Each oT833 In pdiag.diagnosticTroncons833.Liste
+            oT833.uiddiagnostic = pdiag.uid
+            oT833.aiddiagnostic = pdiag.aid
+        Next
 
+        Dim tmpArr(1)() As DiagnosticTroncons833
+        tmpArr(0) = pdiag.diagnosticTroncons833.Liste.ToArray()
+        Dim updatedObject() As Object = Nothing
         Try
             ' Appel au WS
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            'For Each odiag833 As DiagnosticTroncons833 In objDiagnosticTroncons833.Liste
-            'on transmet la liste des diag 833
-            'nreturn = objWSCrodip.SendDiagnosticTroncons833(pAgent.id, tmpArr, updatedObject)
-
-            'Next
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim rInfos As String = ""
+            nReturn = objWSCrodip.SendDiagnosticTroncons833(tmpArr, rInfos)
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833 ERR" & ex.Message & ":" & ex.Message)
-            nreturn = -1
+            CSDebug.dispFatal("DiagnosticTroncons833Manager.sendWS ERR", ex)
+            nReturn = -1
         End Try
-        Return nreturn
+        Return nReturn
     End Function
 
 
@@ -114,11 +116,11 @@ Public Class DiagnosticTroncons833Manager
                     paramsQueryColomuns = paramsQueryColomuns & " , `pressionSortie`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.pressionSortie & "'"
                 End If
-                If Not objDiagnosticTroncons833.dateModificationAgent Is Nothing And objDiagnosticTroncons833.dateModificationAgent <> "" Then
+                If objDiagnosticTroncons833.dateModificationAgent <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
                 End If
-                If Not objDiagnosticTroncons833.dateModificationCrodip Is Nothing And objDiagnosticTroncons833.dateModificationCrodip <> "" Then
+                If objDiagnosticTroncons833.dateModificationCrodip <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
                     paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
                 End If

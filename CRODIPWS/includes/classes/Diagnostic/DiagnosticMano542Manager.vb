@@ -5,16 +5,16 @@ Public Class DiagnosticMano542Manager
 #Region "Methodes Web Service"
 
     ' o
-    Public Shared Function getWSDiagnosticMano542ByDiagId(pagentId As String, ByVal DiagId As String) As DiagnosticMano542List
+    Public Shared Function WSGetList(ByVal puidDiag As String, paidDiag As String) As DiagnosticMano542List
         Dim objDiagnosticMano542List As New DiagnosticMano542List
         Dim objDiagnosticMano542 As New DiagnosticMano542
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticMano542(pagentId, DiagId, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticMano542(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet
@@ -44,19 +44,27 @@ Public Class DiagnosticMano542Manager
     End Function
 
     ' o
-    Public Shared Function sendWSDiagnosticMano542(pAgent As Agent, ByVal objDiagnosticMano542 As DiagnosticMano542List) As Integer
+    Public Shared Function WSSend(pdiag As Diagnostic) As Integer
+        Dim nreturn As Integer = 99
+        'Propagation des uid
+        For Each oM542 In pdiag.diagnosticMano542List.Liste
+            oM542.uiddiagnostic = pdiag.uid
+            oM542.aiddiagnostic = pdiag.aid
+        Next
+
         Dim tmpArr(1)() As DiagnosticMano542
-        tmpArr(0) = objDiagnosticMano542.Liste.ToArray()
+        tmpArr(0) = pdiag.diagnosticMano542List.Liste.ToArray()
         Dim updatedObject() As Object = Nothing
         Try
             ' Appel au WS
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendDiagnosticMano542(pAgent.id, tmpArr, updatedObject)
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim rInfos As String = ""
+            nreturn = objWSCrodip.SendDiagnosticMano542(tmpArr, rInfos)
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticMano542Manager.sendWSDiagnosticMano542 ERR" & ex.Message & ":" & ex.Message)
-
-            Return -1
+            CSDebug.dispFatal("DiagnosticMano542Manager.sendWSDiagnosticMano542 ERR", ex)
+            nreturn = -1
         End Try
+        Return nreturn
     End Function
 
     ' o

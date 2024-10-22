@@ -59,7 +59,6 @@ Public Class SynchronisationElmtDiag
                 'Récupération des buses
                 Dim lstdiagbuses As DiagnosticBusesList
                 lstdiagbuses = DiagnosticBusesManager.WSGetList(oDiag.uid, oDiag.aid)
-                Dim oCSDB As New CSDb(True)
                 For Each oDiagBuse As DiagnosticBuses In lstdiagbuses.Liste
                     oDiag.diagnosticBusesList.Liste.Add(oDiagBuse)
                 Next
@@ -75,6 +74,18 @@ Public Class SynchronisationElmtDiag
                         obuse.diagnosticBusesDetailList.Liste.Add(oDetail)
                     End If
                 Next
+                'Récupération des Mano542
+                Dim lstdiagMano542 As DiagnosticMano542List
+                lstdiagMano542 = DiagnosticMano542Manager.WSGetList(oDiag.uid, oDiag.aid)
+                For Each oDiagMano542 As DiagnosticMano542 In lstdiagMano542.Liste
+                    oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
+                Next
+                'Récupération des Troncons833
+                Dim lstdiagT833 As DiagnosticTroncons833List
+                lstdiagT833 = DiagnosticTroncons833Manager.WSGetList(oDiag.uid, oDiag.aid)
+                For Each oDiagT833 As DiagnosticTroncons833 In lstdiagT833.Liste
+                    oDiag.diagnosticTroncons833.Liste.Add(oDiagT833)
+                Next
 
 
                 'Sauvegarde du Diag
@@ -83,42 +94,6 @@ Public Class SynchronisationElmtDiag
                 bReturn = True
             Catch ex As Exception
                 CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnostic) : " & ex.Message.ToString)
-                bReturn = False
-            End Try
-        End If
-
-
-        If (m_SynchroBoolean.m_bSynchDescDiag) Then
-            Dim tmpObjectList As New DiagnosticMano542List
-            Dim tmpObject As New DiagnosticMano542
-            Try
-                SetStatus("Réception MAJ DiagnosticMano542 n°" & Me.IdentifiantChaine & "...")
-                Dim oCSDB As New CSDb(True)
-                tmpObjectList = DiagnosticMano542Manager.getWSDiagnosticMano542ByDiagId(pAgent.id, Me.IdentifiantChaine)
-                For Each tmpObject In tmpObjectList.Liste
-                    DiagnosticMano542Manager.save(tmpObject, oCSDB, True)
-                Next
-                oCSDB.free()
-                bReturn = True
-            Catch ex As Exception
-                CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
-                bReturn = False
-            End Try
-        End If
-        If (m_SynchroBoolean.m_bSynchDescDiag) Then
-            Dim oManoTroncon833 As New DiagnosticTroncons833
-            Dim oListManotroncon833 As New DiagnosticTroncons833List
-            Try
-                SetStatus("Réception MAJ DiagnosticTroncons833 n°" & Me.IdentifiantChaine & "...")
-                Dim oCSDB As New CSDb(True)
-                oListManotroncon833 = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ByDiagId(pAgent.id, Me.IdentifiantChaine)
-                For Each oManoTroncon833 In oListManotroncon833.Liste
-                    DiagnosticTroncons833Manager.save(oManoTroncon833, oCSDB, True)
-                Next
-                oCSDB.free()
-                bReturn = True
-            Catch ex As Exception
-                CSDebug.dispFatal("Synchronisation::runDescSynchro(GetDiagnosticBusesDetail) : " & ex.Message.ToString)
                 bReturn = False
             End Try
         End If

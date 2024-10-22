@@ -41,6 +41,10 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.DiagnosticBuses())),
         XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail)),
         XmlInclude(GetType(CRODIPWS.DiagnosticBusesDetail())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticMano542)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticMano542())),
+        XmlInclude(GetType(CRODIPWS.DiagnosticTroncons833)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticTroncons833())),
      System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer
