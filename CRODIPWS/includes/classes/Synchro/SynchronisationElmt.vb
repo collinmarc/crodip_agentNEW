@@ -469,7 +469,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVManometreEtalon(New Agent())
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVManometreEtalonManager.getWSFVManometreEtalonById(_Agent, pElement.IdentifiantChaine)
+                        tmpObject = FVManometreEtalonManager.WSgetById(pElement.IdentifiantChaine)
                         FVManometreEtalonManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

@@ -215,12 +215,12 @@ Public Class FVManometreEtalonManager
                 paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModif) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
             End If
-            If Not objFVManometreEtalon.dateModificationAgent Is Nothing And objFVManometreEtalon.dateModificationAgent <> "" Then
+            If Not String.IsNullOrEmpty(objFVManometreEtalon.dateModificationAgentS) Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
                 paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
             End If
-            If Not objFVManometreEtalon.dateModificationCrodip Is Nothing And objFVManometreEtalon.dateModificationCrodip <> "" Then
+            If Not String.IsNullOrEmpty(objFVManometreEtalon.dateModificationCrodipS) Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationCrodip"
                 paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationCrodip) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"

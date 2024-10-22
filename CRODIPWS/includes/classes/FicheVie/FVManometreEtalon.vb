@@ -113,5 +113,35 @@ Public Class FVManometreEtalon
             _idManometreControleur = Value
         End Set
     End Property
+    Public Overrides Function Fill(pColName As String, pColValue As Object) As Boolean
+        Dim bReturn As Boolean
+        Try
+            FillCommun(pColName, pColValue)
+
+            Select Case pColName.ToUpper().Trim()
+                Case "idManometre".ToUpper().Trim()
+                    Me.idManometre = pColValue.ToString()
+                Case "uidManometre".ToUpper().Trim()
+                    Me.uidManometre = pColValue.ToString
+                Case "idReetalonnage".ToUpper().Trim()
+                    Me.idReetalonnage = pColValue.ToString()
+                Case "nomLaboratoire".ToUpper().Trim()
+                    Me.nomLaboratoire = pColValue.ToString()
+                Case "dateReetalonnage".ToUpper().Trim()
+                    Me.dateReetalonnage = CSDate.ToCRODIPString(pColValue.ToString())
+                Case "pressionControle".ToUpper().Trim()
+                    Me.pressionControle = pColValue.ToString()
+                Case "valeursMesurees".ToUpper().Trim()
+                    Me.valeursMesurees = pColValue.ToString()
+                Case "idManometreControleur".ToUpper().Trim()
+                    Me.idManometreControleur = pColValue.ToString()
+            End Select
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("FVManometreControle.Fill(" & pColName & ",...) Err " & ex.Message())
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
 End Class

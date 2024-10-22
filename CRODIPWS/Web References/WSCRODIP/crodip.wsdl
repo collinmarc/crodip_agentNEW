@@ -487,7 +487,7 @@
       <xsd:element name="DiagnosticBusesDetail">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
             <xsd:element name="idDiagnostic" type="xsd:string" />
             <xsd:element name="idBuse" type="xsd:string" />
             <xsd:element name="idLot" type="xsd:string" />
@@ -501,7 +501,7 @@
       <xsd:element name="DiagnosticMano542">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
             <xsd:element name="idDiagnostic" type="xsd:string" />
             <xsd:element name="pressionPulve" type="xsd:string" />
             <xsd:element name="pressionControle" type="xsd:string" />
@@ -513,7 +513,7 @@
       <xsd:element name="DiagnosticTroncons833">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
             <xsd:element name="idDiagnostic" type="xsd:string" />
             <xsd:element name="idPression" type="xsd:string" />
             <xsd:element name="idColumn" type="xsd:string" />
@@ -1992,7 +1992,7 @@
       <xsd:element name="SendDiagnosticItemsRequest">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element element="tns:DiagnosticItems" minOccurs="0" maxOccurs="200" name="DiagnosticItemsList" />
+            <xsd:element element="tns:DiagnosticItems" minOccurs="0" maxOccurs="200" name="arrayItems" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>

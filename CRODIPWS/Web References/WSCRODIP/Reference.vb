@@ -276,10 +276,10 @@ Namespace WSCRODIP
             Set
                 If (((Me.IsLocalFileSystemWebService(MyBase.Url) = True) _
                             AndAlso (Me.useDefaultCredentialsSetExplicitly = False)) _
-                            AndAlso (Me.IsLocalFileSystemWebService(value) = False)) Then
+                            AndAlso (Me.IsLocalFileSystemWebService(Value) = False)) Then
                     MyBase.UseDefaultCredentials = False
                 End If
-                MyBase.Url = value
+                MyBase.Url = Value
             End Set
         End Property
 
@@ -288,7 +288,7 @@ Namespace WSCRODIP
                 Return MyBase.UseDefaultCredentials
             End Get
             Set
-                MyBase.UseDefaultCredentials = value
+                MyBase.UseDefaultCredentials = Value
                 Me.useDefaultCredentialsSetExplicitly = True
             End Set
         End Property
@@ -2245,23 +2245,23 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendDiagnosticItems", RequestElementName:="SendDiagnosticItemsRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("DiagnosticItemsList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal DiagnosticItemsList() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("SendDiagnosticItems", New Object() {DiagnosticItemsList})
+        Public Function SendDiagnosticItems(<System.Xml.Serialization.XmlElementAttribute("arrayItems", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal arrayItems() As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendDiagnosticItems", New Object() {arrayItems})
             info = CType(results(1), String)
             Return CType(results(0), Integer)
         End Function
 
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticItemsAsync(ByVal DiagnosticItemsList() As Object)
-            Me.SendDiagnosticItemsAsync(DiagnosticItemsList, Nothing)
+        Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object)
+            Me.SendDiagnosticItemsAsync(arrayItems, Nothing)
         End Sub
 
         '''<remarks/>
-        Public Overloads Sub SendDiagnosticItemsAsync(ByVal DiagnosticItemsList() As Object, ByVal userState As Object)
+        Public Overloads Sub SendDiagnosticItemsAsync(ByVal arrayItems() As Object, ByVal userState As Object)
             If (Me.SendDiagnosticItemsOperationCompleted Is Nothing) Then
                 Me.SendDiagnosticItemsOperationCompleted = AddressOf Me.OnSendDiagnosticItemsOperationCompleted
             End If
-            Me.InvokeAsync("SendDiagnosticItems", New Object() {DiagnosticItemsList}, Me.SendDiagnosticItemsOperationCompleted, userState)
+            Me.InvokeAsync("SendDiagnosticItems", New Object() {arrayItems}, Me.SendDiagnosticItemsOperationCompleted, userState)
         End Sub
 
         Private Sub OnSendDiagnosticItemsOperationCompleted(ByVal arg As Object)

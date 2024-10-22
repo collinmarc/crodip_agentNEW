@@ -40,11 +40,13 @@ Imports System.Net.Http
         nreturn = FVManometreControleManager.WSSend(oFVManometreControle, oReturn)
         Assert.AreEqual(4, nreturn)
         Assert.IsNotNull(oReturn.uid)
+        Assert.AreEqual(22, oReturn.uidstructure)
 
         'Lecture de l'objet
         oFVManometreControle = FVManometreControleManager.WSgetById(oReturn.uid)
         '        Assert.AreEqual(22, oFVManometreControle.uidstructure)
         Assert.AreEqual("TESTMCO", oFVManometreControle.FVFileName)
+        Assert.AreEqual(22, oFVManometreControle.uidstructure)
 
         'Update de l'objet
         oFVManometreControle.FVFileName = "TESTUPDATE"

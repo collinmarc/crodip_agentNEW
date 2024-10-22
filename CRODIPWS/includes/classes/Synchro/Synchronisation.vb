@@ -1262,7 +1262,7 @@ Public Class Synchronisation
             Try
                 Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Manometre Etalon n°" & tmpUpdateFVManometreEtalon.id)
-                Dim response As Integer = FVManometreEtalonManager.sendWSFVManometreEtalon(m_Agent, tmpUpdateFVManometreEtalon, UpdatedObject)
+                Dim response As Integer = FVManometreEtalonManager.WSSend(tmpUpdateFVManometreEtalon, UpdatedObject)
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Erreur Locale")
