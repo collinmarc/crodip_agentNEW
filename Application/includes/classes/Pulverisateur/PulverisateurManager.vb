@@ -383,14 +383,15 @@ Public Class PulverisateurManager
                     ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
                 End If
 
-                'Liaison avec les pulvérisateurs additionels
-                If pPulve.numeroNationalBis <> "" And pPulve.numeroNationalBis <> pPulve.numeroNational Then
-                    'Il y a eu une modification du numéro national
-                    UpdateNumeroNationnalPulveAdditionnel(pPulve.numeroNationalBis, pPulve.numeroNational)
+                If Not pPulve.isPulveAdditionnel Then
+                    'Liaison avec les pulvérisateurs additionels
+                    If pPulve.numeroNationalBis <> "" And pPulve.numeroNationalBis <> pPulve.numeroNational Then
+                        'Il y a eu une modification du numéro national
+                        UpdateNumeroNationnalPulveAdditionnel(pPulve.numeroNationalBis, pPulve.numeroNational)
+                    End If
                 End If
-
                 bReturn = True
-            End If
+                End If
         Catch ex As Exception
             CSDebug.dispError("PulverisateurManager::save() : " & ex.Message.ToString)
             CSDebug.dispError("PulverisateurManager::save() : " & paramsQuery)

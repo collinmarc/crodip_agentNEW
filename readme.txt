@@ -1,5 +1,7 @@
 #TRUNK
 MASTER
+BUILD 20241022120000
+	0001715: pulve Additionnel : le pulve princicpal n'est pas correct
 
 BUILD 20240715170000
 	0001714: Contrat Commercial : Manque Fin de phrase

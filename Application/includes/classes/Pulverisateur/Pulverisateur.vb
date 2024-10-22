@@ -1779,6 +1779,7 @@ Public Class Pulverisateur
         Me.isPulveAdditionnel = True
         Me.pulvePrincipalNumNat = pPulvePrinc.numeroNational
         Me.numeroNational = pPulvePrinc.numeroNational.Substring(0, 4)
+        Me.numeroNationalBis = ""
         Me.marque = ""
         Me.modele = ""
         Me.numeroChassis = ""
