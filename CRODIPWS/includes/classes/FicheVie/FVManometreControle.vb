@@ -31,7 +31,27 @@ Public Class FVManometreControle
             _idManometre = Value
         End Set
     End Property
-
+    Private _uidmanometre As Integer
+    <XmlIgnore>
+    Public Property uidmanometre() As Integer
+        Get
+            Return _uidmanometre
+        End Get
+        Set(ByVal value As Integer)
+            _uidmanometre = value
+        End Set
+    End Property
+    <XmlElement("uidmanometre")>
+    Public Property uidmanometreS() As String
+        Get
+            Return uidmanometre
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _uidmanometre = value
+            End If
+        End Set
+    End Property
 
 
 
@@ -108,6 +128,8 @@ Public Class FVManometreControle
             Select Case pColName.ToUpper().Trim()
                 Case "idManometre".ToUpper().Trim()
                     Me.idManometre = pColValue.ToString()
+                Case "uidManometre".ToUpper().Trim()
+                    Me.uidmanometre = pColValue.ToString
                 Case "idReetalonnage".ToUpper().Trim()
                     Me.idReetalonnage = pColValue.ToString()
                 Case "nomLaboratoire".ToUpper().Trim()

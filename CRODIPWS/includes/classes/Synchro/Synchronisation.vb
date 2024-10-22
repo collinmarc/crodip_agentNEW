@@ -1235,7 +1235,7 @@ Public Class Synchronisation
             Try
                 Dim UpdatedObject As New Object
                 Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
-                Dim response As Integer = FVManometreControleManager.sendWSFVManometreControle(m_Agent, tmpUpdateFVManometreControle, UpdatedObject)
+                Dim response As Integer = FVManometreControleManager.WSSend(tmpUpdateFVManometreControle, UpdatedObject)
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Erreur Locale")

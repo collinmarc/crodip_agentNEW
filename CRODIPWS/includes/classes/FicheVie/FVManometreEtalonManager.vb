@@ -2,122 +2,140 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class FVManometreEtalonManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVManometreEtalon
+        Dim oreturn As FVManometreEtalon
+        oreturn = getWSByKey(Of FVManometreEtalon)(p_uid, paid)
+        Return oreturn
+    End Function
 
-    Public Shared Function getWSFVManometreEtalonById(pAgent As Agent, ByVal fvmanometrecontrole_id As String) As Object
-        Dim objFVManometreEtalon As New FVManometreEtalon(New Agent())
+    Public Shared Function WSSend(ByVal pObjIn As FVManometreEtalon, ByRef pobjOut As FVManometreEtalon) As Integer
+        Dim nreturn As Integer
         Try
+            nreturn = SendWS(Of FVManometreEtalon)(pObjIn, pobjOut)
 
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetFVManometreEtalon(pAgent.id, fvmanometrecontrole_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        Select Case objWSCrodip_responseItem.Name()
-                            Case "id"
-                                objFVManometreEtalon.id = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "idManometre"
-                                objFVManometreEtalon.idManometre = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "type"
-                                objFVManometreEtalon.type = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "auteur"
-                                objFVManometreEtalon.auteur = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "idAgentControleur"
-                                objFVManometreEtalon.idAgentControleur = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                            Case "caracteristiques"
-                                objFVManometreEtalon.caracteristiques = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "dateModif"
-                                objFVManometreEtalon.dateModif = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "blocage"
-                                objFVManometreEtalon.blocage = CType(objWSCrodip_responseItem.InnerText(), Boolean)
-                            Case "idReetalonnage"
-                                objFVManometreEtalon.idReetalonnage = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "nomLaboratoire"
-                                objFVManometreEtalon.nomLaboratoire = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "dateReetalonnage"
-                                objFVManometreEtalon.dateReetalonnage = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "pressionControle"
-                                objFVManometreEtalon.pressionControle = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "valeursMesurees"
-                                objFVManometreEtalon.valeursMesurees = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "idManometreControleur"
-                                objFVManometreEtalon.idManometreControleur = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "dateModificationAgent"
-                                objFVManometreEtalon.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-                            Case "dateModificationCrodip"
-                                objFVManometreEtalon.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-                        End Select
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("FVManometreEtalonManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("FVManometreEtalonManager - Code 9 : Bad Request")
-            End Select
         Catch ex As Exception
-            CSDebug.dispError("FVManometreEtalonManager - getWSFVManometreEtalonById : " & ex.Message)
+            CSDebug.dispFatal("FVManometreEtalonManager.WSSend : ", ex)
+            nreturn = -1
         End Try
-        Return objFVManometreEtalon
-
+        Return nreturn
     End Function
 
-    Public Shared Function sendWSFVManometreEtalon(pAgent As Agent, ByVal fvmanometreetalon As FVManometreEtalon, ByRef updatedObject As Object) As Integer
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            '            'Return objWSCrodip.SendFVManometreEtalon(pAgent.id, fvmanometreetalon, updatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
+    'Public Shared Function getWSFVManometreEtalonById(pAgent As Agent, ByVal fvmanometrecontrole_id As String) As Object
+    '    Dim objFVManometreEtalon As New FVManometreEtalon(New Agent())
+    '    Try
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As FVManometreEtalon
-        Dim objFVManometreEtalon As New FVManometreEtalon(New Agent())
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        Dim codeResponse As Integer = objWSCrodip.GetFVManometreEtalon(pAgent.id, fvmanometrecontrole_id, objWSCrodip_response)
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    Select Case objWSCrodip_responseItem.Name()
+    '                        Case "id"
+    '                            objFVManometreEtalon.id = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "idManometre"
+    '                            objFVManometreEtalon.idManometre = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "type"
+    '                            objFVManometreEtalon.type = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "auteur"
+    '                            objFVManometreEtalon.auteur = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "idAgentControleur"
+    '                            objFVManometreEtalon.idAgentControleur = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '                        Case "caracteristiques"
+    '                            objFVManometreEtalon.caracteristiques = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "dateModif"
+    '                            objFVManometreEtalon.dateModif = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "blocage"
+    '                            objFVManometreEtalon.blocage = CType(objWSCrodip_responseItem.InnerText(), Boolean)
+    '                        Case "idReetalonnage"
+    '                            objFVManometreEtalon.idReetalonnage = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "nomLaboratoire"
+    '                            objFVManometreEtalon.nomLaboratoire = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "dateReetalonnage"
+    '                            objFVManometreEtalon.dateReetalonnage = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "pressionControle"
+    '                            objFVManometreEtalon.pressionControle = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "valeursMesurees"
+    '                            objFVManometreEtalon.valeursMesurees = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "idManometreControleur"
+    '                            objFVManometreEtalon.idManometreControleur = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "dateModificationAgent"
+    '                            objFVManometreEtalon.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                        Case "dateModificationCrodip"
+    '                            objFVManometreEtalon.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
+    '                    End Select
+    '                Next
+    '            Case 1 ' NOK
+    '                CSDebug.dispError("FVManometreEtalonManager - Code 1 : Non-Trouvée")
+    '            Case 9 ' BADREQUEST
+    '                CSDebug.dispError("FVManometreEtalonManager - Code 9 : Bad Request")
+    '        End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispError("FVManometreEtalonManager - getWSFVManometreEtalonById : " & ex.Message)
+    '    End Try
+    '    Return objFVManometreEtalon
 
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    objFVManometreEtalon.id = CType(tmpSerializeItem.InnerText, String)
-                Case "idManometre"
-                    objFVManometreEtalon.idManometre = CType(tmpSerializeItem.InnerText, String)
-                Case "type"
-                    objFVManometreEtalon.type = CType(tmpSerializeItem.InnerText, String)
-                Case "auteur"
-                    objFVManometreEtalon.auteur = CType(tmpSerializeItem.InnerText, String)
-                Case "idAgentControleur"
-                    objFVManometreEtalon.idAgentControleur = CType(tmpSerializeItem.InnerText, Integer)
-                Case "caracteristiques"
-                    objFVManometreEtalon.caracteristiques = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModif"
-                    objFVManometreEtalon.dateModif = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "blocage"
-                    objFVManometreEtalon.blocage = CType(tmpSerializeItem.InnerText, Boolean)
-                Case "idReetalonnage"
-                    objFVManometreEtalon.idReetalonnage = CType(tmpSerializeItem.InnerText, String)
-                Case "nomLaboratoire"
-                    objFVManometreEtalon.nomLaboratoire = CType(tmpSerializeItem.InnerText, String)
-                Case "dateReetalonnage"
-                    objFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "pressionControle"
-                    objFVManometreEtalon.pressionControle = CType(tmpSerializeItem.InnerText, String)
-                Case "valeursMesurees"
-                    objFVManometreEtalon.valeursMesurees = CType(tmpSerializeItem.InnerText, String)
-                Case "idManometreControleur"
-                    objFVManometreEtalon.idManometreControleur = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent"
-                    objFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    objFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
+    'End Function
 
-        Return objFVManometreEtalon
-    End Function
+    'Public Shared Function sendWSFVManometreEtalon(pAgent As Agent, ByVal fvmanometreetalon As FVManometreEtalon, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        '            'Return objWSCrodip.SendFVManometreEtalon(pAgent.id, fvmanometreetalon, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+
+    'Public Shared Function xml2object(ByVal arrXml As Object) As FVManometreEtalon
+    '    Dim objFVManometreEtalon As New FVManometreEtalon(New Agent())
+
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        Select Case tmpSerializeItem.LocalName()
+    '            Case "id"
+    '                objFVManometreEtalon.id = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idManometre"
+    '                objFVManometreEtalon.idManometre = CType(tmpSerializeItem.InnerText, String)
+    '            Case "type"
+    '                objFVManometreEtalon.type = CType(tmpSerializeItem.InnerText, String)
+    '            Case "auteur"
+    '                objFVManometreEtalon.auteur = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idAgentControleur"
+    '                objFVManometreEtalon.idAgentControleur = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "caracteristiques"
+    '                objFVManometreEtalon.caracteristiques = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModif"
+    '                objFVManometreEtalon.dateModif = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "blocage"
+    '                objFVManometreEtalon.blocage = CType(tmpSerializeItem.InnerText, Boolean)
+    '            Case "idReetalonnage"
+    '                objFVManometreEtalon.idReetalonnage = CType(tmpSerializeItem.InnerText, String)
+    '            Case "nomLaboratoire"
+    '                objFVManometreEtalon.nomLaboratoire = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateReetalonnage"
+    '                objFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "pressionControle"
+    '                objFVManometreEtalon.pressionControle = CType(tmpSerializeItem.InnerText, String)
+    '            Case "valeursMesurees"
+    '                objFVManometreEtalon.valeursMesurees = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idManometreControleur"
+    '                objFVManometreEtalon.idManometreControleur = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModificationAgent"
+    '                objFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "dateModificationCrodip"
+    '                objFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '        End Select
+    '    Next
+
+    '    Return objFVManometreEtalon
+    'End Function
 #End Region
 
 #Region "Methodes Locales"
@@ -199,12 +217,12 @@ Public Class FVManometreEtalonManager
             End If
             If Not objFVManometreEtalon.dateModificationAgent Is Nothing And objFVManometreEtalon.dateModificationAgent <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVManometreEtalon.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationAgent) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
             End If
             If Not objFVManometreEtalon.dateModificationCrodip Is Nothing And objFVManometreEtalon.dateModificationCrodip <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationCrodip"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(objFVManometreEtalon.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationCrodip) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
             End If
 

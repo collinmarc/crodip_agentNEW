@@ -2,82 +2,111 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class FVManometreControleManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
-
-    Public Shared Function getWSFVManometreControleById(pAgent As Agent, ByVal fvmanometrecontrole_id As String) As Object
-        Dim objFVManometreControle As New FVManometreControle()
-        Try
-
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(pAgent.id, fvmanometrecontrole_id, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                    ' construction de l'objet
-                    Dim objWSCrodip_responseItem As System.Xml.XmlNode
-                    For Each objWSCrodip_responseItem In objWSCrodip_response
-                        objFVManometreControle.Fill(objWSCrodip_responseItem.Name, objWSCrodip_responseItem.InnerText)
-                    Next
-                Case 1 ' NOK
-                    CSDebug.dispError("FVManometreControleManager - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("FVManometreControleManager - Code 9 : Bad Request")
-            End Select
-        Catch ex As Exception
-            CSDebug.dispError("FVManometreControleManager - getWSFVManometreControleById : " & ex.Message)
-        End Try
-        Return objFVManometreControle
-
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVManometreControle
+        Dim oreturn As FVManometreControle
+        oreturn = getWSByKey(Of FVManometreControle)(p_uid, paid)
+        Return oreturn
     End Function
 
-    Public Shared Function sendWSFVManometreControle(pAgent As Agent, ByVal fvmanometrecontrole As FVManometreControle, ByRef updatedObject As Object) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As FVManometreControle, ByRef pobjOut As FVManometreControle) As Integer
+        Dim nreturn As Integer
         Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            'Return objWSCrodip.SendFVManometreControle(pAgent.id, fvmanometrecontrole, updatedObject)
+            nreturn = SendWS(Of FVManometreControle)(pObjIn, pobjOut)
+
         Catch ex As Exception
-            Return -1
+            CSDebug.dispFatal("FVManometreControleManager.WSSend : ", ex)
+            nreturn = -1
         End Try
+        Return nreturn
     End Function
+
+
+    'Public Shared Function getWSFVManometreControleById(pAgent As Agent, ByVal fvmanometrecontrole_id As String) As Object
+    '    Dim objFVManometreControle As New FVManometreControle()
+    '    Try
+
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        Dim codeResponse As Integer = objWSCrodip.GetFVManometreControle(pAgent.id, fvmanometrecontrole_id, objWSCrodip_response)
+    '        Select Case codeResponse
+    '            Case 0 ' OK
+    '                ' construction de l'objet
+    '                Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '                For Each objWSCrodip_responseItem In objWSCrodip_response
+    '                    objFVManometreControle.Fill(objWSCrodip_responseItem.Name, objWSCrodip_responseItem.InnerText)
+    '                Next
+    '            Case 1 ' NOK
+    '                CSDebug.dispError("FVManometreControleManager - Code 1 : Non-Trouvée")
+    '            Case 9 ' BADREQUEST
+    '                CSDebug.dispError("FVManometreControleManager - Code 9 : Bad Request")
+    '        End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispError("FVManometreControleManager - getWSFVManometreControleById : " & ex.Message)
+    '    End Try
+    '    Return objFVManometreControle
+
+    'End Function
+
+    'Public Shared Function sendWSFVManometreControle(pAgent As Agent, ByVal fvmanometrecontrole As FVManometreControle, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        'Return objWSCrodip.SendFVManometreControle(pAgent.id, fvmanometrecontrole, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+    'Public Shared Function SendEtats(pFV As FVManometreControle) As Boolean
+    '    Dim bReturn As Boolean
+    '    Dim filePath As String
+    '    If Not String.IsNullOrEmpty(pFV.FVFileName) Then
+    '        filePath = GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
+    '        EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
+    '        bReturn = SendHTTPEtats(filePath)
+    '    End If
+    '    Return bReturn
+    'End Function
     Public Shared Function SendEtats(pFV As FVManometreControle) As Boolean
         Dim bReturn As Boolean
         Dim filePath As String
         If Not String.IsNullOrEmpty(pFV.FVFileName) Then
             filePath = GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE & "/" & pFV.FVFileName
             EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE, pFV.FVFileName)
+
             bReturn = SendHTTPEtats(filePath)
         End If
         Return bReturn
     End Function
-
     ''' <summary>
     ''' Envoie par FTP des Etats relatid à la fiche de fiche
     ''' </summary>
     ''' <param name="pDiag"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Shared Function SendFTPEtats(filePath As String) As Boolean
-        Dim bReturn As Boolean
-        Try
-            bReturn = False
-            Dim oCSftp As CSFTP = New CSFTP()
-            If System.IO.File.Exists(filePath) Then
-                bReturn = oCSftp.Upload(filePath, "FV/MC")
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("FvManometreControleManager.SendFTPEtats ERR : " & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
+    'Private Shared Function SendFTPEtats(filePath As String) As Boolean
+    '    Dim bReturn As Boolean
+    '    Try
+    '        bReturn = False
+    '        Dim oCSftp As CSFTP = New CSFTP()
+    '        If System.IO.File.Exists(filePath) Then
+    '            bReturn = oCSftp.Upload(filePath, "FV/MC")
+    '        End If
+    '    Catch ex As Exception
+    '        CSDebug.dispError("FvManometreControleManager.SendFTPEtats ERR : " & ex.Message)
+    '        bReturn = False
+    '    End Try
+    '    Return bReturn
+    'End Function
     Friend Shared Function SendHTTPEtats(filePath As String) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatFVManoUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
             Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatDiagPwd)
@@ -195,7 +224,7 @@ Public Class FVManometreControleManager
             End If
             If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModif"
-                paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateModif) & "'"
                 'paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreControle.dateModif) & "'"
             End If
             If pobjFV.dateModificationAgentS <> "" Then

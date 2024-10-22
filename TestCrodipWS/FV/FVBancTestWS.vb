@@ -5,14 +5,14 @@ Imports System.Xml.Serialization
 Imports System.IO
 Imports System.Net.Http
 
-<TestClass()> Public Class FVFVBancTestWS
+<TestClass()> Public Class FVBancTestWS
     Inherits CRODIPTest
 
     <TestMethod()> Public Sub getWS()
-        Dim FVFVBanc As CRODIPWS.FVBanc
-        FVFVBanc = FVBancManager.WSgetById(9491)
-        Assert.IsNotNull(FVFVBanc)
-        Assert.AreEqual(9491, FVFVBanc.uid)
+        Dim FVBanc As CRODIPWS.FVBanc
+        FVBanc = FVBancManager.WSgetById(9491)
+        Assert.IsNotNull(FVBanc)
+        Assert.AreEqual(9491, FVBanc.uid)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
