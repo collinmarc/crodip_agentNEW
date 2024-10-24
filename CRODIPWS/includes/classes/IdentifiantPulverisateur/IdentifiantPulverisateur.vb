@@ -4,6 +4,7 @@ Imports System.Collections.Generic
 
 <Serializable(), XmlInclude(GetType(IdentifiantPulverisateur))>
 Public Class IdentifiantPulverisateur
+    Inherits root
     Private m_id As Long
     Private m_idStructure As Long
     Private m_numeroNational As String
@@ -35,6 +36,14 @@ Public Class IdentifiantPulverisateur
             Return m_idStructure
         End Get
         Set(value As Long)
+            m_idStructure = value
+        End Set
+    End Property
+    Public Property uidstructure As Integer
+        Get
+            Return m_idStructure
+        End Get
+        Set(value As Integer)
             m_idStructure = value
         End Set
     End Property
@@ -107,49 +116,29 @@ Public Class IdentifiantPulverisateur
             m_IDCRODIPPOOL = value
         End Set
     End Property
-    Public Property dateModificationAgent As String
-        Get
-            Return m_dateModificationAgent
-        End Get
-        Set(value As String)
-            m_dateModificationAgent = value
-        End Set
-    End Property
-    Public Property dateModificationCrodip As String
-        Get
-            Return m_dateModificationCrodip
-        End Get
-        Set(value As String)
-            m_dateModificationCrodip = value
-        End Set
-    End Property
 
     Public Function Fill(pColName As String, pColValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
             pColName = pColName.Replace("IdentifiantPulverisateur.", "")
-            Select Case pColName.ToUpper().Trim
-                Case "id".ToUpper().Trim()
-                    Me.id = pColValue.ToString()
-                Case "numeroNational".ToUpper().Trim()
-                    Me.numeroNational = pColValue.ToString()
-                Case "idStructure".ToUpper().Trim()
-                    Me.idStructure = pColValue.ToString()
-                Case "etat".ToUpper().Trim()
-                    Me.etat = pColValue.ToString()
-                Case "libelle".ToUpper().Trim()
-                    Me.libelle = pColValue.ToString()
-                Case "idCrodipPool".ToUpper().Trim()
-                    Me.idCRODIPPool = pColValue.ToString()
-                Case "dateUtilisation".ToUpper().Trim()
-                    Me.dateUtilisation = pColValue.ToString()
-                Case "dateModificationCrodip".ToUpper().Trim()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "dateModificationAgent".ToUpper().Trim()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
-
-
-            End Select
+            If Not MyBase.Fill(pColName, pColValue) Then
+                Select Case pColName.ToUpper().Trim
+                    Case "id".ToUpper().Trim()
+                        Me.id = pColValue.ToString()
+                    Case "numeroNational".ToUpper().Trim()
+                        Me.numeroNational = pColValue.ToString()
+                    Case "idStructure".ToUpper().Trim()
+                        Me.idStructure = pColValue.ToString()
+                    Case "etat".ToUpper().Trim()
+                        Me.etat = pColValue.ToString()
+                    Case "libelle".ToUpper().Trim()
+                        Me.libelle = pColValue.ToString()
+                    Case "idCrodipPool".ToUpper().Trim()
+                        Me.idCRODIPPool = pColValue.ToString()
+                    Case "dateUtilisation".ToUpper().Trim()
+                        Me.dateUtilisation = pColValue.ToString()
+                End Select
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("IdentifiantPulverisateur.Fill ERR" + ex.Message)

@@ -135,6 +135,7 @@
     <Compile Include="FV\FVManometreEtalonTestWS.vb" />
     <Compile Include="FV\FVManometreControleTestWS.vb" />
     <Compile Include="FV\FVBancTestWS.vb" />
+    <Compile Include="Materiel\IdentifiantPulveTestWS.vb" />
     <Compile Include="Materiel\AutoTestTestWS.vb" />
     <Compile Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.vb">
       <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>

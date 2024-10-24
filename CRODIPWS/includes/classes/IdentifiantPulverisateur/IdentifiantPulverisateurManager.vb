@@ -2,6 +2,28 @@
 Imports System.Data.Common
 
 Public Class IdentifiantPulverisateurManager
+    Inherits RootManager
+
+#Region "Methodes Web Service"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As IdentifiantPulverisateur
+        Dim oreturn As IdentifiantPulverisateur
+        oreturn = getWSByKey(Of IdentifiantPulverisateur)(p_uid, paid)
+        Return oreturn
+    End Function
+
+    Public Shared Function WSSend(ByVal pObjIn As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = SendWS(Of IdentifiantPulverisateur)(pObjIn, pobjOut)
+
+        Catch ex As Exception
+            CSDebug.dispFatal("sendWSIdentifiantPulverisateur : " & ex.Message)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
+#End Region
+
 
     Public Shared Function Save(ByVal pIdent As IdentifiantPulverisateur, Optional pSynchro As Boolean = False) As Boolean
         Dim bReturn As Boolean
@@ -80,19 +102,19 @@ Public Class IdentifiantPulverisateurManager
         Try
             Dim strQuery As String
             strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle , dateModificationAgent ,  dateModificationCrodip "
-            If My.Settings.GestionDesPools Then
+            If My.Settings.GestiondesPools Then
                 strQuery = strQuery & ",idCRODIPPOOL"
             End If
 
             strQuery = strQuery & ") VALUES ("
             strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
-            If My.Settings.GestionDesPools Then
+            If My.Settings.GestiondesPools Then
                 strQuery = strQuery & "'" & pIdent.idCRODIPPool & "'"
             End If
             strQuery = strQuery & " )"
 
 
-                Dim oCSDb As New CSDb(True)
+            Dim oCSDb As New CSDb(True)
             bReturn = oCSDb.Execute(strQuery)
 
             oCSDb.free()
@@ -211,7 +233,7 @@ Public Class IdentifiantPulverisateurManager
         Try
 
             ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
@@ -250,7 +272,7 @@ Public Class IdentifiantPulverisateurManager
 
             ' déclarations
             'Dim objWSCrodip2 As WSCRODIP2.CrodipServer = WebServiceCRODIP.getWS2(True)
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             objWSCrodip.Timeout = 10000
             Dim objWSCrodip_response As New Object
             ' Appel au WS
@@ -349,7 +371,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not My.Settings.GestionDesPools Then
+        If Not My.Settings.GestiondesPools Then
             olst = getListeByStructure(pAgent.uidStructure)
         Else
             olst = getListeByPool(pAgent.idCRODIPPool)
@@ -414,7 +436,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not My.Settings.GestionDesPools Then
+        If Not My.Settings.GestiondesPools Then
             olst = getListeInutiliseByStructure(pAgent.uidStructure)
         Else
             olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
