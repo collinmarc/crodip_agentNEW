@@ -48,6 +48,7 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.FVBanc)),
         XmlInclude(GetType(CRODIPWS.FVManometreControle)),
         XmlInclude(GetType(CRODIPWS.FVManometreEtalon)),
+        XmlInclude(GetType(CRODIPWS.AutoTest)),
      System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer

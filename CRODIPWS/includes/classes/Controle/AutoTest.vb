@@ -34,8 +34,8 @@ Public Class AutoTest
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreControle)
         _id = -1
         _Etat = -1
-        Type = "MANOC"
-        IdMateriel = pMano.idCrodip
+        type = "MANOC"
+        idMateriel = pMano.idCrodip
         IdStructure = pMano.uidstructure
         NumAgent = pAgent.id
         Traca = pMano.Traca
@@ -43,16 +43,16 @@ Public Class AutoTest
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
         _id = -1
         _Etat = -1
-        Type = "MANOE"
-        IdMateriel = pMano.idCrodip
+        type = "MANOE"
+        idMateriel = pMano.idCrodip
         IdStructure = pMano.uidstructure
         NumAgent = pAgent.id
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
         _id = -1
         _Etat = -1
-        Type = "BANC"
-        IdMateriel = pBanc.id
+        type = "BANC"
+        idMateriel = pBanc.id
         IdStructure = pBanc.uidstructure
         NumAgent = pAgent.id
     End Sub
@@ -75,6 +75,16 @@ Public Class AutoTest
             _idStructure = Value
         End Set
     End Property
+    Private _uidstructure As Integer
+    Public Property uidstructure() As Integer
+        Get
+            Return _uidstructure
+        End Get
+        Set(ByVal value As Integer)
+            _uidstructure = value
+        End Set
+    End Property
+    <XmlIgnore>
     Public Property NumAgent() As String
         Get
             Return _IdAgent
@@ -83,7 +93,24 @@ Public Class AutoTest
             _IdAgent = Value
         End Set
     End Property
-    Public Property Type() As String
+    Public Property aidagent() As String
+        Get
+            Return _IdAgent
+        End Get
+        Set(ByVal Value As String)
+            _IdAgent = Value
+        End Set
+    End Property
+    Private _uidagent As Integer
+    Public Property uidagent() As Integer
+        Get
+            Return _uidagent
+        End Get
+        Set(ByVal value As Integer)
+            _uidagent = value
+        End Set
+    End Property
+    Public Property type() As String
         Get
             Return _Type
         End Get
@@ -91,6 +118,7 @@ Public Class AutoTest
             _Type = Value
         End Set
     End Property
+    <XmlIgnore>
     Public ReadOnly Property TypeLibelle() As String
         Get
             Select Case _Type
@@ -106,12 +134,33 @@ Public Class AutoTest
             Return _Type
         End Get
     End Property
-    Public Property IdMateriel() As String
+    Public Property idMateriel() As String
         Get
             Return _idMateriel
         End Get
         Set(ByVal Value As String)
             _idMateriel = Value
+        End Set
+    End Property
+    Private _uidmateriel As Integer
+    <XmlIgnore>
+    Public Property uidmateriel() As Integer
+        Get
+            Return _uidmateriel
+        End Get
+        Set(ByVal value As Integer)
+            _uidmateriel = value
+        End Set
+    End Property
+    <XmlElement("uidmateriel")>
+    Public Property uidmateriels() As String
+        Get
+            Return uidmateriel
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidmateriel = CInt(value)
+            End If
         End Set
     End Property
     <XmlElement("DateControle")>
@@ -132,7 +181,7 @@ Public Class AutoTest
             _dateControle = Value
         End Set
     End Property
-    Public Property Etat() As Integer
+    Public Property etat() As Integer
         Get
             Return _Etat
         End Get
@@ -181,43 +230,6 @@ Public Class AutoTest
         End Set
     End Property
 
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.ToCRODIPString(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            Throw New NotSupportedException("Setting the dateModificationAgent property is not supported, needed for XML Serialize")
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As Date
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As Date)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.ToCRODIPString(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            Throw New NotSupportedException("Setting the dateModificationCrodip property is not supported, needed for XML Serialize")
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As Date
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As Date)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
     Public Function Fill(pDBReader As DbDataReader) As Boolean
         Dim tmpColId As Integer = 0
         Dim bReturn As Boolean
@@ -250,17 +262,29 @@ Public Class AutoTest
                 Case "CTRG_STRUCTUREID".Trim().ToUpper(), "IdStructure".Trim.ToUpper()
                     Me.IdStructure = pValue.ToString()
                 Case "CTRG_TYPE".Trim().ToUpper(), "Type".Trim.ToUpper()
-                    Me.Type = pValue.ToString()
+                    Me.type = pValue.ToString()
                 Case "CTRG_MATID".Trim().ToUpper(), "IdMateriel".Trim.ToUpper()
-                    Me.IdMateriel = pValue.ToString()
+                    Me.idMateriel = pValue.ToString()
                 Case "CTRG_ETAT".Trim().ToUpper(), "Etat".Trim.ToUpper()
-                    Me.Etat = CType(pValue, Boolean)
+                    Me.etat = CType(pValue, Boolean)
                 Case "CTRG_NUMAGENT".Trim().ToUpper(), "NumAgent".Trim.ToUpper()
                     Me.NumAgent = pValue
                 Case "dateModificationAgent".Trim().ToUpper()
                     Me.dateModificationAgent = CSDate.ToCRODIPString(pValue.ToString())
                 Case "dateModificationCrodip".Trim().ToUpper()
                     Me.dateModificationCrodip = CSDate.ToCRODIPString(pValue.ToString())
+                Case "uid".Trim().ToUpper()
+                    Me.uid = CInt(pValue)
+                Case "aid".Trim().ToUpper()
+                    Me.uid = CInt(pValue)
+                Case "uidstructure".Trim().ToUpper()
+                    Me.uidstructure = CInt(pValue)
+                Case "aidagent".Trim().ToUpper()
+                    Me.aidagent = pValue
+                Case "uidagent".Trim().ToUpper()
+                    Me.aidagent = CInt(pValue)
+                Case "uidmateriel".Trim().ToUpper()
+                    Me.uidmateriel = CInt(pValue)
             End Select
             bReturn = True
         Catch ex As Exception

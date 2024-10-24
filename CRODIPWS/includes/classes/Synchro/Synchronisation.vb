@@ -577,7 +577,7 @@ Public Class Synchronisation
                 ' Synchro des AutoTest()
 
                 Notice("Controles Reguliers ")
-                Dim bReturn As Boolean = AutoTestManager.sendWSControlesReguliers(m_Agent)
+                Dim bReturn As Boolean = AutoTestManager.WSSendList(m_Agent)
                 If Not bReturn Then
                     CSDebug.dispError("Synchronisation::runAscSynchro(sendWSControlesReguliers) - Erreur Locale")
                 End If

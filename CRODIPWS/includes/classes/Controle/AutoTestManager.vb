@@ -2,7 +2,96 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class AutoTestManager
+    Inherits RootManager
+#Region "WebsServices"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As AutoTest
+        Dim oreturn As AutoTest
+        oreturn = getWSByKey(Of AutoTest)(p_uid, paid)
+        Return oreturn
+    End Function
 
+    Public Shared Function WSSend(ByVal pObjIn As AutoTest, ByRef pobjOut As AutoTest) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = SendWS(Of AutoTest)(pObjIn, pobjOut)
+
+        Catch ex As Exception
+            CSDebug.dispFatal("AutoTestManager.WSSend : ", ex)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
+    Public Shared Function WSSendList(pAgent As Agent) As Integer
+        Dim bReturn As Integer
+
+        Try
+            Dim oCol As List(Of AutoTest)
+            oCol = getcolControlesReguliers(pAgent, , , , True)
+            If Not oCol Is Nothing Then
+                If oCol.Count > 0 Then
+                    Dim ArrObject(oCol.Count) As AutoTest
+                    Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+                    For Each obj As AutoTest In oCol
+                        Dim pInfo As String = ""
+                        Dim puid As Integer
+                        Dim response As Integer = objWSCrodip.SendAutoTest(obj, pInfo, puid)
+                        Select Case response
+                            Case 0, 2, 4
+                                obj.uid = puid
+                                AutoTestManager.save(obj, True)
+                            Case Else
+                        End Select
+
+                        obj.uid = puid
+                    Next
+                End If
+            End If
+            bReturn = 0
+        Catch ex As Exception
+            CSDebug.dispError("AutoTestManager.WSSendList : ", ex)
+            bReturn = -1
+        End Try
+        Return bReturn
+
+    End Function
+    'Public Shared Function sendWSControlesReguliers(ByVal pAgent As Agent) As Boolean
+    '    Dim bReturn As Boolean
+
+    '    Try
+    '        Dim oCol As List(Of AutoTest)
+    '        oCol = getcolControlesReguliers(pAgent, , , , True)
+    '        If Not oCol Is Nothing Then
+    '            If oCol.Count > 0 Then
+    '                Dim ArrObject(oCol.Count) As AutoTest
+    '                Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '                Dim i As Integer
+    '                i = 0
+    '                For Each obj As AutoTest In oCol
+    '                    ArrObject(i) = obj
+    '                    i = i + 1
+    '                Next
+    '                Dim info As String = ""
+    '                Dim uid As String = ""
+    '                Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject, info, uid)
+    '                If response = 0 Or response = 2 Or (GlobalsCRODIP.GLOB_ENV_DEBUG And response = 9) Then
+    '                    'Mise à jour de la date de synchro (date Modification CRODIP)
+    '                    For Each obj As AutoTest In oCol
+    '                        obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())
+    '                        saveSynchro(obj)
+    '                    Next
+
+    '                End If
+    '            End If
+    '        End If
+    '        bReturn = True
+    '    Catch ex As Exception
+    '        CSDebug.dispError("sendWSControleRegulier : " & ex.Message & ex.InnerException.InnerException.Message)
+    '        bReturn = False
+    '    End Try
+    '    Return bReturn
+    'End Function
+
+#End Region
 
 #Region "Methodes Locales"
 
@@ -113,9 +202,9 @@ Public Class AutoTestManager
                 paramsQuery = ""
                 paramsQuery = paramsQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.DateControle).Substring(0, 10) & "'  "
                 paramsQuery = paramsQuery & " , CTRG_STRUCTUREID=" & pCtrlRegulier.IdStructure & "  "
-                paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.Type & "'  "
-                paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
-                paramsQuery = paramsQuery & " , CTRG_ETAT=" & pCtrlRegulier.Etat & " "
+                paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.type & "'  "
+                paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
+                paramsQuery = paramsQuery & " , CTRG_ETAT=" & pCtrlRegulier.etat & " "
                 paramsQuery = paramsQuery & " , CTRG_NUMAGENT='" & pCtrlRegulier.NumAgent & "' "
                 paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pCtrlRegulier.dateModificationAgent) & "'"
                 paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pCtrlRegulier.dateModificationCrodip) & "'"
@@ -319,7 +408,7 @@ Public Class AutoTestManager
             oFile.WriteLine("ID;DateControle;IDStructure;NumAgent;type;IdMateriel;etat;dateModifAgent;dateModifCrodip")
             Dim strLine As String
             For Each oCtrlRegulier In oCol
-                strLine = oCtrlRegulier.Id & ";" & oCtrlRegulier.DateControle.ToString("d") & ";" & oCtrlRegulier.IdStructure & ";" & oCtrlRegulier.NumAgent & ";" & oCtrlRegulier.TypeLibelle & ";" & oCtrlRegulier.IdMateriel & ";" & oCtrlRegulier.Etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
+                strLine = oCtrlRegulier.Id & ";" & oCtrlRegulier.DateControle.ToString("d") & ";" & oCtrlRegulier.IdStructure & ";" & oCtrlRegulier.NumAgent & ";" & oCtrlRegulier.TypeLibelle & ";" & oCtrlRegulier.idMateriel & ";" & oCtrlRegulier.etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
                 oFile.WriteLine(strLine)
             Next
             oFile.Close()
@@ -333,43 +422,43 @@ Public Class AutoTestManager
     End Function
 #End Region
 
-    Public Shared Function sendWSControlesReguliers(ByVal pAgent As Agent) As Boolean
-        Dim bReturn As Boolean
+    'Public Shared Function sendWSControlesReguliers(ByVal pAgent As Agent) As Boolean
+    '    Dim bReturn As Boolean
 
-        Try
-            Dim oCol As List(Of AutoTest)
-            oCol = getcolControlesReguliers(pAgent, , , , True)
-            If Not oCol Is Nothing Then
-                If oCol.Count > 0 Then
-                    Dim ArrObject(oCol.Count) As AutoTest
-                    Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-                    Dim i As Integer
-                    i = 0
-                    For Each obj As AutoTest In oCol
-                        ArrObject(i) = obj
-                        i = i + 1
-                    Next
-                    Dim info As String = ""
-                    Dim uid As String = ""
-                    Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject, info, uid)
-                    If response = 0 Or response = 2 Or (GlobalsCRODIP.GLOB_ENV_DEBUG And response = 9) Then
-                        'Mise à jour de la date de synchro (date Modification CRODIP)
-                        For Each obj As AutoTest In oCol
-                            obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())
-                            saveSynchro(obj)
-                        Next
+    '    Try
+    '        Dim oCol As List(Of AutoTest)
+    '        oCol = getcolControlesReguliers(pAgent, , , , True)
+    '        If Not oCol Is Nothing Then
+    '            If oCol.Count > 0 Then
+    '                Dim ArrObject(oCol.Count) As AutoTest
+    '                Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '                Dim i As Integer
+    '                i = 0
+    '                For Each obj As AutoTest In oCol
+    '                    ArrObject(i) = obj
+    '                    i = i + 1
+    '                Next
+    '                Dim info As String = ""
+    '                Dim uid As String = ""
+    '                Dim response As Integer = objWSCrodip.SendAutoTest(ArrObject, info, uid)
+    '                If response = 0 Or response = 2 Or (GlobalsCRODIP.GLOB_ENV_DEBUG And response = 9) Then
+    '                    'Mise à jour de la date de synchro (date Modification CRODIP)
+    '                    For Each obj As AutoTest In oCol
+    '                        obj.dateModificationCrodip = CSDate.ToCRODIPString(Now())
+    '                        saveSynchro(obj)
+    '                    Next
 
-                    End If
-                End If
-            End If
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("sendWSManometreControle : " & ex.Message & ex.InnerException.InnerException.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-    End Function
-    'Public Shared Function sendWS2ControlesReguliers(ByVal pAgent As Agent) As Boolean
+    '                End If
+    '            End If
+    '        End If
+    '        bReturn = True
+    '    Catch ex As Exception
+    '        CSDebug.dispError("sendWSControleRegulier : " & ex.Message & ex.InnerException.InnerException.Message)
+    '        bReturn = False
+    '    End Try
+    '    Return bReturn
+    'End Function
+    ''Public Shared Function sendWS2ControlesReguliers(ByVal pAgent As Agent) As Boolean
     '    Dim bReturn As Boolean
 
     '    Try

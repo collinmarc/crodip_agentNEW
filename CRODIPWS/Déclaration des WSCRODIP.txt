@@ -34,7 +34,8 @@ ajouter Avant la déclaration de la classe CRODIPserver
         XmlInclude(GetType(CRODIPWS.FVBanc)),
         XmlInclude(GetType(CRODIPWS.FVManometreControle)),
         XmlInclude(GetType(CRODIPWS.FVManometreEtalon)),
-     System.ComponentModel.DesignerCategoryAttribute("code"),
+       XmlInclude(GetType(CRODIPWS.AutoTest)),
+      System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
 
 Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer
