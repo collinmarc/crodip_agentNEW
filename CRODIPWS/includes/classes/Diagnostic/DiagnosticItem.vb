@@ -25,7 +25,7 @@ Public Class DiagnosticItemList
             Next
         End Set
     End Property
-    Public Property Values() As List(Of DiagnosticItem)
+    Public Property Liste() As List(Of DiagnosticItem)
         Get
             Dim olst As New List(Of DiagnosticItem)
             olst.AddRange(_Dic_diagnosticItem.Values)
@@ -87,6 +87,7 @@ End Class
 <Serializable()>
 <XmlType(Namespace:="http://www.example.org/crodip/")>
 Public Class DiagnosticItem
+    Inherits root
 
     Private _id As String
     Private _idDiagnostic As String
@@ -163,13 +164,13 @@ Public Class DiagnosticItem
         End If
 
     End Sub
-
+    <XmlIgnore>
     Public Property id() As String
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As String)
-            _id = Value
+            aid = Value
         End Set
     End Property
     Private _uidDiagnostic As Integer
@@ -305,67 +306,29 @@ Public Class DiagnosticItem
             _cause = Value
         End Set
     End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
     Public Sub Fill(ByVal pColName As String, ByVal pcolValue As Object)
-        Select Case pColName.ToUpper().Trim()
-            Case "id".ToUpper()
-                id = pcolValue.ToString
-            Case "idDiagnostic".ToUpper()
-                idDiagnostic = pcolValue.ToString()
-            Case "idItem".ToUpper
-                idItem = pcolValue.ToString()
-            Case "itemValue".ToUpper()
-                itemValue = pcolValue.ToString()
-            Case "itemCodeEtat".ToUpper()
-                itemCodeEtat = pcolValue.ToString()
+        If Not MyBase.Fill(pColName, pcolValue) Then
+            Select Case pColName.ToUpper().Trim()
+                Case "id".ToUpper()
+                    id = pcolValue.ToString
+                Case "idDiagnostic".ToUpper()
+                    idDiagnostic = pcolValue.ToString()
+                Case "uidDiagnostic".ToUpper()
+                    uiddiagnostic = pcolValue.ToString()
+                Case "idItem".ToUpper
+                    idItem = pcolValue.ToString()
+                Case "itemValue".ToUpper()
+                    itemValue = pcolValue.ToString()
+                Case "itemCodeEtat".ToUpper()
+                    itemCodeEtat = pcolValue.ToString()
                 '           Case "isItemCode1".ToUpper()
                 '                isItemCode1 = pcolValue
                 '            Case "isItemCode2".ToUpper()
                 '               isItemCode2 = pcolValue
-            Case "cause".ToUpper()
-                cause = pcolValue.ToString
-            Case "dateModificationCrodip".ToUpper()
-                dateModificationCrodip = CSDate.ToCRODIPString(pcolValue.ToString())
-            Case "dateModificationAgent".ToUpper
-                dateModificationAgent = CSDate.ToCRODIPString(pcolValue.ToString())
-        End Select
-
+                Case "cause".ToUpper()
+                    cause = pcolValue.ToString
+            End Select
+        End If
     End Sub
 
 

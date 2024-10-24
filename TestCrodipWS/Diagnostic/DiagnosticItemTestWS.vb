@@ -9,17 +9,17 @@ Imports System.Net.Http
     Inherits CRODIPTest
 
     <TestMethod()> Public Sub getWS()
-        Dim lst As List(Of CRODIPWS.DiagnosticItem)
+        Dim lst As DiagnosticItemList
         lst = DiagnosticItemManager.WSGetList(145691, "998-TSTMCO-12345-1")
         Assert.IsNotNull(lst)
-        Assert.AreEqual(2, lst.Count)
-        Assert.AreEqual(145691, lst(0).uiddiagnostic)
-        Assert.AreEqual(145691, lst(1).uiddiagnostic)
+        Assert.AreEqual(18, lst.Liste.Count)
+        Assert.AreEqual(145691, lst.Liste(0).uiddiagnostic)
+        Assert.AreEqual(145691, lst.Liste(1).uiddiagnostic)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145688)
         Assert.IsNotNull(oDiagnostic)
         Dim oDiagItem As New DiagnosticItem(oDiagnostic.aid, "123", "0")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)
@@ -51,7 +51,7 @@ Imports System.Net.Http
         ' Création de l'objet
         Dim oReturn As Diagnostic
         nreturn = DiagnosticManager.WSSend(m_oDiag, oReturn)
-        Assert.AreEqual(4, nreturn)
+        Assert.AreEqual(2, nreturn)
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet

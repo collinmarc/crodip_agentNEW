@@ -17,32 +17,33 @@ Public Class DiagnosticItemManager
 
 
 #Region "Methodes acces Web Service"
-    Public Shared Function WSGetList(puidDiag As Integer, paidDiag As String) As List(Of DiagnosticItem)
-        Dim oreturn As New List(Of DiagnosticItem)
+    Public Shared Function WSGetList(puidDiag As Integer, paidDiag As String) As DiagnosticItemList
+        Dim oreturn As New DiagnosticItemList
         Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
         Try
             Dim tXmlnodes As Object()
+            Dim objWSCrodip_response() As Object = Nothing
             '' déclarations
             Dim codeResponse As Integer = 99 'Mehode non trouvée
-            codeResponse = objWSCrodip.GetDiagnosticItems(puidDiag, paidDiag, tXmlnodes)
+            codeResponse = objWSCrodip.GetDiagnosticItems(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
 
                     Dim oDiagItem As DiagnosticItem
-                    For Each oNode In tXmlnodes
-                        '                        Dim tab As New XmlNodeReader(tXmlnodes)
-                        Dim strXml As String = "<?xml version='1.0'?><DiagnosticItem>"
-                        For Each oItem As XmlNode In oNode
-                            strXml = strXml + oItem.OuterXml()
+                    For Each oNode In objWSCrodip_response
+                        ' construction de l'objet
+                        Dim objWSCrodip_responseItem1 As System.Xml.XmlNode()
+                        Dim objWSCrodip_responseItem As System.Xml.XmlNode
+                        For Each objWSCrodip_responseItem1 In objWSCrodip_response
+                            oDiagItem = New DiagnosticItem()
+                            For Each objWSCrodip_responseItem In objWSCrodip_responseItem1
+                                oDiagItem.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
+                            Next
+                            'spécifique au diagItem car c'est un dictionnaire
+                            oreturn.AddOrReplace(oDiagItem)
                         Next
-                        strXml = strXml + "</DiagnosticItem>"
-                        'Création du DiagItem
-                        Dim ser As New XmlSerializer(GetType(DiagnosticItem))
-                        Using reader As New StringReader(strXml)
-                            oDiagItem = ser.Deserialize(reader)
-                        End Using
-                        oreturn.Add(oDiagItem)
                     Next
+
                 Case 1 ' NOK
                     CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
@@ -367,10 +368,10 @@ Public Class DiagnosticItemManager
                 'paramsQuery = paramsQuery & " , isItemCode1=" & objisItemCode1 & ""
                 'paramsQuery = paramsQuery & " , isItemCode2=" & objisItemCode2 & ""
                 paramsQuery = paramsQuery & " , cause='" & pDiagIt.cause & "'"
-                If Not pDiagIt.dateModificationCrodip Is Nothing And pDiagIt.dateModificationCrodip <> "" Then
+                If Not String.IsNullOrEmpty(pDiagIt.dateModificationCrodipS) Then
                     paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pDiagIt.dateModificationCrodip) & "'"
                 End If
-                If Not pDiagIt.dateModificationAgent Is Nothing And pDiagIt.dateModificationAgent <> "" Then
+                If Not String.IsNullOrEmpty(pDiagIt.dateModificationAgentS) Then
                     paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pDiagIt.dateModificationAgent) & "'"
                 End If
 
@@ -445,11 +446,11 @@ Public Class DiagnosticItemManager
             paramsQueryColomuns = paramsQueryColomuns & " , cause"
             paramsQuery = paramsQuery & " , '" & pDiagnosticItem.cause & "'"
 
-            If Not pDiagnosticItem.dateModificationAgent Is Nothing And pDiagnosticItem.dateModificationAgent <> "" Then
+            If Not String.IsNullOrEmpty(pDiagnosticItem.dateModificationAgentS) Then
                 paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent"
                 paramsQuery = paramsQuery & " , '" & pDiagnosticItem.dateModificationAgent & "'"
             End If
-            If Not pDiagnosticItem.dateModificationCrodip Is Nothing And pDiagnosticItem.dateModificationCrodip <> "" Then
+            If Not String.IsNullOrEmpty(pDiagnosticItem.dateModificationCrodip) Then
                 paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip"
                 paramsQuery = paramsQuery & " , '" & pDiagnosticItem.dateModificationCrodip & "'"
             End If

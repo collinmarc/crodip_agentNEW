@@ -78,6 +78,10 @@ Public Class root
         Dim bReturn As Boolean
         bReturn = True
         Select Case pColName.Trim().ToUpper()
+            Case "uid".Trim().ToUpper()
+                Me.uid = CInt(pcolValue)
+            Case "aid".Trim().ToUpper()
+                Me.aid = pcolValue.ToString
             Case "dateModificationAgent".Trim().ToUpper()
                 Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
             Case "dateModificationCrodip".Trim().ToUpper()
