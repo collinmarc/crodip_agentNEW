@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class tool_calcVolHa
     Inherits frmCRODIP
 
@@ -366,7 +368,7 @@ Public Class tool_calcVolHa
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(424, 24)
         Me.Label13.TabIndex = 0
-        Me.Label13.Text = "la largeur correspond correspond à celle de l'appareil (puvérisateur à rampe) ou " & _
+        Me.Label13.Text = "la largeur correspond correspond à celle de l'appareil (puvérisateur à rampe) ou " &
     "à la largeur de pulvérisation (pulvérisateur à rampe ou arbo-viti)"
         '
         'infosNbBuses
@@ -569,8 +571,8 @@ Public Class tool_calcVolHa
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(424, 28)
         Me.Label20.TabIndex = 0
-        Me.Label20.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " & _
-    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" & _
+        Me.Label20.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " &
+    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" &
     "lvéristeur)"
         '
         'Label21
@@ -580,7 +582,7 @@ Public Class tool_calcVolHa
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(424, 32)
         Me.Label21.TabIndex = 0
-        Me.Label21.Text = "     * : l'écartement correspond à la distance entre 2 buses (puvérisateur à ramp" & _
+        Me.Label21.Text = "     * : l'écartement correspond à la distance entre 2 buses (puvérisateur à ramp" &
     "e) ou à la largeur de pulvérisation (pulvérisateur à rampe ou arbo-viti)"
         '
         'calcDeb2Vitesse
@@ -637,7 +639,7 @@ Public Class tool_calcVolHa
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(424, 34)
         Me.Label24.TabIndex = 0
-        Me.Label24.Text = "     * : l'écartement correspond à la distance entre 2 buses (puvérisateur à ramp" & _
+        Me.Label24.Text = "     * : l'écartement correspond à la distance entre 2 buses (puvérisateur à ramp" &
     "e) ou à la largeur de pulvérisation (pulvérisateur à rampe ou arbo-viti)"
         '
         'Label25
@@ -686,8 +688,8 @@ Public Class tool_calcVolHa
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(424, 28)
         Me.Label28.TabIndex = 0
-        Me.Label28.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " & _
-    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" & _
+        Me.Label28.Text = "     p1 : attention il s'agit ici de caculer le volume à la pression de contrôle " &
+    "(pression lors de la mesure) et non à la pression de travail (au manomètre du pu" &
     "lvéristeur)"
         '
         'Label29
@@ -1063,7 +1065,7 @@ Public Class tool_calcVolHa
 #End Region
 
 
- 
+
     Private Sub btnValider_Click(sender As Object, e As EventArgs) Handles btnValider.Click
         Valider()
     End Sub

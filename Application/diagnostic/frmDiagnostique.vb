@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
+Imports CRODIPWS
 
 Public Class FrmDiagnostique
     Inherits frmCRODIP
@@ -1462,8 +1463,8 @@ Public Class FrmDiagnostique
         Try
             ' Chargement des informations du diag
             Dim tmpDiagnosticItem As DiagnosticItem
-            If Not m_diagnostic.diagnosticItemsLst Is Nothing And Not m_diagnostic.diagnosticItemsLst.Values Is Nothing Then
-                For Each tmpDiagnosticItem In m_diagnostic.diagnosticItemsLst.Values
+            If Not m_diagnostic.diagnosticItemsLst Is Nothing And Not m_diagnostic.diagnosticItemsLst.Liste Is Nothing Then
+                For Each tmpDiagnosticItem In m_diagnostic.diagnosticItemsLst.Liste
                     If tmpDiagnosticItem IsNot Nothing Then
                         Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(tmpDiagnosticItem)
                         If tmpControl IsNot Nothing Then
@@ -9084,7 +9085,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     For Each oDiagTroncon833 As DiagnosticTroncons833 In m_diagnostic.diagnosticTroncons833.ListeparPression(nPression)
                         If oDiagTroncon833.nNiveau <= m_RelevePression833_Current.colNiveaux.Count() Then
                             If oDiagTroncon833.nTroncon <= m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons.Count() Then
-                                m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionMano(m_diagnostic.diagnosticMano542List.diagnosticMano542(nPression - 1).pressionControled)
+                                m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionMano(m_diagnostic.diagnosticMano542List.diagnosticMano542Array(nPression - 1).pressionControled)
                                 m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionLue(oDiagTroncon833.pressionSortie)
                                 Dim oMano As ManometreControle = m_bsrcManoCPression.List.OfType(Of ManometreControle).Where(Function(M)
                                                                                                                                  Return M.numeroNational = oDiagTroncon833.ManocId

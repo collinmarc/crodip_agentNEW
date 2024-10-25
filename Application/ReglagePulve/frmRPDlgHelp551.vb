@@ -1,4 +1,6 @@
-﻿Public Class frmRPDlgHelp551
+﻿Imports CRODIPWS
+
+Public Class frmRPDlgHelp551
     Implements IfrmCRODIP
 
     Protected m_oDiag As RPDiagnostic
@@ -80,5 +82,5 @@
             m_oDiag.RemoveDiagItem(New DiagnosticItem(m_oDiag.id, "551", "3", "", "B"))
         End If
     End Sub
- 
+
 End Class

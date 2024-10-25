@@ -1,4 +1,6 @@
-﻿Partial Class frmRPDlgHelp552
+﻿Imports CRODIPWS
+
+Partial Class frmRPDlgHelp552
     Inherits Diagnostic_dlghelp552
     Implements IfrmCRODIP
 

@@ -1,5 +1,6 @@
 
 Imports System.Data.Common
+Imports CRODIPWS
 
 Public Class StatsCrodip
 

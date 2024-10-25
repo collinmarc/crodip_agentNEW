@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmGestLieuxControle
     Inherits System.Windows.Forms.Form
 
@@ -81,7 +83,7 @@ Partial Class frmGestLieuxControle
         '
         'm_bsLieuxControle
         '
-        Me.m_bsLieuxControle.DataSource = GetType(Crodip_agent.LieuxControle)
+        Me.m_bsLieuxControle.DataSource = GetType(LieuxControle)
         '
         'cbxCommunes2
         '
@@ -98,7 +100,7 @@ Partial Class frmGestLieuxControle
         '
         'm_bsCommune
         '
-        Me.m_bsCommune.DataSource = GetType(Crodip_agent.Commune)
+        Me.m_bsCommune.DataSource = GetType(Commune)
         '
         'Label4
         '

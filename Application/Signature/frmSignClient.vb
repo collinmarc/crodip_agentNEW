@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports System.Drawing.Imaging
 Imports System.IO
+Imports CRODIPWS
 
 Public Class frmSignClient
     Inherits System.Windows.Forms.Form

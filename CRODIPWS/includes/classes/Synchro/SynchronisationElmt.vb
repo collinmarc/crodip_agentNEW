@@ -389,7 +389,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreControle
                     Try
                         SetStatus("Réception MAJ Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantChaine, "")
                         If My.Settings.GestiondesPools Then
                             ManometreControleManager.getLstPoolById(tmpObject)
                         End If
@@ -452,7 +452,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreEtalon
                     Try
                         SetStatus("Réception MAJ Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantChaine, "")
                         If My.Settings.GestiondesPools Then
                             ManometreEtalonManager.getLstPoolById(tmpObject)
                         End If

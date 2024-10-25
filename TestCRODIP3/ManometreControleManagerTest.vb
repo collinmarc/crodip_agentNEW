@@ -1,5 +1,5 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 '''<summary>
 '''Classe de test pour FVManometreControleManagerTest, destinée à contenir tous
 '''les tests unitaires FVManometreControleManagerTest
@@ -37,7 +37,7 @@ Public Class ManometreControleManagerTest
         objManometreControle.numTraca = 6
         objManometreControle.typeRaccord = "RA"
 
-        Assert.AreEqual(objManometreControle.isSupprime, True)
+        Assert.AreEqual(objManometreControle.isSupprimeWS, True)
         Assert.AreEqual(objManometreControle.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objManometreControle.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objManometreControle.dateSuppression), CDate("06/02/1964"))
@@ -60,7 +60,7 @@ Public Class ManometreControleManagerTest
         objManometreControle2 = ManometreControleManager.getManometreControleByNumeroNational("MonNumeroNational")
         Assert.AreEqual("MonManometreControle", objManometreControle2.idCrodip)
 
-        Assert.AreEqual(objManometreControle2.isSupprime, True)
+        Assert.AreEqual(objManometreControle2.isSupprimeWS, True)
         Assert.AreEqual(objManometreControle2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objManometreControle2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objManometreControle2.dateSuppression), CDate("06/02/1964"))
@@ -99,7 +99,7 @@ Public Class ManometreControleManagerTest
         'Rehcragement du ManometreControle pour vérifier l'update
         objManometreControle = ManometreControleManager.getManometreControleByNumeroNational("MonNumeroNational")
 
-        Assert.AreEqual(objManometreControle.isSupprime, False)
+        Assert.AreEqual(objManometreControle.isSupprimeWS, False)
         Assert.AreEqual(objManometreControle.AgentSuppression, "MonAgentSuppression")
         Assert.AreEqual(objManometreControle.RaisonSuppression, "MaRaison2")
         Assert.AreEqual(CDate(objManometreControle.dateSuppression), CDate("06/02/1965"))
@@ -155,18 +155,18 @@ Public Class ManometreControleManagerTest
         oManometreControle.typeRaccord = "RA"
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
-        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManometreControle, UpdatedObject)
+        Dim response As Integer = ManometreControleManager.WSSend(oManometreControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManometreControle.numeroNational)
+        oManometreControle2 = ManometreControleManager.WSgetById("", oManometreControle.numeroNational)
         Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
-        Assert.AreEqual(oManometreControle2.isSupprime, False)
+        Assert.AreEqual(oManometreControle2.isSupprimeWS, False)
         Assert.AreEqual(oManometreControle.etat, oManometreControle2.etat)
 
-        Assert.AreEqual(oManometreControle.AgentSuppression, oManometreControle2.AgentSuppression)
-        Assert.AreEqual(oManometreControle.RaisonSuppression, oManometreControle2.RaisonSuppression)
-        Assert.AreEqual(oManometreControle.DateSuppression, oManometreControle2.DateSuppression)
+        Assert.AreEqual(oManometreControle.agentSuppression, oManometreControle2.agentSuppression)
+        Assert.AreEqual(oManometreControle.raisonSuppression, oManometreControle2.raisonSuppression)
+        Assert.AreEqual(oManometreControle.dateSuppression, oManometreControle2.dateSuppression)
         Assert.AreEqual(oManometreControle.type, oManometreControle2.type)
         Assert.AreEqual(oManometreControle.fondEchelle, oManometreControle2.fondEchelle)
         Assert.AreEqual(oManometreControle.resolution, oManometreControle2.resolution)
@@ -198,7 +198,7 @@ Public Class ManometreControleManagerTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.idstructure = m_oAgent.idStructure
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
 
@@ -208,10 +208,10 @@ Public Class ManometreControleManagerTest
         objManometreControle2.DeleteMateriel(m_oAgent, "MaRaison")
 
         objManometreControle = ManometreControleManager.getManometreControleByNumeroNational("MonNumeroNational")
-        Assert.AreEqual(objManometreControle.isSupprime, True)
-        Assert.AreEqual(objManometreControle.AgentSuppression, m_oAgent.nom)
-        Assert.AreEqual(objManometreControle.RaisonSuppression, "MaRaison")
-        Assert.IsNotNull(objManometreControle.DateSuppression)
+        Assert.AreEqual(objManometreControle.isSupprimeWS, True)
+        Assert.AreEqual(objManometreControle.agentSuppression, m_oAgent.nom)
+        Assert.AreEqual(objManometreControle.raisonSuppression, "MaRaison")
+        Assert.IsNotNull(objManometreControle.dateSuppression)
 
 
 
@@ -233,19 +233,19 @@ Public Class ManometreControleManagerTest
         idManoControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         'oManoControle.numeroNational = idManoControle
         oManoControle.numeroNational = idManoControle
-        oManoControle.idStructure = m_oAgent.idStructure
+        oManoControle.idstructure = m_oAgent.idStructure
         oManoControle.isSupprime = False
         oManoControle.etat = True
         Assert.IsTrue(ManometreControleManager.save(oManoControle))
 
         oManoControle = ManometreControleManager.getManometreControleByNumeroNational(oManoControle.numeroNational)
-        Assert.IsTrue(String.IsNullOrEmpty(oManoControle.DateSuppression))
+        Assert.IsTrue(String.IsNullOrEmpty(oManoControle.dateSuppression))
 
-        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManoControle, UpdatedObject)
+        Dim response As Integer = ManometreControleManager.WSSend(oManoControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManoControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManoControle.numeroNational)
-        Assert.AreEqual(oManoControle2.isSupprime, False)
+        oManoControle2 = ManometreControleManager.WSgetById("", oManoControle.numeroNational)
+        Assert.AreEqual(oManoControle2.isSupprimeWS, False)
         Assert.IsTrue(String.IsNullOrEmpty(oManoControle2.DateSuppression))
 
         bReturn = ManometreControleManager.delete(idManoControle)

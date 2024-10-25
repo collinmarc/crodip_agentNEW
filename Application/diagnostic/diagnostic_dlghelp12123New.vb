@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports CRODIPWS
 
 Public Class diagnostic_dlghelp12123new
     Implements IfrmCRODIP, IdlgHelp12123
@@ -191,7 +192,7 @@ Public Class diagnostic_dlghelp12123new
         If TypeOf (e.Exception) Is FormatException Then
 
             Dim strValue As String = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
-            strValue = strValue.replace(".", ",")
+            strValue = strValue.Replace(".", ",")
             If IsNumeric(strValue) Then
                 DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = strValue
                 '            e.Cancel = True
@@ -219,7 +220,7 @@ Public Class diagnostic_dlghelp12123new
                 laEcartMoyen.ForeColor = laResultat.ForeColor
                 tbEcartMoyen.BackColor = laResultat.ForeColor
                 laResultat.Text = oPompe.LabelResultat
-                pctResultat.Image = oPompe.Image
+                pctResultat.Image = getImage(oPompe.Resultat)
                 If oPompe.EcartReglageMoyen.HasValue Then
                     tbEcartMoyen.Text = oPompe.EcartReglageMoyen.Value
                 Else
@@ -264,6 +265,18 @@ Public Class diagnostic_dlghelp12123new
         End Try
 
     End Sub
+    Private Function getImage(pResultat As String) As Bitmap
+        If pResultat = DiagnosticItem.EtatDiagItemOK Then
+            Return Resources.PuceVerteT
+        Else
+            If pResultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                Return Resources.PuceRougeT
+            Else
+                Return Resources.PuceGriseT
+            End If
+        End If
+    End Function
+
     Private PreviousSelectedNode As TreeNode = Nothing
     Private Sub TreeView1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TreeView1.Validating
         TreeView1.SelectedNode.BackColor = SystemColors.Highlight

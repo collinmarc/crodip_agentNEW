@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Xml.Serialization
 Imports Crodip_agent
+Imports CRODIPWS
 
 '<XmlInclude(GetType(List(Of RPInfosBuses)))>
 '<XmlInclude(GetType(RPInfosBuses))>

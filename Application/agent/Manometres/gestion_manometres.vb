@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports CRODIPWS
+
 Public Class gestion_manometres
     Inherits frmCRODIP
 
@@ -213,7 +215,7 @@ Public Class gestion_manometres
         '
         'm_bsManoControle
         '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.m_bsManoControle.DataSource = GetType(CRODIPWS.ManometreControle)
         '
         'Label13
         '
@@ -368,7 +370,7 @@ Public Class gestion_manometres
         '
         'm_bsMAnoEtalon
         '
-        Me.m_bsMAnoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
+        Me.m_bsMAnoEtalon.DataSource = GetType(ManometreEtalon)
         '
         'Label14
         '
@@ -610,7 +612,7 @@ Public Class gestion_manometres
             Dim index As Integer = e.RowIndex
             Dim oMano As ManometreControle = m_bsManoControle(index)
             e.Value = Crodip_agent.Resources.PuceGriseT
-            If Not oMano.JamaisServi Then
+            If Not oMano.jamaisServi Then
                 If oMano.etat Then
                     e.Value = Crodip_agent.Resources.PuceVerteT
                 Else
@@ -632,7 +634,7 @@ Public Class gestion_manometres
             Dim index As Integer = e.RowIndex
             Dim oMano As ManometreEtalon = m_bsMAnoEtalon(index)
             e.Value = Crodip_agent.Resources.PuceGriseT
-            If Not oMano.JamaisServi Then
+            If Not oMano.jamaisServi Then
 
                 If oMano.etat Then
                     e.Value = Crodip_agent.Resources.PuceVerteT

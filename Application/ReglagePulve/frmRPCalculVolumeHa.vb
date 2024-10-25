@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class frmRPCalculVolumeHa
     Inherits System.Windows.Forms.Form
     Implements IfrmCRODIP

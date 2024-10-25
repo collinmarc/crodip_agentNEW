@@ -1,8 +1,9 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.Xml.Serialization
 Imports System.IO
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+
 
 <TestClass()>
 Public Class AutoTestTest
@@ -597,7 +598,7 @@ Public Class AutoTestTest
         oCol = AutoTestManager.getcolControlesReguliers(m_oAgent, , , , True)
         Assert.AreEqual(3, oCol.Count)
 
-        Assert.IsTrue(AutoTestManager.sendWSControlesReguliers(m_oAgent))
+        Assert.AreEqual(0, AutoTestManager.WSSendList(m_oAgent))
         '        Assert.IsTrue(AutoTestManager.sendWS2ControlesReguliers(m_oAgent))
 
         'On vérifie que les autoTest ne sont plus dans la collection des autotests as synchroniser

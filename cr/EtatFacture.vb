@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
 Imports System.IO
@@ -31,7 +32,7 @@ Public Class EtatFacture
     End Class
 
     Private m_oDiag As Diagnostic
-    Private m_ods As ds_EtatBL
+    Private m_ods As CRODIPWS.ds_EtatBL
     Private m_lstPresta As List(Of facturePrestation)
     Private m_Reference As String
     Private m_ReportName As String
@@ -83,7 +84,7 @@ Public Class EtatFacture
     End Function
 
 
-    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = genereDS()
@@ -121,7 +122,7 @@ Public Class EtatFacture
         Try
 
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim oStruct As Structuree
+            Dim oStruct As [Structure]
             oStruct = StructureManager.getStructureById(m_oDiag.organismePresId)
 
 
@@ -169,7 +170,7 @@ Public Class EtatFacture
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostic_finalisation ERR : " & ex.Message)
-            m_ods = New ds_EtatBL()
+            m_ods = New CRODIPWS.ds_EtatBL()
             bReturn = False
         End Try
 

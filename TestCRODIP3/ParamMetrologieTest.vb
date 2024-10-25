@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CrodipWS
 Imports System.Xml.Serialization
 Imports System.IO
 Imports CRODIP_ControlLibrary

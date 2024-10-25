@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.Generic
 Imports System.IO
+Imports CRODIPWS
 ''' <summary>
 ''' Simplification de la fenêtre frmDiagnostique 
 ''' utilisé par l'outil de reglagePulvé
@@ -1281,8 +1282,8 @@ Public Class frmDiagnostiqueSimple
             ' Chargement des informations du diag
             Dim tmpDiagnosticItem As DiagnosticItem
             Dim isLoaded As Boolean = False
-            If Not m_diagnostic.diagnosticItemsLst Is Nothing And Not m_diagnostic.diagnosticItemsLst.Values Is Nothing Then
-                For Each tmpDiagnosticItem In m_diagnostic.diagnosticItemsLst.Values
+            If Not m_diagnostic.diagnosticItemsLst Is Nothing And Not m_diagnostic.diagnosticItemsLst.Liste Is Nothing Then
+                For Each tmpDiagnosticItem In m_diagnostic.diagnosticItemsLst.Liste
                     If tmpDiagnosticItem IsNot Nothing Then
                         Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(tmpDiagnosticItem)
                         If tmpControl IsNot Nothing Then
@@ -3043,7 +3044,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
 
             ' Récupération des variables
-            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmDiagnostique))
+            Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(FrmDiagnostique))
             'Dim tabCategories As TabControl = diagBuses_tab_categories
             Dim isCleared As Boolean = False
             Do While isCleared = False

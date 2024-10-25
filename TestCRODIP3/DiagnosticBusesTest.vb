@@ -2,7 +2,7 @@
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -499,11 +499,11 @@ Public Class DiagnosticBusesTest
 
         Dim response As New Object
 
-        Dim nResponse As Integer = DiagnosticBusesManager.sendWSDiagnosticBuses(agentCourant, oDiagBuseList)
+        Dim nResponse As Integer = DiagnosticBusesManager.WSSend(oDiagBuseList)
 
         '        Assert.AreNotEqual(-1, nResponse)
 
-        nResponse = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(agentCourant, oDiagBuse.diagnosticBusesDetailList)
+        nResponse = DiagnosticBusesDetailManager.WSSend(oDiagBuse.diagnosticBusesDetailList)
 
 
         'Assert.AreNotEqual(-1, nResponse)

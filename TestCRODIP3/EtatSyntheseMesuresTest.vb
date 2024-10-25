@@ -1,7 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatSyntheseMesuresTest
     Inherits CRODIPTest

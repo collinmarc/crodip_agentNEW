@@ -4,6 +4,7 @@ Imports System.Linq
 Imports System.Globalization
 Imports System.Collections.Generic
 Imports CsvHelper.Configuration
+Imports CRODIPWS
 
 Public Class frmGestLieuxControle
 
@@ -33,6 +34,7 @@ Public Class frmGestLieuxControle
                 End Using
             End If
         Catch ex As Exception
+
             CSDebug.dispError("frmGestLieuxControle.ChargerLieuxControle ERR : ", ex)
         End Try
 

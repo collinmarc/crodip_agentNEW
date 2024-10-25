@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class gestion_tarifs_addPresta
     Inherits System.Windows.Forms.Form
 

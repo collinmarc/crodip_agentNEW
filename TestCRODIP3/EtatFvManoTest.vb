@@ -1,8 +1,9 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
 Imports CRODIP_ControlLibrary
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatFvManoTest
     Inherits CRODIPTest
@@ -11,7 +12,7 @@ Imports CRODIP_ControlLibrary
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idStructure = m_oAgent.idStructure
+        oManoRef.idstructure = m_oAgent.idStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -23,7 +24,7 @@ Imports CRODIP_ControlLibrary
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idStructure = m_oAgent.idStructure
+        oManoCtrl.idstructure = m_oAgent.idStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -151,7 +152,7 @@ Imports CRODIP_ControlLibrary
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idStructure = m_oAgent.idStructure
+        oManoRef.idstructure = m_oAgent.idStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -163,7 +164,7 @@ Imports CRODIP_ControlLibrary
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idStructure = m_oAgent.idStructure
+        oManoCtrl.idstructure = m_oAgent.idStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -175,7 +176,7 @@ Imports CRODIP_ControlLibrary
 
         Dim oManoCtrl2 As ManometreControle
         oManoCtrl2 = New ManometreControle()
-        oManoCtrl2.idStructure = m_oAgent.idStructure
+        oManoCtrl2.idstructure = m_oAgent.idStructure
         oManoCtrl2.idCrodip = "888"
         oManoCtrl2.numeroNational = "10004"
         oManoCtrl2.marque = "BAUMER-BOURDON"

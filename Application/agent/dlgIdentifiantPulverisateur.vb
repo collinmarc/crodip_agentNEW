@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class dlgIdentifiantPulverisateur
     Inherits System.Windows.Forms.Form
 
@@ -188,7 +190,7 @@ Public Class dlgIdentifiantPulverisateur
         '
         'm_bsIdentifiantPulveristeur
         '
-        Me.m_bsIdentifiantPulveristeur.DataSource = GetType(Crodip_agent.IdentifiantPulverisateur)
+        Me.m_bsIdentifiantPulveristeur.DataSource = GetType(IdentifiantPulverisateur)
         '
         'dlgIdentifiantPulverisateur
         '
@@ -221,7 +223,6 @@ Public Class dlgIdentifiantPulverisateur
     Private Sub dlgIdentifiantPulverisateur_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
         Debug.Assert(Not m_IdentifiantPulve Is Nothing)
-        CSEnvironnement.checkDateTimePicker(dtDateUtilisation)
 
         m_bsIdentifiantPulveristeur.Add(m_IdentifiantPulve)
     End Sub

@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports CRODIPWS
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
@@ -365,7 +366,7 @@ Public Class EtatRapportInspection
             'End If
 
             Dim strPrestataire As String = ""
-            Dim oStructure As Structuree
+            Dim oStructure As [Structure]
             Dim oAgent As Agent
             oAgent = AgentManager.getAgentById(m_oDiag.inspecteurId)
             If (oAgent.idStructure <> 0) Then

@@ -1,8 +1,7 @@
 ﻿
 Imports System.Data.Common
-Imports Crodip_agent
+Imports CRODIPWS
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-
 
 
 '''<summary>
@@ -108,9 +107,9 @@ Public Class AgentManagerTest
         agent.isGestionnaire = True
         agent.isSignElecActive = True
 
-        actual = AgentManager.sendWSAgent(agent, updatedObject)
+        actual = AgentManager.WSSend(agent, updatedObject)
 
-        agentLu = AgentManager.getWSAgentById(agent.numeroNational)
+        agentLu = AgentManager.WSgetByNumeroNational(agent.numeroNational)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
         Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)
@@ -132,39 +131,6 @@ Public Class AgentManagerTest
         'Assert.AreEqual(agentLu.versionLogiciel, "VERSION")
         'Assert.AreEqual(agentLu.DroitsPulves, "Rampes|Voute")
         Assert.AreEqual(True, agentLu.isSignElecActive)
-
-    End Sub
-    <TestMethod()>
-    Public Sub SynchroAgentTest()
-        Dim agent As Agent = Nothing
-        Dim agentLu As Agent = Nothing
-        Dim updatedObject As Object = Nothing
-        Dim updatedObjectExpected As Object = Nothing
-        Dim expected As Object = Nothing
-        Dim actual As Object
-
-        WSCrodip.Init("https://admin.crodip.net/server")
-        agent = New Agent()
-        agent.idStructure = 2
-        agent.numeroNational = "TST"
-        agent.id = 1247
-        agent.nom = "TEST FONCTIONNELS MARC"
-        agent.dateModificationAgent = CSDate.GetDateForWS(Now())
-        agent.dateModificationCrodip = "2012-09-04 12:00:00"
-        agent.isActif = True
-        agent.motDePasse = "mdp"
-        agent.statut = "STATUT"
-        agent.telephonePortable = "0680667189"
-        agent.versionLogiciel = "VERSION"
-        agent.DroitsPulves = "Rampes|Voute"
-        agent.isGestionnaire = True
-        agent.isSignElecActive = True
-        agent.idCRODIPPool = "POOM03"
-
-        actual = AgentManager.sendWSAgent(agent, updatedObject)
-
-        agentLu = AgentManager.getWSAgentById(agent.numeroNational)
-        Assert.AreEqual(agentLu.idCRODIPPool, "TEST")
 
     End Sub
 
@@ -199,8 +165,8 @@ Public Class AgentManagerTest
     <TestMethod()> _
     Public Sub GetAgentListTest()
         Dim oAgent As Agent
-        Dim oStructure As Structuree
-        oStructure = New Structuree()
+        Dim oStructure As [Structure]
+        oStructure = New [Structure]()
         oStructure.id = StructureManager.getNewId()
         oStructure.nom = "MaStructure"
         StructureManager.save(oStructure)
@@ -227,11 +193,11 @@ Public Class AgentManagerTest
     '''<summary>
     '''Test de création d'un agent sur une base vide
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub CreateAgentBaseVideTest()
         Dim oAgent As Agent
-        Dim oStructure As Structuree
-        oStructure = New Structuree()
+        Dim oStructure As [Structure]
+        oStructure = New [Structure]()
         oStructure.id = StructureManager.getNewId()
         oStructure.nom = "MaStructure"
         StructureManager.save(oStructure)

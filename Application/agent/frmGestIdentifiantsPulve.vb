@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports CRODIPWS
+
 Public Class frmGestIdentifiantsPulve
     Inherits frmCRODIP
 
@@ -115,7 +117,7 @@ Public Class frmGestIdentifiantsPulve
         'm_bsrcManoControlSuppr
         '
         Me.m_bsrcManoControlSuppr.AllowNew = False
-        Me.m_bsrcManoControlSuppr.DataSource = GetType(Crodip_agent.IdentifiantPulverisateur)
+        Me.m_bsrcManoControlSuppr.DataSource = GetType(IdentifiantPulverisateur)
         '
         'Label82
         '

@@ -6,14 +6,14 @@ Public Class BancManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Banc
         Dim oreturn As Banc
-        oreturn = getWSByKey(Of Banc)(p_uid, paid)
+        oreturn = RootWSGetById(Of Banc)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As Banc, ByRef pobjOut As Banc) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Banc)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of Banc)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSBanc : " & ex.Message)

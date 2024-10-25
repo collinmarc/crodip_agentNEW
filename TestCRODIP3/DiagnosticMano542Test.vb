@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 
 '''<summary>
 '''Classe de test pour DiagnosticMano542, destinée à contenir tous
@@ -446,7 +446,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FAIBLE)
         Next
 
@@ -463,7 +463,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FAIBLE)
         Next
 
@@ -480,7 +480,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FORTE)
         Next
 
@@ -497,7 +497,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FAIBLE)
         Next
 
@@ -514,7 +514,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FAIBLE)
         Next
 
@@ -531,7 +531,7 @@ Public Class DiagnosticMano542Test
 
         oColMano542.CalcImprecisionNew(oParamCalc542)
 
-        For Each oMano542 In oColMano542.diagnosticMano542
+        For Each oMano542 In oColMano542.diagnosticMano542Array
             Assert.AreEqual(oMano542.Erreur, DiagnosticMano542.ERR542.FORTE)
         Next
 

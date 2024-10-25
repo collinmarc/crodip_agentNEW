@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CrodipWS
 Imports System.Xml.Serialization
 Imports System.IO
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
@@ -77,7 +77,7 @@ Public Class PrestationTest
     Public Sub VerifPrestation2Structures()
 
         'ces données ont été initialisée dans l'interface CRODIP de test
-        Dim oStructure1 As New Structuree()
+        Dim oStructure1 As New [Structure]()
         oStructure1.id = 497
         'StructureManager.save(oStructure1)
         Dim oAgent1 As New Agent()
@@ -86,7 +86,7 @@ Public Class PrestationTest
         oAgent1.idStructure = oStructure1.id
         'AgentManager.save(oAgent1)
 
-        Dim oStructure2 As Structuree = m_oStructure
+        Dim oStructure2 As [Structure] = m_oStructure
         Dim oAgent2 As Agent = m_oAgent
 
         'Création Presta / Tarif Structure 1

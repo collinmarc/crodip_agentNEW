@@ -2,7 +2,7 @@
 Imports System.Collections.Generic
 
 Imports System.Xml.Serialization
-
+Imports CRODIPWS
 
 Public Class dlgToleranceBuses
     Private m_lst As lstToleranceBuse

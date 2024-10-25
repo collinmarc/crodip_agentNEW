@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 
 <TestClass()> Public Class ReferentielBusesCSVTest
     Inherits CRODIPTest

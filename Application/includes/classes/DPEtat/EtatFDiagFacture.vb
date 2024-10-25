@@ -1,4 +1,6 @@
-﻿Public Class EtatFDiagFacture
+﻿Imports CRODIPWS
+
+Public Class EtatFDiagFacture
     Inherits EtatFDiag
 
     Public Sub New()
@@ -24,7 +26,7 @@
         Select Case pAction.CodeAction
             Case Crodip_agent.Action.ACTION_BACK
             Case Crodip_agent.Action.ACTION_NEXT
-                Dim oStruct As Structuree = StructureManager.getStructureById(oDiag.organismePresId)
+                Dim oStruct As [Structure] = StructureManager.getStructureById(oDiag.organismePresId)
                 oReturn = New EtatFDiagEnquete(Me)
 
         End Select

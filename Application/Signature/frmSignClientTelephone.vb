@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports CRODIPWS
+
 Public Enum SignMode As Integer
     RICLIENT
     RIAGENT

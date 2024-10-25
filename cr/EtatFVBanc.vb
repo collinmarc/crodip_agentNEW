@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Public Class EtatFVBanc
@@ -78,4 +79,21 @@ Public Class EtatFVBanc
         Return bReturn
 
     End Function
+    Public Function buildPDF(ByVal curBanc As Banc, pAgent As Agent) As String
+        Dim sReturn As String
+
+        m_oControle.DateVerif = curBanc.dateDernierControleS
+        m_oControle.Proprietaire = pAgent.NomStructure
+        m_oControle.AgentVerif = pAgent.nom & " " & pAgent.prenom
+        m_oControle.idBanc = curBanc.id
+
+        '        Dim oEtat As New EtatFVBanc(Me)
+        Dim bReturn As Boolean = genereEtat()
+        If bReturn Then
+            sReturn = getFileName()
+        Else
+            sReturn = ""
+        End If
+        Return sReturn
+    End Function 'BuildPDF
 End Class

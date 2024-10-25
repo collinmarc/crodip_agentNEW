@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class diagnostic_dlghelp12123new
 
     Inherits System.Windows.Forms.Form
@@ -342,7 +344,7 @@ Partial Class diagnostic_dlghelp12123new
         '
         'm_bsrcH12123
         '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        Me.m_bsrcH12123.DataSource = GetType(DiagnosticHelp12123)
         '
         'btnValiderNbMesures
         '

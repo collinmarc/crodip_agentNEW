@@ -3,6 +3,7 @@ Imports System.Threading
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.Math
+Imports CRODIPWS
 
 Public Class frmcontrole_bancs
     Inherits frmCRODIP
@@ -432,7 +433,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses1
         '
-        Me.m_bsBuses1.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsBuses1.DataSource = GetType(Buse)
         '
         'Label7
         '
@@ -458,7 +459,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses2
         '
-        Me.m_bsBuses2.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsBuses2.DataSource = GetType(Buse)
         '
         'Label15
         '
@@ -484,7 +485,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses3
         '
-        Me.m_bsBuses3.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsBuses3.DataSource = GetType(Buse)
         '
         'controleBanc_buse4
         '
@@ -499,7 +500,9 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses4
         '
-        Me.m_bsBuses4.DataSource = GetType(Crodip_agent.Buse)
+
+
+        Me.m_bsBuses4.DataSource = GetType(Buse)
         '
         'Label29
         '
@@ -525,7 +528,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses5
         '
-        Me.m_bsBuses5.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsBuses5.DataSource = GetType(Buse)
         '
         'Label30
         '
@@ -551,7 +554,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses6
         '
-        Me.m_bsBuses6.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsBuses6.DataSource = GetType(Buse)
         '
         'Label31
         '
@@ -566,7 +569,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsControleBanc
         '
-        Me.m_bsControleBanc.DataSource = GetType(Crodip_agent.ControleBanc)
+        Me.m_bsControleBanc.DataSource = GetType(ControleBanc)
         '
         'grp_temperatures
         '
@@ -1914,7 +1917,7 @@ Public Class frmcontrole_bancs
                         Dim cbxBuseList As ComboBox = CSForm.getControlByName("controleBanc_buse" & i, Me)
                         If cbxBuseList.SelectedItem IsNot Nothing Then
                             ' On récupère la buse
-                            oBuse = TryCast(cbxBuseList.SelectedItem, Buse)
+                            obuse = TryCast(cbxBuseList.SelectedItem, Buse)
                             If obuse IsNot Nothing Then
                                 nBuse = nBuse + 1
                             End If
@@ -1961,8 +1964,10 @@ Public Class frmcontrole_bancs
         End Try
 
         ' construction de l'objet FicheDeVie "Controle"
+        Dim oEtat As New EtatFVBanc(m_oControleBanc)
+        Dim sFileName As String = oEtat.buildPDF(curBanc, agentCourant)
         Dim oFV As FVBanc
-        oFV = curBanc.creerfFicheVieControle(agentCourant, m_oControleBanc)
+        oFV = curBanc.creerfFicheVieControle(agentCourant, m_oControleBanc, sFileName)
         If oFV.FVFileName <> "" Then
             CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oFV.FVFileName)
         End If
@@ -2290,7 +2295,7 @@ Public Class frmcontrole_bancs
 
 
 
- 
+
     Private Sub Label28_Click(sender As Object, e As EventArgs) Handles Label28.Click
 
     End Sub

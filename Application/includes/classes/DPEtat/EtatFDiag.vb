@@ -1,4 +1,6 @@
-﻿Public Enum EtatFenetre
+﻿Imports CRODIPWS
+
+Public Enum EtatFenetre
     ETAT_DEPART = 0
     ETAT_EXPLOITATION = 10
     ETAT_PULVERISATEUR = 20
@@ -117,7 +119,7 @@ Public MustInherit Class EtatFDiag
                 Next
             End If
         End If
-            Return oReturn
+        Return oReturn
     End Function
 
     Public MustOverride Function createFrmDiag() As Form

@@ -3,6 +3,7 @@ Imports System.Linq
 Imports System.Threading
 Imports CRODIPAcquisition
 Imports CRODIP_ControlLibrary
+Imports CRODIPWS
 
 ''' <summary>
 ''' Fenêtre de controle des manomètres
@@ -224,7 +225,7 @@ Public Class frmControleManometresNew
         '
         'm_bsManoEtalon
         '
-        Me.m_bsManoEtalon.DataSource = GetType(Crodip_agent.ManometreEtalon)
+        Me.m_bsManoEtalon.DataSource = GetType(CRODIPWS.ManometreEtalon)
         '
         'm_bsControle
         '
@@ -233,7 +234,7 @@ Public Class frmControleManometresNew
         '
         'm_bsManoControle
         '
-        Me.m_bsManoControle.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.m_bsManoControle.DataSource = GetType(CRODIPWS.ManometreControle)
         '
         'Label82
         '
@@ -1512,7 +1513,7 @@ Public Class frmControleManometresNew
         Dim oMAno As ManometreControle
         oMAno = m_bsManoControle.Current
 
-        Dim oControle As ControleMano
+        Dim oControle As CRODIPWS.ControleMano
         oControle = oMAno.controle
         If oControle IsNot Nothing Then
             For Each oDetail As ControleManoDetail In oControle.lstControleManoDetail.Values
@@ -1564,7 +1565,12 @@ Public Class frmControleManometresNew
                         curManoControle.dateDernierControle = dtpDateControle.Value
                         ' On construit notre nouvelle fiche de vie
                         CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Construct FV Controle ")
-                        curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
+                        Dim oEtat As New EtatFVMano(oCtrlMano)
+                        Dim sFileName As String = oEtat.buildPDF(curManoControle, agentCourant)
+                        Dim oFV As FVManometreControle
+                        oFV = curManoControle.creerfFicheVieControle(agentCourant, oCtrlMano, sFileName)
+
+                        ' curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
 
                         ' On flag le mano etalon comme etant utilise
                         ' On récupère le mano

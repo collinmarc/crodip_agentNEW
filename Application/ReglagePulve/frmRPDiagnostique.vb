@@ -1,4 +1,6 @@
-﻿Public Class frmRPDiagnostique
+﻿Imports CRODIPWS
+
+Public Class frmRPDiagnostique
     Inherits frmDiagnostiqueSimple
     Implements IfrmCRODIP
 

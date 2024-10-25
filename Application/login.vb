@@ -7,7 +7,7 @@ Imports System.Text.RegularExpressions
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Collections.Generic
-
+Imports CRODIPWS
 
 Public Class login
     Inherits frmCRODIP
@@ -282,7 +282,7 @@ Public Class login
         'm_bsrcPools
         '
         Me.m_bsrcPools.AllowNew = False
-        Me.m_bsrcPools.DataSource = GetType(Crodip_agent.Pool)
+        Me.m_bsrcPools.DataSource = GetType(Pool)
         '
         'lblBaseDonnee
         '
@@ -740,108 +740,108 @@ Public Class login
                     'If CSEnvironnement.checkWebService() = True And Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
                     ' On commence par redescendre le pass de l'agent courant
                     Dim tmpObject As New Agent
-                        Try
-                            tmpObject = AgentManager.getWSAgentById(_selectedAgent.numeroNational)
-                            If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
-                                _selectedAgent.duppliqueInfosAgent(tmpObject, False)
-                                If CSDate.FromCrodipString(_selectedAgent.dateDerniereSynchro).Year = 1970 Then
-                                    _selectedAgent.dateDerniereSynchro = tmpObject.dateDerniereSynchro
-                                End If
-                                AgentManager.save(_selectedAgent, True)
-                                bAgentExistant = True
-                            Else
-                                bAgentExistant = False
-                                If tmpObject.id > 0 And tmpObject.isSupprime Then
-                                    'Suppression de l'agent en base
-                                    AgentManager.save(tmpObject)
-                                End If
-                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
-                                'On recharge la Liste des profils 
-                                FillCbxAgent()
-                                login_password.Clear()
-                                pnlLoginControls.Enabled = True
-
-                                Exit Sub
+                    Try
+                        tmpObject = AgentManager.WSgetByNumeroNational(_selectedAgent.numeroNational)
+                        If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
+                            _selectedAgent.duppliqueInfosAgent(tmpObject, False)
+                            If CSDate.FromCrodipString(_selectedAgent.dateDerniereSynchro).Year = 1970 Then
+                                _selectedAgent.dateDerniereSynchro = tmpObject.dateDerniereSynchro
                             End If
-                        Catch ex As Exception
-                            CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
-                        End Try
-                    Else
-                        'Pas de WS => on considère que l'agent est OK
-                        bAgentExistant = True
-                    End If
-                    If bAgentExistant Then
-                        If CSCrypt.encode(login_password.Text, "sha256") = _selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
-                            ' Mot de passe correct => On le met en "session"
-                            agentCourant = _selectedAgent
-                            ' On met à jour le numéro de version du logiciel agent
-                            If _selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
-                                _selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
-                                CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
-                                AgentManager.save(_selectedAgent)
+                            AgentManager.save(_selectedAgent, True)
+                            bAgentExistant = True
+                        Else
+                            bAgentExistant = False
+                            If tmpObject.id > 0 And tmpObject.isSupprime Then
+                                'Suppression de l'agent en base
+                                AgentManager.save(tmpObject)
                             End If
-                            If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
-                                'L'agent à un pool Affecté
-                                '==========================
-                                If _selectedAgent.oPool.idCRODIPPC = "" Then
-                                    Dim oAgentPC As New AgentPC()
-                                    Dim Str As String = ""
-                                    While (Str.Length <> 5 Or Not IsNumeric(Str))
-                                        Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                                        If Str.Length = 0 Then
-                                            'On sort si on click sur Annul
-                                            login_password.Text = ""
-                                            pnlLoginControls.Enabled = True
-                                            Exit Sub
-                                        End If
-                                    End While
-                                    oAgentPC.idCrodip = Str
-                                    oAgentPC.idStructure = _selectedAgent.idStructure
-                                    AgentPCManager.save(oAgentPC)
-                                    _selectedAgent.oPool.idCRODIPPC = Str
-                                    PoolManager.Save(_selectedAgent.oPool)
-                                End If
+                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                            MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
+                            'On recharge la Liste des profils 
+                            FillCbxAgent()
+                            login_password.Clear()
+                            pnlLoginControls.Enabled = True
 
-                                If Not _selectedAgent.checkPC() Then
-                                    CSDebug.dispFatal("Le PC n'est pas reconnu")
-                                    MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
-                                    Application.Exit()
-                                Else
-                                    'L'agent à un Pool et est reconnu
-                                    SynchroEtSuite(_selectedAgent)
-                                End If
-                            Else
-                                'L'agent n'a pas de pool Affecté
-                                '===============================
-                                'Chargement de la liste de pools
-                                PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
-                                                                                             m_bsrcPools.Add(p)
-                                                                                         End Sub)
-                                If m_bsrcPools.Count > 1 Then
-                                    'il y a plus d'un pool, on demande à l'inspecteur de choisir
-                                    pnlPools.Visible = True
-                                Else
-                                    If m_bsrcPools.Count = 1 Then
-                                        'il y a un seul pool, on l'affecte à l'inspecteur
-                                        Dim oPool As Pool
-                                        oPool = m_bsrcPools(0)
-                                        _selectedAgent.idCRODIPPool = oPool.idCrodip
-                                        AgentManager.save(_selectedAgent)
+                            Exit Sub
+                        End If
+                    Catch ex As Exception
+                        CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
+                    End Try
+                Else
+                    'Pas de WS => on considère que l'agent est OK
+                    bAgentExistant = True
+                End If
+                If bAgentExistant Then
+                    If CSCrypt.encode(login_password.Text, "sha256") = _selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
+                        ' Mot de passe correct => On le met en "session"
+                        agentCourant = _selectedAgent
+                        ' On met à jour le numéro de version du logiciel agent
+                        If _selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
+                            _selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
+                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
+                            AgentManager.save(_selectedAgent)
+                        End If
+                        If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
+                            'L'agent à un pool Affecté
+                            '==========================
+                            If _selectedAgent.oPool.idCRODIPPC = "" Then
+                                Dim oAgentPC As New AgentPC()
+                                Dim Str As String = ""
+                                While (Str.Length <> 5 Or Not IsNumeric(Str))
+                                    Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                                    If Str.Length = 0 Then
+                                        'On sort si on click sur Annul
+                                        login_password.Text = ""
+                                        pnlLoginControls.Enabled = True
+                                        Exit Sub
                                     End If
-                                    'il n'y a pas de pool dans la base => on passe à la suite
-                                    SynchroEtSuite(_selectedAgent)
-                                End If
+                                End While
+                                oAgentPC.idCrodip = Str
+                                oAgentPC.idStructure = _selectedAgent.idStructure
+                                AgentPCManager.save(oAgentPC)
+                                _selectedAgent.oPool.idCRODIPPC = Str
+                                PoolManager.Save(_selectedAgent.oPool)
+                            End If
 
+                            If Not _selectedAgent.checkPC() Then
+                                CSDebug.dispFatal("Le PC n'est pas reconnu")
+                                MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
+                                Application.Exit()
+                            Else
+                                'L'agent à un Pool et est reconnu
+                                SynchroEtSuite(_selectedAgent)
                             End If
                         Else
-                            ' On met à jour la barre de status
-                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
-                            MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
-                            login_password.Text = ""
-                        End If 'Mot de passe
-                    End If 'bAgentExistant
-                End If 'bAgentOK
+                            'L'agent n'a pas de pool Affecté
+                            '===============================
+                            'Chargement de la liste de pools
+                            PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
+                                                                                         m_bsrcPools.Add(p)
+                                                                                     End Sub)
+                            If m_bsrcPools.Count > 1 Then
+                                'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                                pnlPools.Visible = True
+                            Else
+                                If m_bsrcPools.Count = 1 Then
+                                    'il y a un seul pool, on l'affecte à l'inspecteur
+                                    Dim oPool As Pool
+                                    oPool = m_bsrcPools(0)
+                                    _selectedAgent.idCRODIPPool = oPool.idCrodip
+                                    AgentManager.save(_selectedAgent)
+                                End If
+                                'il n'y a pas de pool dans la base => on passe à la suite
+                                SynchroEtSuite(_selectedAgent)
+                            End If
+
+                        End If
+                    Else
+                        ' On met à jour la barre de status
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
+                        MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe")
+                        login_password.Text = ""
+                    End If 'Mot de passe
+                End If 'bAgentExistant
+            End If 'bAgentOK
         Catch ex As Exception
             ' On met à jour la barre de status
             Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : " & ex.Message, False)
@@ -928,9 +928,9 @@ Public Class login
     End Sub
     Private Sub FillCbxAgent()
         Dim oAgentList As AgentList
-        Dim olstStruct As List(Of Structuree)
+        Dim olstStruct As List(Of [Structure])
         olstStruct = StructureManager.getList()
-        For Each oStruct As Structuree In olstStruct
+        For Each oStruct As [Structure] In olstStruct
             oAgentList = AgentManager.getAgentList(oStruct.id)
             login_profil.Items.Clear()
             For Each curAgent As Agent In oAgentList.items
@@ -1335,7 +1335,7 @@ Public Class login
         If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not pAgent.isGestionnaire Then
             If CSEnvironnement.checkWebService() = True Then
                 panel_splashSynchro.Visible = True
-                CSTime.pause(500) ' Pause de 500ms
+                Threading.Thread.Sleep(500) ' Pause de 500ms
 
                 ' On vérifie les mises à jour
                 Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)

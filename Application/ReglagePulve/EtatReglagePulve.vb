@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Public Class EtatReglagePulve
@@ -309,7 +310,7 @@ Public Class EtatReglagePulve
 
             'Controle du Manometre 542
             m_ods.Mano542.AddMano542Row(idDiag:=m_oDiag.id, useCalibrateur:=m_oDiag.controleUseCalibrateur, EcartMaxi:=m_oDiag.syntheseErreurMaxiManoD, EcartMoyen:=m_oDiag.syntheseErreurMoyenneManoD, Resultat:=m_oDiag.syntheseImprecision542)
-            For Each oMesure542 As DiagnosticMano542 In m_oDiag.diagnosticMano542List.diagnosticMano542
+            For Each oMesure542 As DiagnosticMano542 In m_oDiag.diagnosticMano542List.diagnosticMano542Array
                 m_ods.Mano542Detail.AddMano542DetailRow(PressionPulve:=oMesure542.pressionPulved, pressionControle:=oMesure542.pressionControled, Ecart:=oMesure542.Ecart, Imprecision:=oMesure542.Erreur.ToString(), idDiag:=m_oDiag.id)
             Next
 

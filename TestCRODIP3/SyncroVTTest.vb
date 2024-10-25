@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CrodipWS
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()> Public Class SynchroVTTest
@@ -37,13 +37,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oManometreControle.typeRaccord = "RA"
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
-        Dim response As Integer = ManometreControleManager.sendWSManometreControle(m_oAgent, oManometreControle, UpdatedObject)
+        Dim response As Integer = ManometreControleManager.WSSend( oManometreControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManometreControle.numeroNational)
+        oManometreControle2 = ManometreControleManager.WSGetById("", oManometreControle.numeroNational)
         Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
-        Assert.AreEqual(oManometreControle2.isSupprime, False)
+        Assert.AreEqual(oManometreControle2.isSupprimeWS, False)
         Assert.AreEqual(oManometreControle.etat, oManometreControle2.etat)
 
         '        Assert.AreEqual(oManometreControle.AgentSuppression, oManometreControle2.AgentSuppression)
@@ -68,13 +68,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oManometreControle2.typeTraca = "H"
         oManometreControle2.numTraca = 2
         oManometreControle2.typeRaccord = "RH"
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         Assert.IsTrue(ManometreControleManager.save(oManometreControle2))
 
-        response = ManometreControleManager.sendWSManometreControle(m_oAgent, oManometreControle2, UpdatedObject)
+        response = ManometreControleManager.WSSend( oManometreControle2, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreControle2 = ManometreControleManager.getWSManometreControleById(m_oAgent, oManometreControle2.numeroNational)
+        oManometreControle2 = ManometreControleManager.WSGetById("", oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle2.nbControles, 10)
         Assert.AreEqual(oManometreControle2.nbControlesTotal, 20)
         Assert.AreEqual(oManometreControle2.bAjusteur, False)
@@ -123,9 +123,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         agent.idCRODIPPool = "123"
         AgentManager.save(agent)
 
-        actual = AgentManager.sendWSAgent(agent, updatedObject)
+        actual = AgentManager.WSSend(agent, updatedObject)
 
-        agentLu = AgentManager.getWSAgentById(agent.numeroNational)
+        agentLu = AgentManager.WSgetById(agent.numeroNational)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
         Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)
@@ -160,12 +160,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdateInfo)
+        ExploitationManager.WSSend( oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
+
+        PulverisateurManager.WSSend(oPulve, UpdateInfo)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdateInfo)
+        ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
@@ -220,7 +221,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(idDiag, oDiag.id)
 
         Dim response As Object = Nothing
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
+        DiagnosticManager.WSSend( oDiag, response)
 
 
 
@@ -229,7 +230,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         'Synchronisation descendate du Diag
         '==================================
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
 
 
         Assert.AreEqual(oDiag.id, oDiag2.id)
@@ -293,12 +294,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdateInfo)
+        ExploitationManager.WSSend( oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
+        PulverisateurManager.WSSend(oPulve, UpdateInfo)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdateInfo)
+        ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
@@ -390,22 +391,22 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         idDiag = oDiag.id
 
         Dim response As Object = Nothing
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
-        Dim responseDiag833 As Object = DiagnosticTroncons833Manager.sendWSDiagnosticTroncons833(m_oAgent, oDiag.diagnosticTroncons833)
+        DiagnosticManager.WSSend( oDiag, response)
+        Dim responseDiag833 As Object = DiagnosticTroncons833Manager.WSSend(oDiag)
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
 
         'Synchronisation descendate du Diag
         '==================================
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
         DiagnosticManager.save(oDiag2)
 
         Dim oManoTroncon833 As New DiagnosticTroncons833
         Dim oListManotroncon833 As New DiagnosticTroncons833List
         Dim oCSDB As New CSDb(True)
-        oListManotroncon833 = DiagnosticTroncons833Manager.getWSDiagnosticTroncons833ByDiagId(m_oAgent.id, oDiag2.id)
-            For Each oManoTroncon833 In oListManotroncon833.Liste
+        oListManotroncon833 = DiagnosticTroncons833Manager.WSGetList(oDiag2.uid, oDiag2.id)
+        For Each oManoTroncon833 In oListManotroncon833.Liste
                 DiagnosticTroncons833Manager.save(oManoTroncon833, oCSDB, True)
             Next
         DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(oCSDB, oDiag2)
@@ -478,12 +479,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdateInfo)
+        ExploitationManager.WSSend( oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
+        PulverisateurManager.WSSend(oPulve, UpdateInfo)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdateInfo)
+        ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
@@ -558,23 +559,21 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Synchronisation Montante du Diag
         '==================================
         Dim response As Object = Nothing
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
-        response = DiagnosticBusesManager.sendWSDiagnosticBuses(m_oAgent, oDiag.diagnosticBusesList)
-        For Each oDiagBuse In oDiag.diagnosticBusesList.Liste
-            response = DiagnosticBusesDetailManager.sendWSDiagnosticBusesDetail(m_oAgent, oDiagBuse.diagnosticBusesDetailList)
+        DiagnosticManager.WSSend( oDiag, response)
+        response = DiagnosticBusesManager.WSSend(oDiag)
+        response = DiagnosticBusesDetailManager.WSSend(oDiag)
 
-        Next
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
 
         'Synchronisation Descendante du Diag + Sauvegarde
         '==================================================
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
         DiagnosticManager.save(oDiag2)
 
         Dim oDiagBuseList As DiagnosticBusesList
         Dim tmpObject As DiagnosticBuses
-        oDiagBuseList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(m_oAgent.id, oDiag.id)
+        oDiagBuseList = DiagnosticBusesManager.WSGetList(oDiag.uid, oDiag.id)
         Dim oCSDB As New CSDb(True)
         For Each tmpObject In oDiagBuseList.Liste
             DiagnosticBusesManager.save(tmpObject, oCSDB, True)
@@ -582,7 +581,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oCSDB.free()
         Dim oDiagBusesDetailList As New DiagnosticBusesDetailList
         Dim oDiagBusesDetail As New DiagnosticBusesDetail
-        oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(m_oAgent.id, oDiag.id)
+        oDiagBusesDetailList = DiagnosticBusesDetailManager.WSGetList(oDiag.uid, oDiag.id)
         For Each oDiagBusesDetail In oDiagBusesDetailList.Liste
                 DiagnosticBusesDetailManager.save(oDiagBusesDetail, True)
             Next
@@ -651,9 +650,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         strId = oExploitation.id
         oExploitation = ExploitationManager.getExploitationById(strId)
         Dim oResponse As Object = Nothing
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+        ExploitationManager.WSSend( oExploitation, oResponse)
 
-        oExploitation = ExploitationManager.getWSExploitationById(m_oAgent.id, strId)
+        oExploitation = ExploitationManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oExploitation.id)
         Assert.AreEqual(m_oAgent.idStructure, oExploitation.idStructure)
         Assert.AreEqual("Test Avec accents éèçàù êëï", oExploitation.raisonSociale)
@@ -671,7 +670,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     Public Sub TST_GET_SEND_WS_Exploitation2()
         Dim oExploitation As Exploitation
 
-        oExploitation = ExploitationManager.getWSExploitationById(m_oAgent.id, "498-1119-1")
+        oExploitation = ExploitationManager.WSgetById(-1, "498-1119-1")
         Assert.AreEqual("498-1119-1", oExploitation.id)
         Assert.AreEqual("Test Avec accents éèçàù êëï", oExploitation.raisonSociale)
         Assert.AreEqual("12345", oExploitation.codeApe)
@@ -691,18 +690,18 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim oExploitation2 As Exploitation
         Dim oPUlve As Pulverisateur
         Dim strId As String
-
+        Dim updateInfo As ExploitationTOPulverisateur
         'Création de l'exploitation 1
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+        ExploitationManager.WSSend( oExploitation, oResponse)
 
         'Création de l'exploitation 2
         oExploitation2 = createExploitation()
         oExploitation2.raisonSociale = "Exploitation2"
         ExploitationManager.save(oExploitation2, m_oAgent)
 
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation2, oResponse)
+        ExploitationManager.WSSend( oExploitation2, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id
@@ -710,22 +709,23 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.isPulveAdditionnel = True
         oPUlve.pulvePrincipalNumNat = "123"
         PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve)
+        Dim oReturnP As Pulverisateur
+        PulverisateurManager.WSSend(oPUlve, oReturnP)
         ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, False, m_oAgent)
 
         Dim olst As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id)
         Assert.AreEqual(2, olst.Count)
         Assert.AreEqual(False, olst(0).isSupprimeCoProp)
         Assert.AreEqual(False, olst(1).isSupprimeCoProp)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, olst(0), oResponse)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, olst(1), oResponse)
+        ExploitationTOPulverisateurManager.WSSend(olst(0), oResponse)
+        ExploitationTOPulverisateurManager.WSSend(olst(1), oResponse)
 
         Dim oExploitToPulve As ExploitationTOPulverisateur
-        oExploitToPulve = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(m_oAgent.id, olst(0).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(0).uid, olst(0).id)
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
-        oExploitToPulve = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(m_oAgent.id, olst(1).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).id)
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         'Suppression du 2nd Propriétaire
         ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, True, m_oAgent)
         olst = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id, True)
@@ -734,9 +734,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(True, olst(1).isSupprimeCoProp)
 
         'Envoi de l'element supprimé
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, olst(1), oResponse)
+        ExploitationTOPulverisateurManager.WSSend(olst(1), oResponse)
         'Récupération de l'élement supprimé
-        oExploitToPulve = ExploitationTOPulverisateurManager.getWSExploitationTOPulverisateurById(m_oAgent.id, olst(1).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).id)
         Assert.IsTrue(oExploitToPulve.isSupprimeCoProp)
 
 
@@ -754,7 +754,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+        ExploitationManager.WSSend( oExploitation, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id
@@ -767,9 +767,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.isRincagecircuit = False
         oPUlve.isReglageAutoHauteur = False
         PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve)
+        PulverisateurManager.WSSend(oPUlve, oResponse)
 
-        oPUlve = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        oPUlve = PulverisateurManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oPUlve.id)
         Assert.IsTrue(oPUlve.isPulveAdditionnel)
         Assert.AreEqual("123", oPUlve.pulvePrincipalNumNat)
@@ -780,7 +780,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsFalse(oPUlve.isRincagecircuit)
         Assert.IsFalse(oPUlve.isReglageAutoHauteur)
 
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         oPUlve.numeroChassis = "132456"
         oPUlve.isPulveAdditionnel = True
         oPUlve.pulvePrincipalNumNat = "123"
@@ -791,9 +791,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.isReglageAutoHauteur = True
 
         PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve)
+        PulverisateurManager.WSSend(oPUlve, oResponse)
 
-        oPUlve = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        oPUlve = PulverisateurManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oPUlve.id)
         Assert.IsTrue(oPUlve.isPulveAdditionnel)
         Assert.AreEqual("123", oPUlve.pulvePrincipalNumNat)
@@ -881,11 +881,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oBanc.ModuleAcquisition = "MD2"
         BancManager.save(oBanc)
 
-        Dim response As Integer = BancManager.sendWSBanc(m_oAgent, oBanc)
+        Dim oReturn As Banc
+        Dim response As Integer = BancManager.WSSend(oBanc, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
-        oBanc2 = BancManager.getWSBancById(m_oAgent, oBanc.id)
+        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.id)
         Assert.AreEqual(oBanc.id, oBanc2.id)
-        Assert.AreEqual(oBanc2.isSupprime, False)
+        Assert.AreEqual(oBanc2.isSupprimeWS, False)
         Assert.AreEqual(oBanc2.etat, oBanc.etat)
 
         Assert.AreEqual(oBanc2.dateAchat, oBanc.dateAchat)

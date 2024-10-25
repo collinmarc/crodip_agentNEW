@@ -1,4 +1,6 @@
-﻿Public Class frmRPRapport
+﻿Imports CRODIPWS
+
+Public Class frmRPRapport
     Implements IfrmCRODIP
     Protected m_oDiag As RPDiagnostic
     Protected m_EtatReglagePulve As EtatReglagePulve
@@ -71,7 +73,7 @@
         m_oDiag.bSectionCalculs = lbSections.GetItemChecked(9)
         m_oDiag.bSectionEntete = True
 
-        If (m_EtatReglagePulve.GenereEtat()) Then
+        If (m_EtatReglagePulve.genereEtat()) Then
             m_EtatReglagePulve.Open()
         End If
 

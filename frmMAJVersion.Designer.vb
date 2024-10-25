@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMAJVersion
     Inherits System.Windows.Forms.Form
 
@@ -104,7 +106,7 @@ Partial Class frmMAJVersion
         '
         'm_bsUpdateInfo
         '
-        Me.m_bsUpdateInfo.DataSource = GetType(Crodip_agent.UpdateInfo)
+        Me.m_bsUpdateInfo.DataSource = GetType(UpdateInfo)
         '
         'frmMAJVersion
         '

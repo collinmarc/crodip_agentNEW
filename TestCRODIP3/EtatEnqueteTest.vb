@@ -1,7 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatenquteTest
     Inherits CRODIPTest
@@ -22,7 +23,7 @@ Imports System.IO
 
 
         oEtat = New EtatEnquete(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
 

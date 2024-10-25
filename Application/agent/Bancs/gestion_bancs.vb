@@ -1,4 +1,6 @@
 
+Imports CRODIPWS
+
 Public Class gestion_bancs
     Inherits frmCRODIP
 

@@ -325,34 +325,34 @@ Public Class Banc
     Public Function creerFicheVieDesactivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVBanc.FVTYPE_DESACTIVATION, pAgent) IsNot Nothing
     End Function
-    'Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleBanc As ControleBanc) As FVBanc
-    '    Dim oReturn As FVBanc = Nothing
-    '    Try
-    '        Dim oFV As FVBanc
-    '        oFV = creerFicheVie(FVBanc.FVTYPE_CONTROLE, pAgent)
-    '        If oFV IsNot Nothing Then
+    Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleBanc As ControleBanc, pFileName As String) As FVBanc
+        Dim oReturn As FVBanc = Nothing
+        Try
+            Dim oFV As FVBanc
+            oFV = creerFicheVie(FVBanc.FVTYPE_CONTROLE, pAgent)
+            If oFV IsNot Nothing Then
 
-    '            ' Contrôle OK ou NOK
-    '            If Me.etat Then
-    '                oFV.blocage = False
-    '            Else
-    '                oFV.blocage = True
-    '            End If
+                ' Contrôle OK ou NOK
+                If Me.etat Then
+                    oFV.blocage = False
+                Else
+                    oFV.blocage = True
+                End If
 
-    '            ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
-    '            Dim sFileName As String = pControleBanc.buildPDF(Me, pAgent)
-    '            oFV.FVFileName = sFileName
+                ' On CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
+                'Dim sFileName As String = pControleBanc.buildPDF(Me, pAgent)
+                oFV.FVFileName = pFileName
 
-    '            FVBancManager.save(oFV)
-    '            oReturn = oFV
+                FVBancManager.save(oFV)
+                oReturn = oFV
 
-    '        End If
-    '    Catch ex As Exception
-    '        CSDebug.dispError("Banc.CreerFicheVieControle : ERR" & ex.Message)
-    '        oReturn = Nothing
-    '    End Try
-    '    Return oReturn
-    'End Function
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("Banc.CreerFicheVieControle : ERR" & ex.Message)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
 
     Private Function creerFicheVie(ByVal pType As String, ByVal pAgent As Agent) As FVBanc
         Debug.Assert(pAgent IsNot Nothing)

@@ -1,4 +1,6 @@
 ﻿Imports Crodip_agent
+Imports CRODIPWS
+
 Public Class frmMAJsynchroAgent
     Private m_Agent As Agent
     Private objWSCrodip As WSCrodip_prod.CrodipServer
@@ -25,7 +27,7 @@ Public Class frmMAJsynchroAgent
 
         'Récupération de l'agent
         Dim oResponse As Object = Nothing
-        m_Agent = AgentManager.getWSAgentById(tbNumNationalAgent.Text)
+        m_Agent = AgentManager.WSgetByNumeroNational(tbNumNationalAgent.Text)
         If m_Agent.id <> 0 Then
             ''Maj de l'agent 
 

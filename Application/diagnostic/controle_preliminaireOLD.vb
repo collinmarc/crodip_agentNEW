@@ -1,5 +1,6 @@
 Imports System.Linq
 Imports System.Collections.Generic
+Imports CRODIPWS
 
 Public Class controle_preliminaireOLD
 
@@ -1709,8 +1710,8 @@ Public Class controle_preliminaireOLD
 
             ' Chargement des informations du diag
             Dim tmpDiagnosticItem As DiagnosticItem
-            If Not m_Diagnostic.diagnosticItemsLst Is Nothing And Not m_Diagnostic.diagnosticItemsLst.Values Is Nothing Then
-                For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.Values
+            If Not m_Diagnostic.diagnosticItemsLst Is Nothing And Not m_Diagnostic.diagnosticItemsLst.Liste Is Nothing Then
+                For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.Liste
                     If tmpDiagnosticItem IsNot Nothing Then
                         Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(tmpDiagnosticItem)
                         If tmpControl IsNot Nothing Then

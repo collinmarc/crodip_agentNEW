@@ -8,6 +8,7 @@ Imports System.Windows.Forms
 Imports System.Drawing.Imaging
 Imports wgssSTU
 Imports System.IO
+Imports CRODIPWS
 
 Partial Public Class frmSignClientWacom
     Inherits frmSignClient

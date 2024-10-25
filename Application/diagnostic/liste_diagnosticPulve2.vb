@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports CRODIPWS
 
 Public Class liste_diagnosticPulve2
     Inherits System.Windows.Forms.Form
@@ -864,7 +865,7 @@ Public Class liste_diagnosticPulve2
         '
         'm_bsrcDiag
         '
-        Me.m_bsrcDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        Me.m_bsrcDiag.DataSource = GetType(Diagnostic)
         '
         'btn_reprendreDiag
         '
@@ -3020,7 +3021,7 @@ Public Class liste_diagnosticPulve2
         End If
         ckisNonReference.Checked = False
         btn_reprendreDiag.Visible = ckisNonReference.Checked
-        Dim oStructure As Structuree
+        Dim oStructure As [Structure]
         oStructure = StructureManager.getStructureById(oAgent.idStructure)
         FactureColumn.Visible = oStructure.isFacturationActive
         searchDiagnostic("")

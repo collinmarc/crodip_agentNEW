@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
 Imports System.IO
@@ -20,7 +21,7 @@ Public Class EtatContratCommercial
         End Using
     End Sub
 
-    protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
+    Protected Overrides Function GenereEtatLocal(Optional pExportPDF As Boolean = True) As Boolean
         Dim bReturn As Boolean
         Dim strReportName As String
         Try

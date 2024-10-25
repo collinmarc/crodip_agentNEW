@@ -202,7 +202,7 @@ Public Class Synchronisation
     ''' <param name="pAgent"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Friend Sub runAscSynchro()
+    Public Sub runAscSynchro()
 
         If CSEnvironnement.checkWebService() = True Then
 
@@ -742,7 +742,7 @@ Public Class Synchronisation
     '''
     ''' Synchronisation des Fiches de vies Banc vers le Serveur
 
-    Friend Function runascSynchroFVBanc() As Boolean
+    Public Function runascSynchroFVBanc() As Boolean
         Dim bReturn As Boolean
         bReturn = False
         ' Synchro d'un FVBanc

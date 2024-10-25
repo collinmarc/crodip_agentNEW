@@ -6,14 +6,14 @@ Public Class AutoTestManager
 #Region "WebsServices"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As AutoTest
         Dim oreturn As AutoTest
-        oreturn = getWSByKey(Of AutoTest)(p_uid, paid)
+        oreturn = RootWSGetById(Of AutoTest)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As AutoTest, ByRef pobjOut As AutoTest) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of AutoTest)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of AutoTest)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("AutoTestManager.WSSend : ", ex)

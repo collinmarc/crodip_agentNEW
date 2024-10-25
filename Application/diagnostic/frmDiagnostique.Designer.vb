@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports CRODIPWS
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmDiagnostique
     Inherits frmCRODIP
@@ -14610,7 +14611,7 @@ Partial Class FrmDiagnostique
         '
         'm_bsrcManoCPression
         '
-        Me.m_bsrcManoCPression.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.m_bsrcManoCPression.DataSource = GetType(ManometreControle)
         Me.m_bsrcManoCPression.Sort = "Traca"
         '
         'FrmDiagnostique

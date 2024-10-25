@@ -5,16 +5,16 @@ Public Class ManometreEtalonManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer) As ManometreEtalon
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As ManometreEtalon
         Dim oreturn As ManometreEtalon
-        oreturn = getWSByKey(Of ManometreEtalon)(p_uid, "")
+        oreturn = RootWSGetById(Of ManometreEtalon)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pManometreEtalon As ManometreEtalon, ByRef pReturn As ManometreEtalon) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of ManometreEtalon)(pManometreEtalon, pReturn)
+            nreturn = RootWSSend(Of ManometreEtalon)(pManometreEtalon, pReturn)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSManometreEtalon : " & ex.Message)

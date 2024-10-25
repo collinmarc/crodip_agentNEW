@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class SuppressionMateriel
     Inherits System.Windows.Forms.Form
 
@@ -123,8 +125,8 @@ Public Class SuppressionMateriel
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(399, 49)
         Me.Label4.TabIndex = 16
-        Me.Label4.Text = "Ce matériel ne sera plus utilisable par la suite dans le logiciel.  Si pour confi" & _
-    "rmer la suppression, indiquez la raison et cliquez sur le bouton Supprimer, sino" & _
+        Me.Label4.Text = "Ce matériel ne sera plus utilisable par la suite dans le logiciel.  Si pour confi" &
+    "rmer la suppression, indiquez la raison et cliquez sur le bouton Supprimer, sino" &
     "n cliquez sur le bouton Annuler"
         '
         'Label5

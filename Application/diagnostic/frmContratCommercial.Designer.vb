@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmContratCommercial
     Inherits System.Windows.Forms.Form
 
@@ -119,11 +121,11 @@ Partial Class frmContratCommercial
         '
         'm_bsrcAgent
         '
-        Me.m_bsrcAgent.DataSource = GetType(Crodip_agent.Agent)
+        Me.m_bsrcAgent.DataSource = GetType(Agent)
         '
         'm_bsrcDiag
         '
-        Me.m_bsrcDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        Me.m_bsrcDiag.DataSource = GetType(Diagnostic)
         '
         'frmContratCommercial
         '

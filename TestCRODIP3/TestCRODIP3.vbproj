@@ -81,8 +81,6 @@
     <Compile Include="CSDateTest.vb" />
     <Compile Include="CSDbTest.vb" />
     <Compile Include="CSEnvironnementTest.vb" />
-    <Compile Include="CsFTPtest.vb" />
-    <Compile Include="CSReglagePulveTest.vb" />
     <Compile Include="DiagnosticBusesDetailTest.vb" />
     <Compile Include="DiagnosticBusesTest.vb" />
     <Compile Include="DiagnosticHelp12123MesureTest.vb" />
@@ -150,8 +148,6 @@
     <Compile Include="RelevePression833Test.vb" />
     <Compile Include="StatCRODIPTest.vb" />
     <Compile Include="SynchronisationTest.vb" />
-    <Compile Include="testProduction.vb" />
-    <Compile Include="testBDASCAR.vb" />
     <Compile Include="ToleranceBuseTest.vb" />
     <Compile Include="StructureTest.vb" />
     <Compile Include="DiagnosticFilesTest.vb" />
@@ -231,6 +227,10 @@
     <ProjectReference Include="..\CRODIPAcquisition\CRODIPAcquisition.vbproj">
       <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
       <Name>CRODIPAcquisition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRODIPWS\CRODIPWS.vbproj">
+      <Project>{d148fb92-18b1-4fb6-903d-1dc575b7d452}</Project>
+      <Name>CRODIPWS</Name>
     </ProjectReference>
     <ProjectReference Include="..\CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
       <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>

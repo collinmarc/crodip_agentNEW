@@ -1,4 +1,6 @@
-﻿Public Class frmMAJVersion
+﻿Imports CRODIPWS
+
+Public Class frmMAJVersion
     Public Sub Setcontexte(pUpdateInfo As UpdateInfo)
         m_bsUpdateInfo.Clear()
         m_bsUpdateInfo.Add(pUpdateInfo)

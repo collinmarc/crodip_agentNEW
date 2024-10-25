@@ -8,7 +8,7 @@ Public Class AgentManager
 #Region "Methodes acces Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer) As Agent
         Dim oreturn As Agent
-        oreturn = getWSByKey(Of Agent)(p_uid, "")
+        oreturn = RootWSGetById(Of Agent)(p_uid, "")
         Return oreturn
     End Function
 
@@ -615,7 +615,7 @@ Public Class AgentManager
     ''' on prend 1971 car 1970 est synomime d'erreur et est utilisé dans le doLogin 
     ''' </summary>
     ''' <returns></returns>
-    Friend Shared Function GetDateDernSynchro(pIdStructure As String) As DateTime
+    Public Shared Function GetDateDernSynchro(pIdStructure As String) As DateTime
         Dim lst As AgentList = AgentManager.getAgentList(pIdStructure)
         Dim oReturn As DateTime = CSDate.FromCrodipString("1971-01-01")
         If lst.items.Count > 0 Then

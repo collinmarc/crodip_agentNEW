@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmlstLieuxControle
     Inherits System.Windows.Forms.Form
 
@@ -33,7 +35,7 @@ Partial Class frmlstLieuxControle
         'm_bsLieuxControle
         '
         Me.m_bsLieuxControle.AllowNew = False
-        Me.m_bsLieuxControle.DataSource = GetType(Crodip_agent.LieuxControle)
+        Me.m_bsLieuxControle.DataSource = GetType(LieuxControle)
         '
         'lbLieuxControles
         '

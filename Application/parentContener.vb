@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class parentContener
     Inherits Form
     Implements IObservateur

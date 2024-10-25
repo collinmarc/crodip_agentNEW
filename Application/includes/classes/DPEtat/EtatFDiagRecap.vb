@@ -1,4 +1,6 @@
-﻿Public Class EtatFDiagRecap
+﻿Imports CRODIPWS
+
+Public Class EtatFDiagRecap
     Inherits EtatFDiag
 
     Public Sub New()
@@ -23,7 +25,7 @@
             Case Crodip_agent.Action.ACTION_BACKTODEFAUTS
                 oReturn = New EtatFDiagDefautsEtMesures(Me)
             Case Crodip_agent.Action.ACTION_NEXT
-                Dim oStruct As Structuree = StructureManager.getStructureById(oDiag.organismePresId)
+                Dim oStruct As [Structure] = StructureManager.getStructureById(oDiag.organismePresId)
                 If oStruct.isFacturationActive Then
                     oReturn = New EtatFDiagFacture(Me)
                 Else

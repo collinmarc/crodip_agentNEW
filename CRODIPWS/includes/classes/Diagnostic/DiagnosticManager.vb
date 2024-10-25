@@ -255,7 +255,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsRI(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsRI(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -267,7 +267,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsSM(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsSM(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -278,7 +278,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsCC(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsCC(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -289,7 +289,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsBL(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsBL(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -300,7 +300,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsES(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsES(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -311,7 +311,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsCOPRO(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsCOPRO(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -322,7 +322,7 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Friend Shared Function getWSEtatsFACTs(pDiag As Diagnostic) As Boolean
+    Public Shared Function getWSEtatsFACTs(pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = True
@@ -336,15 +336,6 @@ Public Class DiagnosticManager
             bReturn = False
         End Try
         Return bReturn
-    End Function
-    Public Shared Function xml2object(ByVal arrXml As Object) As Diagnostic
-        Dim objDiagnostic As New Diagnostic
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            objDiagnostic.Fill(tmpSerializeItem.LocalName, tmpSerializeItem.InnerText)
-        Next
-
-        Return objDiagnostic
     End Function
 
 #End Region
@@ -964,7 +955,7 @@ Public Class DiagnosticManager
 
     End Function
 
-    Friend Shared Function getNewId(pAgent As Agent) As String
+    Public Shared Function getNewId(pAgent As Agent) As String
         If pAgent.oPool IsNot Nothing Then
             Return getNewIdNew(pAgent)
         Else

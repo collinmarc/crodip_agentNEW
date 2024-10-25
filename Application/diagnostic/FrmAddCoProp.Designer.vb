@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmAddCoProp
     Inherits System.Windows.Forms.Form
 
@@ -177,7 +179,7 @@ Partial Class FrmAddCoProp
         '
         'm_bsrcExploitant
         '
-        Me.m_bsrcExploitant.DataSource = GetType(Crodip_agent.Exploitation)
+        Me.m_bsrcExploitant.DataSource = GetType(Exploitation)
         '
         'FrmAddCoProp
         '

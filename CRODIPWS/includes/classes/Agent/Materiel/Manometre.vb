@@ -93,22 +93,44 @@ Public Class Manometre
             m_isUtilise = Value
         End Set
     End Property
-
-    Public Property nbControles() As String
+    <XmlIgnore>
+    Public Property nbControles() As Integer
         Get
             Return m_nbControles
         End Get
-        Set(ByVal Value As String)
-            'm_nbControles = Value
+        Set(ByVal Value As Integer)
+            m_nbControles = Value
         End Set
     End Property
-
-    Public Property nbControlesTotal() As String
+    <XmlElement("nbControles")>
+    Public Property nbControlesS() As String
+        Get
+            Return nbControles
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                nbControles = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
+    Public Property nbControlesTotal() As Integer
         Get
             Return m_nbControlesTotal
         End Get
+        Set(ByVal Value As Integer)
+            m_nbControlesTotal = Value
+        End Set
+    End Property
+    <XmlElement("nbControlesTotal")>
+    Public Property nbControlesTotalS() As String
+        Get
+            Return nbControlesTotal
+        End Get
         Set(ByVal Value As String)
-            '            m_nbControlesTotal = Value
+            If Not String.IsNullOrEmpty(Value) Then
+                nbControlesTotal = Value
+            End If
         End Set
     End Property
     Private _lstPools As List(Of Pool)

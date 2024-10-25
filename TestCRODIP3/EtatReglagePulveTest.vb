@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 Imports System.IO
 
 #If REGLAGEPULVE Then
@@ -72,7 +72,7 @@ Imports System.IO
         Assert.IsTrue(oEtat.Open())
 
         'Sans l'entete
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         oDiag.bSectionEntete = False
         oEtat.GenereEtat()
         oEtat.Open()
@@ -148,7 +148,7 @@ Imports System.IO
         oEtat.Open()
 
         'Suppression de la Section
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         oDiag.bSectionDefauts = False
         oEtat = New EtatReglagePulve(oDiag)
@@ -246,7 +246,7 @@ Imports System.IO
         oEtat.Open()
 
         'Suppression de la Section
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         oDiag.bSectionSyntheseMesures = False
         oEtat = New EtatReglagePulve(oDiag)
@@ -346,7 +346,7 @@ Imports System.IO
         'Vérifier que la Ligne Max et Min soit bien sur le 10 
         oEtat.Open()
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oDiag.diagnosticBusesList.Liste(0).ecartTolere = 15
         oEtat = New EtatReglagePulve(oDiag)
@@ -433,7 +433,7 @@ Imports System.IO
 
         oEtat.Open()
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oEtat = New EtatReglagePulve(oDiag)
         oEtat.GenereEtat()

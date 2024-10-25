@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.Generic
 Imports CRODIP_ControlLibrary
+Imports CRODIPWS
 
 Public Class frmRPRecap
     Implements IfrmCRODIP

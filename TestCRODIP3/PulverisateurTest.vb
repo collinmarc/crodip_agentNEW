@@ -2,7 +2,7 @@
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -258,7 +258,7 @@ Public Class Pulverisateurtest
 
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+        ExploitationManager.WSSend( oExploitation, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id
@@ -273,9 +273,10 @@ Public Class Pulverisateurtest
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
         PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve)
+        Dim oReturn As Pulverisateur
+        PulverisateurManager.WSSend(oPUlve, oReturn)
 
-        oPUlve2 = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        oPUlve2 = PulverisateurManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oPUlve2.id)
         Assert.IsTrue(oPUlve2.isPulveAdditionnel)
         Assert.AreEqual("123", oPUlve2.pulvePrincipalNumNat)
@@ -289,7 +290,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
 
 
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         oPUlve2.numeroChassis = "132456"
         oPUlve2.isPulveAdditionnel = True
         oPUlve2.pulvePrincipalNumNat = "123"
@@ -300,11 +301,10 @@ Public Class Pulverisateurtest
         oPUlve2.isReglageAutoHauteur = True
         oPUlve2.immatCertificat = "321AQW321"
         oPUlve2.immatPlaque = "654ZSX654"
-
         PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPUlve2)
+        PulverisateurManager.WSSend(oPUlve2, oReturn)
 
-        oPUlve = PulverisateurManager.getWSPulverisateurById(m_oAgent.id, strId)
+        oPUlve = PulverisateurManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oPUlve.id)
         Assert.IsTrue(oPUlve.isPulveAdditionnel)
         Assert.AreEqual("123", oPUlve.pulvePrincipalNumNat)
@@ -331,7 +331,7 @@ Public Class Pulverisateurtest
 
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploitation, oResponse)
+        ExploitationManager.WSSend( oExploitation, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id
@@ -361,7 +361,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
 
 
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         oPUlve2.numeroChassis = "132456"
         oPUlve2.isPulveAdditionnel = True
         oPUlve2.pulvePrincipalNumNat = "123"
@@ -417,12 +417,12 @@ Public Class Pulverisateurtest
         Assert.IsTrue(oPUlve2.isPulveAdditionnel)
 
         PulverisateurManager.save(pPulve:=oPUlve2, client_id:=oExploitation.id, pAgent:=m_oAgent)
-        strDateModif1 = oPUlve2.dateModificationAgent
+        strDateModif1 = oPUlve2.dateModificationAgentS
         'Rechargement du Pulve Principal
         oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
         Assert.AreEqual(oPUlve.numeroNational, oPUlve.numeroNationalBis)
 
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         'Changement du numéro nationnal
         oPUlve.numeroNational = "E001456789"
         'Sauvegarde
@@ -432,7 +432,7 @@ Public Class Pulverisateurtest
         oPUlve2 = PulverisateurManager.getPulverisateurById(oPUlve2.id)
         'Vérificatino du numero du pulve principal
         Assert.AreEqual(oPUlve.numeroNational, oPUlve2.pulvePrincipalNumNat)
-        Assert.AreNotEqual(strDateModif1, oPUlve2.dateModificationAgent)
+        Assert.AreNotEqual(strDateModif1, oPUlve2.dateModificationAgentS)
 
 
     End Sub

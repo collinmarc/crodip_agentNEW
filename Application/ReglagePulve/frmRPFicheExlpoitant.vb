@@ -1,4 +1,6 @@
-﻿Public Class frmRPFicheExlpoitant
+﻿Imports CRODIPWS
+
+Public Class frmRPFicheExlpoitant
     Implements IfrmCRODIP
 
     Protected m_oDiag As RPDiagnostic

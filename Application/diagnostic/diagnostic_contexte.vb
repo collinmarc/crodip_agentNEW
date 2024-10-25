@@ -2,6 +2,7 @@ Imports System.Collections.Generic
 Imports System.Globalization
 Imports System.IO
 Imports System.Linq
+Imports CRODIPWS
 Imports CsvHelper
 
 Public Class diagnostic_contexte
@@ -277,7 +278,7 @@ Public Class diagnostic_contexte
         '
         'm_bsCommune
         '
-        Me.m_bsCommune.DataSource = GetType(Crodip_agent.Commune)
+        Me.m_bsCommune.DataSource = GetType(Commune)
         '
         'Label4
         '
@@ -934,8 +935,8 @@ Public Class diagnostic_contexte
 
     ' Chargement
     Private Sub diagnostic_contexte_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CSEnvironnement.checkDateTimePicker(dateDernierControleComplet)
-        CSEnvironnement.checkDateTimePicker(dateDernierControlePartiel)
+        'CSEnvironnement.checkDateTimePicker(dateDernierControleComplet)
+        'CSEnvironnement.checkDateTimePicker(dateDernierControlePartiel)
 
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
             Me.Text = Me.Text & " - Mode Simplifié - "
@@ -1309,7 +1310,7 @@ Public Class diagnostic_contexte
 
 
     Private Sub btn_Lieux_Click(sender As Object, e As EventArgs) Handles btn_Lieux.Click
-        AfficherLieuxControle()
+        AfficherLieuxcontrole()
     End Sub
     Private Sub AfficherLieuxcontrole()
         Dim ofrm As New frmlstLieuxControle()

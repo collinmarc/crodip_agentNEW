@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports System.Xml.Serialization
-Imports Crodip_agent
+Imports CrodipWS
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()> Public Class IdentifiantPulverisateurTest
@@ -171,19 +171,4 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
     'End Sub
-    <TestMethod>
-    Public Sub TestWSProd()
-
-        'Aggent COLLIN MARC Sur la Prod
-        m_oAgent.id = 1110
-        m_oAgent.idStructure = 2
-        Dim IdentId As String = "818"
-        Dim oWSCrodip As WSCrodip_prod.CrodipServer = WSCrodip.getWS("https://admin.crodip.fr/server")
-        Dim oIdent As New IdentifiantPulverisateur()
-        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, IdentId)
-
-
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
-
-    End Sub
 End Class

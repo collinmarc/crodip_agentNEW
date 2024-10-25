@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class diagnostic_dlghelp12123newTrtSem
 
     Inherits System.Windows.Forms.Form
@@ -147,7 +149,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         'm_bsrcH12123
         '
-        Me.m_bsrcH12123.DataSource = GetType(Crodip_agent.DiagnosticHelp12123)
+        Me.m_bsrcH12123.DataSource = GetType(DiagnosticHelp12123)
         '
         'rbFonctinonementInjection
         '

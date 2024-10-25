@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Class CSListViewItemComparer
     Implements IComparer
 
@@ -49,9 +51,9 @@ Class CSListViewItemComparer
                     End If
 
                     If ord = SortOrder.Ascending Then
-                        Return [Date].Compare(CSDate.FromCrodipString(CSDate.ToCRODIPString(xString)), CSDate.FromCrodipString(CSDate.ToCRODIPString(yString)))
+                        Return [DateTime].Compare(CSDate.FromCrodipString(CSDate.ToCRODIPString(xString)), CSDate.FromCrodipString(CSDate.ToCRODIPString(yString)))
                     Else
-                        Return [Date].Compare(CSDate.FromCrodipString(CSDate.ToCRODIPString(yString)), CSDate.FromCrodipString(CSDate.ToCRODIPString(xString)))
+                        Return [DateTime].Compare(CSDate.FromCrodipString(CSDate.ToCRODIPString(yString)), CSDate.FromCrodipString(CSDate.ToCRODIPString(xString)))
                     End If
 
             End Select

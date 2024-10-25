@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Module LogsManager
 
 #Region "Methodes Web Service"

@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports CRODIPWS
+''' <summary>
 ''' classe d'acquisition
 ''' 
 ''' </summary>

@@ -1,4 +1,6 @@
-﻿Public Class FeuillePeda
+﻿Imports CRODIPWS
+
+Public Class FeuillePeda
     Private _oDiag As Diagnostic
     Public Property oDiag() As Diagnostic
         Get

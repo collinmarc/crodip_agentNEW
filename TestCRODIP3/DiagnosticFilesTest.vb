@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
+Imports CRODIPWS
 Imports Crodip_agent
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
@@ -25,17 +26,17 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oEtat = New EtatRapportInspection(oDiag)
         Assert.IsTrue(oEtat.GenereEtat)
         Assert.IsNotNull(oEtat.getFileName())
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
 
         'Suppression du Fichier
 
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
 
         'Extraction du fichier
-        EtatCrodip.getPDFs(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, oEtat.getFileName())
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
+        EtatCrodip.getPDFs(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC, oEtat.getFileName())
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName()))
 
-        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
+        CSFile.open(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oEtat.getFileName())
 
     End Sub
 

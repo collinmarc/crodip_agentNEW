@@ -1,14 +1,13 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
+Imports CRODIPWS
 Imports Crodip_agent
-
-
 
 '''<summary>
 '''Classe de test pour FVBancManagerTest, destinée à contenir tous
 '''les tests unitaires FVBancManagerTest
 '''</summary>
-<TestClass()> _
+<TestClass()>
 Public Class FVBancManagerTest
     Inherits CRODIPTest
 
@@ -30,13 +29,13 @@ Public Class FVBancManagerTest
     'End Sub
     '
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
-    <TestInitialize()> _
+    <TestInitialize()>
     Public Overloads Sub MyTestInitialize()
         MyBase.MyTestInitialize()
     End Sub
 
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-    <TestCleanup()> _
+    <TestCleanup()>
     Public Overloads Sub MyTestCleanup()
         MyBase.MyTestCleanup()
     End Sub
@@ -47,7 +46,7 @@ Public Class FVBancManagerTest
     '''<summary>
     '''Test pour save
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub saveTest()
         Dim objFVBanc As FVBanc = Nothing ' TODO: initialisez à une valeur appropriée
         Dim expected As Object = Nothing ' TODO: initialisez à une valeur appropriée
@@ -75,13 +74,13 @@ Public Class FVBancManagerTest
     '''<summary>
     '''Test des fiches de vies Bancs
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub CreationDesFichesDeViesBancTest()
         Dim obanc As Banc
         Dim oFVBanc As FVBanc
         Dim olstFV As New List(Of FVBanc)
         obanc = m_oBanc
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)
 
@@ -91,7 +90,7 @@ Public Class FVBancManagerTest
         obanc.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
         BancManager.save(obanc)
         obanc = BancManager.getBancById(obanc.id)
-        Assert.IsFalse(obanc.JamaisServi)
+        Assert.IsFalse(obanc.jamaisServi)
         Assert.AreEqual(CDate("01/06/2014"), obanc.DateActivation)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
@@ -100,14 +99,14 @@ Public Class FVBancManagerTest
         Assert.AreEqual(oFVBanc.idBancMesure, obanc.id)
         Assert.AreEqual(oFVBanc.idAgentControleur, m_oAgent.id)
         Assert.AreEqual("MISEENSERVICE", oFVBanc.type)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         'Utilisation du banc 
         Assert.IsFalse(obanc.isUtilise)
         obanc.setUtilise(m_oAgent)
         BancManager.save(obanc)
         obanc = BancManager.getBancById(obanc.id)
         Assert.IsTrue(obanc.isUtilise)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         Assert.AreEqual(2, olstFV.Count) 'une fiche de vie PREMIERE UTILISATION
@@ -121,7 +120,7 @@ Public Class FVBancManagerTest
         BancManager.save(obanc)
         obanc = BancManager.getBancById(obanc.id)
         Assert.IsTrue(obanc.isUtilise)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         'Pas de création d'une seconde fiche de vie
@@ -132,7 +131,7 @@ Public Class FVBancManagerTest
         obanc.Desactiver(m_oAgent)
         obanc = BancManager.getBancById(obanc.id)
         Assert.IsFalse(obanc.etat)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         'Test de création d'une Troisième fiche de vie
@@ -146,17 +145,17 @@ Public Class FVBancManagerTest
 
         'Suppression du Banc
         'on ne peut pas supprimé un banc utilisé
-        Assert.IsFalse(obanc.isSupprime)
+        Assert.IsFalse(obanc.isSupprimeWS)
         obanc.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsFalse(obanc.isSupprime)
+        Assert.IsFalse(obanc.isSupprimeWS)
 
         'Reset du nombre de controle
         obanc.isUtilise = False
         BancManager.save(obanc)
-        Assert.IsFalse(obanc.isSupprime)
+        Assert.IsFalse(obanc.isSupprimeWS)
         obanc.DeleteMateriel(m_oAgent, "TEST")
         obanc = BancManager.getBancById(obanc.id)
-        Assert.IsTrue(obanc.isSupprime)
+        Assert.IsTrue(obanc.isSupprimeWS)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         'création d'une Troisième fiche de vie SUPRESSION
@@ -173,12 +172,12 @@ Public Class FVBancManagerTest
     '''<summary>
     '''Test des fiches de vies Bancs
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub SynhcroDesFichesDeViesBancTest()
         Dim obanc As Banc
         Dim olstFV As New List(Of FVBanc)
         obanc = m_oBanc
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)
 
@@ -280,12 +279,14 @@ Public Class FVBancManagerTest
         oCtrl.b6_3bar_conformite = "True"
 
         oCtrl.resultat = "Le résultat est négatif : vérifiez votre banc de mesure de débits"
-        pause(1000)
-        obanc.creerfFicheVieControle(m_oAgent, oCtrl)
+        System.Threading.Thread.Sleep(1000)
+        Dim oEtat As New EtatFVBanc(oCtrl)
+        Dim sFileName As String = oEtat.buildPDF(obanc, m_oAgent)
+        Dim oFV As FVBanc
+        oFV = obanc.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
         Dim oLst As New List(Of FVBanc)
         oLst = FVBancManager.getlstFVBancByBancId(obanc.id)
         'La Fiche de vie "Controle" est la dernière crée
-        Dim oFV As FVBanc
         oFV = oLst(oLst.Count - 1)
         Assert.IsFalse(String.IsNullOrEmpty(oFV.FVFileName))
         Dim strFVFileName As String
@@ -309,7 +310,7 @@ Public Class FVBancManagerTest
         BancManager.save(obanc)
         obanc.DeleteMateriel(m_oAgent, "TEST")
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TestCreationFVBanc()
         Dim obanc As Banc
         Dim oFVBanc As FVBanc
@@ -317,7 +318,7 @@ Public Class FVBancManagerTest
 
         'Création du banc Fictif (normalement créé par le CRODIP)
         obanc = m_oBanc
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.isUtilise = False
         BancManager.save(obanc)
 
@@ -327,7 +328,7 @@ Public Class FVBancManagerTest
         Assert.AreEqual(1, olstFV.Count)
         oFVBanc = olstFV(0)
         Assert.AreEqual(FVBanc.FVTYPE_MISENSERVICE, oFVBanc.type)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         'Première utilisation du banc
         obanc.setUtilise(m_oAgent)
@@ -338,14 +339,14 @@ Public Class FVBancManagerTest
         Assert.AreEqual(FVBanc.FVTYPE_MISENSERVICE, oFVBanc.type)
         oFVBanc = olstFV(1)
         Assert.AreEqual(FVBanc.FVTYPE_PREMIEREUTILISATION, oFVBanc.type)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         'Seconde utilisation du banc => Pas de création de Fiche de vie
         obanc.setUtilise(m_oAgent)
         BancManager.save(obanc)
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         Assert.AreEqual(2, olstFV.Count)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         'Désactivation du banc
         obanc.Desactiver(m_oAgent)
@@ -353,7 +354,7 @@ Public Class FVBancManagerTest
         Assert.AreEqual(3, olstFV.Count)
         oFVBanc = olstFV(2)
         Assert.AreEqual(FVBanc.FVTYPE_DESACTIVATION, oFVBanc.type)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         'Réactivation  du banc
         obanc.ActiverMateriel(Date.Now, m_oAgent)
@@ -361,7 +362,7 @@ Public Class FVBancManagerTest
         Assert.AreEqual(4, olstFV.Count)
         oFVBanc = olstFV(3)
         Assert.AreEqual(FVBanc.FVTYPE_MISENSERVICE, oFVBanc.type)
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
 
         'controle du banc
         Dim oCtrl As New ControleBanc()
@@ -449,8 +450,10 @@ Public Class FVBancManagerTest
         oCtrl.b6_3bar_conformite = "True"
 
         oCtrl.resultat = "Le résultat est négatif : vérifiez votre banc de mesure de débits"
+        Dim oEtat As New EtatFVBanc(oCtrl)
+        Dim sFileName As String = oEtat.buildPDF(obanc, agentCourant)
 
-        obanc.creerfFicheVieControle(m_oAgent, oCtrl)
+        obanc.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         Assert.AreEqual(5, olstFV.Count)

@@ -4,10 +4,11 @@ Imports System
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.Drawing
 Imports System.IO
 Imports System.Data
+Imports Crodip_agent
 
 '''<summary>
 '''Classe de test pour Diagnostic et DiagnosticManager
@@ -932,12 +933,12 @@ Public Class DiagnosticManagerTest
 
         oDiag.setOrganisme(m_oAgent)
         Assert.AreEqual(oDiag.organismePresId, m_oAgent.idStructure)
-        Dim structureCourante As Structuree
+        Dim structureCourante As [Structure]
         structureCourante = StructureManager.getStructureById(m_oAgent.idStructure)
         Assert.AreEqual(oDiag.organismePresNumero, structureCourante.idCrodip)
         Assert.AreEqual(oDiag.organismePresNom, structureCourante.nom)
-        Assert.AreEqual(oDiag.organismeInspNom, GlobalsCRODIP.GLOB_DIAG_NOMAGR)
-        Assert.AreEqual(oDiag.organismeInspAgrement, GlobalsCRODIP.GLOB_DIAG_NUMAGR)
+        Assert.AreEqual(oDiag.organismeInspNom, Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
+        Assert.AreEqual(oDiag.organismeInspAgrement, Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NUMAGR)
         Assert.AreEqual(oDiag.inspecteurId, m_oAgent.id)
         Assert.AreEqual(oDiag.inspecteurNom, m_oAgent.nom)
         Assert.AreEqual(oDiag.inspecteurPrenom, m_oAgent.prenom)
@@ -1008,12 +1009,12 @@ Public Class DiagnosticManagerTest
         Dim UpdateInfo As New Object
 
         oExploit = createExploitation()
-        ExploitationManager.sendWSExploitation(m_oAgent, oExploit, UpdateInfo)
+        ExploitationManager.WSSend(oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.sendWSPulverisateur(m_oAgent, oPulve)
+        PulverisateurManager.WSSend(oPulve, UpdateInfo)
         Dim oExploitToPulve As ExploitationTOPulverisateur
         oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.sendWSExploitationTOPulverisateur(m_oAgent, oExploitToPulve, UpdateInfo)
+        ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdateInfo)
 
         'Creation d'un Diagnostic
         '============================
@@ -1224,7 +1225,7 @@ Public Class DiagnosticManagerTest
         'On simule une MAJ sur ler Server
         'oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now())
         'Dim UpdateInfo As Object
-        'DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
+        'DiagnosticManager.WSSend( oDiag, UpdateInfo)
 
 
         'Suppression du diag par sécurité 
@@ -1234,7 +1235,7 @@ Public Class DiagnosticManagerTest
         '======================================
         m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-10).ToShortDateString())
         Dim obj As New Object
-        AgentManager.sendWSAgent(m_oAgent, obj)
+        AgentManager.WSSend(m_oAgent, obj)
 
 
         'Synchronisation descendate du Diag
@@ -1373,7 +1374,7 @@ Public Class DiagnosticManagerTest
 
         'Vérification des DiagItems
         Assert.AreEqual(4, oDiag2.diagnosticItemsLst.Count)
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(0)
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
@@ -1382,7 +1383,7 @@ Public Class DiagnosticManagerTest
 
 
         'Item2
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(1)
         Assert.IsTrue(oDiagItem.idItem = "222")
         Assert.IsTrue(oDiagItem.itemValue = "2")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -1390,7 +1391,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item3
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(2)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(2)
         Assert.IsTrue(oDiagItem.idItem = "333")
         Assert.IsTrue(oDiagItem.itemValue = "3")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "O")
@@ -1398,7 +1399,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item4
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(3)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(3)
         Assert.IsTrue(oDiagItem.idItem = "444")
         Assert.IsTrue(oDiagItem.itemValue = "4")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -1526,14 +1527,14 @@ Public Class DiagnosticManagerTest
 
 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, id)
         Assert.AreEqual("1002", oDiag2.controleInitialId)
         Assert.AreEqual("E001-2", oDiag.pulverisateurAncienId)
         CSDebug.dispInfo(oDiag.dateModificationAgent)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
         oDiag2.controleInitialId = "1003"
         oDiag2.pulverisateurAncienId = "E001-3"
         oDiag2.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
@@ -1541,9 +1542,9 @@ Public Class DiagnosticManagerTest
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
         CSDebug.dispInfo(oDiag.dateModificationAgent)
 
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.AreEqual("1003", oDiag2.controleInitialId)
         Assert.AreEqual("E001-3", oDiag2.pulverisateurAncienId)
 
@@ -1558,26 +1559,6 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()>
-    Public Sub TST_GetWSIncrement()
-        Dim curIncrement As String = ""
-        DiagnosticManager.getWSDiagnosticIncrement(m_oAgent, curIncrement)
-        Assert.IsNotNull(curIncrement)
-
-        Dim nOriginalId As Integer = m_oAgent.id
-        'Test avec l'agent 1
-        m_oAgent.id = 1
-        DiagnosticManager.getWSDiagnosticIncrement(m_oAgent, curIncrement)
-        Assert.IsNotNull(curIncrement)
-        'Test avec un agent inexistant
-        m_oAgent.id = 999
-        DiagnosticManager.getWSDiagnosticIncrement(m_oAgent, curIncrement)
-        Assert.IsNotNull(curIncrement)
-
-        m_oAgent.id = nOriginalId
-
-
-    End Sub
 
     <TestMethod()>
     Public Sub TST_SaveDiagnosticBuses()
@@ -1902,7 +1883,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(idDiag, oDiag.id)
 
         Assert.AreEqual(4, oDiag.diagnosticItemsLst.Count)
-        oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
@@ -1911,7 +1892,7 @@ Public Class DiagnosticManagerTest
 
 
         'Item2
-        oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
         Assert.IsTrue(oDiagItem.idItem = "222")
         Assert.IsTrue(oDiagItem.itemValue = "2")
         Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMINEUR)
@@ -1919,7 +1900,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item3
-        oDiagItem = oDiag.diagnosticItemsLst.Values(2)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(2)
         Assert.IsTrue(oDiagItem.idItem = "333")
         Assert.IsTrue(oDiagItem.itemValue = "3")
         Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemMAJPRELIM
@@ -1928,7 +1909,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item4
-        oDiagItem = oDiag.diagnosticItemsLst.Values(3)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(3)
         Assert.IsTrue(oDiagItem.idItem = "444")
         Assert.IsTrue(oDiagItem.itemValue = "4")
         Assert.IsTrue(oDiagItem.itemCodeEtat = DiagnosticItem.EtatDiagItemABSENCE)
@@ -2237,7 +2218,7 @@ Public Class DiagnosticManagerTest
 
         'Vérification des DiagItems
         Assert.AreEqual(4, oDiag.diagnosticItemsLst.Count)
-        oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
@@ -2246,7 +2227,7 @@ Public Class DiagnosticManagerTest
 
 
         'Item2
-        oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
         Assert.IsTrue(oDiagItem.idItem = "222")
         Assert.IsTrue(oDiagItem.itemValue = "2")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -2254,7 +2235,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item3
-        oDiagItem = oDiag.diagnosticItemsLst.Values(2)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(2)
         Assert.IsTrue(oDiagItem.idItem = "333")
         Assert.IsTrue(oDiagItem.itemValue = "3")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "O")
@@ -2262,7 +2243,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item4
-        oDiagItem = oDiag.diagnosticItemsLst.Values(3)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(3)
         Assert.IsTrue(oDiagItem.idItem = "444")
         Assert.IsTrue(oDiagItem.itemValue = "4")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -2796,7 +2777,7 @@ Public Class DiagnosticManagerTest
         '        Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
 
-        oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
         Assert.AreEqual(oDiag.id, oDiagItem.idDiagnostic)
         Assert.AreEqual("252", oDiagItem.idItem)
         Assert.AreEqual("3", oDiagItem.itemValue)
@@ -2808,7 +2789,7 @@ Public Class DiagnosticManagerTest
         '        Assert.AreEqual(3, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
 
-        oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
         Assert.AreEqual(oDiag.id, oDiagItem.idDiagnostic)
         Assert.AreEqual("252", oDiagItem.idItem)
         Assert.AreEqual("4", oDiagItem.itemValue)
@@ -2820,7 +2801,7 @@ Public Class DiagnosticManagerTest
         '        Assert.AreEqual(4, oDiag.diagnosticItemsLst.Count)
         Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
 
-        oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
         Assert.AreEqual(oDiag.id, oDiagItem.idDiagnostic)
         Assert.AreEqual("252", oDiagItem.idItem)
         Assert.AreEqual("4", oDiagItem.itemValue)
@@ -2843,10 +2824,10 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("251", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
     '    Assert.AreEqual("252", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -2861,16 +2842,16 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(4, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("1011", oDiagItem.idItem)
     '    Assert.AreEqual("8", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
     '    Assert.AreEqual("1012", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(2)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(2)
     '    Assert.AreEqual("1021", oDiagItem.idItem)
     '    Assert.AreEqual("4", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(3)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(3)
     '    Assert.AreEqual("1022", oDiagItem.idItem)
     '    Assert.AreEqual("4", oDiagItem.itemValue)
 
@@ -2885,7 +2866,7 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("431", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -2900,10 +2881,10 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("551", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
     '    Assert.AreEqual("552", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -2918,10 +2899,10 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("551", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
     '    Assert.AreEqual("552", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -2936,10 +2917,10 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = False
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(2, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("551", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(1)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(1)
     '    Assert.AreEqual("552", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -2954,7 +2935,7 @@ Public Class DiagnosticManagerTest
     '    oDiag.pulverisateurRegulationIsDpae = True
     '    oDiag.CreateDiagnosticItems()
     '    Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count)
-    '    oDiagItem = oDiag.diagnosticItemsLst.Values(0)
+    '    oDiagItem = oDiag.diagnosticItemsLst.Liste(0)
     '    Assert.AreEqual("562", oDiagItem.idItem)
     '    Assert.AreEqual("3", oDiagItem.itemValue)
 
@@ -4159,7 +4140,7 @@ Public Class DiagnosticManagerTest
 
         'Vérification des DiagItems
         Assert.AreEqual(4, oDiag2.diagnosticItemsLst.Count)
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(0)
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")
@@ -4168,7 +4149,7 @@ Public Class DiagnosticManagerTest
 
 
         'Item2
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(1)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(1)
         Assert.IsTrue(oDiagItem.idItem = "222")
         Assert.IsTrue(oDiagItem.itemValue = "2")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -4176,7 +4157,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item3
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(2)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(2)
         Assert.IsTrue(oDiagItem.idItem = "333")
         Assert.IsTrue(oDiagItem.itemValue = "3")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "O")
@@ -4184,7 +4165,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagItem.cause = "2")
 
         'Item4
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(3)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(3)
         Assert.IsTrue(oDiagItem.idItem = "444")
         Assert.IsTrue(oDiagItem.itemValue = "4")
         Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
@@ -4442,8 +4423,8 @@ Public Class DiagnosticManagerTest
         Dim sDateFin As String = oDiag.controleDateFin
         oDiag2.SetAsContreVisite(m_oAgent)
         Assert.AreEqual("TEST2", oDiag2.inspecteurNom)
-        Assert.AreEqual(GlobalsCRODIP.GLOB_DIAG_NOMAGR, oDiag2.organismeOrigineInspNom)
-        Assert.IsTrue(oDiag2.organismeOriginePresNom = GlobalsCRODIP.GLOB_DIAG_NOMAGR)
+        Assert.AreEqual(Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR, oDiag2.organismeOrigineInspNom)
+        Assert.IsTrue(oDiag2.organismeOriginePresNom = Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
         Assert.IsTrue(oDiag2.controleDateDernierControle = sDateFin)
         Assert.IsTrue(oDiag2.controleIsComplet = False)
         Assert.IsTrue(oDiag2.isATGIP = False)
@@ -4612,10 +4593,10 @@ Public Class DiagnosticManagerTest
         'Synchronisation descendate du Diag
         '==================================
         'On simule une MAJ sur ler Server
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now().ToShortDateString())
         Dim UpdateInfo As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdateInfo)
+        DiagnosticManager.WSSend(oDiag, UpdateInfo)
 
 
         'Suppression du diag par sécurité 
@@ -4625,7 +4606,7 @@ Public Class DiagnosticManagerTest
         '======================================
         m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString())
         Dim obj As New Object
-        AgentManager.sendWSAgent(m_oAgent, obj)
+        AgentManager.WSSend(m_oAgent, obj)
 
         Dim oLstSynchro As List(Of SynchronisationElmt)
         oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
@@ -4759,9 +4740,9 @@ Public Class DiagnosticManagerTest
 
 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.AreEqual("MODELE2", oDiag2.buseModele)
         Assert.AreEqual("RI2.PDF", oDiag2.RIFileName)
         Assert.AreEqual("SM2.PDF", oDiag2.SMFileName)
@@ -4773,7 +4754,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("Axial", oDiag2.pulverisateurCategorie)
         Assert.AreEqual("Jet projeté", oDiag2.pulverisateurPulverisation)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oDiag2.buseModele = "MODELE3"
         oDiag2.RIFileName = "RI3.PDF"
@@ -4789,9 +4770,9 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.save(oDiag2)
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
 
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
 
         Assert.AreEqual("MODELE3", oDiag2.buseModele)
         Assert.AreEqual("RI3.PDF", oDiag2.RIFileName)
@@ -5165,18 +5146,18 @@ Public Class DiagnosticManagerTest
 
 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.AreEqual("A PASTILLE", oDiag2.buseFonctionnement)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
         DiagnosticManager.save(oDiag2)
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
 
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
 
         Assert.AreEqual("A PASTILLE", oDiag2.buseFonctionnement)
 
@@ -5215,9 +5196,9 @@ Public Class DiagnosticManagerTest
 
             bReturn = DiagnosticManager.save(oDiag)
 
-            DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
-            pause(2000)
-            oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+            DiagnosticManager.WSSend(oDiag, UpdatedObject)
+            System.Threading.Thread.Sleep(2000)
+            oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
 
             Assert.AreEqual(strFonctionnement, oDiag2.buseFonctionnement)
 
@@ -5335,7 +5316,7 @@ Public Class DiagnosticManagerTest
         oManoC = New ManometreControle()
         oManoC.idCrodip = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
-        oManoC.idStructure = m_oAgent.idStructure
+        oManoC.idstructure = m_oAgent.idStructure
         oManoC.marque = "Manoc de test"
         ManometreControleManager.save(oManoC)
 
@@ -5468,15 +5449,15 @@ Public Class DiagnosticManagerTest
 
 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.AreEqual("CC2.PDF", oDiag2.CCFileName)
         Assert.AreEqual("NON", oDiag2.pulverisateurCoupureAutoTroncons)
         Assert.AreEqual("NON", oDiag2.pulverisateurReglageAutoHauteur)
         Assert.AreEqual("NON", oDiag2.pulverisateurRincagecircuit)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oDiag2.CCFileName = "CC3.PDF"
         oDiag2.pulverisateurCoupureAutoTroncons = "OUI"
@@ -5485,9 +5466,9 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.save(oDiag2)
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
 
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, oDiag2.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag2.id)
 
         Assert.AreEqual("CC3.PDF", oDiag2.CCFileName)
         Assert.AreEqual("OUI", oDiag2.pulverisateurCoupureAutoTroncons)
@@ -5549,20 +5530,20 @@ Public Class DiagnosticManagerTest
 
 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.AreEqual("equipement", oDiag2.typeDiagnostic)
         Assert.AreEqual("35068", oDiag2.codeInsee)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oDiag2.typeDiagnostic = "pulverisateur"
         oDiag2.codeInsee = "35067"
         DiagnosticManager.save(oDiag2)
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, oDiag2.id)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag2.id)
 
         Assert.AreEqual("pulverisateur", oDiag2.typeDiagnostic)
         Assert.AreEqual("35067", oDiag2.codeInsee)
@@ -5619,7 +5600,7 @@ Public Class DiagnosticManagerTest
         oList = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString, "", CDate("2017/01/26 17:00"))
         Assert.AreEqual(1, oList.Count)
 
-        oDiag = DiagnosticManager.getWSDiagnosticById(1123, "27-1123-580")
+        oDiag = DiagnosticManager.WSgetById(1123, "27-1123-580")
 
     End Sub
     <TestMethod()>
@@ -5630,19 +5611,19 @@ Public Class DiagnosticManagerTest
         agentCourant.id = 1121
         Dim objWSCrodip As Crodip_agent.WSCrodip_prod.CrodipServer = WSCrodip.getWS()
         objWSCrodip.Url = "http://admin.crodip.fr/server"
-        oDiag = DiagnosticManager.getWSDiagnosticById(1127, "499-1121-269")
+        oDiag = DiagnosticManager.WSgetById(1127, "499-1121-269")
         DiagnosticManager.save(oDiag)
-        DiagnosticItemManager.getWSDiagnosticItemsByDiagnosticId(agentCourant, oDiag.id)
+        DiagnosticItemManager.WSGetList("", oDiag.id)
         DiagnosticManager.save(oDiag)
         Dim oDiagBusesList As DiagnosticBusesList
-        oDiagBusesList = DiagnosticBusesManager.getWSDiagnosticBusesByDiagId(agentCourant.id, oDiag.id)
+        oDiagBusesList = DiagnosticBusesManager.WSGetList("", oDiag.id)
         Dim oCSDB As New CSDb(True)
         For Each oDiagBuses As DiagnosticBuses In oDiagBusesList.Liste
             DiagnosticBusesManager.save(oDiagBuses, oCSDB)
         Next
         oCSDB.free()
         Dim oDiagBusesDetailList As DiagnosticBusesDetailList
-        oDiagBusesDetailList = DiagnosticBusesDetailManager.getWSDiagnosticBusesDetailByDiagId(agentCourant.id, oDiag.id)
+        oDiagBusesDetailList = DiagnosticBusesDetailManager.WSGetList("", oDiag.id)
         For Each oDiagBusesDetail As DiagnosticBusesDetail In oDiagBusesDetailList.Liste
             DiagnosticBusesDetailManager.save(oDiagBusesDetail)
         Next
@@ -5657,38 +5638,6 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()>
-    Public Sub GenerateDateSetForBLTest()
-        Dim oDiag As Diagnostic
-        Dim oExploit As Exploitation
-        Dim oPulve As Pulverisateur
-        Dim AddOld As String
-
-        AddOld = m_oStructure.adresse
-
-        m_oStructure.adresse = "Ma nouvelle adrrsse"
-        StructureManager.save(m_oStructure)
-        ' Création d'un Diag
-        oExploit = createExploitation()
-        oExploit.codePostal = "35250"
-        oExploit.commune = "CHASNE SUR ILLET"
-        ExploitationManager.save(oExploit, m_oAgent)
-        oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
-
-        oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
-
-        Dim dsBL As Crodip_agent.ds_EtatBL
-        dsBL = oDiag.generateDataSetForBL("")
-        Assert.AreEqual(1, dsBL.Organisme.Count)
-
-        Assert.AreEqual("Ma nouvelle adrrsse", dsBL.Organisme(0).adresse)
-
-
-        m_oStructure.adresse = AddOld
-        StructureManager.save(m_oStructure)
-
-    End Sub
 
     <TestMethod()> Public Sub TestRecuperationdesLibellesDeDiagItem()
         Dim oDiag As Diagnostic
@@ -5738,7 +5687,7 @@ Public Class DiagnosticManagerTest
         oDiagItem = New DiagnosticItem(oDiag.id, "257", "2", "1", "O")
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
-        For Each oDiagItem In oDiag.diagnosticItemsLst.Values
+        For Each oDiagItem In oDiag.diagnosticItemsLst.Liste
             Assert.IsNull(oDiagItem.LibelleCourt)
             Assert.IsNull(oDiagItem.LibelleLong)
         Next
@@ -5746,7 +5695,7 @@ Public Class DiagnosticManagerTest
 
         oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
 
-        For Each oDiagItem In oDiag.diagnosticItemsLst.Values
+        For Each oDiagItem In oDiag.diagnosticItemsLst.Liste
             Assert.AreNotEqual("", oDiagItem.LibelleCourt)
             Assert.AreNotEqual("", oDiagItem.LibelleLong)
         Next
@@ -5838,9 +5787,9 @@ Public Class DiagnosticManagerTest
 
         '' Test des WS 
         Dim UpdatedObject As New Object
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
         Assert.IsFalse(oDiag2.isSignRIAgent)
         Assert.IsFalse(oDiag2.isSignRIClient)
         Assert.IsFalse(oDiag2.isSignCCAgent)
@@ -5850,7 +5799,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(CDate("29/12/2018"), oDiag2.dateSignCCAgent)
         Assert.AreEqual(CDate("28/12/2018"), oDiag2.dateSignCCClient)
 
-        pause(2000)
+        System.Threading.Thread.Sleep(2000)
 
         oDiag2.isSignRIAgent = True
         oDiag2.isSignRIClient = True
@@ -5862,9 +5811,9 @@ Public Class DiagnosticManagerTest
         oDiag2.dateSignCCClient = CDate("28/12/2017")
         DiagnosticManager.save(oDiag2)
         oDiag2 = DiagnosticManager.getDiagnosticById(oDiag2.id)
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag2, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, id)
 
         Assert.IsTrue(oDiag2.isSignRIAgent)
         Assert.IsTrue(oDiag2.isSignRIClient)
@@ -5882,9 +5831,9 @@ Public Class DiagnosticManagerTest
         id = "DIAGWS" & Now.Hour & Now.Minute & Now.Second
         oDiag.id = id
         bReturn = DiagnosticManager.save(oDiag)
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, UpdatedObject)
+        DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
-        oDiag2 = DiagnosticManager.getWSDiagnosticById(m_oAgent.id, id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, "", id)
         Assert.IsFalse(oDiag2.isSignRIAgent)
         Assert.IsFalse(oDiag2.isSignRIClient)
         Assert.IsFalse(oDiag2.isSignCCAgent)

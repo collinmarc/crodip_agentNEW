@@ -325,32 +325,32 @@ Public Class FactureExportCSV
         End Try
         Return oReturn
     End Function
-    'Public Shared Function ExportCSV(pFile As String, pListFacture As List(Of Facture)) As Boolean
-    '    Dim lstElmt As New List(Of FactureExportCSV)
-    '    Dim bReturn As Boolean
-    '    Try
-    '        pListFacture.ForEach(Sub(oFact)
-    '                                 Dim olst As List(Of FactureExportCSV)
-    '                                 olst = FactureExportCSV.getlstExportfromFacture(oFact)
-    '                                 lstElmt.AddRange(olst)
-    '                             End Sub)
-    '        Dim csvConf As New CsvHelper.Configuration.CsvConfiguration(Application.CurrentCulture)
-    '        csvConf.Delimiter = ";"
-    '        Using sw As New IO.StreamWriter(pFile)
-    '            Using csw As New CsvWriter(sw, csvConf)
-    '                csw.WriteRecords(Of FactureExportCSV)(lstElmt)
-    '            End Using
-    '        End Using
+    Public Shared Function ExportCSV(pFile As String, pListFacture As List(Of Facture)) As Boolean
+        Dim lstElmt As New List(Of FactureExportCSV)
+        Dim bReturn As Boolean
+        Try
+            pListFacture.ForEach(Sub(oFact)
+                                     Dim olst As List(Of FactureExportCSV)
+                                     olst = FactureExportCSV.getlstExportfromFacture(oFact)
+                                     lstElmt.AddRange(olst)
+                                 End Sub)
+            Dim csvConf As New CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+            csvConf.Delimiter = ";"
+            Using sw As New IO.StreamWriter(pFile)
+                Using csw As New CsvWriter(sw, csvConf)
+                    csw.WriteRecords(Of FactureExportCSV)(lstElmt)
+                End Using
+            End Using
 
 
 
-    '        bReturn = True
-    '    Catch ex As Exception
-    '        CSDebug.dispError("FactureExportCSV.ExportCSV ERR: ", ex)
-    '        bReturn = False
-    '    End Try
-    '    Return bReturn
-    'End Function
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("FactureExportCSV.ExportCSV ERR: ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
 #End Region
 End Class

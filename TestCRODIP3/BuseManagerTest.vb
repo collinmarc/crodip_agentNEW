@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CRODIPWS
 
 
 
@@ -41,7 +41,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
         Assert.AreEqual(objBuse.numeroNational, "001")
         Assert.AreEqual(objBuse.etat, True)
-        Assert.AreEqual(objBuse.isSupprime, True)
+        Assert.AreEqual(objBuse.isSupprime, 1)
         Assert.AreEqual(objBuse.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBuse.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBuse.dateSuppression), CDate("06/02/1964"))
@@ -58,7 +58,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
         Assert.AreEqual(objBuse2.numeroNational, "001")
         Assert.AreEqual(objBuse2.etat, True)
-        Assert.AreEqual(objBuse2.isSupprime, True)
+        Assert.AreEqual(objBuse2.isSupprime, 1)
         Assert.AreEqual(objBuse2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBuse2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBuse2.dateSuppression), CDate("06/02/1964"))
@@ -74,7 +74,7 @@ Public Class BuseManagerTest
         'Rehcragement du Buse pour vérifier l'update
         objBuse = BuseManager.getBuseByNumeroNational("001")
 
-        Assert.AreEqual(objBuse.isSupprime, False)
+        Assert.AreEqual(objBuse.isSupprime, 0)
         Assert.AreEqual(objBuse.AgentSuppression, "MonAgentSuppression")
         Assert.AreEqual(objBuse.RaisonSuppression, "MaRaison2")
         Assert.AreEqual(CDate(objBuse.dateSuppression), CDate("06/02/1965"))
@@ -112,20 +112,20 @@ Public Class BuseManagerTest
         oBuse.AgentSuppression = m_oAgent.nom
         oBuse.RaisonSuppression = "MaRaison"
         Assert.IsTrue(BuseManager.save(oBuse))
-
-        Dim response As Integer = BuseManager.sendWSBuse(oBuse)
+        Dim oReturn As Buse
+        Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBuse2 = BuseManager.getWSBuseById(oBuse.numeroNational)
+        oBuse2 = BuseManager.WSgetById(oBuse.numeroNational)
         Assert.AreEqual(oBuse.numeroNational, oBuse2.numeroNational)
-        Assert.AreEqual(oBuse2.isSupprime, False)
+        Assert.AreEqual(oBuse2.isSupprime, 0)
         Assert.AreEqual(oBuse2.etat, oBuse.etat)
         Assert.AreEqual(oBuse2.dateAchat, oBuse.dateAchat)
         Assert.AreEqual(oBuse2.couleur, oBuse.couleur)
         Assert.AreEqual(oBuse2.debitEtalonnage, oBuse.debitEtalonnage)
         Assert.AreEqual(oBuse2.debitEtalonnage, oBuse.debitEtalonnage)
-        Assert.AreEqual(oBuse2.AgentSuppression, oBuse.AgentSuppression)
-        Assert.AreEqual(oBuse2.RaisonSuppression, oBuse.RaisonSuppression)
+        Assert.AreEqual(oBuse2.agentSuppression, oBuse.agentSuppression)
+        Assert.AreEqual(oBuse2.raisonSuppression, oBuse.raisonSuppression)
         Assert.AreEqual(oBuse2.dateSuppression, oBuse.dateSuppression)
 
         bReturn = BuseManager.delete(idBuse)
@@ -145,7 +145,7 @@ Public Class BuseManagerTest
         oBuse = New Buse()
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.idstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -155,15 +155,15 @@ Public Class BuseManagerTest
         Assert.IsTrue(BuseManager.save(oBuse))
 
         oBuse = BuseManager.getBuseByNumeroNational(oBuse.numeroNational)
-        Assert.AreEqual("1899-12-30 00:00:00", oBuse.DateSuppression)
-
-        Dim response As Integer = BuseManager.sendWSBuse(oBuse)
+        Assert.AreEqual("1899-12-30 00:00:00", oBuse.dateSuppression)
+        Dim oReturn As Buse
+        Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBuse2 = BuseManager.getWSBuseById(oBuse.numeroNational)
+        oBuse2 = BuseManager.WSgetById(oBuse.numeroNational)
         Assert.AreEqual(oBuse.numeroNational, oBuse2.numeroNational)
-        Assert.AreEqual(oBuse2.isSupprime, False)
-        Assert.AreEqual(oBuse2.DateSuppression, oBuse.DateSuppression)
+        Assert.AreEqual(oBuse2.isSupprime, 0)
+        Assert.AreEqual(oBuse2.dateSuppression, oBuse.dateSuppression)
 
         bReturn = BuseManager.delete(idBuse)
         Assert.IsTrue(bReturn)
@@ -180,7 +180,7 @@ Public Class BuseManagerTest
         objBuse = New Buse()
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         objBuse.idCrodip = "MonBuse"
-        objBuse.idStructure = m_oAgent.idStructure
+        objBuse.idstructure = m_oAgent.idStructure
         objBuse.couleur = "Bleue"
         objBuse.debitEtalonnage = 15.5
         objBuse.numeroNational = "001"
@@ -192,9 +192,9 @@ Public Class BuseManagerTest
         objBuse2.DeleteMateriel(m_oAgent, "MaRaison")
 
         objBuse = BuseManager.getBuseByNumeroNational("001")
-        Assert.AreEqual(objBuse.isSupprime, True)
-        Assert.AreEqual(objBuse.AgentSuppression, m_oAgent.nom)
-        Assert.AreEqual(objBuse.RaisonSuppression, "MaRaison")
+        Assert.AreEqual(objBuse.isSupprime, 1)
+        Assert.AreEqual(objBuse.agentSuppression, m_oAgent.nom)
+        Assert.AreEqual(objBuse.raisonSuppression, "MaRaison")
         Assert.IsNotNull(objBuse.dateSuppression)
 
 
@@ -207,7 +207,7 @@ Public Class BuseManagerTest
     '''<summary>
     '''Test pour save
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub SymboleDecimalTest()
         Dim objBuse As Buse = Nothing
         Dim expected As Object = Nothing
@@ -215,7 +215,7 @@ Public Class BuseManagerTest
 
         objBuse = New Buse()
         objBuse.idCrodip = "MonBuse"
-        objBuse.idStructure = m_oAgent.idStructure
+        objBuse.idstructure = m_oAgent.idStructure
         objBuse.numeroNational = "001"
         objBuse.etat = True
         objBuse.debitEtalonnage = 15.5
@@ -233,19 +233,19 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
 
         'Modification de la buse en utilisant Stringtodouble
-        Assert.AreEqual(objBuse.debitEtalonnage, GlobalsCRODIP.StringToDouble("15.5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, GlobalsCRODIP.StringToDouble("16.5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, Crodip_agent.GlobalsCRODIP.StringToDouble("15.5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, Crodip_agent.GlobalsCRODIP.StringToDouble("16.5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
 
-        Assert.AreEqual(objBuse.debitEtalonnage, GlobalsCRODIP.StringToDouble("15,5"))
-        Assert.AreEqual(objBuse.pressionEtalonnage, GlobalsCRODIP.StringToDouble("16,5"))
+        Assert.AreEqual(objBuse.debitEtalonnage, Crodip_agent.GlobalsCRODIP.StringToDouble("15,5"))
+        Assert.AreEqual(objBuse.pressionEtalonnage, Crodip_agent.GlobalsCRODIP.StringToDouble("16,5"))
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
+        Dim oReturn As Buse
+        BuseManager.WSSend(objBuse, oReturn)
 
-        BuseManager.sendWSBuse(objBuse)
-
-        objBuse2 = BuseManager.getWSBuseById(objBuse.numeroNational)
+        objBuse2 = BuseManager.WSgetById(objBuse.numeroNational)
         Assert.AreEqual(objBuse2.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
 
@@ -267,12 +267,12 @@ Public Class BuseManagerTest
 
         'Creation d'un Buse
         oBuse = New Buse()
-        Assert.IsFalse(oBuse.JamaisServi)
+        Assert.IsFalse(oBuse.jamaisServi)
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         'oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
         oBuse.numeroNational = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.idstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -280,18 +280,18 @@ Public Class BuseManagerTest
         Assert.IsTrue(BuseManager.save(oBuse))
         oBuse2 = BuseManager.getBuseByNumeroNational(idBuse)
 
-        Assert.AreEqual(oBuse.JamaisServi, oBuse2.JamaisServi)
+        Assert.AreEqual(oBuse.jamaisServi, oBuse2.jamaisServi)
         Assert.AreEqual(oBuse.DateActivation, oBuse2.DateActivation)
         Assert.AreEqual(oBuse.DateActivationS, oBuse2.DateActivationS)
 
         'Modification des propriétés
-        oBuse.JamaisServi = True
+        oBuse.jamaisServi = True
         oBuse.DateActivation = CDate("06/02/1966")
         Assert.AreEqual("1966-02-06 00:00:00", oBuse.DateActivationS)
         Assert.IsTrue(BuseManager.save(oBuse))
 
         oBuse2 = BuseManager.getBuseByNumeroNational(idBuse)
-        Assert.AreEqual(oBuse.JamaisServi, oBuse2.JamaisServi)
+        Assert.AreEqual(oBuse.jamaisServi, oBuse2.jamaisServi)
         Assert.AreEqual(oBuse.DateActivation, oBuse2.DateActivation)
         Assert.AreEqual(oBuse.DateActivationS, oBuse2.DateActivationS)
 
@@ -310,7 +310,7 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.idstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -327,14 +327,14 @@ Public Class BuseManagerTest
 
         'Buse Jamais Servi
         oBuse.isSupprime = False
-        oBuse.JamaisServi = True
+        oBuse.jamaisServi = True
         BuseManager.save(oBuse)
         tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
         Assert.AreEqual(0, tabBuse.Count)
         tabBuse = BuseManager.getBusesByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBuse.Count)
 
-        oBuse.JamaisServi = False 'Le Buse n'a pas jamaisservi => il est actif
+        oBuse.jamaisServi = False 'Le Buse n'a pas jamaisservi => il est actif
         BuseManager.save(oBuse)
         tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBuse.Count)
@@ -360,7 +360,7 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.idCrodip = idBuse
         oBuse.numeroNational = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.idstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -369,12 +369,12 @@ Public Class BuseManagerTest
         'Vérification que le Buse n'est pas dans les liste des jamais servi
         Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
-        oBuse.JamaisServi = True
+        oBuse.jamaisServi = True
         BuseManager.save(oBuse)
         'Vérification que le Buse est dans la liste des jamais servi
         Assert.AreEqual(1, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
-        oBuse.JamaisServi = False
+        oBuse.jamaisServi = False
         BuseManager.save(oBuse)
         'Vérification que le Buse n'est plus dans la liste des jamais servi
         Assert.AreEqual(0, BuseManager.getBusesEtalonByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
@@ -396,10 +396,10 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.idstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = False
-        oBuse.JamaisServi = True
+        oBuse.jamaisServi = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
         BuseManager.save(oBuse)
 
@@ -407,7 +407,7 @@ Public Class BuseManagerTest
         Assert.IsTrue(oBuse.ActiverMateriel(CDate("01/02/1987"), m_oAgent))
 
         'JAmaisServi True -> False
-        Assert.IsFalse(oBuse.JamaisServi)
+        Assert.IsFalse(oBuse.jamaisServi)
         'Etat True 
         Assert.IsTrue(oBuse.etat)
 
@@ -417,7 +417,7 @@ Public Class BuseManagerTest
 
         BuseManager.delete(idBuse)
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub getAlertesBuses_Test()
         'Generation du fichier de paramétrage
         Dim oAlertes As New Alertes
@@ -453,17 +453,17 @@ Public Class BuseManagerTest
         Dim oBuse As Buse
         oBuse = New Buse
         oBuse.dateAchat = Now.ToShortDateString()
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -37, Now).ToString()
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.NOIRE, oBuse.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NOIRE, oBuse.getAlerte())
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -31, Now).ToShortDateString()
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.ROUGE, oBuse.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.ROUGE, oBuse.getAlerte())
 
 
         oBuse.dateAchat = DateAdd(DateInterval.DayOfYear, -29, Now).ToShortDateString()
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
 
     End Sub
     <TestMethod()>

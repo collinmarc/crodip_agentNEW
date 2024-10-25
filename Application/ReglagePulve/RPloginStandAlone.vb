@@ -1,5 +1,6 @@
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports CRODIPWS
 
 Public Class RPloginStandAlone
     Inherits Form
@@ -132,7 +133,7 @@ Public Class RPloginStandAlone
         '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Crodip_Agent.Resources.login_bg
+        Me.Panel1.BackgroundImage = Crodip_agent.Resources.login_bg
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.lblError)
         Me.Panel1.Controls.Add(Me.PictureBox2)
@@ -162,7 +163,7 @@ Public Class RPloginStandAlone
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Crodip_Agent.Resources.logo
+        Me.PictureBox2.Image = Crodip_agent.Resources.logo
         Me.PictureBox2.Location = New System.Drawing.Point(24, 20)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(168, 187)
@@ -190,7 +191,7 @@ Public Class RPloginStandAlone
         Me.btnAnnuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAnnuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAnnuler.ForeColor = System.Drawing.Color.White
-        Me.btnAnnuler.Image = Crodip_Agent.Resources.btn_annuler
+        Me.btnAnnuler.Image = Crodip_agent.Resources.btn_annuler
         Me.btnAnnuler.Location = New System.Drawing.Point(168, 75)
         Me.btnAnnuler.Name = "btnAnnuler"
         Me.btnAnnuler.Size = New System.Drawing.Size(128, 24)

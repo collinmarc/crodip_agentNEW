@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class materiels_supprimes
     Inherits frmCRODIP
 
@@ -468,7 +470,7 @@ Public Class materiels_supprimes
         '
         'm_bsrcManoControlSuppr
         '
-        Me.m_bsrcManoControlSuppr.DataSource = GetType(Crodip_agent.ManometreControle)
+        Me.m_bsrcManoControlSuppr.DataSource = GetType(ManometreControle)
         '
         'IdCrodipDataGridViewTextBoxColumn
         '
@@ -500,7 +502,7 @@ Public Class materiels_supprimes
         '
         'm_bsrcManoEtalonSuppr
         '
-        Me.m_bsrcManoEtalonSuppr.DataSource = GetType(Crodip_agent.ManometreEtalon)
+        Me.m_bsrcManoEtalonSuppr.DataSource = GetType(ManometreEtalon)
         '
         'IdCrodipDataGridViewTextBoxColumn2
         '
@@ -532,7 +534,7 @@ Public Class materiels_supprimes
         '
         'm_bsrcBuseSuppr
         '
-        Me.m_bsrcBuseSuppr.DataSource = GetType(Crodip_agent.Buse)
+        Me.m_bsrcBuseSuppr.DataSource = GetType(Buse)
         '
         'AgentSuppressionDataGridViewTextBoxColumn2
         '
@@ -557,7 +559,7 @@ Public Class materiels_supprimes
         '
         'm_bsrcBancSuppr
         '
-        Me.m_bsrcBancSuppr.DataSource = GetType(Crodip_agent.Banc)
+        Me.m_bsrcBancSuppr.DataSource = GetType(Banc)
         '
         'materiels_supprimes
         '

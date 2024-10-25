@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
 
 Public Class fiche_buse
     Inherits System.Windows.Forms.Form
@@ -314,7 +315,7 @@ Public Class fiche_buse
         '
         'm_bscrPool
         '
-        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        Me.m_bsrcPool.DataSource = GetType(Pool)
         '
         'fiche_buse
         '
@@ -356,7 +357,6 @@ Public Class fiche_buse
 
 
     Private Sub fiche_buse_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CSEnvironnement.checkDateTimePicker(ficheBuse_dateAchat)
 
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
@@ -378,7 +378,7 @@ Public Class fiche_buse
         ficheBuse_debitReference.Text = BuseCourant.debitEtalonnage
 
         ficheBuse_dateAchat.Text = CSDate.ToCRODIPString(BuseCourant.dateAchat)
-        If BuseCourant.JamaisServi Then
+        If BuseCourant.jamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
         Else
             If BuseCourant.etat Then
@@ -387,8 +387,8 @@ Public Class fiche_buse
                 pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
             End If
         End If
-        btnActiver.Visible = BuseCourant.JamaisServi
-        If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.JamaisServi Then
+        btnActiver.Visible = BuseCourant.jamaisServi
+        If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.jamaisServi Then
             ficheBuse_dateActivation.Text = ""
         Else
             ficheBuse_dateActivation.Text = CSDate.ToCRODIPString(BuseCourant.DateActivation)

@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
+
 Public Class HistoBanc
     Inherits System.Windows.Forms.Form
 
@@ -265,7 +267,7 @@ Public Class HistoBanc
         '
         'm_bsrcFVBanc
         '
-        Me.m_bsrcFVBanc.DataSource = GetType(Crodip_agent.FVBanc)
+        Me.m_bsrcFVBanc.DataSource = GetType(FVBanc)
         '
         'DataGridViewDisableButtonColumn1
         '

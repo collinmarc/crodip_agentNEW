@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports CRODIPWS
 
 Public Class diagnostic_dlghelp571
     Implements IfrmCRODIP

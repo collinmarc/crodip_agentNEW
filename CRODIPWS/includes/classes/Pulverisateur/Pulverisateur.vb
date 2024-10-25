@@ -638,6 +638,15 @@ Public Class Pulverisateur
             _idStructure = Value
         End Set
     End Property
+    <XmlIgnore>
+    Public Property idStructure() As Integer
+        Get
+            Return uidStructure
+        End Get
+        Set(ByVal Value As Integer)
+            uidStructure = Value
+        End Set
+    End Property
     Public Property emplacementIdentification() As String
         Get
             Return _EmplacementIdentification

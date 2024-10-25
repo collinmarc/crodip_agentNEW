@@ -17,6 +17,7 @@ Imports System.Diagnostics
 Imports System.Web.Services
 Imports System.Web.Services.Protocols
 Imports System.Xml.Serialization
+Imports CRODIPWS
 
 '
 'Ce code source a �t� automatiquement g�n�r� par Microsoft.VSDesigner, Version�1.1.4322.2032.
@@ -135,7 +136,7 @@ Namespace WSCrodip_prod
         End Function
 
         '<remarks/>
-        <XmlInclude(GetType(ManometreControle)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <XmlInclude(GetType(CRODIPWS.ManometreControle)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetManometre", RequestElementName:="GetManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function GetManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal numeroNational As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetManometreControle", New Object() {agentId, numeroNational})
             ManometreControle = CType(results(1), Object)
@@ -144,7 +145,7 @@ Namespace WSCrodip_prod
         End Function
 
         '<remarks/>
-        <XmlInclude(GetType(ManometreControle)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometre", RequestElementName:="SendManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <XmlInclude(GetType(CRODIPWS.ManometreControle)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendManometre", RequestElementName:="SendManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal ManometreControleRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(ManometreControleRequest)
             Dim results() As Object = Me.Invoke("SendManometreControle", New Object() {agentId, ManometreControleRequest})
@@ -442,7 +443,7 @@ Namespace WSCrodip_prod
             Return CType(results(0), Integer)
         End Function
         '<remarks/>
-        <XmlInclude(GetType(Structuree)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetStructure", RequestElementName:="GetStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <XmlInclude(GetType([Structure])), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetStructure", RequestElementName:="GetStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function GetStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal id As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetStructure", New Object() {agentId, id})
             [Structure] = CType(results(1), Object)
@@ -451,7 +452,7 @@ Namespace WSCrodip_prod
         End Function
 
         '<remarks/>
-        <XmlInclude(GetType(Structuree)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendStructure", RequestElementName:="SendStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        <XmlInclude(GetType([Structure])), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendStructure", RequestElementName:="SendStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
         Public Function SendStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal StructureRequest As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(StructureRequest)
             Dim results() As Object = Me.Invoke("SendStructure", New Object() {agentId, StructureRequest})

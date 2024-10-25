@@ -8,14 +8,14 @@ Public Class StructureManager
 
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As [Structure]
         Dim oreturn As [Structure]
-        oreturn = getWSByKey(Of [Structure])(p_uid, paid)
+        oreturn = RootWSGetById(Of [Structure])(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As [Structure], ByRef pobjOut As [Structure]) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of [Structure])(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of [Structure])(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSStructuree : " & ex.Message)

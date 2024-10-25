@@ -147,6 +147,14 @@ Public Class Agent
             _idStructure = Value
         End Set
     End Property
+    Public Property idStructure() As Integer
+        Get
+            Return _idStructure
+        End Get
+        Set(ByVal value As Integer)
+            _idStructure = value
+        End Set
+    End Property
 
     Public Property telephonePortable() As String
         Get

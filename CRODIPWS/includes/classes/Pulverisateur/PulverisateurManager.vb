@@ -7,14 +7,14 @@ Public Class PulverisateurManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Pulverisateur
         Dim oreturn As Pulverisateur
-        oreturn = getWSByKey(Of Pulverisateur)(p_uid, paid)
+        oreturn = RootWSGetById(Of Pulverisateur)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As Pulverisateur, ByRef pobjOut As Pulverisateur) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Pulverisateur)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of Pulverisateur)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSPulverisateur : " & ex.Message)
@@ -73,7 +73,7 @@ Public Class PulverisateurManager
     ''' <returns></returns>
     ''' <remarks></remarks>
     '''
-    Friend Shared Function getNewId(pAgent As Agent) As String
+    Public Shared Function getNewId(pAgent As Agent) As String
         If pAgent.oPool IsNot Nothing Then
             Return getNewIdNew(pAgent)
         Else
@@ -81,7 +81,7 @@ Public Class PulverisateurManager
         End If
     End Function
 
-    Public Shared Function getNewIdNew(pAgent As Agent) As String
+    Private Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")

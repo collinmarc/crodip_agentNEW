@@ -3,6 +3,7 @@ Imports System.IO
 Imports CsvHelper
 Imports System.Linq
 Imports System.Reflection
+Imports CRODIPWS
 
 Public Class importCRODIP
     <importCrodipAtt(importCrodipAtt.enumCRODIPClass.EXPLOITATION)>

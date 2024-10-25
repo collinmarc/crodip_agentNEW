@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class ajouter_profil
     Inherits frmCRODIP
 
@@ -159,8 +161,8 @@ Public Class ajouter_profil
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(552, 32)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "        Pour activer un nouveau profil, veuillez saisir les identifiants qui vous" & _
-        " ont été communiqués par le CRODIP. Vous devez être connecté à Internet pour réa" & _
+        Me.Label3.Text = "        Pour activer un nouveau profil, veuillez saisir les identifiants qui vous" &
+        " ont été communiqués par le CRODIP. Vous devez être connecté à Internet pour réa" &
         "liser cette opération."
         '
         'btn_ajouterProfil_seConnecter
@@ -237,7 +239,7 @@ Public Class ajouter_profil
                 Try
                     ' on récupère notre agent via WS
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS, True)
-                    objAgent = AgentManager.getWSAgentById(addProfil_identifiant.Text)
+                    objAgent = AgentManager.WSgetByNumeroNational(addProfil_identifiant.Text)
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS, True)
                     If objAgent.numeroNational <> "" Then
                         ' Ok, profil trouvé et chargé. On vérifie le password
@@ -249,11 +251,11 @@ Public Class ajouter_profil
                             If existsAgent.numeroNational = "" Then
                                 'Si l'agent n'esiste pas encore en base (normal)
                                 'Chargement de la structure
-                                Dim oStructure As Structuree
+                                Dim oStructure As [Structure]
                                 oStructure = StructureManager.getStructureById(objAgent.idStructure)
                                 If oStructure.id <> objAgent.idStructure Then
                                     'La Structure n'existe pas , il faut la Récupéré
-                                    oStructure = StructureManager.getWSStructureeById(objAgent, objAgent.idStructure)
+                                    oStructure = StructureManager.WSgetById(objAgent.idStructure)
                                     StructureManager.save(oStructure, True)
                                 End If
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.
@@ -268,7 +270,7 @@ Public Class ajouter_profil
                                 CSEnvironnement.delPid()
                                 Application.Exit()
                             Else
-                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
+                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If
                         Else

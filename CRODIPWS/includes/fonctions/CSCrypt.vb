@@ -1,9 +1,9 @@
 Imports System.Security.Cryptography
 Imports System.Text
 
-Module CSCrypt
+Public Class CSCrypt
 
-    Public Function encode(ByVal Texte As String, ByVal type As String) As String
+    Public Shared Function encode(ByVal Texte As String, ByVal type As String) As String
 
         Dim md5 As New MD5CryptoServiceProvider
         Dim sha1 As New SHA1CryptoServiceProvider
@@ -46,7 +46,7 @@ Module CSCrypt
     End Function
 
     'Fonction pour convertir des bits en string
-    Function ByteArrayToString(ByVal arrInput() As Byte) As String
+    Shared Function ByteArrayToString(ByVal arrInput() As Byte) As String
         Dim i As Integer
         Dim sOutput As New StringBuilder(arrInput.Length)
         For i = 0 To arrInput.Length - 1
@@ -55,4 +55,4 @@ Module CSCrypt
         Return sOutput.ToString().ToLower
     End Function
 
-End Module
+End Class

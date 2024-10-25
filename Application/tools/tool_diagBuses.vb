@@ -1,4 +1,6 @@
 Imports System.Collections.Generic
+Imports CRODIPWS
+
 Public Class tool_diagBuses
     Inherits frmCRODIP
 

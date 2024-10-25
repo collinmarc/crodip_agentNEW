@@ -1,6 +1,7 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CRODIPWS
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+
 
 <TestClass()> Public Class AgentPCTest
 

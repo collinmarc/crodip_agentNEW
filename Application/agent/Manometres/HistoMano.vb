@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
+
 Public Class HistoMano
     Inherits System.Windows.Forms.Form
 
@@ -380,7 +382,7 @@ Public Class HistoMano
         '
         'm_bsrcFVMano
         '
-        Me.m_bsrcFVMano.DataSource = GetType(Crodip_agent.FVManometreControle)
+        Me.m_bsrcFVMano.DataSource = GetType(FVManometreControle)
         Me.m_bsrcFVMano.Sort = "dateModif DESC"
         '
         'DataGridViewDisableButtonColumn1

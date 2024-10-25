@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CrodipWS
 Imports System.Xml.Serialization
 Imports System.IO
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
@@ -14,7 +14,7 @@ Public Class PopulateComboTest
     <TestMethod(), Ignore()>
     Public Sub XMLFileTest()
         Dim ocsXML As CSXml
-        ocsXML = GlobalsCRODIP.GLOB_XML_MARQUES_MODELES_PULVE
+        ocsXML = crodip_agent.GlobalsCRODIP.GLOB_XML_MARQUES_MODELES_PULVE
         Dim oNodes As Xml.XmlNodeList
         oNodes = ocsXML.getXmlNodes("/root/marque/libelle")
         Assert.AreEqual(142, oNodes.Count)

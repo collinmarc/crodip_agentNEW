@@ -10,6 +10,7 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
 
 Public Class frmdiagnostic_facturationCoProp
     Inherits System.Windows.Forms.Form
@@ -346,7 +347,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsFacture
         '
-        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
+        Me.m_bsFacture.DataSource = GetType(Facture)
         '
         'Label25
         '
@@ -670,7 +671,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsrcStructure
         '
-        Me.m_bsrcStructure.DataSource = GetType(Crodip_agent.Structuree)
+        Me.m_bsrcStructure.DataSource = GetType([Structure])
         '
         'tbDernNumFact
         '
@@ -804,7 +805,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsExploitant
         '
-        Me.m_bsExploitant.DataSource = GetType(Crodip_agent.Exploitation)
+        Me.m_bsExploitant.DataSource = GetType(Exploitation)
         Me.m_bsExploitant.Filter = "not isSuppressionCoprop"
         '
         'pnlClient
@@ -852,7 +853,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsCommunes
         '
-        Me.m_bsCommunes.DataSource = GetType(Crodip_agent.Commune)
+        Me.m_bsCommunes.DataSource = GetType(Commune)
         '
         'pnlPourcentage
         '
@@ -877,7 +878,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsContratCommercial
         '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
+        Me.m_bsContratCommercial.DataSource = GetType(ContratCommercial)
         '
         'btnCalc
         '
@@ -1120,7 +1121,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsDiag
         '
-        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        Me.m_bsDiag.DataSource = GetType(Diagnostic)
         '
         'tbMarquePulve
         '
@@ -1397,7 +1398,7 @@ Public Class frmdiagnostic_facturationCoProp
     Protected m_oDiag As Diagnostic
     Protected m_oPulverisateur As Pulverisateur
     Protected m_oAgent As Agent
-    Protected m_oStructure As Structuree
+    Protected m_oStructure As [Structure]
     Protected m_dernnumfact As String
     Protected m_olstExploit As List(Of Exploitation)
     Protected m_olstFacture As List(Of Facture)
@@ -1966,9 +1967,9 @@ Public Class frmdiagnostic_facturationCoProp
             End If
             m_bsFacture.MoveLast()
 
-            End If
+        End If
 
-            CalculRestAFacturer()
+        CalculRestAFacturer()
 
     End Sub
 
@@ -2005,7 +2006,7 @@ Public Class frmdiagnostic_facturationCoProp
                 End If
             End If
         End If
-            If MdiParent IsNot Nothing Then
+        If MdiParent IsNot Nothing Then
             TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
         Else
             Me.Close()

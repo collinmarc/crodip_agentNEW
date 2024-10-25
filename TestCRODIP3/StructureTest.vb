@@ -1,12 +1,12 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 
 <TestClass()> Public Class StructureTest
 
     <TestMethod>
     Public Sub TestchampsNumerotation()
-        Dim oStructure As New Structuree()
+        Dim oStructure As New [Structure]()
         oStructure.RacineNumFact = "RACINE"
         oStructure.DernierNumFact = "002"
 

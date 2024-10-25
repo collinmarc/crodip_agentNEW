@@ -70,6 +70,15 @@ Public MustInherit Class Materiel
             _idStructure = Value
         End Set
     End Property
+    <XmlIgnore()>
+    Public Property idstructure() As Integer
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal Value As Integer)
+            uidstructure = Value
+        End Set
+    End Property
 
     <XmlIgnore()>
     Public Property isSupprime() As Integer

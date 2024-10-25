@@ -1,6 +1,8 @@
 ﻿'<root>
 Imports System.IO
 Imports System.Xml.Serialization
+Imports CRODIPWS
+
 <Serializable(), XmlInclude(GetType(Agent))>
 <XmlRoot("root")>
 Public Class FacturationConfig

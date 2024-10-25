@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class apropos
     Inherits System.Windows.Forms.Form
 

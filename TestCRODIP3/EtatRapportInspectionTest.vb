@@ -1,7 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatRapportInspectionTest
     Inherits CRODIPTest
@@ -213,7 +214,7 @@ Imports System.IO
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -415,7 +416,7 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -503,7 +504,7 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCV
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -571,7 +572,7 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -645,7 +646,7 @@ Imports System.IO
         Next
 
         oEtat = New EtatRapportInspection(oDiag)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub
@@ -684,35 +685,35 @@ Imports System.IO
         oDiag.controleEtat = Diagnostic.controleEtatNOKCC
         DiagnosticManager.save(oDiag)
         oEtat = New EtatRapportInspection(oDiag)
-        oEtat.GenereEtat()
+        oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
 
         Dim response As Object = ""
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
+        DiagnosticManager.WSSend(oDiag, response)
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         'Récupération des fichiers par FTP
         Assert.IsTrue(DiagnosticManager.getFTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        CSFile.open(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
 
     End Sub
     <TestMethod()> Public Sub TestSynhcroHTTPEtat()
@@ -748,129 +749,129 @@ Imports System.IO
         oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtatSM.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         Dim oEtatCC As New EtatContratCommercial(oDiag)
         oEtatCC.genereEtat()
         oDiag.CCFileName = oEtatCC.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
 
         Dim oEtatBL As New EtatBL(oDiag)
         oEtatBL.genereEtat()
         oDiag.BLFileName = oEtatBL.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
 
         Dim oEtatES As New EtatEnquete(oDiag)
         oEtatES.genereEtat()
         oDiag.ESFileName = oEtatES.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
 
         Dim oEtatCOPRO As New EtatDocumentCoPropriete(oDiag)
         oEtatCOPRO.AddCoProprietaire("TEST")
         oEtatCOPRO.genereEtat()
         oDiag.COPROFileName = oEtatCOPRO.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
 
         Dim oFact As New Facture(oDiag, m_oStructure)
         oFact.oExploit = oExploit
         Dim oEtatFACT As New EtatFacture2(oFact, m_oAgent, m_oStructure)
         oEtatFACT.genereEtat()
         oDiag.FACTFileNames = oEtatFACT.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
 
         Dim oFact1 As New Facture(oDiag, m_oStructure)
         oFact1.oExploit = oExploit
         oEtatFACT = New EtatFacture2(oFact, m_oAgent, m_oStructure)
         oEtatFACT.genereEtat()
         oDiag.FACTFileNames = oDiag.FACTFileNames & ";" & oEtatFACT.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
 
         DiagnosticManager.save(oDiag)
 
         Dim response As Object
         response = Nothing
-        DiagnosticManager.sendWSDiagnostic(m_oAgent, oDiag, response)
+        DiagnosticManager.WSSend(oDiag, response)
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
-        Dim oFi As New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Dim oFi As New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Dim nLengthRI As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
         Dim nLengthSM As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
         Dim nLengthCC As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
         Dim nLengthBL As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
         Dim nLengthES As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
         Dim nLengthCOPRO As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
         Dim nLengthFact0 As Long = oFi.Length
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
         Dim nLengthFact1 As Long = oFi.Length
 
         'Suppression des etats générés en local
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
-        File.Delete(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
-        Assert.IsFalse(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
 
         'Récupération des fichiers par HTTP
         Assert.IsTrue(DiagnosticManager.getWSEtatsRI(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Assert.AreEqual(nLengthRI, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsSM(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
         Assert.AreEqual(nLengthSM, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsCC(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
         Assert.AreEqual(nLengthCC, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsBL(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
         Assert.AreEqual(nLengthBL, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsES(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
         Assert.AreEqual(nLengthES, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsCOPRO(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
         Assert.AreEqual(nLengthCOPRO, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsFACTs(oDiag))
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
         Assert.AreEqual(nLengthFact0, oFi.Length)
 
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
-        oFi = New FileInfo(GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
         Assert.AreEqual(nLengthFact1, oFi.Length)
 
 
@@ -2130,12 +2131,12 @@ Imports System.IO
         oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)

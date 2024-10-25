@@ -430,58 +430,58 @@ Public Class ManometreControle
     Public Function creerFicheVieDesactivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVManometreControle.FVTYPE_DESACTIVATION, pAgent) IsNot Nothing
     End Function
-    'Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleMano As ControleMano) As FVManometreControle
-    '    Dim oReturn As FVManometreControle = Nothing
-    '    Try
-    '        Dim oFV As FVManometreControle
-    '        CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Creation FV")
+    Public Function creerfFicheVieControle(ByVal pAgent As Agent, pControleMano As ControleMano, pFileName As String) As FVManometreControle
+        Dim oReturn As FVManometreControle = Nothing
+        Try
+            Dim oFV As FVManometreControle
+            CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Creation FV")
 
-    '        oFV = creerFicheVie(FVMateriel.FVTYPE_CONTROLE, pAgent)
-    '        If oFV IsNot Nothing Then
-
-
-    '            oFV.idManometre = Me.idCrodip
-    '            oFV.caracteristiques = _
-    '            Me.idCrodip & "|" & _
-    '            Me.marque & "|" & _
-    '            Me.classe & "|" & _
-    '            Me.type & "|" & _
-    '            Me.fondEchelle & "|" & _
-    '            Me.idStructure & "|" & _
-    '            Me.isSynchro & "|" & _
-    '            Me.dateDernierControleS & "|" & _
-    '            Me.dateModificationAgent & "|" & _
-    '            Me.dateModificationCrodip
-
-    '            oFV.idReetalonnage = ""
-    '            oFV.nomLaboratoire = ""
-    '            oFV.dateReetalonnage = ""
-    '            oFV.idManometreControleur = pControleMano.manoEtalon
-
-    '            ' On récupère les pressions de controle
-    '            oFV.pressionControle = pControleMano.PressionControle
-    '            oFV.valeursMesurees = pControleMano.ValeursMesurees
-    '            ' Contrôle OK ou NOK
-    '            oFV.blocage = Not Me.etat
-    '            oFV.dateModif = pControleMano.DateVerif
-    '            ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
-    '            CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  buildPDF")
-    '            Dim sFileName As String = pControleMano.buildPDF()
-    '            oFV.FVFileName = sFileName
+            oFV = creerFicheVie(FVMateriel.FVTYPE_CONTROLE, pAgent)
+            If oFV IsNot Nothing Then
 
 
-    '            CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Save oFV")
-    '            FVManometreControleManager.save(oFV)
+                oFV.idManometre = Me.idCrodip
+                oFV.caracteristiques =
+                Me.idCrodip & "|" &
+                Me.marque & "|" &
+                Me.classe & "|" &
+                Me.type & "|" &
+                Me.fondEchelle & "|" &
+                Me.idstructure & "|" &
+                Me.isSynchro & "|" &
+                Me.dateDernierControleS & "|" &
+                Me.dateModificationAgent & "|" &
+                Me.dateModificationCrodip
 
-    '            oReturn = oFV
+                oFV.idReetalonnage = ""
+                oFV.nomLaboratoire = ""
+                oFV.dateReetalonnage = ""
+                oFV.idManometreControleur = pControleMano.manoEtalon
 
-    '        End If
-    '    Catch ex As Exception
-    '        CSDebug.dispError("ManometreControle.CreerFicheVieControle : ERR" & ex.Message)
-    '        oReturn = Nothing
-    '    End Try
-    '    Return oReturn
-    'End Function
+                ' On récupère les pressions de controle
+                oFV.pressionControle = pControleMano.PressionControle
+                oFV.valeursMesurees = pControleMano.ValeursMesurees
+                ' Contrôle OK ou NOK
+                oFV.blocage = Not Me.etat
+                oFV.dateModif = pControleMano.DateVerif
+                ' On GlobalsCRODIP.CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
+                CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  buildPDF")
+                'Dim sFileName As String = pControleMano.buildPDF()
+                oFV.FVFileName = pFileName
+
+
+                CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Save oFV")
+                FVManometreControleManager.save(oFV)
+
+                oReturn = oFV
+
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("ManometreControle.CreerFicheVieControle : ERR" & ex.Message)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
 
     Private Function creerFicheVie(ByVal pType As String, ByVal pAgent As Agent) As FVManometreControle
         Debug.Assert(pAgent IsNot Nothing)

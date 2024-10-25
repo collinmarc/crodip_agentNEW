@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports CRODIPWS
 Imports Crodip_agent
 
 <TestClass()> Public Class EtatFactureTest
@@ -16,7 +17,7 @@ Imports Crodip_agent
         oFacture = New EtatFacture(m_oDiag, m_oStructure.DernierNumFact, "TEST")
         oFacture.AddPresta("TEST", "300", 1, 20, 30, 50)
 
-        Assert.IsTrue(oFacture.GenereEtat())
+        Assert.IsTrue(oFacture.genereEtat())
         Assert.IsTrue(oFacture.getFileName().EndsWith("FACTURE.pdf"))
     End Sub
 

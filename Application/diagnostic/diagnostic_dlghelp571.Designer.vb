@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class diagnostic_dlghelp571
 
     Inherits System.Windows.Forms.Form
@@ -217,7 +219,7 @@ Partial Class diagnostic_dlghelp571
         '
         'BindingSource1
         '
-        Me.BindingSource1.DataSource = GetType(Crodip_agent.DiagnosticHelp571)
+        Me.BindingSource1.DataSource = GetType(DiagnosticHelp571)
         '
         'GroupBox3
         '

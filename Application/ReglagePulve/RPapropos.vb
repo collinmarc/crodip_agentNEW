@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class RPapropos
     Inherits System.Windows.Forms.Form
 
@@ -90,8 +92,8 @@ Public Class RPapropos
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox2.Image = Crodip_Agent.Resources.logo
-        Me.PictureBox2.InitialImage = Crodip_Agent.Resources.logo
+        Me.PictureBox2.Image = Crodip_agent.Resources.logo
+        Me.PictureBox2.InitialImage = Crodip_agent.Resources.logo
         Me.PictureBox2.Location = New System.Drawing.Point(8, 8)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(76, 84)
@@ -129,7 +131,7 @@ Public Class RPapropos
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Crodip_Agent.Resources.LogoMCII
+        Me.PictureBox1.Image = Crodip_agent.Resources.LogoMCII
         Me.PictureBox1.Location = New System.Drawing.Point(8, 117)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(96, 78)

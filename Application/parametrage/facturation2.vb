@@ -1,6 +1,7 @@
 Imports System.IO
 Imports System.Drawing
 Imports System.Drawing.Imaging
+Imports CRODIPWS
 
 Public Class facturation2
     Inherits frmCRODIP

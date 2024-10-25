@@ -1,7 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatFvBancTest
     Inherits CRODIPTest
@@ -95,9 +96,9 @@ Imports System.IO
         oCtrl.resultat = "Le résultat est négatif : vérifiez votre banc de mesure de débits"
 
         Dim oEtat As New EtatFVBanc(oCtrl)
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
-        CSFile.open(GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
+        CSFile.open(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
 
     End Sub
 

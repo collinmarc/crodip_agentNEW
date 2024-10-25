@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class diagnostic_satisfaction
     Inherits frmCRODIP
 
@@ -701,7 +703,7 @@ Public Class diagnostic_satisfaction
         diagnosticCourant.bTrtExploitation = False
         diagnosticCourant.bTrtPulverisateur = False
         diagnosticCourant.bTrtContexte = False
-        Dim oStructure As Structuree
+        Dim oStructure As [Structure]
         oStructure = StructureManager.getStructureById(diagnosticCourant.organismePresId)
         If oStructure.isCVImmediateActive Then
             diagnosticCourant.bTrtContrat = False

@@ -9,14 +9,14 @@ Public Class AgentPCManager
 
     Public Shared Function getWSAgentPCById(pAgent As Agent, ByVal pmanometre_uid As Integer) As AgentPC
         Dim oreturn As AgentPC
-        oreturn = getWSByKey(Of AgentPC)(pmanometre_uid, "")
+        oreturn = RootWSGetById(Of AgentPC)(pmanometre_uid, "")
         Return oreturn
     End Function
 
     Public Shared Function SendWSAgentPC(pAgent As Agent, ByVal pManometre As AgentPC, ByRef pReturn As AgentPC) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of AgentPC)(pManometre, pReturn)
+            nreturn = RootWSSend(Of AgentPC)(pManometre, pReturn)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSAgentPC : " & ex.Message)

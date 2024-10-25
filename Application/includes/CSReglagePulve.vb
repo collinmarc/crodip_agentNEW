@@ -1,4 +1,6 @@
-﻿Public Class CSReglagePulve
+﻿Imports CRODIPWS
+
+Public Class CSReglagePulve
 
     Public Shared Function Execute(pDiagIad As String, pAgentId As String) As Boolean
         Dim bReturn As Boolean

@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -120,9 +120,9 @@ Public Class FVManoEtalonManagerTest
 
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprime)
+        Assert.IsFalse(oMano.isSupprimeWS)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
+        Assert.IsTrue(oMano.isSupprimeWS)
 
 
         olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
@@ -163,9 +163,9 @@ Public Class FVManoEtalonManagerTest
         Assert.IsTrue(oMano.etat)
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprime)
+        Assert.IsFalse(oMano.isSupprimeWS)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
+        Assert.IsTrue(oMano.isSupprimeWS)
 
 
         Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)

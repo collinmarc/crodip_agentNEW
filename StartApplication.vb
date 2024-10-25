@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Windows.Forms
 Imports System.IO.Compression
 Imports Ionic.Zip
+Imports CRODIPWS
 
 Module StartApplication
 #Region "Variables de SESSION"
@@ -97,13 +98,13 @@ Module StartApplication
 
         ofrm = New parentContener()
 #End If
-        If File.Exists("./TransfertBDD") Then
-            Dim oFrmBDD As New FrmMigrationBDD()
-            If oFrmBDD.ShowDialog() = DialogResult.OK Then
-                '                File.Delete("./TransfertBDD")
-                ' Le fichier sera détruit dans la page d'accueil
-            End If
-        End If
+        'If File.Exists("./TransfertBDD") Then
+        '    Dim oFrmBDD As New FrmMigrationBDD()
+        '    If oFrmBDD.ShowDialog() = DialogResult.OK Then
+        '        '                File.Delete("./TransfertBDD")
+        '        ' Le fichier sera détruit dans la page d'accueil
+        '    End If
+        'End If
 
         CSDebug.dispInfo("StartApplication.Show ParentContainer")
         If Not bLoginFailed Then

@@ -8,11 +8,11 @@ Imports System.Xml.Serialization
 'Imports RestSharp.Authenticators
 Public Class RootManager
     'Protected Shared BaseUrl As String = "https://admin-pp.crodip.net"
-    Protected Shared Function getWSByKey(Of T As root)(puid As Integer, paid As String) As T
+    Protected Shared Function RootWSGetById(Of T As root)(puid As Integer, paid As String) As T
         Dim oreturn As T = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
         Try
-            Dim tXmlnodes As Xml.XmlNode()
+            Dim tXmlnodes As Xml.XmlNode() = Nothing
             '' déclarations
             Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "Get" & typeT.Name
@@ -42,7 +42,7 @@ Public Class RootManager
 
 
     End Function
-    Protected Shared Function SendWS(Of T As root)(pobj As T, ByRef pobjreturn As T) As Integer
+    Protected Shared Function RootWSSend(Of T As root)(pobj As T, ByRef pobjreturn As T) As Integer
         Dim oreturn As T = Nothing
         Dim codeResponse As Integer = 99
         Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
@@ -72,9 +72,9 @@ Public Class RootManager
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-                    pobjreturn = getWSByKey(Of T)(puid, CType(pobj, root).aid)
+                    pobjreturn = RootWSGetById(Of T)(puid, CType(pobj, root).aid)
                 Case 4 ' CREATE OK
-                    pobjreturn = getWSByKey(Of T)(puid, "")
+                    pobjreturn = RootWSGetById(Of T)(puid, "")
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST

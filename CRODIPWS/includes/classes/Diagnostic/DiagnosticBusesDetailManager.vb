@@ -57,18 +57,21 @@ Public Class DiagnosticBusesDetailManager
 
         'Envoi de tous les detail de buses
         For Each oBuse In pDiag.diagnosticBusesList.Liste
-            Dim tmpArr(1)() As DiagnosticBusesDetail
-            tmpArr(0) = oBuse.diagnosticBusesDetailList.Liste.ToArray()
-            Dim updatedObject() As Object = Nothing
-            Try
-                ' Appel au WS
-                Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-                Dim rInfos As String = ""
-                objWSCrodip.SendDiagnosticBusesDetail(tmpArr, rInfos)
-            Catch ex As Exception
-                CSDebug.dispFatal("DiagnosticBusesDetailManager.WSSend ERR", ex)
-            End Try
+            WSSend(oBuse.diagnosticBusesDetailList)
         Next
+    End Function
+    Public Shared Function WSSend(ByVal pListe As DiagnosticBusesDetailList) As Integer
+        Dim tmpArr(1)() As DiagnosticBusesDetail
+        tmpArr(0) = pListe.Liste.ToArray()
+        Dim updatedObject() As Object = Nothing
+        Try
+            ' Appel au WS
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim rInfos As String = ""
+            objWSCrodip.SendDiagnosticBusesDetail(tmpArr, rInfos)
+        Catch ex As Exception
+            CSDebug.dispFatal("DiagnosticBusesDetailManager.WSSend ERR", ex)
+        End Try
     End Function
 
 
@@ -185,7 +188,8 @@ Public Class DiagnosticBusesDetailManager
         Debug.Assert(Not String.IsNullOrEmpty(pidDiag))
         ' déclarations
         Dim oCSDB As New CSDb(True)
-        Dim tmpDiagnosticBusesDetail As DiagnosticBusesDetail = Nothing
+        Dim oDiagnosticBusesDetail As DiagnosticBusesDetail = Nothing
+        Dim oReturn As New DiagnosticBusesDetail
         If diagnosticbusesdetail_id <> "" Then
 
             Dim bddCommande As DbCommand
@@ -197,11 +201,11 @@ Public Class DiagnosticBusesDetailManager
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
-                    tmpDiagnosticBusesDetail = New DiagnosticBusesDetail()
+                    oReturn = New DiagnosticBusesDetail()
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpDiagnosticBusesDetail.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                            oDiagnosticBusesDetail.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -209,13 +213,14 @@ Public Class DiagnosticBusesDetailManager
                 tmpListProfils.Close()
 
             Catch ex As Exception ' On intercepte l'erreur
-                MsgBox("DiagnosticBusesDetailManager::getDiagnosticBusesDetailById : " & ex.Message)
+                CSDebug.dispError("DiagnosticBusesDetailManager::getDiagnosticBusesDetailById : ERR ", ex)
+                oReturn = New DiagnosticBusesDetail
             End Try
 
             oCSDB.free()
         End If
         'on retourne le diagnosticbuses ou un objet vide en cas d'erreur
-        Return tmpDiagnosticBusesDetail
+        Return oReturn
     End Function
 
     Public Shared Function delete(ByVal diagnosticbuses_id As String, ByVal pidDiagnostic As String) As Boolean

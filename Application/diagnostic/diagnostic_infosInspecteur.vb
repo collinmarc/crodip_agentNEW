@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class diagnostic_infosInspecteur
     Inherits frmCRODIP
 

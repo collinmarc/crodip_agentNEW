@@ -1,3 +1,4 @@
+Imports CRODIPWS
 Public Class MarquesManager
     Public Const XPATH_MARQUES_PULVE As String = "/root/marque/libelle"
     Public Const XPATH_MODELES_PULVE As String = "/root/marque[libelle=""%marque%""]/modeles/modele"

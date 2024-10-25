@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="Structuree" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Crodip_agent.Structuree, Logiciel Crodip Agent, Version=2.7.1.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="[Structure]" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>Crodip_agent.[Structure], Logiciel Crodip Agent, Version=2.7.1.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

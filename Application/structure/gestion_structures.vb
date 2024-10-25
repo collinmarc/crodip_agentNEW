@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class gestion_structures
     Inherits frmCRODIP
 
@@ -528,7 +530,7 @@ Public Class gestion_structures
 
     Private Sub gestion_structures_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' On récupère la structure de l'agent courant
-        Dim objStructure As New Structuree
+        Dim objStructure As New [Structure]
         objStructure = StructureManager.getStructureById(agentCourant.idStructure)
         ' On charge les données
         ficheStructure_id.Text = objStructure.id
@@ -573,7 +575,7 @@ Public Class gestion_structures
     Private Sub btn_ficheStructure_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_FICHESTRUCTURE_ENCOURS, True)
         Try
-            Dim objStructure As New Structuree
+            Dim objStructure As New [Structure]
             ' On enregistre les données
             objStructure.id = CInt(ficheStructure_id.Text)
             objStructure.idCrodip = ficheStructure_idCrodip.Text

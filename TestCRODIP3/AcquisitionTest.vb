@@ -2,12 +2,13 @@
 Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports CRODIPAcquisition
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
 Imports CsvHelper.Configuration.Attributes
 Imports CsvHelper
 Imports System.Globalization
 Imports AcquisitionAAMS
+
 
 
 <TestClass()>

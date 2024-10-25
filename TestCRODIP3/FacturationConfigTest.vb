@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports Crodip_agent
+Imports CrodipWS
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 <TestClass()> Public Class FacturationConfigTest

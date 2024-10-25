@@ -1,4 +1,6 @@
-﻿Public Class frmSaisieNumFact
+﻿Imports CRODIPWS
+
+Public Class frmSaisieNumFact
     Private m_agent As Agent
     Public NUMFACT As String
     Private FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)

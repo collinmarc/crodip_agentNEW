@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports CRODIPWS
+
 Public Interface IdlgHelp12123
 
     Sub setContexte(pDiagH12123 As DiagnosticHelp12123, pbModeVisu As Boolean)

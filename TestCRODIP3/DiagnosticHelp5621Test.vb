@@ -2,7 +2,7 @@
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -239,7 +239,7 @@ Public Class DiagnosticHelp5621test
 
         'Vérification des DiagItems
         Assert.AreEqual(1, oDiag2.diagnosticItemsLst.Count)
-        oDiagItem = oDiag2.diagnosticItemsLst.Values(0)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(0)
         'Item1
         Assert.IsTrue(oDiagItem.idItem = "111")
         Assert.IsTrue(oDiagItem.itemValue = "1")

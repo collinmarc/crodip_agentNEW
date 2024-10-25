@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class frmRPparentContener
     Inherits frmCRODIP
     Enum CtrlLoad

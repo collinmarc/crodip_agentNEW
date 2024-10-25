@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
 Imports System.IO
@@ -26,7 +27,7 @@ Public Class EtatBL
     End Class
 
     Private m_oDiag As Diagnostic
-    Private m_ods As ds_EtatBL
+    Private m_ods As CRODIPWS.ds_EtatBL
     Private m_lstPresta As List(Of LgPrestation)
     Private m_ReportName As String
 
@@ -107,7 +108,7 @@ Public Class EtatBL
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostic_finalisation ERR : " & ex.Message)
-            m_ods = New ds_EtatBL()
+            m_ods = New CRODIPWS.ds_EtatBL()
             bReturn = False
         End Try
 

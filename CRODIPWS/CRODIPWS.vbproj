@@ -366,6 +366,7 @@
     <Compile Include="includes\fonctions\CSLogin.vb" />
     <Compile Include="includes\fonctions\CSMail.vb" />
     <Compile Include="includes\fonctions\CSMath.vb" />
+    <Compile Include="includes\fonctions\CSSoftwareUpdate.vb" />
     <Compile Include="includes\fonctions\CSTime.vb" />
     <Compile Include="includes\fonctions\CSVersion.vb" />
     <Compile Include="includes\fonctions\CSXml.vb" />

@@ -1,5 +1,6 @@
 Imports System.Web.Services
 Imports System.Xml.Serialization
+Imports CRODIPWS
 
 <Serializable(), XmlInclude(GetType(Pulverisateur))> _
 Public Class Logs

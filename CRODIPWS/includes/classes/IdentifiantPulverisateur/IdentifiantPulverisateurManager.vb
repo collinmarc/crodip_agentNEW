@@ -7,14 +7,14 @@ Public Class IdentifiantPulverisateurManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As IdentifiantPulverisateur
         Dim oreturn As IdentifiantPulverisateur
-        oreturn = getWSByKey(Of IdentifiantPulverisateur)(p_uid, paid)
+        oreturn = RootWSGetById(Of IdentifiantPulverisateur)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of IdentifiantPulverisateur)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of IdentifiantPulverisateur)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSIdentifiantPulverisateur : " & ex.Message)

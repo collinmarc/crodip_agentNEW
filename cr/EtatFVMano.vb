@@ -1,4 +1,5 @@
 ﻿Imports System.Linq
+Imports CRODIPWS
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
@@ -65,7 +66,7 @@ Public Class EtatFVMano
             Dim oMano As ManometreControle
             oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
             ' Recupere la structure
-            Dim objStructure As Structuree = StructureManager.getStructureById(m_oControle.idStructure)
+            Dim objStructure As [Structure] = StructureManager.getStructureById(m_oControle.idStructure)
 
             m_ods = New dsFvMano()
             m_ods.Verif.AddVerifRow(dateVerification:=CDate(m_oControle.DateVerif).ToShortDateString(),
@@ -145,6 +146,24 @@ Public Class EtatFVMano
         Return bReturn
 
     End Function
+    Public Function buildPDF(ByVal pMano As ManometreControle, pAgent As Agent) As String
+        Dim sReturn As String
+
+        m_oControle.DateVerif = pMano.dateDernierControleS
+        m_oControle.Proprietaire = pAgent.NomStructure
+        m_oControle.AgentVerif = pAgent.nom & " " & pAgent.prenom
+        m_oControle.idMano = pMano.idManometre
+
+        '        Dim oEtat As New EtatFVBanc(Me)
+        Dim bReturn As Boolean = genereEtat()
+        If bReturn Then
+            sReturn = getFileName()
+        Else
+            sReturn = ""
+        End If
+        Return sReturn
+    End Function 'BuildPDF
+
     'Public Function buildPDF(ByVal curMano As ManometreControle)
 
     '    ' Init
@@ -172,7 +191,7 @@ Public Class EtatFVMano
     '    pdfFormFields.SetField("manoControle_resolution", manoControle.resolution)
 
     '    ' Recupere la structure
-    '    Dim objStructure As Structuree = StructureManager.getStructureById(manoControle.idStructure)
+    '    Dim objStructure As [Structure] = StructureManager.getStructureById(manoControle.idStructure)
 
 
     '    ' CONTENU

@@ -1,4 +1,6 @@
-﻿Public Class EtatFDiagEnquete
+﻿Imports CRODIPWS
+
+Public Class EtatFDiagEnquete
     Inherits EtatFDiag
 
     Public Sub New()

@@ -7,14 +7,14 @@ Public Class BuseManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer) As Buse
         Dim oreturn As Buse
-        oreturn = getWSByKey(Of Buse)(p_uid, "")
+        oreturn = RootWSGetById(Of Buse)(p_uid, "")
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As Buse, ByRef pobjOut As Buse) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of Buse)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of Buse)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSBuse : " & ex.Message)

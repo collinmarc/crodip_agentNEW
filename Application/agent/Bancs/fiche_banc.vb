@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
+
 Public Class fiche_banc
     Inherits System.Windows.Forms.Form
 
@@ -121,7 +123,7 @@ Public Class fiche_banc
         '
         'm_bsrcBanc
         '
-        Me.m_bsrcBanc.DataSource = GetType(Crodip_agent.Banc)
+        Me.m_bsrcBanc.DataSource = GetType(Banc)
         '
         'Label6
         '
@@ -339,7 +341,7 @@ Public Class fiche_banc
         'm_bsrcPool
         '
         Me.m_bsrcPool.AllowNew = False
-        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        Me.m_bsrcPool.DataSource = GetType(Pool)
         '
         'cbxPool
         '
@@ -434,7 +436,7 @@ Public Class fiche_banc
             '     ficheBanc_dateAchat.Enabled = False
             '    ficheBanc_dateAchat.Visible = False
             '   End If
-            If BancCourant.JamaisServi Then
+            If BancCourant.jamaisServi Then
                 pbEtat.Image = imagesEtatMateriel.Images(2) 'Gris
             Else
                 If BancCourant.etat Then
@@ -443,7 +445,7 @@ Public Class fiche_banc
                     pbEtat.Image = imagesEtatMateriel.Images(0) 'Rouge
                 End If
             End If
-            btnActiver.Visible = BancCourant.JamaisServi
+            btnActiver.Visible = BancCourant.jamaisServi
             '  If Not CSDate.isDateNull(BancCourant.DateActivation) Then
             ' ficheBanc_dateActivation.Text = CSDate.TOCRODIPString(BancCourant.DateActivation)
             'End If
@@ -525,7 +527,7 @@ Public Class fiche_banc
     End Sub
 
     Private Sub fiche_banc_HandleDestroyed(sender As Object, e As EventArgs) Handles Me.HandleDestroyed
-        CSEnvironnement.checkDateTimePicker(ficheBanc_dateAchat)
+        '        CSEnvironnement.checkDateTimePicker(ficheBanc_dateAchat)
 
     End Sub
 End Class

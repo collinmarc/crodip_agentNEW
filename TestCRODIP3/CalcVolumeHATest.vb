@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports CRODIPWS
 Imports Crodip_agent
 Imports System.IO
 

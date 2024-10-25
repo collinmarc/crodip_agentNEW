@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim oMano As CRODIPWS.ManometreEtalon
-        oMano = ManometreEtalonManager.WSgetById(150)
+        oMano = ManometreEtalonManager.WSgetById(150, "")
         Assert.AreEqual(150, oMano.uid)
         Assert.IsNotNull(oMano)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oMano As CRODIPWS.ManometreEtalon
-        oMano = ManometreEtalonManager.WSgetById(150)
+        oMano = ManometreEtalonManager.WSgetById(150, "")
         Assert.IsNotNull(oMano)
         Dim marque As String = "TEST" + Now
         oMano.marque = marque
@@ -26,7 +26,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = ManometreEtalonManager.WSSend(oMano, oreturn)
         Assert.AreEqual(2, nReturn)
-        oMano = ManometreEtalonManager.WSgetById(150)
+        oMano = ManometreEtalonManager.WSgetById(150, "")
         Assert.AreEqual(oMano.marque, marque)
         Assert.AreEqual(oMano.classe, "CL8")
 
@@ -45,7 +45,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oMano = ManometreEtalonManager.WSgetById(oReturn.uid)
+        oMano = ManometreEtalonManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual("MANO22", oMano.numeroNational)
         Assert.AreEqual("TESTMCO", oMano.marque)
 
@@ -56,7 +56,7 @@ Imports System.Net.Http
         Assert.AreEqual(2, nreturn)
 
         'Lecture de l'objet
-        oMano = ManometreEtalonManager.WSgetById(oReturn.uid)
+        oMano = ManometreEtalonManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual("MANO22", oMano.numeroNational)
         Assert.AreEqual("TESTUPDATE", oMano.marque)
 

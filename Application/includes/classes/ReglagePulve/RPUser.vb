@@ -1,4 +1,6 @@
-﻿Public Class RPUser
+﻿Imports CRODIPWS
+
+Public Class RPUser
     Private _Code As String
     Private _PasswordCrypted As String
     Private _dateExp As Long

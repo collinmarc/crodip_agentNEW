@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports CRODIPWS
 
 Public Class diagnostic_dlghelp551
     Implements IfrmCRODIP

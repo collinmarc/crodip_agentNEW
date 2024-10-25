@@ -1,4 +1,6 @@
-﻿Public Class EtatFDiagDepart
+﻿Imports CRODIPWS
+
+Public Class EtatFDiagDepart
     Inherits EtatFDiag
 
     Public Sub New()

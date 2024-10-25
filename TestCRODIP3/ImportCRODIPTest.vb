@@ -2,9 +2,10 @@
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
 Imports CsvHelper
+Imports Crodip_agent
 
 '''<summary>
 '''Classe de test pour PulverisateurManagerTest, destinée à contenir tous
@@ -327,15 +328,15 @@ Public Class ImportCRODIPTest
         Dim olstin = New List(Of importCRODIPcolsinversée)
 
         obj = New importCRODIPcolsinversée()
-        obj.NomExploitant = "TEST1"
+        obj.nomexploitant = "TEST1"
         obj.codeApe = "AQWZS"
         obj.numeroSiren = "1235467"
         'Raisonsociale commence par une majuscule
-        obj.RaisonSociale = "RS001"
+        obj.RAISONSOCIALE = "RS001"
         obj.numeroNational = "E001001"
         olstin.Add(obj)
         obj = New importCRODIPcolsinversée()
-        obj.nomExploitant = "TEST2"
+        obj.nomexploitant = "TEST2"
         obj.codeApe = "POIUY"
         obj.numeroSiren = "789456123"
         obj.numeroNational = "E001002"
@@ -394,7 +395,7 @@ Public Class ImportCRODIPTest
         obj.controleIsComplet = "VRAI"
         obj.typeDiagnostic = "TEST"
         obj.telephoneFixe = "0301020304"
-        obj.numchassis = "22222"
+        obj.numChassis = "22222"
         obj.controleEtat = "1"
         obj.dateControle = "02/01/2021"
         'obj.dateProchainControle = "01/01/2026"

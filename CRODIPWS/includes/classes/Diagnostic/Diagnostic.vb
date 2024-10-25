@@ -3322,72 +3322,72 @@ Public Class Diagnostic
     End Function
 
     ''' Generation du dataset en vue la la construction du Bon de Livraison
-    'Public Function generateDataSetForBL(PCommentaire As String) As ds_EtatBL
-    '    Dim oReturn As ds_EtatBL
-    '    Try
+    Public Function generateDataSetForBL(PCommentaire As String) As ds_EtatBL
+        Dim oReturn As ds_EtatBL
+        Try
 
-    '        oReturn = New ds_EtatBL()
-    '        Dim oRow As ds_EtatBL.FactureRow
-    '        Dim oStructure As New Structuree()
-    '        oStructure = StructureManager.getStructureById(Me.organismePresId)
-    '        Dim oExploit As Exploitation
-    '        oExploit = ExploitationManager.getExploitationById(proprietaireId)
+            oReturn = New ds_EtatBL()
+            Dim oRow As ds_EtatBL.FactureRow
+            Dim oStructure As New [Structure]()
+            oStructure = StructureManager.getStructureById(Me.organismePresId)
+            Dim oExploit As Exploitation
+            oExploit = ExploitationManager.getExploitationById(proprietaireId)
 
-    '        oRow = oReturn.Facture.AddFactureRow(IdPulve:=Me.pulverisateurNumNational,
-    '                                             NomOrganisme:=Me.organismePresNom,
-    '                                             MontantHT:=Me.TotalHT,
-    '                                             MontantTVA:=Me.TotalTVA,
-    '                                             MontantTTC:=Me.TotalTTC,
-    '                                             refacture:="",
-    '                                             dateFacture:=Date.Now(),
-    '                                             Footer:="",
-    '                                             LogoFileName:="",
-    '                                             Logo:=Nothing,
-    '                                             Commentaire:=PCommentaire)
-    '        oReturn.Pulve.AddPulveRow(oRow,
-    '                                  Marque:=pulverisateurMarque,
-    '                                  Modele:=pulverisateurModele,
-    '                                  Type:=pulverisateurType,
-    '                                  Categorie:=Me.pulverisateurCategorie,
-    '                                  _Largeur_rang:=pulverisateurLargeur,
-    '                                  Annee:=pulverisateurAnneeAchat,
-    '                                  Attelage:=pulverisateurAttelage,
-    '                                  Regulation:=pulverisateurRegulation)
+            oRow = oReturn.Facture.AddFactureRow(IdPulve:=Me.pulverisateurNumNational,
+                                                 NomOrganisme:=Me.organismePresNom,
+                                                 MontantHT:=Me.TotalHT,
+                                                 MontantTVA:=Me.TotalTVA,
+                                                 MontantTTC:=Me.TotalTTC,
+                                                 refacture:="",
+                                                 dateFacture:=Date.Now(),
+                                                 Footer:="",
+                                                 LogoFileName:="",
+                                                 Logo:=Nothing,
+                                                 Commentaire:=PCommentaire)
+            oReturn.Pulve.AddPulveRow(oRow,
+                                      Marque:=pulverisateurMarque,
+                                      Modele:=pulverisateurModele,
+                                      Type:=pulverisateurType,
+                                      Categorie:=Me.pulverisateurCategorie,
+                                      _Largeur_rang:=pulverisateurLargeur,
+                                      Annee:=pulverisateurAnneeAchat,
+                                      Attelage:=pulverisateurAttelage,
+                                      Regulation:=pulverisateurRegulation)
 
-    '        oReturn.Proprio.AddProprioRow(
-    '                                      RS:=proprietaireRaisonSociale,
-    '                                      Nom:=proprietaireNom & " " & proprietairePrenom,
-    '                                      Adresse:=proprietaireAdresse,
-    '                                      CodePostal:=proprietaireCodePostal,
-    '                                      Commune:=proprietaireCommune,
-    '                                      CodeAPE:=proprietaireCodeApe,
-    '                                      SIREN:=proprietaireNumeroSiren,
-    '                                      Tel:=proprietaireTelephoneFixe,
-    '                                      Fax:=oExploit.telephoneFax,
-    '                                      Port:=proprietaireTelephonePortable,
-    '                                      Mail:=proprietaireEmail)
+            oReturn.Proprio.AddProprioRow(
+                                          RS:=proprietaireRaisonSociale,
+                                          Nom:=proprietaireNom & " " & proprietairePrenom,
+                                          Adresse:=proprietaireAdresse,
+                                          CodePostal:=proprietaireCodePostal,
+                                          Commune:=proprietaireCommune,
+                                          CodeAPE:=proprietaireCodeApe,
+                                          SIREN:=proprietaireNumeroSiren,
+                                          Tel:=proprietaireTelephoneFixe,
+                                          Fax:=oExploit.telephoneFax,
+                                          Port:=proprietaireTelephonePortable,
+                                          Mail:=proprietaireEmail)
 
-    '        oReturn.Organisme.AddOrganismeRow(parentFactureRowByFacture_Organisme:=oRow,
-    '                                          adresse:=oStructure.adresse,
-    '                                          Code_postal:=oStructure.codePostal,
-    '                                          Commune:=oStructure.commune,
-    '                                          Inspecteur:=inspecteurNom & " " & inspecteurPrenom,
-    '                                          LieuControle:=Me.controleLieu,
-    '                                          Site:=Me.controleSite,
-    '                                          Nom_du_site:=Me.controleNomSite,
-    '                                          TelFax:=oStructure.telephoneFixe & "" & oStructure.telephoneFax,
-    '                                          SIREN:="",
-    '                                          TVA:="",
-    '                                          RCS:="")
+            oReturn.Organisme.AddOrganismeRow(parentFactureRowByFacture_Organisme:=oRow,
+                                              adresse:=oStructure.adresse,
+                                              Code_postal:=oStructure.codePostal,
+                                              Commune:=oStructure.commune,
+                                              Inspecteur:=inspecteurNom & " " & inspecteurPrenom,
+                                              LieuControle:=Me.controleLieu,
+                                              Site:=Me.controleSite,
+                                              Nom_du_site:=Me.controleNomSite,
+                                              TelFax:=oStructure.telephoneFixe & "" & oStructure.telephoneFax,
+                                              SIREN:="",
+                                              TVA:="",
+                                              RCS:="")
 
-    '    Catch ex As Exception
-    '        CSDebug.dispError("Diagnostic.generateDataSetForBL ERR" & ex.Message)
-    '        oReturn = Nothing
+        Catch ex As Exception
+            CSDebug.dispError("Diagnostic.generateDataSetForBL ERR" & ex.Message)
+            oReturn = Nothing
 
-    '    End Try
-    '    Return oReturn
+        End Try
+        Return oReturn
 
-    'End Function
+    End Function
 
     Public Function pulverisateurRegulationIsPressionCONSTante() As Boolean
         Return pulverisateurRegulation.Trim().ToLower() = "Pression constante".Trim().ToLower()

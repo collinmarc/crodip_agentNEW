@@ -1,7 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CRODIPWS
 Imports System.IO
+Imports Crodip_agent
 
 <TestClass()> Public Class EtatDocCoPropTest
     Inherits CRODIPTest
@@ -56,7 +57,7 @@ Imports System.IO
         oEtat = New EtatDocumentCoPropriete(oDiag)
         oEtat.AddCoProprietaire("EARL DES BOIS : Marc Collin")
         oEtat.AddCoProprietaire("GAEC DE FOURNAN : Marc-Antoine Rault")
-        Assert.IsTrue(oEtat.GenereEtat)
+        Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
         Assert.IsTrue(oEtat.Open())
     End Sub

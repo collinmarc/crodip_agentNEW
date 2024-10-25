@@ -1,4 +1,5 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
+﻿Imports CRODIPWS
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports System.Collections.Generic
 Imports System.IO
@@ -10,11 +11,11 @@ Public Class EtatFacture2
 
     Private m_oFacture As Facture
     Private m_oAgent As Agent
-    Private m_oStructure As Structuree
+    Private m_oStructure As [Structure]
     Private m_ods As ds_EtatFacture
     Private m_ReportName As String
 
-    Public Sub New(pFacture As Facture, pAgent As Agent, pStructure As Structuree)
+    Public Sub New(pFacture As Facture, pAgent As Agent, pStructure As [Structure])
         m_Path = GlobalsCRODIP.CONST_PATH_EXP_FACTURE
         m_oFacture = pFacture
         m_oAgent = pAgent
@@ -125,7 +126,7 @@ Public Class EtatFacture2
                                                 olg.pu,
                                                 olg.quantite,
                                                 olg.totalHT,
-                                                m_oStructure.TxTVA,
+                                                m_oStructure.txTVA,
                                                 olg.idDiag, ""
                                                         )
                                     )

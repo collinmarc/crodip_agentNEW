@@ -2,6 +2,7 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
 Imports Ionic.Zip
+Imports CRODIPWS
 
 Public Class accueil
     Inherits frmCRODIP
@@ -935,7 +936,7 @@ Public Class accueil
         '
         'bsControleQuotidien
         '
-        Me.bsControleQuotidien.DataSource = GetType(Crodip_agent.AutoTest)
+        Me.bsControleQuotidien.DataSource = GetType(AutoTest)
         '
         'Label15
         '
@@ -1362,7 +1363,7 @@ Public Class accueil
         '
         'm_bsrcPulverisateurTMP
         '
-        Me.m_bsrcPulverisateurTMP.DataSource = GetType(Crodip_agent.Pulverisateur)
+        Me.m_bsrcPulverisateurTMP.DataSource = GetType(Pulverisateur)
         '
         'btnTransfertPulve
         '
@@ -3806,7 +3807,7 @@ Public Class accueil
         '
         'm_bsFacture
         '
-        Me.m_bsFacture.DataSource = GetType(Crodip_agent.Facture)
+        Me.m_bsFacture.DataSource = GetType(Facture)
         '
         'Panel3
         '
@@ -4055,9 +4056,6 @@ Public Class accueil
     End Sub
     ' Chargement form
     Private Sub accueil_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CSEnvironnement.checkDateTimePicker(dtpSearchCrit1)
-        CSEnvironnement.checkDateTimePicker(dtpSearchCrit2)
-        CSEnvironnement.checkDateTimePicker(dtp_ControleRegulier)
 
         If Not Directory.Exists(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE) Then
             Directory.CreateDirectory(GlobalsCRODIP.CONST_PATH_EXP_MANOCONTROLE)
@@ -4266,7 +4264,7 @@ Public Class accueil
             tabControl.TabPages.RemoveByKey(tabControl_Statistiques.Name)
             tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
         End If
-        Dim oStructure As Structuree
+        Dim oStructure As [Structure]
         oStructure = StructureManager.getStructureById(agentCourant.idStructure)
         If Not oStructure.isFacturationActive Then
             tabControl.TabPages.RemoveByKey(tabControl_Facturation.Name)
@@ -4774,13 +4772,13 @@ Public Class accueil
     Private Sub loadAccueilAlertsNumeroration(ByRef positionTopAlertes As Integer)
 
         Dim olst As New List(Of String)
-        olst = BDDTransfert.ComparerNumDiag()
-        If olst.Count > 0 Then
-            MsgBox(olst(0), MsgBoxStyle.Critical, "ERREUR DE MIGRATION")
-            Application.Exit()
-        Else
-            File.Delete("./TransfertBDD")
-        End If
+        'olst = BDDTransfert.ComparerNumDiag()
+        'If olst.Count > 0 Then
+        '    MsgBox(olst(0), MsgBoxStyle.Critical, "ERREUR DE MIGRATION")
+        '    Application.Exit()
+        'Else
+        '    File.Delete("./TransfertBDD")
+        'End If
         'For Each strAlert As String In olst
         '    AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, "Migration", strAlert, positionTopAlertes)
         'Next
@@ -5374,7 +5372,7 @@ Public Class accueil
                 ' Si tout est ok, on le supprime
                 If ExploitationManager.SupprimerExploitation(clientCourant) Then
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_OK)
-                    CSTime.pause(1000)
+                    System.Threading.Thread.Sleep(1000)
                     LoadListeExploitation()
                 Else
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETECLIENT_FAILED)
@@ -5423,11 +5421,11 @@ Public Class accueil
             End If
             If agentCourant.isGestionnaire Then
                 Dim oDiag As Diagnostic
-                oDiag = DiagnosticManager.getWSDiagnosticById(agentCourant.id, searchCriteria)
+                oDiag = DiagnosticManager.WSgetById(agentCourant.uid, searchCriteria)
                 If Not oDiag Is Nothing Then
                     diagnosticCourant = oDiag
                     Dim oExploit As Exploitation
-                    oExploit = ExploitationManager.getWSClientPulveByDiagnosticId(agentCourant, searchCriteria)
+                    oExploit = ExploitationManager.WSgetExploitationPulverisateurByDiagnosticId(agentCourant, searchCriteria)
                     ocol = New List(Of Exploitation)
                     ocol.Add(oExploit)
                 End If
@@ -5464,7 +5462,7 @@ Public Class accueil
 
             Dim bEntete As Boolean = True
             For Each oExploit As Exploitation In ocol
-                oExploit.ExportCSV(SFile, bEntete)
+                oExploit.ExportCSV(agentCourant, SFile, bEntete)
                 bEntete = False
             Next
 
@@ -5612,7 +5610,7 @@ Public Class accueil
 
                     'Vérification du ficher de Param
                     'Lecture du paramétrage associé au pulvérisateur
-                    If Not pulverisateurCourant.CheckParam() Then
+                    If Not pulverisateurCourant.CheckParam(pulverisateurCourant) Then
                         Exit Sub
                     End If
                     ' Création d'une nouveau diagnostic
@@ -5919,7 +5917,7 @@ Public Class accueil
                 ' Si tout est ok, on le supprime
                 If PulverisateurManager.deletePulverisateur(pulverisateurCourant) Then
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_OK)
-                    CSTime.pause(1000)
+                    System.Threading.Thread.Sleep(1000)
                     loadListPulveExploitation(False)
                 Else
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DELETEPULVE_FAILED)
@@ -6644,7 +6642,7 @@ Public Class accueil
         If MsgBox("Mise à jour de la date de dernière synhcro de l'agent à " & CSDate.ToCRODIPString(DateTime.Now()), MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             agentCourant.dateDerniereSynchro = CSDate.ToCRODIPString(DateTime.Now())
             Dim oUpdate As Object = Nothing
-            AgentManager.sendWSAgent(agentCourant, oUpdate)
+            AgentManager.WSSend(agentCourant, oUpdate)
         End If
 
     End Sub

@@ -1,3 +1,4 @@
+Imports CRODIPWS
 Public Class GlobalsCRODIP
 
     Public Enum ALERTE As Integer

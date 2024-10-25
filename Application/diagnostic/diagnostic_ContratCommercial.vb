@@ -9,6 +9,8 @@ Imports System.Windows.Forms
 Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports CRODIPWS
+
 Public Class diagnostic_ContratCommercial
     Inherits System.Windows.Forms.Form
 
@@ -615,7 +617,7 @@ Public Class diagnostic_ContratCommercial
         '
         'm_bsContratCommercial
         '
-        Me.m_bsContratCommercial.DataSource = GetType(Crodip_agent.ContratCommercial)
+        Me.m_bsContratCommercial.DataSource = GetType(ContratCommercial)
         '
         'diagnostic_ContratCommercial
         '
@@ -670,7 +672,7 @@ Public Class diagnostic_ContratCommercial
         m_oAgent = pAgent
         m_oPulverisateur = PulverisateurManager.getPulverisateurById(m_oDiag.pulverisateurId)
 
-        Dim oStructure As Structuree
+        Dim oStructure As [Structure]
         oStructure = StructureManager.getStructureById(pAgent.idStructure)
 
         Dim oCC As New ContratCommercial

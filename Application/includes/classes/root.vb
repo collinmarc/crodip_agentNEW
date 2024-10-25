@@ -1,4 +1,5 @@
 ﻿Imports System.Xml.Serialization
+Imports CRODIPWS
 
 Public Class root
     Private _dateModificationAgent As DateTime

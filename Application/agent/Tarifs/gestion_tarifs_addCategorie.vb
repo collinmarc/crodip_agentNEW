@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class gestion_tarifs_addCategorie
     Inherits System.Windows.Forms.Form
 

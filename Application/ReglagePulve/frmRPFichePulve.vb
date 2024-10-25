@@ -1,4 +1,6 @@
-﻿Public Class frmRPFichePulve
+﻿Imports CRODIPWS
+
+Public Class frmRPFichePulve
     Inherits ajout_pulve2
     Implements IfrmCRODIP
 
@@ -102,7 +104,7 @@
                 lblError.Text = ("Veuillez remplir le paramètre 'Larg/nb rangs pulvérisateur'.")
                 bReturn = False
             End If
-            If bReturn = True And _
+            If bReturn = True And
             String.IsNullOrEmpty(cbxAttelage.Text) Then
                 lblError.Text = ("Veuillez remplir le paramètre 'Attelage'.")
                 bReturn = False

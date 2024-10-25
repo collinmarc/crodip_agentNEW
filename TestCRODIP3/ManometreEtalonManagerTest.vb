@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -37,7 +37,7 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon.nbControles = 5
         objManometreEtalon.nbControlesTotal = 15
 
-        Assert.AreEqual(objManometreEtalon.isSupprime, True)
+        Assert.AreEqual(objManometreEtalon.isSupprimeWS, True)
         Assert.AreEqual(objManometreEtalon.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objManometreEtalon.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objManometreEtalon.dateSuppression), CDate("06/02/1964"))
@@ -57,7 +57,7 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon2 = ManometreEtalonManager.getManometreEtalonByNumeroNational("MonNumeroNational")
         Assert.AreEqual("MonManometreEtalon", objManometreEtalon2.idCrodip)
 
-        Assert.AreEqual(objManometreEtalon2.isSupprime, True)
+        Assert.AreEqual(objManometreEtalon2.isSupprimeWS, True)
         Assert.AreEqual(objManometreEtalon2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objManometreEtalon2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objManometreEtalon2.dateSuppression), CDate("06/02/1964"))
@@ -89,7 +89,7 @@ Public Class ManometreEtalonManagerTest
         'Rehcragement du ManometreEtalon pour vérifier l'update
         objManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational("MonNumeroNational")
 
-        Assert.AreEqual(objManometreEtalon.isSupprime, False)
+        Assert.AreEqual(objManometreEtalon.isSupprimeWS, False)
         Assert.AreEqual(objManometreEtalon.AgentSuppression, "MonAgentSuppression")
         Assert.AreEqual(objManometreEtalon.RaisonSuppression, "MaRaison2")
         Assert.AreEqual(CDate(objManometreEtalon.dateSuppression), CDate("06/02/1965"))
@@ -136,13 +136,14 @@ Public Class ManometreEtalonManagerTest
         oManometreEtalon.nbControlesTotal = 15
         Assert.IsTrue(ManometreEtalonManager.save(oManometreEtalon))
 
-        Dim response As Integer = ManometreEtalonManager.sendWSManometreEtalon(m_oAgent, oManometreEtalon)
+        Dim reponse As ManometreEtalon = Nothing
+        Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, reponse)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreEtalon2 = ManometreEtalonManager.getWSManometreEtalonById(m_oAgent, oManometreEtalon.numeroNational)
+        oManometreEtalon2 = ManometreEtalonManager.WSgetById("", oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.idCrodip, oManometreEtalon2.idCrodip)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
-        Assert.AreEqual(oManometreEtalon2.isSupprime, False)
+        Assert.AreEqual(oManometreEtalon2.isSupprimeWS, False)
         Assert.AreEqual(oManometreEtalon2.etat, oManometreEtalon.etat)
 
         Assert.AreEqual(oManometreEtalon2.marque, oManometreEtalon.marque)
@@ -150,8 +151,8 @@ Public Class ManometreEtalonManagerTest
         Assert.AreEqual(oManometreEtalon.fondEchelle, oManometreEtalon2.fondEchelle)
         Assert.AreEqual(oManometreEtalon.classe, oManometreEtalon2.classe)
         Assert.AreEqual(oManometreEtalon.dateDernierControleS, oManometreEtalon2.dateDernierControleS)
-        Assert.AreEqual(oManometreEtalon2.AgentSuppression, oManometreEtalon2.AgentSuppression)
-        Assert.AreEqual(oManometreEtalon2.RaisonSuppression, oManometreEtalon.RaisonSuppression)
+        Assert.AreEqual(oManometreEtalon2.agentSuppression, oManometreEtalon2.agentSuppression)
+        Assert.AreEqual(oManometreEtalon2.raisonSuppression, oManometreEtalon.raisonSuppression)
         Assert.AreEqual(oManometreEtalon2.dateSuppression, oManometreEtalon.dateSuppression)
         'Assert.AreEqual(oManometreEtalon2.nbControles, 5)
         'Assert.AreEqual(oManometreEtalon2.nbControlesTotal, 15)
@@ -162,7 +163,7 @@ Public Class ManometreEtalonManagerTest
         Assert.IsTrue(bReturn)
 
     End Sub
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub DeleteMaterielTest()
         Dim objManometreEtalon As ManometreEtalon
         Dim objManometreEtalon2 As ManometreEtalon
@@ -175,7 +176,7 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon.classe = "MaClasse"
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.idstructure = m_oAgent.idStructure
         objManometreEtalon.nbControles = 5
         objManometreEtalon.nbControlesTotal = 15
 
@@ -185,9 +186,9 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon2.DeleteMateriel(m_oAgent, "MaRaison")
 
         objManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational("MonNumeroNational")
-        Assert.AreEqual(objManometreEtalon.isSupprime, True)
-        Assert.AreEqual(objManometreEtalon.AgentSuppression, m_oAgent.nom)
-        Assert.AreEqual(objManometreEtalon.RaisonSuppression, "MaRaison")
+        Assert.AreEqual(objManometreEtalon.isSupprimeWS, True)
+        Assert.AreEqual(objManometreEtalon.agentSuppression, m_oAgent.nom)
+        Assert.AreEqual(objManometreEtalon.raisonSuppression, "MaRaison")
         Assert.IsNotNull(objManometreEtalon.dateSuppression)
 
 
@@ -209,21 +210,21 @@ Public Class ManometreEtalonManagerTest
         idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         'oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idStructure = m_oAgent.idStructure
+        oManometreEtalon.idstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.etat = True
         Assert.IsTrue(ManometreEtalonManager.save(oManometreEtalon))
 
         oManometreEtalon = ManometreEtalonManager.getManometreEtalonByNumeroNational(oManometreEtalon.numeroNational)
-        Assert.IsTrue(String.IsNullOrEmpty(oManometreEtalon.DateSuppression))
-
-        Dim response As Integer = ManometreEtalonManager.sendWSManometreEtalon(m_oAgent, oManometreEtalon)
+        Assert.IsTrue(String.IsNullOrEmpty(oManometreEtalon.dateSuppression))
+        Dim reponse As ManometreEtalon = Nothing
+        Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, reponse)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreEtalon2 = ManometreEtalonManager.getWSManometreEtalonById(m_oAgent, oManometreEtalon.numeroNational)
+        oManometreEtalon2 = ManometreEtalonManager.WSgetById(-1, oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
-        Assert.AreEqual(oManometreEtalon2.isSupprime, False)
-        Assert.AreEqual(oManometreEtalon2.DateSuppression, oManometreEtalon.DateSuppression)
+        Assert.AreEqual(oManometreEtalon2.isSupprimeWS, False)
+        Assert.AreEqual(oManometreEtalon2.dateSuppression, oManometreEtalon.dateSuppression)
 
         bReturn = ManometreEtalonManager.delete(idManometreEtalon)
         Assert.IsTrue(bReturn)
@@ -238,30 +239,30 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un Banc
         oMano = New ManometreEtalon
-        Assert.IsFalse(oMano.JamaisServi)
+        Assert.IsFalse(oMano.jamaisServi)
         idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         'oBanc.numeroNational = idBanc
         oMano.numeroNational = idMano
         oMano.idCrodip = idMano
-        oMano.idStructure = m_oAgent.idStructure
+        oMano.idstructure = m_oAgent.idStructure
         oMano.isSupprime = False
         oMano.etat = True
 
         Assert.IsTrue(ManometreEtalonManager.save(oMano))
         oMano2 = ManometreEtalonManager.getManometreEtalonByNumeroNational(idMano)
 
-        Assert.AreEqual(oMano.JamaisServi, oMano2.JamaisServi)
+        Assert.AreEqual(oMano.jamaisServi, oMano2.jamaisServi)
         Assert.AreEqual(oMano.DateActivation, oMano2.DateActivation)
         Assert.AreEqual(oMano.DateActivationS, oMano2.DateActivationS)
 
         'Modification des propriétés
-        oMano.JamaisServi = True
+        oMano.jamaisServi = True
         oMano.DateActivation = CDate("06/02/1966")
         Assert.AreEqual("1966-02-06 00:00:00", oMano.DateActivationS)
         Assert.IsTrue(ManometreEtalonManager.save(oMano))
 
         oMano2 = ManometreEtalonManager.getManometreEtalonByNumeroNational(idMano)
-        Assert.AreEqual(oMano.JamaisServi, oMano2.JamaisServi)
+        Assert.AreEqual(oMano.jamaisServi, oMano2.jamaisServi)
         Assert.AreEqual(oMano.DateActivation, oMano2.DateActivation)
         Assert.AreEqual(oMano.DateActivationS, oMano2.DateActivationS)
 
@@ -280,16 +281,16 @@ Public Class ManometreEtalonManagerTest
         idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idStructure = m_oAgent.idStructure
+        oManometreEtalon.idstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.marque = "MaMarque"
         oManometreEtalon.etat = True
         oManometreEtalon.type = "MonType"
         oManometreEtalon.fondEchelle = "MonFond"
         oManometreEtalon.dateDernierControleS = CSDate.ToCRODIPString(CDate("07/02/1964"))
-        oManometreEtalon.AgentSuppression = m_oAgent.nom
-        oManometreEtalon.RaisonSuppression = "MaRaison"
-        oManometreEtalon.DateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
+        oManometreEtalon.agentSuppression = m_oAgent.nom
+        oManometreEtalon.raisonSuppression = "MaRaison"
+        oManometreEtalon.dateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
         oManometreEtalon.nbControles = 5
         oManometreEtalon.nbControlesTotal = 15
         Assert.IsTrue(ManometreEtalonManager.save(oManometreEtalon))
@@ -311,7 +312,7 @@ Public Class ManometreEtalonManagerTest
 
         'banc Jamais Servi
         oManometreEtalon.isSupprime = False
-        oManometreEtalon.JamaisServi = True
+        oManometreEtalon.jamaisServi = True
         oManometreEtalon.etat = True
 
         ManometreEtalonManager.save(oManometreEtalon)
@@ -320,7 +321,7 @@ Public Class ManometreEtalonManagerTest
         lstMano = ManometreEtalonManager.getManometreEtalonByAgent(m_oAgent, False)
         Assert.AreEqual(0, lstMano.Count)
 
-        oManometreEtalon.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
+        oManometreEtalon.jamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         ManometreEtalonManager.save(oManometreEtalon)
         lstMano = ManometreEtalonManager.getManometreEtalonByAgent(m_oAgent, True)
         Assert.AreEqual(1, lstMano.Count)
@@ -334,7 +335,7 @@ Public Class ManometreEtalonManagerTest
         lstMano = ManometreEtalonManager.getManometreEtalonByAgent(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
 
-        oManometreEtalon.JamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
+        oManometreEtalon.jamaisServi = False 'Le Mano n'a pas jamaisservi => il est actif
         oManometreEtalon.etat = False 'Mano non controlé
         ManometreEtalonManager.save(oManometreEtalon)
         lstMano = ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent)
@@ -344,7 +345,7 @@ Public Class ManometreEtalonManagerTest
         lstMano = ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent)
         Assert.AreEqual(0, lstMano.Count)
 
-        oManometreEtalon.JamaisServi = True 'Le Mano n'a jamaisservi 
+        oManometreEtalon.jamaisServi = True 'Le Mano n'a jamaisservi 
         oManometreEtalon.etat = False 'Mano non controlé
         ManometreEtalonManager.save(oManometreEtalon)
         lstMano = ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent)
@@ -367,7 +368,7 @@ Public Class ManometreEtalonManagerTest
         idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         pMano.numeroNational = idMano
         pMano.idCrodip = idMano
-        pMano.idStructure = m_oAgent.idStructure
+        pMano.idstructure = m_oAgent.idStructure
         pMano.isSupprime = False
         pMano.etat = True
         ManometreEtalonManager.save(pMano)
@@ -375,12 +376,12 @@ Public Class ManometreEtalonManagerTest
         'Vérification que le banc n'est pas dans les liste des jamais servi
         Assert.AreEqual(0, ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent).Count)
 
-        pMano.JamaisServi = True
+        pMano.jamaisServi = True
         ManometreEtalonManager.save(pMano)
         'Vérification que le banc est dans la liste des jamais servi
         Assert.AreEqual(1, ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent).Count)
 
-        pMano.JamaisServi = False
+        pMano.jamaisServi = False
         ManometreEtalonManager.save(pMano)
         'Vérification que le banc n'est plus dans la liste des jamais servi
         Assert.AreEqual(0, ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(m_oAgent).Count)
@@ -404,10 +405,10 @@ Public Class ManometreEtalonManagerTest
         idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         oManoE.numeroNational = idMano
         oManoE.idCrodip = idMano
-        oManoE.idStructure = m_oAgent.idStructure
+        oManoE.idstructure = m_oAgent.idStructure
         oManoE.isSupprime = False
         oManoE.etat = False
-        oManoE.JamaisServi = True
+        oManoE.jamaisServi = True
         ManometreEtalonManager.save(oManoE)
 
         lstFV = FVManometreEtalonManager.getArrFVManometreEtalon(idMano)
@@ -416,7 +417,7 @@ Public Class ManometreEtalonManagerTest
         Assert.IsTrue(oManoE.ActiverMateriel(CDate("01/02/1987"), m_oAgent))
 
         'JAmaisServi True -> False
-        Assert.IsFalse(oManoE.JamaisServi)
+        Assert.IsFalse(oManoE.jamaisServi)
         'Etat True 
         Assert.IsTrue(oManoE.etat)
 
@@ -446,23 +447,23 @@ Public Class ManometreEtalonManagerTest
         idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idStructure = m_oAgent.idStructure
+        oManometreEtalon.idstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.marque = "MaMarque"
         oManometreEtalon.etat = True
 
-        oManometreEtalon.JamaisServi = True
+        oManometreEtalon.jamaisServi = True
         oManometreEtalon.DateActivation = CDate("08/05/1981")
 
         Assert.IsTrue(ManometreEtalonManager.save(oManometreEtalon))
-
-        Dim response As Integer = ManometreEtalonManager.sendWSManometreEtalon(m_oAgent, oManometreEtalon)
+        Dim oreturn As ManometreEtalon = Nothing
+        Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreEtalon2 = ManometreEtalonManager.getWSManometreEtalonById(m_oAgent, oManometreEtalon.numeroNational)
+        oManometreEtalon2 = ManometreEtalonManager.WSgetById("", oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.idCrodip, oManometreEtalon2.idCrodip)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
-        Assert.AreEqual(oManometreEtalon2.isSupprime, False)
+        Assert.AreEqual(oManometreEtalon2.isSupprimeWS, False)
         Assert.AreEqual(oManometreEtalon2.etat, oManometreEtalon.etat)
         Assert.AreEqual(oManometreEtalon2.JamaisServi, oManometreEtalon.JamaisServi)
         '        Assert.AreEqual(oManometreEtalon2.DateActivation, oManometreEtalon.DateActivation)

@@ -36,8 +36,8 @@ Public Class dlgExportAutoTest
     End Sub
 
     Private Sub dlgExportAutoTest_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        CSEnvironnement.checkDateTimePicker(dtp_Ddeb)
-        CSEnvironnement.checkDateTimePicker(dtpDFin)
+        'CSEnvironnement.checkDateTimePicker(dtp_Ddeb)
+        'CSEnvironnement.checkDateTimePicker(dtpDFin)
 
         'Insertion du répertoire courant
 

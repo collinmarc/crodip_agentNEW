@@ -4,6 +4,7 @@
 'Imports System.Drawing.Imaging
 
 Imports System.Data.Common
+Imports CRODIPWS
 
 Public Class RPloginAgent
     Inherits Form
@@ -349,7 +350,7 @@ Public Class RPloginAgent
                             ' On commence par redescendre le pass de l'agent courant
                             Dim tmpObject As New Agent
                             Try
-                                tmpObject = AgentManager.getWSAgentById(selectedAgent.numeroNational)
+                                tmpObject = AgentManager.WSgetByNumeroNational(selectedAgent.numeroNational)
                                 If tmpObject.id <> 0 And Not String.IsNullOrEmpty(tmpObject.motDePasse) Then
                                     selectedAgent.duppliqueInfosAgent(tmpObject, False)
 

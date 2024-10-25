@@ -1,5 +1,6 @@
 Imports System.Linq
 Imports System.Collections.Generic
+Imports CRODIPWS
 
 Public Class controle_preliminaire
     Inherits frmCRODIP
@@ -17,6 +18,7 @@ Public Class controle_preliminaire
     Private m_oParamdiag As CRODIP_ControlLibrary.ParamDiag
     Private m_ModeAffichage As GlobalsCRODIP.DiagMode
     Private m_Diagnostic As Diagnostic
+
     Private m_Pulverisateur As Pulverisateur
     Private m_Exploit As Exploitation
     Friend WithEvents GroupBox_diagnostic_126 As GroupBox
@@ -1787,8 +1789,8 @@ Public Class controle_preliminaire
 
             ' Chargement des informations du diag
             Dim tmpDiagnosticItem As DiagnosticItem
-            If Not m_Diagnostic.diagnosticItemsLst Is Nothing And Not m_Diagnostic.diagnosticItemsLst.Values Is Nothing Then
-                For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.Values
+            If Not m_Diagnostic.diagnosticItemsLst Is Nothing And Not m_Diagnostic.diagnosticItemsLst.Liste Is Nothing Then
+                For Each tmpDiagnosticItem In m_Diagnostic.diagnosticItemsLst.Liste
                     If tmpDiagnosticItem IsNot Nothing Then
                         Dim tmpControl As CRODIP_ControlLibrary.CtrlDiag2 = getControlFromDiagItem(tmpDiagnosticItem)
                         If tmpControl IsNot Nothing Then
@@ -1895,7 +1897,7 @@ Public Class controle_preliminaire
 
             'Vérification de l'onglet
             checkIsOk()
-            End If
+        End If
     End Sub
 
     'Private Sub checkAnswer2(ByVal sender As CRODIP_ControlLibrary.CtrlDiag2, ByVal pOngletId As Integer)

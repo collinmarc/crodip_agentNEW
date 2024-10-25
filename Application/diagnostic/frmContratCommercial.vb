@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Collections.Generic
+Imports CRODIPWS
 
 Public Class frmContratCommercial
 

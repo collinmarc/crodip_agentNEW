@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Module CSBoot
 
     ' On démarre la séquence d'initialisation du boot

@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Crodip_agent
+Imports CrodipWS
 Imports System.Collections.Generic
 
 <TestClass()>
@@ -38,7 +38,7 @@ Public Class Alertes2Test
 
         oAlertes.NiveauxAlertes.Add(oNiveau)
         Assert.IsTrue(Alertes.FTO_writeXml(oAlertes, "Test.xml"))
-        CSFile.open(MySettings.Default.RepertoireParametres & "/" & "Test.xml")
+        CSFile.open(My.Settings.RepertoireParametres & "/" & "Test.xml")
     End Sub
 
     <TestMethod()> Public Sub LoadFromXml()

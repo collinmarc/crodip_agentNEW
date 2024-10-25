@@ -1,7 +1,7 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Microsoft.Win32
-Imports Crodip_agent
+Imports CrodipWS
 
 <TestClass()> Public Class PoolTest
     Inherits CRODIPTest

@@ -1,4 +1,6 @@
-﻿Public Class EtatFDiagInfosComplementaires
+﻿Imports CRODIPWS
+
+Public Class EtatFDiagInfosComplementaires
     Inherits EtatFDiag
 
     Public Sub New()

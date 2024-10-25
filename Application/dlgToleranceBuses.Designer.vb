@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports CRODIPWS
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class dlgToleranceBuses
     Inherits System.Windows.Forms.Form
 
@@ -79,7 +81,7 @@ Partial Class dlgToleranceBuses
         '
         'm_bsToleranceBuses
         '
-        Me.m_bsToleranceBuses.DataSource = GetType(Crodip_agent.ToleranceBuse)
+        Me.m_bsToleranceBuses.DataSource = GetType(ToleranceBuse)
         '
         'CouleurDataGridViewTextBoxColumn
         '

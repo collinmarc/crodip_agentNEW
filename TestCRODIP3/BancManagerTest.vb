@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CRODIPWS
+
 
 
 
@@ -32,7 +33,7 @@ Public Class BancManagerTest
         objBanc.nbControlesTotal = 15
         objBanc.ModuleAcquisition = "MD2"
 
-        Assert.AreEqual(objBanc.isSupprime, True)
+        Assert.AreEqual(objBanc.isSupprime, 1)
         Assert.AreEqual(objBanc.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBanc.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBanc.DateSuppression), CDate("06/02/1964"))
@@ -45,7 +46,7 @@ Public Class BancManagerTest
         objBanc2 = BancManager.getBancById("MonBanc")
         Assert.AreEqual("MonBanc", objBanc2.id)
 
-        Assert.AreEqual(objBanc2.isSupprime, True)
+        Assert.AreEqual(objBanc2.isSupprime, 1)
         Assert.AreEqual(objBanc2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBanc2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBanc2.DateSuppression), CDate("06/02/1964"))
@@ -67,7 +68,7 @@ Public Class BancManagerTest
         'Rehcragement du banc pour vérifier l'update
         objBanc = BancManager.getBancById("MonBanc")
 
-        Assert.AreEqual(objBanc.isSupprime, False)
+        Assert.AreEqual(objBanc.isSupprime, 0)
         Assert.AreEqual(objBanc.AgentSuppression, "MonAgentSuppression")
         Assert.AreEqual(objBanc.RaisonSuppression, "MaRaison2")
         Assert.AreEqual(CDate(objBanc.DateSuppression), CDate("06/02/1965"))
@@ -87,17 +88,17 @@ Public Class BancManagerTest
         Dim oBanc As Banc
         Dim oBanc2 As Banc
         Dim idBanc As String
-        agentCourant = m_oAgent
+        'agentCourant = m_oAgent
         'Creation d'un Banc
         oBanc = m_oBanc
         idBanc = m_oBanc.id
 
         oBanc.dateDernierControle = CDate("06-02-1966")
         BancManager.save(oBanc)
-
-        Dim response As Integer = BancManager.sendWSBanc(m_oAgent, oBanc)
+        Dim oreturn As Banc
+        Dim response As Integer = BancManager.WSSend(oBanc, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
-        oBanc2 = BancManager.getWSBancById(m_oAgent, oBanc.id)
+        oBanc2 = BancManager.WSgetById(oBanc.id)
         Assert.AreEqual(oBanc2.dateDernierControle, oBanc.dateDernierControle)
 
     End Sub
@@ -127,7 +128,7 @@ Public Class BancManagerTest
         oBanc2.DeleteMateriel(m_oAgent, "MaRaison")
 
         oBanc = BancManager.getBancById(idBanc)
-        Assert.AreEqual(oBanc.isSupprime, True)
+        Assert.AreEqual(oBanc.isSupprime, 1)
         Assert.AreEqual(oBanc.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(oBanc.RaisonSuppression, "MaRaison")
         Assert.IsNotNull(oBanc.DateSuppression)
@@ -158,14 +159,14 @@ Public Class BancManagerTest
 
         oBanc = BancManager.getBancById(oBanc.id)
         Assert.AreEqual("", oBanc.DateSuppression)
-
-        Dim response As Integer = BancManager.sendWSBanc(m_oAgent, oBanc)
+        Dim oReturn As Banc
+        Dim response As Integer = BancManager.WSSend(oBanc, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBanc2 = BancManager.getWSBancById(m_oAgent, oBanc.numeroNational)
+        oBanc2 = BancManager.WSgetById(oBanc.numeroNational)
         Assert.AreEqual(oBanc.numeroNational, oBanc2.numeroNational)
-        Assert.AreEqual(oBanc2.isSupprime, False)
-        Assert.AreEqual(oBanc2.DateSuppression, oBanc.DateSuppression)
+        Assert.AreEqual(oBanc2.isSupprime, 0)
+        Assert.AreEqual(oBanc2.dateSuppression, oBanc.dateSuppression)
 
         bReturn = BancManager.delete(idBanc)
         Assert.IsTrue(bReturn)
@@ -189,18 +190,18 @@ Public Class BancManagerTest
         Assert.IsTrue(BancManager.save(obanc))
         obanc2 = BancManager.getBancById(idBanc)
 
-        Assert.AreEqual(obanc.JamaisServi, obanc2.JamaisServi)
+        Assert.AreEqual(obanc.jamaisServi, obanc2.jamaisServi)
         Assert.AreEqual(obanc.DateActivation, obanc2.DateActivation)
         Assert.AreEqual(obanc.DateActivationS, obanc2.DateActivationS)
 
         'Modification des propriétés
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.DateActivation = CDate("06/02/1966")
         Assert.AreEqual("1966-02-06 00:00:00", obanc.DateActivationS)
         Assert.IsTrue(BancManager.save(obanc))
 
         obanc2 = BancManager.getBancById(idBanc)
-        Assert.AreEqual(obanc.JamaisServi, obanc2.JamaisServi)
+        Assert.AreEqual(obanc.jamaisServi, obanc2.jamaisServi)
         Assert.AreEqual(obanc.DateActivation, obanc2.DateActivation)
         Assert.AreEqual(obanc.DateActivationS, obanc2.DateActivationS)
 
@@ -240,7 +241,7 @@ Public Class BancManagerTest
         obanc.isSupprime = False
         obanc.etat = True
         obanc.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
-        obanc.JamaisServi = False
+        obanc.jamaisServi = False
 
         Assert.IsTrue(BancManager.save(obanc))
         tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
@@ -254,14 +255,14 @@ Public Class BancManagerTest
 
         'banc Jamais Servi
         obanc.isSupprime = False
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         BancManager.save(obanc)
         tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         Assert.AreEqual(0, tabBanc.Count)
         tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, False)
         Assert.AreEqual(0, tabBanc.Count)
 
-        obanc.JamaisServi = False 'Le Banc n'a pas jamaisservi => il est actif
+        obanc.jamaisServi = False 'Le Banc n'a pas jamaisservi => il est actif
         BancManager.save(obanc)
         tabBanc = BancManager.getBancByStructureId(m_oAgent.idStructure, True)
         Assert.AreEqual(1, tabBanc.Count)
@@ -290,18 +291,18 @@ Public Class BancManagerTest
         obanc.isSupprime = False
         obanc.etat = True
         obanc.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         BancManager.save(obanc)
 
         'Vérification que le banc n'est pas dans les liste des jamais servi
         Assert.AreEqual(1, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         BancManager.save(obanc)
         'Vérification que le banc est dans la liste des jamais servi
         Assert.AreEqual(1, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
 
-        obanc.JamaisServi = False
+        obanc.jamaisServi = False
         BancManager.save(obanc)
         'Vérification que le banc n'est plus dans la liste des jamais servi
         Assert.AreEqual(0, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
@@ -325,7 +326,7 @@ Public Class BancManagerTest
         idBanc = m_oBanc.id
         obanc.isSupprime = False
         obanc.etat = False
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
         BancManager.save(obanc)
 
@@ -335,7 +336,7 @@ Public Class BancManagerTest
         Assert.IsTrue(obanc.ActiverMateriel(CDate("01/02/1987"), m_oAgent))
 
         'JAmaisServi True -> False
-        Assert.IsFalse(obanc.JamaisServi)
+        Assert.IsFalse(obanc.jamaisServi)
         'Etat True 
         Assert.IsTrue(obanc.etat)
 
@@ -369,7 +370,7 @@ Public Class BancManagerTest
         idBanc = m_oBanc.id
         obanc.isSupprime = False
         obanc.etat = True
-        obanc.JamaisServi = True
+        obanc.jamaisServi = True
         obanc.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
         obanc.isUtilise = False
         BancManager.save(obanc)
@@ -429,18 +430,19 @@ Public Class BancManagerTest
         oBanc.raisonSuppression = "MaRaison"
         oBanc.dateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
         oBanc.dateDernierControle = CDate("06/02/1964")
-        oBanc.JamaisServi = True
+        oBanc.jamaisServi = True
         '        oBanc.DateActivation = CDate("06-02-1966")
         oBanc.nbControles = 7
         oBanc.nbControlesTotal = 17
         oBanc.ModuleAcquisition = "MD2"
         BancManager.save(oBanc)
 
-        Dim response As Integer = BancManager.sendWSBanc(m_oAgent, oBanc)
+        Dim oreturn As Banc
+        Dim response As Integer = BancManager.WSSend(oBanc, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
-        oBanc2 = BancManager.getWSBancById(m_oAgent, oBanc.id)
+        oBanc2 = BancManager.WSgetById(oBanc.id)
         Assert.AreEqual(oBanc.id, oBanc2.id)
-        Assert.AreEqual(oBanc2.isSupprime, False)
+        Assert.AreEqual(oBanc2.isSupprime, 1)
         Assert.AreEqual(oBanc2.etat, oBanc.etat)
 
         Assert.AreEqual(oBanc2.dateAchat, oBanc.dateAchat)
@@ -490,19 +492,19 @@ Public Class BancManagerTest
         Dim obanc As Banc
         obanc = m_oBanc
         obanc.dateDernierControle = Now
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.NONE, obanc.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NONE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -50, Now)
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.NOIRE, obanc.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NOIRE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -21, Now)
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.ROUGE, obanc.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.ROUGE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -11, Now)
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.ORANGE, obanc.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.ORANGE, obanc.getAlerte())
 
         obanc.dateDernierControle = DateAdd(DateInterval.DayOfYear, -6, Now)
-        Assert.AreEqual(GlobalsCRODIP.ALERTE.JAUNE, obanc.getAlerte())
+        Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.JAUNE, obanc.getAlerte())
     End Sub
 
     <TestMethod()>

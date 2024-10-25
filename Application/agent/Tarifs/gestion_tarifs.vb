@@ -1,3 +1,5 @@
+Imports CRODIPWS
+
 Public Class gestion_tarifs
     Inherits frmCRODIP
 
@@ -194,7 +196,7 @@ Public Class gestion_tarifs
         '
         'm_bsTarif
         '
-        Me.m_bsTarif.DataSource = GetType(Crodip_agent.Tarif)
+        Me.m_bsTarif.DataSource = GetType(Tarif)
         '
         'erreur_montant
         '
@@ -370,7 +372,7 @@ Public Class gestion_tarifs
                     Next
                 End If
             Else
-                    oPrestation = oTarif
+                oPrestation = oTarif
                 PrestationTarifManager.save(oPrestation, m_Agent)
             End If
             index = index + 1

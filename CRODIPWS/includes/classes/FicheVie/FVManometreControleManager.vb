@@ -7,14 +7,14 @@ Public Class FVManometreControleManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVManometreControle
         Dim oreturn As FVManometreControle
-        oreturn = getWSByKey(Of FVManometreControle)(p_uid, paid)
+        oreturn = RootWSGetById(Of FVManometreControle)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As FVManometreControle, ByRef pobjOut As FVManometreControle) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of FVManometreControle)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of FVManometreControle)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("FVManometreControleManager.WSSend : ", ex)

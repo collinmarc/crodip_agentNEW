@@ -50,12 +50,12 @@ Public Class CSStatusbar
     Public Sub hideLoader()
         Me.loaderObj.Visible = False
         Me.display(Me.statusBarObj.Text)
-        CSTime.pause(500) ' Pause de 500ms
+        Threading.Thread.Sleep(500) ' Pause de 500ms
     End Sub
     Public Sub showLoader()
         Me.loaderObj.Visible = True
         Me.display(Me.statusBarObj.Text)
-        CSTime.pause(500) ' Pause de 500ms
+        Threading.Thread.Sleep(500) ' Pause de 500ms
     End Sub
 
     ' Efface la barre de status

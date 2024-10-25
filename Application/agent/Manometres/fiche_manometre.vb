@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Linq
+Imports CRODIPWS
 
 Public Class fiche_manometre
     Inherits System.Windows.Forms.Form
@@ -40,7 +41,7 @@ Public Class fiche_manometre
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         ' On load le mano
         manometreCourant = _manometreCourant
-        If TypeOf (manometreCourant) Is ManometreControle Then
+        If TypeOf manometreCourant Is ManometreControle Then
             m_TypeMano = TYPEMANO.MANOCONTROLE
         Else
             m_TypeMano = TYPEMANO.MANOETALON
@@ -522,7 +523,7 @@ Public Class fiche_manometre
         '
         'm_bsrcPool
         '
-        Me.m_bsrcPool.DataSource = GetType(Crodip_agent.Pool)
+        Me.m_bsrcPool.DataSource = GetType(Pool)
         '
         'fiche_manometre
         '

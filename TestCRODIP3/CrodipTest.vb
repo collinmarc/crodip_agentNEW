@@ -2,7 +2,7 @@
 
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -25,7 +25,7 @@ Public Class CRODIPTest
 
     Private testContextInstance As TestContext
     Protected m_oAgent As Agent
-    Protected m_oStructure As Structuree
+    Protected m_oStructure As [Structure]
 
     Protected m_oExploitation As Exploitation
     Protected m_oPulve As Pulverisateur
@@ -51,7 +51,7 @@ Public Class CRODIPTest
     End Property
     '<AssemblyInitialize()> _
     'Public Shared Sub AssemblyInit(ByVal context As TestContext)
-    '    GlobalsCRODIP.Init()
+    '    crodip_agent.GlobalsCRODIP.Init()
     '    'System.Environment.CurrentDirectory = "C:\Newco\CRODIP\Crodip-Agent\TestCrodip\bin\x86\Debug"
     'End Sub 'AssemblyInit
 #Region "Attributs de tests supplémentaires"
@@ -69,16 +69,16 @@ Public Class CRODIPTest
     'End Sub
     '
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
-    <TestInitialize()> _
+    <TestInitialize()>
     Public Sub MyTestInitialize()
-        GlobalsCRODIP.Init()
+        Crodip_agent.GlobalsCRODIP.Init()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
         oCSDB.free()
 
         'Création de la Structure
-        m_oStructure = New Structuree()
+        m_oStructure = New [Structure]()
         m_oStructure.id = m_idStructure
         m_oStructure.idCrodip = "8888"
         m_oStructure.nom = "Structure TestsUnitaires"
@@ -101,15 +101,15 @@ Public Class CRODIPTest
         m_oBanc = BancManager.getBancById(m_idStructure & "-" & m_IdAgent & "-1")
         If m_oBanc.id = "" Then
             'Si il n'existe pas on le récupère du WS
-            m_oBanc = BancManager.getWSBancById(m_oAgent, m_idStructure & "-" & m_IdAgent & "-1")
+            m_oBanc = BancManager.WSgetById(m_idStructure & "-" & m_IdAgent & "-1")
             'Si il n'existe pas sur le WS , je je créé en base (Normalement impossible)
             If m_oBanc.id = "" Then
                 CSDebug.dispError("Le banc n'existe pas je le recree, (Normalement impossible)")
                 m_oBanc = New Banc()
                 m_oBanc.id = BancManager.FTO_getNewId(m_oAgent)
-                m_oBanc.idStructure = m_oAgent.idStructure
+                m_oBanc.idstructure = m_oAgent.idStructure
             End If
-            m_oBanc.idStructure = m_idStructure
+            m_oBanc.idstructure = m_idStructure
             BancManager.save(m_oBanc)
         End If
 
@@ -120,7 +120,7 @@ Public Class CRODIPTest
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-    <TestCleanup()> _
+    <TestCleanup()>
     Public Sub MyTestCleanup()
 
     End Sub
@@ -478,7 +478,7 @@ Public Class CRODIPTest
         obj = New IdentifiantPulverisateur
         obj.id = IdentifiantPulverisateurManager.getNextId()
         obj.idStructure = m_oAgent.idStructure
-        obj.numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR & pNumNat
+        obj.numeroNational = Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NUMAGR & pNumNat
         obj.SetEtatINUTILISE()
         obj.dateUtilisation = ""
         obj.libelle = ""

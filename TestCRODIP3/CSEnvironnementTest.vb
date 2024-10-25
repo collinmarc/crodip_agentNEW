@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Crodip_agent
+Imports CrodipWS
 
 
 
@@ -66,9 +66,9 @@ Public Class CSEnvironnementTest
         sw.Close()
         sw = System.IO.File.CreateText(Environment.CurrentDirectory & "\crodip_updater.exe")
         sw.Close()
-        pause(100)
+        System.Threading.Thread.Sleep(100)
         CSEnvironnement.Renamefiles()
-        pause(100)
+        System.Threading.Thread.Sleep(100)
         Assert.IsTrue(System.IO.File.Exists(Environment.CurrentDirectory & "\crodip_updater.exe"))
 
         If System.IO.File.Exists(Environment.CurrentDirectory & "\crodip_updater.exe.config") Then
@@ -78,9 +78,9 @@ Public Class CSEnvironnementTest
         sw.Close()
         sw = System.IO.File.CreateText(Environment.CurrentDirectory & "\crodip_updater.exe.config")
         sw.Close()
-        pause(100)
+        System.Threading.Thread.Sleep(100)
         CSEnvironnement.Renamefiles()
-        pause(100)
+        System.Threading.Thread.Sleep(100)
         Assert.IsTrue(System.IO.File.Exists(Environment.CurrentDirectory & "\crodip_updater.exe.config"))
     End Sub
 

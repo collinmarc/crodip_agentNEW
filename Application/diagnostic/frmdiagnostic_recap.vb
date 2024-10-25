@@ -5,6 +5,7 @@
 Imports System.IO
 Imports System.Globalization
 Imports System.ComponentModel
+Imports CRODIPWS
 
 Public Class frmdiagnostic_recap
     Inherits frmCRODIP
@@ -16,7 +17,7 @@ Public Class frmdiagnostic_recap
     Private m_Pulverisateur As Pulverisateur
     Private m_oAgent As Agent
     Private m_frmdiagnostic As Form
-    Private m_oStructure As Structuree
+    Private m_oStructure As [Structure]
 
     Dim isValider As Boolean = False
     Dim conclusionDiagnostique As GlobalsCRODIP.enumConclusionDiag
@@ -360,7 +361,7 @@ Public Class frmdiagnostic_recap
         '
         'm_bsDiag
         '
-        Me.m_bsDiag.DataSource = GetType(Crodip_agent.Diagnostic)
+        Me.m_bsDiag.DataSource = GetType(Diagnostic)
         '
         'Label4
         '
@@ -670,7 +671,7 @@ Public Class frmdiagnostic_recap
 
     Private Sub diagnostic_recap_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
+        'CSEnvironnement.checkDateTimePicker(diagnosticRecap_organisme_dateControle)
         Me.laTitre.Text = "     Visualisation du contrôle"
         Me.btn_Annuler.Visible = False
         If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_SIGNATURE Then
@@ -1022,7 +1023,7 @@ Public Class frmdiagnostic_recap
                     m_Pulverisateur.nombreExploitants = m_diagnostic.pulverisateurNbreExploitants
 
                     m_Pulverisateur.SetControleEtat(m_diagnostic)
-                    m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Values)
+                    m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Liste)
                     PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
 
 

@@ -123,14 +123,11 @@ Public Class DiagnosticBusesManager
 
     End Function
 
-    Public Shared Function WSSend(ByVal pDiag As Diagnostic) As Integer
+    Public Shared Function WSSend(ByVal pListe As DiagnosticBusesList) As Integer
         'Propagation des uid
-        For Each oBuse In pDiag.diagnosticBusesList.Liste
-            oBuse.uiddiagnostic = pDiag.uid
-        Next
 
         Dim tmpArr(1)() As DiagnosticBuses
-        tmpArr(0) = pDiag.diagnosticBusesList.Liste.ToArray()
+        tmpArr(0) = pListe.Liste.ToArray()
         Dim updatedObject() As Object = Nothing
         Try
             ' Appel au WS
@@ -142,41 +139,48 @@ Public Class DiagnosticBusesManager
             Return -1
         End Try
     End Function
-
-    Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticBuses
-        Dim objDiagnosticBuses As New DiagnosticBuses
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case Trim(tmpSerializeItem.LocalName()).ToUpper
-                Case "id".ToUpper()
-                    objDiagnosticBuses.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idDiagnostic".ToUpper()
-                    objDiagnosticBuses.idDiagnostic = CType(tmpSerializeItem.InnerText, String)
-                Case "idLot".ToUpper()
-                    objDiagnosticBuses.idLot = CType(tmpSerializeItem.InnerText, String)
-                Case "marque".ToUpper()
-                    objDiagnosticBuses.marque = CType(tmpSerializeItem.InnerText, String)
-                Case "nombre".ToUpper()
-                    objDiagnosticBuses.nombre = CType(tmpSerializeItem.InnerText, String)
-                Case "genre".ToUpper()
-                    objDiagnosticBuses.genre = CType(tmpSerializeItem.InnerText, String)
-                Case "calibre".ToUpper()
-                    objDiagnosticBuses.calibre = CType(tmpSerializeItem.InnerText, String)
-                Case "ecartTolere".ToUpper()
-                    objDiagnosticBuses.ecartTolere = CType(tmpSerializeItem.InnerText, String)
-                Case "couleur".ToUpper()
-                    objDiagnosticBuses.couleur = CType(tmpSerializeItem.InnerText, String)
-                Case "debitMoyen".ToUpper()
-                    objDiagnosticBuses.debitMoyen = CType(tmpSerializeItem.InnerText, String)
-                Case "debitNominal".ToUpper()
-                    objDiagnosticBuses.debitNominal = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent".ToUpper()
-                    objDiagnosticBuses.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
+    Public Shared Function WSSend(ByVal pDiag As Diagnostic) As Integer
+        'Propagation des uid
+        For Each oBuse In pDiag.diagnosticBusesList.Liste
+            oBuse.uiddiagnostic = pDiag.uid
         Next
-
-        Return objDiagnosticBuses
+        Return WSSend(pDiag.diagnosticBusesList)
     End Function
+
+    'Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticBuses
+    '    Dim objDiagnosticBuses As New DiagnosticBuses
+
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        Select Case Trim(tmpSerializeItem.LocalName()).ToUpper
+    '            Case "id".ToUpper()
+    '                objDiagnosticBuses.id = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "idDiagnostic".ToUpper()
+    '                objDiagnosticBuses.idDiagnostic = CType(tmpSerializeItem.InnerText, String)
+    '            Case "idLot".ToUpper()
+    '                objDiagnosticBuses.idLot = CType(tmpSerializeItem.InnerText, String)
+    '            Case "marque".ToUpper()
+    '                objDiagnosticBuses.marque = CType(tmpSerializeItem.InnerText, String)
+    '            Case "nombre".ToUpper()
+    '                objDiagnosticBuses.nombre = CType(tmpSerializeItem.InnerText, String)
+    '            Case "genre".ToUpper()
+    '                objDiagnosticBuses.genre = CType(tmpSerializeItem.InnerText, String)
+    '            Case "calibre".ToUpper()
+    '                objDiagnosticBuses.calibre = CType(tmpSerializeItem.InnerText, String)
+    '            Case "ecartTolere".ToUpper()
+    '                objDiagnosticBuses.ecartTolere = CType(tmpSerializeItem.InnerText, String)
+    '            Case "couleur".ToUpper()
+    '                objDiagnosticBuses.couleur = CType(tmpSerializeItem.InnerText, String)
+    '            Case "debitMoyen".ToUpper()
+    '                objDiagnosticBuses.debitMoyen = CType(tmpSerializeItem.InnerText, String)
+    '            Case "debitNominal".ToUpper()
+    '                objDiagnosticBuses.debitNominal = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModificationAgent".ToUpper()
+    '                objDiagnosticBuses.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '        End Select
+    '    Next
+
+    '    Return objDiagnosticBuses
+    'End Function
 
 #End Region
 

@@ -7,14 +7,14 @@ Public Class FVBancManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVBanc
         Dim oreturn As FVBanc
-        oreturn = getWSByKey(Of FVBanc)(p_uid, paid)
+        oreturn = RootWSGetById(Of FVBanc)(p_uid, paid)
         Return oreturn
     End Function
 
     Public Shared Function WSSend(ByVal pObjIn As FVBanc, ByRef pobjOut As FVBanc) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = SendWS(Of FVBanc)(pObjIn, pobjOut)
+            nreturn = RootWSSend(Of FVBanc)(pObjIn, pobjOut)
 
         Catch ex As Exception
             CSDebug.dispFatal("FVBancManager.WSSend : ", ex)

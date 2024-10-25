@@ -1,8 +1,10 @@
 ﻿Imports System.Net
+Imports CRODIPWS
+
 Public Class WSCrodip
     '    Private Shared m_obj As WSCrodip
     Private Shared m_WS As WSCrodip_prod.CrodipServer
-    Private Shared m_WS2 As WSCrodip2.CrodipServerClient
+    Private Shared m_WS2 As WSCRODIP2.CrodipServerClient
     Private Shared m_bInit As Boolean = False
     Public Shared ReadOnly Property URL As String
         Get
@@ -59,14 +61,14 @@ Public Class WSCrodip
         Init(pUrl)
         Return m_WS
     End Function
-    Public Shared Function getWS2(Optional pbForce As Boolean = False) As WSCrodip2.CrodipServerClient
+    Public Shared Function getWS2(Optional pbForce As Boolean = False) As WSCRODIP2.CrodipServerClient
         If (Not m_bInit) Or (pbForce) Then
             Init()
         End If
         Return m_WS2
     End Function
 
-    Public Shared Function getWS2(pUrl As String, Optional pbForce As Boolean = False) As WSCrodip2.CrodipServerClient
+    Public Shared Function getWS2(pUrl As String, Optional pbForce As Boolean = False) As WSCRODIP2.CrodipServerClient
         If (Not m_bInit) Or (pbForce) Then
             Init(pUrl)
         End If

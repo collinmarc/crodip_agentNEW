@@ -1,13 +1,12 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
+Imports CRODIPWS
 Imports Crodip_agent
-
-
 
 '''<summary>
 '''Classe de test pour FVManometreControle,
 ''' </summary>
-<TestClass()> _
+<TestClass()>
 Public Class FVManometreControleManagerTest
 
     Inherits CRODIPTest
@@ -30,13 +29,13 @@ Public Class FVManometreControleManagerTest
     'End Sub
     '
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
-    <TestInitialize()> _
+    <TestInitialize()>
     Public Overloads Sub MyTestInitialize()
         MyBase.MyTestInitialize()
     End Sub
 
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-    <TestCleanup()> _
+    <TestCleanup()>
     Public Overloads Sub MyTestCleanup()
         MyBase.MyTestCleanup()
     End Sub
@@ -47,7 +46,7 @@ Public Class FVManometreControleManagerTest
     '''<summary>
     '''Test pour save
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub saveTest()
         Dim objFVManometreControle As FVManometreControle = Nothing ' TODO: initialisez à une valeur appropriée
         Dim expected As Object = Nothing ' TODO: initialisez à une valeur appropriée
@@ -76,17 +75,17 @@ Public Class FVManometreControleManagerTest
     '''<summary>
     '''Test des fiches de vies Bancs
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub CreationDesFichesDeViesBancTest()
         Dim oMano As ManometreControle
         Dim oFVManometreControle As FVManometreControle
         Dim olstFV As New List(Of FVManometreControle)
         'Création du mano de controle
         oMano = New ManometreControle()
-        oMano.idStructure = m_oAgent.idStructure
+        oMano.idstructure = m_oAgent.idStructure
         oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
-        oMano.JamaisServi = True
+        oMano.jamaisServi = True
         oMano.isUtilise = False
         ManometreControleManager.save(oMano)
 
@@ -96,7 +95,7 @@ Public Class FVManometreControleManagerTest
         oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
         ManometreControleManager.save(oMano)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
-        Assert.IsFalse(oMano.JamaisServi)
+        Assert.IsFalse(oMano.jamaisServi)
         Assert.AreEqual(CDate("01/06/2014"), oMano.DateActivation)
 
         olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
@@ -128,9 +127,9 @@ Public Class FVManometreControleManagerTest
 
         'Suppression du Manometre
         Threading.Thread.Sleep(1000)
-        Assert.IsFalse(oMano.isSupprime)
+        Assert.IsFalse(oMano.isSupprimeWS)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
+        Assert.IsTrue(oMano.isSupprimeWS)
 
 
         olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
@@ -146,15 +145,15 @@ Public Class FVManometreControleManagerTest
     '''<summary>
     '''Test des WS Fiches de vies de Manos de controles
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub SynchroDesFichesDeViesBancTest()
         Dim oMano As ManometreControle
         Dim olstFV As New List(Of FVManometreControle)
         oMano = New ManometreControle()
-        oMano.idStructure = m_oAgent.idStructure
+        oMano.idstructure = m_oAgent.idStructure
         oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
-        oMano.JamaisServi = True
+        oMano.jamaisServi = True
         oMano.isUtilise = False
         ManometreControleManager.save(oMano)
 
@@ -171,14 +170,14 @@ Public Class FVManometreControleManagerTest
         Assert.IsFalse(oMano.etat)
 
         'Controle du Manoètre
-        pause(1000)
+        System.Threading.Thread.Sleep(1000)
         Dim oCtrl As ControleMano = New ControleMano(oMano, m_oAgent)
         Dim oManoE As ManometreEtalon
         oManoE = New ManometreEtalon()
-        oManoE.idStructure = m_oAgent.idStructure
+        oManoE.idstructure = m_oAgent.idStructure
         oManoE.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
         oManoE.idCrodip = oMano.numeroNational
-        oManoE.JamaisServi = True
+        oManoE.jamaisServi = True
         oManoE.isUtilise = False
         ManometreEtalonManager.save(oManoE)
 
@@ -186,7 +185,9 @@ Public Class FVManometreControleManagerTest
         oCtrl.manoEtalon = oManoE.idCrodip
         oCtrl.idMano = oMano.idCrodip
 
-        oMano.creerfFicheVieControle(m_oAgent, oCtrl)
+        Dim oEtat As New EtatFVMano(oCtrl)
+        Dim sFileName As String = oEtat.buildPDF(oMano, agentCourant)
+        oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 
         Dim oLst As New List(Of FVManometreControle)
         oLst = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
@@ -209,9 +210,9 @@ Public Class FVManometreControleManagerTest
         Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprime)
+        Assert.IsFalse(oMano.isSupprimeWS)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
+        Assert.IsTrue(oMano.isSupprimeWS)
 
     End Sub
 End Class

@@ -1,4 +1,6 @@
-﻿Public Class RPDiagnosticManager
+﻿Imports CRODIPWS
+
+Public Class RPDiagnosticManager
     Inherits DiagnosticManager
 
     Public Shared Function getRPDiagnosticById(ByVal pdiagnostic_id As String) As RPDiagnostic
