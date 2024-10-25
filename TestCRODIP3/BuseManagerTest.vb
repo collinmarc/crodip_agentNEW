@@ -116,7 +116,7 @@ Public Class BuseManagerTest
         Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBuse2 = BuseManager.WSgetById(oBuse.numeroNational)
+        oBuse2 = BuseManager.WSgetById(oBuse.uid, oBuse.numeroNational)
         Assert.AreEqual(oBuse.numeroNational, oBuse2.numeroNational)
         Assert.AreEqual(oBuse2.isSupprime, 0)
         Assert.AreEqual(oBuse2.etat, oBuse.etat)
@@ -160,7 +160,7 @@ Public Class BuseManagerTest
         Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBuse2 = BuseManager.WSgetById(oBuse.numeroNational)
+        oBuse2 = BuseManager.WSgetById(oBuse.uid, oBuse.numeroNational)
         Assert.AreEqual(oBuse.numeroNational, oBuse2.numeroNational)
         Assert.AreEqual(oBuse2.isSupprime, 0)
         Assert.AreEqual(oBuse2.dateSuppression, oBuse.dateSuppression)
@@ -245,7 +245,7 @@ Public Class BuseManagerTest
         Dim oReturn As Buse
         BuseManager.WSSend(objBuse, oReturn)
 
-        objBuse2 = BuseManager.WSgetById(objBuse.numeroNational)
+        objBuse2 = BuseManager.WSgetById(objBuse.uid, objBuse.numeroNational)
         Assert.AreEqual(objBuse2.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
 

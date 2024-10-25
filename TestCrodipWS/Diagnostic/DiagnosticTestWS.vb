@@ -10,21 +10,21 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim Diagnostic As CRODIPWS.Diagnostic
-        Diagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        Diagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
         Assert.IsNotNull(Diagnostic)
         Assert.AreEqual(145697, Diagnostic.uid)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
         Assert.IsNotNull(oDiagnostic)
         oDiagnostic.commentaire = "TESTUMCO"
         Dim oreturn As CRODIPWS.Diagnostic
         Dim nReturn As Integer
         nReturn = DiagnosticManager.WSSend(oDiagnostic, oreturn)
         Assert.AreEqual(2, nReturn)
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
         Assert.AreEqual("TESTUMCO", oDiagnostic.commentaire)
 
     End Sub
@@ -51,7 +51,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        m_oDiag = DiagnosticManager.WSgetById(m_oAgent.uid, oReturn.uid)
+        m_oDiag = DiagnosticManager.WSgetById(m_oAgent.uid, oReturn.uid, oReturn.aid)
         Assert.AreEqual("TU_MCO", m_oDiag.commentaire)
 
         'Update de l'objet

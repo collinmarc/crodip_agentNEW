@@ -5,7 +5,7 @@ Public Class FVManometreEtalonManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVManometreEtalon
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As FVManometreEtalon
         Dim oreturn As FVManometreEtalon
         oreturn = RootWSGetById(Of FVManometreEtalon)(p_uid, paid)
         Return oreturn

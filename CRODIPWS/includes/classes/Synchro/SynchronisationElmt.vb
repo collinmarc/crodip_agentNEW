@@ -359,7 +359,7 @@ Public Class SynchronisationElmt
                     Dim oBuseE As Buse
                     Try
                         SetStatus("Réception MAJ Buse n°" & pElement.IdentifiantChaine & "...")
-                        oBuseE = BuseManager.WSgetById(pElement.IdentifiantChaine)
+                        oBuseE = BuseManager.WSgetById(pElement.IdentifiantChaine, "")
                         Dim bOld As Boolean = oBuseE.etat
                         'Modif du 6/12/2018
                         'Recalcul de l'état des buses après synhcro
@@ -438,7 +438,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVManometreControle()
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVManometreControleManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = FVManometreControleManager.WSgetById(pElement.IdentifiantChaine, "")
                         FVManometreControleManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -469,7 +469,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVManometreEtalon(New Agent())
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVManometreEtalonManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = FVManometreEtalonManager.WSgetById(pElement.IdentifiantChaine, "")
                         FVManometreEtalonManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -483,7 +483,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Banc
                     Try
                         SetStatus("Réception MAJ Banc n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = BancManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = BancManager.WSgetById(pElement.IdentifiantChaine, "")
                         If My.Settings.GestiondesPools Then
                             BancManager.getLstPoolById(tmpObject)
                         End If
@@ -500,7 +500,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVBanc(pAgent)
                     Try
                         SetStatus("Réception MAJ Fiche de vie Banc n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVBancManager.WSgetById(pElement.IdentifiantChaine)
+                        tmpObject = FVBancManager.WSgetById(pElement.IdentifiantChaine, "")
                         If Not tmpObject Is Nothing Then
                             FVBancManager.save(tmpObject, True)
                         Else
@@ -518,7 +518,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New [Structure]
                     Try
                         SetStatus("Réception MAJ Organisme n°" & pElement.IdentifiantEntier & "...")
-                        tmpObject = StructureManager.WSgetById(pElement.IdentifiantEntier)
+                        tmpObject = StructureManager.WSgetById(pElement.IdentifiantEntier, "")
                         StructureManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception

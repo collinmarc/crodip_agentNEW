@@ -10,21 +10,21 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim oStruct As CRODIPWS.Structure
-        oStruct = StructureManager.WSgetById(22)
+        oStruct = StructureManager.WSgetById(22, "")
         Assert.AreEqual(22, oStruct.uid)
         Assert.IsNotNull(oStruct)
 
     End Sub
         <TestMethod()> Public Sub sendWS()
             Dim oStructure As CRODIPWS.Structure
-        oStructure = StructureManager.WSgetById(22)
+        oStructure = StructureManager.WSgetById(22, "")
         Assert.IsNotNull(oStructure)
         oStructure.nom = "TESTMCO"
         Dim oreturn As CRODIPWS.Structure
             Dim nReturn As Integer
             nReturn = StructureManager.WSSend(oStructure, oreturn)
             Assert.AreEqual(2, nReturn)
-        oStructure = StructureManager.WSgetById(22)
+        oStructure = StructureManager.WSgetById(22, "")
         Assert.AreEqual("TESTMCO", oStructure.nom)
 
     End Sub
@@ -39,8 +39,8 @@ Imports System.Net.Http
             Assert.AreEqual(4, nreturn)
             Assert.IsNotNull(oReturn.uid)
 
-            'Lecture de l'objet
-            oStructure = StructureManager.WSgetById(oReturn.uid)
+        'Lecture de l'objet
+        oStructure = StructureManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual("TESTMCO", oStructure.nom)
 
         'Update de l'objet

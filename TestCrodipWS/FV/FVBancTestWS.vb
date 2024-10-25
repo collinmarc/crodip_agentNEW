@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim FVBanc As CRODIPWS.FVBanc
-        FVBanc = FVBancManager.WSgetById(9491)
+        FVBanc = FVBancManager.WSgetById(9491, "")
         Assert.IsNotNull(FVBanc)
         Assert.AreEqual(9491, FVBanc.uid)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oFVBanc As CRODIPWS.FVBanc
-        oFVBanc = FVBancManager.WSgetById(9491)
+        oFVBanc = FVBancManager.WSgetById(9491, "")
         Assert.IsNotNull(oFVBanc)
         Dim marque As String = "COUL" + Now
         oFVBanc.FVFileName = marque
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = FVBancManager.WSSend(oFVBanc, oreturn)
         Assert.AreEqual(2, nReturn)
-        oFVBanc = FVBancManager.WSgetById(9491)
+        oFVBanc = FVBancManager.WSgetById(9491, "")
         Assert.AreEqual(oFVBanc.FVFileName, marque)
 
     End Sub
@@ -42,7 +42,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oFVBanc = FVBancManager.WSgetById(oReturn.uid)
+        oFVBanc = FVBancManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual(22, oFVBanc.uidstructure)
         Assert.AreEqual("TESTMCO", oFVBanc.FVFileName)
 

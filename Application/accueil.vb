@@ -5421,11 +5421,11 @@ Public Class accueil
             End If
             If agentCourant.isGestionnaire Then
                 Dim oDiag As Diagnostic
-                oDiag = DiagnosticManager.WSgetById(agentCourant.uid, searchCriteria)
+                oDiag = DiagnosticManager.WSgetById(agentCourant.uid, -1, searchCriteria)
                 If Not oDiag Is Nothing Then
                     diagnosticCourant = oDiag
                     Dim oExploit As Exploitation
-                    oExploit = ExploitationManager.WSgetExploitationPulverisateurByDiagnosticId(agentCourant, searchCriteria)
+                    oExploit = ExploitationManager.WSgetExploitationPulverisateurByDiagnosticId(agentCourant, -1, searchCriteria)
                     ocol = New List(Of Exploitation)
                     ocol.Add(oExploit)
                 End If

@@ -49,10 +49,10 @@ Public Class SynchronisationElmtDiag
             Try
                 SetStatus("Réception MAJ contrôle n°" & Me.IdentifiantChaine & "...")
                 ''Lecture du Diag
-                oDiag = DiagnosticManager.WSgetById(pAgent.uid, Me.IdentifiantChaine)
+                oDiag = DiagnosticManager.WSgetById(pAgent.uid, Me.IdentifiantChaine, "")
                 Dim lst As DiagnosticItemList
                 'Récupération des DiagItems
-                lst = DiagnosticItemManager.WSGetList(oDiag.uid, oDiag.id)
+                lst = DiagnosticItemManager.WSGetList(oDiag.uid, oDiag.aid)
                 For Each oDiagItem In lst.Liste
                     oDiag.AdOrReplaceDiagItem(oDiagItem)
                 Next

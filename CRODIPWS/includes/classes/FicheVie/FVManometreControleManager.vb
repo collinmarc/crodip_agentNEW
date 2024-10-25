@@ -5,7 +5,7 @@ Public Class FVManometreControleManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As FVManometreControle
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As FVManometreControle
         Dim oreturn As FVManometreControle
         oreturn = RootWSGetById(Of FVManometreControle)(p_uid, paid)
         Return oreturn

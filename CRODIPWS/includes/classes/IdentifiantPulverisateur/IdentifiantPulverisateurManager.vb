@@ -1,20 +1,93 @@
 ﻿Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
+Imports System.Xml.Serialization
 
 Public Class IdentifiantPulverisateurManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As IdentifiantPulverisateur
-        Dim oreturn As IdentifiantPulverisateur
-        oreturn = RootWSGetById(Of IdentifiantPulverisateur)(p_uid, paid)
+    Public Shared Function WSgetById(puidAgent As Integer, ByVal puid As Integer, paid As String) As IdentifiantPulverisateur
+        Dim oreturn As IdentifiantPulverisateur = Nothing
+        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Try
+            Dim tXmlnodes As Xml.XmlNode() = Nothing
+            '' déclarations
+            Dim typeT As Type = GetType(IdentifiantPulverisateur)
+            Dim nomMethode As String = "Get" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim Params As Object()
+            If methode IsNot Nothing Then
+                Params = {puid, paid, puidAgent, tXmlnodes}
+                codeResponse = objWSCrodip.GetIdentifiantPulverisateur(puid, paid, puidAgent, tXmlnodes)
+            End If
+            Select Case codeResponse
+                Case 0 ' OK
+                    Dim ser As New XmlSerializer(GetType(IdentifiantPulverisateur))
+                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                        oreturn = ser.Deserialize(reader)
+                    End Using
+                Case 1 ' NOK
+                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                    oreturn = Nothing
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+        Finally
+        End Try
         Return oreturn
+
     End Function
 
-    Public Shared Function WSSend(ByVal pObjIn As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur) As Integer
+    Public Shared Function WSSend(puidAgent As String, ByVal pObj As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur) As Integer
         Dim nreturn As Integer
         Try
-            nreturn = RootWSSend(Of IdentifiantPulverisateur)(pObjIn, pobjOut)
+            Dim oreturn As IdentifiantPulverisateur = Nothing
+            Dim codeResponse As Integer = 99
+            Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+            Try
+                Dim pInfo As String = ""
+                Dim puid As Integer
+
+                'Determination du Nom de la méthode : exemple SendManometreControle
+                Dim typeT As Type = GetType(IdentifiantPulverisateur)
+                Dim nomMethode As String = "Send" & typeT.Name
+                Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+                If methode IsNot Nothing Then
+                    'Invocation de la méthode
+                    Dim serializer As New XmlSerializer(pObj.GetType())
+                    Using writer As New StringWriter()
+                        serializer.Serialize(writer, pObj)
+                        Dim xmlOutput As String = writer.ToString()
+                        ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
+                        CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                    End Using
+
+                    Dim Params As Object() = {pObj, pInfo, puid}
+                    codeResponse = methode.Invoke(objWSCrodip, Params)
+                    pInfo = DirectCast(Params(1), String)
+                    puid = DirectCast(Params(2), Integer)
+                    CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+                End If
+                Select Case codeResponse
+                    Case 2 ' UPDATE OK
+                        pobjOut = WSgetById(puidAgent, pObj.uid, pObj.aid)
+                    Case 4 ' CREATE OK
+                        pobjOut = WSgetById(puidAgent, pObj.uid, pObj.aid)
+                    Case 1 ' NOK
+                        CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
+                    Case 9 ' BADREQUEST
+                        CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
+                    Case 0 ' PAS DE MAJ
+                End Select
+            Catch ex As Exception
+                CSDebug.dispError("RootManager - sendWS : ", ex)
+            Finally
+            End Try
+            Return codeResponse
 
         Catch ex As Exception
             CSDebug.dispFatal("sendWSIdentifiantPulverisateur : " & ex.Message)

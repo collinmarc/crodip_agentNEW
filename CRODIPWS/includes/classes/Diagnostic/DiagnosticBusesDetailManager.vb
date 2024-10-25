@@ -1,7 +1,7 @@
 Imports System.Data.Common
 
 Public Class DiagnosticBusesDetailManager
-
+    Inherits RootManager
 #Region "Methodes Web Service"
 
     'ok

@@ -19,7 +19,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145688)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145688, "")
         Assert.IsNotNull(oDiagnostic)
         Dim oDiagItem As New DiagnosticItem(oDiagnostic.aid, "123", "0")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)
@@ -55,7 +55,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        m_oDiag = DiagnosticManager.WSgetById(m_oAgent.uid, oReturn.uid)
+        m_oDiag = DiagnosticManager.WSgetById(m_oAgent.uid, oReturn.uid, oReturn.aid)
         Assert.AreEqual("TU_MCO", m_oDiag.commentaire)
 
         'Update de l'objet
@@ -68,7 +68,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub WSSerialize()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
         Assert.IsNotNull(oDiagnostic)
         Dim oDiagItem As New DiagnosticItem(oDiagnostic.aid, "123", "0")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)

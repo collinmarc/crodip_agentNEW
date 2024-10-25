@@ -43,7 +43,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oAgent = AgentManager.WSgetById(oReturn.uid)
+        oAgent = AgentManager.WSgetByNumeroNational(oReturn.numeroNational)
 
         'Update de l'objet
         oAgent.nom = "TESTUPDATE"

@@ -86,7 +86,7 @@ Public Class SynchronisationTest
         response = ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante NOK=>" & response)
 
-        Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.WSgetById(oExploitToPulve.uid, oExploitToPulve.id)
+        Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.WSgetById(oExploitToPulve.uid, oExploitToPulve.aid)
 
         Assert.IsTrue(ExploitationTOPulverisateurManager.save(oExploitToPulve2, m_oAgent, True))
 

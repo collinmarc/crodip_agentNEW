@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim oMano As CRODIPWS.Buse
-        oMano = BuseManager.WSgetById(1473)
+        oMano = BuseManager.WSgetById(1473, "")
         Assert.AreEqual(1473, oMano.uid)
         Assert.IsNotNull(oMano)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oBuse As CRODIPWS.Buse
-        oBuse = BuseManager.WSgetById(1473)
+        oBuse = BuseManager.WSgetById(1473, "")
         Assert.IsNotNull(oBuse)
         Dim couleur As String = "COUL" + Now
         oBuse.couleur = couleur
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = BuseManager.WSSend(oBuse, oreturn)
         Assert.AreEqual(2, nReturn)
-        oBuse = BuseManager.WSgetById(1473)
+        oBuse = BuseManager.WSgetById(1473, "")
         Assert.AreEqual(oBuse.couleur, couleur)
 
     End Sub
@@ -42,7 +42,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oBuse = BuseManager.WSgetById(oReturn.uid)
+        oBuse = BuseManager.WSgetById(oReturn.uid, "")
         Assert.AreEqual("TESTMCO", oBuse.couleur)
 
         'Update de l'objet
@@ -51,7 +51,7 @@ Imports System.Net.Http
         Assert.AreEqual(oBuse.uid, oReturn.uid)
         Assert.AreEqual(2, nreturn)
         'Lecture de l'objet
-        oBuse = BuseManager.WSgetById(oReturn.uid)
+        oBuse = BuseManager.WSgetById(oReturn.uid, "")
         Assert.AreEqual("TESTUPDATE", oBuse.couleur)
 
 

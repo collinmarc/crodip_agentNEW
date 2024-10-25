@@ -4,7 +4,7 @@ Public Class BancManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Banc
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As Banc
         Dim oreturn As Banc
         oreturn = RootWSGetById(Of Banc)(p_uid, paid)
         Return oreturn

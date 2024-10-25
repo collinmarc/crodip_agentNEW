@@ -6,7 +6,7 @@ Public Class StructureManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As [Structure]
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As [Structure]
         Dim oreturn As [Structure]
         oreturn = RootWSGetById(Of [Structure])(p_uid, paid)
         Return oreturn

@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim Banc As CRODIPWS.Banc
-        Banc = BancManager.WSgetById(2)
+        Banc = BancManager.WSgetById(2, "")
         Assert.AreEqual(2, Banc.uid)
         Assert.IsNotNull(Banc)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oBanc As CRODIPWS.Banc
-        oBanc = BancManager.WSgetById(2)
+        oBanc = BancManager.WSgetById(2, "")
         Assert.IsNotNull(oBanc)
         Dim marque As String = "COUL" + Now
         oBanc.marque = marque
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = BancManager.WSSend(oBanc, oreturn)
         Assert.AreEqual(2, nReturn)
-        oBanc = BancManager.WSgetById(2)
+        oBanc = BancManager.WSgetById(2, "")
         Assert.AreEqual(oBanc.marque, marque)
 
     End Sub
@@ -42,7 +42,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oBanc = BancManager.WSgetById(oReturn.uid)
+        oBanc = BancManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual(22, oBanc.uidstructure)
         Assert.AreEqual("TESTMCO", oBanc.marque)
 
@@ -69,7 +69,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oBanc = BancManager.WSgetById(oReturn.uid)
+        oBanc = BancManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual(22, oBanc.uidstructure)
         Assert.AreEqual(0, oBanc.nbControles)
         Assert.AreEqual(0, oBanc.nbControlesTotal)

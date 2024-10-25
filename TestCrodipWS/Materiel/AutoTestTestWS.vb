@@ -10,21 +10,21 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim AutoTest As CRODIPWS.AutoTest
-        AutoTest = AutoTestManager.WSgetById(39171)
+        AutoTest = AutoTestManager.WSgetById(39171, "")
         Assert.AreEqual(39171, AutoTest.uid)
         Assert.IsNotNull(AutoTest)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oAutoTest As CRODIPWS.AutoTest
-        oAutoTest = AutoTestManager.WSgetById(39171)
+        oAutoTest = AutoTestManager.WSgetById(39171, "")
         Assert.IsNotNull(oAutoTest)
         oAutoTest.etat = 1
         Dim oreturn As CRODIPWS.AutoTest
         Dim nReturn As Integer
         nReturn = AutoTestManager.WSSend(oAutoTest, oreturn)
         Assert.AreEqual(2, nReturn)
-        oAutoTest = AutoTestManager.WSgetById(39171)
+        oAutoTest = AutoTestManager.WSgetById(39171, "")
         Assert.AreEqual(1, oAutoTest.etat)
 
     End Sub
@@ -41,7 +41,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oAutoTest = AutoTestManager.WSgetById(oReturn.uid)
+        oAutoTest = AutoTestManager.WSgetById(oReturn.uid, oReturn.aid)
         Assert.AreEqual(22, oAutoTest.uidstructure)
         Assert.AreEqual(2, oAutoTest.etat)
 

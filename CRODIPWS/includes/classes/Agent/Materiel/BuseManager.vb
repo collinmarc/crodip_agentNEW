@@ -5,9 +5,9 @@ Public Class BuseManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer) As Buse
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As Buse
         Dim oreturn As Buse
-        oreturn = RootWSGetById(Of Buse)(p_uid, "")
+        oreturn = RootWSGetById(Of Buse)(p_uid, paid)
         Return oreturn
     End Function
 

@@ -6,11 +6,11 @@ Imports System.Xml.Serialization
 Public Class AgentManager
     Inherits RootManager
 #Region "Methodes acces Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer) As Agent
-        Dim oreturn As Agent
-        oreturn = RootWSGetById(Of Agent)(p_uid, "")
-        Return oreturn
-    End Function
+    'Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As Agent
+    '    Dim oreturn As Agent
+    '    oreturn = RootWSGetById(Of Agent)(p_uid, paid)
+    '    Return oreturn
+    'End Function
 
     Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String) As Agent
         Dim oreturn As Agent

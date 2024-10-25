@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim FVManometreControle As CRODIPWS.FVManometreControle
-        FVManometreControle = FVManometreControleManager.WSgetById(125255)
+        FVManometreControle = FVManometreControleManager.WSgetById(125255, "")
         Assert.IsNotNull(FVManometreControle)
         Assert.AreEqual(125255, FVManometreControle.uid)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oFVManometreControle As CRODIPWS.FVManometreControle
-        oFVManometreControle = FVManometreControleManager.WSgetById(125255)
+        oFVManometreControle = FVManometreControleManager.WSgetById(125255, "")
         Assert.IsNotNull(oFVManometreControle)
         Dim marque As String = "COUL" + Now
         oFVManometreControle.FVFileName = marque
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = FVManometreControleManager.WSSend(oFVManometreControle, oreturn)
         Assert.AreEqual(2, nReturn)
-        oFVManometreControle = FVManometreControleManager.WSgetById(125255)
+        oFVManometreControle = FVManometreControleManager.WSgetById(125255, "")
         Assert.AreEqual(oFVManometreControle.FVFileName, marque)
 
     End Sub
@@ -43,7 +43,7 @@ Imports System.Net.Http
         Assert.AreEqual(22, oReturn.uidstructure)
 
         'Lecture de l'objet
-        oFVManometreControle = FVManometreControleManager.WSgetById(oReturn.uid)
+        oFVManometreControle = FVManometreControleManager.WSgetById(oReturn.uid, oReturn.aid)
         '        Assert.AreEqual(22, oFVManometreControle.uidstructure)
         Assert.AreEqual("TESTMCO", oFVManometreControle.FVFileName)
         Assert.AreEqual(22, oFVManometreControle.uidstructure)

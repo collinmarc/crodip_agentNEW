@@ -4,7 +4,7 @@ Imports System.Data.Common
 Public Class AutoTestManager
     Inherits RootManager
 #Region "WebsServices"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As AutoTest
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As AutoTest
         Dim oreturn As AutoTest
         oreturn = RootWSGetById(Of AutoTest)(p_uid, paid)
         Return oreturn

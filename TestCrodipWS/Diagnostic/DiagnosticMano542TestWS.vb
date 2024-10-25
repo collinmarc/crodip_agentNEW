@@ -19,7 +19,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697)
+        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
         oDiagnostic.diagnosticMano542List.Liste.Clear()
         Assert.IsNotNull(oDiagnostic)
         Dim oDiagM542 As DiagnosticMano542

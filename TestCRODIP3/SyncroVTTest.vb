@@ -125,7 +125,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         actual = AgentManager.WSSend(agent, updatedObject)
 
-        agentLu = AgentManager.WSgetById(agent.numeroNational)
+        agentLu = AgentManager.getAgentByNumeroNational(agent.numeroNational)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
         Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)
@@ -230,7 +230,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         'Synchronisation descendate du Diag
         '==================================
-        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
 
 
         Assert.AreEqual(oDiag.id, oDiag2.id)
@@ -399,13 +399,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         'Synchronisation descendate du Diag
         '==================================
-        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
         DiagnosticManager.save(oDiag2)
 
         Dim oManoTroncon833 As New DiagnosticTroncons833
         Dim oListManotroncon833 As New DiagnosticTroncons833List
         Dim oCSDB As New CSDb(True)
-        oListManotroncon833 = DiagnosticTroncons833Manager.WSGetList(oDiag2.uid, oDiag2.id)
+        oListManotroncon833 = DiagnosticTroncons833Manager.WSGetList(oDiag2.uid, oDiag2.aid)
         For Each oManoTroncon833 In oListManotroncon833.Liste
                 DiagnosticTroncons833Manager.save(oManoTroncon833, oCSDB, True)
             Next
@@ -568,12 +568,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         'Synchronisation Descendante du Diag + Sauvegarde
         '==================================================
-        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.id)
+        oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.uid, oDiag.aid)
         DiagnosticManager.save(oDiag2)
 
         Dim oDiagBuseList As DiagnosticBusesList
         Dim tmpObject As DiagnosticBuses
-        oDiagBuseList = DiagnosticBusesManager.WSGetList(oDiag.uid, oDiag.id)
+        oDiagBuseList = DiagnosticBusesManager.WSGetList(oDiag.uid, oDiag.aid)
         Dim oCSDB As New CSDb(True)
         For Each tmpObject In oDiagBuseList.Liste
             DiagnosticBusesManager.save(tmpObject, oCSDB, True)
@@ -721,9 +721,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         ExploitationTOPulverisateurManager.WSSend(olst(1), oResponse)
 
         Dim oExploitToPulve As ExploitationTOPulverisateur
-        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(0).uid, olst(0).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(0).uid, olst(0).aid)
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
-        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).aid)
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
         System.Threading.Thread.Sleep(1000)
         'Suppression du 2nd Propriétaire
@@ -736,7 +736,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Envoi de l'element supprimé
         ExploitationTOPulverisateurManager.WSSend(olst(1), oResponse)
         'Récupération de l'élement supprimé
-        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).id)
+        oExploitToPulve = ExploitationTOPulverisateurManager.WSgetById(olst(1).uid, olst(1).aid)
         Assert.IsTrue(oExploitToPulve.isSupprimeCoProp)
 
 

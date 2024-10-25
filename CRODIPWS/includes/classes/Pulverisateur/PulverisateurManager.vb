@@ -5,7 +5,7 @@ Public Class PulverisateurManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(ByVal p_uid As Integer, Optional paid As String = "") As Pulverisateur
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As Pulverisateur
         Dim oreturn As Pulverisateur
         oreturn = RootWSGetById(Of Pulverisateur)(p_uid, paid)
         Return oreturn

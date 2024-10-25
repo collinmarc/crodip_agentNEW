@@ -98,7 +98,7 @@ Public Class BancManagerTest
         Dim oreturn As Banc
         Dim response As Integer = BancManager.WSSend(oBanc, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
-        oBanc2 = BancManager.WSgetById(oBanc.id)
+        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.id)
         Assert.AreEqual(oBanc2.dateDernierControle, oBanc.dateDernierControle)
 
     End Sub
@@ -163,7 +163,7 @@ Public Class BancManagerTest
         Dim response As Integer = BancManager.WSSend(oBanc, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBanc2 = BancManager.WSgetById(oBanc.numeroNational)
+        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.numeroNational)
         Assert.AreEqual(oBanc.numeroNational, oBanc2.numeroNational)
         Assert.AreEqual(oBanc2.isSupprime, 0)
         Assert.AreEqual(oBanc2.dateSuppression, oBanc.dateSuppression)
@@ -440,7 +440,7 @@ Public Class BancManagerTest
         Dim oreturn As Banc
         Dim response As Integer = BancManager.WSSend(oBanc, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
-        oBanc2 = BancManager.WSgetById(oBanc.id)
+        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.id)
         Assert.AreEqual(oBanc.id, oBanc2.id)
         Assert.AreEqual(oBanc2.isSupprime, 1)
         Assert.AreEqual(oBanc2.etat, oBanc.etat)

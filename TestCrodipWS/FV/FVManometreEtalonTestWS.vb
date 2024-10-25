@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim FVManometreEtalon As CRODIPWS.FVManometreEtalon
-        FVManometreEtalon = FVManometreEtalonManager.WSgetById(7180)
+        FVManometreEtalon = FVManometreEtalonManager.WSgetById(7180, "")
         Assert.IsNotNull(FVManometreEtalon)
         Assert.AreEqual(7180, FVManometreEtalon.uid)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oFVManometreEtalon As CRODIPWS.FVManometreEtalon
-        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(7180)
+        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(7180, "")
         Assert.IsNotNull(oFVManometreEtalon)
         Dim marque As String = "COUL" + Now
         oFVManometreEtalon.FVFileName = marque
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = FVManometreEtalonManager.WSSend(oFVManometreEtalon, oreturn)
         Assert.AreEqual(2, nReturn)
-        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(7180)
+        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(7180, "")
         Assert.AreEqual(oFVManometreEtalon.FVFileName, marque)
 
     End Sub
@@ -43,7 +43,7 @@ Imports System.Net.Http
         Assert.AreEqual(22, oReturn.uidstructure)
 
         'Lecture de l'objet
-        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(oReturn.uid)
+        oFVManometreEtalon = FVManometreEtalonManager.WSgetById(oReturn.uid, oReturn.aid)
         '        Assert.AreEqual(22, oFVManometreEtalon.uidstructure)
         Assert.AreEqual("TESTMCO", oFVManometreEtalon.FVFileName)
         Assert.AreEqual(22, oFVManometreEtalon.uidstructure)

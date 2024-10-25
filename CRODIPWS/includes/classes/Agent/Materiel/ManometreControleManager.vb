@@ -8,9 +8,9 @@ Public Class ManometreControleManager
 
 #Region "Methodes Web Service"
 
-    Public Shared Function WSgetById(ByVal pmanometrecontrole_uid As Integer, ByVal pmanometrecontrole_aid As String) As ManometreControle
+    Public Shared Function WSgetById(ByVal puid As Integer, paid As String) As ManometreControle
         Dim oreturn As ManometreControle
-        oreturn = RootWSGetById(Of ManometreControle)(pmanometrecontrole_uid, pmanometrecontrole_aid)
+        oreturn = RootWSGetById(Of ManometreControle)(puid, paid)
         Return oreturn
     End Function
 

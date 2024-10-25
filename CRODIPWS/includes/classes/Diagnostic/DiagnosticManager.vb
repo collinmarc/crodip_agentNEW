@@ -8,7 +8,7 @@ Public Class DiagnosticManager
     Inherits CrodipManager
 
 #Region "Methodes acces Web Service"
-    Public Shared Function WSgetById(puidagent As Integer, ByVal p_uid As Integer, Optional paid As String = "") As Diagnostic
+    Public Shared Function WSgetById(puidagent As Integer, ByVal p_uid As Integer, paid As String) As Diagnostic
         Dim oreturn As Diagnostic = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
         Try
