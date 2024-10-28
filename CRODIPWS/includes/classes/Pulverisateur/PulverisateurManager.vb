@@ -305,16 +305,10 @@ Public Class PulverisateurManager
                 End If
                 paramsQuery = paramsQuery & " , isSynchro=" & pPulve.isSynchro & ""
                 paramsQuery = paramsQuery & " , isSupprime=" & pPulve.isSupprime & ""
-                If Not pPulve.dateProchainControle Is Nothing And pPulve.dateProchainControle <> "" And pPulve.dateProchainControle <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateProchainControle='" & CSDate.ToCRODIPString(pPulve.dateProchainControle) & "'"
+                If Not pPulve.dateProchainControleAsDate Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateProchainControle='" & CSDate.ToCRODIPString(pPulve.dateProchainControleAsDate) & "'"
                 End If
-                If Not pPulve.dateModificationCrodipS Is Nothing And pPulve.dateModificationCrodip <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pPulve.dateModificationCrodip) & "'"
-                End If
-                If Not pPulve.dateModificationAgentS Is Nothing And pPulve.dateModificationAgent <> "" Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pPulve.dateModificationAgent) & "'"
-                End If
-                paramsQuery = paramsQuery & " , idStructure=" & pPulve.uidStructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & pPulve.idStructure & ""
                 ' Emplacement Identification
                 If Not pPulve.emplacementIdentification Is Nothing Then
                     paramsQuery = paramsQuery & " , emplacementIdentification='" & CSDb.secureString(pPulve.emplacementIdentification) & "'"
@@ -349,6 +343,10 @@ Public Class PulverisateurManager
                 paramsQuery = paramsQuery & " , numeroChassis='" & CSDb.secureString(pPulve.numeroChassis) & "'"
                 paramsQuery = paramsQuery & " , immatCertificat='" & CSDb.secureString(pPulve.immatCertificat) & "'"
                 paramsQuery = paramsQuery & " , immatPlaque='" & CSDb.secureString(pPulve.immatPlaque) & "'"
+                If pPulve.uidStructure > 0 Then
+                    paramsQuery = paramsQuery & " , uidstructure=" & pPulve.uidStructure & ""
+                End If
+                paramsQuery = paramsQuery & pPulve.getRootQuery()
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Pulverisateur SET " & paramsQuery & " WHERE id='" & pPulve.id & "'"

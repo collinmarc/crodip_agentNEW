@@ -359,7 +359,7 @@ Public Class SynchronisationElmt
                     Dim oBuseE As Buse
                     Try
                         SetStatus("Réception MAJ Buse n°" & pElement.IdentifiantChaine & "...")
-                        oBuseE = BuseManager.WSgetById(pElement.IdentifiantChaine, "")
+                        oBuseE = BuseManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         Dim bOld As Boolean = oBuseE.etat
                         'Modif du 6/12/2018
                         'Recalcul de l'état des buses après synhcro
@@ -389,7 +389,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreControle
                     Try
                         SetStatus("Réception MAJ Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         If My.Settings.GestiondesPools Then
                             ManometreControleManager.getLstPoolById(tmpObject)
                         End If
@@ -438,7 +438,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVManometreControle()
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVManometreControleManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = FVManometreControleManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         FVManometreControleManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -452,7 +452,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New ManometreEtalon
                     Try
                         SetStatus("Réception MAJ Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         If My.Settings.GestiondesPools Then
                             ManometreEtalonManager.getLstPoolById(tmpObject)
                         End If
@@ -469,7 +469,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVManometreEtalon(New Agent())
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVManometreEtalonManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = FVManometreEtalonManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         FVManometreEtalonManager.save(tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
@@ -483,7 +483,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Banc
                     Try
                         SetStatus("Réception MAJ Banc n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = BancManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = BancManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         If My.Settings.GestiondesPools Then
                             BancManager.getLstPoolById(tmpObject)
                         End If

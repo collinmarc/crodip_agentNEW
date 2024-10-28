@@ -333,10 +333,28 @@
 --ALTER TABLE DiagnosticTroncons833 Add COLUMN manocId Text;
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.00','2023-07-23 12:00:00','Tracabilité Mano');
 
-ALTER TABLE Pulverisateur Add COLUMN immatCertificat  Text;
-ALTER TABLE Pulverisateur Add COLUMN immatPlaque Text;
-ALTER TABLE Pulverisateur ADD COLUMN numerochassis Text;
-UPDATE Pulverisateur SET numerochassis = numchassis;
-ALTER TABLE Pulverisateur DROP COLUMN numchassis;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.01','2024-01-16 12:00:00','Immatriculation Pulve');
+--ALTER TABLE Pulverisateur Add COLUMN immatCertificat  Text;
+--ALTER TABLE Pulverisateur Add COLUMN immatPlaque Text;
+--ALTER TABLE Pulverisateur ADD COLUMN numerochassis Text;
+--UPDATE Pulverisateur SET numerochassis = numchassis;
+--ALTER TABLE Pulverisateur DROP COLUMN numchassis;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.01','2024-01-16 12:00:00','Immatriculation Pulve');
 
+ALTER TABLE Exploitation ADD COLUMN uid integer;
+ALTER TABLE Exploitation ADD COLUMN aid text;
+ALTER TABLE Exploitation ADD COLUMN uidstructure integer;
+update Exploitation set aid = id;
+ALTER TABLE pulverisateur ADD COLUMN uid integer;
+ALTER TABLE pulverisateur ADD COLUMN uidstructure integer;
+ALTER TABLE pulverisateur ADD COLUMN aid text;
+update Pulverisateur set aid = id;
+ALTER TABLE ExploitationToPulverisateur ADD COLUMN uid integer;
+ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidexploitation integer;
+ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidpulverisateur integer;
+ALTER TABLE ExploitationToPulverisateur ADD COLUMN aid text;
+update ExploitationToPulverisateur set aid = id;
+ALTER TABLE Agent ADD COLUMN uid integer;
+ALTER TABLE Agent ADD COLUMN aid text;
+ALTER TABLE Agent ADD COLUMN uidstructure integer;
+update Agent set aid = id;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');

@@ -79,6 +79,7 @@ Public Class Agent
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
+        id = pId
         aid = pId
         numeroNational = pNumeroNational
         nom = pnom
@@ -88,10 +89,10 @@ Public Class Agent
     <XmlIgnore>
     Public Property id() As Integer
         Get
-            Return aid
+            Return _id
         End Get
         Set(ByVal Value As Integer)
-            aid = Value
+            _id = Value
         End Set
     End Property
 
@@ -401,64 +402,66 @@ Public Class Agent
         bReturn = AleDroit(pPulve.type & "." & pPulve.categorie)
         Return bReturn
     End Function
-    Public Function Fill(pcolName As String, pValue As Object) As Boolean
+    Public Overrides Function Fill(pcolName As String, pValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
-            Select Case pcolName.Trim().ToUpper()
-                Case "id".Trim().ToUpper()
-                    Me.id = pValue
-                Case "numeroNational".Trim().ToUpper()
-                    Me.numeroNational = pValue.ToString()
-                Case "motDePasse".Trim().ToUpper()
-                    Me.motDePasse = pValue.ToString()
-                Case "nom".Trim().ToUpper()
-                    Me.nom = pValue.ToString()
-                Case "prenom".Trim().ToUpper()
-                    Me.prenom = pValue.ToString()
-                Case "idStructure".Trim().ToUpper()
-                    Me.uidStructure = pValue
-                Case "telephonePortable".Trim().ToUpper()
-                    Me.telephonePortable = pValue.ToString()
-                Case "eMail".Trim().ToUpper()
-                    Me.eMail = pValue.ToString()
-                Case "statut".Trim().ToUpper()
-                    Me.statut = pValue.ToString()
-                Case "dateCreation".Trim().ToUpper()
-                    Me.dateCreation = pValue.ToString()
-                Case "dateDerniereConnexion".Trim().ToUpper()
-                    Me.dateDerniereConnexion = pValue.ToString()
-                Case "dateDerniereSynchro".Trim().ToUpper()
-                    Me.dateDerniereSynchro = pValue.ToString()
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = pValue.ToString()
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = pValue.ToString()
-                Case "versionLogiciel".Trim().ToUpper()
-                    Me.versionLogiciel = pValue.ToString()
-                Case "commentaire".Trim().ToUpper()
-                    Me.commentaire = pValue.ToString()
-                Case "cleActivation".Trim().ToUpper()
-                    Me.cleActivation = pValue.ToString()
-                Case "isActif".Trim().ToUpper()
-                    Me.isActif = pValue
-                Case "isSupprime".Trim().ToUpper()
-                    Me.isSupprime = pValue
-                Case "structureNom".Trim().ToUpper()
-                    Me.NomStructure = pValue
-                Case "DroitsPulves".Trim().ToUpper()
-                    Me.DroitsPulves = pValue
-                Case "isGestionnaire".Trim().ToUpper()
-                    Me.isGestionnaire = pValue
-                Case "SignatureElect".Trim().ToUpper()
-                    Me.isSignElecActive = pValue
-                Case "isSignElecActive".Trim().ToUpper()
-                    Me.isSignElecActive = pValue
-                Case "idCRODIPPool".Trim().ToUpper()
-                    Me.idCRODIPPool = pValue
-                    If idCRODIPPool <> "" Then
-                        oPool = PoolManager.getPoolByIdCRODIP(idCRODIPPool)
-                    End If
-            End Select
+            If Not MyBase.Fill(pcolName, pValue) Then
+                Select Case pcolName.Trim().ToUpper()
+                    Case "id".Trim().ToUpper()
+                        Me.id = pValue
+                    Case "numeroNational".Trim().ToUpper()
+                        Me.numeroNational = pValue.ToString()
+                    Case "motDePasse".Trim().ToUpper()
+                        Me.motDePasse = pValue.ToString()
+                    Case "nom".Trim().ToUpper()
+                        Me.nom = pValue.ToString()
+                    Case "prenom".Trim().ToUpper()
+                        Me.prenom = pValue.ToString()
+                    Case "idStructure".Trim().ToUpper()
+                        Me.uidStructure = pValue
+                    Case "telephonePortable".Trim().ToUpper()
+                        Me.telephonePortable = pValue.ToString()
+                    Case "eMail".Trim().ToUpper()
+                        Me.eMail = pValue.ToString()
+                    Case "statut".Trim().ToUpper()
+                        Me.statut = pValue.ToString()
+                    Case "dateCreation".Trim().ToUpper()
+                        Me.dateCreation = pValue.ToString()
+                    Case "dateDerniereConnexion".Trim().ToUpper()
+                        Me.dateDerniereConnexion = pValue.ToString()
+                    Case "dateDerniereSynchro".Trim().ToUpper()
+                        Me.dateDerniereSynchro = pValue.ToString()
+                    Case "dateModificationAgent".Trim().ToUpper()
+                        Me.dateModificationAgent = pValue.ToString()
+                    Case "dateModificationCrodip".Trim().ToUpper()
+                        Me.dateModificationCrodip = pValue.ToString()
+                    Case "versionLogiciel".Trim().ToUpper()
+                        Me.versionLogiciel = pValue.ToString()
+                    Case "commentaire".Trim().ToUpper()
+                        Me.commentaire = pValue.ToString()
+                    Case "cleActivation".Trim().ToUpper()
+                        Me.cleActivation = pValue.ToString()
+                    Case "isActif".Trim().ToUpper()
+                        Me.isActif = pValue
+                    Case "isSupprime".Trim().ToUpper()
+                        Me.isSupprime = pValue
+                    Case "structureNom".Trim().ToUpper()
+                        Me.NomStructure = pValue
+                    Case "DroitsPulves".Trim().ToUpper()
+                        Me.DroitsPulves = pValue
+                    Case "isGestionnaire".Trim().ToUpper()
+                        Me.isGestionnaire = pValue
+                    Case "SignatureElect".Trim().ToUpper()
+                        Me.isSignElecActive = pValue
+                    Case "isSignElecActive".Trim().ToUpper()
+                        Me.isSignElecActive = pValue
+                    Case "idCRODIPPool".Trim().ToUpper()
+                        Me.idCRODIPPool = pValue
+                        If idCRODIPPool <> "" Then
+                            oPool = PoolManager.getPoolByIdCRODIP(idCRODIPPool)
+                        End If
+                End Select
+            End If
 
             bReturn = True
         Catch ex As Exception

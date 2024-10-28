@@ -20,7 +20,8 @@ Public Class IdentifiantPulverisateurManager
             Dim Params As Object()
             If methode IsNot Nothing Then
                 Params = {puid, paid, puidAgent, tXmlnodes}
-                codeResponse = objWSCrodip.GetIdentifiantPulverisateur(puid, paid, puidAgent, tXmlnodes)
+                Dim pInfo As String = ""
+                codeResponse = objWSCrodip.GetIdentifiantPulverisateur(puid, paid, puidAgent, pInfo, oreturn)
             End If
             Select Case codeResponse
                 Case 0 ' OK
@@ -347,7 +348,7 @@ Public Class IdentifiantPulverisateurManager
             'Dim objWSCrodip2 As WSCRODIP2.CrodipServer = WebServiceCRODIP.getWS2(True)
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As New Object
+            Dim objWSCrodip_response As New IdentifiantPulverisateur
             ' Appel au WS
             'Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
             'Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()
@@ -362,15 +363,17 @@ Public Class IdentifiantPulverisateurManager
             'SynchronisationManager.LogSynchroElmt(oWSIdentificateurPulve)
 
             'rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
-            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve)
-            'Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
-            'Select Case codeResponse
-            '    Case 0 ' OK
-            '    Case 1 ' NOK
-            '        CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")
-            '    Case 9 ' BADREQUEST
-            '        CSDebug.dispError("sendWSIdentifiantPulverisateur - Code 9 : Bad Request")
-            'End Select
+            Dim pInfo As String
+            Dim pResult As Integer
+            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pIdentPulve, pInfo, pResult)
+            '            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
+            Select Case codeResponse
+                Case 0 ' OK
+                Case 1 ' NOK
+                    CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("sendWSIdentifiantPulverisateur - Code 9 : Bad Request")
+            End Select
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("IdentifiantPulverisateurManager.SendWSIdentifiantPulverisateur (" & pIdentPulve.ToString() & ") ERR: " & ex.Message)

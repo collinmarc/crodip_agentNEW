@@ -25,6 +25,7 @@ Public Class CRODIPTest
 
     Private testContextInstance As TestContext
     Protected m_oAgent As Agent
+    Public agentCourant As Agent
     Protected m_oStructure As [Structure]
 
     Protected m_oExploitation As Exploitation
@@ -92,7 +93,7 @@ Public Class CRODIPTest
         m_oAgent.telephonePortable = "0606060606"
         m_oAgent.eMail = "a@a.com"
         m_oAgent.isActif = True
-        m_oAgent.numeroNational = "9999"
+        m_oAgent.numeroNational = "004"
         AgentManager.save(m_oAgent)
         Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
         '        AgentManager.getWSUpdates(m_oAgent.id,

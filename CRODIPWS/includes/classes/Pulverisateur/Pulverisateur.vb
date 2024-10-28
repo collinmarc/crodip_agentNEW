@@ -1004,176 +1004,181 @@ Public Class Pulverisateur
         Return bReturn
     End Function
 
-    Public Function Fill(pColName As String, pColValue As Object) As Boolean
+    Public Overrides Function Fill(pColName As String, pColValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
             pColName = pColName.Replace("Pulverisateur.", "")
-            Select Case pColName.ToUpper().Trim
-                Case "id".ToUpper().Trim()
-                    Me.id = pColValue.ToString()
-                Case "numeroNational".ToUpper().Trim()
-                    Me.numeroNational = pColValue.ToString()
-                    'Mémorisation du numéro nationnal
-                    Me.numeroNationalBis = pColValue.ToString()
-                Case "type".ToUpper().Trim()
-                    Me.type = pColValue.ToString()
-                Case "marque".ToUpper().Trim()
-                    Me.marque = pColValue.ToString()
-                Case "modele".ToUpper().Trim()
-                    Me.modele = pColValue.ToString()
-                Case "anneeAchat".ToUpper().Trim()
-                    Me.anneeAchat = pColValue.ToString()
-                Case "categorie".ToUpper().Trim()
-                    Me.categorie = pColValue.ToString
-                Case "attelage".ToUpper().Trim()
-                    Me.attelage = pColValue.ToString()
-                Case "pulverisation".ToUpper().Trim()
-                    Me.pulverisation = pColValue.ToString
-                Case "capacite".ToUpper().Trim()
-                    Me.capacite = pColValue
-                Case "largeur".ToUpper().Trim()
-                    Me.largeur = pColValue.ToString()
-                Case "nombreRangs".ToUpper().Trim()
-                    Me.nombreRangs = pColValue.ToString()
-                Case "largeurPlantation".ToUpper().Trim()
-                    Me.largeurPlantation = pColValue.ToString()
-                Case "surfaceParAn".ToUpper().Trim()
-                    Me.surfaceParAn = pColValue.ToString()
-                Case "nombreUtilisateurs".ToUpper().Trim()
-                    Me.nombreUtilisateurs = pColValue.ToString()
-                Case "isVentilateur".ToUpper().Trim()
-                    Me.isVentilateur = pColValue
-                Case "isDebrayage".ToUpper().Trim()
-                    Me.isDebrayage = pColValue
-                Case "isCuveRincage".ToUpper().Trim()
-                    Me.isCuveRincage = pColValue
-                Case "capaciteCuveRincage".ToUpper().Trim()
-                    Me.capaciteCuveRincage = pColValue.ToString()
-                Case "isRotobuse".ToUpper().Trim()
-                    Me.isRotobuse = pColValue
-                Case "isCuveIncorporation".ToUpper().Trim()
-                    Me.isCuveIncorporation = pColValue
-                Case "isRinceBidon".ToUpper().Trim()
-                    Me.isRinceBidon = pColValue
-                Case "isBidonLaveMain".ToUpper().Trim()
-                    Me.isBidonLaveMain = pColValue
-                Case "isLanceLavage".ToUpper().Trim()
-                    Me.isLanceLavage = pColValue
-                Case "regulation".ToUpper().Trim()
-                    Me.regulation = pColValue.ToString
-                Case "regulationOptions".ToUpper().Trim()
-                    Me.regulationOptions = pColValue.ToString
-                Case "nombreBuses".ToUpper().Trim()
-                    Me.nombreBuses = pColValue
-                Case "buseIsIso".ToUpper().Trim()
-                    Me.buseIsIso = pColValue
-                Case "buseMarque".ToUpper().Trim()
-                    Me.buseMarque = pColValue.ToString()
-                Case "buseType".ToUpper().Trim()
-                    Me.buseType = pColValue.ToString()
-                Case "buseFonctionnement".ToUpper().Trim()
-                    Me.buseFonctionnement = pColValue.ToString()
-                Case "buseAge".ToUpper().Trim()
-                    Me.buseAge = pColValue.ToString()
-                Case "buseAngle".ToUpper().Trim()
-                    Me.buseAngle = pColValue.ToString()
-                Case "buseCouleur".ToUpper().Trim()
-                    Me.buseCouleur = pColValue.ToString()
-                Case "manometreMarque".ToUpper().Trim()
-                    Me.manometreMarque = pColValue.ToString()
-                Case "manometreType".ToUpper().Trim()
-                    Me.manometreType = pColValue.ToString()
-                Case "manometreFondEchelle".ToUpper().Trim()
-                    Me.manometreFondEchelle = pColValue.ToString()
-                Case "manometreDiametre".ToUpper().Trim()
-                    Me.manometreDiametre = pColValue.ToString()
-                Case "manometrePressionTravail".ToUpper().Trim()
-                    Me.manometrePressionTravail = pColValue.ToString()
-                Case "isSynchro".ToUpper().Trim()
-                    Me.isSynchro = pColValue
-                Case "isSupprime".ToUpper().Trim()
-                    Me.isSupprime = pColValue
-                Case "dateProchainControle".ToUpper().Trim()
-                    If pColValue.ToString() <> "01/01/2001 00:00:00" And pColValue.ToString() <> "0000-00-00 00:00:00" Then
-                        Me.dateProchainControle = CSDate.ToCRODIPString(pColValue.ToString())
-                    End If
-                Case "dateModificationCrodip".ToUpper().Trim()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "dateModificationAgent".ToUpper().Trim()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "idStructure".ToUpper().Trim()
-                    Me.uidStructure = pColValue
-                Case "emplacementIdentification".ToUpper().Trim()
-                    Me.emplacementIdentification = pColValue
-                Case "ancienIdentifiant".ToUpper().Trim()
-                    Me.ancienIdentifiant = pColValue
+            bReturn = MyBase.Fill(pColName, pColValue)
+            If Not bReturn Then
+                bReturn = True
+                Select Case pColName.ToUpper().Trim
+                    Case "id".ToUpper().Trim()
+                        Me.id = pColValue.ToString()
+                    Case "numeroNational".ToUpper().Trim()
+                        Me.numeroNational = pColValue.ToString()
+                        'Mémorisation du numéro nationnal
+                        Me.numeroNationalBis = pColValue.ToString()
+                    Case "type".ToUpper().Trim()
+                        Me.type = pColValue.ToString()
+                    Case "marque".ToUpper().Trim()
+                        Me.marque = pColValue.ToString()
+                    Case "modele".ToUpper().Trim()
+                        Me.modele = pColValue.ToString()
+                    Case "anneeAchat".ToUpper().Trim()
+                        Me.anneeAchat = pColValue.ToString()
+                    Case "categorie".ToUpper().Trim()
+                        Me.categorie = pColValue.ToString
+                    Case "attelage".ToUpper().Trim()
+                        Me.attelage = pColValue.ToString()
+                    Case "pulverisation".ToUpper().Trim()
+                        Me.pulverisation = pColValue.ToString
+                    Case "capacite".ToUpper().Trim()
+                        Me.capacite = pColValue
+                    Case "largeur".ToUpper().Trim()
+                        Me.largeur = pColValue.ToString()
+                    Case "nombreRangs".ToUpper().Trim()
+                        Me.nombreRangs = pColValue.ToString()
+                    Case "largeurPlantation".ToUpper().Trim()
+                        Me.largeurPlantation = pColValue.ToString()
+                    Case "surfaceParAn".ToUpper().Trim()
+                        Me.surfaceParAn = pColValue.ToString()
+                    Case "nombreUtilisateurs".ToUpper().Trim()
+                        Me.nombreUtilisateurs = pColValue.ToString()
+                    Case "isVentilateur".ToUpper().Trim()
+                        Me.isVentilateur = pColValue
+                    Case "isDebrayage".ToUpper().Trim()
+                        Me.isDebrayage = pColValue
+                    Case "isCuveRincage".ToUpper().Trim()
+                        Me.isCuveRincage = pColValue
+                    Case "capaciteCuveRincage".ToUpper().Trim()
+                        Me.capaciteCuveRincage = pColValue.ToString()
+                    Case "isRotobuse".ToUpper().Trim()
+                        Me.isRotobuse = pColValue
+                    Case "isCuveIncorporation".ToUpper().Trim()
+                        Me.isCuveIncorporation = pColValue
+                    Case "isRinceBidon".ToUpper().Trim()
+                        Me.isRinceBidon = pColValue
+                    Case "isBidonLaveMain".ToUpper().Trim()
+                        Me.isBidonLaveMain = pColValue
+                    Case "isLanceLavage".ToUpper().Trim()
+                        Me.isLanceLavage = pColValue
+                    Case "regulation".ToUpper().Trim()
+                        Me.regulation = pColValue.ToString
+                    Case "regulationOptions".ToUpper().Trim()
+                        Me.regulationOptions = pColValue.ToString
+                    Case "nombreBuses".ToUpper().Trim()
+                        Me.nombreBuses = pColValue
+                    Case "buseIsIso".ToUpper().Trim()
+                        Me.buseIsIso = pColValue
+                    Case "buseMarque".ToUpper().Trim()
+                        Me.buseMarque = pColValue.ToString()
+                    Case "buseType".ToUpper().Trim()
+                        Me.buseType = pColValue.ToString()
+                    Case "buseFonctionnement".ToUpper().Trim()
+                        Me.buseFonctionnement = pColValue.ToString()
+                    Case "buseAge".ToUpper().Trim()
+                        Me.buseAge = pColValue.ToString()
+                    Case "buseAngle".ToUpper().Trim()
+                        Me.buseAngle = pColValue.ToString()
+                    Case "buseCouleur".ToUpper().Trim()
+                        Me.buseCouleur = pColValue.ToString()
+                    Case "manometreMarque".ToUpper().Trim()
+                        Me.manometreMarque = pColValue.ToString()
+                    Case "manometreType".ToUpper().Trim()
+                        Me.manometreType = pColValue.ToString()
+                    Case "manometreFondEchelle".ToUpper().Trim()
+                        Me.manometreFondEchelle = pColValue.ToString()
+                    Case "manometreDiametre".ToUpper().Trim()
+                        Me.manometreDiametre = pColValue.ToString()
+                    Case "manometrePressionTravail".ToUpper().Trim()
+                        Me.manometrePressionTravail = pColValue.ToString()
+                    Case "isSynchro".ToUpper().Trim()
+                        Me.isSynchro = pColValue
+                    Case "isSupprime".ToUpper().Trim()
+                        Me.isSupprime = pColValue
+                    Case "dateProchainControle".ToUpper().Trim()
+                        If pColValue.ToString() <> "01/01/2001 00:00:00" And pColValue.ToString() <> "0000-00-00 00:00:00" Then
+                            Me.dateProchainControle = CSDate.ToCRODIPString(pColValue.ToString())
+                        End If
+                    Case "idStructure".ToUpper().Trim()
+                        Me.uidStructure = pColValue
+                    Case "emplacementIdentification".ToUpper().Trim()
+                        Me.emplacementIdentification = pColValue
+                    Case "ancienIdentifiant".ToUpper().Trim()
+                        Me.ancienIdentifiant = pColValue
                     'Champs ajouter pour optimiser l'affichage
-                Case "controleEtat".ToUpper().Trim()
-                    Me.controleEtat = pColValue
-                Case "raisonSociale".ToUpper().Trim()
-                    Me.RaisonSocialeExploitant = pColValue
-                Case "nomExploitant".ToUpper().Trim()
-                    Me.NomExploitant = pColValue
-                Case "prenomExploitant".ToUpper().Trim()
-                    Me.PrenomExploitant = pColValue
-                Case "codepostal".ToUpper().Trim()
-                    Me.codePostal = pColValue
-                Case "commune".ToUpper().Trim()
-                    Me.Commune = pColValue
-                Case "isEclairageRampe".ToUpper().Trim()
-                    Me.isEclairageRampe = pColValue
-                Case "isBarreGuidage".ToUpper().Trim()
-                    Me.isBarreGuidage = pColValue
-                Case "isCoupureAutoTroncons".ToUpper().Trim()
-                    Me.isCoupureAutoTroncons = pColValue
-                Case "isRincageAutoAssiste".ToUpper().Trim()
-                    Me.isRincageAutoAssiste = pColValue
-                Case "buseModele".ToUpper().Trim()
-                    Me.buseModele = pColValue.ToString()
-                Case "buseNbniveaux".ToUpper().Trim()
-                    Me.buseNbniveaux = pColValue
-                Case "manometreNbNiveaux".ToUpper().Trim()
-                    Me.manometreNbniveaux = pColValue
-                Case "manometreNbTroncons".ToUpper().Trim()
-                    Me.manometreNbtroncons = pColValue
-                Case "modeUtilisation".ToUpper().Trim()
-                    Me.modeUtilisation = pColValue
-                Case "nombreExploitants".ToUpper().Trim()
-                    Me.nombreExploitants = pColValue
-                Case "isAspirationExt".ToUpper().Trim()
-                    Me.isAspirationExt = pColValue
-                Case "isDispoAntiRetour".ToUpper().Trim()
-                    Me.isDispoAntiRetour = pColValue
-                Case "isReglageAutoHauteur".ToUpper().Trim()
-                    Me.isReglageAutoHauteur = pColValue
-                Case "isFiltrationAspiration".ToUpper().Trim()
-                    Me.isFiltrationAspiration = pColValue
-                Case "isFiltrationRefoulement".ToUpper().Trim()
-                    Me.isFiltrationRefoulement = pColValue
-                Case "isFiltrationTroncons".ToUpper().Trim()
-                    Me.isFiltrationTroncons = pColValue
-                Case "isFiltrationBuses".ToUpper().Trim()
-                    Me.isFiltrationBuses = pColValue
-                Case "isPulveAdditionnel".ToUpper().Trim()
-                    Me.isPulveAdditionnel = pColValue
-                Case "pulvePrincipalNumNat".ToUpper().Trim()
-                    Me.pulvePrincipalNumNat = pColValue
-                Case "isrincagecircuit".ToUpper().Trim()
-                    Me.isRincagecircuit = pColValue
-                Case "isPompesDoseuses".ToUpper().Trim()
-                    Me.isPompesDoseuses = pColValue
-                Case "nbPompesDoseuses".ToUpper().Trim()
-                    Me.nbPompesDoseuses = pColValue
-                Case "numeroChassis".ToUpper().Trim()
-                    Me.numeroChassis = pColValue
-                Case "immatCertificat".ToUpper().Trim()
-                    Me.immatCertificat = pColValue
-                Case "immatPlaque".ToUpper().Trim()
-                    Me.immatPlaque = pColValue
-            End Select
-            bReturn = True
+                    Case "controleEtat".ToUpper().Trim()
+                        Me.controleEtat = pColValue
+                    Case "raisonSociale".ToUpper().Trim()
+                        Me.RaisonSocialeExploitant = pColValue
+                    Case "nomExploitant".ToUpper().Trim()
+                        Me.NomExploitant = pColValue
+                    Case "prenomExploitant".ToUpper().Trim()
+                        Me.PrenomExploitant = pColValue
+                    Case "codepostal".ToUpper().Trim()
+                        Me.codePostal = pColValue
+                    Case "commune".ToUpper().Trim()
+                        Me.Commune = pColValue
+                    Case "isEclairageRampe".ToUpper().Trim()
+                        Me.isEclairageRampe = pColValue
+                    Case "isBarreGuidage".ToUpper().Trim()
+                        Me.isBarreGuidage = pColValue
+                    Case "isCoupureAutoTroncons".ToUpper().Trim()
+                        Me.isCoupureAutoTroncons = pColValue
+                    Case "isRincageAutoAssiste".ToUpper().Trim()
+                        Me.isRincageAutoAssiste = pColValue
+                    Case "buseModele".ToUpper().Trim()
+                        Me.buseModele = pColValue.ToString()
+                    Case "buseNbniveaux".ToUpper().Trim()
+                        Me.buseNbniveaux = pColValue
+                    Case "manometreNbNiveaux".ToUpper().Trim()
+                        Me.manometreNbniveaux = pColValue
+                    Case "manometreNbTroncons".ToUpper().Trim()
+                        Me.manometreNbtroncons = pColValue
+                    Case "modeUtilisation".ToUpper().Trim()
+                        Me.modeUtilisation = pColValue
+                    Case "nombreExploitants".ToUpper().Trim()
+                        Me.nombreExploitants = pColValue
+                    Case "isAspirationExt".ToUpper().Trim()
+                        Me.isAspirationExt = pColValue
+                    Case "isDispoAntiRetour".ToUpper().Trim()
+                        Me.isDispoAntiRetour = pColValue
+                    Case "isReglageAutoHauteur".ToUpper().Trim()
+                        Me.isReglageAutoHauteur = pColValue
+                    Case "isFiltrationAspiration".ToUpper().Trim()
+                        Me.isFiltrationAspiration = pColValue
+                    Case "isFiltrationRefoulement".ToUpper().Trim()
+                        Me.isFiltrationRefoulement = pColValue
+                    Case "isFiltrationTroncons".ToUpper().Trim()
+                        Me.isFiltrationTroncons = pColValue
+                    Case "isFiltrationBuses".ToUpper().Trim()
+                        Me.isFiltrationBuses = pColValue
+                    Case "isPulveAdditionnel".ToUpper().Trim()
+                        Me.isPulveAdditionnel = pColValue
+                    Case "pulvePrincipalNumNat".ToUpper().Trim()
+                        Me.pulvePrincipalNumNat = pColValue
+                    Case "isrincagecircuit".ToUpper().Trim()
+                        Me.isRincagecircuit = pColValue
+                    Case "isPompesDoseuses".ToUpper().Trim()
+                        Me.isPompesDoseuses = pColValue
+                    Case "nbPompesDoseuses".ToUpper().Trim()
+                        Me.nbPompesDoseuses = pColValue
+                    Case "numeroChassis".ToUpper().Trim()
+                        Me.numeroChassis = pColValue
+                    Case "immatCertificat".ToUpper().Trim()
+                        Me.immatCertificat = pColValue
+                    Case "immatPlaque".ToUpper().Trim()
+                        Me.immatPlaque = pColValue
+                    Case "uid".Trim().ToUpper()
+                        Me.uid = pColValue
+                    Case "uidstructure".Trim().ToUpper()
+                        Me.uidStructure = pColValue
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.Fill(" & pColName & "," & pColValue & ") ERR" + ex.Message)
+            CSDebug.dispError("Pulverisateur.Fill(" & pColName & "," & pColValue & ") ERR", ex)
             bReturn = False
         End Try
         Return bReturn

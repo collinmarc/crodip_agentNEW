@@ -60,13 +60,13 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ModuleDocumentaire" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">moduledocumentaire</Value>
     </Setting>
     <Setting Name="WSCrodipURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://admin.crodip.net/server</Value>
     </Setting>
     <Setting Name="WSCrodipURLTEST" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
     </Setting>
     <Setting Name="BDDType" Type="System.String" Scope="Application">
       <Value Profile="(Default)">SQLITE</Value>
@@ -95,14 +95,14 @@
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CRODIPWS_WSCRODIP_CrodipServer" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
-    </Setting>
     <Setting Name="Mode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">NORMAL</Value>
     </Setting>
     <Setting Name="StockPDF" Type="System.String" Scope="Application">
       <Value Profile="(Default)">PDFs</Value>
+    </Setting>
+    <Setting Name="CRODIPWS_WSCRODIP_CrodipServer" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
     </Setting>
   </Settings>
 </SettingsFile>

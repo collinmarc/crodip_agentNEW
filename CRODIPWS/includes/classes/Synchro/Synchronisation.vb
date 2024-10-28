@@ -235,6 +235,7 @@ Public Class Synchronisation
                         Dim oElement As SynchronisationElmt
                         oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtDiag.getLabelGet(), m_SynchroBoolean)
                         oElement.IdentifiantChaine = tmpUpdateDiagnostic.id
+                        oElement.IdentifiantEntier = tmpUpdateDiagnostic.uid
                         m_ListeElementSynchroASC.Add(oElement)
                     End If
 
@@ -298,7 +299,7 @@ Public Class Synchronisation
                 Dim arrUpdatesAgent() As Agent = AgentManager.getUpdates(m_Agent)
                 For Each tmpUpdateAgent As Agent In arrUpdatesAgent
                     Try
-                        Dim UpdatedObject As New Object
+                        Dim UpdatedObject As New Agent
                         Dim tmpAgentUpdated As Agent
                         Notice("Agent n°" & tmpUpdateAgent.id)
                         Dim response As Integer = AgentManager.WSSend(tmpUpdateAgent, tmpAgentUpdated)
@@ -332,7 +333,7 @@ Public Class Synchronisation
                 Dim arrUpdatesStructuree() As [Structure] = StructureManager.getUpdates(m_Agent)
                 For Each tmpUpdateStructuree As [Structure] In arrUpdatesStructuree
                     Try
-                        Dim UpdatedObject As New Object
+                        Dim UpdatedObject As New [Structure]
                         Notice("Organisme n°" & tmpUpdateStructuree.id)
                         Dim response As Integer = StructureManager.WSSend(tmpUpdateStructuree, UpdatedObject)
                         Select Case response
@@ -447,7 +448,7 @@ Public Class Synchronisation
                 If (m_SynchroBoolean.m_bSynchAscBuse) Then
                     ' Synchro d'un Buse
                     Dim arrUpdatesBuse() As Buse = BuseManager.getUpdates(m_Agent)
-                    Dim pBuseReturn As Buse
+                    Dim pBuseReturn As New Buse
                     For Each tmpUpdateBuse As Buse In arrUpdatesBuse
                         Try
                             Notice("Buse n°" & tmpUpdateBuse.numeroNational)
@@ -474,11 +475,12 @@ Public Class Synchronisation
                     ' Synchro d'un ManometreControle
                     ' On récupère les mises à jours
                     Dim arrUpdatesManometreControle() As ManometreControle = ManometreControleManager.getUpdates(m_Agent)
+                    Dim oManoReturn As New ManometreControle
                     For Each tmpUpdateManometreControle As ManometreControle In arrUpdatesManometreControle
                         Try
                             Dim UpdatedObject As New Object
                             Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
-                            Dim response As Integer = ManometreControleManager.WSSend(tmpUpdateManometreControle, UpdatedObject)
+                            Dim response As Integer = ManometreControleManager.WSSend(tmpUpdateManometreControle, oManoReturn)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
@@ -501,12 +503,12 @@ Public Class Synchronisation
                     ' Synchro d'un ManometreEtalon
                     ' On récupère les mises à jours
                     Dim arrUpdatesManometreEtalon() As ManometreEtalon = ManometreEtalonManager.getUpdates(m_Agent)
-                    Dim pUpdated As ManometreEtalon
+                    Dim oManoEReturn As New ManometreEtalon
                     For Each tmpUpdateManometreEtalon As ManometreEtalon In arrUpdatesManometreEtalon
                         Try
                             Dim UpdatedObject As New Object
                             Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
-                            Dim response As Integer = ManometreEtalonManager.WSSend(tmpUpdateManometreEtalon, UpdatedObject)
+                            Dim response As Integer = ManometreEtalonManager.WSSend(tmpUpdateManometreEtalon, oManoEReturn)
                             Select Case response
                                 Case -1 ' ERROR
                                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
@@ -528,7 +530,7 @@ Public Class Synchronisation
                 If (m_SynchroBoolean.m_bSynchAscBanc) Then
                     ' Synchro d'un Banc
                     Dim arrUpdatesBanc() As Banc = BancManager.getUpdates(m_Agent)
-                    Dim pUpdated As Banc
+                    Dim pUpdated As New Banc
                     For Each tmpUpdateBanc As Banc In arrUpdatesBanc
                         Try
                             Dim UpdatedObject As New Object
@@ -609,6 +611,7 @@ Public Class Synchronisation
                     Dim oElement As SynchronisationElmt
                     oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtPulverisateur.getLabelGet(), m_SynchroBoolean)
                     oElement.IdentifiantChaine = pPulverisateur.id
+                    oElement.IdentifiantEntier = pPulverisateur.uid
                     m_ListeElementSynchroASC.Add(oElement)
                 Case 1 ' NOK
                     CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPulverisateur) - Le web service a répondu : Non-Ok")
@@ -622,7 +625,7 @@ Public Class Synchronisation
     End Sub
 
     Public Sub RunAscSynchroExploit2Pulve(pExploitationTOPulverisateur As ExploitationTOPulverisateur)
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New ExploitationTOPulverisateur
         Notice("ExploitationToPulverisateur n°" & pExploitationTOPulverisateur.idPulverisateur)
         Dim response As Integer = ExploitationTOPulverisateurManager.WSSend(pExploitationTOPulverisateur, UpdatedObject)
         Select Case response
@@ -633,6 +636,7 @@ Public Class Synchronisation
                 Dim oElement As SynchronisationElmt
                 oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitationToPulverisateur.getLabelGet(), m_SynchroBoolean)
                 oElement.IdentifiantChaine = pExploitationTOPulverisateur.id
+                oElement.IdentifiantEntier = pExploitationTOPulverisateur.uid
                 m_ListeElementSynchroASC.Add(oElement)
             Case 1 ' NOK
                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Le web service a répondu : Non-Ok")
@@ -646,7 +650,7 @@ Public Class Synchronisation
         Try
             Notice("Exploitation n°" & oExploitation.id)
 
-            Dim UpdatedObject As New Object
+            Dim UpdatedObject As New Exploitation
             Dim response As Integer = ExploitationManager.WSSend(oExploitation, UpdatedObject)
             Select Case response
                 Case -1 ' ERROR
@@ -657,6 +661,7 @@ Public Class Synchronisation
                     Dim oElement As SynchronisationElmt
                     oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitation.getLabelGet(), m_SynchroBoolean)
                     oElement.IdentifiantChaine = oExploitation.id
+                    oElement.IdentifiantEntier = oExploitation.uid
                     m_ListeElementSynchroASC.Add(oElement)
 
                                 'Case 2 ' SENDPROFILAGENT_UPDATE
@@ -749,7 +754,7 @@ Public Class Synchronisation
         Dim arrUpdatesFVBanc() As FVBanc = FVBancManager.getUpdates(m_Agent)
         For Each oFVBanc As FVBanc In arrUpdatesFVBanc
             Try
-                Dim UpdatedObject As New Object
+                Dim UpdatedObject As New FVBanc
                 Notice("Fiche de Vie Banc de Mesure n°" & oFVBanc.id)
                 Dim response As Integer = FVBancManager.WSSend(oFVBanc, UpdatedObject)
                 Select Case response
@@ -776,7 +781,7 @@ Public Class Synchronisation
             Notice("Diagnostic " & pDiag.id)
 
             Dim bSynchroDiagOK As Boolean = False
-            Dim UpdatedObject As New Object
+            Dim UpdatedObject As New Diagnostic
 
             'Synchro des Rapports d'inspection et Synthèse des mesures
             '=========================================================
@@ -1138,7 +1143,7 @@ Public Class Synchronisation
         Try
 
             Dim nbElement As Integer = (From elmt As SynchronisationElmt In m_ListeElementSynchroASC
-                                        Where elmt.Type = pElement.Type And elmt.IdentifiantChaine = pElement.IdentifiantChaine
+                                        Where elmt.Type = pElement.Type And elmt.IdentifiantChaine = pElement.IdentifiantChaine And elmt.IdentifiantEntier = pElement.IdentifiantEntier
                                         Select elmt).Count
 
             bReturn = (nbElement > 0)
@@ -1159,7 +1164,7 @@ Public Class Synchronisation
             Dim synchroDateTime As Object = Nothing
             Dim reponse As GetSynchroDateTimeResponse
             reponse = objWSCrodip.GetSynchroDateTime()
-            Dim sDateFromSRV As String = synchroDateTime(0).InnerText().replace("/", "-")
+            Dim sDateFromSRV As String = reponse.SynchroDateTime(0).InnerText().replace("/", "-")
             Dim dtSRV As Date
             Try
                 dtSRV = New Date(sDateFromSRV)
@@ -1233,7 +1238,7 @@ Public Class Synchronisation
         Dim arrUpdatesFVManometreControle() As FVManometreControle = FVManometreControleManager.getUpdates(m_Agent)
         For Each tmpUpdateFVManometreControle As FVManometreControle In arrUpdatesFVManometreControle
             Try
-                Dim UpdatedObject As New Object
+                Dim UpdatedObject As New FVManometreControle
                 Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
                 Dim response As Integer = FVManometreControleManager.WSSend(tmpUpdateFVManometreControle, UpdatedObject)
                 Select Case response
@@ -1260,7 +1265,7 @@ Public Class Synchronisation
         Dim arrUpdatesFVManometreEtalon() As FVManometreEtalon = FVManometreEtalonManager.getUpdates(m_Agent)
         For Each tmpUpdateFVManometreEtalon As FVManometreEtalon In arrUpdatesFVManometreEtalon
             Try
-                Dim UpdatedObject As New Object
+                Dim UpdatedObject As New FVManometreEtalon
                 Notice("Fiche de Vie Manometre Etalon n°" & tmpUpdateFVManometreEtalon.id)
                 Dim response As Integer = FVManometreEtalonManager.WSSend(tmpUpdateFVManometreEtalon, UpdatedObject)
                 Select Case response

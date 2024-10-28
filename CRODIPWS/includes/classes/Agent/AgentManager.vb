@@ -508,12 +508,6 @@ Public Class AgentManager
                 If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.ToCRODIPString(agent.dateDerniereSynchro) & "'"
                 End If
-                If agent.dateModificationAgent <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(agent.dateModificationAgent) & "'"
-                End If
-                If agent.dateModificationCrodip <> "0000-00-00 00:00:00" Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(agent.dateModificationCrodip) & "'"
-                End If
                 If Not agent.versionLogiciel Is Nothing Then
                     paramsQuery = paramsQuery & " , versionLogiciel='" & CSDb.secureString(agent.versionLogiciel) & "'"
                 End If
@@ -531,6 +525,8 @@ Public Class AgentManager
                     paramsQuery = paramsQuery & " , idCRODIPPool='" & agent.idCRODIPPool & "'"
                 End If
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
+
+                paramsQuery = paramsQuery & agent.getRootQuery()
 
                 bddCommande.CommandText = "UPDATE Agent SET " & paramsQuery & " WHERE numeroNational='" & agent.numeroNational & "'"
                 nResult = bddCommande.ExecuteNonQuery()

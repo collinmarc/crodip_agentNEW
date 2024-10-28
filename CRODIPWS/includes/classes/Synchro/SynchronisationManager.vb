@@ -103,7 +103,7 @@ Public Class SynchronisationManager
         CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
             Dim infod As String
-            objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, 0, 0, "", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+            objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, "", "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try

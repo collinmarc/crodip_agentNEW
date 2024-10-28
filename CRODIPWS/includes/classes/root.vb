@@ -32,7 +32,11 @@ Public Class root
     <XmlElement("dateModificationAgent")>
     Public Property dateModificationAgentS() As String
         Get
-            Return CSDate.GetDateForWS(dateModificationAgent)
+            If dateModificationAgent <> Date.MinValue Then
+                Return CSDate.GetDateForWS(dateModificationAgent)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             If Value <> "" Then
@@ -56,7 +60,11 @@ Public Class root
     <XmlElement("dateModificationCrodip")>
     Public Property dateModificationCrodipS() As String
         Get
-            Return CSDate.GetDateForWS(dateModificationCrodip)
+            If dateModificationCrodip <> Date.MinValue Then
+                Return CSDate.GetDateForWS(dateModificationCrodip)
+            Else
+                Return ""
+            End If
         End Get
         Set(ByVal Value As String)
             If Value <> "" Then
@@ -74,22 +82,40 @@ Public Class root
         dateModificationCrodip = DateTime.MinValue
     End Sub
 
-    Public Overridable Function Fill(pColName As String, pcolValue As Object) As Boolean
-        Dim bReturn As Boolean
-        bReturn = True
-        Select Case pColName.Trim().ToUpper()
-            Case "uid".Trim().ToUpper()
-                Me.uid = CInt(pcolValue)
-            Case "aid".Trim().ToUpper()
-                Me.aid = pcolValue.ToString
-            Case "dateModificationAgent".Trim().ToUpper()
-                Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
-            Case "dateModificationCrodip".Trim().ToUpper()
-                Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationCrodip As String
-            Case Else
-                bReturn = False
-        End Select
+    Public Function getRootQuery() As String
+        Dim strQuery As String = ""
+        If Me.uid > 0 Then
+            strQuery = strQuery & " , uid=" & Me.uid & ""
+        End If
+        If Not String.IsNullOrEmpty(aid) Then
+            strQuery = strQuery & " , aid='" & Me.aid & "'"
+        End If
+        If Not String.IsNullOrEmpty(dateModificationCrodipS) Then
+            strQuery = strQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString((dateModificationCrodip)) & "'"
+        End If
+        If Not String.IsNullOrEmpty(dateModificationAgentS) Then
+            strQuery = strQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString((dateModificationAgent)) & "'"
+        End If
+        Return strQuery
+    End Function
 
+    Public Overridable Function Fill(pColName As String, pcolValue As Object) As Boolean
+        Dim bReturn As Boolean = False
+        If pcolValue IsNot Nothing Then
+            bReturn = True
+            Select Case pColName.Trim().ToUpper()
+                Case "uid".Trim().ToUpper()
+                    Me.uid = CInt(pcolValue)
+                Case "aid".Trim().ToUpper()
+                    Me.aid = pcolValue.ToString
+                Case "dateModificationAgent".Trim().ToUpper()
+                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
+                Case "dateModificationCrodip".Trim().ToUpper()
+                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationCrodip As String
+                Case Else
+                    bReturn = False
+            End Select
+        End If
         Return bReturn
     End Function
     Public Function FillDR(oDataReader As Common.DbDataReader) As Boolean

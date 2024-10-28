@@ -227,7 +227,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("moduledocumentaire")>  _
         Public ReadOnly Property ModuleDocumentaire() As String
             Get
                 Return CType(Me("ModuleDocumentaire"),String)
@@ -236,7 +236,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.net/server")>  _
         Public ReadOnly Property WSCrodipURL() As String
             Get
                 Return CType(Me("WSCrodipURL"),String)
@@ -245,7 +245,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.net/server")>  _
         Public ReadOnly Property WSCrodipURLTEST() As String
             Get
                 Return CType(Me("WSCrodipURLTEST"),String)
@@ -335,16 +335,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.net/server")>  _
-        Public ReadOnly Property CRODIPWS_WSCRODIP_CrodipServer() As String
-            Get
-                Return CType(Me("CRODIPWS_WSCRODIP_CrodipServer"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
         Public ReadOnly Property Mode() As String
             Get
@@ -358,6 +348,16 @@ Namespace My
         Public ReadOnly Property StockPDF() As String
             Get
                 Return CType(Me("StockPDF"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.net/server")>  _
+        Public ReadOnly Property CRODIPWS_WSCRODIP_CrodipServer() As String
+            Get
+                Return CType(Me("CRODIPWS_WSCRODIP_CrodipServer"),String)
             End Get
         End Property
     End Class

@@ -405,6 +405,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="testObjects\AcquisitionTest.vb" />
+    <Compile Include="testObjects\AgentManagerTest.vb" />
+    <Compile Include="testObjects\AgentPCTest.vb" />
+    <Compile Include="testObjects\AutoTestTest.vb" />
+    <Compile Include="testObjects\BancManagerTest.vb" />
+    <Compile Include="testObjects\BuseManagerTest.vb" />
+    <Compile Include="testObjects\CalcVolumeHATest.vb" />
+    <Compile Include="testObjects\CmdTest.vb" />
+    <Compile Include="testObjects\ContatCommercialTest.vb" />
+    <Compile Include="testObjects\ControleRegulierTest.vb" />
+    <Compile Include="testObjects\CSDateTest.vb" />
+    <Compile Include="testObjects\CSDbTest.vb" />
+    <Compile Include="testObjects\CSEnvironnementTest.vb" />
+    <Compile Include="testObjects\DiagnosticBusesDetailTest.vb" />
+    <Compile Include="testObjects\DiagnosticBusesTest.vb" />
+    <Compile Include="testObjects\DiagnosticFilesTest.vb" />
+    <Compile Include="testObjects\DiagnosticHelp12123MesureTest.vb" />
+    <Compile Include="testObjects\DiagnosticHelp12123PompeTest.vb" />
+    <Compile Include="testObjects\DiagnosticHelp12123Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp12123TrtSemTest.vb" />
+    <Compile Include="testObjects\DiagnosticHelp551Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp552Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp5621Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp5622Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp571Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp811Test.vb" />
+    <Compile Include="testObjects\DiagnosticHelp831Test.vb" />
+    <Compile Include="testObjects\DiagnosticInfosComplementairesTest.vb" />
+    <Compile Include="testObjects\DiagnosticItemManagerTest.vb" />
+    <Compile Include="testObjects\DiagnosticManagerTest.vb" />
+    <Compile Include="testObjects\DiagnosticMano542Test.vb" />
+    <Compile Include="testObjects\DiagnosticTroncons833Test.vb" />
+    <Compile Include="testObjects\EtatBLTest.vb" />
+    <Compile Include="testObjects\EtatContratCommercialTest.vb" />
+    <Compile Include="testObjects\EtatDocCoPropTest.vb" />
+    <Compile Include="testObjects\EtatEnqueteTest.vb" />
+    <Compile Include="testObjects\EtatFactureTest.vb" />
+    <Compile Include="testObjects\EtatFeuillePedaTest.vb" />
+    <Compile Include="testObjects\EtatFvBancTest.vb" />
+    <Compile Include="testObjects\EtatFvManoTest.vb" />
+    <Compile Include="testObjects\EtatManagerTest.vb" />
+    <Compile Include="testObjects\EtatRapportInspectionTest.vb" />
+    <Compile Include="testObjects\EtatReglagePulveTest.vb" />
+    <Compile Include="testObjects\EtatSyntheseMesuresTest.vb" />
+    <Compile Include="testObjects\ExploitationTest.vb" />
+    <Compile Include="testObjects\FacturationConfigTest.vb" />
+    <Compile Include="testObjects\FactureTest.vb" />
+    <Compile Include="testObjects\FTPTest.vb" />
+    <Compile Include="testObjects\FVBancManagerTest.vb" />
+    <Compile Include="testObjects\FVManoControleManagerTest.vb" />
+    <Compile Include="testObjects\FVManoEtalonManagerTest.vb" />
+    <Compile Include="testObjects\IdentifiantPulverisateurTest.vb" />
+    <Compile Include="testObjects\ImportCRODIPTest.vb" />
+    <Compile Include="testObjects\ManometreControleManagerTest.vb" />
+    <Compile Include="testObjects\ManometreEtalonManagerTest.vb" />
+    <Compile Include="testObjects\miscTest.vb" />
+    <Compile Include="testObjects\NiveauAlerteTest.vb" />
+    <Compile Include="testObjects\ParamDiagTest.vb" />
+    <Compile Include="testObjects\ParamMetrologieTest.vb" />
+    <Compile Include="testObjects\PoolTest.vb" />
+    <Compile Include="testObjects\PopulateComboBoxTest.vb" />
+    <Compile Include="testObjects\PrestationTest.vb" />
+    <Compile Include="testObjects\PulverisateurTest.vb" />
+    <Compile Include="testObjects\ReferentielBusesCSVTest.vb" />
+    <Compile Include="testObjects\ReferentielCommunesCSVTest.vb" />
+    <Compile Include="testObjects\RelevePression833Test.vb" />
+    <Compile Include="testObjects\RESTTest.vb" />
+    <Compile Include="testObjects\StatCRODIPTest.vb" />
+    <Compile Include="testObjects\StructureTest.vb" />
+    <Compile Include="testObjects\SynchronisationTest.vb" />
+    <Compile Include="testObjects\SyncroVTTest.vb" />
+    <Compile Include="testObjects\ToleranceBuseTest.vb" />
+    <Compile Include="testObjects\UpdateInfoTest.vb" />
+    <Compile Include="testObjects\WSCrodipTest.vb" />
+    <Compile Include="testObjects\XMLTest.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="moduleDocumentaire\_parametres\cr_BL.rpt">
@@ -675,9 +750,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CRODIPAcquisition\CRODIPAcquisition.vbproj">
+      <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
+      <Name>CRODIPAcquisition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CRODIPWS\CRODIPWS.vbproj">
       <Project>{d148fb92-18b1-4fb6-903d-1dc575b7d452}</Project>
       <Name>CRODIPWS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crodip_agent.vbproj">
+      <Project>{dd7c56aa-4a81-4966-94bc-6b9b62054235}</Project>
+      <Name>Crodip_agent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
+      <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
+      <Name>CRODIP_ControlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
