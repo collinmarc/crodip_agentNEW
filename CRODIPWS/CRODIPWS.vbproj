@@ -614,10 +614,10 @@
     <Content Include="Déclaration des WSCRODIP.txt" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="\\bureau-dell\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\CRODIPWS\crodipNew.wsdl">
+    <WebReferenceUrl Include="http://admin-pp.crodip.net/new.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WSCRODIP\</RelPath>
-      <UpdateFromURL>\\bureau-dell\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\CRODIPWS\crodipNew.wsdl</UpdateFromURL>
+      <UpdateFromURL>http://admin-pp.crodip.net/new.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

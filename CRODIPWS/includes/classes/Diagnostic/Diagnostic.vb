@@ -402,7 +402,47 @@ Public Class Diagnostic
         controleDateDebut = CSDate.ToCRODIPString(Date.Now)
         controleDateFin = CSDate.ToCRODIPString(Date.Now)
     End Sub
+    '<xsd:element name = "uidpulverisateur" type="xsd:int" />
+    '        <xsd:element name = "uidexploitation" type="xsd:int" />
+    '        <xsd:element name = "uidagent" type="xsd:int" />
+    '        <xsd:element name = "uidstructure" type="xsd:int" />
 
+    Private _uidpulverisateur As Integer
+    Public Property uidpulverisateur() As Integer
+        Get
+            Return _uidpulverisateur
+        End Get
+        Set(ByVal value As Integer)
+            _uidpulverisateur = value
+        End Set
+    End Property
+    Private _uidexploitation As Integer
+    Public Property uidexploitation() As Integer
+        Get
+            Return _uidexploitation
+        End Get
+        Set(ByVal value As Integer)
+            _uidexploitation = value
+        End Set
+    End Property
+    Private _uidagent As Integer
+    Public Property uidagent() As Integer
+        Get
+            Return _uidagent
+        End Get
+        Set(ByVal value As Integer)
+            _uidagent = value
+        End Set
+    End Property
+    Private _uidstructure As Integer
+    Public Property uidstructure() As Integer
+        Get
+            Return _uidstructure
+        End Get
+        Set(ByVal value As Integer)
+            _uidstructure = value
+        End Set
+    End Property
     ''' <summary>
     ''' Retourne un clone de l'objet courant
     ''' </summary>
@@ -2511,6 +2551,7 @@ Public Class Diagnostic
 
         Dim bReturn As Boolean
         Try
+            uidexploitation = pClient.uid
             proprietaireId = pClient.id
             proprietaireNumeroSiren = pClient.numeroSiren
             proprietaireCodeApe = pClient.codeApe
@@ -2573,6 +2614,9 @@ Public Class Diagnostic
 
 
             organismePresId = pAgent.uidStructure
+            uidagent = pAgent.uid
+            uidstructure = pAgent.uidStructure
+
             Dim structureCourante As [Structure]
             Try
                 structureCourante = StructureManager.getStructureById(pAgent.uidStructure)
@@ -2648,194 +2692,196 @@ Public Class Diagnostic
     Public Function Fill(ByVal pColName As String, ByVal pcolValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
-            Select Case pColName.ToUpper.Trim()
-                Case "id".ToUpper().Trim()
-                    Me.id = pcolValue.ToString()
-                Case "organismePresId".ToUpper().Trim()
-                    Me.organismePresId = pcolValue
-                Case "organismePresNumero".ToUpper().Trim()
-                    Me.organismePresNumero = pcolValue.ToString()
-                Case "organismePresNom".ToUpper().Trim()
-                    Me.organismePresNom = pcolValue.ToString()
-                Case "organismeInspNom".ToUpper().Trim()
-                    Me.organismeInspNom = pcolValue.ToString()
-                Case "organismeInspAgrement".ToUpper().Trim()
-                    Me.organismeInspAgrement = pcolValue.ToString()
-                Case "inspecteurId".ToUpper().Trim()
-                    Me.inspecteurId = pcolValue
-                Case "inspecteurNom".ToUpper().Trim()
-                    Me.inspecteurNom = pcolValue.ToString()
-                Case "inspecteurPrenom".ToUpper().Trim()
-                    Me.inspecteurPrenom = pcolValue.ToString()
+            If Not MyBase.Fill(pColName, pcolValue) Then
 
-                Case "organismeOriginePresId".ToUpper().Trim()
-                    Me.organismeOriginePresId = pcolValue
-                Case "organismeOriginePresNumero".ToUpper().Trim()
-                    Me.organismeOriginePresNumero = pcolValue.ToString()
-                Case "organismeOriginePresNom".ToUpper().Trim()
-                    Me.organismeOriginePresNom = pcolValue.ToString()
-                Case "organismeOrigineInspNom".ToUpper().Trim()
-                    Me.organismeOrigineInspNom = pcolValue.ToString()
-                Case "organismeOrigineInspAgrement".ToUpper().Trim()
-                    Me.organismeOrigineInspAgrement = pcolValue.ToString()
-                Case "inspecteurOrigineId".ToUpper().Trim()
-                    Me.inspecteurOrigineId = pcolValue
-                Case "inspecteurOrigineNom".ToUpper().Trim()
-                    Me.inspecteurOrigineNom = pcolValue.ToString()
-                Case "inspecteurOriginePrenom".ToUpper().Trim()
-                    Me.inspecteurOriginePrenom = pcolValue.ToString()
-                Case "controleEtat".ToUpper().Trim()
-                    'On mémorise la date de prochain controle avant de mettre à jour l'état
-                    Dim DateProchainCtrl As String = pulverisateurDateProchainControle
-                    Me.controleEtat = pcolValue
-                    pulverisateurDateProchainControle = DateProchainCtrl
+                Select Case pColName.ToUpper.Trim()
+                    Case "id".ToUpper().Trim()
+                        Me.id = pcolValue.ToString()
+                    Case "organismePresId".ToUpper().Trim()
+                        Me.organismePresId = pcolValue
+                    Case "organismePresNumero".ToUpper().Trim()
+                        Me.organismePresNumero = pcolValue.ToString()
+                    Case "organismePresNom".ToUpper().Trim()
+                        Me.organismePresNom = pcolValue.ToString()
+                    Case "organismeInspNom".ToUpper().Trim()
+                        Me.organismeInspNom = pcolValue.ToString()
+                    Case "organismeInspAgrement".ToUpper().Trim()
+                        Me.organismeInspAgrement = pcolValue.ToString()
+                    Case "inspecteurId".ToUpper().Trim()
+                        Me.inspecteurId = pcolValue
+                    Case "inspecteurNom".ToUpper().Trim()
+                        Me.inspecteurNom = pcolValue.ToString()
+                    Case "inspecteurPrenom".ToUpper().Trim()
+                        Me.inspecteurPrenom = pcolValue.ToString()
 
-                Case "controleDateDebut".ToUpper().Trim()
-                    Me.controleDateDebut = pcolValue.ToString()
-                Case "controleDateFin".ToUpper().Trim()
-                    Me.controleDateFin = pcolValue.ToString()
-                Case "controleCommune".ToUpper().Trim()
-                    Me.controleCommune = pcolValue.ToString()
-                Case "controleCodePostal".ToUpper().Trim()
-                    Me.controleCodePostal = pcolValue.ToString()
-                Case "controleLieu".ToUpper().Trim()
-                    Me.controleLieu = pcolValue.ToString()
-                Case "controleTerritoire".ToUpper().Trim()
-                    Me.controleTerritoire = pcolValue.ToString()
-                Case "controleSite".ToUpper().Trim()
-                    Me.controleSite = pcolValue.ToString()
-                Case "controleNomSite".ToUpper().Trim()
-                    Me.controleNomSite = pcolValue.ToString()
-                Case "controleIsComplet".ToUpper().Trim()
-                    Me.controleIsComplet = pcolValue
-                Case "controleIsPremierControle".ToUpper().Trim()
-                    Me.controleIsPremierControle = pcolValue
-                Case "controleDateDernierControle".ToUpper().Trim()
-                    Me.controleDateDernierControle = pcolValue.ToString() 'Les Date sont stockée comme de chaine dans sqlITE
-                Case "controleIsSiteSecurise".ToUpper().Trim()
-                    Me.controleIsSiteSecurise = pcolValue
-                Case "controleIsRecupResidus".ToUpper().Trim()
-                    Me.controleIsRecupResidus = pcolValue
-                Case "controleEtat".ToUpper().Trim()
-                    Me.controleEtat = pcolValue.ToString()
-                Case "controleInfosConseils".ToUpper().Trim()
-                    Me.controleInfosConseils = pcolValue.ToString()
-                Case "controleTarif".ToUpper().Trim()
-                    Me.controleTarif = pcolValue.ToString()
-                Case "controleIsPulveRepare".ToUpper().Trim()
-                    Me.controleIsPulveRepare = pcolValue
-                Case "controleIsPreControleProfessionel".ToUpper().Trim()
-                    Me.controleIsPreControleProfessionel = pcolValue
-                Case "controleIsAutoControle".ToUpper().Trim()
-                    Me.controleIsAutoControle = pcolValue
-                Case "proprietaireId".ToUpper().Trim()
-                    Me.proprietaireId = pcolValue.ToString()
-                Case "proprietaireRaisonSociale".ToUpper().Trim()
-                    Me.proprietaireRaisonSociale = pcolValue.ToString()
-                Case "proprietairePrenom".ToUpper().Trim()
-                    Me.proprietairePrenom = pcolValue.ToString()
-                Case "proprietaireNom".ToUpper().Trim()
-                    Me.proprietaireNom = pcolValue.ToString()
-                Case "proprietaireCodeApe".ToUpper().Trim()
-                    Me.proprietaireCodeApe = pcolValue.ToString()
-                Case "proprietaireNumeroSiren".ToUpper().Trim()
-                    Me.proprietaireNumeroSiren = pcolValue.ToString()
-                Case "proprietaireCommune".ToUpper().Trim()
-                    Me.proprietaireCommune = pcolValue.ToString()
-                Case "proprietaireCodePostal".ToUpper().Trim()
-                    Me.proprietaireCodePostal = pcolValue.ToString()
-                Case "proprietaireAdresse".ToUpper().Trim()
-                    Me.proprietaireAdresse = pcolValue.ToString()
-                Case "proprietaireEmail".ToUpper().Trim()
-                    Me.proprietaireEmail = pcolValue.ToString()
-                Case "proprietaireTelephonePortable".ToUpper().Trim()
-                    Me.proprietaireTelephonePortable = pcolValue.ToString()
-                Case "proprietaireTelephoneFixe".ToUpper().Trim()
-                    Me.proprietaireTelephoneFixe = pcolValue.ToString()
-                Case "ProprietaireRepresentant".ToUpper().Trim()
-                    Me.proprietaireRepresentant = pcolValue.ToString()
-                Case "pulverisateurId".ToUpper().Trim()
-                    Me.pulverisateurId = pcolValue.ToString()
-                Case "pulverisateurMarque".ToUpper().Trim()
-                    Me.pulverisateurMarque = pcolValue.ToString()
-                Case "pulverisateurModele".ToUpper().Trim()
-                    Me.pulverisateurModele = pcolValue.ToString()
-                Case "pulverisateurType".ToUpper().Trim()
-                    Me.pulverisateurType = pcolValue.ToString()
-                Case "pulverisateurCapacite".ToUpper().Trim()
-                    Me.pulverisateurCapacite = pcolValue.ToString()
-                Case "pulverisateurLargeur".ToUpper().Trim()
-                    Me.pulverisateurLargeur = pcolValue.ToString()
-                Case "pulverisateurNbRangs".ToUpper().Trim()
-                    Me.pulverisateurNbRangs = pcolValue.ToString()
-                Case "pulverisateurLargeurPlantation".ToUpper().Trim()
-                    Me.pulverisateurLargeurPlantation = pcolValue.ToString()
-                Case "pulverisateurIsVentilateur".ToUpper().Trim()
-                    Me.pulverisateurIsVentilateur = pcolValue
-                Case "pulverisateurIsDebrayage".ToUpper().Trim()
-                    Me.pulverisateurIsDebrayage = pcolValue
-                Case "pulverisateurAnneeAchat".ToUpper().Trim()
-                    Me.pulverisateurAnneeAchat = pcolValue.ToString()
-                Case "pulverisateurSurface".ToUpper().Trim()
-                    Me.pulverisateurSurface = pcolValue.ToString()
-                Case "pulverisateurNbUtilisateurs".ToUpper().Trim()
-                    Me.pulverisateurNbUtilisateurs = pcolValue.ToString()
-                Case "pulverisateurIsCuveRincage".ToUpper().Trim()
-                    Me.pulverisateurIsCuveRincage = pcolValue
-                Case "pulverisateurCapaciteCuveRincage".ToUpper().Trim()
-                    Me.pulverisateurCapaciteCuveRincage = pcolValue.ToString()
-                Case "pulverisateurIsRotobuse".ToUpper().Trim()
-                    Me.pulverisateurIsRotobuse = pcolValue
-                Case "pulverisateurIsRinceBidon".ToUpper().Trim()
-                    Me.pulverisateurIsRinceBidon = pcolValue
-                Case "pulverisateurIsBidonLaveMain".ToUpper().Trim()
-                    Me.pulverisateurIsBidonLaveMain = pcolValue
-                Case "pulverisateurIsLanceLavageExterieur".ToUpper().Trim()
-                    Me.pulverisateurIsLanceLavageExterieur = pcolValue
-                Case "pulverisateurIsCuveIncorporation".ToUpper().Trim()
-                    Me.pulverisateurIsCuveIncorporation = pcolValue
-                Case "pulverisateurCategorie".ToUpper().Trim()
-                    Me.pulverisateurCategorie = pcolValue.ToString
-                Case "pulverisateurAttelage".ToUpper().Trim()
-                    Me.pulverisateurAttelage = pcolValue.ToString()
-                Case "pulverisateurRegulation".ToUpper().Trim()
-                    Me.pulverisateurRegulation = pcolValue.ToString()
-                Case "pulverisateurRegulationOptions".ToUpper().Trim()
-                    Me.pulverisateurRegulationOptions = pcolValue.ToString()
-                Case "pulverisateurPulverisation".ToUpper().Trim()
-                    Me.pulverisateurPulverisation = pcolValue.ToString
-                Case "pulverisateurAutresAccessoires".ToUpper().Trim()
-                    Me.pulverisateurAutresAccessoires = pcolValue.ToString()
-                Case "pulverisateurEmplacementIdentification".ToUpper().Trim()
-                    Me.pulverisateurEmplacementIdentification = pcolValue.ToString()
-                Case "pulverisateurModeUtilisation".ToUpper().Trim()
-                    Me.pulverisateurModeUtilisation = pcolValue.ToString()
-                Case "pulverisateurNbreExploitants".ToUpper().Trim()
-                    Me.pulverisateurNbreExploitants = pcolValue.ToString()
-                Case "buseMarque".ToUpper().Trim()
-                    Me.buseMarque = pcolValue.ToString()
-                Case "buseModele".ToUpper().Trim()
-                    Me.buseModele = pcolValue.ToString()
-                Case "buseCouleur".ToUpper().Trim()
-                    Me.buseCouleur = pcolValue.ToString()
-                Case "buseGenre".ToUpper().Trim()
-                    Me.buseGenre = pcolValue.ToString()
-                Case "buseCalibre".ToUpper().Trim()
-                    Me.buseCalibre = pcolValue.ToString()
-                Case "buseDebit".ToUpper().Trim()
-                    Me.buseDebit = pcolValue.ToString()
-                Case "buseDebit2bars".ToUpper().Trim()
-                    Me.buseDebit2bars = pcolValue.ToString()
-                Case "buseDebit3bars".ToUpper().Trim()
-                    Me.buseDebit3bars = pcolValue.ToString()
-                Case "buseAge".ToUpper().Trim()
-                    Me.buseAge = pcolValue.ToString()
-                Case "buseNbBuses".ToUpper().Trim()
-                    Me.buseNbBuses = pcolValue.ToString()
-                Case "buseType".ToUpper().Trim()
-                    Me.buseType = pcolValue.ToString()
-                Case "buseAngle".ToUpper().Trim()
-                    Me.buseAngle = pcolValue.ToString()
+                    Case "organismeOriginePresId".ToUpper().Trim()
+                        Me.organismeOriginePresId = pcolValue
+                    Case "organismeOriginePresNumero".ToUpper().Trim()
+                        Me.organismeOriginePresNumero = pcolValue.ToString()
+                    Case "organismeOriginePresNom".ToUpper().Trim()
+                        Me.organismeOriginePresNom = pcolValue.ToString()
+                    Case "organismeOrigineInspNom".ToUpper().Trim()
+                        Me.organismeOrigineInspNom = pcolValue.ToString()
+                    Case "organismeOrigineInspAgrement".ToUpper().Trim()
+                        Me.organismeOrigineInspAgrement = pcolValue.ToString()
+                    Case "inspecteurOrigineId".ToUpper().Trim()
+                        Me.inspecteurOrigineId = pcolValue
+                    Case "inspecteurOrigineNom".ToUpper().Trim()
+                        Me.inspecteurOrigineNom = pcolValue.ToString()
+                    Case "inspecteurOriginePrenom".ToUpper().Trim()
+                        Me.inspecteurOriginePrenom = pcolValue.ToString()
+                    Case "controleEtat".ToUpper().Trim()
+                        'On mémorise la date de prochain controle avant de mettre à jour l'état
+                        Dim DateProchainCtrl As String = pulverisateurDateProchainControle
+                        Me.controleEtat = pcolValue
+                        pulverisateurDateProchainControle = DateProchainCtrl
+
+                    Case "controleDateDebut".ToUpper().Trim()
+                        Me.controleDateDebut = pcolValue.ToString()
+                    Case "controleDateFin".ToUpper().Trim()
+                        Me.controleDateFin = pcolValue.ToString()
+                    Case "controleCommune".ToUpper().Trim()
+                        Me.controleCommune = pcolValue.ToString()
+                    Case "controleCodePostal".ToUpper().Trim()
+                        Me.controleCodePostal = pcolValue.ToString()
+                    Case "controleLieu".ToUpper().Trim()
+                        Me.controleLieu = pcolValue.ToString()
+                    Case "controleTerritoire".ToUpper().Trim()
+                        Me.controleTerritoire = pcolValue.ToString()
+                    Case "controleSite".ToUpper().Trim()
+                        Me.controleSite = pcolValue.ToString()
+                    Case "controleNomSite".ToUpper().Trim()
+                        Me.controleNomSite = pcolValue.ToString()
+                    Case "controleIsComplet".ToUpper().Trim()
+                        Me.controleIsComplet = pcolValue
+                    Case "controleIsPremierControle".ToUpper().Trim()
+                        Me.controleIsPremierControle = pcolValue
+                    Case "controleDateDernierControle".ToUpper().Trim()
+                        Me.controleDateDernierControle = pcolValue.ToString() 'Les Date sont stockée comme de chaine dans sqlITE
+                    Case "controleIsSiteSecurise".ToUpper().Trim()
+                        Me.controleIsSiteSecurise = pcolValue
+                    Case "controleIsRecupResidus".ToUpper().Trim()
+                        Me.controleIsRecupResidus = pcolValue
+                    Case "controleEtat".ToUpper().Trim()
+                        Me.controleEtat = pcolValue.ToString()
+                    Case "controleInfosConseils".ToUpper().Trim()
+                        Me.controleInfosConseils = pcolValue.ToString()
+                    Case "controleTarif".ToUpper().Trim()
+                        Me.controleTarif = pcolValue.ToString()
+                    Case "controleIsPulveRepare".ToUpper().Trim()
+                        Me.controleIsPulveRepare = pcolValue
+                    Case "controleIsPreControleProfessionel".ToUpper().Trim()
+                        Me.controleIsPreControleProfessionel = pcolValue
+                    Case "controleIsAutoControle".ToUpper().Trim()
+                        Me.controleIsAutoControle = pcolValue
+                    Case "proprietaireId".ToUpper().Trim()
+                        Me.proprietaireId = pcolValue.ToString()
+                    Case "proprietaireRaisonSociale".ToUpper().Trim()
+                        Me.proprietaireRaisonSociale = pcolValue.ToString()
+                    Case "proprietairePrenom".ToUpper().Trim()
+                        Me.proprietairePrenom = pcolValue.ToString()
+                    Case "proprietaireNom".ToUpper().Trim()
+                        Me.proprietaireNom = pcolValue.ToString()
+                    Case "proprietaireCodeApe".ToUpper().Trim()
+                        Me.proprietaireCodeApe = pcolValue.ToString()
+                    Case "proprietaireNumeroSiren".ToUpper().Trim()
+                        Me.proprietaireNumeroSiren = pcolValue.ToString()
+                    Case "proprietaireCommune".ToUpper().Trim()
+                        Me.proprietaireCommune = pcolValue.ToString()
+                    Case "proprietaireCodePostal".ToUpper().Trim()
+                        Me.proprietaireCodePostal = pcolValue.ToString()
+                    Case "proprietaireAdresse".ToUpper().Trim()
+                        Me.proprietaireAdresse = pcolValue.ToString()
+                    Case "proprietaireEmail".ToUpper().Trim()
+                        Me.proprietaireEmail = pcolValue.ToString()
+                    Case "proprietaireTelephonePortable".ToUpper().Trim()
+                        Me.proprietaireTelephonePortable = pcolValue.ToString()
+                    Case "proprietaireTelephoneFixe".ToUpper().Trim()
+                        Me.proprietaireTelephoneFixe = pcolValue.ToString()
+                    Case "ProprietaireRepresentant".ToUpper().Trim()
+                        Me.proprietaireRepresentant = pcolValue.ToString()
+                    Case "pulverisateurId".ToUpper().Trim()
+                        Me.pulverisateurId = pcolValue.ToString()
+                    Case "pulverisateurMarque".ToUpper().Trim()
+                        Me.pulverisateurMarque = pcolValue.ToString()
+                    Case "pulverisateurModele".ToUpper().Trim()
+                        Me.pulverisateurModele = pcolValue.ToString()
+                    Case "pulverisateurType".ToUpper().Trim()
+                        Me.pulverisateurType = pcolValue.ToString()
+                    Case "pulverisateurCapacite".ToUpper().Trim()
+                        Me.pulverisateurCapacite = pcolValue.ToString()
+                    Case "pulverisateurLargeur".ToUpper().Trim()
+                        Me.pulverisateurLargeur = pcolValue.ToString()
+                    Case "pulverisateurNbRangs".ToUpper().Trim()
+                        Me.pulverisateurNbRangs = pcolValue.ToString()
+                    Case "pulverisateurLargeurPlantation".ToUpper().Trim()
+                        Me.pulverisateurLargeurPlantation = pcolValue.ToString()
+                    Case "pulverisateurIsVentilateur".ToUpper().Trim()
+                        Me.pulverisateurIsVentilateur = pcolValue
+                    Case "pulverisateurIsDebrayage".ToUpper().Trim()
+                        Me.pulverisateurIsDebrayage = pcolValue
+                    Case "pulverisateurAnneeAchat".ToUpper().Trim()
+                        Me.pulverisateurAnneeAchat = pcolValue.ToString()
+                    Case "pulverisateurSurface".ToUpper().Trim()
+                        Me.pulverisateurSurface = pcolValue.ToString()
+                    Case "pulverisateurNbUtilisateurs".ToUpper().Trim()
+                        Me.pulverisateurNbUtilisateurs = pcolValue.ToString()
+                    Case "pulverisateurIsCuveRincage".ToUpper().Trim()
+                        Me.pulverisateurIsCuveRincage = pcolValue
+                    Case "pulverisateurCapaciteCuveRincage".ToUpper().Trim()
+                        Me.pulverisateurCapaciteCuveRincage = pcolValue.ToString()
+                    Case "pulverisateurIsRotobuse".ToUpper().Trim()
+                        Me.pulverisateurIsRotobuse = pcolValue
+                    Case "pulverisateurIsRinceBidon".ToUpper().Trim()
+                        Me.pulverisateurIsRinceBidon = pcolValue
+                    Case "pulverisateurIsBidonLaveMain".ToUpper().Trim()
+                        Me.pulverisateurIsBidonLaveMain = pcolValue
+                    Case "pulverisateurIsLanceLavageExterieur".ToUpper().Trim()
+                        Me.pulverisateurIsLanceLavageExterieur = pcolValue
+                    Case "pulverisateurIsCuveIncorporation".ToUpper().Trim()
+                        Me.pulverisateurIsCuveIncorporation = pcolValue
+                    Case "pulverisateurCategorie".ToUpper().Trim()
+                        Me.pulverisateurCategorie = pcolValue.ToString
+                    Case "pulverisateurAttelage".ToUpper().Trim()
+                        Me.pulverisateurAttelage = pcolValue.ToString()
+                    Case "pulverisateurRegulation".ToUpper().Trim()
+                        Me.pulverisateurRegulation = pcolValue.ToString()
+                    Case "pulverisateurRegulationOptions".ToUpper().Trim()
+                        Me.pulverisateurRegulationOptions = pcolValue.ToString()
+                    Case "pulverisateurPulverisation".ToUpper().Trim()
+                        Me.pulverisateurPulverisation = pcolValue.ToString
+                    Case "pulverisateurAutresAccessoires".ToUpper().Trim()
+                        Me.pulverisateurAutresAccessoires = pcolValue.ToString()
+                    Case "pulverisateurEmplacementIdentification".ToUpper().Trim()
+                        Me.pulverisateurEmplacementIdentification = pcolValue.ToString()
+                    Case "pulverisateurModeUtilisation".ToUpper().Trim()
+                        Me.pulverisateurModeUtilisation = pcolValue.ToString()
+                    Case "pulverisateurNbreExploitants".ToUpper().Trim()
+                        Me.pulverisateurNbreExploitants = pcolValue.ToString()
+                    Case "buseMarque".ToUpper().Trim()
+                        Me.buseMarque = pcolValue.ToString()
+                    Case "buseModele".ToUpper().Trim()
+                        Me.buseModele = pcolValue.ToString()
+                    Case "buseCouleur".ToUpper().Trim()
+                        Me.buseCouleur = pcolValue.ToString()
+                    Case "buseGenre".ToUpper().Trim()
+                        Me.buseGenre = pcolValue.ToString()
+                    Case "buseCalibre".ToUpper().Trim()
+                        Me.buseCalibre = pcolValue.ToString()
+                    Case "buseDebit".ToUpper().Trim()
+                        Me.buseDebit = pcolValue.ToString()
+                    Case "buseDebit2bars".ToUpper().Trim()
+                        Me.buseDebit2bars = pcolValue.ToString()
+                    Case "buseDebit3bars".ToUpper().Trim()
+                        Me.buseDebit3bars = pcolValue.ToString()
+                    Case "buseAge".ToUpper().Trim()
+                        Me.buseAge = pcolValue.ToString()
+                    Case "buseNbBuses".ToUpper().Trim()
+                        Me.buseNbBuses = pcolValue.ToString()
+                    Case "buseType".ToUpper().Trim()
+                        Me.buseType = pcolValue.ToString()
+                    Case "buseAngle".ToUpper().Trim()
+                        Me.buseAngle = pcolValue.ToString()
                     'Case "buseFonctionnementIsStandard".ToUpper().Trim()
                     '    Me.buseFonctionnementIsStandard = pcolValue
                     'Case "buseFonctionnementIsPastilleChambre".ToUpper().Trim()
@@ -2844,192 +2890,183 @@ Public Class Diagnostic
                     '    Me.buseFonctionnementIsInjectionAirLibre = pcolValue
                     'Case "buseFonctionnementIsInjectionAirForce".ToUpper().Trim()
                     '    Me.buseFonctionnementIsInjectionAirForce = pcolValue
-                Case "buseFonctionnement".ToUpper().Trim()
-                    Me.buseFonctionnement = pcolValue.ToString()
-                Case "buseIsISO".ToUpper().Trim()
-                    Me.buseIsISO = pcolValue
-                Case "manometreMarque".ToUpper().Trim()
-                    Me.manometreMarque = pcolValue.ToString()
-                Case "manometreDiametre".ToUpper().Trim()
-                    Me.manometreDiametre = pcolValue.ToString()
-                Case "manometreType".ToUpper().Trim()
-                    Me.manometreType = pcolValue.ToString()
-                Case "manometreFondEchelle".ToUpper().Trim()
-                    Me.manometreFondEchelle = pcolValue.ToString()
-                Case "manometrePressionTravail".ToUpper().Trim()
-                    Me.manometrePressionTravail = pcolValue.ToString()
-                Case "exploitationTypeCultureIsGrandeCulture".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsGrandeCulture = pcolValue
-                Case "exploitationTypeCultureIsLegume".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsLegume = pcolValue
-                Case "exploitationTypeCultureIsElevage".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsElevage = pcolValue
-                Case "exploitationTypeCultureIsArboriculture".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsArboriculture = pcolValue
-                Case "exploitationTypeCultureIsViticulture".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsViticulture = pcolValue
-                Case "exploitationTypeCultureIsAutres".ToUpper().Trim()
-                    Me.exploitationTypeCultureIsAutres = pcolValue
-                Case "exploitationSau".ToUpper().Trim()
-                    Me.exploitationSau = pcolValue.ToString()
-                Case "dateModificationAgent".ToUpper().Trim()
-                    Me.dateModificationAgent = pcolValue.ToString()
-                Case "dateModificationCrodip".ToUpper().Trim()
-                    Me.dateModificationCrodip = pcolValue.ToString()
-                Case "dateSynchro".ToUpper().Trim()
-                    Me.dateSynchro = pcolValue.ToString()
-                Case "isSynchro".ToUpper().Trim()
-                    Me.isSynchro = pcolValue
-                Case "isATGIP".ToUpper().Trim()
-                    Me.isATGIP = pcolValue
-                Case "isTGIP".ToUpper().Trim()
-                    Me.isTGIP = pcolValue
-                Case "isFacture".ToUpper().Trim()
-                    Me.isFacture = pcolValue
-                Case "syntheseErreurMoyenneMano".ToUpper().Trim()
-                    Me.syntheseErreurMoyenneMano = pcolValue.ToString()
-                Case "syntheseErreurMaxiMano".ToUpper().Trim()
-                    Me.syntheseErreurMaxiMano = pcolValue.ToString()
-                Case "syntheseErreurDebitmetre".ToUpper().Trim()
-                    Me.syntheseErreurDebitmetre = pcolValue.ToString()
-                Case "syntheseErreurMoyenneCinemometre".ToUpper().Trim()
-                    Me.syntheseErreurMoyenneCinemometre = pcolValue.ToString()
-                Case "syntheseUsureMoyenneBuses".ToUpper().Trim()
-                    Me.syntheseUsureMoyenneBuses = pcolValue.ToString()
-                Case "syntheseNbBusesUsees".ToUpper().Trim()
-                    Me.syntheseNbBusesUsees = pcolValue.ToString()
-                Case "synthesePerteChargeMoyenne".ToUpper().Trim()
-                    Me.synthesePerteChargeMoyenne = pcolValue.ToString()
-                Case "synthesePerteChargeMaxi".ToUpper().Trim()
-                    Me.synthesePerteChargeMaxi = pcolValue.ToString()
-                Case "controleBancMesureId".ToUpper().Trim()
-                    Me.controleBancMesureId = pcolValue.ToString()
-                Case "controleUseCalibrateur".ToUpper().Trim()
-                    Me.controleUseCalibrateur = pcolValue
-                Case "controleNbreNiveaux".ToUpper().Trim()
-                    Me.controleNbreNiveaux = pcolValue.ToString()
-                Case "controleNbreTroncons".ToUpper().Trim()
-                    Me.controleNbreTroncons = pcolValue.ToString()
-                Case "controleManoControleNumNational".ToUpper().Trim()
-                    Me.controleManoControleNumNational = pcolValue.ToString()
-                Case "controleInitialId".ToUpper().Trim()
-                    Me.controleInitialId = pcolValue.ToString()
-                Case "pulverisateurAncienId".ToUpper().Trim()
-                    Me.pulverisateurAncienId = pcolValue.ToString()
-                Case "RIFileName".ToUpper().Trim()
-                    Me.RIFileName = pcolValue.ToString
-                Case "SMFileName".ToUpper().Trim()
-                    Me.SMFileName = pcolValue.ToString
-                Case "CCFileName".ToUpper().Trim()
-                    Me.CCFileName = pcolValue.ToString
-                Case "pulverisateurCoupureAutoTroncons".ToUpper().Trim()
-                    Me.pulverisateurCoupureAutoTroncons = pcolValue.ToString
-                Case "pulverisateurReglageAutoHauteur".ToUpper().Trim()
-                    Me.pulverisateurReglageAutoHauteur = pcolValue.ToString
-                Case "pulverisateurRincagecircuit".ToUpper().Trim()
-                    Me.pulverisateurRincagecircuit = pcolValue.ToString
-                Case "typeDiagnostic".ToUpper().Trim()
-                    Me.typeDiagnostic = pcolValue.ToString
-                Case "codeInsee".ToUpper().Trim()
-                    Me.codeInsee = pcolValue.ToString
-                Case "commentaire".ToUpper().Trim()
-                    Me.commentaire = pcolValue.ToString
-                Case "pulverisateurNumNational".ToUpper().Trim()
-                    Me.pulverisateurNumNational = pcolValue.ToString()
-                Case "pulverisateurNumchassis".ToUpper().Trim()
-                    Me.pulverisateurNumChassis = pcolValue.ToString()
+                    Case "buseFonctionnement".ToUpper().Trim()
+                        Me.buseFonctionnement = pcolValue.ToString()
+                    Case "buseIsISO".ToUpper().Trim()
+                        Me.buseIsISO = pcolValue
+                    Case "manometreMarque".ToUpper().Trim()
+                        Me.manometreMarque = pcolValue.ToString()
+                    Case "manometreDiametre".ToUpper().Trim()
+                        Me.manometreDiametre = pcolValue.ToString()
+                    Case "manometreType".ToUpper().Trim()
+                        Me.manometreType = pcolValue.ToString()
+                    Case "manometreFondEchelle".ToUpper().Trim()
+                        Me.manometreFondEchelle = pcolValue.ToString()
+                    Case "manometrePressionTravail".ToUpper().Trim()
+                        Me.manometrePressionTravail = pcolValue.ToString()
+                    Case "exploitationTypeCultureIsGrandeCulture".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsGrandeCulture = pcolValue
+                    Case "exploitationTypeCultureIsLegume".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsLegume = pcolValue
+                    Case "exploitationTypeCultureIsElevage".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsElevage = pcolValue
+                    Case "exploitationTypeCultureIsArboriculture".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsArboriculture = pcolValue
+                    Case "exploitationTypeCultureIsViticulture".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsViticulture = pcolValue
+                    Case "exploitationTypeCultureIsAutres".ToUpper().Trim()
+                        Me.exploitationTypeCultureIsAutres = pcolValue
+                    Case "exploitationSau".ToUpper().Trim()
+                        Me.exploitationSau = pcolValue.ToString()
+                    Case "dateSynchro".ToUpper().Trim()
+                        Me.dateSynchro = pcolValue.ToString()
+                    Case "isSynchro".ToUpper().Trim()
+                        Me.isSynchro = pcolValue
+                    Case "isATGIP".ToUpper().Trim()
+                        Me.isATGIP = pcolValue
+                    Case "isTGIP".ToUpper().Trim()
+                        Me.isTGIP = pcolValue
+                    Case "isFacture".ToUpper().Trim()
+                        Me.isFacture = pcolValue
+                    Case "syntheseErreurMoyenneMano".ToUpper().Trim()
+                        Me.syntheseErreurMoyenneMano = pcolValue.ToString()
+                    Case "syntheseErreurMaxiMano".ToUpper().Trim()
+                        Me.syntheseErreurMaxiMano = pcolValue.ToString()
+                    Case "syntheseErreurDebitmetre".ToUpper().Trim()
+                        Me.syntheseErreurDebitmetre = pcolValue.ToString()
+                    Case "syntheseErreurMoyenneCinemometre".ToUpper().Trim()
+                        Me.syntheseErreurMoyenneCinemometre = pcolValue.ToString()
+                    Case "syntheseUsureMoyenneBuses".ToUpper().Trim()
+                        Me.syntheseUsureMoyenneBuses = pcolValue.ToString()
+                    Case "syntheseNbBusesUsees".ToUpper().Trim()
+                        Me.syntheseNbBusesUsees = pcolValue.ToString()
+                    Case "synthesePerteChargeMoyenne".ToUpper().Trim()
+                        Me.synthesePerteChargeMoyenne = pcolValue.ToString()
+                    Case "synthesePerteChargeMaxi".ToUpper().Trim()
+                        Me.synthesePerteChargeMaxi = pcolValue.ToString()
+                    Case "controleBancMesureId".ToUpper().Trim()
+                        Me.controleBancMesureId = pcolValue.ToString()
+                    Case "controleUseCalibrateur".ToUpper().Trim()
+                        Me.controleUseCalibrateur = pcolValue
+                    Case "controleNbreNiveaux".ToUpper().Trim()
+                        Me.controleNbreNiveaux = pcolValue.ToString()
+                    Case "controleNbreTroncons".ToUpper().Trim()
+                        Me.controleNbreTroncons = pcolValue.ToString()
+                    Case "controleManoControleNumNational".ToUpper().Trim()
+                        Me.controleManoControleNumNational = pcolValue.ToString()
+                    Case "controleInitialId".ToUpper().Trim()
+                        Me.controleInitialId = pcolValue.ToString()
+                    Case "pulverisateurAncienId".ToUpper().Trim()
+                        Me.pulverisateurAncienId = pcolValue.ToString()
+                    Case "RIFileName".ToUpper().Trim()
+                        Me.RIFileName = pcolValue.ToString
+                    Case "SMFileName".ToUpper().Trim()
+                        Me.SMFileName = pcolValue.ToString
+                    Case "CCFileName".ToUpper().Trim()
+                        Me.CCFileName = pcolValue.ToString
+                    Case "pulverisateurCoupureAutoTroncons".ToUpper().Trim()
+                        Me.pulverisateurCoupureAutoTroncons = pcolValue.ToString
+                    Case "pulverisateurReglageAutoHauteur".ToUpper().Trim()
+                        Me.pulverisateurReglageAutoHauteur = pcolValue.ToString
+                    Case "pulverisateurRincagecircuit".ToUpper().Trim()
+                        Me.pulverisateurRincagecircuit = pcolValue.ToString
+                    Case "typeDiagnostic".ToUpper().Trim()
+                        Me.typeDiagnostic = pcolValue.ToString
+                    Case "codeInsee".ToUpper().Trim()
+                        Me.codeInsee = pcolValue.ToString
+                    Case "commentaire".ToUpper().Trim()
+                        Me.commentaire = pcolValue.ToString
+                    Case "pulverisateurNumNational".ToUpper().Trim()
+                        Me.pulverisateurNumNational = pcolValue.ToString()
+                    Case "pulverisateurNumchassis".ToUpper().Trim()
+                        Me.pulverisateurNumChassis = pcolValue.ToString()
                     'le typeDiag est le nom du champ dans le WS
-                Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
-                    Me.origineDiag = pcolValue.ToString()
-                Case "isSignRIAgent".ToUpper().Trim()
-                    Me.isSignRIAgent = pcolValue
-                Case "isSignRIClient".ToUpper().Trim()
-                    Me.isSignRIClient = pcolValue
-                Case "isSignCCAgent".ToUpper().Trim()
-                    Me.isSignCCAgent = pcolValue
-                Case "isSignCCClient".ToUpper().Trim()
-                    Me.isSignCCClient = pcolValue
-                Case "dateSignRIAgent".ToUpper().Trim()
-                    If pcolValue.ToString() <> "" Then
-                        Try
-                            Me.dateSignRIAgent = CDate(pcolValue)
-                        Catch
+                    Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
+                        Me.origineDiag = pcolValue.ToString()
+                    Case "isSignRIAgent".ToUpper().Trim()
+                        Me.isSignRIAgent = pcolValue
+                    Case "isSignRIClient".ToUpper().Trim()
+                        Me.isSignRIClient = pcolValue
+                    Case "isSignCCAgent".ToUpper().Trim()
+                        Me.isSignCCAgent = pcolValue
+                    Case "isSignCCClient".ToUpper().Trim()
+                        Me.isSignCCClient = pcolValue
+                    Case "dateSignRIAgent".ToUpper().Trim()
+                        If pcolValue.ToString() <> "" Then
+                            Try
+                                Me.dateSignRIAgent = CDate(pcolValue)
+                            Catch
 
-                        End Try
+                            End Try
 
-                    End If
-                Case "dateSignRIClient".ToUpper().Trim()
-                    If pcolValue.ToString() <> "" Then
-                        Try
+                        End If
+                    Case "dateSignRIClient".ToUpper().Trim()
+                        If pcolValue.ToString() <> "" Then
+                            Try
 
-                            Me.dateSignRIClient = CDate(pcolValue)
-                        Catch
+                                Me.dateSignRIClient = CDate(pcolValue)
+                            Catch
 
-                        End Try
-                    End If
-                Case "dateSignCCAgent".ToUpper().Trim()
-                    If pcolValue.ToString() <> "" Then
-                        Try
-                            Me.dateSignCCAgent = CDate(pcolValue)
-                        Catch
+                            End Try
+                        End If
+                    Case "dateSignCCAgent".ToUpper().Trim()
+                        If pcolValue.ToString() <> "" Then
+                            Try
+                                Me.dateSignCCAgent = CDate(pcolValue)
+                            Catch
 
-                        End Try
-                    End If
-                Case "dateSignCCClient".ToUpper().Trim()
-                    If pcolValue.ToString <> "" Then
-                        Try
-                            Me.dateSignCCClient = CDate(pcolValue)
-                        Catch
+                            End Try
+                        End If
+                    Case "dateSignCCClient".ToUpper().Trim()
+                        If pcolValue.ToString <> "" Then
+                            Try
+                                Me.dateSignCCClient = CDate(pcolValue)
+                            Catch
 
-                        End Try
-                    End If
-                Case "SignRIAgent".ToUpper().Trim()
-                    Me.SignRIAgent = pcolValue
-                Case "SignRIClient".ToUpper().Trim()
-                    Me.SignRIClient = pcolValue
-                Case "SignCCAgent".ToUpper().Trim()
-                    Me.SignCCAgent = pcolValue
-                Case "SignCCClient".ToUpper().Trim()
-                    Me.SignCCClient = pcolValue
-                Case "isSupprime".ToUpper().Trim()
-                    Me.isSupprime = pcolValue
-                Case "diagRemplacementId".ToUpper().Trim()
-                    If IsDBNull(pcolValue) Then
-                        Me.diagRemplacementId = ""
-                    Else
-                        Me.diagRemplacementId = pcolValue.ToString()
-                    End If
-                Case "TotalHT".ToUpper().Trim()
-                    Me.TotalHT = pcolValue
-                Case "totalTTC".ToUpper().Trim()
-                    Me.TotalTTC = pcolValue
-                Case "isCVImmediate".ToUpper().Trim(), "isContrevisiteImmediate".ToUpper().Trim()
-                    Me.isContrevisiteImmediate = pcolValue
-                Case "isGratuit".ToUpper().Trim()
-                    Me.isGratuit = pcolValue
-                Case "BLFileName".ToUpper().Trim()
-                    Me.BLFileName = pcolValue
-                Case "ESFileName".ToUpper().Trim()
-                    Me.ESFileName = pcolValue
-                Case "COPROFileName".ToUpper().Trim()
-                    Me.COPROFileName = pcolValue
-                Case "FACTFileNames".ToUpper().Trim()
-                    Me.FACTFileNames = pcolValue
-            End Select
-            '            ALTER TABLE DIAGNOSTIC ADD isSignRIAgent YESNO
-            'ALTER TABLE DIAGNOSTIC ADD isSignRIClient YESNO
-            'ALTER TABLE DIAGNOSTIC ADD isSignCCAgent YESNO
-            'ALTER TABLE DIAGNOSTIC ADD isSignCCClient YESNO
-
-            'ALTER TABLE DIAGNOSTIC ADD dateSignRIAgent DATE
-            'ALTER TABLE DIAGNOSTIC ADD dateSignRIClient DATE
-            'ALTER TABLE DIAGNOSTIC ADD dateSignCCAgent DATE
-            'ALTER TABLE DIAGNOSTIC ADD dateSignCCClient DATE
-
-            'ALTER TABLE DIAGNOSTIC ADD signRIAgent  LONGBINARY
-            'ALTER TABLE DIAGNOSTIC ADD signRIClient  LONGBINARY
-            'ALTER TABLE DIAGNOSTIC ADD signCCAgent  LONGBINARY
-            'ALTER TABLE DIAGNOSTIC ADD signCCClient  LONGBINARY
+                            End Try
+                        End If
+                    Case "SignRIAgent".ToUpper().Trim()
+                        Me.SignRIAgent = pcolValue
+                    Case "SignRIClient".ToUpper().Trim()
+                        Me.SignRIClient = pcolValue
+                    Case "SignCCAgent".ToUpper().Trim()
+                        Me.SignCCAgent = pcolValue
+                    Case "SignCCClient".ToUpper().Trim()
+                        Me.SignCCClient = pcolValue
+                    Case "isSupprime".ToUpper().Trim()
+                        Me.isSupprime = pcolValue
+                    Case "diagRemplacementId".ToUpper().Trim()
+                        If IsDBNull(pcolValue) Then
+                            Me.diagRemplacementId = ""
+                        Else
+                            Me.diagRemplacementId = pcolValue.ToString()
+                        End If
+                    Case "TotalHT".ToUpper().Trim()
+                        Me.TotalHT = pcolValue
+                    Case "totalTTC".ToUpper().Trim()
+                        Me.TotalTTC = pcolValue
+                    Case "isCVImmediate".ToUpper().Trim(), "isContrevisiteImmediate".ToUpper().Trim()
+                        Me.isContrevisiteImmediate = pcolValue
+                    Case "isGratuit".ToUpper().Trim()
+                        Me.isGratuit = pcolValue
+                    Case "BLFileName".ToUpper().Trim()
+                        Me.BLFileName = pcolValue
+                    Case "ESFileName".ToUpper().Trim()
+                        Me.ESFileName = pcolValue
+                    Case "COPROFileName".ToUpper().Trim()
+                        Me.COPROFileName = pcolValue
+                    Case "FACTFileNames".ToUpper().Trim()
+                        Me.FACTFileNames = pcolValue
+                    Case "uidagent".ToUpper().Trim()
+                        Me.uidagent = pcolValue
+                    Case "uidstructure".ToUpper().Trim()
+                        Me.uidstructure = pcolValue
+                    Case "uidexploitation".ToUpper().Trim()
+                        Me.uidexploitation = pcolValue
+                    Case "uidpulverisateur".ToUpper().Trim()
+                        Me.uidpulverisateur = pcolValue
+                End Select
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostique.Fill (" & pColName & "," & pcolValue.ToString() & ") ERR" + ex.Message.ToString())
@@ -3100,6 +3137,7 @@ Public Class Diagnostic
     Public Function setPulverisateur(ByVal poPulve As Pulverisateur) As Boolean
         Dim bReturn As Boolean
         Try
+            uidpulverisateur = poPulve.uid
             Me.pulverisateurId = poPulve.id
             Me.pulverisateurNumNational = poPulve.numeroNational
             Me.pulverisateurNumChassis = poPulve.numeroChassis

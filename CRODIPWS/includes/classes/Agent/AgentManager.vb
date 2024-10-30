@@ -26,7 +26,7 @@ Public Class AgentManager
             Dim pInfo As String = ""
             codeResponse = objWSCrodip.GetAgent(pIdProfileAgent, pInfo, tXmlnodes, lstPools)
             Select Case codeResponse
-                Case 0 Or 4 ' OK
+                Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(Agent))
                     Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
                         oreturn = ser.Deserialize(reader)
