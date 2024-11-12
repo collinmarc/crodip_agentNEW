@@ -276,83 +276,86 @@ Public Class ManometreControle
 
 
     Public Overrides Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
-        Select Case pColName.Trim().ToUpper()
-            Case "numeroNational".Trim.ToUpper()
-                Me.numeroNational = pValue.ToString() 'Public numeroNational As String
-            Case "idCrodip".Trim.ToUpper()
-                Me.idCrodip = pValue.ToString() 'Public numeroNational As String
-            Case "idStructure".Trim.ToUpper()
-                Me.uidstructure = pValue.ToString() 'Public idAgent As String
-            Case "marque".Trim.ToUpper()
-                Me.marque = pValue.ToString() 'Public marque As String
-            Case "classe".Trim.ToUpper()
-                Me.classe = pValue.ToString() 'Public classe As String
-            Case "type".Trim.ToUpper()
-                Me.type = pValue.ToString() 'Public type As String
-            Case "fondEchelle".Trim.ToUpper()
-                Me.fondEchelle = pValue.ToString() 'Public fondEchelle As String
-            Case "etat".Trim.ToUpper()
-                Me.etat = CType(pValue, Boolean) 'Public etat As Boolean
-            Case "isSynchro".Trim.ToUpper()
-                Me.isSynchro = CType(pValue, Boolean) 'Public isSynchro As Boolean
-            Case "isSupprime".Trim.ToUpper()
-                Me.isSupprime = CType(pValue, Boolean) 'Public isSupprime As Boolean
-            Case "isutilise".Trim().ToUpper()
-                Me.isUtilise = CType(pValue, Boolean)
-            Case "bajusteur".Trim().ToUpper()
-                Me.bAjusteur = CType(pValue, Boolean)
-            Case "dateDernierControle".Trim.ToUpper()
-                Dim dateC As Date
-                Try
-                    dateC = CDate(pValue)
-                    If dateC.Year <> 1899 And dateC.Year <> 0 Then
-                        Me.dateDernierControleS = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
+        Dim bReturn As Boolean = True
+        If Not MyBase.Fill(pColName, pValue) Then
+            bReturn = True
+            Select Case pColName.Trim().ToUpper()
+                Case "numeroNational".Trim.ToUpper()
+                    Me.numeroNational = pValue.ToString() 'Public numeroNational As String
+                Case "idCrodip".Trim.ToUpper()
+                    Me.idCrodip = pValue.ToString()
+                Case "idStructure".Trim.ToUpper(), "uidstructure".Trim.ToUpper()
+                    Me.uidstructure = pValue.ToString()
+                Case "marque".Trim.ToUpper()
+                    Me.marque = pValue.ToString() 'Public marque As String
+                Case "classe".Trim.ToUpper()
+                    Me.classe = pValue.ToString() 'Public classe As String
+                Case "type".Trim.ToUpper()
+                    Me.type = pValue.ToString() 'Public type As String
+                Case "fondEchelle".Trim.ToUpper()
+                    Me.fondEchelle = pValue.ToString() 'Public fondEchelle As String
+                Case "etat".Trim.ToUpper()
+                    Me.etat = CType(pValue, Boolean) 'Public etat As Boolean
+                Case "isSynchro".Trim.ToUpper()
+                    Me.isSynchro = CType(pValue, Boolean) 'Public isSynchro As Boolean
+                Case "isSupprime".Trim.ToUpper()
+                    Me.isSupprime = CType(pValue, Boolean) 'Public isSupprime As Boolean
+                Case "isutilise".Trim().ToUpper()
+                    Me.isUtilise = CType(pValue, Boolean)
+                Case "bajusteur".Trim().ToUpper()
+                    Me.bAjusteur = CType(pValue, Boolean)
+                Case "dateDernierControle".Trim.ToUpper()
+                    Dim dateC As Date
+                    Try
+                        dateC = CDate(pValue)
+                        If dateC.Year <> 1899 And dateC.Year <> 0 Then
+                            Me.dateDernierControleS = CSDate.ToCRODIPString(pValue).ToString 'Public dateAchat As String
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                Case "etat".Trim.ToUpper()
+                    Me.etat = CType(pValue, Boolean) 'Public etat As Boolean
+                Case "nbControles".Trim().ToUpper()
+                    If pValue.ToString() <> "" Then
+                        Me.nbControles = CType(pValue, Integer)
                     End If
-                Catch ex As Exception
+                Case "nbControlesTotal".Trim().ToUpper()
+                    If pValue.ToString() <> "" Then
+                        Me.nbControlesTotal = CType(pValue, Integer)
+                    End If
+                Case "resolution".Trim.ToUpper()
+                    Me.resolution = pValue.ToString()
+                Case "resolutionLecture".Trim.ToUpper()
+                    Me.resolutionLecture = pValue.ToString()
+                Case "agentsuppression".Trim().ToUpper()
+                    Me.agentSuppression = pValue.ToString()
+                Case "raisonsuppression".Trim().ToUpper()
+                    Me.raisonSuppression = pValue.ToString()
+                Case "datesuppression".Trim().ToUpper()
+                    Dim strDateMin As String = CSDate.ToCRODIPString("")
+                    Dim strDateValue As String = CSDate.ToCRODIPString(pValue)
+                    If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                        Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                    Else
+                        Me.dateSuppression = ""
+                    End If
+                Case "jamaisServi".Trim().ToUpper()
+                    Me.jamaisServi = pValue
+                Case "dateActivation".Trim().ToUpper()
+                    Me.DateActivation = pValue
+                Case "typeTraca".Trim().ToUpper()
+                    Me.typeTraca = pValue
+                Case "numTraca".Trim().ToUpper()
+                    Me.numTraca = pValue
+                Case "typeRaccord".Trim().ToUpper()
+                    Me.typeRaccord = pValue
+                Case Else
+                    bReturn = False
+            End Select
+        End If
 
-                End Try
-            Case "dateModificationAgent".Trim.ToUpper()
-                Me.dateModificationAgent = CSDate.ToCRODIPString(pValue).ToString 'Public dateModificationAgent As String
-            Case "dateModificationCrodip".Trim.ToUpper()
-                Me.dateModificationCrodip = CSDate.ToCRODIPString(pValue).ToString 'Public dateModificationCrodip As String
-            Case "etat".Trim.ToUpper()
-                Me.etat = CType(pValue, Boolean) 'Public etat As Boolean
-            Case "nbControles".Trim().ToUpper()
-                If pValue.ToString() <> "" Then
-                    Me.nbControles = CType(pValue, Integer)
-                End If
-            Case "nbControlesTotal".Trim().ToUpper()
-                If pValue.ToString() <> "" Then
-                    Me.nbControlesTotal = CType(pValue, Integer)
-                End If
-            Case "resolution".Trim.ToUpper()
-                Me.resolution = pValue.ToString()
-            Case "resolutionLecture".Trim.ToUpper()
-                Me.resolutionLecture = pValue.ToString()
-            Case "agentsuppression".Trim().ToUpper()
-                Me.agentSuppression = pValue.ToString()
-            Case "raisonsuppression".Trim().ToUpper()
-                Me.raisonSuppression = pValue.ToString()
-            Case "datesuppression".Trim().ToUpper()
-                Dim strDateMin As String = CSDate.ToCRODIPString("")
-                Dim strDateValue As String = CSDate.ToCRODIPString(pValue)
-                If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                    Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
-                Else
-                    Me.dateSuppression = ""
-                End If
-            Case "jamaisServi".Trim().ToUpper()
-                Me.jamaisServi = pValue
-            Case "dateActivation".Trim().ToUpper()
-                Me.DateActivation = pValue
-            Case "typeTraca".Trim().ToUpper()
-                Me.typeTraca = pValue
-            Case "numTraca".Trim().ToUpper()
-                Me.numTraca = pValue
-            Case "typeRaccord".Trim().ToUpper()
-                Me.typeRaccord = pValue
-        End Select
-
+        Return bReturn
     End Function
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean
         Me.creerFicheVieSuppression(pAgentSuppression)

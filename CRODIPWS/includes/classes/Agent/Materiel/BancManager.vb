@@ -199,6 +199,8 @@ Public Class BancManager
                     End If
                     paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.ModuleAcquisition & "'"
 
+                    paramsQuery = paramsQuery & objBanc.getRootQuery()
+
 
                     ' On finalise la requete et en l'execute
                     bddCommande.CommandText = "UPDATE BancMesure SET " & paramsQuery & " WHERE id='" & objBanc.id & "'"

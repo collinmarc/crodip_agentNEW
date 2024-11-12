@@ -8,8 +8,8 @@
     <Setting Name="RepertoireParametres" Type="System.String" Scope="Application">
       <Value Profile="(Default)">moduledocumentaire/_parametres</Value>
     </Setting>
-    <Setting Name="GestiondesPools" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+    <Setting Name="GestiondesPools" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SynchroEtatDiagUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />

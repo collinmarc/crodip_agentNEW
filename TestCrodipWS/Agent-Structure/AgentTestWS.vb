@@ -32,14 +32,14 @@ Imports System.Net.Http
     <TestMethod()> Public Sub CRUDWS()
         Dim nreturn As Integer
         Dim oAgent As New Agent()
-        oAgent.uidStructure = 22
+        oAgent.uidStructure = m_oStructure.id
         oAgent.numeroNational = "TU_MCO"
         oAgent.nom = "TESTMCO"
 
         ' Création de l'objet
         Dim oReturn As Agent
         nreturn = AgentManager.WSSend(oAgent, oReturn)
-        Assert.AreEqual(4, nreturn)
+        Assert.AreEqual(3, nreturn)
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet

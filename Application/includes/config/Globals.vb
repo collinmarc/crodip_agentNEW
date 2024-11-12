@@ -56,19 +56,21 @@ Public Class GlobalsCRODIP
     Public Const GLOB_ENV_SYNCHROLOGFILE As String = "." & "\tmp\LogSynchro.xml"  ' Fichier contenant les logs dxml de la synchro
 
     ' Comportement
-    Public Shared GLOB_ENV_AUTOSYNC As Boolean = My.Settings.AutoSync
-    Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean = (My.Settings.Mode = "SIMPLIFIE")
-    Public Shared GLOB_ENV_MODEFORMATION As Boolean = (My.Settings.Mode = "FORMATION")
+    Public Shared GLOB_ENV_AUTOSYNC As Boolean
+    Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean
+    Public Shared GLOB_ENV_MODEFORMATION As Boolean
 
     ' Conf
     Public Shared GLOB_XML_CONFIG As CSXml
     Public Shared GLOB_PID_FILE As String = "." & "\crodip_agent.pid"
 
     ' Version
-    Public Shared GLOB_APPLI_VERSION As String = My.Settings.NumVersion
-    Public Shared GLOB_APPLI_BUILD As String = My.Settings.NumBuild
-    Public Shared GLOB_ParamDiagRampe As String = My.Settings.ParamDiagRampe
-    Public Shared GLOB_ParamDiagArboViti As String = My.Settings.ParamDiagArboviti
+    Public Shared GLOB_APPLI_VERSION As String
+    Public Shared GLOB_APPLI_BUILD As String
+    Public Shared GLOB_ParamDiagRampe As String
+    Public Shared GLOB_ParamDiagArboViti As String
+
+
     Public Shared GLOB_BLUE_CROPDIP As Color = Color.FromArgb(2, 129, 198)
 
 #End Region
@@ -332,6 +334,8 @@ Public Class GlobalsCRODIP
         End If
         GLOB_APPLI_VERSION = My.Settings.NumVersion
         GLOB_APPLI_BUILD = My.Settings.NumBuild
+        GLOB_ParamDiagRampe = My.Settings.ParamDiagRampe
+        GLOB_ParamDiagArboViti = My.Settings.ParamDiagArboviti
 
         GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
         CSDebug.dispInfo("GlobalsCRODIP.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)

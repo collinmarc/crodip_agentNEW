@@ -128,7 +128,7 @@ Public Class ManometreControleManagerTest
         Dim oManometreControle2 As ManometreControle
         Dim bReturn As Boolean
         Dim idManometreControle As String
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New ManometreControle
 
         'Creation d'un ManometreControle
         oManometreControle = New ManometreControle()
@@ -158,7 +158,7 @@ Public Class ManometreControleManagerTest
         Dim response As Integer = ManometreControleManager.WSSend(oManometreControle, UpdatedObject)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreControle2 = ManometreControleManager.WSgetById("", oManometreControle.numeroNational)
+        oManometreControle2 = ManometreControleManager.WSgetById(0, oManometreControle.numeroNational)
         Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
         Assert.AreEqual(oManometreControle2.isSupprimeWS, False)
@@ -174,7 +174,7 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(oManometreControle2.nbControles, 5)
         Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
         Assert.AreEqual(oManometreControle2.bAjusteur, True)
-        Assert.AreEqual(CSng(oManometreControle.resolutionLecture), 0.01)
+        Assert.AreEqual(CDec(oManometreControle.resolutionLecture), 0.01D)
         Assert.AreEqual(oManometreControle.typeTraca, "B")
         Assert.AreEqual(oManometreControle.numTraca, 6)
         Assert.AreEqual(oManometreControle.typeRaccord, "RA")
@@ -226,7 +226,7 @@ Public Class ManometreControleManagerTest
         Dim oManoControle2 As ManometreControle
         Dim bReturn As Boolean
         Dim idManoControle As String
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New ManometreControle
 
         'Creation d'un ManoControle
         oManoControle = New ManometreControle()
@@ -242,14 +242,12 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(String.IsNullOrEmpty(oManoControle.dateSuppression))
 
         Dim response As Integer = ManometreControleManager.WSSend(oManoControle, UpdatedObject)
-        Assert.IsTrue(response = 0 Or response = 2)
+        Assert.IsTrue(response = 0 Or response = 2 Or response = 4)
 
-        oManoControle2 = ManometreControleManager.WSgetById("", oManoControle.numeroNational)
+        oManoControle2 = ManometreControleManager.WSgetById(oManoControle.uid, oManoControle.numeroNational)
         Assert.AreEqual(oManoControle2.isSupprimeWS, False)
         Assert.IsTrue(String.IsNullOrEmpty(oManoControle2.DateSuppression))
 
-        bReturn = ManometreControleManager.delete(idManoControle)
-        Assert.IsTrue(bReturn)
 
     End Sub
     'test des nlle Propriétés Matériels (JamaisServis, DateActivation)

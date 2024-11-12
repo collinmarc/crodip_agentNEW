@@ -59,14 +59,32 @@ Public Class DiagnosticBusesDetail
         idDiagnostic = pBuse.idDiagnostic
         uiddiagnostic = pBuse.uiddiagnostic
         aiddiagnostic = pBuse.aiddiagnostic
-        idBuse = pBuse.id
         idLot = pBuse.idLot
         dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
 
         dateModificationCrodip = CSDate.ToCRODIPString(DateTime.MinValue).ToString
 
     End Sub
+    ''' <summary>
+    ''' idBuse = numero de buse
+    ''' </summary>
+    ''' <returns></returns>
+    <Obsolete("ne pas utiliser cettte propriété car ce n'est pas un veritable id, utilisez numbuse plutot")>
     Public Property idBuse() As Integer
+        Get
+            Return _idBuse
+        End Get
+        Set(ByVal Value As Integer)
+            _idBuse = Value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Numero de buse (Anciennement nommée idbuse)
+    ''' </summary>
+    ''' <returns></returns>
+
+    <XmlElement("idBuse")>
+    Public Property numBuse() As Integer
         Get
             Return _idBuse
         End Get
@@ -112,35 +130,31 @@ Public Class DiagnosticBusesDetail
     End Property
 
     Public Overrides Function Fill(ByVal pColname As String, ByVal pcolValue As Object) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = True
         Try
-            Select Case pColname.Trim().ToUpper()
-                Case "uid".Trim().ToUpper()
-                    Me.uid = CInt(pcolValue)
-                Case "aid".Trim().ToUpper()
-                    Me.aid = CInt(pcolValue)
-                Case "id".Trim().ToUpper()
-                    Me.id = CInt(pcolValue)
-                Case "uidDiagnostic".Trim().ToUpper()
-                    Me.uiddiagnostic = pcolValue.ToString()
-                Case "aidDiagnostic".Trim().ToUpper()
-                    Me.aiddiagnostic = pcolValue.ToString()
-                Case "idDiagnostic".Trim().ToUpper()
-                    Me.idDiagnostic = pcolValue.ToString()
-                Case "idBuse".Trim().ToUpper()
-                    Me.idBuse = CInt(pcolValue)
-                Case "idLot".Trim().ToUpper()
-                    Me.idLot = pcolValue.ToString()
-                Case "debit".Trim().ToUpper()
-                    Me.debit = pcolValue.ToString()
-                Case "ecart".Trim().ToUpper()
-                    Me.ecart = pcolValue.ToString()
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue.ToString())
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue.ToString())
-            End Select
-            bReturn = True
+            If Not MyBase.Fill(pColname, pcolValue) Then
+                bReturn = True
+                Select Case pColname.Trim().ToUpper()
+                    Case "id".Trim().ToUpper()
+                        Me.id = CInt(pcolValue)
+                    Case "uiddiagnostic".Trim().ToUpper()
+                        Me.uiddiagnostic = pcolValue.ToString()
+                    Case "aiddiagnostic".Trim().ToUpper()
+                        Me.aiddiagnostic = pcolValue.ToString()
+                    Case "idDiagnostic".Trim().ToUpper()
+                        Me.idDiagnostic = pcolValue.ToString()
+                    Case "idBuse".Trim().ToUpper()
+                        Me.numBuse = CInt(pcolValue)
+                    Case "idLot".Trim().ToUpper()
+                        Me.idLot = pcolValue.ToString()
+                    Case "debit".Trim().ToUpper()
+                        Me.debit = pcolValue.ToString()
+                    Case "ecart".Trim().ToUpper()
+                        Me.ecart = pcolValue.ToString()
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
             CSDebug.dispError("DiagnosticBusesDetail.Fill ERR " & ex.Message.ToString())
             bReturn = False

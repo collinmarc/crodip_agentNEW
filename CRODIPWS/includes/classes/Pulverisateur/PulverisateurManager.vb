@@ -22,6 +22,38 @@ Public Class PulverisateurManager
         End Try
         Return nreturn
     End Function
+    Public Shared Function UpdateExploitDiag(ByVal pPulve As Pulverisateur) As Boolean
+        Dim oCsdb As CSDb = Nothing
+        Dim bReturn As Boolean = False
+
+        Try
+
+            Dim query As String
+            Dim Paramsquery As String
+            oCsdb = New CSDb(True)
+            'MISE A JOUR DE EXPLOITATIONTOPULVERISATEUR
+            Paramsquery = "uidpulverisateur= " & pPulve.uid
+            Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
+            query = "UPDATE ExploitationToPulverisateur SET " & Paramsquery & " WHERE (uidPulverisateur is null ) and idPulverisateur = '" & pPulve.id & "'"
+            bReturn = oCsdb.Execute(query)
+            If Not bReturn Then
+                CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX1")
+            End If
+            'MISE A JOUR DE DIAGNOSTIC
+            Paramsquery = "uidpulverisateur = " & pPulve.uid
+            Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
+            query = "UPDATE Diagnostic SET " & Paramsquery & " WHERE uidPulverisateur is Null and pulverisateurId = '" & pPulve.id & "'"
+
+            bReturn = oCsdb.Execute(query)
+            If Not bReturn Then
+                CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX2")
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
     'Public Shared Function getWSPulverisateurById(pAgent As Agent, ByVal pmanometre_uid As Integer) As Pulverisateur
     '    Dim oreturn As Pulverisateur

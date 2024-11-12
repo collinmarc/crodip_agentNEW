@@ -91,16 +91,16 @@ Imports Crodip_agent
         oCtrl.lstControleManoDetail_EMT("UP6") = "15"
         oCtrl.lstControleManoDetail_conformite("UP6") = "1"
 
-        oCtrl.lstControleManoDetail_pres_manoCtrl("DOWN6") = "6,0"
-        oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN6") = "11,652"
-        oCtrl.lstControleManoDetail_err_abs("DOWN6") = "12,12"
-        oCtrl.lstControleManoDetail_err_FondEchelle("DOWN6") = "13,1"
-        oCtrl.lstControleManoDetail_incertitude("DOWN6") = "14"
-        oCtrl.lstControleManoDetail_EMT("DOWN6") = "15"
-        oCtrl.lstControleManoDetail_conformite("DOWN6") = "1"
+        'oCtrl.lstControleManoDetail_pres_manoCtrl("DOWN6") = "6,0"
+        'oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN6") = "11,652"
+        'oCtrl.lstControleManoDetail_err_abs("DOWN6") = "12,12"
+        'oCtrl.lstControleManoDetail_err_FondEchelle("DOWN6") = "13,1"
+        'oCtrl.lstControleManoDetail_incertitude("DOWN6") = "14"
+        'oCtrl.lstControleManoDetail_EMT("DOWN6") = "15"
+        'oCtrl.lstControleManoDetail_conformite("DOWN6") = "1"
 
         oCtrl.lstControleManoDetail_pres_manoCtrl("DOWN5") = "4,8"
-        oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN5") = "11.652"
+        oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN5") = "11,652"
         oCtrl.lstControleManoDetail_err_abs("DOWN5") = "12,12"
         oCtrl.lstControleManoDetail_err_FondEchelle("DOWN5") = "13,1"
         oCtrl.lstControleManoDetail_incertitude("DOWN5") = "14"
@@ -133,9 +133,9 @@ Imports Crodip_agent
         oCtrl.lstControleManoDetail_conformite("DOWN2") = "1"
 
         oCtrl.lstControleManoDetail_pres_manoCtrl("DOWN1") = "0,0"
-        oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN1") = "11.652"
+        oCtrl.lstControleManoDetail_pres_manoEtalon("DOWN1") = "11,652"
         oCtrl.lstControleManoDetail_err_abs("DOWN1") = "12.12"
-        oCtrl.lstControleManoDetail_err_FondEchelle("DOWN1") = "13.1"
+        oCtrl.lstControleManoDetail_err_FondEchelle("DOWN1") = "13,1"
         oCtrl.lstControleManoDetail_incertitude("DOWN1") = "14"
         oCtrl.lstControleManoDetail_EMT("DOWN1") = "15"
         oCtrl.lstControleManoDetail_conformite("DOWN1") = "1"
@@ -148,7 +148,7 @@ Imports Crodip_agent
     End Sub
 
 
-    <TestMethod()> Public Sub createFromParamMetro()
+    <TestMethod(), Ignore("Sert à créer le fichier initial")> Public Sub createFromParamMetro()
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
@@ -199,6 +199,12 @@ Imports Crodip_agent
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 1.8D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 1.7D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 1.6D))
         olst.lstParam.Add(oParam)
 
         'Param sans EMT
@@ -209,6 +215,12 @@ Imports Crodip_agent
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
         oParam.PressionMontantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(6, 2.1D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(5, 2D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(4, 1.9D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(3, 1.8D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(2, 1.7D))
+        oParam.PressionDescendantes.Add(New CRODIP_ControlLibrary.ParamMetrologiePression(1, 1.6D))
 
         olst.lstParam.Add(oParam)
         Assert.IsTrue(olst.writeXml())

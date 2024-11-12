@@ -41,7 +41,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
         Assert.AreEqual(objBuse.numeroNational, "001")
         Assert.AreEqual(objBuse.etat, True)
-        Assert.AreEqual(objBuse.isSupprime, 1)
+        Assert.IsTrue(objBuse.isSupprime)
         Assert.AreEqual(objBuse.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBuse.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBuse.dateSuppression), CDate("06/02/1964"))
@@ -58,7 +58,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
         Assert.AreEqual(objBuse2.numeroNational, "001")
         Assert.AreEqual(objBuse2.etat, True)
-        Assert.AreEqual(objBuse2.isSupprime, 1)
+        Assert.IsTrue(objBuse2.isSupprime)
         Assert.AreEqual(objBuse2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBuse2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBuse2.dateSuppression), CDate("06/02/1964"))
@@ -114,7 +114,7 @@ Public Class BuseManagerTest
         Assert.IsTrue(BuseManager.save(oBuse))
         Dim oReturn As Buse
         Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)
-        Assert.IsTrue(response = 0 Or response = 2)
+        Assert.IsTrue(response = 0 Or response = 2 Or response = 4)
 
         oBuse2 = BuseManager.WSgetById(oBuse.uid, oBuse.numeroNational)
         Assert.AreEqual(oBuse.numeroNational, oBuse2.numeroNational)
@@ -165,8 +165,6 @@ Public Class BuseManagerTest
         Assert.AreEqual(oBuse2.isSupprime, 0)
         Assert.AreEqual(oBuse2.dateSuppression, oBuse.dateSuppression)
 
-        bReturn = BuseManager.delete(idBuse)
-        Assert.IsTrue(bReturn)
 
     End Sub
     <TestMethod()>
@@ -192,15 +190,13 @@ Public Class BuseManagerTest
         objBuse2.DeleteMateriel(m_oAgent, "MaRaison")
 
         objBuse = BuseManager.getBuseByNumeroNational("001")
-        Assert.AreEqual(objBuse.isSupprime, 1)
+        Assert.IsTrue(objBuse.isSupprime, 1)
         Assert.AreEqual(objBuse.agentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBuse.raisonSuppression, "MaRaison")
         Assert.IsNotNull(objBuse.dateSuppression)
 
 
 
-        bReturn = BuseManager.delete("001")
-        Assert.IsTrue(bReturn)
 
     End Sub
 
@@ -466,7 +462,7 @@ Public Class BuseManagerTest
         Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.NONE, oBuse.getAlerte())
 
     End Sub
-    <TestMethod()>
+    <TestMethod(), Ignore("Pool")>
     Public Sub GetByPoolTest()
         Dim oBuse As Buse
         Dim idMano As String

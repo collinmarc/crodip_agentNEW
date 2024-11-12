@@ -237,6 +237,8 @@ Namespace WSCRODIP
 
         Private GetAPIKeyOperationCompleted As System.Threading.SendOrPostCallback
 
+        Private GetIncrementDiagnosticOperationCompleted As System.Threading.SendOrPostCallback
+
         Private UpdatesAvailableOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetReferentielPulverisateurTypesCategoriesOperationCompleted As System.Threading.SendOrPostCallback
@@ -567,6 +569,9 @@ Namespace WSCRODIP
 
         '''<remarks/>
         Public Event GetAPIKeyCompleted As GetAPIKeyCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetIncrementDiagnosticCompleted As GetIncrementDiagnosticCompletedEventHandler
 
         '''<remarks/>
         Public Event UpdatesAvailableCompleted As UpdatesAvailableCompletedEventHandler
@@ -3176,6 +3181,34 @@ Namespace WSCRODIP
             If (Not (Me.GetAPIKeyCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent GetAPIKeyCompleted(Me, New GetAPIKeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIncrementDiagnostic", RequestElementName:="GetIncrementDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetIncrementDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef result As Integer) As <System.Xml.Serialization.XmlElementAttribute("increment", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Object
+            Dim results() As Object = Me.Invoke("GetIncrementDiagnostic", New Object() {agentId})
+            result = CType(results(1), Integer)
+            Return CType(results(0), Object)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetIncrementDiagnosticAsync(ByVal agentId As String)
+            Me.GetIncrementDiagnosticAsync(agentId, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetIncrementDiagnosticAsync(ByVal agentId As String, ByVal userState As Object)
+            If (Me.GetIncrementDiagnosticOperationCompleted Is Nothing) Then
+                Me.GetIncrementDiagnosticOperationCompleted = AddressOf Me.OnGetIncrementDiagnosticOperationCompleted
+            End If
+            Me.InvokeAsync("GetIncrementDiagnostic", New Object() {agentId}, Me.GetIncrementDiagnosticOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetIncrementDiagnosticOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetIncrementDiagnosticCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetIncrementDiagnosticCompleted(Me, New GetIncrementDiagnosticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -7005,6 +7038,34 @@ Namespace WSCRODIP
         End Property
     End Class
     
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetIncrementDiagnosticCompletedEventHandler(ByVal sender As Object, ByVal e As GetIncrementDiagnosticCompletedEventArgs)
+
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
+     System.Diagnostics.DebuggerStepThroughAttribute(),
+     System.ComponentModel.DesignerCategoryAttribute("code")>
+    Partial Public Class GetIncrementDiagnosticCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+
+        Private results() As Object
+
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+
+        '''<remarks/>
+        Public Overloads ReadOnly Property Result() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0), Object)
+            End Get
+        End Property
+
+    End Class
+
     '''<remarks/>
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub UpdatesAvailableCompletedEventHandler(ByVal sender As Object, ByVal e As UpdatesAvailableCompletedEventArgs)

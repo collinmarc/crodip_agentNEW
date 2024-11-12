@@ -30,8 +30,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub CRUDWS()
         Dim nreturn As Integer
-        Dim oAutoTest As New AutoTest()
-        oAutoTest.uidstructure = 22
+        Dim oAutoTest As New AutoTest(m_oAgent)
         oAutoTest.etat = 2
 
         ' Création de l'objet

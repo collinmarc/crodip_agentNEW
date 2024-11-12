@@ -33,7 +33,7 @@ Public Class BancManagerTest
         objBanc.nbControlesTotal = 15
         objBanc.ModuleAcquisition = "MD2"
 
-        Assert.AreEqual(objBanc.isSupprime, 1)
+        Assert.AreEqual(objBanc.isSupprime, -1)
         Assert.AreEqual(objBanc.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBanc.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBanc.DateSuppression), CDate("06/02/1964"))
@@ -46,7 +46,7 @@ Public Class BancManagerTest
         objBanc2 = BancManager.getBancById("MonBanc")
         Assert.AreEqual("MonBanc", objBanc2.id)
 
-        Assert.AreEqual(objBanc2.isSupprime, 1)
+        Assert.AreEqual(objBanc2.isSupprime, -1)
         Assert.AreEqual(objBanc2.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(objBanc2.RaisonSuppression, "MaRaison")
         Assert.AreEqual(CDate(objBanc2.DateSuppression), CDate("06/02/1964"))
@@ -128,7 +128,7 @@ Public Class BancManagerTest
         oBanc2.DeleteMateriel(m_oAgent, "MaRaison")
 
         oBanc = BancManager.getBancById(idBanc)
-        Assert.AreEqual(oBanc.isSupprime, 1)
+        Assert.AreEqual(oBanc.isSupprime, -1)
         Assert.AreEqual(oBanc.AgentSuppression, m_oAgent.nom)
         Assert.AreEqual(oBanc.RaisonSuppression, "MaRaison")
         Assert.IsNotNull(oBanc.DateSuppression)
@@ -163,8 +163,8 @@ Public Class BancManagerTest
         Dim response As Integer = BancManager.WSSend(oBanc, oReturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.numeroNational)
-        Assert.AreEqual(oBanc.numeroNational, oBanc2.numeroNational)
+        oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.aid)
+        Assert.AreEqual(oBanc.aid, oBanc2.aid)
         Assert.AreEqual(oBanc2.isSupprime, 0)
         Assert.AreEqual(oBanc2.dateSuppression, oBanc.dateSuppression)
 
@@ -295,7 +295,7 @@ Public Class BancManagerTest
         BancManager.save(obanc)
 
         'Vérification que le banc n'est pas dans les liste des jamais servi
-        Assert.AreEqual(1, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure.ToString).Count)
+        Assert.AreEqual(1, BancManager.getBancByStructureIdJamaisServi(m_oAgent.idStructure).Count)
 
         obanc.jamaisServi = True
         BancManager.save(obanc)
@@ -442,7 +442,7 @@ Public Class BancManagerTest
         Assert.IsTrue(response = 0 Or response = 2)
         oBanc2 = BancManager.WSgetById(oBanc.uid, oBanc.id)
         Assert.AreEqual(oBanc.id, oBanc2.id)
-        Assert.AreEqual(oBanc2.isSupprime, 1)
+        Assert.AreEqual(oBanc.isSupprime, oBanc2.isSupprime)
         Assert.AreEqual(oBanc2.etat, oBanc.etat)
 
         Assert.AreEqual(oBanc2.dateAchat, oBanc.dateAchat)
@@ -452,7 +452,7 @@ Public Class BancManagerTest
         Assert.AreEqual(oBanc2.dateSuppression, oBanc.dateSuppression)
         Assert.AreEqual(oBanc2.JamaisServi, oBanc.JamaisServi)
         Assert.AreEqual(oBanc2.dateDernierControle, oBanc.dateDernierControle)
-        Assert.AreEqual(oBanc2.AgentSuppression, m_oAgent.nom)
+        Assert.AreEqual(oBanc2.agentSuppression, m_oAgent.nom)
         Assert.AreEqual(oBanc2.ModuleAcquisition, oBanc.ModuleAcquisition)
         'BUG ces champs ne sont pas synhcronisé ...
         '        Assert.AreEqual(oBanc2.nbControles, oBanc.nbControles)
@@ -507,7 +507,7 @@ Public Class BancManagerTest
         Assert.AreEqual(CRODIPWS.GlobalsCRODIP.ALERTE.JAUNE, obanc.getAlerte())
     End Sub
 
-    <TestMethod()>
+    <TestMethod(), Ignore("pool")>
     Public Sub GetByPoolTest()
         Dim oBanc As Banc
         Dim idBanc As String

@@ -75,9 +75,9 @@ Public Class DiagnosticBusesTest
         DiagnosticBusesManager.save(oDiagBuse, oCSDB)
         oCSDB.free()
         iD = oDiagBuse.id
-        oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(oDiagBuse.id, oDiagBuse.idDiagnostic)
+        oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(iD, oDiagBuse.idDiagnostic)
 
-        Assert.AreEqual(oDiagBuse.id, iD)
+        Assert.AreEqual(iD, oDiagBuse.id)
         Assert.AreEqual(oDiagBuse.idDiagnostic, m_oDiag.id)
         Assert.AreEqual(oDiagBuse.marque, "marque")
         Assert.AreEqual(oDiagBuse.nombre, "nombre")
@@ -111,14 +111,13 @@ Public Class DiagnosticBusesTest
         Assert.AreEqual(oDiagBuse.idLot, "2")
         Assert.AreEqual(oDiagBuse.ecartTolere, "ecartTolere2")
 
-        DiagnosticBusesManager.delete(oDiagBuse.id, oDiagBuse.idDiagnostic)
 
 
     End Sub
     '''<summary>
     '''Test pour D'init de l'objet + properties
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub TST_LOAD_SAVE_DETAIL()
         Dim odiag As Diagnostic
 
@@ -145,14 +144,14 @@ Public Class DiagnosticBusesTest
 
         Dim oDiagBuseDetail As DiagnosticBusesDetail
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = "1"
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = "1"
         oDiagBuseDetail.debit = "1,6"
         oDiagBuseDetail.ecart = "0.67"
@@ -167,14 +166,14 @@ Public Class DiagnosticBusesTest
 
         oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(0)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
-        Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
+        Assert.AreEqual(oDiagBuseDetail.numBuse, 1)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
         Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
 
         oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(1)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
-        Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
+        Assert.AreEqual(oDiagBuseDetail.numBuse, 2)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
         Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
@@ -194,9 +193,6 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail = oDiagBuse.diagnosticBusesDetailList.Liste(1)
         Assert.AreEqual(oDiagBuseDetail.debit, "2,5")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.85")
-
-        DiagnosticBusesManager.delete(oDiagBuse.id, oDiagBuse.idDiagnostic)
-
 
     End Sub
     '''<summary>
@@ -260,14 +256,14 @@ Public Class DiagnosticBusesTest
 
         'Detail du lot1
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.1"
         oDiagBuseDetail.ecart = "1.2"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.3"
         oDiagBuseDetail.ecart = "1.4"
@@ -292,14 +288,14 @@ Public Class DiagnosticBusesTest
 
         'Detail du lot2
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.1"
         oDiagBuseDetail.ecart = "2.2"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.3"
         oDiagBuseDetail.ecart = "2.4"
@@ -369,15 +365,15 @@ Public Class DiagnosticBusesTest
                 For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                     Assert.AreEqual(oDiagBuseDetail.idLot, oDiagBuse.idLot)
 
-                    If oDiagBuseDetail.idBuse = 1 Then
+                    If oDiagBuseDetail.numBuse = 1 Then
                         'Vérification de la buse 1 du Lot1
-                        Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
+                        Assert.AreEqual(oDiagBuseDetail.numBuse, 1)
                         Assert.AreEqual(oDiagBuseDetail.debit, "1.1")
                         Assert.AreEqual(oDiagBuseDetail.ecart, "1.2")
                     End If
-                    If oDiagBuseDetail.idBuse = 2 Then
+                    If oDiagBuseDetail.numBuse = 2 Then
                         'Vérification de la buse 2 du Lot1
-                        Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
+                        Assert.AreEqual(oDiagBuseDetail.numBuse, 2)
                         Assert.AreEqual(oDiagBuseDetail.debit, "1.3")
                         Assert.AreEqual(oDiagBuseDetail.ecart, "1.4")
                     End If
@@ -401,15 +397,15 @@ Public Class DiagnosticBusesTest
                 Assert.AreEqual(oDiagBuse.diagnosticBusesDetailList.Liste.Count, 2)
                 For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
                     Assert.AreEqual(oDiagBuseDetail.idLot, oDiagBuse.idLot)
-                    If oDiagBuseDetail.idBuse = 1 Then
+                    If oDiagBuseDetail.numBuse = 1 Then
                         'Vérification de la buse 1 du Lot2
-                        Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
+                        Assert.AreEqual(oDiagBuseDetail.numBuse, 1)
                         Assert.AreEqual(oDiagBuseDetail.debit, "2.1")
                         Assert.AreEqual(oDiagBuseDetail.ecart, "2.2")
                     End If
-                    If oDiagBuseDetail.idBuse = 2 Then
+                    If oDiagBuseDetail.numBuse = 2 Then
                         'Vérification de la buse 2 du Lot2
-                        Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
+                        Assert.AreEqual(oDiagBuseDetail.numBuse, 2)
                         Assert.AreEqual(oDiagBuseDetail.debit, "2.3")
                         Assert.AreEqual(oDiagBuseDetail.ecart, "2.4")
                     End If
@@ -449,14 +445,14 @@ Public Class DiagnosticBusesTest
 
         'Detail du lot1
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.1"
         oDiagBuseDetail.ecart = "1.2"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.3"
         oDiagBuseDetail.ecart = "1.4"
@@ -481,14 +477,14 @@ Public Class DiagnosticBusesTest
 
         'Detail du lot2
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.1"
         oDiagBuseDetail.ecart = "2.2"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "2.3"
         oDiagBuseDetail.ecart = "2.4"
@@ -534,14 +530,14 @@ Public Class DiagnosticBusesTest
 
         'Detail du lot1
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 1
+        oDiagBuseDetail.numBuse = 1
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.1"
         oDiagBuseDetail.ecart = "1.2"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
 
         oDiagBuseDetail = New DiagnosticBusesDetail()
-        oDiagBuseDetail.idBuse = 2
+        oDiagBuseDetail.numBuse = 2
         oDiagBuseDetail.idLot = oDiagBuse.idLot
         oDiagBuseDetail.debit = "1.3"
         oDiagBuseDetail.ecart = "1.4"
@@ -608,7 +604,7 @@ Public Class DiagnosticBusesTest
         Dim oDiagBuseDetail As DiagnosticBusesDetail
         For n As Integer = 1 To 200
             oDiagBuseDetail = New DiagnosticBusesDetail()
-            oDiagBuseDetail.idBuse = n
+            oDiagBuseDetail.numBuse = n
             oDiagBuseDetail.idLot = "1"
             oDiagBuseDetail.debit = "1,6"
             oDiagBuseDetail.ecart = "0.67"
@@ -622,14 +618,14 @@ Public Class DiagnosticBusesTest
 
         oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(0)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
-        Assert.AreEqual(oDiagBuseDetail.idBuse, 1)
+        Assert.AreEqual(oDiagBuseDetail.numBuse, 1)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
         Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")
 
         oDiagBuseDetail = odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste(1)
         Assert.AreEqual(oDiagBuseDetail.idDiagnostic, oDiagBuse.idDiagnostic)
-        Assert.AreEqual(oDiagBuseDetail.idBuse, 2)
+        Assert.AreEqual(oDiagBuseDetail.numBuse, 2)
         Assert.AreEqual(oDiagBuseDetail.idLot, "1")
         Assert.AreEqual(oDiagBuseDetail.debit, "1,6")
         Assert.AreEqual(oDiagBuseDetail.ecart, "0.67")

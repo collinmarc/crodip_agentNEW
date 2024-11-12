@@ -488,7 +488,8 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element name="idDiagnostic" type="xsd:string" />
+            <xsd:element name="uiddiagnostic" type="xsd:int" />
+            <xsd:element name="aiddiagnostic" type="xsd:string" />
             <xsd:element name="idBuse" type="xsd:string" />
             <xsd:element name="idLot" type="xsd:string" />
             <xsd:element name="debit" type="xsd:string" />
@@ -502,7 +503,8 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element name="idDiagnostic" type="xsd:string" />
+            <xsd:element name="uiddiagnostic" type="xsd:int" />
+            <xsd:element name="aiddiagnostic" type="xsd:string" />
             <xsd:element name="pressionPulve" type="xsd:string" />
             <xsd:element name="pressionControle" type="xsd:string" />
             <xsd:element name="dateModificationAgent" type="xsd:string" />
@@ -514,7 +516,8 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element name="idDiagnostic" type="xsd:string" />
+            <xsd:element name="uiddiagnostic" type="xsd:int" />
+            <xsd:element name="aiddiagnostic" type="xsd:string" />
             <xsd:element name="idPression" type="xsd:string" />
             <xsd:element name="idColumn" type="xsd:string" />
             <xsd:element name="pressionSortie" type="xsd:string" />
@@ -2598,6 +2601,21 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="GetIncrementDiagnosticRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="agentId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIncrementDiagnosticResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="xsd:int" name="increment" />
+            <xsd:element name="result" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="UpdatesAvailableRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -3280,6 +3298,12 @@
   <wsdl:message name="GetAPIKeyResponse">
     <wsdl:part name="parameters" element="tns:GetAPIKeyResponse" />
   </wsdl:message>
+  <wsdl:message name="GetIncrementDiagnosticRequest">
+    <wsdl:part name="parameters" element="tns:GetIncrementDiagnosticRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetIncrementDiagnosticResponse">
+    <wsdl:part name="parameters" element="tns:GetIncrementDiagnosticResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdatesAvailableRequest">
     <wsdl:part name="parameters" element="tns:UpdatesAvailableRequest" />
   </wsdl:message>
@@ -3707,6 +3731,10 @@
     <wsdl:operation name="GetAPIKey">
       <wsdl:input message="tns:GetAPIKeyRequest" />
       <wsdl:output message="tns:GetAPIKeyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIncrementDiagnostic">
+      <wsdl:input message="tns:GetIncrementDiagnosticRequest" />
+      <wsdl:output message="tns:GetIncrementDiagnosticResponse" />
     </wsdl:operation>
     <wsdl:operation name="UpdatesAvailable">
       <wsdl:input message="tns:UpdatesAvailableRequest" />
@@ -4617,6 +4645,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAPIKey">
       <soap:operation soapAction="http://www.example.org/crodip/GetAPIKey" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIncrementDiagnostic">
+      <soap:operation soapAction="http://www.example.org/crodip/GetIncrementDiagnostic" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

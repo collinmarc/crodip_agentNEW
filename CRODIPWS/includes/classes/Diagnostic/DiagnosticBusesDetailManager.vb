@@ -35,6 +35,12 @@ Public Class DiagnosticBusesDetailManager
         Catch ex As Exception
             CSDebug.dispError("DiagnosticBusesDetailManager::getWSDiagnosticBusesDetailById ERR: " & ex.Message)
         End Try
+        'Tri sur IdLot puis idBuse
+        objDiagnosticBusesDetailList.Liste = objDiagnosticBusesDetailList.Liste.OrderBy(Function(d)
+                                                                                            Return d.idLot
+                                                                                        End Function).ThenBy(Function(d)
+                                                                                                                 Return d.id
+                                                                                                             End Function).ToList
         Return objDiagnosticBusesDetailList
 
     End Function
@@ -51,7 +57,6 @@ Public Class DiagnosticBusesDetailManager
             For Each oDetail In oBuse.diagnosticBusesDetailList.Liste
                 oDetail.uiddiagnostic = pDiag.uid
                 oDetail.aiddiagnostic = pDiag.aid
-                oDetail.idBuse = oBuse.id
             Next
         Next
 
@@ -98,7 +103,7 @@ Public Class DiagnosticBusesDetailManager
                 Dim paramsQueryColomuns As String = "`idDiagnostic`"
                 Dim paramsQuery As String = "'" & objDiagnosticBusesDetail.idDiagnostic & "'"
                 paramsQueryColomuns = paramsQueryColomuns & " , `idBuse`"
-                paramsQuery = paramsQuery & " , " & objDiagnosticBusesDetail.idBuse & ""
+                paramsQuery = paramsQuery & " , " & objDiagnosticBusesDetail.numBuse & ""
                 paramsQueryColomuns = paramsQueryColomuns & " , `idLot`"
                 paramsQuery = paramsQuery & " , " & objDiagnosticBusesDetail.idLot & ""
 
@@ -134,6 +139,7 @@ Public Class DiagnosticBusesDetailManager
                     bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDEtail"
                 End If
                 objDiagnosticBusesDetail.id = bddCommande.ExecuteScalar()
+                CSDb.ExecuteSQL("UPDATE DiagnosticTroncons833 Set aid = id where id = " & objDiagnosticBusesDetail.id)
                 'If oDR.HasRows() Then
                 '    oDR.Read()
                 '    objDiagnosticBusesDetail.id = oDR.GetValue(0)
@@ -147,7 +153,7 @@ Public Class DiagnosticBusesDetailManager
 
                 paramQuery = "id=" & objDiagnosticBusesDetail.id
                 paramQuery = paramQuery & ",idDiagnostic = '" & objDiagnosticBusesDetail.idDiagnostic & "'"
-                paramQuery = paramQuery & ",idBuse = " & objDiagnosticBusesDetail.idBuse & ""
+                paramQuery = paramQuery & ",idBuse = " & objDiagnosticBusesDetail.numBuse & ""
                 paramQuery = paramQuery & ",idLot = " & objDiagnosticBusesDetail.idLot & ""
                 paramQuery = paramQuery & ",debit = '" & objDiagnosticBusesDetail.debit & "'"
                 paramQuery = paramQuery & ",ecart = '" & objDiagnosticBusesDetail.ecart & "'"
@@ -188,7 +194,6 @@ Public Class DiagnosticBusesDetailManager
         Debug.Assert(Not String.IsNullOrEmpty(pidDiag))
         ' déclarations
         Dim oCSDB As New CSDb(True)
-        Dim oDiagnosticBusesDetail As DiagnosticBusesDetail = Nothing
         Dim oReturn As New DiagnosticBusesDetail
         If diagnosticbusesdetail_id <> "" Then
 
@@ -205,7 +210,7 @@ Public Class DiagnosticBusesDetailManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            oDiagnosticBusesDetail.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                            oReturn.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -270,7 +275,7 @@ Public Class DiagnosticBusesDetailManager
                         Case "idDiagnostic"
                             tmpDiagnosticBusesDetail.idDiagnostic = oDR.Item(tmpColId).ToString()
                         Case "idBuse"
-                            tmpDiagnosticBusesDetail.idBuse = oDR.Item(tmpColId)
+                            tmpDiagnosticBusesDetail.numBuse = oDR.Item(tmpColId)
                         Case "idLot"
                             tmpDiagnosticBusesDetail.idLot = oDR.Item(tmpColId).ToString()
                         Case "debit"

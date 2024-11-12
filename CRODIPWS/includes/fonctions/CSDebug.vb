@@ -46,7 +46,7 @@ Public Class CSDebug
         Dim errorMessage As String
         errorMessage = pErrorMsg + ex.Message
         If ex.InnerException IsNot Nothing Then
-            errorMessage = pErrorMsg + "," + ex.InnerException.Message
+            errorMessage = errorMessage + "," + ex.InnerException.Message
         End If
         logger.Fatal(errorMessage)
 

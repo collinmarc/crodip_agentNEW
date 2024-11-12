@@ -60,14 +60,14 @@ Public Class DiagnosticManager
                     serializer.Serialize(writer, pObjIn)
                     Dim xmlOutput As String = writer.ToString()
                     ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
-                    CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                    '                   CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
 
                 Dim Params As Object() = {pObjIn, pInfo, puid}
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
                 puid = DirectCast(Params(2), Integer)
-                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+                '                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
@@ -956,12 +956,38 @@ Public Class DiagnosticManager
     End Function
 
     Public Shared Function getNewId(pAgent As Agent) As String
-        If pAgent.oPool IsNot Nothing Then
-            Return getNewIdNew(pAgent)
+        Dim id As String
+        id = pAgent.idStructure & "-" & pAgent.id & "-"
+        If pAgent.bTest Then
+            id = id & WSGetNewId(pAgent)
         Else
-            Return getNewIdOLD(pAgent)
+            If pAgent.oPool IsNot Nothing Then
+                id = getNewIdNew(pAgent)
+            Else
+                id = getNewIdOLD(pAgent)
+            End If
         End If
+        Return id
     End Function
+    Public Shared Function WSGetNewId(pAgent As Agent) As String
+        Dim codeResponse As Integer = 99
+        Dim objWSCrodip As WSCRODIP.CrodipServer
+        objWSCrodip = WebServiceCRODIP.getWS()
+        Dim pInfo As String = ""
+        Dim puid As Integer
+        Dim oReponse As Object
+        Dim sreturn As String
+        Try
+
+            oReponse = objWSCrodip.GetIncrementDiagnostic(pAgent.id, puid)
+            sreturn = oReponse(0).innerText()
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.WSgestNewId Err", ex)
+            sreturn = "99999"
+        End Try
+        Return sreturn
+    End Function
+
 
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
@@ -1591,18 +1617,18 @@ Public Class DiagnosticManager
                     If Not pDiag.diagnosticBusesList Is Nothing Then
                         If Not pDiag.diagnosticBusesList.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                                If Not tmpItemCheck Is Nothing Then
-                                    tmpItemCheck.idDiagnostic = pDiag.id
-                                    DiagnosticBusesManager.save(tmpItemCheck, oCSDb, bsyncro)
-                                End If
-                            Next
+                            If Not tmpItemCheck Is Nothing Then
+                                tmpItemCheck.idDiagnostic = pDiag.id
+                                DiagnosticBusesManager.save(tmpItemCheck, oCSDb, bsyncro)
+                            End If
+                        Next
                         End If
                     End If
 
-                    oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
-                    ' On enregistre les mano 5.4.2
-                    'CSDebug.dispInfo("Sauvegarde des Mano542")
-                    If Not pDiag.diagnosticMano542List Is Nothing Then
+                oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
+                ' On enregistre les mano 5.4.2
+                'CSDebug.dispInfo("Sauvegarde des Mano542")
+                If Not pDiag.diagnosticMano542List Is Nothing Then
                         If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
                                 If Not tmpItemCheck Is Nothing Then

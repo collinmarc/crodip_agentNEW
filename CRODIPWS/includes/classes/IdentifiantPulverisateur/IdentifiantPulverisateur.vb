@@ -118,10 +118,11 @@ Public Class IdentifiantPulverisateur
     End Property
 
     Public Function Fill(pColName As String, pColValue As Object) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = True
         Try
             pColName = pColName.Replace("IdentifiantPulverisateur.", "")
             If Not MyBase.Fill(pColName, pColValue) Then
+                bReturn = True
                 Select Case pColName.ToUpper().Trim
                     Case "id".ToUpper().Trim()
                         Me.id = pColValue.ToString()
@@ -129,6 +130,8 @@ Public Class IdentifiantPulverisateur
                         Me.numeroNational = pColValue.ToString()
                     Case "idStructure".ToUpper().Trim()
                         Me.idStructure = pColValue.ToString()
+                    Case "uidStructure".ToUpper().Trim()
+                        Me.uidstructure = pColValue.ToString()
                     Case "etat".ToUpper().Trim()
                         Me.etat = pColValue.ToString()
                     Case "libelle".ToUpper().Trim()
@@ -137,9 +140,10 @@ Public Class IdentifiantPulverisateur
                         Me.idCRODIPPool = pColValue.ToString()
                     Case "dateUtilisation".ToUpper().Trim()
                         Me.dateUtilisation = pColValue.ToString()
+                    Case Else
+                        bReturn = False
                 End Select
             End If
-            bReturn = True
         Catch ex As Exception
             CSDebug.dispError("IdentifiantPulverisateur.Fill ERR" + ex.Message)
             bReturn = False

@@ -12,13 +12,13 @@ Public Class DiagnosticTroncons833List
         _diagnosticTroncons833 = New List(Of DiagnosticTroncons833)
     End Sub
     <XmlIgnoreAttribute()>
-    Public ReadOnly Property Liste As List(Of DiagnosticTroncons833)
+    Public Property Liste As List(Of DiagnosticTroncons833)
         Get
             Return _diagnosticTroncons833
         End Get
-        'Set(ByVal Value As List(Of DiagnosticMano542))
-        '    _diagnosticTroncons833 = Value
-        'End Set
+        Set(ByVal Value As List(Of DiagnosticTroncons833))
+            _diagnosticTroncons833 = Value
+        End Set
     End Property
     ''' <summary>
     ''' Rend la liste des mesures pour une pression
@@ -212,38 +212,34 @@ Public Class DiagnosticTroncons833
         End If
     End Sub
 
-    Public Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
-        Dim bReturn As Boolean
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
+        Dim bReturn As Boolean = True
         Try
-
-            Select Case pColName.Trim().ToUpper()
-                Case "uid".Trim().ToUpper()
-                    Me.uid = pColValue
-                Case "aid".Trim().ToUpper()
-                    Me.aid = pColValue
-                Case "uiddiagnostic".Trim().ToUpper()
-                    Me.uiddiagnostic = pColValue
-                Case "aiddiagnostic".Trim().ToUpper()
-                    Me.aiddiagnostic = pColValue
-                Case "id".Trim().ToUpper()
-                    Me.id = pColValue
-                Case "idDiagnostic".Trim().ToUpper()
-                    Me.idDiagnostic = pColValue.ToString()
-                Case "idPression".Trim().ToUpper()
-                    Me.idPression = pColValue.ToString()
-                Case "idColumn".Trim().ToUpper()
-                    Me.idColumn = pColValue.ToString()
-                Case "pressionSortie".Trim().ToUpper()
-                    Me.pressionSortie = pColValue.ToString()
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "manocId".Trim().ToUpper()
-                    Me.ManocId = pColValue.ToString()
-            End Select
-            bReturn = True
+            If Not MyBase.Fill(pColName, pColValue) Then
+                bReturn = True
+                Select Case pColName.Trim().ToUpper()
+                    Case "uiddiagnostic".Trim().ToUpper()
+                        Me.uiddiagnostic = pColValue
+                    Case "aiddiagnostic".Trim().ToUpper()
+                        Me.aiddiagnostic = pColValue
+                    Case "id".Trim().ToUpper()
+                        Me.id = pColValue
+                    Case "idDiagnostic".Trim().ToUpper()
+                        Me.idDiagnostic = pColValue.ToString()
+                    Case "idPression".Trim().ToUpper()
+                        Me.idPression = pColValue.ToString()
+                    Case "idColumn".Trim().ToUpper()
+                        Me.idColumn = pColValue.ToString()
+                    Case "pressionSortie".Trim().ToUpper()
+                        Me.pressionSortie = pColValue.ToString()
+                    Case "manocId".Trim().ToUpper()
+                        Me.ManocId = pColValue.ToString()
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
+            CSDebug.dispError("Diagnostictroncons833.Fill Err", ex)
             bReturn = False
         End Try
 

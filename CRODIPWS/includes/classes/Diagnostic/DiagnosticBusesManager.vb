@@ -15,83 +15,14 @@ Public Class DiagnosticBusesManager
             ' Appel au WS
             Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBuses(puidDiag, paidDiag, objWSCrodip_response)
             Select Case codeResponse
-                Case 0 ' OK
+                Case 0, 1 ' OK
                     ' construction de l'objet
                     Dim objWSCrodip_responseItem1 As System.Xml.XmlNode()
                     Dim objWSCrodip_responseItem As System.Xml.XmlNode
                     For Each objWSCrodip_responseItem1 In objWSCrodip_response
                         oDiagBuses = New DiagnosticBuses()
                         For Each objWSCrodip_responseItem In objWSCrodip_responseItem1
-                            Select Case objWSCrodip_responseItem.Name().ToUpper()
-                                Case "uid".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.uid = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                                    End If
-                                Case "aid".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.aid = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                                    End If
-                                Case "id".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
-                                    End If
-                                Case "idDiagnostic".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.idDiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "uidDiagnostic".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.uiddiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "aidDiagnostic".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.aiddiagnostic = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "idLot".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.idLot = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "marque".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.marque = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "nombre".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.nombre = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "genre".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.genre = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "calibre".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.calibre = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "ecartTolere".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.ecartTolere = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "couleur".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.couleur = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "debitMoyen".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.debitMoyen = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "debitNominal".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.debitNominal = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "dateModificationAgent".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                                Case "dateModificationCrodip".ToUpper()
-                                    If objWSCrodip_responseItem.InnerText() <> "" Then
-                                        oDiagBuses.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-                                    End If
-                            End Select
+                            oDiagBuses.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
                         Next
                         objDiagnosticBusesList.Liste.Add(oDiagBuses)
                     Next
@@ -101,7 +32,7 @@ Public Class DiagnosticBusesManager
                     'CSDebug.dispError("Erreur - DiagnosticBusesManager - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("DiagnosticBusesManager.getWSDiagnosticBusesById ERR : " & ex.Message)
+            CSDebug.dispError("DiagnosticBusesManager.WSGetList ERR : " & ex.Message)
         End Try
 
         ''Charegement des détails de buses (Tous les détails d'un diag)
@@ -143,6 +74,7 @@ Public Class DiagnosticBusesManager
         'Propagation des uid
         For Each oBuse In pDiag.diagnosticBusesList.Liste
             oBuse.uiddiagnostic = pDiag.uid
+            oBuse.aiddiagnostic = pDiag.aid
         Next
         Return WSSend(pDiag.diagnosticBusesList)
     End Function
@@ -230,107 +162,85 @@ Public Class DiagnosticBusesManager
     '    Return tmpDiagnosticId
     'End Function
 
-    Public Shared Sub save(ByVal objDiagnosticBuses As DiagnosticBuses, pCSDB As CSDb, Optional bSyncro As Boolean = False)
+    Public Shared Sub save(ByVal poDiagBuses As DiagnosticBuses, pCSDB As CSDb, Optional bSyncro As Boolean = False)
         Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim bddCommande As DbCommand
         bddCommande = pCSDB.getConnection().CreateCommand()
         Try
             Dim nEnr As Integer
+            'Les buses ont été supprimées avant le Save
+            'Création de l'enregistrement
+            ' Initialisation de la requete
+            Dim paramsQueryColomuns As String = "`idDiagnostic`,`idLot`"
+            Dim paramsQuery As String = "'" & poDiagBuses.idDiagnostic & "','" & poDiagBuses.idLot & "'"
 
-            'Test de l'existence de l'élement
-            bddCommande.CommandText = "SELECT count(*) FROM DiagnosticBuses WHERE id = " & objDiagnosticBuses.id & " and idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
-            nEnr = bddCommande.ExecuteScalar
+            ' Mise a jour de la date de derniere modification
 
-            If Not bSyncro Then
-                objDiagnosticBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            If Not poDiagBuses.marque Is Nothing And poDiagBuses.marque <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `marque`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.marque & "'"
+            End If
+            If Not poDiagBuses.nombre Is Nothing And poDiagBuses.nombre <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `nombre`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.nombre & "'"
+            End If
+            If Not poDiagBuses.genre Is Nothing And poDiagBuses.genre <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `genre`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.genre & "'"
+            End If
+            If Not poDiagBuses.calibre Is Nothing And poDiagBuses.calibre <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `calibre`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.calibre & "'"
+            End If
+            If Not poDiagBuses.ecartTolere Is Nothing And poDiagBuses.ecartTolere <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `ecartTolere`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.ecartTolere & "'"
+            End If
+            If Not poDiagBuses.couleur Is Nothing And poDiagBuses.couleur <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `couleur`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.couleur & "'"
+            End If
+            If Not poDiagBuses.debitMoyen Is Nothing And poDiagBuses.debitMoyen <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `debitMoyen`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.debitMoyen & "'"
+            End If
+            If Not poDiagBuses.debitNominal Is Nothing And poDiagBuses.debitNominal <> "" Then
+                paramsQueryColomuns = paramsQueryColomuns & " , `debitNominal`"
+                paramsQuery = paramsQuery & " , '" & poDiagBuses.debitNominal & "'"
+            End If
+            paramsQueryColomuns = paramsQueryColomuns & " , uiddiagnostic "
+            paramsQuery = paramsQuery & "," & poDiagBuses.uiddiagnostic
+            paramsQueryColomuns = paramsQueryColomuns & " , aiddiagnostic "
+            paramsQuery = paramsQuery & ",'" & poDiagBuses.aiddiagnostic & "'"
+            paramsQueryColomuns = paramsQueryColomuns & " , uid "
+            paramsQuery = paramsQuery & "," & poDiagBuses.uid
+            paramsQueryColomuns = paramsQueryColomuns & " , aid "
+            paramsQuery = paramsQuery & ",'" & poDiagBuses.aid & "'"
+            If Not String.IsNullOrEmpty(poDiagBuses.dateModificationCrodipS) Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip "
+                paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((poDiagBuses.dateModificationCrodip)) & "'"
+            End If
+            If Not String.IsNullOrEmpty(poDiagBuses.dateModificationAgentS) Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent "
+                paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((poDiagBuses.dateModificationAgent)) & "'"
             End If
 
-            If nEnr = 0 Then
-                'Création de l'enregistrement
-                ' Initialisation de la requete
-                Dim paramsQueryColomuns As String = "`idDiagnostic`,`idLot`"
-                Dim paramsQuery As String = "'" & objDiagnosticBuses.idDiagnostic & "','" & objDiagnosticBuses.idLot & "'"
 
-                ' Mise a jour de la date de derniere modification
-
-                If Not objDiagnosticBuses.marque Is Nothing And objDiagnosticBuses.marque <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `marque`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.marque & "'"
-                End If
-                If Not objDiagnosticBuses.nombre Is Nothing And objDiagnosticBuses.nombre <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `nombre`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.nombre & "'"
-                End If
-                If Not objDiagnosticBuses.genre Is Nothing And objDiagnosticBuses.genre <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `genre`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.genre & "'"
-                End If
-                If Not objDiagnosticBuses.calibre Is Nothing And objDiagnosticBuses.calibre <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `calibre`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.calibre & "'"
-                End If
-                If Not objDiagnosticBuses.ecartTolere Is Nothing And objDiagnosticBuses.ecartTolere <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `ecartTolere`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.ecartTolere & "'"
-                End If
-                If Not objDiagnosticBuses.couleur Is Nothing And objDiagnosticBuses.couleur <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `couleur`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.couleur & "'"
-                End If
-                If Not objDiagnosticBuses.debitMoyen Is Nothing And objDiagnosticBuses.debitMoyen <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `debitMoyen`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.debitMoyen & "'"
-                End If
-                If Not objDiagnosticBuses.debitNominal Is Nothing And objDiagnosticBuses.debitNominal <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `debitNominal`"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticBuses.debitNominal & "'"
-                End If
-                If objDiagnosticBuses.dateModificationAgent <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBuses.dateModificationAgent) & "'"
-                End If
-                If objDiagnosticBuses.dateModificationCrodip <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticBuses.dateModificationCrodip) & "'"
-                End If
-
-                ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "INSERT INTO `DiagnosticBuses` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
-                bddCommande.ExecuteNonQuery()
-                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
-                    bddCommande.CommandText = "SELECT last_insert_rowid() "
-                Else
-                    bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBuses"
-                End If
-                objDiagnosticBuses.id = bddCommande.ExecuteScalar()
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = "INSERT INTO `DiagnosticBuses` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
+            bddCommande.ExecuteNonQuery()
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                bddCommande.CommandText = "SELECT last_insert_rowid() "
             Else
-                'Mise à jour de l'enregistrement
-                Dim paramQuery As String
-
-                paramQuery = "id=" & objDiagnosticBuses.id
-                paramQuery = paramQuery & ",idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
-                paramQuery = paramQuery & ",marque = '" & objDiagnosticBuses.marque & "'"
-                paramQuery = paramQuery & ",nombre = '" & objDiagnosticBuses.nombre & "'"
-                paramQuery = paramQuery & ",genre = '" & objDiagnosticBuses.genre & "'"
-                paramQuery = paramQuery & ",calibre = '" & objDiagnosticBuses.calibre & "'"
-                paramQuery = paramQuery & ",couleur = '" & objDiagnosticBuses.couleur & "'"
-                paramQuery = paramQuery & ",debitMoyen = '" & objDiagnosticBuses.debitMoyen & "'"
-                paramQuery = paramQuery & ",debitNominal = '" & objDiagnosticBuses.debitNominal & "'"
-                paramQuery = paramQuery & ",dateModificationAgent = '" & objDiagnosticBuses.dateModificationAgent & "'"
-                If Not String.IsNullOrEmpty(objDiagnosticBuses.dateModificationCrodip) Then
-                    paramQuery = paramQuery & ",dateModificationCrodip = '" & objDiagnosticBuses.dateModificationCrodip & "'"
-                End If
-                paramQuery = paramQuery & ",idLot = '" & objDiagnosticBuses.idLot & "'"
-                paramQuery = paramQuery & ",ecartTolere = '" & objDiagnosticBuses.ecartTolere & "'"
-
-                bddCommande.CommandText = "UPDATE DiagnosticBuses SET " & paramQuery & " WHERE id = " & objDiagnosticBuses.id & " and idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "'"
-                bddCommande.ExecuteNonQuery()
-
+                bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBuses"
             End If
+            poDiagBuses.id = bddCommande.ExecuteScalar()
+            bddCommande.CommandText = "Update DiagnosticBuses set aid = id where id = " & poDiagBuses.id
+            bddCommande.ExecuteNonQuery()
 
             'Suppression des Detail de Buses Précédentes
-            bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & objDiagnosticBuses.idDiagnostic & "' and idLot= " & objDiagnosticBuses.idLot & ""
+            bddCommande.CommandText = "DELETE FROM  DiagnosticBusesDetail WHERE idDiagnostic = '" & poDiagBuses.idDiagnostic & "' and idLot= " & poDiagBuses.idLot & ""
             bddCommande.ExecuteNonQuery()
             Dim SQL As String = "INSERT INTO DiagnosticBusesDetail ("
             SQL = SQL & " IdDiagnostic , "
@@ -339,22 +249,25 @@ Public Class DiagnosticBusesManager
             SQL = SQL & " debit , "
             SQL = SQL & " ecart , "
             SQL = SQL & " dateModificationAgent , "
-            SQL = SQL & " dateModificationCrodip  "
+            SQL = SQL & " dateModificationCrodip,  "
+            SQL = SQL & " uiddiagnostic , "
+            SQL = SQL & " aiddiagnostic, "
+            SQL = SQL & " uid "
             SQL = SQL & " ) VALUES ("
-            SQL = SQL & " @P1,@P2,@P3,@P4,@P5,@P6,@P7"
+            SQL = SQL & " @P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8,@P9,@P10"
             SQL = SQL & " )"
             bddCommande.CommandText = SQL
             bddCommande.Prepare()
-            If Not objDiagnosticBuses.diagnosticBusesDetailList Is Nothing Then
-                If Not objDiagnosticBuses.diagnosticBusesDetailList.Liste Is Nothing Then
+            If Not poDiagBuses.diagnosticBusesDetailList Is Nothing Then
+                If Not poDiagBuses.diagnosticBusesDetailList.Liste Is Nothing Then
                     Dim i As Integer = 1
-                    For Each oBDetail As DiagnosticBusesDetail In objDiagnosticBuses.diagnosticBusesDetailList.Liste
+                    For Each oBDetail As DiagnosticBusesDetail In poDiagBuses.diagnosticBusesDetailList.Liste
                         If Not oBDetail Is Nothing Then
                             bddCommande.CommandText = SQL
                             bddCommande.Prepare()
                             bddCommande.Parameters.Clear()
-                            oBDetail.idDiagnostic = objDiagnosticBuses.idDiagnostic
-                            oBDetail.idLot = objDiagnosticBuses.idLot
+                            oBDetail.idDiagnostic = poDiagBuses.idDiagnostic
+                            oBDetail.idLot = poDiagBuses.idLot
                             oBDetail.dateModificationAgent = DateTime.Now
 
                             Dim oParam As DbParameter
@@ -372,7 +285,7 @@ Public Class DiagnosticBusesManager
                                 If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
                                     .ParameterName = "@P2"
                                 End If
-                                .Value = i
+                                .Value = oBDetail.numBuse
                             End With
                             bddCommande.Parameters.Add(oParam)
 
@@ -417,6 +330,31 @@ Public Class DiagnosticBusesManager
                                 .Value = oBDetail.dateModificationCrodip
                             End With
                             bddCommande.Parameters.Add(oParam)
+
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P8"
+                                End If
+                                .Value = oBDetail.uiddiagnostic
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P9"
+                                End If
+                                .Value = oBDetail.aiddiagnostic
+                            End With
+                            bddCommande.Parameters.Add(oParam)
+                            oParam = bddCommande.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@P10"
+                                End If
+                                .Value = oBDetail.uid
+                            End With
+                            bddCommande.Parameters.Add(oParam)
                             Try
                                 bddCommande.ExecuteNonQuery()
                             Catch ex As Exception
@@ -428,6 +366,9 @@ Public Class DiagnosticBusesManager
                                 bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDetail"
                             End If
                             oBDetail.id = bddCommande.ExecuteScalar()
+                            bddCommande.CommandText = "Update DiagnosticBusesDetail set aid = id where id = " & oBDetail.id
+                            bddCommande.ExecuteNonQuery()
+
                         End If
                         i = i + 1
                     Next
@@ -514,20 +455,14 @@ Public Class DiagnosticBusesManager
 
                 'On va ensuite chercher les infos de mesure de ce Lot
                 Dim bddCommande4 As DbCommand = oCSDB.getConnection().CreateCommand()
-                bddCommande4.CommandText = "SELECT * FROM DiagnosticBusesDetail WHERE idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = " & nLot & ""
+                bddCommande4.CommandText = "SELECT * FROM DiagnosticBusesDetail WHERE idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = " & nLot & " ORDER BY IDBUSE"
                 Dim oDRDiagBusesDetail As DbDataReader = bddCommande4.ExecuteReader
                 Dim tmpBuseDetail As DiagnosticBusesDetail
                 While oDRDiagBusesDetail.Read()
                     'Creation de l'objet BuseDetail pour recevoir la mesure
                     tmpBuseDetail = New DiagnosticBusesDetail()
                     ' On remplit L'object
-                    nColId = 0
-                    While nColId < oDRDiagBusesDetail.FieldCount()
-                        If Not oDRDiagBusesDetail.IsDBNull(nColId) Then
-                            tmpBuseDetail.Fill(oDRDiagBusesDetail.GetName(nColId), oDRDiagBusesDetail.GetValue(nColId))
-                        End If
-                        nColId = nColId + 1
-                    End While
+                    tmpBuseDetail.FillDR(oDRDiagBusesDetail)
                     'On l'ajoute à la collection de mesures de la buse
                     oDiagnosticBuses.diagnosticBusesDetailList.Liste.Add(tmpBuseDetail)
                 End While
@@ -555,40 +490,10 @@ Public Class DiagnosticBusesManager
             bddCommande.CommandText = "SELECT * FROM DiagnosticBuses WHERE DiagnosticBuses.id=" & diagnosticbuses_id & " and idDiagnostic = '" & pidDiagnostic & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                Dim oDR As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
-                While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        Select Case tmpListProfils.GetName(tmpColId)
-                            Case "id"
-                                tmpDiagnosticBuses.id = tmpListProfils.Item(tmpColId)
-                            Case "idDiagnostic"
-                                tmpDiagnosticBuses.idDiagnostic = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idLot"
-                                tmpDiagnosticBuses.idLot = tmpListProfils.Item(tmpColId).ToString()
-                            Case "marque"
-                                tmpDiagnosticBuses.marque = tmpListProfils.Item(tmpColId).ToString()
-                            Case "nombre"
-                                tmpDiagnosticBuses.nombre = tmpListProfils.Item(tmpColId).ToString()
-                            Case "genre"
-                                tmpDiagnosticBuses.genre = tmpListProfils.Item(tmpColId).ToString()
-                            Case "calibre"
-                                tmpDiagnosticBuses.calibre = tmpListProfils.Item(tmpColId).ToString()
-                            Case "ecartTolere"
-                                tmpDiagnosticBuses.ecartTolere = tmpListProfils.Item(tmpColId).ToString()
-                            Case "couleur"
-                                tmpDiagnosticBuses.couleur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "debitMoyen"
-                                tmpDiagnosticBuses.debitMoyen = tmpListProfils.Item(tmpColId).ToString()
-                            Case "debitNominal"
-                                tmpDiagnosticBuses.debitNominal = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpDiagnosticBuses.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                        End Select
-                        tmpColId = tmpColId + 1
-                    End While
+                While oDR.Read()
+                    tmpDiagnosticBuses.FillDR(oDR)
                 End While
             Catch ex As Exception ' On intercepte l'erreur
                 MsgBox("DiagnosticBusesManager Error: " & ex.Message)

@@ -37,7 +37,7 @@ Public Class AutoTestManager
                         Dim response As Integer = objWSCrodip.SendAutoTest(obj, pInfo, puid)
                         Select Case response
                             Case 0, 2, 4
-                                obj.uid = puid
+                                obj = WSgetById(puid, "")
                                 AutoTestManager.save(obj, True)
                             Case Else
                         End Select
@@ -163,7 +163,7 @@ Public Class AutoTestManager
             oDBReader.Close()
 
         Catch ex As Exception
-            CSDebug.dispFatal("ControleregulierManager - create : " & ex.Message)
+            CSDebug.dispFatal("AutoTestManager - create : " & ex.Message)
         End Try
 
         If Not oCsdb Is Nothing Then
@@ -202,12 +202,15 @@ Public Class AutoTestManager
                 paramsQuery = ""
                 paramsQuery = paramsQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.DateControle).Substring(0, 10) & "'  "
                 paramsQuery = paramsQuery & " , CTRG_STRUCTUREID=" & pCtrlRegulier.IdStructure & "  "
+                paramsQuery = paramsQuery & " , uidstructure=" & pCtrlRegulier.uidstructure & "  "
                 paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.type & "'  "
                 paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
                 paramsQuery = paramsQuery & " , CTRG_ETAT=" & pCtrlRegulier.etat & " "
                 paramsQuery = paramsQuery & " , CTRG_NUMAGENT='" & pCtrlRegulier.NumAgent & "' "
-                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pCtrlRegulier.dateModificationAgent) & "'"
-                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pCtrlRegulier.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , aidagent='" & pCtrlRegulier.aidagent & "' "
+                paramsQuery = paramsQuery & " , uidagent='" & pCtrlRegulier.uidagent & "' "
+                paramsQuery = paramsQuery & " , uidmateriel='" & pCtrlRegulier.uidmateriel & "' "
+                paramsQuery = paramsQuery & pCtrlRegulier.getRootQuery()
 
                 ' On finalise la requete et en l'execute
                 oCsdb = New CSDb(True)
@@ -325,7 +328,7 @@ Public Class AutoTestManager
                     'Dim tmpObject As New ControleMano(pAgent)
                     Dim tmpColId As Integer = 0
                     Dim oDBCtrl As New AutoTest(pAgent)
-                    oDBCtrl.Fill(oDBReader)
+                    oDBCtrl.FillDR(oDBReader)
                     ocolReturn.Add(oDBCtrl)
                 End While
                 oDBReader.Close()

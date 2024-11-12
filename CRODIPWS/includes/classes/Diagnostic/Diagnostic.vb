@@ -408,6 +408,7 @@ Public Class Diagnostic
     '        <xsd:element name = "uidstructure" type="xsd:int" />
 
     Private _uidpulverisateur As Integer
+    <XmlIgnore()>
     Public Property uidpulverisateur() As Integer
         Get
             Return _uidpulverisateur
@@ -416,7 +417,19 @@ Public Class Diagnostic
             _uidpulverisateur = value
         End Set
     End Property
+    <XmlElement("uidpulverisateur")>
+    Public Property uidpulverisateurS() As String
+        Get
+            Return uidpulverisateur
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidpulverisateur = value
+            End If
+        End Set
+    End Property
     Private _uidexploitation As Integer
+    <XmlIgnore()>
     Public Property uidexploitation() As Integer
         Get
             Return _uidexploitation
@@ -425,7 +438,19 @@ Public Class Diagnostic
             _uidexploitation = value
         End Set
     End Property
+    <XmlElement("uidexploitation")>
+    Public Property uidexploitationS() As String
+        Get
+            Return uidexploitation
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidexploitation = value
+            End If
+        End Set
+    End Property
     Private _uidagent As Integer
+    <XmlIgnore()>
     Public Property uidagent() As Integer
         Get
             Return _uidagent
@@ -434,13 +459,36 @@ Public Class Diagnostic
             _uidagent = value
         End Set
     End Property
+    <XmlElement("uidagent")>
+    Public Property uidagentS() As String
+        Get
+            Return uidagent
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidagent = value
+            End If
+        End Set
+    End Property
     Private _uidstructure As Integer
+    <XmlIgnore()>
     Public Property uidstructure() As Integer
         Get
             Return _uidstructure
         End Get
         Set(ByVal value As Integer)
             _uidstructure = value
+        End Set
+    End Property
+    <XmlElement("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidstructure = value
+            End If
         End Set
     End Property
     ''' <summary>
@@ -1672,42 +1720,6 @@ Public Class Diagnostic
     End Property
 
     <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
     Public Property dateSynchro() As String
         Get
             Return _dateSynchro
@@ -1722,7 +1734,9 @@ Public Class Diagnostic
             Return CSDate.GetDateForWS(_dateSynchro)
         End Get
         Set(ByVal Value As String)
-            _dateSynchro = Value
+            If Not String.IsNullOrEmpty(Value) Then
+                _dateSynchro = Value
+            End If
         End Set
     End Property
 
@@ -3639,7 +3653,9 @@ Public Class Diagnostic
             End If
         End Get
         Set(ByVal Value As String)
-            dateSignRIClient = CSDate.FromCrodipString(Value)
+            If Not String.IsNullOrEmpty(Value) Then
+                dateSignRIClient = CSDate.FromCrodipString(Value)
+            End If
         End Set
     End Property
     Private _isSignRIClient As Boolean
@@ -3693,7 +3709,9 @@ Public Class Diagnostic
             End If
         End Get
         Set(ByVal Value As String)
-            dateSignRIAgent = CSDate.FromCrodipString(Value)
+            If Not String.IsNullOrEmpty(Value) Then
+                dateSignRIAgent = CSDate.FromCrodipString(Value)
+            End If
         End Set
     End Property
     Private _isSignRIAgent As Boolean
@@ -3744,7 +3762,9 @@ Public Class Diagnostic
             End If
         End Get
         Set(ByVal Value As String)
-            _DateSignCCAgent = CSDate.FromCrodipString(Value)
+            If Not String.IsNullOrEmpty(Value) Then
+                _DateSignCCAgent = CSDate.FromCrodipString(Value)
+            End If
         End Set
     End Property
     Private _SignCCClient As Byte()
@@ -3786,7 +3806,9 @@ Public Class Diagnostic
             End If
         End Get
         Set(ByVal Value As String)
-            _DateSignCCClient = CSDate.FromCrodipString(Value)
+            If Not String.IsNullOrEmpty(Value) Then
+                _DateSignCCClient = CSDate.FromCrodipString(Value)
+            End If
         End Set
     End Property
     Private _isSupprime As Boolean

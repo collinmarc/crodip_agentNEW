@@ -176,12 +176,14 @@ Public Class IdentifiantPulverisateurManager
         Try
             Dim strQuery As String
             strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle , dateModificationAgent ,  dateModificationCrodip "
+            strQuery = strQuery & ",aid,  uid, uidstructure "
             If My.Settings.GestiondesPools Then
                 strQuery = strQuery & ",idCRODIPPOOL"
             End If
 
             strQuery = strQuery & ") VALUES ("
             strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
+            strQuery = strQuery & ",'" & pIdent.aid & "'," & pIdent.uid & "," & pIdent.uidstructure
             If My.Settings.GestiondesPools Then
                 strQuery = strQuery & "'" & pIdent.idCRODIPPool & "'"
             End If
@@ -212,16 +214,16 @@ Public Class IdentifiantPulverisateurManager
         Try
             Dim strQuery As String
             strQuery = "Update identifiantPulverisateur SET "
-            strQuery = strQuery & "  idStructure =" & pIdent.idStructure & ","
-            strQuery = strQuery & "  numeroNational ='" & CSDb.secureString(pIdent.numeroNational) & "',"
-            strQuery = strQuery & "  etat = '" & CSDb.secureString(pIdent.etat) & "'" & ","
-            strQuery = strQuery & "  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'" & ","
-            strQuery = strQuery & "  libelle ='" & CSDb.secureString(pIdent.libelle) & "'" & ","
+            strQuery = strQuery & "  idStructure =" & pIdent.idStructure
+            strQuery = strQuery & ",  uidStructure =" & pIdent.uidstructure
+            strQuery = strQuery & ",  numeroNational ='" & CSDb.secureString(pIdent.numeroNational) & "'"
+            strQuery = strQuery & ",  etat = '" & CSDb.secureString(pIdent.etat) & "'"
+            strQuery = strQuery & ",  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'"
+            strQuery = strQuery & ",  libelle ='" & CSDb.secureString(pIdent.libelle) & "'"
             If Not String.IsNullOrEmpty(pIdent.idCRODIPPool) Then
-                strQuery = strQuery & "  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'" & ","
+                strQuery = strQuery & ",  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'"
             End If
-            strQuery = strQuery & "  dateModificationAgent ='" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "'" & ","
-            strQuery = strQuery & "  dateModificationCrodip = '" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
+            strQuery = strQuery & pIdent.getRootQuery()
 
             strQuery = strQuery & "WHERE id = " & pIdent.id
 

@@ -76,6 +76,7 @@ Public Class Agent
         _IsGestionnaire = False
         _IsSignElecActive = False
         _idCRODIPPool = ""
+        bTest = False
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
@@ -865,4 +866,19 @@ Public Class Agent
 
         Return bReturn
     End Function
+    Private _bTest As Boolean
+
+    ''' <summary>
+    ''' Indique si on est en mode test unitaire (Par Defaut False)
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlIgnore()>
+    Public Property bTest() As Boolean
+        Get
+            Return _bTest
+        End Get
+        Set(ByVal value As Boolean)
+            _bTest = value
+        End Set
+    End Property
 End Class

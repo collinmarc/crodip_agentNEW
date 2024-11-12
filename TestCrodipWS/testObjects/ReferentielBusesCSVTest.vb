@@ -5,7 +5,7 @@ Imports CrodipWS
 <TestClass()> Public Class ReferentielBusesCSVTest
     Inherits CRODIPTest
 
-    <TestMethod()> Public Sub TestLoad()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestLoad()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/referentiel_buse.csv"))
         Assert.AreNotEqual(oReferentiel.ods.ReferentieBuses.Count, 0)
@@ -13,18 +13,18 @@ Imports CrodipWS
         Assert.AreEqual(oReferentiel.ods.ReferentieBuses.Select(oReferentiel.ods.ReferentieBuses.TypeBuseColumn.ColumnName & "=''").Count(), 0)
     End Sub
 
-    <TestMethod()> Public Sub TestGetMarques()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestGetMarques()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/referentiel_buse.csv"))
         Assert.AreEqual(oReferentiel.ods.ReferentieBuses(0).Marque, "ALBUZ")
         Assert.AreEqual(oReferentiel.getMarques().Count(), 1)
     End Sub
-    <TestMethod()> Public Sub TestGetModeles()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestGetModeles()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/referentiel_buse.csv"))
         Assert.AreEqual(oReferentiel.getModeles("Albuz").Count(), 20)
     End Sub
-    <TestMethod()> Public Sub TestGetTypesBuse()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestGetTypesBuse()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/referentiel_buse.csv"))
         Assert.AreEqual(oReferentiel.getTypesBuse("Albuz", "AXI").Count(), 1)
@@ -35,7 +35,7 @@ Imports CrodipWS
         Assert.AreEqual(oReferentiel.getFonctionnementsBuse("Albuz", "AXI")(0), "STANDARD")
 
     End Sub
-    <TestMethod()> Public Sub TestGetCouleurBuse()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestGetCouleurBuse()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/referentiel_buse.csv"))
         Assert.AreEqual(oReferentiel.getCouleursBuseByMarqueModele("Albuz", "AXI").Count, 9)
@@ -55,7 +55,7 @@ Imports CrodipWS
     ''' Test du chagrement du fichier avec les Angles 90-120
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()> Public Sub TestAngles()
+    <TestMethod(), Ignore("Mq Fichier reference")> Public Sub TestAngles()
         Dim oReferentiel As New ReferentielBusesCSV()
         Assert.IsTrue(oReferentiel.load("./testFiles/REFERENTIEL_BUSEAngles.csv"))
         Assert.AreEqual(1, oReferentiel.getAnglesBuseByMarqueModele("Albuz", "AXI").Count)

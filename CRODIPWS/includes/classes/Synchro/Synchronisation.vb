@@ -492,8 +492,12 @@ Public Class Synchronisation
             Select Case response
                 Case -1 ' ERROR
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSPulverisateur) - Erreur Locale")
-                Case 0, 2 ' OK
-                    PulverisateurManager.setSynchro(pPulverisateur)
+                Case 0, 2, 4 ' OK
+                    PulverisateurManager.save(UpdatedObject, "0", m_Agent, True)
+                    'Mise à jour des Pulvé et des diagnostic
+                    PulverisateurManager.UpdateExploitDiag(UpdatedObject)
+
+                    'Ajout du pulvé dand la liste des element synchronisé
                     Dim oElement As SynchronisationElmt
                     oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtPulverisateur.getLabelGet(), m_SynchroBoolean)
                     oElement.IdentifiantChaine = pPulverisateur.id
@@ -517,8 +521,8 @@ Public Class Synchronisation
         Select Case response
             Case -1 ' ERROR
                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
-            Case 0, 2 ' OK
-                ExploitationTOPulverisateurManager.setSynchro(pExploitationTOPulverisateur)
+            Case 0, 2, 4 ' OK
+                ExploitationTOPulverisateurManager.save(pExploitationTOPulverisateur, m_Agent, True)
                 Dim oElement As SynchronisationElmt
                 oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitationToPulverisateur.getLabelGet(), m_SynchroBoolean)
                 oElement.IdentifiantChaine = pExploitationTOPulverisateur.id
@@ -543,6 +547,8 @@ Public Class Synchronisation
                     CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitation) - Erreur Locale")
                 Case 2, 4 ' OK
                     ExploitationManager.save(oReturn, m_Agent, True)
+                    'Mise à jour des Pulvé et des diagnostic
+                    ExploitationManager.UpdatePulveDiag(oReturn)
                     'Ajout de l'exploitation dans la liste des elements Synchronisés 
                     Dim oElement As SynchronisationElmt
                     oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitation.getLabelGet(), m_SynchroBoolean)
@@ -667,7 +673,7 @@ Public Class Synchronisation
             Notice("Diagnostic " & pDiag.id)
 
             Dim bSynchroDiagOK As Boolean = False
-            Dim UpdatedObject As New Diagnostic
+            Dim oreturnDiag As New Diagnostic
 
             'Synchro des Rapports d'inspection et Synthèse des mesures
             '=========================================================
@@ -681,7 +687,7 @@ Public Class Synchronisation
                 pDiag.diagnosticItemsLst = Nothing
                 Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
                 pDiag.diagnosticBusesList = Nothing
-                Dim response As Integer = DiagnosticManager.WSSend(pDiag, UpdatedObject)
+                Dim response As Integer = DiagnosticManager.WSSend(pDiag, oreturnDiag)
                 'Après Synchro on replace les propriétés
                 pDiag.diagnosticItemsLst = oDiagItemList
                 pDiag.diagnosticBusesList = oDiagBusesList
@@ -689,8 +695,27 @@ Public Class Synchronisation
                 Select Case response
                     Case -1 ' ERROR
                         CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSDiagnostic) - Erreur Locale")
-                    Case 0, 2 ' OK
+                    Case 0, 2, 4 ' OK
                         bSynchroDiagOK = True
+                        pDiag.uid = oreturnDiag.uid
+                        'transfert des uids dans les élements constitutifs
+                        For Each oDiagItem In pDiag.diagnosticItemsLst.Liste
+                            oDiagItem.uiddiagnostic = oreturnDiag.uid
+                        Next
+                        For Each oDiagBuse In pDiag.diagnosticBusesList.Liste
+                            oDiagBuse.uiddiagnostic = oreturnDiag.uid
+                            For Each oDiagBuseDetail In oDiagBuse.diagnosticBusesDetailList.Liste
+                                oDiagBuseDetail.uiddiagnostic = oreturnDiag.uid
+                            Next
+                        Next
+                        For Each oDiag542 In pDiag.diagnosticMano542List.Liste
+                            oDiag542.uiddiagnostic = oreturnDiag.uid
+                        Next
+                        For Each oDiag833 In pDiag.diagnosticTroncons833.Liste
+                            oDiag833.uiddiagnostic = oreturnDiag.uid
+                        Next
+                        'La Sauvegarde se fera après les Send
+                        'DiagnosticManager.save(oreturnDiag, True)
                         'si le Diag est OK on passe au elements constitutifs
                         '====================================================
                         ' Synchro des items du diag courant
@@ -851,9 +876,11 @@ Public Class Synchronisation
                         bSynchroDiagOK = False
                 End Select
             End If
-            'Marquage  du Diag 
+            'Sauvegarde du diag (il faut rester sur le pDiag, car le oReturnDiag n'a pas les Diagtitems, ...)
             If bSynchroDiagOK Then
-                DiagnosticManager.setSynchro(pDiag)
+                pDiag.uid = oreturnDiag.uid
+                pDiag.dateModificationCrodip = oreturnDiag.dateModificationCrodip
+                DiagnosticManager.save(pDiag, True)
             End If
 
             bReturn = True
@@ -1061,8 +1088,8 @@ Public Class Synchronisation
                     dtSRV = Date.Now
                 End Try
             End Try
-            'Ajout de 10 Secondes 
-            dtSRV.AddSeconds(10)
+            'Ajout de 1 Secondes 
+            dtSRV.AddSeconds(1)
             'Maj des agents
             Dim oList As AgentList
             oList = AgentManager.getAgentList(m_Agent.uidStructure)

@@ -74,10 +74,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public ReadOnly Property GestiondesPools() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property GestiondesPools() As Boolean
             Get
-                Return CType(Me("GestiondesPools"),String)
+                Return CType(Me("GestiondesPools"),Boolean)
             End Get
         End Property
         

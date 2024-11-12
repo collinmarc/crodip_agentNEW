@@ -63,7 +63,7 @@ Public Class DiagnosticBusesDetailTest
         oDiagBuse = New DiagnosticBusesDetail
 
         oDiagBuse.idDiagnostic = oDiag.id
-        oDiagBuse.idBuse = 100
+        oDiagBuse.numBuse = 1
         oDiagBuse.idLot = "1"
         oDiagBuse.debit = "debit"
         oDiagBuse.ecart = "ecart"
@@ -74,13 +74,13 @@ Public Class DiagnosticBusesDetailTest
 
         Assert.AreEqual(oDiagBuse.id, iD)
         Assert.AreEqual(oDiagBuse.idDiagnostic, oDiag.id)
-        Assert.AreEqual(oDiagBuse.idBuse, 100)
+        Assert.AreEqual(oDiagBuse.numBuse, 1)
         Assert.AreEqual(oDiagBuse.idLot, "1")
         Assert.AreEqual(oDiagBuse.debit, "debit")
         Assert.AreEqual(oDiagBuse.ecart, "ecart")
 
         'Maj de l'objet
-        oDiagBuse.idBuse = 101
+        oDiagBuse.numBuse = 2
         oDiagBuse.idLot = "2"
         oDiagBuse.debit = "debit2"
         oDiagBuse.ecart = "ecart2"
@@ -89,7 +89,7 @@ Public Class DiagnosticBusesDetailTest
 
         Assert.AreEqual(oDiagBuse.id, iD)
         Assert.AreEqual(oDiagBuse.idDiagnostic, oDiag.id)
-        Assert.AreEqual(oDiagBuse.idBuse, 101)
+        Assert.AreEqual(oDiagBuse.numBuse, 2)
         Assert.AreEqual(oDiagBuse.idLot, "2")
         Assert.AreEqual(oDiagBuse.debit, "debit2")
         Assert.AreEqual(oDiagBuse.ecart, "ecart2")

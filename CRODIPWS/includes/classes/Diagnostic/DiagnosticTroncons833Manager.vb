@@ -40,6 +40,11 @@ Public Class DiagnosticTroncons833Manager
         Catch ex As Exception
             CSDebug.dispError("DiagnosticTroncons833Manager::WSGetList : ", ex)
         End Try
+        Dim lst As List(Of DiagnosticTroncons833)
+        lst = objDiagnosticTroncons833List.Liste.OrderBy(Function(d)
+                                                             Return d.idPression
+                                                         End Function).ToList
+        objDiagnosticTroncons833List.Liste = lst
         Return objDiagnosticTroncons833List
     End Function
 
@@ -77,30 +82,11 @@ Public Class DiagnosticTroncons833Manager
         Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim bddCommande As DbCommand
-        Dim oDR As DbDataReader
-        Dim nEnr As Integer
         Dim bReturn As Boolean
         Try
             bddCommande = pCSDB.getConnection().CreateCommand()
-            'Test de l'existence de l'élement
-            bddCommande.CommandText = "SELECT count(*) FROM DiagnosticTroncons833 WHERE id = " & objDiagnosticTroncons833.id & " and idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
-            oDR = bddCommande.ExecuteReader()
-            If oDR.HasRows Then
-                oDR.Read()
-                Try
-                    nEnr = CType(oDR.GetValue(0), Integer)
-                Catch ex As Exception
-                    nEnr = 0
-                End Try
-            End If
-            oDR.Close()
-            If Not bSynhcro Then
-                ' Mise a jour de la date de derniere modification
-                objDiagnosticTroncons833.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-            End If
-            If nEnr = 0 Then
-                ' Initialisation de la requete
-                Dim paramsQueryColomuns As String = "`idDiagnostic`"
+            ' Initialisation de la requete
+            Dim paramsQueryColomuns As String = "`idDiagnostic`"
                 Dim paramsQuery As String = "'" & objDiagnosticTroncons833.idDiagnostic & "'"
 
 
@@ -116,21 +102,32 @@ Public Class DiagnosticTroncons833Manager
                     paramsQueryColomuns = paramsQueryColomuns & " , `pressionSortie`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.pressionSortie & "'"
                 End If
-                If objDiagnosticTroncons833.dateModificationAgent <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
-                End If
-                If objDiagnosticTroncons833.dateModificationCrodip <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
-                End If
-                If Not String.IsNullOrEmpty(objDiagnosticTroncons833.ManocId) Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , manoCId"
-                    paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.ManocId & "'"
-                End If
+            If Not String.IsNullOrEmpty(objDiagnosticTroncons833.ManocId) Then
+                paramsQueryColomuns = paramsQueryColomuns & " , manoCId"
+                paramsQuery = paramsQuery & " , '" & objDiagnosticTroncons833.ManocId & "'"
+            End If
 
-                ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "INSERT INTO `DiagnosticTroncons833` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
+            paramsQueryColomuns = paramsQueryColomuns & " , uiddiagnostic "
+            paramsQuery = paramsQuery & "," & objDiagnosticTroncons833.uiddiagnostic
+            paramsQueryColomuns = paramsQueryColomuns & " , aiddiagnostic "
+            paramsQuery = paramsQuery & ",'" & objDiagnosticTroncons833.aiddiagnostic & "'"
+            paramsQueryColomuns = paramsQueryColomuns & " , uid "
+            paramsQuery = paramsQuery & "," & objDiagnosticTroncons833.uid
+            paramsQueryColomuns = paramsQueryColomuns & " , aid "
+            paramsQuery = paramsQuery & ",'" & objDiagnosticTroncons833.aid & "'"
+            If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationCrodipS) Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip "
+                paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((objDiagnosticTroncons833.dateModificationCrodip)) & "'"
+            End If
+            If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationAgentS) Then
+                paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent "
+                paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((objDiagnosticTroncons833.dateModificationAgent)) & "'"
+            End If
+
+
+
+            ' On finalise la requete et en l'execute
+            bddCommande.CommandText = "INSERT INTO `DiagnosticTroncons833` (" & paramsQueryColomuns & ") VALUES (" & paramsQuery & ")"
                 bddCommande.ExecuteNonQuery()
                 If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
                     bddCommande.CommandText = "SELECT last_insert_rowid() from DiagnosticTroncons833"
@@ -139,31 +136,12 @@ Public Class DiagnosticTroncons833Manager
                 End If
 
                 Dim id As Integer = CInt(bddCommande.ExecuteScalar())
-                objDiagnosticTroncons833.id = id
-            Else
-
-                'Mise à jour de l'enregistrement
-                Dim paramQuery As String
-
-                paramQuery = "id=" & objDiagnosticTroncons833.id
-                paramQuery = paramQuery & ",idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
-                paramQuery = paramQuery & ",idPression = '" & objDiagnosticTroncons833.idPression & "'"
-                paramQuery = paramQuery & ",idColumn = '" & objDiagnosticTroncons833.idColumn & "'"
-                paramQuery = paramQuery & ",manoCId = '" & objDiagnosticTroncons833.ManocId & "'"
-                paramQuery = paramQuery & ",pressionSortie = '" & objDiagnosticTroncons833.pressionSortie & "'"
-                paramQuery = paramQuery & ",dateModificationAgent = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationAgent) & "'"
-                If Not String.IsNullOrEmpty(objDiagnosticTroncons833.dateModificationCrodip) Then
-                    paramQuery = paramQuery & ",dateModificationCrodip = '" & CSDate.ToCRODIPString(objDiagnosticTroncons833.dateModificationCrodip) & "'"
-                End If
-
-                bddCommande.CommandText = "UPDATE DiagnosticTroncons833 SET " & paramQuery & " WHERE id = " & objDiagnosticTroncons833.id & " and idDiagnostic = '" & objDiagnosticTroncons833.idDiagnostic & "'"
-                bddCommande.ExecuteNonQuery()
-
-            End If
+            objDiagnosticTroncons833.id = id
+            CSDb.ExecuteSQL("UPDATE DiagnosticTroncons833 Set aid = id where id = " & id)
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticTroncons833Manager::save() : " & ex.Message.ToString)
+            CSDebug.dispError("DiagnosticTroncons833Manager::save() : ", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -197,13 +175,7 @@ Public Class DiagnosticTroncons833Manager
                 ' Puis on les parcours
                 While tmpListProfils.Read()
                     ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpDiagnosticTroncons833.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
-                    End While
+                    tmpDiagnosticTroncons833.FillDR(tmpListProfils)
                 End While
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("DiagnosticTroncons833Manager::getDiagnosticTroncons833ById : " & ex.Message)
@@ -229,7 +201,6 @@ Public Class DiagnosticTroncons833Manager
         Try
             'Recupération des infos de Troncons833
             pDiagnostic.diagnosticTroncons833.Liste.Clear()
-            Dim nColId As Integer
             Dim oDR As DbDataReader
             Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande3.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE idDiagnostic='" & pDiagnostic.id & "' ORDER BY id"
@@ -237,13 +208,7 @@ Public Class DiagnosticTroncons833Manager
             Dim oDiagnosticTroncons833 As DiagnosticTroncons833
             While oDR.Read()
                 oDiagnosticTroncons833 = New DiagnosticTroncons833()
-                nColId = 0
-                While nColId < oDR.FieldCount()
-                    If Not oDR.IsDBNull(nColId) Then
-                        oDiagnosticTroncons833.Fill(oDR.GetName(nColId), oDR.GetValue(nColId))
-                    End If
-                    nColId = nColId + 1
-                End While
+                oDiagnosticTroncons833.FillDR(oDR)
                 pDiagnostic.diagnosticTroncons833.Liste.Add(oDiagnosticTroncons833)
             End While
             oDR.Close()

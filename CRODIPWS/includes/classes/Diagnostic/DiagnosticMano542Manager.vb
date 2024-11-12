@@ -40,6 +40,11 @@ Public Class DiagnosticMano542Manager
         Catch ex As Exception
             CSDebug.dispError("DiagnosticMano542Manager::getWSDiagnosticMano542ById : " & ex.Message)
         End Try
+        Dim lst As List(Of DiagnosticMano542)
+        lst = objDiagnosticMano542List.Liste.OrderBy(Function(d)
+                                                         Return d.pressionControled
+                                                     End Function).ToList
+        objDiagnosticMano542List.Liste = lst
         Return objDiagnosticMano542List
     End Function
 
@@ -116,7 +121,6 @@ Public Class DiagnosticMano542Manager
                 Dim paramsQueryColomuns As String = "`idDiagnostic`"
                 Dim paramsQuery As String = "'" & objDiagnosticMano542.idDiagnostic & "'"
 
-
                 If Not objDiagnosticMano542.pressionPulve Is Nothing And objDiagnosticMano542.pressionPulve <> "" Then
                     paramsQueryColomuns = paramsQueryColomuns & " , `pressionPulve`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticMano542.pressionPulve & "'"
@@ -125,13 +129,22 @@ Public Class DiagnosticMano542Manager
                     paramsQueryColomuns = paramsQueryColomuns & " , `pressionControle`"
                     paramsQuery = paramsQuery & " , '" & objDiagnosticMano542.pressionControle & "'"
                 End If
-                If Not objDiagnosticMano542.dateModificationAgent Is Nothing And objDiagnosticMano542.dateModificationAgent <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationAgent`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticMano542.dateModificationAgent) & "'"
+
+                paramsQueryColomuns = paramsQueryColomuns & " , uiddiagnostic "
+                paramsQuery = paramsQuery & "," & objDiagnosticMano542.uiddiagnostic
+                paramsQueryColomuns = paramsQueryColomuns & " , aiddiagnostic "
+                paramsQuery = paramsQuery & ",'" & objDiagnosticMano542.aiddiagnostic & "'"
+                paramsQueryColomuns = paramsQueryColomuns & " , uid "
+                paramsQuery = paramsQuery & "," & objDiagnosticMano542.uid
+                paramsQueryColomuns = paramsQueryColomuns & " , aid "
+                paramsQuery = paramsQuery & ",'" & objDiagnosticMano542.aid & "'"
+                If Not String.IsNullOrEmpty(objDiagnosticMano542.dateModificationCrodipS) Then
+                    paramsQueryColomuns = paramsQueryColomuns & " , dateModificationCrodip "
+                    paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((objDiagnosticMano542.dateModificationCrodip)) & "'"
                 End If
-                If Not objDiagnosticMano542.dateModificationCrodip Is Nothing And objDiagnosticMano542.dateModificationCrodip <> "" Then
-                    paramsQueryColomuns = paramsQueryColomuns & " , `dateModificationCrodip`"
-                    paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objDiagnosticMano542.dateModificationCrodip) & "'"
+                If Not String.IsNullOrEmpty(objDiagnosticMano542.dateModificationAgentS) Then
+                    paramsQueryColomuns = paramsQueryColomuns & " , dateModificationAgent "
+                    paramsQuery = paramsQuery & ",'" & CSDate.ToCRODIPString((objDiagnosticMano542.dateModificationAgent)) & "'"
                 End If
 
                 ' On finalise la requete et en l'execute
@@ -145,6 +158,9 @@ Public Class DiagnosticMano542Manager
                 End If
                 Dim nId As Integer = bddCommande.ExecuteScalar()
                 objDiagnosticMano542.id = nId
+                bddCommande.CommandText = "UPDATE DiagnosticMano542 Set aid = id where id = " & nId
+                bddCommande.ExecuteNonQuery()
+
             Else
                 'Mise à jour de l'enregistrement
                 Dim paramQuery As String
@@ -197,14 +213,7 @@ Public Class DiagnosticMano542Manager
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpDiagnosticMano542.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
-                    End While
+                    tmpDiagnosticMano542.FillDR(tmpListProfils)
                 End While
             Catch ex As Exception ' On intercepte l'erreur
                 MsgBox("DiagnosticMano542Manager::getDiagnosticMano542ById : " & ex.Message)
@@ -231,13 +240,7 @@ Public Class DiagnosticMano542Manager
             Dim oDiagnosticMano542 As DiagnosticMano542
             While oDR.Read()
                 oDiagnosticMano542 = New DiagnosticMano542()
-                nColId = 0
-                While nColId < oDR.FieldCount()
-                    If Not oDR.IsDBNull(nColId) Then
-                        oDiagnosticMano542.Fill(oDR.GetName(nColId), oDR.GetValue(nColId))
-                    End If
-                    nColId = nColId + 1
-                End While
+                oDiagnosticMano542.FillDR(oDR)
                 pDiagnostic.diagnosticMano542List.Liste.Add(oDiagnosticMano542)
             End While
             oDR.Close()

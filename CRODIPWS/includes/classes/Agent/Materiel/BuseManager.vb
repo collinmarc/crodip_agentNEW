@@ -161,7 +161,8 @@ Public Class BuseManager
                     paramsQuery = paramsQuery & " , idCrodip='" & objBuseEtalon.idCrodip & "'"
 
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.uidstructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.idstructure & ""
+                paramsQuery = paramsQuery & " , uidStructure=" & objBuseEtalon.uidstructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
                     paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
                 End If
@@ -189,6 +190,8 @@ Public Class BuseManager
                 If objBuseEtalon.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.DateActivation) & "'"
                 End If
+
+                paramsQuery = paramsQuery & objBuseEtalon.getRootQuery()
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE numeroNational='" & objBuseEtalon.numeroNational & "'"
@@ -242,14 +245,7 @@ Public Class BuseManager
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpBuse.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
-                    End While
+                    tmpBuse.FillDR(tmpListProfils)
                 End While
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("BuseManager Error: " & ex.Message)

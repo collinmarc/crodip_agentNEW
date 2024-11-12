@@ -73,6 +73,7 @@ Public Class SynchronisationTest
         Dim oPulve As Pulverisateur = createPulverisateur(oExploit)
         PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
         Dim UpdatedObject As Object = Nothing
+        Dim UpdatedObjectE2P As Object = Nothing
         Dim oExploitToPulve As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
         Dim response As Integer
 
@@ -83,7 +84,7 @@ Public Class SynchronisationTest
         response = PulverisateurManager.WSSend(oPulve, oReturn)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante Pulve NOK=>" & response)
 
-        response = ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdatedObject)
+        response = ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdatedObjectE2P)
         Assert.IsTrue(response = 0 Or response = 2, "Synhcro Ascendante NOK=>" & response)
 
         Dim oExploitToPulve2 As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.WSgetById(oExploitToPulve.uid, oExploitToPulve.aid)
@@ -99,7 +100,7 @@ Public Class SynchronisationTest
         Assert.AreEqual("GetDocument", oElmt.Type)
         oElmt.IdentifiantChaine = "/_parametres/cr_RapportInspection.rpt"
         oElmt.IdentifiantEntier = 0
-        oElmt.ValeurAuxiliaire = "http://admin-pp.crodip.fr/depots/_parametres/cr_RapportInspection.rpt"
+        oElmt.ValeurAuxiliaire = "http://admin-pp.crodip.net/depots/_parametres/cr_RapportInspection.rpt"
         If File.Exists("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt") Then
             File.Delete("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         End If
@@ -108,7 +109,7 @@ Public Class SynchronisationTest
         Dim oFileInfo As New FileInfo("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.net/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.Type)
         If File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv") Then
             File.Delete("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
@@ -127,7 +128,7 @@ Public Class SynchronisationTest
         Assert.AreEqual("GetDocument", oElmt.Type)
         oElmt.IdentifiantChaine = "/_parametres/cr_RapportInspection.rpt"
         oElmt.IdentifiantEntier = 0
-        oElmt.ValeurAuxiliaire = "http://admin-pp.crodip.fr/depots/_parametres/cr_RapportInspection.rpt"
+        oElmt.ValeurAuxiliaire = "http://admin-pp.crodip.net/depots/_parametres/cr_RapportInspection.rpt"
         If File.Exists("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt") Then
             File.Delete("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         End If
@@ -136,7 +137,7 @@ Public Class SynchronisationTest
         Dim oFileInfo As New FileInfo("ModuleDocumentaire/_parametres/cr_RapportInspection.rpt")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv", "http://admin-pp.crodip.net/depots/_parametres/REFERENTIEL_BUSE.csv", oSynchro.m_SynchroBoolean)
         Assert.AreEqual("GetDocument", oElmt.Type)
         If File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv") Then
             File.Delete("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
@@ -146,7 +147,7 @@ Public Class SynchronisationTest
         oFileInfo = New FileInfo("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv")
         Assert.IsTrue(oFileInfo.Length > 1000)
 
-        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv.DLT", "http://admin-pp.crodip.fr/depots/_parametres/REFERENTIEL_BUSE.csv.DLT", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/REFERENTIEL_BUSE.csv.DLT", "http://admin-pp.crodip.net/depots/_parametres/REFERENTIEL_BUSE.csv.DLT", oSynchro.m_SynchroBoolean)
         Assert.IsTrue(File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv"))
         oElmt.SynchroDesc(m_oAgent)
         Assert.IsFalse(File.Exists("ModuleDocumentaire/_parametres/REFERENTIEL_BUSE.csv"))
@@ -158,7 +159,7 @@ Public Class SynchronisationTest
         oSW.Close()
         Assert.IsTrue(File.Exists("ModuleDocumentaire/_parametres/_reptemp/FileToTest.txt"))
 
-        oElmt = New SynchronisationElmtDocument("/_parametres/_reptemp.DLT/FileToTest.txt", "http://admin-pp.crodip.fr/depots/_parametres/_reptemp.DLT/FileToTest.txt", oSynchro.m_SynchroBoolean)
+        oElmt = New SynchronisationElmtDocument("/_parametres/_reptemp.DLT/FileToTest.txt", "http://admin-pp.crodip.net/depots/_parametres/_reptemp.DLT/FileToTest.txt", oSynchro.m_SynchroBoolean)
         Assert.IsTrue(Directory.Exists("ModuleDocumentaire/_parametres/_reptemp"))
         oElmt.SynchroDesc(m_oAgent)
         Assert.IsFalse(Directory.Exists("ModuleDocumentaire/_parametres/_reptemp"))

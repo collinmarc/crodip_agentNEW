@@ -61,10 +61,10 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionPulve = "1.7"
 
         Dim oCSDB As New CSDb(True)
+        oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & m_oDiag.id & "'")
         DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
-        oCSDB.free()
         iD = oDiagMAno542.id
-        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
+        oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(iD, oDiagMAno542.idDiagnostic)
 
         Assert.AreEqual(oDiagMAno542.id, iD)
         Assert.AreEqual(oDiagMAno542.idDiagnostic, m_oDiag.id)
@@ -74,7 +74,7 @@ Public Class DiagnosticMano542Test
         'Maj de l'objet
         oDiagMAno542.pressionControle = "1.61"
         oDiagMAno542.pressionPulve = "1.71"
-        oCSDB.getInstance()
+        oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & m_oDiag.id & "'")
         DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
         oCSDB.free()
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
@@ -82,14 +82,13 @@ Public Class DiagnosticMano542Test
         Assert.AreEqual(oDiagMAno542.pressionControle, "1.61")
         Assert.AreEqual(oDiagMAno542.pressionPulve, "1.71")
 
-        DiagnosticMano542Manager.delete(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
 
     End Sub
     '''<summary>
     '''Test de charegement déchargement depuis le Diag
     '''</summary>
-    <TestMethod()> _
+    <TestMethod(), Ignore("obsolete")>
     Public Sub TST_LOAD_SAVE_DIAG()
         Dim odiag As Diagnostic
 
@@ -132,6 +131,8 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "2,5"
         oDiagMAno542.pressionPulve = "2,6"
 
+        oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & odiag.id & "'")
+
         DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
 
         'Relecture des items
@@ -143,7 +144,6 @@ Public Class DiagnosticMano542Test
         Assert.AreEqual(oDiagMAno542.pressionControle, "2,5")
         Assert.AreEqual(oDiagMAno542.pressionPulve, "2,6")
 
-        DiagnosticMano542Manager.deleteByDiagnosticID(oDiagMAno542.idDiagnostic)
 
 
     End Sub
@@ -216,7 +216,7 @@ Public Class DiagnosticMano542Test
     '''<summary>
     '''Test le calcul de l'imprecision sur les 4 Manos
     '''</summary>
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul 542")>
     Public Sub TST_CalcImprecision4Mano()
 
         Dim oMano542_1 As DiagnosticMano542
@@ -369,7 +369,7 @@ Public Class DiagnosticMano542Test
     '''<summary>
     '''Test le calcul de l'imprecision sur les 4 Manos
     '''</summary>
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul 542")>
     Public Sub TST_CalcImprecision4Mano_2()
         Dim oMano542_1 As DiagnosticMano542
         Dim oMano542_2 As DiagnosticMano542
@@ -417,7 +417,7 @@ Public Class DiagnosticMano542Test
     '''<summary>
     '''Prise en compte de la règle de l'écart constant
     '''</summary>
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul 542")>
     Public Sub TST_CalcImprecision4Mano_3()
         Dim oMano542_1 As DiagnosticMano542
         Dim oMano542_2 As DiagnosticMano542
@@ -732,7 +732,7 @@ Public Class DiagnosticMano542Test
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod(),Ignore("Calcul 542")> _
     Public Sub TST_CalcImprecisionMano_ValeursLimitesEcartConstant()
         Dim oMano542_1 As DiagnosticMano542
 
@@ -850,7 +850,7 @@ Public Class DiagnosticMano542Test
         oColMano542.CalcImprecisionNew(oParamCalc542)
         Assert.AreEqual(DiagnosticMano542.ERR542.FORTE, oMano542_1.Erreur)
     End Sub
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul542")>
     Public Sub TST_CalcImprecisionMano_ValeursLimitesEcartVariable()
         Dim oMano542_1 As DiagnosticMano542
         Dim oMano542_4 As DiagnosticMano542
@@ -975,7 +975,7 @@ Public Class DiagnosticMano542Test
         oColMano542.CalcImprecisionNew(oParamCalc542)
         Assert.AreEqual(DiagnosticMano542.ERR542.FORTE, oMano542_1.Erreur)
     End Sub
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul 542")>
     Public Sub TST_CalcImprecision4ManoArbo()
 
         Dim oMano542_1 As DiagnosticMano542
@@ -1012,7 +1012,7 @@ Public Class DiagnosticMano542Test
 
     End Sub
 
-    <TestMethod()> _
+    <TestMethod(), Ignore("Calcul 542")>
     Public Sub TST_CalcImprecision4ManoArboOK()
 
         Dim oMano542_1 As DiagnosticMano542

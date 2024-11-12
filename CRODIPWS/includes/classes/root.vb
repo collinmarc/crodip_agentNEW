@@ -1,5 +1,5 @@
 ﻿Imports System.Xml.Serialization
-<XmlInclude(GetType(Materiel))>
+<Serializable(), XmlInclude(GetType(Materiel))>
 Public Class root
     Private _uid As Integer
     Public Property uid() As Integer
@@ -109,9 +109,13 @@ Public Class root
                 Case "aid".Trim().ToUpper()
                     Me.aid = pcolValue.ToString
                 Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
+                    If Not String.IsNullOrEmpty(pcolValue) And pcolValue <> "0000-00-00 00:00:00" Then
+                        Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue) 'Public dateModificationAgent As String
+                    End If
                 Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationCrodip As String
+                    If Not String.IsNullOrEmpty(pcolValue) And pcolValue <> "0000-00-00 00:00:00" Then
+                        Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue) 'Public dateModificationCrodip As String
+                    End If
                 Case Else
                     bReturn = False
             End Select

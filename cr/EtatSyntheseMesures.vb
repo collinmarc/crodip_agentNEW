@@ -145,7 +145,7 @@ Public Class EtatSyntheseMesures
                     If IsNumeric(oDetail.ecart) Then
                         dEcart = CDec(oDetail.ecart)
                     End If
-                    m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.idBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id, EcartTolere:=EcartTolere)
+                    m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.numBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id, EcartTolere:=EcartTolere)
                 Next
 
             Next
@@ -164,7 +164,10 @@ Public Class EtatSyntheseMesures
             Dim lstRelevePression As New List(Of RelevePression833)
             Dim oReleve As RelevePression833
             For p As Integer = 1 To 4
-                Dim pressionPulve As Decimal = m_oDiag.diagnosticMano542List.Liste(p - 1).pressionPulved
+                Dim pressionPulve As Decimal = 0
+                If m_oDiag.diagnosticMano542List.Liste.Count >= p Then
+                    pressionPulve = m_oDiag.diagnosticMano542List.Liste(p - 1).pressionPulved
+                End If
                 '=========================================================================
                 'Création des objets relevés de pressions à partir des données chargées 
                 '=========================================================================
@@ -426,7 +429,7 @@ Public Class EtatSyntheseMesures
             bReturn = True
 
         Catch ex As Exception
-            CSDebug.dispError("EtatSytheseMesures.GenereDS ERR" & ex.Message)
+            CSDebug.dispError("EtatSytheseMesures.GenereDS ERR", ex)
             bReturn = False
         End Try
         Return bReturn

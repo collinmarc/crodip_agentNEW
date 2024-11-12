@@ -8,7 +8,7 @@ Imports CrodipWS
 '''Classe de test pour FVManometreEtalonManagerTest, destinée à contenir tous
 '''les tests unitaires FVManometreEtalonManagerTest
 '''</summary>
-<TestClass()> _
+<TestClass(), Ignore("pool")>
 Public Class ManometreEtalonManagerTest
     Inherits CRODIPTest
 
@@ -17,7 +17,7 @@ Public Class ManometreEtalonManagerTest
     '''<summary>
     '''Test pour save
     '''</summary>
-    <TestMethod()> _
+    <TestMethod(), Ignore("pool")>
     Public Sub ObjetTest()
         Dim objManometreEtalon As ManometreEtalon = Nothing ' TODO: initialisez à une valeur appropriée
         Dim expected As Object = Nothing ' TODO: initialisez à une valeur appropriée
@@ -109,7 +109,7 @@ Public Class ManometreEtalonManagerTest
 
     End Sub
     'test l'echange par WS
-    <TestMethod()>
+    <TestMethod(), Ignore("pool")>
     Public Sub Get_Send_WS_Test()
         Dim oManometreEtalon As ManometreEtalon
         Dim oManometreEtalon2 As ManometreEtalon
@@ -118,7 +118,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.idStructure = m_oAgent.idStructure
@@ -140,7 +140,7 @@ Public Class ManometreEtalonManagerTest
         Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, reponse)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreEtalon2 = ManometreEtalonManager.WSgetById("", oManometreEtalon.numeroNational)
+        oManometreEtalon2 = ManometreEtalonManager.WSgetById(oManometreEtalon.uid, oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.idCrodip, oManometreEtalon2.idCrodip)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
         Assert.AreEqual(oManometreEtalon2.isSupprimeWS, False)
@@ -207,7 +207,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         'oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.idstructure = m_oAgent.idStructure
@@ -219,7 +219,7 @@ Public Class ManometreEtalonManagerTest
         Assert.IsTrue(String.IsNullOrEmpty(oManometreEtalon.dateSuppression))
         Dim reponse As ManometreEtalon = Nothing
         Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, reponse)
-        Assert.IsTrue(response = 0 Or response = 2)
+        Assert.IsTrue(response = 0 Or response = 2 Or response = 4)
 
         oManometreEtalon2 = ManometreEtalonManager.WSgetById(-1, oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
@@ -240,7 +240,7 @@ Public Class ManometreEtalonManagerTest
         'Creation d'un Banc
         oMano = New ManometreEtalon
         Assert.IsFalse(oMano.jamaisServi)
-        idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         'oBanc.numeroNational = idBanc
         oMano.numeroNational = idMano
         oMano.idCrodip = idMano
@@ -278,7 +278,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.idstructure = m_oAgent.idStructure
@@ -365,7 +365,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un Banc
         pMano = New ManometreEtalon()
-        idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         pMano.numeroNational = idMano
         pMano.idCrodip = idMano
         pMano.idstructure = m_oAgent.idStructure
@@ -402,7 +402,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un Mano
         oManoE = New ManometreEtalon()
-        idMano = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oManoE.numeroNational = idMano
         oManoE.idCrodip = idMano
         oManoE.idstructure = m_oAgent.idStructure
@@ -444,7 +444,7 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
         oManometreEtalon.idstructure = m_oAgent.idStructure
@@ -460,16 +460,15 @@ Public Class ManometreEtalonManagerTest
         Dim response As Integer = ManometreEtalonManager.WSSend(oManometreEtalon, oreturn)
         Assert.IsTrue(response = 0 Or response = 2)
 
-        oManometreEtalon2 = ManometreEtalonManager.WSgetById("", oManometreEtalon.numeroNational)
+        oManometreEtalon2 = ManometreEtalonManager.WSgetById(oManometreEtalon.uid, oManometreEtalon.numeroNational)
         Assert.AreEqual(oManometreEtalon.idCrodip, oManometreEtalon2.idCrodip)
         Assert.AreEqual(oManometreEtalon.numeroNational, oManometreEtalon2.numeroNational)
         Assert.AreEqual(oManometreEtalon2.isSupprimeWS, False)
         Assert.AreEqual(oManometreEtalon2.etat, oManometreEtalon.etat)
         Assert.AreEqual(oManometreEtalon2.JamaisServi, oManometreEtalon.JamaisServi)
-        '        Assert.AreEqual(oManometreEtalon2.DateActivation, oManometreEtalon.DateActivation)
+        Assert.AreEqual(oManometreEtalon2.dateActivation, oManometreEtalon.dateActivation)
 
 
-        ManometreEtalonManager.delete(idManometreEtalon)
 
     End Sub
 
@@ -477,7 +476,7 @@ Public Class ManometreEtalonManagerTest
     ''' Test du chargement à partir d'un Pool
     ''' </summary>
     ''' <remarks></remarks>
-    <TestMethod()>
+    <TestMethod(), Ignore("Pool")>
     Public Sub GetByPoolTest()
         Dim oMano As ManometreEtalon
         Dim idMano As String

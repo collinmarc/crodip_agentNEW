@@ -357,35 +357,31 @@ Public Class DiagnosticMano542
             _ERR = Value
         End Set
     End Property
-    Public Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
-        Dim bReturn As Boolean
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
+        Dim bReturn As Boolean = True
         Try
+            If Not MyBase.Fill(pColName, pColValue) Then
+                bReturn = True
+                Select Case pColName.Trim().ToUpper()
+                    Case "uiddiagnostic".Trim().ToUpper()
+                        Me.uiddiagnostic = pColValue
+                    Case "aiddiagnostic".Trim().ToUpper()
+                        Me.aiddiagnostic = pColValue
+                    Case "id".Trim().ToUpper()
+                        Me.id = pColValue
+                    Case "idDiagnostic".Trim().ToUpper()
+                        Me.idDiagnostic = pColValue.ToString()
+                    Case "pressionPulve".Trim().ToUpper()
+                        Me.pressionPulve = pColValue
+                    Case "pressionControle".Trim().ToUpper()
+                        Me.pressionControle = pColValue.ToString()
+                    Case Else
+                        bReturn = False
 
-            Select Case pColName.Trim().ToUpper()
-                Case "uid".Trim().ToUpper()
-                    Me.uid = pColValue
-                Case "aid".Trim().ToUpper()
-                    Me.aid = pColValue
-                Case "uiddiagnostic".Trim().ToUpper()
-                    Me.uiddiagnostic = pColValue
-                Case "aiddiagnostic".Trim().ToUpper()
-                    Me.aiddiagnostic = pColValue
-                Case "id".Trim().ToUpper()
-                    Me.id = pColValue
-                Case "idDiagnostic".Trim().ToUpper()
-                    Me.idDiagnostic = pColValue.ToString()
-                Case "pressionPulve".Trim().ToUpper()
-                    Me.pressionPulve = pColValue
-                Case "pressionControle".Trim().ToUpper()
-                    Me.pressionControle = pColValue.ToString()
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-
-            End Select
-            bReturn = True
+                End Select
+            End If
         Catch ex As Exception
+            CSDebug.dispError("DiagnosticMano542.Fill ERR", ex)
             bReturn = False
         End Try
 

@@ -28,8 +28,9 @@ Imports System.Net.Http
         oDiagItem = New DiagnosticItem(oDiagnostic.aid, "789", "2")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)
 
-        DiagnosticItemManager.WSSend(m_oAgent, oDiagnostic.diagnosticItemsLst)
+        Dim nReturn As Integer = DiagnosticItemManager.WSSend(m_oAgent, oDiagnostic.diagnosticItemsLst)
 
+        Assert.AreNotEqual(-1, nReturn)
 
     End Sub
     <TestMethod()> Public Sub CRUDWS()
@@ -68,8 +69,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub WSSerialize()
         Dim oDiagnostic As CRODIPWS.Diagnostic
-        oDiagnostic = DiagnosticManager.WSgetById(m_oAgent.uid, 145697, "")
-        Assert.IsNotNull(oDiagnostic)
+        oDiagnostic = createAndSaveDiagnostic()
         Dim oDiagItem As New DiagnosticItem(oDiagnostic.aid, "123", "0")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)
         oDiagItem = New DiagnosticItem(oDiagnostic.aid, "456", "1")
@@ -77,6 +77,8 @@ Imports System.Net.Http
         oDiagItem = New DiagnosticItem(oDiagnostic.aid, "789", "2")
         oDiagnostic.AdOrReplaceDiagItem(oDiagItem)
 
+        Dim tmpArr(1)() As DiagnosticItem
+        tmpArr(0) = oDiagnostic.diagnosticItemsLst.items
 
         Dim serializer As New XmlSerializer(GetType(DiagnosticItemList))
         Using writer As New StringWriter()

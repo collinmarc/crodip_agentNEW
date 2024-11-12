@@ -112,19 +112,18 @@ Public Class DiagnosticItemManager
     Public Shared Function WSSend(pAgent As Agent, ByVal objDiagnosticItems As DiagnosticItemList) As Integer
         Dim tmpArr(1)() As DiagnosticItem
         tmpArr(0) = objDiagnosticItems.items
-        Dim updatedObject() As Object = Nothing
-        'updatedObject = New Object()
         Dim CodeResponse As Integer
         Try
 
             ' Appel au WS
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            'objWSCrodip.Url = "http://admin.crodip.net" ' SERVEUR DE PROD
             Dim pinfos As String = ""
-            CodeResponse = objWSCrodip.SendDiagnosticItems(objDiagnosticItems.items, pinfos)
+            CodeResponse = objWSCrodip.SendDiagnosticItems(tmpArr, pinfos)
             Select Case CodeResponse
-                Case 0 ' OK
+                Case 0, 2, 4 ' OK
 
+                Case -1 ' Appel incortect
+                    CSDebug.dispError("WSSend - Code -1 : Appel incorrect")
                 Case 1 ' NOK
                     CSDebug.dispError("WSSend - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
@@ -138,16 +137,6 @@ Public Class DiagnosticItemManager
         Return CodeResponse
     End Function
 
-    Public Shared Function xml2object(ByVal arrXml As Object) As DiagnosticItem
-        Dim objDiagnosticitem As New DiagnosticItem
-
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            objDiagnosticitem.Fill(tmpSerializeItem.LocalName(), tmpSerializeItem.InnerText)
-
-        Next
-
-        Return objDiagnosticitem
-    End Function
 
 #End Region
 
@@ -246,8 +235,11 @@ Public Class DiagnosticItemManager
                     ' On rempli notre tableau
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
-                        tmpDiagnosticItem.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        If Not tmpListProfils.IsDBNull(tmpColId) Then
+                            tmpDiagnosticItem.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        End If
                         tmpColId = tmpColId + 1
+
                     End While
                 End While
                 tmpListProfils.Close()
@@ -368,12 +360,9 @@ Public Class DiagnosticItemManager
                 'paramsQuery = paramsQuery & " , isItemCode1=" & objisItemCode1 & ""
                 'paramsQuery = paramsQuery & " , isItemCode2=" & objisItemCode2 & ""
                 paramsQuery = paramsQuery & " , cause='" & pDiagIt.cause & "'"
-                If Not String.IsNullOrEmpty(pDiagIt.dateModificationCrodipS) Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pDiagIt.dateModificationCrodip) & "'"
-                End If
-                If Not String.IsNullOrEmpty(pDiagIt.dateModificationAgentS) Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pDiagIt.dateModificationAgent) & "'"
-                End If
+                paramsQuery = paramsQuery & " , uiddiagnostic=" & pDiagIt.uiddiagnostic & ""
+                paramsQuery = paramsQuery & " , aiddiagnostic='" & pDiagIt.aiddiagnostic & "'"
+                paramsQuery = paramsQuery & pDiagIt.getRootQuery()
 
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE DiagnosticItem SET " & paramsQuery & " WHERE id='" & pDiagIt.id & "' and idDiagnostic = '" & pDiagIt.idDiagnostic & "'"
@@ -465,6 +454,7 @@ Public Class DiagnosticItemManager
 
             End If
             pDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
+            CSDb.ExecuteSQL("UPDATE DiagnosticTroncons833 Set aid = id where id = " & pDiagnosticItem.id)
             sDebugStep = "5"
             ' Test pour fermeture de connection BDD
             If Not oCSDb Is Nothing Then

@@ -61,19 +61,20 @@ Public Class RootManager
                     serializer.Serialize(writer, pobj)
                     Dim xmlOutput As String = writer.ToString()
                     ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
-                    CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                    'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
 
                 Dim Params As Object() = {pobj, pInfo, puid}
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
                 puid = DirectCast(Params(2), Integer)
-                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+                'CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
                     pobjreturn = RootWSGetById(Of T)(puid, CType(pobj, root).aid)
                 Case 4 ' CREATE OK
+                    CType(pobj, root).uid = puid
                     pobjreturn = RootWSGetById(Of T)(puid, "")
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")

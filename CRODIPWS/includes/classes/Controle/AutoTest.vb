@@ -16,7 +16,7 @@ Public Class AutoTest
     Private _dateModificationAgent As Date
     Private _dateModificationCrodip As Date
     Public Sub New()
-        _id = -1
+        Id = -1
         _Etat = -1
         NumAgent = ""
         IdStructure = 0
@@ -24,7 +24,7 @@ Public Class AutoTest
         _dateModificationCrodip = CDate("01/01/1970")
     End Sub
     Public Sub New(pAgent As Agent)
-        _id = -1
+        Id = -1
         _Etat = -1
         NumAgent = pAgent.id
         IdStructure = pAgent.uidStructure
@@ -32,7 +32,7 @@ Public Class AutoTest
         _dateModificationCrodip = CDate("01/01/1970")
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreControle)
-        _id = -1
+        Id = -1
         _Etat = -1
         type = "MANOC"
         idMateriel = pMano.idCrodip
@@ -41,7 +41,7 @@ Public Class AutoTest
         Traca = pMano.Traca
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
-        _id = -1
+        Id = -1
         _Etat = -1
         type = "MANOE"
         idMateriel = pMano.idCrodip
@@ -49,7 +49,7 @@ Public Class AutoTest
         NumAgent = pAgent.id
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
-        _id = -1
+        Id = -1
         _Etat = -1
         type = "BANC"
         idMateriel = pBanc.id
@@ -58,14 +58,15 @@ Public Class AutoTest
     End Sub
     Public Property Id() As Integer
         Get
-            Return _id
+            Return aid
         End Get
         Set(ByVal Value As Integer)
-            Throw New NotSupportedException("Setting the Id property is not supported, needed for XML Serialize")
+
+            aid = Value
         End Set
     End Property
     Public Sub setId(ByVal pId As Integer)
-        _id = pId
+        aid = pId
     End Sub
     Public Property IdStructure() As Integer
         Get
@@ -87,10 +88,12 @@ Public Class AutoTest
     <XmlIgnore>
     Public Property NumAgent() As String
         Get
-            Return _IdAgent
+            Return uidagent
         End Get
         Set(ByVal Value As String)
-            _IdAgent = Value
+            If Not String.IsNullOrEmpty(Value) Then
+                uidagent = Value
+            End If
         End Set
     End Property
     Public Property aidagent() As String
@@ -230,19 +233,6 @@ Public Class AutoTest
         End Set
     End Property
 
-    Public Function Fill(pDBReader As DbDataReader) As Boolean
-        Dim tmpColId As Integer = 0
-        Dim bReturn As Boolean
-
-        bReturn = True
-        While tmpColId < pDBReader.FieldCount()
-            If Not pDBReader.IsDBNull(tmpColId) Then
-                bReturn = bReturn And Fill(pDBReader.GetName(tmpColId), pDBReader.Item(tmpColId))
-            End If
-            tmpColId = tmpColId + 1
-        End While
-        Return bReturn
-    End Function
     ''' <summary>
     ''' Initialise l'objet avec le résultat d'une requete ou d'un WS
     ''' </summary>
@@ -250,45 +240,41 @@ Public Class AutoTest
     ''' <param name="pValue"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
-        Dim bReturn As Boolean
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pValue As Object) As Boolean
+        Dim bReturn As Boolean = True
         Try
-            Select Case pColName.ToUpper.Trim().ToUpper()
+            If Not MyBase.Fill(pColName, pValue) Then
+                bReturn = True
+                Select Case pColName.ToUpper.Trim().ToUpper()
                 'Le Nom des champs de Bdd et des champs transmis par WS ne sont pas les mêmes
-                Case "CTRG_ID".Trim().ToUpper(), "Id".Trim.ToUpper()
-                    Me.setId(CInt(pValue))
-                Case "CTRG_date".Trim().ToUpper(), "DateControle".Trim.ToUpper()
-                    Me.DateControle = CSDate.ToCRODIPString(pValue.ToString())
-                Case "CTRG_STRUCTUREID".Trim().ToUpper(), "IdStructure".Trim.ToUpper()
-                    Me.IdStructure = pValue.ToString()
-                Case "CTRG_TYPE".Trim().ToUpper(), "Type".Trim.ToUpper()
-                    Me.type = pValue.ToString()
-                Case "CTRG_MATID".Trim().ToUpper(), "IdMateriel".Trim.ToUpper()
-                    Me.idMateriel = pValue.ToString()
-                Case "CTRG_ETAT".Trim().ToUpper(), "Etat".Trim.ToUpper()
-                    Me.etat = CType(pValue, Boolean)
-                Case "CTRG_NUMAGENT".Trim().ToUpper(), "NumAgent".Trim.ToUpper()
-                    Me.NumAgent = pValue
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pValue.ToString())
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pValue.ToString())
-                Case "uid".Trim().ToUpper()
-                    Me.uid = CInt(pValue)
-                Case "aid".Trim().ToUpper()
-                    Me.uid = CInt(pValue)
-                Case "uidstructure".Trim().ToUpper()
-                    Me.uidstructure = CInt(pValue)
-                Case "aidagent".Trim().ToUpper()
-                    Me.aidagent = pValue
-                Case "uidagent".Trim().ToUpper()
-                    Me.aidagent = CInt(pValue)
-                Case "uidmateriel".Trim().ToUpper()
-                    Me.uidmateriel = CInt(pValue)
-            End Select
-            bReturn = True
+                    Case "CTRG_ID".Trim().ToUpper(), "Id".Trim.ToUpper()
+                        Me.setId(CInt(pValue))
+                    Case "CTRG_date".Trim().ToUpper(), "DateControle".Trim.ToUpper()
+                        Me.DateControle = CSDate.ToCRODIPString(pValue.ToString())
+                    Case "CTRG_STRUCTUREID".Trim().ToUpper(), "IdStructure".Trim.ToUpper()
+                        Me.IdStructure = pValue.ToString()
+                    Case "CTRG_TYPE".Trim().ToUpper(), "Type".Trim.ToUpper()
+                        Me.type = pValue.ToString()
+                    Case "CTRG_MATID".Trim().ToUpper(), "IdMateriel".Trim.ToUpper()
+                        Me.idMateriel = pValue.ToString()
+                    Case "CTRG_ETAT".Trim().ToUpper(), "Etat".Trim.ToUpper()
+                        Me.etat = CType(pValue, Boolean)
+                    Case "CTRG_NUMAGENT".Trim().ToUpper(), "NumAgent".Trim.ToUpper()
+                        Me.NumAgent = pValue
+                    Case "uidstructure".Trim().ToUpper()
+                        Me.uidstructure = CInt(pValue)
+                    Case "aidagent".Trim().ToUpper()
+                        Me.aidagent = pValue
+                    Case "uidagent".Trim().ToUpper()
+                        Me.aidagent = CInt(pValue)
+                    Case "uidmateriel".Trim().ToUpper()
+                        Me.uidmateriel = CInt(pValue)
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
-            CSDebug.dispError("ControleRegulier.Fill Error : " & ex.Message)
+            CSDebug.dispError("ControleRegulier.Fill Error : ", ex)
             bReturn = False
         End Try
         Return bReturn

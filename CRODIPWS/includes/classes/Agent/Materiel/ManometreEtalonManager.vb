@@ -82,7 +82,7 @@ Public Class ManometreEtalonManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function getNewNumeroNationalForTestOnly(ByVal pAgent As Agent) As String
+    Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
         ' déclarations
         Dim tmpObjectId As String = pAgent.uidStructure & "-" & pAgent.id & "-1"
         If pAgent.uidStructure <> 0 Then
@@ -153,7 +153,8 @@ Public Class ManometreEtalonManager
                 If Not objManometreEtalon.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreEtalon.idCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & objManometreEtalon.uidstructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objManometreEtalon.idstructure & ""
+                paramsQuery = paramsQuery & " , uidstructure=" & objManometreEtalon.uidstructure & ""
                 If Not objManometreEtalon.marque Is Nothing Then
                     paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreEtalon.marque) & "'"
                 End If
@@ -172,12 +173,6 @@ Public Class ManometreEtalonManager
                 paramsQuery = paramsQuery & " , isSynchro=" & objManometreEtalon.isSynchro & ""
                 If objManometreEtalon.dateDernierControle <> Nothing Then
                     paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreEtalon.dateDernierControleS) & "'"
-                End If
-                If Not String.IsNullOrEmpty(objManometreEtalon.dateModificationAgent) Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationAgent) & "'"
-                End If
-                If Not String.IsNullOrEmpty(objManometreEtalon.dateModificationCrodip) Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreEtalon.dateModificationCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , etat=" & objManometreEtalon.etat & ""
                 paramsQuery = paramsQuery & " , isUtilise=" & objManometreEtalon.isUtilise & ""
@@ -198,6 +193,7 @@ Public Class ManometreEtalonManager
                 If objManometreEtalon.DateActivation <> Nothing Then
                     paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objManometreEtalon.DateActivation) & "'"
                 End If
+                paramsQuery = paramsQuery & objManometreEtalon.getRootQuery()
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
@@ -269,14 +265,7 @@ Public Class ManometreEtalonManager
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
-                    End While
+                    tmpManometreEtalon.FillDR(tmpListProfils)
                 End While
                 tmpListProfils.Close()
             Catch ex As Exception ' On intercepte l'erreur
@@ -310,21 +299,14 @@ Public Class ManometreEtalonManager
         End If
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
-            While tmpListProfils.Read()
+            While oDR.Read()
                 tmpManometreEtalon = New ManometreEtalon()
-                ' On rempli notre tableau
-                Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                    End If
-                    tmpColId = tmpColId + 1
-                End While
+                tmpManometreEtalon.FillDR(oDR)
                 lstManometreEtalon.Add(tmpManometreEtalon)
             End While
-            tmpListProfils.Close()
+            oDR.Close()
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("ManometreEtalonManager Error: " & ex.Message)
         End Try
@@ -351,21 +333,14 @@ Public Class ManometreEtalonManager
         bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pidStructure & " AND  jamaisServi = " & True & ""
         Try
             ' On récupère les résultats
-            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
-            While tmpListProfils.Read()
+            While oDR.Read()
                 tmpManometreEtalon = New ManometreEtalon()
-                ' On rempli notre tableau
-                Dim tmpColId As Integer = 0
-                While tmpColId < tmpListProfils.FieldCount()
-                    If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                    End If
-                    tmpColId = tmpColId + 1
-                End While
+                tmpManometreEtalon.FillDR(oDR)
                 lstManometreEtalon.Add(tmpManometreEtalon)
             End While
-            tmpListProfils.Close()
+            oDR.Close()
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispError("ManometreEtalonManager Error: " & ex.Message)
         End Try
@@ -403,13 +378,7 @@ Public Class ManometreEtalonManager
 
                     ' On remplit notre tableau
                     Dim oMano As New ManometreEtalon
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < oDataReader.FieldCount()
-                        If Not oDataReader.IsDBNull(tmpColId) Then
-                            oMano.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
-                    End While
+                    oMano.FillDR(oDataReader)
                     colReturn.Add(oMano)
                 End While
                 oDataReader.Close()

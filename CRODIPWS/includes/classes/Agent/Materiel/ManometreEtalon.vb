@@ -40,67 +40,65 @@ Public Class ManometreEtalon
         End Set
     End Property
     Public Overrides Function Fill(pColName As String, pcolValue As Object) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = True
         Try
-
-            Select Case pColName.Trim().ToUpper()
-                Case "numeroNational".Trim().ToUpper()
-                    Me.numeroNational = CType(pcolValue, String)
-                Case "idCrodip".Trim().ToUpper()
-                    Me.idCrodip = CType(pcolValue, String)
-                Case "idStructure".Trim().ToUpper()
-                    Me.uidstructure = CType(pcolValue, Integer)
-                Case "marque".Trim().ToUpper()
-                    Me.marque = CType(pcolValue, String)
-                Case "classe".Trim().ToUpper()
-                    Me.classe = CType(pcolValue, String)
-                Case "incertitudeEtalon".Trim().ToUpper()
-                    Me.incertitudeEtalon = CType(pcolValue, String)
-                Case "type".Trim().ToUpper()
-                    Me.type = CType(pcolValue, String)
-                Case "fondEchelle".Trim().ToUpper()
-                    Me.fondEchelle = CType(pcolValue, String)
-                Case "isSynchro".Trim().ToUpper()
-                    Me.isSynchro = CType(pcolValue, Boolean)
-                Case "dateDernierControle".Trim().ToUpper()
-                    Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue)
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue)
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue)
-                Case "etat".Trim().ToUpper()
-                    Me.etat = CType(pcolValue, Boolean)
-                Case "isUtilise".Trim().ToUpper()
-                    Me.isUtilise = CType(pcolValue, Boolean)
-                Case "isSupprime".Trim().ToUpper()
-                    Me.isSupprime = CType(pcolValue, Boolean)
-                Case "nbControles".Trim().ToUpper()
-                    If pcolValue.ToString() <> "" Then
-                        Me.nbControles = CType(pcolValue, Integer)
-                    End If
-                Case "nbControlesTotal".Trim().ToUpper()
-                    If pcolValue.ToString() <> "" Then
-                        Me.nbControlesTotal = CType(pcolValue, Integer)
-                    End If
-                Case "agentsuppression".Trim().ToUpper()
-                    Me.agentSuppression = pcolValue.ToString()
-                Case "raisonsuppression".Trim().ToUpper()
-                    Me.raisonSuppression = pcolValue.ToString()
-                Case "datesuppression".Trim().ToUpper()
-                    Dim strDateMin As String = CSDate.ToCRODIPString("")
-                    Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
-                    If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                        Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
-                    Else
-                        Me.dateSuppression = ""
-                    End If
-                Case "jamaisServi".Trim().ToUpper()
-                    Me.jamaisServi = pcolValue
-                Case "dateActivation".Trim().ToUpper()
-                    Me.DateActivation = pcolValue
-            End Select
-            bReturn = True
-
+            If Not MyBase.Fill(pColName, pcolValue) Then
+                bReturn = True
+                Select Case pColName.Trim().ToUpper()
+                    Case "numeroNational".Trim().ToUpper()
+                        Me.numeroNational = CType(pcolValue, String)
+                    Case "idCrodip".Trim().ToUpper()
+                        Me.idCrodip = CType(pcolValue, String)
+                    Case "idStructure".Trim().ToUpper(), "uidStructure".Trim().ToUpper()
+                        Me.uidstructure = CType(pcolValue, Integer)
+                    Case "marque".Trim().ToUpper()
+                        Me.marque = CType(pcolValue, String)
+                    Case "classe".Trim().ToUpper()
+                        Me.classe = CType(pcolValue, String)
+                    Case "incertitudeEtalon".Trim().ToUpper()
+                        Me.incertitudeEtalon = CType(pcolValue, String)
+                    Case "type".Trim().ToUpper()
+                        Me.type = CType(pcolValue, String)
+                    Case "fondEchelle".Trim().ToUpper()
+                        Me.fondEchelle = CType(pcolValue, String)
+                    Case "isSynchro".Trim().ToUpper()
+                        Me.isSynchro = CType(pcolValue, Boolean)
+                    Case "dateDernierControle".Trim().ToUpper()
+                        Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue)
+                    Case "etat".Trim().ToUpper()
+                        Me.etat = CType(pcolValue, Boolean)
+                    Case "isUtilise".Trim().ToUpper()
+                        Me.isUtilise = CType(pcolValue, Boolean)
+                    Case "isSupprime".Trim().ToUpper()
+                        Me.isSupprime = CType(pcolValue, Boolean)
+                    Case "nbControles".Trim().ToUpper()
+                        If pcolValue.ToString() <> "" Then
+                            Me.nbControles = CType(pcolValue, Integer)
+                        End If
+                    Case "nbControlesTotal".Trim().ToUpper()
+                        If pcolValue.ToString() <> "" Then
+                            Me.nbControlesTotal = CType(pcolValue, Integer)
+                        End If
+                    Case "agentsuppression".Trim().ToUpper()
+                        Me.agentSuppression = pcolValue.ToString()
+                    Case "raisonsuppression".Trim().ToUpper()
+                        Me.raisonSuppression = pcolValue.ToString()
+                    Case "datesuppression".Trim().ToUpper()
+                        Dim strDateMin As String = CSDate.ToCRODIPString("")
+                        Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
+                        If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                            Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                        Else
+                            Me.dateSuppression = ""
+                        End If
+                    Case "jamaisServi".Trim().ToUpper()
+                        Me.jamaisServi = pcolValue
+                    Case "dateActivation".Trim().ToUpper()
+                        Me.dateActivation = pcolValue
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
             bReturn = False
             CSDebug.dispError("ManometreEtalon.Fill Err" & ex.Message)

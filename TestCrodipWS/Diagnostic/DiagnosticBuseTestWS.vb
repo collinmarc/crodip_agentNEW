@@ -12,7 +12,7 @@ Imports System.Net.Http
         Dim lst As DiagnosticBusesList
         lst = DiagnosticBusesManager.WSGetList(145691, "998-TSTMCO-12345-1")
         Assert.IsNotNull(lst)
-        Assert.AreEqual(13, lst.Liste.Count)
+        Assert.AreEqual(24, lst.Liste.Count)
         Assert.AreEqual(145691, lst.Liste(0).uiddiagnostic)
         Assert.AreEqual(145691, lst.Liste(1).uiddiagnostic)
 
@@ -63,17 +63,23 @@ Imports System.Net.Http
         Assert.IsNotNull(m_oDiag)
         Dim oDiagBuse As DiagnosticBuses
         oDiagBuse = New DiagnosticBuses(m_oDiag)
+        oDiagBuse.idLot = 1
         oDiagBuse.calibre = 10
         oDiagBuse.debitNominal = 11
         m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuse)
         oDiagBuse = New DiagnosticBuses(m_oDiag)
+        oDiagBuse.idLot = 2
         oDiagBuse.calibre = 20
         oDiagBuse.debitNominal = 21
         m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuse)
         oDiagBuse = New DiagnosticBuses(m_oDiag)
+        oDiagBuse.idLot = 3
         oDiagBuse.calibre = 30
         oDiagBuse.debitNominal = 31
         m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuse)
+
+        DiagnosticManager.save(m_oDiag)
+        m_oDiag = DiagnosticManager.getDiagnosticById(m_oDiag.id)
 
         'CREATE
         DiagnosticBusesManager.WSSend(m_oDiag)
@@ -87,12 +93,15 @@ Imports System.Net.Http
             m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuse)
         Next
         oDiagBuse = m_oDiag.diagnosticBusesList.Liste(0)
+        Assert.AreEqual("1", oDiagBuse.idLot)
         Assert.AreEqual("10", oDiagBuse.calibre)
         Assert.AreEqual("11", oDiagBuse.debitNominal)
         oDiagBuse = m_oDiag.diagnosticBusesList.Liste(1)
+        Assert.AreEqual("2", oDiagBuse.idLot)
         Assert.AreEqual("20", oDiagBuse.calibre)
         Assert.AreEqual("21", oDiagBuse.debitNominal)
         oDiagBuse = m_oDiag.diagnosticBusesList.Liste(2)
+        Assert.AreEqual("3", oDiagBuse.idLot)
         Assert.AreEqual("30", oDiagBuse.calibre)
         Assert.AreEqual("31", oDiagBuse.debitNominal)
         'UPDATE

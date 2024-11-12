@@ -267,7 +267,9 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 Dim oDiagItem As DiagnosticItem = New DiagnosticItem()
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDr.FieldCount()
-                    oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+                    If Not oDr.IsDBNull(tmpColId) Then
+                        oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 getDatasFromItemValue(oDiagItem)

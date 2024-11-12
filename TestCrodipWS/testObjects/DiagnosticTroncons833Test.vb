@@ -98,7 +98,7 @@ Public Class DiagnosticTroncons833Test
     '''<summary>
     '''Test de charegement déchargement depuis le Diag
     '''</summary>
-    <TestMethod()>
+    <TestMethod(), Ignore("Obsolete")>
     Public Sub TST_LOAD_SAVE_DIAG()
         Dim odiag As Diagnostic
 

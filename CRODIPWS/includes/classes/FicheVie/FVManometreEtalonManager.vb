@@ -140,7 +140,7 @@ Public Class FVManometreEtalonManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function save(ByVal objFVManometreEtalon As FVManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal pobjFV As FVManometreEtalon, Optional bSyncro As Boolean = False) As Boolean
         Dim paramsQueryUpdate As String
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
@@ -148,82 +148,83 @@ Public Class FVManometreEtalonManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-
+            Dim oAgent As Agent = AgentManager.getAgentById(pobjFV.idAgentControleur)
+            pobjFV.id = getNewId(oAgent)
             ' Initialisation de la requete
-            paramsQueryUpdate = "id='" & objFVManometreEtalon.id & "',idManometre='" & CSDb.secureString(objFVManometreEtalon.idManometre) & "'"
+            paramsQueryUpdate = "id='" & pobjFV.id & "',idManometre='" & CSDb.secureString(pobjFV.idManometre) & "'"
             Dim paramsQuery_col As String = "id,idManometre"
-            Dim paramsQuery As String = "'" & objFVManometreEtalon.id & "','" & objFVManometreEtalon.idManometre & "'"
+            Dim paramsQuery As String = "'" & pobjFV.id & "','" & pobjFV.idManometre & "'"
 
             ' Mise a jour de la date de derniere modification
             If Not bSyncro Then
-                objFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                pobjFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
 
-            If Not objFVManometreEtalon.type Is Nothing Then
+            If Not pobjFV.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",type"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.type) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",type='" & CSDb.secureString(objFVManometreEtalon.type) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.type) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",type='" & CSDb.secureString(pobjFV.type) & "'"
             End If
-            If Not objFVManometreEtalon.auteur Is Nothing Then
+            If Not pobjFV.auteur Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",auteur"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",auteur='" & CSDb.secureString(objFVManometreEtalon.auteur) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.auteur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",auteur='" & CSDb.secureString(pobjFV.auteur) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",idAgentControleur"
-            paramsQuery = paramsQuery & " , " & objFVManometreEtalon.idAgentControleur & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",idAgentControleur=" & CSDb.secureString(objFVManometreEtalon.idAgentControleur) & ""
-            If Not objFVManometreEtalon.caracteristiques Is Nothing Then
+            paramsQuery = paramsQuery & " , " & pobjFV.idAgentControleur & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",idAgentControleur=" & CSDb.secureString(pobjFV.idAgentControleur) & ""
+            If Not pobjFV.caracteristiques Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",caracteristiques"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",caracteristiques='" & CSDb.secureString(objFVManometreEtalon.caracteristiques) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.caracteristiques) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",caracteristiques='" & CSDb.secureString(pobjFV.caracteristiques) & "'"
             End If
             paramsQuery_col = paramsQuery_col & ",blocage"
-            paramsQuery = paramsQuery & " , " & objFVManometreEtalon.blocage & ""
-            paramsQueryUpdate = paramsQueryUpdate & ",blocage=" & CSDb.secureString(objFVManometreEtalon.blocage) & ""
-            If Not objFVManometreEtalon.idReetalonnage Is Nothing Then
+            paramsQuery = paramsQuery & " , " & pobjFV.blocage & ""
+            paramsQueryUpdate = paramsQueryUpdate & ",blocage=" & CSDb.secureString(pobjFV.blocage) & ""
+            If Not pobjFV.idReetalonnage Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",idReetalonnage"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",idReetalonnage='" & CSDb.secureString(objFVManometreEtalon.idReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idReetalonnage='" & CSDb.secureString(pobjFV.idReetalonnage) & "'"
             End If
-            If Not objFVManometreEtalon.nomLaboratoire Is Nothing Then
+            If Not pobjFV.nomLaboratoire Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",nomLaboratoire"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",nomLaboratoire='" & CSDb.secureString(objFVManometreEtalon.nomLaboratoire) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",nomLaboratoire='" & CSDb.secureString(pobjFV.nomLaboratoire) & "'"
             End If
-            If Not objFVManometreEtalon.dateReetalonnage Is Nothing And objFVManometreEtalon.dateReetalonnage <> "" And objFVManometreEtalon.dateReetalonnage <> "0000-00-00 00:00:00" Then
+            If Not pobjFV.dateReetalonnage Is Nothing And pobjFV.dateReetalonnage <> "" And pobjFV.dateReetalonnage <> "0000-00-00 00:00:00" Then
                 paramsQuery_col = paramsQuery_col & ",dateReetalonnage"
-                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateReetalonnage) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(objFVManometreEtalon.dateReetalonnage) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateReetalonnage) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateReetalonnage='" & CSDb.secureString(pobjFV.dateReetalonnage) & "'"
             End If
-            If Not objFVManometreEtalon.pressionControle Is Nothing Then
+            If Not pobjFV.pressionControle Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",pressionControle"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",pressionControle='" & CSDb.secureString(objFVManometreEtalon.pressionControle) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.pressionControle) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",pressionControle='" & CSDb.secureString(pobjFV.pressionControle) & "'"
             End If
-            If Not objFVManometreEtalon.valeursMesurees Is Nothing Then
+            If Not pobjFV.valeursMesurees Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",valeursMesurees"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",valeursMesurees='" & CSDb.secureString(objFVManometreEtalon.valeursMesurees) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",valeursMesurees='" & CSDb.secureString(pobjFV.valeursMesurees) & "'"
             End If
-            If Not objFVManometreEtalon.idManometreControleur Is Nothing Then
+            If Not pobjFV.idManometreControleur Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",idManometreControleur"
-                paramsQuery = paramsQuery & " , '" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",idManometreControleur='" & CSDb.secureString(objFVManometreEtalon.idManometreControleur) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",idManometreControleur='" & CSDb.secureString(pobjFV.idManometreControleur) & "'"
             End If
-            If Not objFVManometreEtalon.dateModif Is Nothing And objFVManometreEtalon.dateModif <> "" Then
+            If Not pobjFV.dateModif Is Nothing And pobjFV.dateModif <> "" Then
                 paramsQuery_col = paramsQuery_col & ",dateModif"
-                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModif) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(objFVManometreEtalon.dateModif) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateModif) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDb.secureString(pobjFV.dateModif) & "'"
             End If
-            If Not String.IsNullOrEmpty(objFVManometreEtalon.dateModificationAgentS) Then
+            If Not String.IsNullOrEmpty(pobjFV.dateModificationAgentS) Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(objFVManometreEtalon.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateModificationAgent) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDb.secureString(pobjFV.dateModificationAgent) & "'"
             End If
-            If Not String.IsNullOrEmpty(objFVManometreEtalon.dateModificationCrodipS) Then
+            If Not String.IsNullOrEmpty(pobjFV.dateModificationCrodipS) Then
                 paramsQuery_col = paramsQuery_col & ",dateModificationCrodip"
-                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(objFVManometreEtalon.dateModificationCrodip) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(objFVManometreEtalon.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , '" & CSDate.ToCRODIPString(pobjFV.dateModificationCrodip) & "'"
+                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDb.secureString(pobjFV.dateModificationCrodip) & "'"
             End If
 
             ' On finalise la requete et en l'execute

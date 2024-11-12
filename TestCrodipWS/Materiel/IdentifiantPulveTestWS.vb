@@ -58,7 +58,7 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub WSSerialize()
         Dim oIdentifiantPulverisateur As New CRODIPWS.IdentifiantPulverisateur()
-        oIdentifiantPulverisateur.etat = 1
+        oIdentifiantPulverisateur.SetEtatINUTILISE()
         Dim serializer As New XmlSerializer(oIdentifiantPulverisateur.GetType())
         Using writer As New StringWriter()
             serializer.Serialize(writer, oIdentifiantPulverisateur)

@@ -52,24 +52,24 @@ Public Class FVManometreControleManagerTest
         Dim expected As Object = Nothing ' TODO: initialisez à une valeur appropriée
         Dim objFVManometreControle2 As FVManometreControle
         objFVManometreControle = New FVManometreControle(m_oAgent)
-        objFVManometreControle.id = "9-99-99"
         objFVManometreControle.idManometre = "9-99-99"
         objFVManometreControle.idAgentControleur = m_oAgent.id
 
         Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle))
+        Dim FVId = objFVManometreControle.id
 
-        objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById("9-99-99")
-        Assert.AreEqual("9-99-99", objFVManometreControle2.id)
+        objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById(FVId)
+        Assert.AreEqual(FVId, objFVManometreControle2.id)
 
         objFVManometreControle2.caracteristiques = "TEST"
         Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle2))
-        objFVManometreControle = FVManometreControleManager.getFVManometreControleById("9-99-99")
+        objFVManometreControle = FVManometreControleManager.getFVManometreControleById(FVId)
         Assert.AreEqual("TEST", objFVManometreControle2.caracteristiques)
 
-        objFVManometreControle = FVManometreControleManager.getFVManometreControleById("9-99-99")
+        objFVManometreControle = FVManometreControleManager.getFVManometreControleById(FVId)
         FVManometreControleManager.delete(objFVManometreControle.id)
-        objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById("9-99-99")
-        Assert.AreNotEqual("9-99-99", objFVManometreControle2.id)
+        objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById(FVId)
+        Assert.AreNotEqual(FVId, objFVManometreControle2.id)
 
     End Sub
     '''<summary>
@@ -175,7 +175,7 @@ Public Class FVManometreControleManagerTest
         Dim oManoE As ManometreEtalon
         oManoE = New ManometreEtalon()
         oManoE.idstructure = m_oAgent.idStructure
-        oManoE.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        oManoE.numeroNational = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oManoE.idCrodip = oMano.numeroNational
         oManoE.jamaisServi = True
         oManoE.isUtilise = False
@@ -186,7 +186,7 @@ Public Class FVManometreControleManagerTest
         oCtrl.idMano = oMano.idCrodip
 
         Dim oEtat As New EtatFVMano(oCtrl)
-        Dim sFileName As String = oEtat.buildPDF(oMano, agentCourant)
+        Dim sFileName As String = oEtat.buildPDF(oMano, m_oAgent)
         oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 
         Dim oLst As New List(Of FVManometreControle)

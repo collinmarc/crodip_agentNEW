@@ -156,44 +156,37 @@ Public MustInherit Class FVMateriel
         End Set
     End Property
 
-    Public MustOverride Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
-
     Protected Function FillCommun(ByVal pColName As String, ByVal pColValue As Object) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = True
         Try
-            Select Case pColName.ToUpper().Trim()
-                Case "uid".ToUpper().Trim()
-                    Me.uid = pColValue.ToString
-                Case "aid".ToUpper().Trim()
-                    Me.aid = pColValue.ToString
-                Case "uistructure".ToUpper().Trim()
-                    Me.uidstructure = pColValue.ToString
-                Case "id".ToUpper().Trim()
-                    Me.id = pColValue.ToString
-                Case "type".ToUpper().Trim()
-                    Me.type = pColValue.ToString
-                Case "auteur".ToUpper().Trim()
-                    Me.auteur = pColValue.ToString
-                Case "idAgentControleur".ToUpper().Trim()
-                    Me.idAgentControleur = pColValue.ToString
-                Case "aidAgentControleur".ToUpper().Trim()
-                    Me.aidagentcontroleur = pColValue.ToString
-                Case "uidAgentControleur".ToUpper().Trim()
-                    Me.uidagentcontroleur = pColValue.ToString
-                Case "caracteristiques".ToUpper().Trim()
-                    Me.caracteristiques = pColValue.ToString
-                Case "dateModif".ToUpper().Trim()
-                    Me.dateModif = pColValue.ToString
-                Case "blocage".ToUpper().Trim()
-                    Me.blocage = CType(pColValue, Boolean)
-                Case "dateModificationAgent".ToUpper().Trim()
-                    Me.dateModificationAgent = pColValue.ToString
-                Case "dateModificationCrodip".ToUpper().Trim()
-                    Me.dateModificationCrodip = pColValue.ToString
-                Case "FVFileName".ToUpper().Trim()
-                    Me.FVFileName = pColValue.ToString
-            End Select
-            bReturn = True
+            If Not MyBase.Fill(pColName, pColValue) Then
+                Select Case pColName.ToUpper().Trim()
+                    Case "uidstructure".ToUpper().Trim()
+                        Me.uidstructure = pColValue.ToString
+                    Case "id".ToUpper().Trim()
+                        Me.id = pColValue.ToString
+                    Case "type".ToUpper().Trim()
+                        Me.type = pColValue.ToString
+                    Case "auteur".ToUpper().Trim()
+                        Me.auteur = pColValue.ToString
+                    Case "idAgentControleur".ToUpper().Trim()
+                        Me.idAgentControleur = pColValue.ToString
+                    Case "aidAgentControleur".ToUpper().Trim()
+                        Me.aidagentcontroleur = pColValue.ToString
+                    Case "uidAgentControleur".ToUpper().Trim()
+                        Me.uidagentcontroleur = pColValue.ToString
+                    Case "caracteristiques".ToUpper().Trim()
+                        Me.caracteristiques = pColValue.ToString
+                    Case "dateModif".ToUpper().Trim()
+                        Me.dateModif = pColValue.ToString
+                    Case "blocage".ToUpper().Trim()
+                        Me.blocage = CType(pColValue, Boolean)
+                    Case "FVFileName".ToUpper().Trim()
+                        Me.FVFileName = pColValue.ToString
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
             CSDebug.dispError("FVMateriel.Fill(" & pColName & ",...) Err " & ex.Message())
             bReturn = False

@@ -104,6 +104,7 @@ Public Class ManometreControleManager
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreControle.idCrodip) & "'"
                 End If
                 paramsQuery = paramsQuery & " , idStructure=" & objManometreControle.uidstructure & ""
+                paramsQuery = paramsQuery & " , uidStructure=" & objManometreControle.uidstructure & ""
                 If Not objManometreControle.marque Is Nothing Then
                     paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreControle.marque) & "'"
                 End If
@@ -120,12 +121,6 @@ Public Class ManometreControleManager
                 paramsQuery = paramsQuery & " , isSynchro=" & objManometreControle.isSynchro & ""
                 If objManometreControle.dateDernierControleS <> Nothing Then
                     paramsQuery = paramsQuery & " , dateDernierControle='" & CSDate.ToCRODIPString(objManometreControle.dateDernierControle) & "'"
-                End If
-                If Not String.IsNullOrEmpty(objManometreControle.dateModificationAgent) Then
-                    paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objManometreControle.dateModificationAgent) & "'"
-                End If
-                If Not String.IsNullOrEmpty(objManometreControle.dateModificationCrodip) Then
-                    paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objManometreControle.dateModificationCrodip) & "'"
                 End If
                 If Not objManometreControle.resolution Is Nothing Then
                     paramsQuery = paramsQuery & " , resolution='" & CSDb.secureString(objManometreControle.resolution) & "'"
@@ -156,6 +151,7 @@ Public Class ManometreControleManager
                 paramsQuery = paramsQuery & " , numTraca=" & objManometreControle.numTraca & ""
                 paramsQuery = paramsQuery & " , typeRaccord='" & objManometreControle.typeRaccord & "'"
 
+                paramsQuery = paramsQuery & objManometreControle.getRootQuery()
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE numeroNational='" & objManometreControle.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()

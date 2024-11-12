@@ -71,6 +71,15 @@ Namespace My
                 Return CType(Me("RepertoireParametres"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property GestiondesPools() As Boolean
+            Get
+                Return CType(Me("GestiondesPools"),Boolean)
+            End Get
+        End Property
     End Class
 End Namespace
 

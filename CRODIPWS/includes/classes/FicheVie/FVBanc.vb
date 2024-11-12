@@ -91,24 +91,27 @@ Public Class FVBanc
     Public Overrides Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
-            FillCommun(pColName, pColValue)
-            Select Case pColName.ToUpper().Trim()
-                Case "idBancMesure".ToUpper().Trim()
-                    Me.idBancMesure = pColValue.ToString
-                Case "uidBancMesure".ToUpper().Trim()
-                    Me.uidbancmesure = pColValue.ToString
-                Case "pressionControle".ToUpper().Trim()
-                    Me.pressionControle = pColValue.ToString
-                Case "valeursMesurees".ToUpper().Trim()
-                    Me.valeursMesurees = pColValue.ToString
-                Case "idManometreControle".ToUpper().Trim()
-                    Me.idManometreControle = pColValue.ToString
-                Case "idBuseEtalon".ToUpper().Trim()
-                    Me.idBuseEtalon = pColValue.ToString
-                Case "FVFileName".ToUpper().Trim()
-                    Me.FVFileName = pColValue.ToString
-            End Select
-            bReturn = True
+            If Not FillCommun(pColName, pColValue) Then
+                bReturn = True
+                Select Case pColName.ToUpper().Trim()
+                    Case "idBancMesure".ToUpper().Trim()
+                        Me.idBancMesure = pColValue.ToString
+                    Case "uidBancMesure".ToUpper().Trim()
+                        Me.uidbancmesure = pColValue.ToString
+                    Case "pressionControle".ToUpper().Trim()
+                        Me.pressionControle = pColValue.ToString
+                    Case "valeursMesurees".ToUpper().Trim()
+                        Me.valeursMesurees = pColValue.ToString
+                    Case "idManometreControle".ToUpper().Trim()
+                        Me.idManometreControle = pColValue.ToString
+                    Case "idBuseEtalon".ToUpper().Trim()
+                        Me.idBuseEtalon = pColValue.ToString
+                    Case "FVFileName".ToUpper().Trim()
+                        Me.FVFileName = pColValue.ToString
+                    Case Else
+                        bReturn = False
+                End Select
+            End If
         Catch ex As Exception
             CSDebug.dispError("FVBanc.Fill Err " & ex.Message)
             bReturn = False

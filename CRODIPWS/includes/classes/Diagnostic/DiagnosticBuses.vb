@@ -205,39 +205,42 @@ Public Class DiagnosticBuses
     End Property
 
 
-    Public Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pColValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
+            If Not MyBase.Fill(pColName, pColValue) Then
 
-            Select Case pColName.Trim().ToUpper()
-                Case "id".Trim().ToUpper()
-                    Me.id = pColValue
-                Case "idDiagnostic".Trim().ToUpper()
-                    Me.idDiagnostic = pColValue.ToString()
-                Case "idLot".Trim().ToUpper()
-                    Me.idLot = pColValue.ToString()
-                Case "marque".Trim().ToUpper()
-                    Me.marque = pColValue.ToString()
-                Case "nombre".Trim().ToUpper()
-                    Me.nombre = pColValue.ToString()
-                Case "genre".Trim().ToUpper()
-                    Me.genre = pColValue.ToString()
-                Case "calibre".Trim().ToUpper()
-                    Me.calibre = pColValue.ToString()
-                Case "ecartTolere".Trim().ToUpper()
-                    Me.ecartTolere = pColValue.ToString()
-                Case "couleur".Trim().ToUpper()
-                    Me.couleur = pColValue.ToString()
-                Case "debitMoyen".Trim().ToUpper()
-                    Me.debitMoyen = pColValue.ToString()
-                Case "debitNominal".Trim().ToUpper()
-                    Me.debitNominal = pColValue.ToString()
-                Case "dateModificationAgent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pColValue.ToString())
-                Case "dateModificationCrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pColValue.ToString())
-            End Select
-            bReturn = True
+                Select Case pColName.Trim().ToUpper()
+                    Case "id".Trim().ToUpper()
+                        Me.id = pColValue
+                    Case "idDiagnostic".Trim().ToUpper()
+                        Me.idDiagnostic = pColValue.ToString()
+                    Case "idLot".Trim().ToUpper()
+                        Me.idLot = pColValue.ToString()
+                    Case "marque".Trim().ToUpper()
+                        Me.marque = pColValue.ToString()
+                    Case "nombre".Trim().ToUpper()
+                        Me.nombre = pColValue.ToString()
+                    Case "genre".Trim().ToUpper()
+                        Me.genre = pColValue.ToString()
+                    Case "calibre".Trim().ToUpper()
+                        Me.calibre = pColValue.ToString()
+                    Case "ecartTolere".Trim().ToUpper()
+                        Me.ecartTolere = pColValue.ToString()
+                    Case "couleur".Trim().ToUpper()
+                        Me.couleur = pColValue.ToString()
+                    Case "debitMoyen".Trim().ToUpper()
+                        Me.debitMoyen = pColValue.ToString()
+                    Case "debitNominal".Trim().ToUpper()
+                        Me.debitNominal = pColValue.ToString()
+                    Case "uiddiagnostic".Trim().ToUpper()
+                        Me.uiddiagnostic = pColValue.ToString()
+                    Case "aiddiagnostic".Trim().ToUpper()
+                        Me.aiddiagnostic = pColValue.ToString()
+                End Select
+
+                bReturn = True
+            End If
         Catch ex As Exception
             bReturn = False
         End Try

@@ -1174,8 +1174,8 @@ Public Class FrmDiagnostique
                         For Each tmpDiagnosticBusesDetail In tmpDiagnosticBuses.diagnosticBusesDetailList.Liste
                             If tmpDiagnosticBusesDetail.idLot = LotId Then
                                 ' Récupération des contrôles
-                                Dim tmpTxtBox_debit As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & LotId & "_" & tmpDiagnosticBusesDetail.idBuse & "_debit", diagBuses_tab_categories)
-                                Dim tmpTxtBox_usure As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & LotId & "_" & tmpDiagnosticBusesDetail.idBuse & "_usure", diagBuses_tab_categories)
+                                Dim tmpTxtBox_debit As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & LotId & "_" & tmpDiagnosticBusesDetail.numBuse & "_debit", diagBuses_tab_categories)
+                                Dim tmpTxtBox_usure As CRODIP_ControlLibrary.TBNumeric = CSForm.getControlByName("diagBuses_mesureDebit_" & LotId & "_" & tmpDiagnosticBusesDetail.numBuse & "_usure", diagBuses_tab_categories)
                                 '################################################################################################
                                 If tmpTxtBox_debit IsNot Nothing Then
                                     tmpTxtBox_debit.Text = tmpDiagnosticBusesDetail.debit
@@ -4050,13 +4050,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
             If Events_IsActive() Then
                 Dim lotId As Integer = CType(sender.name.replace("ComboBox_ecartTolere_", ""), Integer)
-            Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
-            Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
-            m_DiagBuses.Liste(lotId - 1).ecartTolere = ecartTolereValue
+                Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
+                Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
+                m_DiagBuses.Liste(lotId - 1).ecartTolere = ecartTolereValue
                 If sender.text <> "" Then
                     mutCalcLot(lotId)
                 End If
-            End if
+            End If
         Catch ex As Exception
             CSDebug.dispError("diagnostique::ecartTolere_SelectedIndexChanged ERR : " & ex.Message)
 
@@ -4230,7 +4230,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim detailBuse As DiagnosticBusesDetail = New DiagnosticBusesDetail
                     detailBuse.debit = inputBuseDebit.Text
                     detailBuse.ecart = inputBuseUsure.Text
-                    detailBuse.idBuse = buseId
+                    detailBuse.numBuse = buseId
                     detailBuse.idLot = lotId
                     detailBuse.idDiagnostic = ""
                     detailBuse.usee = (inputBuseUsure.Tag = "NOK") 'Usée si elles sont NOK

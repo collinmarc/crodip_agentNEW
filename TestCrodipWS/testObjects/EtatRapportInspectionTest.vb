@@ -716,7 +716,7 @@ Imports Crodip_agent
         CSFile.open(CRODIPWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
 
     End Sub
-    <TestMethod()> Public Sub TestSynhcroHTTPEtat()
+    <TestMethod(), Ignore("SynchroEtat")> Public Sub TestSynhcroHTTPEtat()
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
         Dim oPulve As Pulverisateur

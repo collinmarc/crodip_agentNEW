@@ -128,7 +128,7 @@ Public Class FVManometreControle
             Select Case pColName.ToUpper().Trim()
                 Case "idManometre".ToUpper().Trim()
                     Me.idManometre = pColValue.ToString()
-                Case "uidManometre".ToUpper().Trim()
+                Case "uidmanometre".ToUpper().Trim()
                     Me.uidmanometre = pColValue.ToString
                 Case "idReetalonnage".ToUpper().Trim()
                     Me.idReetalonnage = pColValue.ToString()

@@ -160,16 +160,22 @@ Public Class FVManometreControleManager
         Try
             oCSDb = New CSDb(True)
             bddCommande = oCSDb.getConnection().CreateCommand()
+            ' Mise a jour de la date de derniere modification
+            If Not bSynchro Then
+                pobjFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            End If
+            Dim oAgent As Agent = AgentManager.getAgentById(pobjFV.idAgentControleur)
+            pobjFV.id = getNewId(oAgent)
 
             ' Initialisation de la requete
             'paramsQueryUpdate = "id='" & objFVManometreControle.id & "',idManometre='" & CSDb.secureString(objFVManometreControle.idManometre) & "'"
             paramsQuery_col = "id,idManometre"
             paramsQuery = "'" & pobjFV.id & "' , '" & pobjFV.idManometre & "'"
+            paramsQuery_col = paramsQuery_col & ",aid,uid,uidstructure,uidmanometre"
+            paramsQuery = paramsQuery & ",'" & pobjFV.aid & "' , " & pobjFV.uid & "," & pobjFV.uidstructure & "," & pobjFV.uidmanometre
+            paramsQuery_col = paramsQuery_col & ",uidagentcontroleur"
+            paramsQuery = paramsQuery & "," & pobjFV.uidagentcontroleur
 
-            ' Mise a jour de la date de derniere modification
-            If Not bSynchro Then
-                pobjFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-            End If
 
             If Not pobjFV.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",type"
@@ -328,23 +334,16 @@ Public Class FVManometreControleManager
                 'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModif) & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",dateModif='" & CSDate.ToCRODIPString(pobjFV.dateModif) & "'"
             End If
-            If pobjFV.dateModificationAgentS <> "" Then
-                'paramsQuery_col = paramsQuery_col & ",dateModificationAgent"
-                'paramsQuery = paramsQuery & " , '" & CSDate.TOCRODIPString(pobjFV.dateModificationAgent) & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationAgent='" & CSDate.ToCRODIPString(pobjFV.dateModificationAgent) & "'"
-            End If
-            If pobjFV.dateModificationCrodipS <> "" Then
-                'paramsQuery_col = paramsQuery_col & ",FVFileName"
-                'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
-                paramsQueryUpdate = paramsQueryUpdate & ",dateModificationCrodip='" & CSDate.ToCRODIPString(pobjFV.dateModificationCrodip) & "'"
-            End If
             If Not pobjFV.FVFileName Is Nothing Then
                 'paramsQuery_col = paramsQuery_col & ",FVFileName"
                 'paramsQuery = paramsQuery & " , '" & pobjFV.FVFileName & "'"
                 paramsQueryUpdate = paramsQueryUpdate & ",FVFileName='" & CSDb.secureString(pobjFV.FVFileName) & "'"
             End If
+            paramsQueryUpdate = paramsQueryUpdate & pobjFV.getRootQuery()
+            paramsQueryUpdate = paramsQueryUpdate & ",uidstructure=" & pobjFV.uidstructure
+            paramsQueryUpdate = paramsQueryUpdate & ",uidmanometre=" & pobjFV.uidmanometre
+            paramsQueryUpdate = paramsQueryUpdate & ",uidagentcontroleur=" & pobjFV.uidagentcontroleur
 
-            ' On finalise la requete et en l'execute
             ' On finalise la requete et en l'execute
             bddCommande.Connection = oCSDb.getConnection()
             bddCommande.CommandText = "UPDATE FichevieManometreControle SET " & paramsQueryUpdate & " WHERE FichevieManometreControle.id='" & pobjFV.id & "'"

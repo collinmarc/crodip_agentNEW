@@ -38,7 +38,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsTrue(oIdent.isEtatINUTILISABLE)
 
         oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
-        Assert.AreEqual(CSDate.ToCRODIPString(DateTime.Today.ToShortDateString(), "yyyy-MM-dd"), oIdent.dateUtilisation)
+        Assert.AreEqual(CSDate.ToCRODIPString(DateTime.Today.ToShortDateString(), "yyyy-MM-dd 00:00:00"), oIdent.dateUtilisation)
 
     End Sub
     <TestMethod()> Public Sub IdentifiantPulveristeurTestCRUD()

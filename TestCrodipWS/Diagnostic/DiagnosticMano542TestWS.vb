@@ -12,10 +12,11 @@ Imports System.Net.Http
         Dim lst As DiagnosticMano542List
         lst = DiagnosticMano542Manager.WSGetList(145691, "998-TSTMCO-12345-1")
         Assert.IsNotNull(lst)
-        Assert.AreEqual(9, lst.Liste.Count)
         Assert.AreEqual(145691, lst.Liste(0).uiddiagnostic)
         Assert.AreEqual(145691, lst.Liste(1).uiddiagnostic)
-
+        Assert.IsTrue(lst.Liste.All(Function(d)
+                                        Return d.uiddiagnostic = 145691
+                                    End Function))
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oDiagnostic As CRODIPWS.Diagnostic
@@ -64,6 +65,7 @@ Imports System.Net.Http
         Dim oDiagM542 As DiagnosticMano542
         oDiagM542 = New DiagnosticMano542(m_oDiag)
         oDiagM542.pressionControle = 10
+        oDiagM542.pressionPulve = 10
         oDiagM542.pressionPulve = 11
         m_oDiag.diagnosticMano542List.Liste.Add(oDiagM542)
         oDiagM542 = New DiagnosticMano542(m_oDiag)

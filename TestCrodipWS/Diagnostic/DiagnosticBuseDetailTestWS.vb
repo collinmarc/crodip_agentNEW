@@ -12,7 +12,7 @@ Imports System.Net.Http
         Dim lst As DiagnosticBusesDetailList
         lst = DiagnosticBusesDetailManager.WSGetList(145691, "998-TSTMCO-12345-1")
         Assert.IsNotNull(lst)
-        Assert.AreEqual(41, lst.Liste.Count)
+        Assert.AreEqual(47, lst.Liste.Count)
         Assert.AreEqual(145691, lst.Liste(0).uiddiagnostic)
         Assert.AreEqual(145691, lst.Liste(1).uiddiagnostic)
 
@@ -46,45 +46,76 @@ Imports System.Net.Http
     End Sub
     <TestMethod()> Public Sub CRUDWS()
         Dim nreturn As Integer = 99
-        m_oExploitation = createExploitation()
-        Dim updated As root = Nothing
-        ExploitationManager.WSSend(m_oExploitation, updated)
-        m_oExploitation = CType(updated, Exploitation)
-        m_oPulve = createPulve(m_oExploitation)
-        Dim updated2 As root = Nothing
-        PulverisateurManager.WSSend(m_oPulve, updated2)
-        m_oPulve = CType(updated2, Pulverisateur)
-
+        Dim obuse As DiagnosticBuses
 
         m_oDiag = createAndSaveDiagnostic()
         m_oDiag.commentaire = "TU_MCO"
-        ' Création des buses
-        Dim oBuse As DiagnosticBuses
-        oBuse = New DiagnosticBuses(m_oDiag)
-        oBuse.idLot = 1
-        m_oDiag.diagnosticBusesList.Liste.Clear()
-        m_oDiag.diagnosticBusesList.Liste.Add(oBuse)
-        DiagnosticManager.save(m_oDiag)
-        'on le relit pour avoir les Ids de buses
         DiagnosticManager.getDiagnosticById(m_oDiag.id)
 
-        Dim oReturn As Object
+        m_oDiag.diagnosticBusesList.Liste.Clear()
+        Dim oDiagBuses As New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque1"
+        oDiagBuses.nombre = "5"
+        oDiagBuses.genre = "DBGenre1"
+        oDiagBuses.calibre = "DBCalibre1"
+        oDiagBuses.couleur = "DBCouleur1"
+        oDiagBuses.debitMoyen = "3,1"
+        oDiagBuses.debitNominal = "3,1"
+        oDiagBuses.idLot = "1"
+        oDiagBuses.ecartTolere = "7"
+        m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+        'Ajout des Détails des buses 
+        'Detail 1
+        Dim oDiagBusesDetail As New DiagnosticBusesDetail()
+        oDiagBusesDetail.debit = "1.6"
+        oDiagBusesDetail.ecart = "0.6"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.debit = "1.7"
+        oDiagBusesDetail.ecart = "0.7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+        oDiagBuses = New DiagnosticBuses()
+        oDiagBuses.marque = "DBMarque2"
+        oDiagBuses.nombre = "5"
+        oDiagBuses.genre = "DBGenre2"
+        oDiagBuses.calibre = "DBCalibre2"
+        oDiagBuses.couleur = "DBCouleur2"
+        oDiagBuses.debitMoyen = "3,2"
+        oDiagBuses.debitNominal = "3,3"
+        oDiagBuses.idLot = "2"
+        oDiagBuses.ecartTolere = "3,4"
+        m_oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
+        'Detail 1
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.debit = "2,6"
+        oDiagBusesDetail.ecart = "0,6"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+        'Détail2
+        oDiagBusesDetail = New DiagnosticBusesDetail()
+        oDiagBusesDetail.debit = "2,7"
+        oDiagBusesDetail.ecart = "0,7"
+        oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
+
+
+        Dim oReturn As Diagnostic = Nothing
         Dim codeReponse As Integer
         codeReponse = DiagnosticManager.WSSend(m_oDiag, oReturn)
         m_oDiag.uid = CType(oReturn, Diagnostic).uid
-        'Envoie sur le serveur
+        'Envoie sur le serveur des buses
         DiagnosticBusesManager.WSSend(m_oDiag)
         'Récupération depuis le serveur et ajout au diag pour les buses avec un uid
         Dim olst As DiagnosticBusesList
         olst = DiagnosticBusesManager.WSGetList(m_oDiag.uid, m_oDiag.aid)
+        Assert.AreEqual(2, olst.Liste.Count)
         m_oDiag.diagnosticBusesList.Liste.Clear()
         For Each oBuse In olst.Liste
-            If oBuse.uid <> 0 Then
-                m_oDiag.diagnosticBusesList.Liste.Add(oBuse)
-            End If
+            Assert.AreEqual(m_oDiag.uid, obuse.uiddiagnostic)
+            Assert.AreEqual(m_oDiag.aid, obuse.aiddiagnostic)
+            m_oDiag.diagnosticBusesList.Liste.Add(obuse)
         Next
         DiagnosticManager.save(m_oDiag)
-        'on le relit pour avoir les Ids de buses
         DiagnosticManager.getDiagnosticById(m_oDiag.id)
 
 

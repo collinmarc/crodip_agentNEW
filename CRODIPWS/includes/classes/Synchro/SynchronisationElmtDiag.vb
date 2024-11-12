@@ -68,7 +68,7 @@ Public Class SynchronisationElmtDiag
                 For Each oDetail As DiagnosticBusesDetail In lstDiagbusesDetail.Liste
                     Dim obuse As DiagnosticBuses
                     obuse = oDiag.diagnosticBusesList.Liste.Where(Function(b)
-                                                                      Return b.id = oDetail.idBuse
+                                                                      Return b.idLot = oDetail.idLot
                                                                   End Function).FirstOrDefault()
                     If obuse IsNot Nothing Then
                         obuse.diagnosticBusesDetailList.Liste.Add(oDetail)
@@ -97,6 +97,7 @@ Public Class SynchronisationElmtDiag
                 bReturn = False
             End Try
         End If
+        Return bReturn
 
     End Function
 End Class

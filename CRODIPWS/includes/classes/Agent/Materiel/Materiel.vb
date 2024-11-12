@@ -56,27 +56,27 @@ Public MustInherit Class Materiel
     <XmlIgnore()>
     Public Property idCrodip() As String
         Get
-            Return _idCrodip
+            Return aid
         End Get
         Set(ByVal Value As String)
-            _idCrodip = Value
+            aid = Value
         End Set
     End Property
     Public Property uidstructure() As Integer
         Get
-            Return _idStructure
+            Return idstructure
         End Get
         Set(ByVal Value As Integer)
-            _idStructure = Value
+            idstructure = Value
         End Set
     End Property
     <XmlIgnore()>
     Public Property idstructure() As Integer
         Get
-            Return uidstructure
+            Return _idStructure
         End Get
         Set(ByVal Value As Integer)
-            uidstructure = Value
+            _idStructure = Value
         End Set
     End Property
 
@@ -87,15 +87,20 @@ Public MustInherit Class Materiel
         End Get
         Set(ByVal Value As Integer)
             _isSupprime = CBool(Value)
+            If Not isSupprime Then
+                agentSuppression = ""
+                raisonSuppression = ""
+                dateSuppression = ""
+            End If
         End Set
     End Property
     <XmlElement("isSupprime")>
     Public Property isSupprimeWS() As Boolean
         Get
-            Return _isSupprime
+            Return isSupprime
         End Get
         Set(ByVal Value As Boolean)
-            _isSupprime = Value
+            isSupprime = Value
         End Set
     End Property
 
@@ -135,7 +140,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
     <XmlIgnoreAttribute()>
-    Public Property DateActivation() As Date
+    Public Property dateActivation() As Date
         Get
             If _DateActivation.HasValue Then
                 Return _DateActivation
@@ -148,7 +153,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
     <XmlElement("dateActivation")>
-    Public Property DateActivationS() As String
+    Public Property dateActivationS() As String
         Get
             Return CSDate.GetDateForWS(_DateActivation.GetValueOrDefault())
         End Get

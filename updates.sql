@@ -344,7 +344,7 @@ ALTER TABLE Exploitation ADD COLUMN uid integer;
 ALTER TABLE Exploitation ADD COLUMN aid text;
 ALTER TABLE Exploitation ADD COLUMN uidstructure integer;
 update Exploitation set aid = id;
-update Exploitation set uidstructure = idstucture;
+update Exploitation set uidstructure = idstructure;
 ALTER TABLE pulverisateur ADD COLUMN uid integer;
 ALTER TABLE pulverisateur ADD COLUMN uidstructure integer;
 ALTER TABLE pulverisateur ADD COLUMN aid text;
@@ -365,4 +365,95 @@ ALTER TABLE Diagnostic ADD COLUMN uidstructure integer;
 ALTER TABLE Diagnostic ADD COLUMN uidexploitation integer;
 ALTER TABLE Diagnostic ADD COLUMN uidpulverisateur integer;
 update Diagnostic set aid = id;
+ALTER TABLE DiagnosticItem ADD COLUMN uid integer;
+ALTER TABLE DiagnosticItem ADD COLUMN aid text;
+ALTER TABLE DiagnosticItem ADD COLUMN uiddiagnostic integer;
+ALTER TABLE DiagnosticItem ADD COLUMN aiddiagnostic integer;
+update DiagnosticItem set aid = id;
+update DiagnosticItem set aiddiagnostic = iddiagnostic;
+
+ALTER TABLE DiagnosticBuses ADD COLUMN uid integer;
+ALTER TABLE DiagnosticBuses ADD COLUMN aid text;
+ALTER TABLE Diagnosticbuses ADD COLUMN uiddiagnostic integer;
+ALTER TABLE Diagnosticbuses ADD COLUMN aiddiagnostic text;
+update DiagnosticBuses set aid = id;
+update DiagnosticBuses set aiddiagnostic = iddiagnostic;
+ALTER TABLE DiagnosticBusesDetail ADD COLUMN uid integer;
+ALTER TABLE DiagnosticBusesDetail ADD COLUMN aid text;
+ALTER TABLE DiagnosticbusesDetail ADD COLUMN uiddiagnostic integer;
+ALTER TABLE DiagnosticbusesDetail ADD COLUMN aiddiagnostic text;
+update DiagnosticBusesDetail set aid = id;
+update DiagnosticBusesDetail set aiddiagnostic = iddiagnostic;
+ALTER TABLE DiagnosticMano542 ADD COLUMN uid integer;
+ALTER TABLE DiagnosticMano542 ADD COLUMN aid text;
+ALTER TABLE DiagnosticMano542 ADD COLUMN uiddiagnostic integer;
+ALTER TABLE DiagnosticMano542 ADD COLUMN aiddiagnostic text;
+update DiagnosticMano542 set aid = id;
+update DiagnosticMano542 set aiddiagnostic = iddiagnostic;
+ALTER TABLE DiagnosticTroncons833 ADD COLUMN uid integer;
+ALTER TABLE DiagnosticTroncons833 ADD COLUMN aid text;
+ALTER TABLE DiagnosticTroncons833 ADD COLUMN uiddiagnostic integer;
+ALTER TABLE DiagnosticTroncons833 ADD COLUMN aiddiagnostic text;
+update DiagnosticTroncons833 set aid = id;
+update DiagnosticTroncons833 set aiddiagnostic = iddiagnostic;
+
+ALTER TABLE BancMesure ADD COLUMN uid integer;
+ALTER TABLE BancMesure ADD COLUMN aid text;
+ALTER TABLE BancMesure ADD COLUMN uidstructure integer;
+update BancMesure set aid = id;
+update BancMesure set uidstructure = idStructure;
+
+ALTER TABLE AgentManoControle ADD COLUMN uid integer;
+ALTER TABLE AgentManoControle ADD COLUMN aid text;
+ALTER TABLE AgentManoControle ADD COLUMN uidstructure integer;
+update AgentManoControle set aid = idcrodip;
+update AgentManoControle set uidStructure = idstructure;
+
+ALTER TABLE AgentManoEtalon ADD COLUMN uid integer;
+ALTER TABLE AgentManoEtalon ADD COLUMN aid text;
+ALTER TABLE AgentManoEtalon ADD COLUMN uidstructure integer;
+update AgentManoEtalon set aid = idcrodip;
+update AgentManoEtalon set uidStructure = idstructure;
+
+ALTER TABLE FicheVieBancMesure ADD COLUMN uid integer;
+ALTER TABLE FicheVieBancMesure ADD COLUMN aid text;
+ALTER TABLE FicheVieBancMesure ADD COLUMN uidstructure integer;
+ALTER TABLE FicheVieBancMesure ADD COLUMN uidbancmesure integer;
+ALTER TABLE FicheVieBancMesure ADD COLUMN uidagentcontroleur integer;
+update FicheVieBancMesure set aid = id;
+
+ALTER TABLE FicheVieManometreControle ADD COLUMN uid integer;
+ALTER TABLE FicheVieManometreControle ADD COLUMN aid text;
+ALTER TABLE FicheVieManometreControle ADD COLUMN uidstructure integer;
+ALTER TABLE FicheVieManometreControle ADD COLUMN uidManometre integer;
+ALTER TABLE FicheVieManometreControle ADD COLUMN uidagentcontroleur integer;
+update FicheVieManometreControle set aid = id;
+
+ALTER TABLE FicheVieManometreetalon ADD COLUMN uid integer;
+ALTER TABLE FicheVieManometreetalon ADD COLUMN aid text;
+ALTER TABLE FicheVieManometreetalon ADD COLUMN uidstructure integer;
+ALTER TABLE FicheVieManometreetalon ADD COLUMN uidManometre integer;
+ALTER TABLE FicheVieManometreetalon ADD COLUMN uidagentcontroleur integer;
+update FicheVieManometreetalon set aid = id;
+
+ALTER TABLE AgentBuseetalon ADD COLUMN uid integer;
+ALTER TABLE AgentBuseetalon ADD COLUMN aid text;
+ALTER TABLE AgentBuseetalon ADD COLUMN uidstructure integer;
+update AgentBuseetalon set aid = idcrodip;
+
+ALTER TABLE IdentifiantPulverisateur ADD COLUMN uid integer;
+ALTER TABLE IdentifiantPulverisateur ADD COLUMN aid text;
+ALTER TABLE IdentifiantPulverisateur ADD COLUMN uidstructure integer;
+update IdentifiantPulverisateur set aid = id;
+update IdentifiantPulverisateur set uidstructure = idStructure;
+
+ALTER TABLE Controle_Regulier ADD COLUMN uid integer;
+ALTER TABLE Controle_Regulier ADD COLUMN aid text;
+ALTER TABLE Controle_Regulier ADD COLUMN uidstructure integer;
+ALTER TABLE Controle_Regulier ADD COLUMN aidagent integer;
+ALTER TABLE Controle_Regulier ADD COLUMN uidagent integer;
+ALTER TABLE Controle_Regulier ADD COLUMN uidmateriel integer;
+update Controle_Regulier set aid = ctrg_id;
+update Controle_Regulier set uidstructure = ctrg_StructureId;
+
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');

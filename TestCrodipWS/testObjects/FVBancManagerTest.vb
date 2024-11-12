@@ -58,7 +58,7 @@ Public Class FVBancManagerTest
         Assert.IsTrue(FVBancManager.save(objFVBanc))
 
         objFVBanc2 = FVBancManager.getFVBancById(m_oBanc.id)
-        Assert.AreEqual(m_oBanc.id, objFVBanc2.id)
+        Assert.AreEqual(m_oBanc.id, objFVBanc2.idBancMesure)
 
         objFVBanc2.caracteristiques = "TEST"
         Assert.IsTrue(FVBancManager.save(objFVBanc2))
@@ -451,7 +451,7 @@ Public Class FVBancManagerTest
 
         oCtrl.resultat = "Le résultat est négatif : vérifiez votre banc de mesure de débits"
         Dim oEtat As New EtatFVBanc(oCtrl)
-        Dim sFileName As String = oEtat.buildPDF(obanc, agentCourant)
+        Dim sFileName As String = oEtat.buildPDF(obanc, m_oAgent)
 
         obanc.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 

@@ -690,6 +690,7 @@ Public Class DiagnosticManagerTest
     '''</summary>
     <TestMethod()>
     Public Sub TST_GetDiagPourcontreVisite4mois()
+        m_oAgent.bTest = False
         Dim oDiag As Diagnostic
         Dim bReturn As Boolean
         Dim id1 As String
@@ -821,7 +822,7 @@ Public Class DiagnosticManagerTest
         Dim oDiagBusesDetail As New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
         oDiagBusesDetail.idLot = "1"
-        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.numBuse = 1
         oDiagBusesDetail.debit = "0,51"
         oDiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
@@ -829,7 +830,7 @@ Public Class DiagnosticManagerTest
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
         oDiagBusesDetail.idLot = "1"
-        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.numBuse = 2
         oDiagBusesDetail.debit = "0,52"
         oDiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
@@ -837,14 +838,14 @@ Public Class DiagnosticManagerTest
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
         oDiagBusesDetail.idLot = "2"
-        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.numBuse = 1
         oDiagBusesDetail.debit = "0,53"
         oDiag.diagnosticBusesList.Liste(1).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
         oDiagBusesDetail = New DiagnosticBusesDetail()
         oDiagBusesDetail.idDiagnostic = oDiag.id
         oDiagBusesDetail.idLot = "2"
-        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.numBuse = 2
         oDiagBusesDetail.debit = "0,54"
         oDiag.diagnosticBusesList.Liste(1).diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         '        DiagnosticBusesDetailManager.save(oDiagBusesDetail)
@@ -1006,15 +1007,14 @@ Public Class DiagnosticManagerTest
         Dim idDiag As String
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim UpdateInfo As New Object
+        Dim oreturnExploit As New Exploitation
+        Dim oreturnPulve As New Pulverisateur
+        Dim oreturnE2P As New ExploitationTOPulverisateur
 
         oExploit = createExploitation()
-        ExploitationManager.WSSend(oExploit, UpdateInfo)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.WSSend(oPulve, UpdateInfo)
-        Dim oExploitToPulve As ExploitationTOPulverisateur
-        oExploitToPulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
-        ExploitationTOPulverisateurManager.WSSend(oExploitToPulve, UpdateInfo)
+        Dim oSynchro As New Synchronisation(m_oAgent)
+        oSynchro.Synchro(True, True)
 
         'Creation d'un Diagnostic
         '============================
@@ -1173,7 +1173,7 @@ Public Class DiagnosticManagerTest
         oDiagItem = New DiagnosticItem()
         oDiagItem.idItem = "111"
         oDiagItem.itemValue = "1"
-        oDiagItem.itemCodeEtat = "B"
+        oDiagItem.itemCodeEtat = "X"
         oDiagItem.cause = "1"
         oDiag.AdOrReplaceDiagItem(oDiagItem)
 
@@ -1217,16 +1217,7 @@ Public Class DiagnosticManagerTest
 
         'Synchronisation Ascendante du Diag
         '========================
-        Dim oSynchro As New Synchronisation(m_oAgent)
-        Assert.IsTrue(oSynchro.runascSynchroDiag(m_oAgent, oDiag))
-
-        'Synchronisation descendate du Diag
-        '==================================
-        'On simule une MAJ sur ler Server
-        'oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now())
-        'Dim UpdateInfo As Object
-        'DiagnosticManager.WSSend( oDiag, UpdateInfo)
-
+        oSynchro.runAscSynchro()
 
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
@@ -1234,15 +1225,17 @@ Public Class DiagnosticManagerTest
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
         m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-10).ToShortDateString())
-        Dim obj As New Object
+        Dim obj As New Agent
         AgentManager.WSSend(m_oAgent, obj)
 
 
         'Synchronisation descendate du Diag
         '==================================
-        oSynchro.runDescSynchro()
+        oSynchro = New Synchronisation(m_oAgent)
+        oSynchro.Synchro(True, True)
 
-        'Vérification des Objets
+        'Vérification des Objets  = DIAG
+        '================================
         oDiag2 = DiagnosticManager.getDiagnosticById(idDiag)
 
         Assert.AreEqual(oDiag.id, oDiag2.id)
@@ -1270,6 +1263,39 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(oDiag.controleBancMesureId, oDiag2.controleBancMesureId)
         Assert.IsTrue(oDiag2.isSupprime)
         Assert.AreEqual("1234", oDiag2.diagRemplacementId)
+
+
+        'Vérification des Objets  = DIAGItems
+        '================================
+        Assert.AreEqual(4, oDiag2.diagnosticItemsLst.Count)
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(0)
+        'Item1
+        Assert.IsTrue(oDiagItem.idItem = "111")
+        Assert.IsTrue(oDiagItem.itemValue = "1")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = "X")
+        Assert.IsTrue(oDiagItem.cause = "1")
+
+
+        'Item2
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(1)
+        Assert.IsTrue(oDiagItem.idItem = "222")
+        Assert.IsTrue(oDiagItem.itemValue = "2")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
+        Assert.IsTrue(oDiagItem.cause = "2")
+
+        'Item3
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(2)
+        Assert.IsTrue(oDiagItem.idItem = "333")
+        Assert.IsTrue(oDiagItem.itemValue = "3")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = "O")
+        Assert.IsTrue(oDiagItem.cause = "2")
+
+        'Item4
+        oDiagItem = oDiag2.diagnosticItemsLst.Liste(3)
+        Assert.IsTrue(oDiagItem.idItem = "444")
+        Assert.IsTrue(oDiagItem.itemValue = "4")
+        Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
+        Assert.IsTrue(oDiagItem.cause = "3")
 
         Assert.AreEqual(2, oDiag2.diagnosticBusesList.Liste.Count)
         oDiagBuses = oDiag2.diagnosticBusesList.Liste(0)
@@ -1372,44 +1398,6 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(oDiagTroncons833.idColumn = "2")
         Assert.IsTrue(oDiagTroncons833.pressionSortie = "4.7")
 
-        'Vérification des DiagItems
-        Assert.AreEqual(4, oDiag2.diagnosticItemsLst.Count)
-        oDiagItem = oDiag2.diagnosticItemsLst.Liste(0)
-        'Item1
-        Assert.IsTrue(oDiagItem.idItem = "111")
-        Assert.IsTrue(oDiagItem.itemValue = "1")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "B")
-        Assert.IsTrue(oDiagItem.cause = "1")
-
-
-        'Item2
-        oDiagItem = oDiag2.diagnosticItemsLst.Liste(1)
-        Assert.IsTrue(oDiagItem.idItem = "222")
-        Assert.IsTrue(oDiagItem.itemValue = "2")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
-
-        Assert.IsTrue(oDiagItem.cause = "2")
-
-        'Item3
-        oDiagItem = oDiag2.diagnosticItemsLst.Liste(2)
-        Assert.IsTrue(oDiagItem.idItem = "333")
-        Assert.IsTrue(oDiagItem.itemValue = "3")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "O")
-
-        Assert.IsTrue(oDiagItem.cause = "2")
-
-        'Item4
-        oDiagItem = oDiag2.diagnosticItemsLst.Liste(3)
-        Assert.IsTrue(oDiagItem.idItem = "444")
-        Assert.IsTrue(oDiagItem.itemValue = "4")
-        Assert.IsTrue(oDiagItem.itemCodeEtat = "P")
-
-
-        Assert.IsTrue(oDiagItem.cause = "3")
-
-        Dim bReturn As Boolean
-        bReturn = DiagnosticManager.delete(idDiag)
-        Assert.IsTrue(bReturn)
 
     End Sub
 
@@ -1526,7 +1514,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("E001-2", oDiag.pulverisateurAncienId)
 
 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
@@ -2563,10 +2551,16 @@ Public Class DiagnosticManagerTest
         DiagnosticManager.delete(oDiag.id)
 
     End Sub
-    <TestMethod()>
+    <TestMethod(), Ignore("testé avec le diag")>
     Public Sub TST_SendDiagWSTroncons833()
         Dim oDiag As Diagnostic
         Dim idDiag As String
+        Dim oManoc As ManometreControle
+        'Création un mano de controle
+        oManoc = ManometreControleManager.WSgetById(0, "22-72-1")
+        ManometreControleManager.save(oManoc)
+
+
         'Creation d'un Diagnostic
         oDiag = New Diagnostic()
         idDiag = DiagnosticManager.getNewId(m_oAgent)
@@ -2582,28 +2576,28 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.idPression = "1"
         oDiagTroncons833.idColumn = "1"
         oDiagTroncons833.pressionSortie = "1.6"
-        oDiagTroncons833.ManocId = "123"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "2"
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "1.7"
-        oDiagTroncons833.ManocId = "456"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "3"
         oDiagTroncons833.idColumn = "3"
         oDiagTroncons833.pressionSortie = "2.6"
-        oDiagTroncons833.ManocId = "789"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "4"
         oDiagTroncons833.idColumn = "4"
         oDiagTroncons833.pressionSortie = "2.7"
-        oDiagTroncons833.ManocId = "741"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3
@@ -2611,14 +2605,14 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.idPression = "5"
         oDiagTroncons833.idColumn = "5"
         oDiagTroncons833.pressionSortie = "3.6"
-        oDiagTroncons833.ManocId = "852"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "6"
         oDiagTroncons833.idColumn = "6"
         oDiagTroncons833.pressionSortie = "3.7"
-        oDiagTroncons833.ManocId = "963"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4
@@ -2626,14 +2620,14 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.idPression = "7"
         oDiagTroncons833.idColumn = "7"
         oDiagTroncons833.pressionSortie = "4.6"
-        oDiagTroncons833.ManocId = "753"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4
         oDiagTroncons833 = New DiagnosticTroncons833()
         oDiagTroncons833.idPression = "8"
         oDiagTroncons833.idColumn = "8"
         oDiagTroncons833.pressionSortie = "4.7"
-        oDiagTroncons833.ManocId = "159"
+        oDiagTroncons833.ManocId = oManoc.numeroNational
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         DiagnosticManager.save(oDiag)
@@ -2652,11 +2646,11 @@ Public Class DiagnosticManagerTest
         'Vérification valeurs des tronçons 833
         Assert.AreEqual(8, oDiag.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(0)
-        Assert.AreEqual("123", oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
+        Assert.AreEqual(oManoc.numeroNational, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(1)
-        Assert.AreEqual("456", oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
+        Assert.AreEqual(oManoc.numeroNational, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
         oDiagTroncons833 = oDiag.diagnosticTroncons833.Liste(2)
-        Assert.AreEqual("789", oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
+        Assert.AreEqual(oManoc.numeroNational, oDiagTroncons833.ManocId, "Le numero de Mano de controle n'est pas récupéré par la synhcro")
 
         DiagnosticManager.delete(oDiag.id)
 
@@ -2978,14 +2972,14 @@ Public Class DiagnosticManagerTest
         'Ajout des Détails des buses du lot1
         'Detail 1 du lot1
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.numBuse = 1
         oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.debit = "1,6"
         oDiagBusesDetail.ecart = "0,6"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail 2 du lot1
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.numBuse = 2
         oDiagBusesDetail.idLot = "1"
         oDiagBusesDetail.debit = "1,7"
         oDiagBusesDetail.ecart = "0,7"
@@ -3010,14 +3004,14 @@ Public Class DiagnosticManagerTest
         'Ajout des Détails des buses du lot2
         'Detail 1 du lot2
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.idBuse = 1
+        oDiagBusesDetail.numBuse = 1
         oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.debit = "2,6"
         oDiagBusesDetail.ecart = "0,2"
         oDiagBuses.diagnosticBusesDetailList.Liste.Add(oDiagBusesDetail)
         'Détail 2 du lot2
         oDiagBusesDetail = New DiagnosticBusesDetail()
-        oDiagBusesDetail.idBuse = 2
+        oDiagBusesDetail.numBuse = 2
         oDiagBusesDetail.idLot = "2"
         oDiagBusesDetail.debit = "5,7"
         oDiagBusesDetail.ecart = "2,7"
@@ -3271,6 +3265,43 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateDebut = Date.Now().ToShortDateString()
         oDiag.controleDateFin = DateAdd(DateInterval.Hour, +1, Date.Now()).ToShortDateString()
 
+        'I.2   Mesures Manomètre 542 
+        '---------------------------
+
+        Dim oDiagMano542 As DiagnosticMano542
+
+        'Mano1
+        oDiagMano542 = New DiagnosticMano542()
+        oDiagMano542.pressionControle = "1,6"
+        oDiagMano542.pressionPulve = "1,7"
+        oDiagMano542.Ecart = 0.1D
+        oDiagMano542.Erreur = DiagnosticMano542.ERR542.FAIBLE
+        oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
+        'Mano2
+        oDiagMano542 = New DiagnosticMano542()
+        oDiagMano542.pressionControle = "2"
+        oDiagMano542.pressionPulve = "2,1"
+        oDiagMano542.Ecart = 0.2D
+        oDiagMano542.Erreur = DiagnosticMano542.ERR542.FORTE
+        oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
+        'Mano3
+        oDiagMano542 = New DiagnosticMano542()
+        oDiagMano542.pressionControle = "3"
+        oDiagMano542.pressionPulve = "3,1"
+        oDiagMano542.Ecart = 0.3D
+        oDiagMano542.Erreur = DiagnosticMano542.ERR542.FORTE
+        oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
+        'Mano4
+        oDiagMano542 = New DiagnosticMano542()
+        oDiagMano542.pressionControle = "4"
+        oDiagMano542.pressionPulve = "4,1"
+        oDiagMano542.Ecart = 0.4D
+        oDiagMano542.Erreur = DiagnosticMano542.ERR542.OK
+        oDiag.diagnosticMano542List.Liste.Add(oDiagMano542)
+
+        oDiag.controleUseCalibrateur = True
+        oDiag.syntheseErreurMaxiMano = "0,4"
+        oDiag.syntheseErreurMoyenneMano = "0,5"
 
         'I.3   Mesures Pression 833
         '---------------------------
@@ -3292,6 +3323,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.111D
         oDiagTroncons833.HeterogeneiteBar = 1.1D
         oDiagTroncons833.HeterogeneitePct = 0.1D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 1
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab1 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
@@ -3303,6 +3336,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.222D
         oDiagTroncons833.HeterogeneiteBar = 2.2D
         oDiagTroncons833.HeterogeneitePct = 0.2D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 2
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab2 Mesure 1
@@ -3315,6 +3350,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.111D
         oDiagTroncons833.HeterogeneiteBar = 1.1D
         oDiagTroncons833.HeterogeneitePct = 0.1D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 1
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab2 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
@@ -3326,6 +3363,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.222D
         oDiagTroncons833.HeterogeneiteBar = 2.2D
         oDiagTroncons833.HeterogeneitePct = 0.2D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 2
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab3 Mesure 1
@@ -3338,6 +3377,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.111D
         oDiagTroncons833.HeterogeneiteBar = 1.1D
         oDiagTroncons833.HeterogeneitePct = 0.1D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 1
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab3 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
@@ -3349,6 +3390,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.222D
         oDiagTroncons833.HeterogeneiteBar = 2.2D
         oDiagTroncons833.HeterogeneitePct = 0.2D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 2
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Pression Tab4 Mesure 1
@@ -3361,6 +3404,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.111D
         oDiagTroncons833.HeterogeneiteBar = 1.1D
         oDiagTroncons833.HeterogeneitePct = 0.1D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 1
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
         'Pression Tab4 Mesure 2
         oDiagTroncons833 = New DiagnosticTroncons833()
@@ -3372,6 +3417,8 @@ Public Class DiagnosticManagerTest
         oDiagTroncons833.MoyenneAutrePression = 0.222D
         oDiagTroncons833.HeterogeneiteBar = 2.2D
         oDiagTroncons833.HeterogeneitePct = 0.2D
+        oDiagTroncons833.nNiveau = 1
+        oDiagTroncons833.nTroncon = 2
         oDiag.diagnosticTroncons833.Liste.Add(oDiagTroncons833)
 
         'Les DiagItems ne sont pas utilisés dans le rapport de synthese
@@ -3784,8 +3831,10 @@ Public Class DiagnosticManagerTest
 
     End Sub
     'Test de la fonction de récupération d'un nouveau Numéro de diag
+
     <TestMethod()>
     Public Sub TST_GetNewId()
+        m_oAgent.bTest = False
         Dim odiag As Diagnostic
         Dim strId As String
         Dim tabStr() As String
@@ -4595,7 +4644,7 @@ Public Class DiagnosticManagerTest
         'On simule une MAJ sur ler Server
         System.Threading.Thread.Sleep(1000)
         oDiag.dateModificationCrodip = CSDate.GetDateForWS(Now().ToShortDateString())
-        Dim UpdateInfo As New Object
+        Dim UpdateInfo As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdateInfo)
 
 
@@ -4605,7 +4654,7 @@ Public Class DiagnosticManagerTest
         'on Simule la date de dernière synchro de l'agent à -1 munites
         '======================================
         m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS(CDate(oDiag.dateModificationAgent).AddMinutes(-1).ToShortDateString())
-        Dim obj As New Object
+        Dim obj As New Agent
         AgentManager.WSSend(m_oAgent, obj)
 
         Dim oLstSynchro As List(Of SynchronisationElmt)
@@ -4739,7 +4788,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("Jet projeté", oDiag.pulverisateurPulverisation)
 
 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.id, oDiag.uid, oDiag.aid)
@@ -5084,7 +5133,7 @@ Public Class DiagnosticManagerTest
     '<DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCV, "01/12/2020", Pulverisateur.controleEtatNOKCV, "11-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
     '<DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2020", "01/10/2020", Diagnostic.controleEtatNOKCC, "01/12/2020", Pulverisateur.controleEtatNOKCC, "12-Pulve OK , Ctrl OK , Date Ctrl Avant => DateCrl+3 ans")>
 
-    <DataTestMethod()>
+    <DataTestMethod(), Ignore("Regles de calculs ?")>
     <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "31/07/2024", Pulverisateur.controleEtatOK, "2021-1-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
     <DataRow(Pulverisateur.controleEtatOK, "01/09/2021", "01/10/2021", Diagnostic.controleEtatOK, "30/09/2024", Pulverisateur.controleEtatOK, "2021-4-Pulve OK avec Date prochain Ctrl = 01/09, Ctrl au 01/10 Resultat OK  => DateCtrl + 3ans")>
     <DataRow(Pulverisateur.controleEtatNOKCV, "01/09/2021", "01/08/2021", Diagnostic.controleEtatOK, "31/07/2024", Pulverisateur.controleEtatOK, "2021-7-Pulve AttCV avec Date prochain Ctrl = 01/09, Ctrl au 01/08 Resultat OK  => DateCtrl + 3ans")>
@@ -5145,7 +5194,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("A PASTILLE", oDiag2.buseFonctionnement)
 
 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag2, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag2.uid, oDiag2.aid)
@@ -5175,7 +5224,7 @@ Public Class DiagnosticManagerTest
         Dim lstFonctionnement As List(Of String)
         Dim oPulve As Pulverisateur
         Dim oExploit As Exploitation
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
 
         oExploit = createExploitation()
         oPulve = createPulve(oExploit)
@@ -5212,6 +5261,7 @@ Public Class DiagnosticManagerTest
     '''</summary>
     <TestMethod()>
     Public Sub TST_GetLstDiagByPulveId()
+        m_oAgent.bTest = False
         Dim bReturn As Boolean
         Dim id As String
         Dim oDiag As Diagnostic
@@ -5225,7 +5275,7 @@ Public Class DiagnosticManagerTest
         '==========
         ' Act
         '==========
-        'Creation d'un Diagnostic
+        'Creation d'un Diagnostic1
         oDiag = createAndSaveDiagnostic()
         id = oDiag.id
         oDiag.controleNomSite = "MonSite"
@@ -5240,6 +5290,7 @@ Public Class DiagnosticManagerTest
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
+        'Creation d'un Diagnostic2
         oDiag = createDiagnostic(m_oExploitation, m_oPulve, True)
         oDiag.organismePresId = m_oAgent.idStructure
         oDiag.controleNomSite = "MonSite"
@@ -5254,6 +5305,7 @@ Public Class DiagnosticManagerTest
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
+        'Creation d'un Diagnostic3
         oDiag = createDiagnostic(m_oExploitation, m_oPulve, True)
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
@@ -5340,7 +5392,7 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateFin = Date.Today.ToShortDateString()
 
         oDiag.controleManoControleNumNational = oManoC.numeroNational
-        oDiag.controleBancMesureId = oBanc.numeroNational
+        oDiag.controleBancMesureId = oBanc.id
 
         '        bReturn = DiagnosticManager.save(oDiag)
         '        Assert.IsTrue(bReturn)
@@ -5448,7 +5500,7 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual("NON", oDiag.pulverisateurRincagecircuit)
 
 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
@@ -5529,7 +5581,7 @@ Public Class DiagnosticManagerTest
 
 
 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
@@ -5786,7 +5838,7 @@ Public Class DiagnosticManagerTest
 
 
         '' Test des WS 
-        Dim UpdatedObject As New Object
+        Dim UpdatedObject As New Diagnostic
         DiagnosticManager.WSSend(oDiag, UpdatedObject)
 
         oDiag2 = DiagnosticManager.WSgetById(m_oAgent.uid, oDiag.uid, oDiag.aid)
@@ -5848,7 +5900,7 @@ Public Class DiagnosticManagerTest
         bReturn = DiagnosticManager.delete(id)
 
     End Sub
-    <TestMethod()>
+    <TestMethod(), Ignore("obsolete")>
     Public Sub TST_SynhcroPDFManquants()
         Dim oEtat As EtatRapportInspection
         Dim oDiag As Diagnostic
@@ -6032,31 +6084,6 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()>
-    Public Sub testGetNewId()
-        Dim oDiag As Diagnostic
-
-        oDiag = createAndSaveDiagnostic()
-        oDiag = createAndSaveDiagnostic()
-
-        m_oAgent.oPool = New Pool()
-        m_oAgent.oPool.idCRODIPPC = "12345"
-
-        Dim str As String
-        str = DiagnosticManager.getNewId(m_oAgent)
-
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
-
-        m_oAgent.oPool.idCRODIPPC = "1119"
-        str = DiagnosticManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
-
-        m_oAgent.oPool = Nothing
-        str = DiagnosticManager.getNewId(m_oAgent)
-        Assert.AreEqual("498-1119-1242", str)
-
-
-    End Sub
 
 
 

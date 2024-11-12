@@ -114,45 +114,46 @@ Public Class Buse
 
 
     Public Overrides Function Fill(pColName As String, pValue As Object) As Boolean
-        Select Case pColName.ToUpper.Trim().ToUpper()
-            Case "numeroNational".Trim().ToUpper()
-                Me.numeroNational = pValue.ToString()
-            Case "idCrodip".Trim().ToUpper()
-                Me.idCrodip = pValue.ToString()
-            Case "idStructure".Trim().ToUpper()
-                Me.uidstructure = pValue.ToString()
-            Case "couleur".Trim().ToUpper()
-                Me.couleur = pValue.ToString()
-            Case "pressionEtalonnage".Trim().ToUpper()
-                Me.pressionEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
-            Case "debitEtalonnage".Trim().ToUpper()
-                Me.debitEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
-            Case "isSynchro".Trim().ToUpper()
-                Me.isSynchro = pValue
-            Case "dateAchat".Trim().ToUpper()
-                Me.dateAchat = CSDate.ToCRODIPString(pValue.ToString())
-            Case "dateModificationAgent".Trim().ToUpper()
-                Me.dateModificationAgent = CSDate.ToCRODIPString(pValue.ToString())
-            Case "dateModificationCrodip".Trim().ToUpper()
-                Me.dateModificationCrodip = CSDate.ToCRODIPString(pValue.ToString())
-            Case "etat".Trim().ToUpper()
-                Me.etat = CType(pValue, Boolean)
-            Case "isSupprime".Trim().ToUpper()
-                Me.isSupprime = CType(pValue, Boolean)
-            Case "isUtilise".Trim().ToUpper()
-                Me.isUtilise = CType(pValue, Boolean)
-            Case "agentsuppression".Trim().ToUpper()
-                Me.agentSuppression = pValue.ToString()
-            Case "raisonsuppression".Trim().ToUpper()
-                Me.raisonSuppression = pValue.ToString()
-            Case "datesuppression".Trim().ToUpper()
-                Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
-            Case "jamaisServi".Trim().ToUpper()
-                Me.jamaisServi = pValue
-            Case "dateActivation".Trim().ToUpper()
-                Me.DateActivation = pValue
-        End Select
-
+        Dim breturn As Boolean = True
+        If Not MyBase.Fill(pColName, pValue) Then
+            Select Case pColName.ToUpper.Trim().ToUpper()
+                Case "numeroNational".Trim().ToUpper()
+                    Me.numeroNational = pValue.ToString()
+                Case "idCrodip".Trim().ToUpper()
+                    Me.idCrodip = pValue.ToString()
+                Case "idStructure".Trim().ToUpper(), "uidStructure".Trim().ToUpper()
+                    Me.uidstructure = pValue.ToString()
+                Case "couleur".Trim().ToUpper()
+                    Me.couleur = pValue.ToString()
+                Case "pressionEtalonnage".Trim().ToUpper()
+                    Me.pressionEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
+                Case "debitEtalonnage".Trim().ToUpper()
+                    Me.debitEtalonnage = GlobalsCRODIP.StringToDouble(pValue.ToString())
+                Case "isSynchro".Trim().ToUpper()
+                    Me.isSynchro = pValue
+                Case "dateAchat".Trim().ToUpper()
+                    Me.dateAchat = CSDate.ToCRODIPString(pValue.ToString())
+                Case "etat".Trim().ToUpper()
+                    Me.etat = CType(pValue, Boolean)
+                Case "isSupprime".Trim().ToUpper()
+                    Me.isSupprime = CType(pValue, Boolean)
+                Case "isUtilise".Trim().ToUpper()
+                    Me.isUtilise = CType(pValue, Boolean)
+                Case "agentsuppression".Trim().ToUpper()
+                    Me.agentSuppression = pValue.ToString()
+                Case "raisonsuppression".Trim().ToUpper()
+                    Me.raisonSuppression = pValue.ToString()
+                Case "datesuppression".Trim().ToUpper()
+                    Me.dateSuppression = CSDate.ToCRODIPString(pValue).ToString()
+                Case "jamaisServi".Trim().ToUpper()
+                    Me.jamaisServi = pValue
+                Case "dateActivation".Trim().ToUpper()
+                    Me.dateActivation = pValue
+                Case Else
+                    breturn = False
+            End Select
+        End If
+        Return breturn
     End Function
 
     Public Overrides Function DeleteMateriel(ByVal pAgentSuppression As Agent, ByVal pRaison As String) As Boolean

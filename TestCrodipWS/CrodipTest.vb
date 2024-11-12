@@ -94,13 +94,14 @@ Public Class CRODIPTest
         m_oAgent.eMail = "a@a.com"
         m_oAgent.isActif = True
         m_oAgent.numeroNational = "004"
+        m_oAgent.bTest = True   'JE SUIS EN TEST
         AgentManager.save(m_oAgent)
         Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
         '        AgentManager.getWSUpdates(m_oAgent.id,
 
         'Récupération du banc de la structure
         m_oBanc = BancManager.getBancById(m_idStructure & "-" & m_IdAgent & "-1")
-        If m_oBanc.id = "" Then
+        If m_oBanc.id = "0" Or m_oBanc.id = "" Then
             'Si il n'existe pas on le récupère du WS
             m_oBanc = BancManager.WSgetById(0, m_idStructure & "-" & m_IdAgent & "-1")
             'Si il n'existe pas sur le WS , je je créé en base (Normalement impossible)
@@ -231,7 +232,6 @@ Public Class CRODIPTest
         oDiagBuses.debitNominal = "3,1"
         oDiagBuses.idLot = "1"
         oDiagBuses.ecartTolere = "7"
-        oDiagBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now())
         oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
         'Ajout des Détails des buses 
         'Detail 1
@@ -255,7 +255,6 @@ Public Class CRODIPTest
         oDiagBuses.debitNominal = "3,3"
         oDiagBuses.idLot = "2"
         oDiagBuses.ecartTolere = "3,4"
-        oDiagBuses.dateModificationAgent = CSDate.ToCRODIPString(Date.Now())
         oDiag.diagnosticBusesList.Liste.Add(oDiagBuses)
         'Detail 1
         oDiagBusesDetail = New DiagnosticBusesDetail()

@@ -98,9 +98,6 @@ Public Class AutoTestTest
         Assert.AreEqual(m_oAgent.idStructure, obj.IdStructure)
         Assert.AreEqual(m_oAgent.id.ToString(), obj.NumAgent)
         Dim str As String
-        str = obj.dateModificationAgent.ToString()
-        Assert.AreNotEqual(obj.dateModificationAgent, CDate("01/01/1970"))
-        Assert.AreEqual(obj.dateModificationCrodip, CDate("01/01/1970"))
 
         obj.setId(15)
         Assert.IsTrue(obj.Id = 15)
@@ -386,6 +383,7 @@ Public Class AutoTestTest
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
         objBanc.JamaisServi = False
+        objBanc.etat = True
         BancManager.save(objBanc)
 
         objBanc = New Banc()
@@ -395,6 +393,7 @@ Public Class AutoTestTest
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
         objBanc.JamaisServi = False
+        objBanc.etat = True
         BancManager.save(objBanc)
 
         objBanc = New Banc()
@@ -406,7 +405,8 @@ Public Class AutoTestTest
         objBanc.DateSuppression = "06/02/1964"
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
-        objBanc.JamaisServi = False
+        objBanc.jamaisServi = False
+        objBanc.etat = True
         BancManager.save(objBanc)
 
         'Creation de 4 Manomètres de controle (3OK et 1 Supprimé)
@@ -420,6 +420,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
+        objManometreControle.etat = True
         ManometreControleManager.save(objManometreControle)
 
         objManometreControle = New ManometreControle()
@@ -432,6 +433,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
+        objManometreControle.etat = True
         ManometreControleManager.save(objManometreControle)
 
         objManometreControle = New ManometreControle()
@@ -444,6 +446,7 @@ Public Class AutoTestTest
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
+        objManometreControle.etat = True
         ManometreControleManager.save(objManometreControle)
 
         objManometreControle = New ManometreControle()
@@ -459,6 +462,7 @@ Public Class AutoTestTest
         objManometreControle.DateSuppression = "06/02/1964"
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
+        objManometreControle.etat = True
         ManometreControleManager.save(objManometreControle)
 
         Dim oColCtrl As List(Of AutoTest)

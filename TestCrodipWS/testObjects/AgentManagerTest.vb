@@ -155,7 +155,7 @@ Public Class AgentManagerTest
 
         Assert.IsNotNull(oAgent)
         Assert.AreEqual("AgentTest", oAgent.nom)
-        Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
+        Assert.AreEqual(New Date(1971, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
 
     End Sub
 
@@ -215,7 +215,7 @@ Public Class AgentManagerTest
         For Each oAgent2 In oList.items
             If oAgent2.id = oAgent.id Then
                 Assert.AreEqual(oStructure.nom, oAgent2.NomStructure)
-                Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
+                Assert.AreEqual(New Date(1971, 1, 1), CSDate.FromCrodipString(oAgent.dateDerniereSynchro))
             End If
         Next
         '        AgentManager.delete(oAgent.id)
@@ -239,7 +239,7 @@ Public Class AgentManagerTest
         Assert.AreEqual(1, oList.items.Count())
         Dim oAgent2 As Agent = oList.items(0)
         Assert.AreEqual(m_oStructure.nom, oAgent2.NomStructure)
-        Assert.AreEqual(New Date(1970, 1, 1), CSDate.FromCrodipString(oAgent2.dateDerniereSynchro))
+        Assert.AreEqual(New Date(1971, 1, 1), CSDate.FromCrodipString(oAgent2.dateDerniereSynchro))
 
         'Modification de la date de dernière synhcro
         oAgent2.dateDerniereSynchro = "2021-11-16 00:00:00"
@@ -705,7 +705,7 @@ Public Class AgentManagerTest
     Private Function createManoEtalon(ByVal pAgent As Agent) As String
         Dim oMano As New ManometreEtalon()
         Dim numnat As String
-        numnat = ManometreEtalonManager.getNewNumeroNationalForTestOnly(pAgent)
+        numnat = ManometreEtalonManager.FTO_getNewNumeroNational(pAgent)
         oMano.numeroNational = numnat
         oMano.idCrodip = "idCrodip"
         oMano.idStructure = pAgent.idStructure

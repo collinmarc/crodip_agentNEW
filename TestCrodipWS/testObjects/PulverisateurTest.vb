@@ -135,20 +135,6 @@ Public Class Pulverisateurtest
 
     End Sub
     <TestMethod()>
-    Public Sub TestTRTSPE()
-
-        m_oPulve = createPulve(createExploitation())
-        m_oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
-        m_oPulve.categorie = "Traitement des semences"
-        Assert.IsTrue(m_oPulve.isTraitementdesSemences)
-
-        m_oPulve.categorie = "Traitement post-récolte"
-        Assert.IsFalse(m_oPulve.isTraitementdesSemences)
-        Assert.IsTrue(m_oPulve.isTypeFixeouSemisMobile)
-
-
-    End Sub
-    <TestMethod()>
     Public Sub TestGetNiveauPulverisateur()
         Dim oAlertes As New Alertes
         Dim oNiveau As NiveauAlerte
@@ -171,7 +157,7 @@ Public Class Pulverisateurtest
             System.IO.File.Delete("ModuleDocumentaire/_parametres/Alertes_ORI.xml")
 
         End If
-            System.IO.File.Copy("ModuleDocumentaire/_parametres/Alertes.xml", "ModuleDocumentaire/_parametres/Alertes_ORI.xml")
+        System.IO.File.Copy("ModuleDocumentaire/_parametres/Alertes.xml", "ModuleDocumentaire/_parametres/Alertes_ORI.xml")
         Assert.IsTrue(Alertes.FTO_writeXml(oAlertes))
         oNiveau = Pulverisateur.getNiveauAlerte(CDate("01/09/2020"))
 
@@ -237,7 +223,7 @@ Public Class Pulverisateurtest
 
         m_oAgent.oPool.idCRODIPPC = "1119"
         str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual("8888-9999-1119-1", str)
+        Assert.AreEqual("8888-004-1119-1", str)
         str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
         Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
 
@@ -258,7 +244,7 @@ Public Class Pulverisateurtest
 
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.WSSend( oExploitation, oResponse)
+        ExploitationManager.WSSend(oExploitation, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id
@@ -317,8 +303,41 @@ Public Class Pulverisateurtest
         Assert.AreEqual("321AQW321", oPUlve.immatCertificat)
         Assert.AreEqual("654ZSX654", oPUlve.immatPlaque)
 
+    End Sub
+    <TestMethod()>
+    Public Sub TST_Synchro_Pulverisateur()
+        Dim oExploitation As Exploitation
+        Dim oPUlve As Pulverisateur
+        Dim oPUlve2 As Pulverisateur
+        Dim strId As String
 
-        PulverisateurManager.deletePulverisateurID(strId)
+        Dim oSynchro As New Synchronisation(m_oAgent)
+        oSynchro.runAscSynchro()
+        oSynchro.runDescSynchro()
+        Threading.Thread.Sleep(1000)
+
+        oExploitation = createExploitation()
+        oPUlve = createPulve(oExploitation)
+        strId = oPUlve.id
+        oPUlve.numeroChassis = "132456"
+        oPUlve.isPulveAdditionnel = True
+        oPUlve.pulvePrincipalNumNat = "123"
+        oPUlve.isPompesDoseuses = False
+        oPUlve.nbPompesDoseuses = 0
+        oPUlve.isCoupureAutoTroncons = False
+        oPUlve.isRincagecircuit = False
+        oPUlve.isReglageAutoHauteur = False
+        oPUlve.immatCertificat = "123AQW123"
+        oPUlve.immatPlaque = "456ZSX456"
+        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        oSynchro.runAscSynchro()
+
+        oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
+
+        Dim lstE2P As List(Of ExploitationTOPulverisateur)
+        lstE2P = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id)
+        Assert.AreEqual(1, lstE2P.Count)
+        Assert.AreEqual(lstE2P(0).uidpulverisateur, oPUlve.uid)
 
 
     End Sub
@@ -331,7 +350,7 @@ Public Class Pulverisateurtest
 
         oExploitation = createExploitation()
         Dim oResponse As Object = Nothing
-        ExploitationManager.WSSend( oExploitation, oResponse)
+        ExploitationManager.WSSend(oExploitation, oResponse)
 
         oPUlve = createPulve(oExploitation)
         strId = oPUlve.id

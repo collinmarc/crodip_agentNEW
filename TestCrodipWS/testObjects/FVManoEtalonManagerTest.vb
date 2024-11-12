@@ -82,7 +82,7 @@ Public Class FVManoEtalonManagerTest
         Dim olstFV As New List(Of FVManometreEtalon)
         oMano = New ManometreEtalon()
         oMano.idStructure = m_oAgent.idStructure
-        oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        oMano.numeroNational = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
         oMano.JamaisServi = True
         oMano.isUtilise = False
@@ -146,7 +146,7 @@ Public Class FVManoEtalonManagerTest
         Dim olstFV As New List(Of FVManometreEtalon)
         oMano = New ManometreEtalon()
         oMano.idStructure = m_oAgent.idStructure
-        oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+        oMano.numeroNational = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
         oMano.JamaisServi = True
         oMano.isUtilise = False

@@ -18,10 +18,10 @@ Public Class Banc
     <XmlIgnore>
     Public Overloads Property id() As String
         Get
-            Return uid
+            Return aid
         End Get
         Set(ByVal value As String)
-            uid = value
+            aid = value
         End Set
     End Property
     Sub New()
@@ -78,13 +78,13 @@ Public Class Banc
         End Set
     End Property
     <XmlElement("nbControles")>
-    Public Property nbControlesWS() As Nullable(Of Integer)
+    Public Property nbControlesS() As String
         Get
             Return _nbControles
         End Get
-        Set(ByVal Value As Nullable(Of Integer))
-            If Value IsNot Nothing Then
-                _nbControles = Value
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                nbControles = CInt(Value)
             End If
         End Set
     End Property
@@ -99,12 +99,12 @@ Public Class Banc
     End Property
 
     <XmlElement("nbControlesTotal")>
-    Public Property nbControlesTotalWS() As Nullable(Of Integer)
+    Public Property nbControlesTotalS() As String
         Get
-            Return _nbControlesTotal
+            Return nbControlesTotal
         End Get
-        Set(ByVal Value As Nullable(Of Integer))
-            If Value IsNot Nothing Then
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
                 _nbControlesTotal = Value
             End If
         End Set
@@ -118,7 +118,7 @@ Public Class Banc
             _nbControlesTotal = Value
         End Set
     End Property
-    Public Property ModuleAcquisition() As String
+    Public Property moduleAcquisition() As String
         Get
             Return _ModuleAcquisition
         End Get
@@ -126,7 +126,7 @@ Public Class Banc
             _ModuleAcquisition = Value
         End Set
     End Property
-
+    <XmlIgnore()>
     Public Overrides Property Libelle() As String
         Get
             Return "Banc de mesure : " + id
@@ -161,68 +161,69 @@ Public Class Banc
     End Function
 
     Public Overrides Function Fill(pColName As String, pcolValue As Object) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = True
         Try
-            ' Console.WriteLine(pColName & " . " & pcolValue.ToString())
-            Select Case pColName.Trim().ToUpper()
-                Case "id".Trim().ToUpper()
-                    Me.id = pcolValue.ToString() 'Public id As String
-                    Me.numeroNational = pcolValue.ToString() 'Public id As String
-                Case "idstructure".Trim().ToUpper()
-                    Me.uidstructure = pcolValue.ToString() 'Public idAgent As String
-                Case "marque".Trim().ToUpper()
-                    Me.marque = pcolValue.ToString() 'Public marque As String
-                Case "modele".Trim().ToUpper()
-                    Me.modele = pcolValue.ToString() 'Public modele As String
-                Case "dateachat".Trim().ToUpper()
-                    If Not CDate(pcolValue).Equals(CDate("1899-12-30")) Then
-                        Me.dateAchat = CSDate.ToCRODIPString(pcolValue.ToString()) 'Public dateAchat As String
-                    End If
-                Case "datederniercontrole".Trim().ToUpper()
-                    Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateAchat As String
-                Case "datemodificationagent".Trim().ToUpper()
-                    Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationAgent As String
-                Case "datemodificationcrodip".Trim().ToUpper()
-                    Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateModificationCrodip As String
-                Case "etat".Trim().ToUpper()
-                    Me.etat = CType(pcolValue, Boolean) 'Public etat As String
-                Case "issupprime".Trim().ToUpper()
-                    Me.isSupprime = CType(pcolValue, Boolean)
-                Case "isutilise".Trim().ToUpper()
-                    Me.isUtilise = CType(pcolValue, Boolean)
-                Case "nbcontroles".Trim().ToUpper()
-                    Me.nbControles = CType(pcolValue, Integer)
-                Case "nbcontrolestotal".Trim().ToUpper()
-                    Me.nbControlesTotal = CType(pcolValue, Integer)
-                Case "issupprime".Trim().ToUpper()
-                    Me.isSupprime = CType(pcolValue, Boolean) 'Public isSupprime As Boolean
-                Case "agentsuppression".Trim().ToUpper()
-                    Me.agentSuppression = pcolValue.ToString()
-                Case "raisonsuppression".Trim().ToUpper()
-                    Me.raisonSuppression = pcolValue.ToString()
-                Case "datesuppression".Trim().ToUpper()
-                    Dim strDateMin As String = CSDate.ToCRODIPString("")
-                    Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
-                    If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
-                        Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
-                    Else
-                        Me.dateSuppression = ""
-                    End If
+            If Not MyBase.Fill(pColName, pcolValue) Then
+                bReturn = True
+                ' Console.WriteLine(pColName & " . " & pcolValue.ToString())
+                Select Case pColName.Trim().ToUpper()
+                    Case "id".Trim().ToUpper()
+                        Me.id = pcolValue.ToString() 'Public id As String
+                        Me.numeroNational = pcolValue.ToString() 'Public id As String
+                    Case "idstructure".Trim().ToUpper()
+                        Me.uidstructure = pcolValue.ToString() 'Public idAgent As String
+                    Case "marque".Trim().ToUpper()
+                        Me.marque = pcolValue.ToString() 'Public marque As String
+                    Case "modele".Trim().ToUpper()
+                        Me.modele = pcolValue.ToString() 'Public modele As String
+                    Case "dateachat".Trim().ToUpper()
+                        If Not CDate(pcolValue).Equals(CDate("1899-12-30")) Then
+                            Me.dateAchat = CSDate.ToCRODIPString(pcolValue.ToString()) 'Public dateAchat As String
+                        End If
+                    Case "datederniercontrole".Trim().ToUpper()
+                        Me.dateDernierControleS = CSDate.ToCRODIPString(pcolValue).ToString 'Public dateAchat As String
+                    Case "etat".Trim().ToUpper()
+                        Me.etat = CType(pcolValue, Boolean) 'Public etat As String
+                    Case "issupprime".Trim().ToUpper()
+                        Me.isSupprime = CType(pcolValue, Boolean)
+                    Case "isutilise".Trim().ToUpper()
+                        Me.isUtilise = CType(pcolValue, Boolean)
+                    Case "nbcontroles".Trim().ToUpper()
+                        Me.nbControles = CType(pcolValue, Integer)
+                    Case "nbcontrolestotal".Trim().ToUpper()
+                        Me.nbControlesTotal = CType(pcolValue, Integer)
+                    Case "issupprime".Trim().ToUpper()
+                        Me.isSupprime = CType(pcolValue, Boolean) 'Public isSupprime As Boolean
+                    Case "agentsuppression".Trim().ToUpper()
+                        Me.agentSuppression = pcolValue.ToString()
+                    Case "raisonsuppression".Trim().ToUpper()
+                        Me.raisonSuppression = pcolValue.ToString()
+                    Case "datesuppression".Trim().ToUpper()
+                        Dim strDateMin As String = CSDate.ToCRODIPString("")
+                        Dim strDateValue As String = CSDate.ToCRODIPString(pcolValue)
+                        If strDateValue <> strDateMin And strDateValue <> "1899-12-30 00:00:00" Then
+                            Me.dateSuppression = CSDate.ToCRODIPString(pcolValue).ToString()
+                        Else
+                            Me.dateSuppression = ""
+                        End If
 
-                Case "jamaisServi".Trim().ToUpper()
-                    Me.jamaisServi = pcolValue
-                Case "dateActivation".Trim().ToUpper()
-                    Me.DateActivation = pcolValue
-                Case "ModuleAcquisition".Trim().ToUpper()
-                    Me.ModuleAcquisition = pcolValue
-                Case "idCrodipPool".Trim().ToUpper()
-                Case Else
-                    CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
+                    Case "jamaisServi".Trim().ToUpper()
+                        Me.jamaisServi = pcolValue
+                    Case "dateActivation".Trim().ToUpper()
+                        Me.DateActivation = pcolValue
+                    Case "ModuleAcquisition".Trim().ToUpper()
+                        Me.ModuleAcquisition = pcolValue
+                    Case "idCrodipPool".Trim().ToUpper()
+                    Case "uidstructure".Trim().ToUpper()
+                        Me.uidstructure = pcolValue
+                    Case Else
+                        CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
+                        bReturn = False
 
 
-            End Select
+                End Select
 
-            bReturn = True
+            End If
         Catch ex As Exception
             CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : " + ex.Message)
             bReturn = False

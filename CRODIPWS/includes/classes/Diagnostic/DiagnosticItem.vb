@@ -4,7 +4,7 @@ Imports System.Collections.Generic
 Imports System.Linq
 
 
-<Serializable()>
+<Serializable(), XmlInclude(GetType(DiagnosticItem))>
 Public Class DiagnosticItemList
 
     Private _Dic_diagnosticItem As Dictionary(Of String, DiagnosticItem)
@@ -12,19 +12,20 @@ Public Class DiagnosticItemList
     Sub New()
         _Dic_diagnosticItem = New Dictionary(Of String, DiagnosticItem)
     End Sub
-    <XmlIgnore>
-    Public Property items() As DiagnosticItem()
+    <XmlElement("DiagnosticItems")>
+    Public Property items() As Object()
         Get
             Dim olst As New List(Of DiagnosticItem)
             olst.AddRange(_Dic_diagnosticItem.Values)
             Return olst.ToArray()
         End Get
-        Set(ByVal Value As DiagnosticItem())
+        Set(ByVal Value As Object())
             For Each oItem As DiagnosticItem In Value
                 AddOrReplace(oItem)
             Next
         End Set
     End Property
+    <XmlIgnore()>
     Public Property Liste() As List(Of DiagnosticItem)
         Get
             Dim olst As New List(Of DiagnosticItem)
@@ -84,8 +85,7 @@ Public Class DiagnosticItemList
         _Dic_diagnosticItem.Clear()
     End Sub
 End Class
-<Serializable()>
-<XmlType(Namespace:="http://www.example.org/crodip/")>
+<Serializable(), XmlType(TypeName:="DiagnosticItems")>
 Public Class DiagnosticItem
     Inherits root
 
@@ -276,27 +276,27 @@ Public Class DiagnosticItem
 
     End Sub
 
-    'Public Property isItemCode1() As String
-    '    Get
-    '        Return (cause = "1")
-    '    End Get
-    '    Set(ByVal Value As String)
-    '        If Value.ToUpper() = "TRUE" Or Value.ToUpper() = "VRAI" Or Value.ToUpper() = "1" Then
-    '            cause = "1"
-    '        End If
-    '    End Set
-    'End Property
+    Public Property isItemCode1() As String
+        Get
+            Return (cause = "1")
+        End Get
+        Set(ByVal Value As String)
+            If Value.ToUpper() = "TRUE" Or Value.ToUpper() = "VRAI" Or Value.ToUpper() = "1" Then
+                cause = "1"
+            End If
+        End Set
+    End Property
 
-    'Public Property isItemCode2() As String
-    '    Get
-    '        Return (cause = "2")
-    '    End Get
-    '    Set(ByVal Value As String)
-    '        If Value.ToUpper() = "TRUE" Or Value.ToUpper() = "VRAI" Or Value.ToUpper() = "1" Then
-    '            cause = "2"
-    '        End If
-    '    End Set
-    'End Property
+    Public Property isItemCode2() As String
+        Get
+            Return (cause = "2")
+        End Get
+        Set(ByVal Value As String)
+            If Value.ToUpper() = "TRUE" Or Value.ToUpper() = "VRAI" Or Value.ToUpper() = "1" Then
+                cause = "2"
+            End If
+        End Set
+    End Property
 
     Public Property cause() As String
         Get
@@ -306,15 +306,18 @@ Public Class DiagnosticItem
             _cause = Value
         End Set
     End Property
-    Public Sub Fill(ByVal pColName As String, ByVal pcolValue As Object)
+    Public Overrides Function Fill(ByVal pColName As String, ByVal pcolValue As Object) As Boolean
+        Dim bReturn As Boolean = True
         If Not MyBase.Fill(pColName, pcolValue) Then
             Select Case pColName.ToUpper().Trim()
                 Case "id".ToUpper()
                     id = pcolValue.ToString
                 Case "idDiagnostic".ToUpper()
                     idDiagnostic = pcolValue.ToString()
-                Case "uidDiagnostic".ToUpper()
+                Case "uiddiagnostic".ToUpper()
                     uiddiagnostic = pcolValue.ToString()
+                Case "aiddiagnostic".ToUpper()
+                    aiddiagnostic = pcolValue.ToString()
                 Case "idItem".ToUpper
                     idItem = pcolValue.ToString()
                 Case "itemValue".ToUpper()
@@ -327,9 +330,12 @@ Public Class DiagnosticItem
                 '               isItemCode2 = pcolValue
                 Case "cause".ToUpper()
                     cause = pcolValue.ToString
+                Case Else
+                    bReturn = False
             End Select
         End If
-    End Sub
+        Return bReturn
+    End Function
 
 
 

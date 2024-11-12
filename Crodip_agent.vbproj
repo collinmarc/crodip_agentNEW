@@ -423,6 +423,7 @@
     <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\IfrmCRODIP.vb" />
     <Compile Include="Application\includes\classes\DPEtat\ActionFDiag.vb" />
     <Compile Include="Application\includes\classes\DPEtat\EtatFDiag.vb" />
     <Compile Include="Application\includes\classes\DPEtat\EtatFDiagContrat.vb" />
@@ -683,98 +684,9 @@
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\ReglagePulve\EtatReglagePulve.vb" />
-    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.Designer.vb">
-      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmDiagnostiqueSimple.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.Designer.vb">
-      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmLoadCtrlCRODIP.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDlgHelp551.Designer.vb">
-      <DependentUpon>frmRPDlgHelp551.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDlgHelp551.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDlgHelp552.Designer.vb">
-      <DependentUpon>frmRPDlgHelp552.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDlgHelp552.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPFicheExlpoitant.Designer.vb">
-      <DependentUpon>frmRPFicheExlpoitant.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPFicheExlpoitant.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPFichePulve.Designer.vb">
-      <DependentUpon>frmRPFichePulve.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPFichePulve.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.Designer.vb">
-      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPInfosBuses.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\FrmRPPreliminaire.Designer.vb">
-      <DependentUpon>FrmRPPreliminaire.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\FrmRPPreliminaire.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPparentContener.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDiagnostique.Designer.vb">
-      <DependentUpon>frmRPDiagnostique.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPDiagnostique.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPRecap.Designer.vb">
-      <DependentUpon>frmRPRecap.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPRecap.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\IfrmCRODIP.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\RPDiagItem.vb" />
     <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnostic.vb" />
-    <Compile Include="Application\ReglagePulve\frmRPCalculVolumeHa.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\includes\classes\ReglagePulve\RPParam.vb" />
-    <Compile Include="Application\ReglagePulve\frmRPRapport.Designer.vb">
-      <DependentUpon>frmRPRapport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\frmRPRapport.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\RPapropos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\RPloginAgent.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\RPloginStandAlone.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\RPParamUser.Designer.vb">
-      <DependentUpon>RPParamUser.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\RPParamUser.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\Signature\frmSignClientTelephone.Designer.vb">
       <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
     </Compile>
@@ -798,14 +710,6 @@
     </Compile>
     <Compile Include="AssemblyInfo.vb">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\ds_Etat_ReglagePulve.Designer.vb">
-      <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Application\ReglagePulve\ds_Etat_ReglagePulve.vb">
-      <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
     </Compile>
     <Compile Include="cr\EtatCrodipADEL.vb" />
     <Compile Include="cr\EtatContratCommercial.vb" />
@@ -1481,10 +1385,6 @@
     <Content Include="wgssSTU.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ds_Etat_ReglagePulve.Designer.vb</LastGenOutput>
-    </None>
     <None Include="bdd\crodip_agent.mdw" />
     <None Include="img\Exit.jpg" />
     <None Include="My Project\DataSources\Agent.datasource" />
@@ -1573,15 +1473,6 @@
     <None Include="Resources\btn_divers_add.jpg" />
     <None Include="Resources\btn_login.jpg" />
     <None Include="Resources\btn_login.bmp" />
-    <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsc">
-      <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
-    </None>
-    <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xss">
-      <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
-    </None>
-    <None Include="Application\ReglagePulve\ds_Etat_ReglagePulve.xsx">
-      <DependentUpon>ds_Etat_ReglagePulve.xsd</DependentUpon>
-    </None>
     <None Include="img\Button_Play_Icon_256.png" />
     <None Include="img\Button_PREVIous_Icon_256.png" />
     <None Include="img\Start.png" />
@@ -2194,57 +2085,6 @@
     <EmbeddedResource Include="Application\parentContener.resx">
       <DependentUpon>parentContener.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmDiagnostiqueSimple.resx">
-      <DependentUpon>frmDiagnostiqueSimple.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmLoadCtrlCRODIP.resx">
-      <DependentUpon>frmLoadCtrlCRODIP.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPDiagnostique.resx">
-      <DependentUpon>frmRPDiagnostique.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPDlgHelp551.resx">
-      <DependentUpon>frmRPDlgHelp551.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPDlgHelp552.resx">
-      <DependentUpon>frmRPDlgHelp552.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPFicheExlpoitant.resx">
-      <DependentUpon>frmRPFicheExlpoitant.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPFichePulve.resx">
-      <DependentUpon>frmRPFichePulve.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPInfosBuses.resx">
-      <DependentUpon>frmRPInfosBuses.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\FrmRPPreliminaire.resx">
-      <DependentUpon>FrmRPPreliminaire.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPparentContener.resx">
-      <DependentUpon>frmRPparentContener.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPRecap.resx">
-      <DependentUpon>frmRPRecap.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPCalculVolumeHa.resx">
-      <DependentUpon>frmRPCalculVolumeHa.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\frmRPRapport.resx">
-      <DependentUpon>frmRPRapport.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPapropos.resx">
-      <DependentUpon>RPapropos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPloginAgent.resx">
-      <DependentUpon>RPloginAgent.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPloginStandAlone.resx">
-      <DependentUpon>RPloginStandAlone.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\ReglagePulve\RPParamUser.resx">
-      <DependentUpon>RPParamUser.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClientTelephone.resx">
       <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
     </EmbeddedResource>
@@ -2505,8 +2345,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\exploitant\fichevie\" />
-    <Folder Include="Application\includes\classes\Agent\Materiel\" />
-    <Folder Include="Application\includes\classes\Controle\" />
     <Folder Include="Application\includes\classes\Diagnostic\ContratFact\" />
     <Folder Include="Application\includes\classes\Exploitation\" />
     <Folder Include="Application\includes\classes\FicheVie\" />

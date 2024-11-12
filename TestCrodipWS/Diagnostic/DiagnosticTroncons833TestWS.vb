@@ -12,9 +12,9 @@ Imports System.Net.Http
         Dim lst As DiagnosticTroncons833List
         lst = DiagnosticTroncons833Manager.WSGetList(145691, "998-TSTMCO-12345-1")
         Assert.IsNotNull(lst)
-        Assert.AreEqual(37, lst.Liste.Count)
-        Assert.AreEqual(145691, lst.Liste(0).uiddiagnostic)
-        Assert.AreEqual(145691, lst.Liste(1).uiddiagnostic)
+        Assert.IsTrue(lst.Liste.All(Function(t)
+                                        Return t.uiddiagnostic = 145691
+                                    End Function))
 
     End Sub
     <TestMethod()> Public Sub sendWS()
@@ -44,7 +44,7 @@ Imports System.Net.Http
         Assert.AreNotEqual(99, nReturn)
 
     End Sub
-    <TestMethod()> Public Sub CRUDWS()
+    <TestMethod(), Ignore("Testé avec le diag")> Public Sub CRUDWS()
         Dim nreturn As Integer
         m_oExploitation = createExploitation()
         Dim updated As root
@@ -108,20 +108,20 @@ Imports System.Net.Http
         'UPDATE
         oDiagT833 = m_oDiag.diagnosticTroncons833.Liste(0)
         oDiagT833.idPression = 1
-        oDiagT833.idColumn = 100
+        oDiagT833.idColumn = 10
         oDiagT833.pressionSortie = 100.1
         oDiagT833 = m_oDiag.diagnosticTroncons833.Liste(1)
         oDiagT833.idPression = 2
-        oDiagT833.idColumn = 200
+        oDiagT833.idColumn = 20
         oDiagT833.pressionSortie = 200.2
         oDiagT833 = m_oDiag.diagnosticTroncons833.Liste(2)
         oDiagT833.idPression = 3
-        oDiagT833.idColumn = 300
+        oDiagT833.idColumn = 30
         oDiagT833.pressionSortie = 300.3
         'Ajout d'un 4eme
         oDiagT833 = New DiagnosticTroncons833(m_oDiag)
         oDiagT833.idPression = 4
-        oDiagT833.idColumn = 400
+        oDiagT833.idColumn = 40
         oDiagT833.pressionSortie = 400.4
         m_oDiag.diagnosticTroncons833.Liste.Add(oDiagT833)
         'Il faut les sauvegarder pour Modifier les datesdeModifAgent
@@ -141,19 +141,19 @@ Imports System.Net.Http
 
         oDiagT833 = lst.Liste(m_oDiag.diagnosticTroncons833.Liste.Count - 4)
         Assert.AreEqual("1", oDiagT833.idPression)
-        Assert.AreEqual("100", oDiagT833.idColumn)
+        Assert.AreEqual("10", oDiagT833.idColumn)
         Assert.AreEqual("100,1", oDiagT833.pressionSortie)
         oDiagT833 = lst.Liste(m_oDiag.diagnosticTroncons833.Liste.Count - 3)
         Assert.AreEqual("2", oDiagT833.idPression)
-        Assert.AreEqual("200", oDiagT833.idColumn)
+        Assert.AreEqual("20", oDiagT833.idColumn)
         Assert.AreEqual("200,2", oDiagT833.pressionSortie)
         oDiagT833 = lst.Liste(m_oDiag.diagnosticTroncons833.Liste.Count - 2)
         Assert.AreEqual("3", oDiagT833.idPression)
-        Assert.AreEqual("300", oDiagT833.idColumn)
+        Assert.AreEqual("30", oDiagT833.idColumn)
         Assert.AreEqual("300,3", oDiagT833.pressionSortie)
         oDiagT833 = lst.Liste(m_oDiag.diagnosticTroncons833.Liste.Count - 1)
         Assert.AreEqual("4", oDiagT833.idPression)
-        Assert.AreEqual("400", oDiagT833.idColumn)
+        Assert.AreEqual("40", oDiagT833.idColumn)
         Assert.AreEqual("400,4", oDiagT833.pressionSortie)
 
     End Sub

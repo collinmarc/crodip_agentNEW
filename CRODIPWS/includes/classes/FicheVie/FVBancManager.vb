@@ -142,16 +142,19 @@ Public Class FVBancManager
         Dim bReturn As Boolean
 
         Try
+            If Not bSynchro Then
+                objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            End If
 
             ' Initialisation de la requete
             '           paramsQueryUpdate = "`id`='" & objFVBanc.id & "',`idBancMesure`='" & CSDb.secureString(objFVBanc.idBancMesure) & "'"
             paramsQuery_col = "`id`,`idBancMesure`"
             paramsQuery = "'" & objFVBanc.id & "' , '" & CSDb.secureString(objFVBanc.idBancMesure) & "'"
-
+            paramsQuery_col = paramsQuery_col & ",aid,uid,uidStructure,uidbancmesure"
+            paramsQuery = paramsQuery & ",'" & objFVBanc.aid & "' , " & objFVBanc.uid & "," & objFVBanc.uidstructure & "," & objFVBanc.uidbancmesure
+            paramsQuery_col = paramsQuery_col & ",uidagentcontroleur"
+            paramsQuery = paramsQuery & "," & objFVBanc.uidagentcontroleur
             ' Mise a jour de la date de derniere modification
-            If Not bSynchro Then
-                objFVBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-            End If
 
             If Not objFVBanc.type Is Nothing Then
                 paramsQuery_col = paramsQuery_col & ",`type`"
@@ -322,6 +325,13 @@ Public Class FVBancManager
                 paramsQueryUpdate = paramsQueryUpdate & ",`FVFileName`='" & CSDb.secureString(objFVBanc.FVFileName) & "'"
             End If
 
+            paramsQueryUpdate = paramsQueryUpdate & objFVBanc.getRootQuery()
+            paramsQueryUpdate = paramsQueryUpdate & ",uidstructure=" & objFVBanc.uidstructure
+            paramsQueryUpdate = paramsQueryUpdate & ",uidbancmesure=" & objFVBanc.uidbancmesure
+            paramsQueryUpdate = paramsQueryUpdate & ",uidagentcontroleur=" & objFVBanc.uidagentcontroleur
+
+
+
             ' On finalise la requete et en l'execute
             bddCommande = CSDb.getConnection().CreateCommand()
             bddCommande.CommandText = "UPDATE `FichevieBancMesure` SET " & paramsQueryUpdate & " WHERE `FichevieBancMesure`.`id`='" & objFVBanc.id & "'"
@@ -422,46 +432,12 @@ Public Class FVBancManager
             bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.id='" & fvbanc_id & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                Dim oDR As DbDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
-                While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        Select Case tmpListProfils.GetName(tmpColId)
-                            Case "id"
-                                tmpFVBanc.id = tmpListProfils.Item(tmpColId)
-                            Case "idBancMesure"
-                                tmpFVBanc.idBancMesure = tmpListProfils.Item(tmpColId).ToString()
-                            Case "type"
-                                tmpFVBanc.type = tmpListProfils.Item(tmpColId).ToString()
-                            Case "auteur"
-                                tmpFVBanc.auteur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idAgentControleur"
-                                tmpFVBanc.idAgentControleur = tmpListProfils.Item(tmpColId)
-                            Case "caracteristiques"
-                                tmpFVBanc.caracteristiques = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModif"
-                                tmpFVBanc.dateModif = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "blocage"
-                                tmpFVBanc.blocage = tmpListProfils.Item(tmpColId)
-                            Case "pressionControle"
-                                tmpFVBanc.pressionControle = tmpListProfils.Item(tmpColId).ToString()
-                            Case "valeursMesurees"
-                                tmpFVBanc.valeursMesurees = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idManometreControle"
-                                tmpFVBanc.idManometreControle = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idBuseEtalon"
-                                tmpFVBanc.idBuseEtalon = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpFVBanc.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip"
-                                tmpFVBanc.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                        End Select
-                        tmpColId = tmpColId + 1
-                    End While
+                While oDR.Read()
+                    tmpFVBanc.FillDR(oDR)
                 End While
-                tmpListProfils.Close()
+                oDR.Close()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("FVBancManager::getFVBancById() : " & ex.Message)
             End Try
