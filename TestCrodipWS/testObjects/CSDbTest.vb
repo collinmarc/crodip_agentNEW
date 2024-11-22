@@ -33,7 +33,7 @@ Public Class CSDbTest
     'Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test dans la classe
     <ClassInitialize()> _
     Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
-        GlobalsCRODIP.Init()
+        ConfigManager.initGlobalsCrodip()
     End Sub
     '
     'Utilisez ClassCleanup pour exécuter du code après que tous les tests ont été exécutés dans une classe

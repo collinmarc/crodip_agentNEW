@@ -32,8 +32,8 @@ Public Class SynchronisationElmtIdentifiantPulverisateur
         Try
             Dim oIdentPulve As New IdentifiantPulverisateur
             Try
-                oIdentPulve = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(pAgent, Me.IdentifiantEntier)
-                If oIdentPulve.id <> 0 Then
+                oIdentPulve = IdentifiantPulverisateurManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine, pAgent.uid)
+                If oIdentPulve.uid <> 0 Then
                     bReturn = IdentifiantPulverisateurManager.Save(oIdentPulve, True)
                 Else
                     bReturn = False
@@ -57,17 +57,29 @@ Public Class SynchronisationElmtIdentifiantPulverisateur
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Overloads Shared Function SynchroAsc(pAgent As Agent) As Boolean
-        Dim bReturn As Boolean
+        Dim bReturn As Boolean = False
         Try
-            bReturn = True
+            Dim codereponse As Integer = 99
             ' Synchro des Identifiants Pulvés
             Dim arrUpdatesIdentifiantPulverisateur() As IdentifiantPulverisateur = IdentifiantPulverisateurManager.getUpdates(pAgent)
+            bReturn = True
             For Each oIdentPulve As IdentifiantPulverisateur In arrUpdatesIdentifiantPulverisateur
-                bReturn = IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(pAgent, oIdentPulve)
+                Dim oReturn As IdentifiantPulverisateur = Nothing
+                codereponse = IdentifiantPulverisateurManager.WSSend(oIdentPulve, oReturn, pAgent.uid)
+                Select Case codereponse
+                    Case -1 ' ERROR
+                        CSDebug.dispFatal("SynchronisationElmtIdentifiantPulverisateur::SynchrAsc - Erreur Locale")
+                    Case 0, 2 ' OK
+                        IdentifiantPulverisateurManager.Save(oReturn, True)
+                    Case 1 ' NOK
+                        CSDebug.dispWarn("SynchronisationElmtIdentifiantPulverisateur::SynchrAsc - Le web service a répondu : Non-Ok")
+                    Case 9 ' BADREQUEST
+                        CSDebug.dispFatal("SynchronisationElmtIdentifiantPulverisateur::SynchrAsc - Le web service a répondu : BadRequest")
+                End Select
             Next
 
         Catch ex As Exception
-            CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroAsc ERR" & ex.Message)
+            CSDebug.dispError("SynchronisationElmtIdentifiantPulverisateur.SynhcroAsc ERR", ex)
             bReturn = False
         End Try
         Return bReturn

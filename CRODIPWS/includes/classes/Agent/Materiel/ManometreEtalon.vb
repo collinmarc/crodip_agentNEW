@@ -30,7 +30,7 @@ Public Class ManometreEtalon
             End Try
         End Get
     End Property
-
+    <XmlIgnore()>
     Public Overrides Property Libelle() As String
         Get
             Return "Manomètre Etalon : " + idCrodip
@@ -152,6 +152,7 @@ Public Class ManometreEtalon
         Try
             Dim newFicheVieManoEtalon As New FVManometreEtalon(pAgent)
             newFicheVieManoEtalon.idManometre = Me.idCrodip
+            newFicheVieManoEtalon.uidManometre = Me.uid
             newFicheVieManoEtalon.type = pType
             newFicheVieManoEtalon.auteur = "AGENT"
             newFicheVieManoEtalon.idAgentControleur = pAgent.id

@@ -8,6 +8,7 @@ Public Class accueil
     Inherits frmCRODIP
     Implements IObservateur
 
+    Public GLOB_BLUE_CROPDIP As Color = Color.FromArgb(2, 129, 198)
 
     ' Filtre les clients qui ont des alertes ou non
     Private m_Exploitation_isShowAll As Boolean = False
@@ -6070,11 +6071,13 @@ Public Class accueil
 
                     ' On affiche l'écran de connexion
                     Dim loginMDIChild As New login
-                    TryCast(Me.MdiParent, parentContener).DisplayForm(loginMDIChild)
+                    If Me.MdiParent IsNot Nothing Then
+                        TryCast(Me.MdiParent, parentContener).DisplayForm(loginMDIChild)
+                    End If
 
                 End If
 
-            Else
+                Else
                 Statusbar.display("Synchronisation impossible, serveur Crodip momentanément indisponible.", False)
                 MsgBox("Synchronisation impossible, serveur Crodip momentanément indisponible.", MsgBoxStyle.Exclamation)
             End If
@@ -6543,13 +6546,13 @@ Public Class accueil
             dgvPulveExploit.Rows(index).DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.Black
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GlobalsCRODIP.GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GLOB_BLUE_CROPDIP
 
         Else
             dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Black
             dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = Color.White
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.White
-            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GlobalsCRODIP.GLOB_BLUE_CROPDIP
+            dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GLOB_BLUE_CROPDIP
         End If
         'If opulve.dateProchainControleAsDate.HasValue And opulve.dateProchainControleAsDate < Date.Now Then
         '    dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Red

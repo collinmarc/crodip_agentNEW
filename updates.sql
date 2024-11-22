@@ -364,6 +364,7 @@ ALTER TABLE Diagnostic ADD COLUMN aid text;
 ALTER TABLE Diagnostic ADD COLUMN uidstructure integer;
 ALTER TABLE Diagnostic ADD COLUMN uidexploitation integer;
 ALTER TABLE Diagnostic ADD COLUMN uidpulverisateur integer;
+ALTER TABLE Diagnostic ADD COLUMN uidagent integer;
 update Diagnostic set aid = id;
 ALTER TABLE DiagnosticItem ADD COLUMN uid integer;
 ALTER TABLE DiagnosticItem ADD COLUMN aid text;
@@ -455,5 +456,53 @@ ALTER TABLE Controle_Regulier ADD COLUMN uidagent integer;
 ALTER TABLE Controle_Regulier ADD COLUMN uidmateriel integer;
 update Controle_Regulier set aid = ctrg_id;
 update Controle_Regulier set uidstructure = ctrg_StructureId;
+
+ALTER TABLE prestationcategorie ADD COLUMN uid integer;
+ALTER TABLE prestationcategorie ADD COLUMN aid text;
+ALTER TABLE prestationcategorie ADD COLUMN uidstructure integer;
+update prestationcategorie set aid = id;
+update prestationcategorie set uidstructure = idStructure;
+
+ALTER TABLE prestationTarif ADD COLUMN uid integer;
+ALTER TABLE prestationTarif ADD COLUMN aid text;
+ALTER TABLE prestationTarif ADD COLUMN uidstructure integer;
+ALTER TABLE prestationTarif ADD COLUMN uidcategorie integer;
+update prestationTarif set aid = id;
+update prestationTarif set uidstructure = idStructure;
+
+--Suppression de la contrainte pool sur Agent
+DROP TABLE Agent2;
+CREATE TABLE AGENT2 (
+    Id                     INT            PRIMARY KEY,
+    numeroNational         NVARCHAR (50)  UNIQUE,
+    motdepasse             NVARCHAR (255),
+    nom                    VARCHAR (256),
+    prenom                 VARCHAR (256),
+    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
+    telephoneportable      VARCHAR (256),
+    email                  VARCHAR (256),
+    dateCreation           DATETIME2,
+    dateDerniereConnexion  DATETIME2,
+    dateDerniereSynchro    DATETIME2,
+    dateModificationAgent  DATETIME2,
+    dateModificationCrodip DATETIME2,
+    versionLogiciel        VARCHAR (256),
+    commentaire            VARCHAR (256),
+    cleActivation          VARCHAR (256),
+    isActif                BIT            DEFAULT 0,
+    droitsPulves           VARCHAR (2560),
+    isGestionnaire         BIT            DEFAULT 0,
+    signatureElect         BIT            DEFAULT 0,
+    statut                 VARCHAR (50),
+    idCRODIPPOOL           TEXT,
+    uid                    INTEGER,
+    aid                    TEXT,
+    uidstructure           INTEGER
+);
+INSERT INTO Agent2 (Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure)
+SELECT Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure FROM Agent;
+ALTER TABLE Agent RENAME TO Agent1;
+ALTER TABLE Agent2 RENAME TO Agent;
+
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');

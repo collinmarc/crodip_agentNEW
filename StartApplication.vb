@@ -80,14 +80,14 @@ Module StartApplication
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
 
             'Test de la validité 
-            ParamReglagePulve.XMLFileName = "zsxedc.crodip"
-            Dim objParamRP As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
-            If objParamRP.coluser.Count = 1 Then
-                Dim objRPUser As RPUser = objParamRP.coluser(0)
-                If objRPUser.TestDateExp(Now) Then
-                    bLoginFailed = False
-                End If
-            End If
+            'ParamReglagePulve.XMLFileName = "zsxedc.crodip"
+            'Dim objParamRP As ParamReglagePulve = ParamReglagePulve.ReadXML(".")
+            'If objParamRP.coluser.Count = 1 Then
+            '    Dim objRPUser As RPUser = objParamRP.coluser(0)
+            '    If objRPUser.TestDateExp(Now) Then
+            '        bLoginFailed = False
+            '    End If
+            'End If
             If bLoginFailed Then
                 MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre version simplifiée a expirée , contactez le CRODIP")
                 Application.Exit()

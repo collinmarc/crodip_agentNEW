@@ -75,9 +75,9 @@ Namespace WSCrodip_prod
 
         '<remarks/>
         <XmlInclude(GetType(Agent)), System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SetDateSynchroAgent", RequestElementName:="SetDateSynchroAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function SetDateSynchroAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal dateDerniereSynchro As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function SetDateSynchroAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal dateDerniereSynchro As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             SynchronisationManager.LogSynchroElmt(dateDerniereSynchro)
-            Dim results() As Object = Me.Invoke("SetDateSynchroAgent", New Object() {agentId, dateDerniereSynchro})
+            Dim results() As Object = Me.Invoke("SetDateSynchroAgent", New Object() {uidagent, dateDerniereSynchro})
             Return CType(results(0), Integer)
         End Function
 

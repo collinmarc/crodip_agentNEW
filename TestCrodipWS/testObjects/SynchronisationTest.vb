@@ -71,7 +71,7 @@ Public Class SynchronisationTest
         Dim oExploit As Exploitation = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulverisateur(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         Dim UpdatedObject As Object = Nothing
         Dim UpdatedObjectE2P As Object = Nothing
         Dim oExploitToPulve As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, oPulve.id)
@@ -93,6 +93,40 @@ Public Class SynchronisationTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub testSynhcronisationUidExploitEtPulve()
+        Dim oSynchro As Synchronisation
+        oSynchro = New Synchronisation(m_oAgent)
+        oSynchro.Synchro(True, True)
+
+
+        pause(1000)
+        Dim oExploit As Exploitation = createExploitation()
+        ExploitationManager.save(oExploit, m_oAgent)
+        Dim oPulve As Pulverisateur = createPulverisateur(oExploit)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
+        Dim oDiag As Diagnostic = createDiagnostic(oExploit, oPulve, True)
+
+        oSynchro = New Synchronisation(m_oAgent)
+        oSynchro.Synchro(True, True)
+
+        Dim oE2p As ExploitationTOPulverisateur
+        Dim LstE2p As List(Of ExploitationTOPulverisateur)
+        LstE2p = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitationId(oExploit.id)
+        Assert.AreEqual(1, LstE2p.Count)
+        oE2p = LstE2p(0)
+        Assert.AreNotEqual(0, oE2p.uid)
+        Assert.AreNotEqual(0, oE2p.uidexploitation)
+        Assert.AreNotEqual(0, oE2p.uidpulverisateur)
+
+        oDiag = DiagnosticManager.getDiagnosticById(oDiag.id)
+        Assert.AreNotEqual(0, oDiag.uid)
+        Assert.AreNotEqual(0, oDiag.uidexploitation)
+        Assert.AreNotEqual(0, oDiag.uidpulverisateur)
+
+
+
+    End Sub
     <TestMethod()>
     Public Sub testSynchroElemntModuleDocumentaire()
         Dim oSynchro As New Synchronisation(m_oAgent)
@@ -223,7 +257,7 @@ Public Class SynchronisationTest
         oPulve.isLanceLavage = True
         oPulve.isRotobuse = True
         oPulve.isCuveIncorporation = False
-        PulverisateurManager.save(oPulve, pExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, pExploit, m_oAgent)
         Return oPulve
     End Function
     Private Function createDiag(pExploit As Exploitation, pPulve As Pulverisateur) As Diagnostic
@@ -277,7 +311,7 @@ Public Class SynchronisationTest
         Dim oExploit As Exploitation = createExploitant()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
         DiagnosticManager.save(odiag)
 
@@ -333,7 +367,7 @@ Public Class SynchronisationTest
         Dim oExploit As Exploitation = createExploitant()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
         DiagnosticManager.save(odiag)
 
@@ -392,7 +426,7 @@ Public Class SynchronisationTest
         Dim oExploit As Exploitation = createExploitant()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         Dim odiag As Diagnostic = createDiagnostic(oExploit, oPulve)
         DiagnosticManager.save(odiag)
 
@@ -795,5 +829,34 @@ Public Class SynchronisationTest
         End If
 
         Assert.IsTrue(bResult, "Aucun transfert n'a fonctionné, =>>regarder la trace")
+    End Sub
+
+    <TestMethod()>
+    Public Sub SynchroComplete()
+        Dim oCSDB As New CSDb(True)
+        oCSDB.RAZ_BASE_DONNEES()
+        oCSDB.free()
+        Dim oStructure = StructureManager.WSgetById(22, "22")
+        StructureManager.save(oStructure)
+
+        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3")
+        AgentManager.save(oAgent)
+
+        Dim strDate As String = "2000-01-01 00:00:00"
+        Dim nReponse As Integer
+        Dim objWSCrodip As WSCrodip_prod.CrodipServer
+        objWSCrodip = WSCrodip.getWS()
+        nReponse = objWSCrodip.SetDateSynchroAgent(oAgent.id, strDate)
+        Assert.AreEqual(0, nReponse)
+        oAgent.dateDerniereSynchro = strDate
+        AgentManager.save(oAgent)
+
+
+
+        Dim oSynchro As Synchronisation
+        oSynchro = New Synchronisation(oAgent)
+        oSynchro.runAscSynchro()
+        oSynchro.runDescSynchro()
+
     End Sub
 End Class

@@ -34,7 +34,7 @@ Public Class PulverisateurManager
             'MISE A JOUR DE EXPLOITATIONTOPULVERISATEUR
             Paramsquery = "uidpulverisateur= " & pPulve.uid
             Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
-            query = "UPDATE ExploitationToPulverisateur SET " & Paramsquery & " WHERE (uidPulverisateur is null ) and idPulverisateur = '" & pPulve.id & "'"
+            query = "UPDATE ExploitationToPulverisateur SET " & Paramsquery & " WHERE (uidpulverisateur =0 or uidpulverisateur is null) and idPulverisateur = '" & pPulve.id & "'"
             bReturn = oCsdb.Execute(query)
             If Not bReturn Then
                 CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX1")
@@ -42,7 +42,7 @@ Public Class PulverisateurManager
             'MISE A JOUR DE DIAGNOSTIC
             Paramsquery = "uidpulverisateur = " & pPulve.uid
             Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
-            query = "UPDATE Diagnostic SET " & Paramsquery & " WHERE uidPulverisateur is Null and pulverisateurId = '" & pPulve.id & "'"
+            query = "UPDATE Diagnostic SET " & Paramsquery & " WHERE (uidpulverisateur =0 or uidpulverisateur is Null) and pulverisateurId = '" & pPulve.id & "'"
 
             bReturn = oCsdb.Execute(query)
             If Not bReturn Then
@@ -188,7 +188,7 @@ Public Class PulverisateurManager
     ''' <param name="pAgent"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Shared Function createPulve(ByVal poPulve As Pulverisateur, ByVal client_id As String, ByVal pAgent As Agent) As Boolean
+    Private Shared Function createPulve(ByVal poPulve As Pulverisateur, ByVal pExploit As Exploitation, ByVal pAgent As Agent) As Boolean
         Debug.Assert(poPulve IsNot Nothing)
         Debug.Assert(Not String.IsNullOrEmpty(poPulve.id), "L'id du pulve doit être renseigné")
         Debug.Assert(poPulve.uidStructure <> -1, "L'idStructure du pulve doit être renseigné")
@@ -202,11 +202,16 @@ Public Class PulverisateurManager
             bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.uidStructure & "')"
             bddCommande.ExecuteNonQuery()
             oCSDB.free()
-            'En synchro, le ClientId n'est pas connu
-            If client_id <> "0" Then
-                ExploitationTOPulverisateurManager.save(poPulve.id, client_id, False, pAgent)
+            'En synchro, le ClientId n'est pas connu, l'exploitToPulve viendra ensuite
+            'Création de l'exploitToPulve
+            If pExploit IsNot Nothing Then
+                ExploitationTOPulverisateurManager.save(poPulve.id, pExploit.id, poPulve.uid, pExploit.uid, False, pAgent)
             End If
-            ' Test pour fermeture de connection BDD
+            'MAJ de l'exploitation pour forcer la synchro de l'exploitation
+            If pExploit IsNot Nothing Then
+                ExploitationManager.save(pExploit, pAgent)
+            End If
+
             bReturn = True
         Catch ex As Exception
             CSDebug.dispFatal("PulverisateurManager - create : " & ex.Message)
@@ -219,9 +224,8 @@ Public Class PulverisateurManager
         Return bReturn
     End Function
 
-    Public Shared Function save(ByVal pPulve As Pulverisateur, ByVal client_id As String, ByVal pAgent As Agent, Optional bSynchro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal pPulve As Pulverisateur, pExploit As Exploitation, ByVal pAgent As Agent, Optional bSynchro As Boolean = False) As Boolean
         Debug.Assert(Not pPulve Is Nothing)
-        Debug.Assert(client_id <> "", "L'id Client doit être spécifié")
 
         Dim bReturn As Boolean
         Dim bdd As New CSDb(True)
@@ -237,11 +241,11 @@ Public Class PulverisateurManager
                 ' On test si le Pulverisateur existe ou non
                 Dim existsPulverisateur As Object
                 If Not pAgent.isGestionnaire Then
-                    pPulve.uidStructure = pAgent.uidStructure
+                    pPulve.uidStructure = pAgent.uidstructure
                 End If
                 existsPulverisateur = PulverisateurManager.getPulverisateurById(pPulve.id)
                 If existsPulverisateur.id = "" Then
-                    createPulve(pPulve, client_id, pAgent)
+                    createPulve(pPulve, pExploit, pAgent)
                 End If
                 Dim bddCommande As DbCommand
                 bddCommande = bdd.getConnection().CreateCommand()
@@ -385,10 +389,12 @@ Public Class PulverisateurManager
                 bddCommande.ExecuteNonQuery()
 
                 ' Vérificatin du lien entre le pulvérisateur et l'exploitation
-                If client_id <> "0" Then
+                If pExploit IsNot Nothing Then
                     Dim oExploit2Pulve As New ExploitationTOPulverisateur()
                     oExploit2Pulve.idPulverisateur = pPulve.id
-                    oExploit2Pulve.idExploitation = client_id
+                    oExploit2Pulve.idExploitation = pExploit.id
+                    oExploit2Pulve.uidpulverisateur = pPulve.uid
+                    oExploit2Pulve.uidexploitation = pExploit.uid
                     oExploit2Pulve.isSupprimeCoProp = False
                     ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
                 End If
@@ -739,7 +745,7 @@ Public Class PulverisateurManager
         Dim arrItems(0) As Pulverisateur
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent<>dateModificationCrodip Or  dateModificationCrodip Is null)"
+        bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent>dateModificationCrodip Or  dateModificationCrodip Is null)"
         bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.uidStructure
 
         Try
@@ -892,13 +898,13 @@ Public Class PulverisateurManager
                 If ancEtat <> oPulve.controleEtat Then
                     oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
                     CSDebug.dispError("Modification de l'état du pulvé : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " ancien etat = " & ancEtat & ", nouvel etat = " & oPulve.controleEtat & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id)
-                    PulverisateurManager.save(oPulve, oExploit.id, pAgent)
+                    PulverisateurManager.save(oPulve, oExploit, pAgent)
                 End If
                 If Not CSDate.FromCrodipString(oPulve.dateProchainControle).ToShortDateString().Equals(CSDate.FromCrodipString(odiag.CalculDateProchainControle()).ToShortDateString()) Then
                     oExploit = ExploitationManager.GetExploitationByPulverisateurId(oPulve.id)
                     CSDebug.dispError("Modification de la date du prochain CRL : " & oPulve.id & "/" & oPulve.numeroNational & "Exploitant : " & oExploit.raisonSociale & " date de dernier controle = " & odiag.controleDateDebut & ", DiagId = " & odiag.id & " ancienne date Prch ctrl= " & oPulve.dateProchainControle & " nouvelle date =" & odiag.CalculDateProchainControle())
                     oPulve.dateProchainControle = odiag.CalculDateProchainControle()
-                    PulverisateurManager.save(oPulve, oExploit.id, pAgent)
+                    PulverisateurManager.save(oPulve, oExploit, pAgent)
                 End If
             End If
         Next

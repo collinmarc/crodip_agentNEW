@@ -7,9 +7,18 @@ le recréer par Ajouter / reference de service
 	Espace de nom = WSCRODIP
 
 Modifier le reference.vb (Afficher tous les fichiers)
-ajouter Avant la déclaration de la classe CRODIPserver 
-		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
+Vérifier la methode SetdateSynchroagent  agentId => uidagent
+        Public Function SetDateSynchroAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal dateDerniereSynchro As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SetDateSynchroAgent", New Object() {uidagent, dateDerniereSynchro})
+            Return CType(results(0), Integer)
+        End Function
 
+ajouter Avant la déclaration de la classe CRODIPserver 
+
+		System.Xml.Serialization.XmlInclude(GetType(CRODIPWS.XXXXXXX))
+Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer
+
+    '''<remarks/>
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),
             XmlInclude(GetType(CRODIPWS.ManometreControle)),
         XmlInclude(GetType(CRODIPWS.ManometreEtalon)),
@@ -36,10 +45,11 @@ ajouter Avant la déclaration de la classe CRODIPserver
         XmlInclude(GetType(CRODIPWS.FVManometreEtalon)),
         XmlInclude(GetType(CRODIPWS.AutoTest)),
         XmlInclude(GetType(CRODIPWS.IdentifiantPulverisateur)),
+        XmlInclude(GetType(CRODIPWS.PrestationCategorie)),
+        XmlInclude(GetType(CRODIPWS.PrestationTarif)),
       System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
 
-Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttribute() sur la classe CropdipServer
 
 Code à inserrer dans chaque Classe Manager
 ==================================

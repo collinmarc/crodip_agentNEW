@@ -95,14 +95,17 @@ Public Class CSEnvironnement
         'System.Net.ServicePointManager.Expect100Continue = True
         'ServicePointManager.DefaultConnectionLimit = 2
         'ServicePointManager.SecurityProtocol = 0
-        System.Net.ServicePointManager.Expect100Continue = My.Settings.Expect100Continue
+        System.Net.ServicePointManager.Expect100Continue = GlobalsCRODIP.GLOB_PARAM_Expect100Continue
         'ServicePointManager.DefaultConnectionLimit = My.Settings.DefaultConnectionLimit
         '''        SecurityProtocolType.Tls Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12 Or SecurityProtocolType.Ssl3 = 4080
-        If My.Settings.SecurityProtocol <> 0 Then
-            ServicePointManager.SecurityProtocol = My.Settings.SecurityProtocol
+        '''        
+        Dim bReturn As Boolean = True
+
+        If GlobalsCRODIP.GLOB_PARAM_SecurityProtocol <> 0 Then
+            ServicePointManager.SecurityProtocol = GlobalsCRODIP.GLOB_PARAM_SecurityProtocol
         End If
-        Dim bReturn As Boolean = False
-        If My.Settings.checkNetwork Then
+        bReturn = False
+        If GlobalsCRODIP.GLOB_PARAM_checkNetwork Then
             If checkNetwork(Protocol.https) Then
                 bReturn = True
             Else
@@ -154,13 +157,13 @@ Public Class CSEnvironnement
             If requete IsNot Nothing Then
                 requete.Abort()
             End If
-            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork ({0}) ERR1 : ({1})", url, generatedExceptionVariable0.Message))
+            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork ({0}) ERR1 : ", url), generatedExceptionVariable0)
             Return False
         Catch ex As Exception
             If requete IsNot Nothing Then
                 requete.Abort()
             End If
-            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork2 ({0}) ERR1 : ({1})", url, ex.Message))
+            CSDebug.dispError(String.Format("CSEnvironnement.CheckNetwork2 ({0}) ERR1 :", url), ex)
             Return False
         End Try
 

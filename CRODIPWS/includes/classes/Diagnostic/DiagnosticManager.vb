@@ -10,7 +10,8 @@ Public Class DiagnosticManager
 #Region "Methodes acces Web Service"
     Public Shared Function WSgetById(puidagent As Integer, ByVal p_uid As Integer, paid As String) As Diagnostic
         Dim oreturn As Diagnostic = Nothing
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
         Try
             Dim tXmlnodes As Xml.XmlNode()
             '' déclarations
@@ -25,17 +26,19 @@ Public Class DiagnosticManager
             End If
             Select Case codeResponse
                 Case 0 ' OK
+                    strXml = tXmlnodes(0).ParentNode.OuterXml
                     Dim ser As New XmlSerializer(GetType(Diagnostic))
-                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                    Using reader As New StringReader(strXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
                 Case 1 ' NOK
-                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("DiagnosticManager.WSBetById - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+                    CSDebug.dispError("DiagnosticManager.WSBetById - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+            CSDebug.dispError("DiagnosticManager.WSgetbyId : ", ex)
+            CSDebug.dispError("DiagnosticManager.WSgetbyId strXml: " & strXml)
         Finally
         End Try
         Return oreturn
@@ -44,7 +47,7 @@ Public Class DiagnosticManager
     Public Shared Function WSSend(ByVal pObjIn As Diagnostic, ByRef pobjOut As Diagnostic) As Integer
         Dim oreturn As Diagnostic = Nothing
         Dim codeResponse As Integer = 99
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
             Dim pInfo As String = ""
             Dim puid As Integer
@@ -119,8 +122,8 @@ Public Class DiagnosticManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatDiagUrl)
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagUrl)
+            Dim Credential As New System.Net.NetworkCredential(GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagUser, GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagPwd)
             Dim filePath As String
             If Not String.IsNullOrEmpty(pDiag.RIFileName) Then
                 filePath = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & pDiag.RIFileName
@@ -225,7 +228,7 @@ Public Class DiagnosticManager
 
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim url As String = objWSCrodip.Url
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatDiagUser, My.Settings.SynhcroEtatDiagPwd)
+            Dim Credential As New System.Net.NetworkCredential(GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagUser, GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagPwd)
             Dim filePath As String
             filePath = pDossierStockage & "/" & pfileName
             If Not String.IsNullOrEmpty(pfileName) Then
@@ -979,8 +982,8 @@ Public Class DiagnosticManager
         Dim sreturn As String
         Try
 
-            oReponse = objWSCrodip.GetIncrementDiagnostic(pAgent.id, puid)
-            sreturn = oReponse(0).innerText()
+            ''            oReponse = objWSCrodip.GetIncrementDiagnostic(pAgent.id, puid)
+            ''          sreturn = oReponse(0).innerText()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticManager.WSgestNewId Err", ex)
             sreturn = "99999"
@@ -1664,7 +1667,7 @@ Public Class DiagnosticManager
                 End If
                 bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & ")::save : " & ex.Message.ToString)
+            CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & "PropriétaireId= [" & pDiag.proprietaireId & "] PulveId=[" & pDiag.pulverisateurId & "])::save : ", ex)
             bReturn = False
         End Try
         Return bReturn

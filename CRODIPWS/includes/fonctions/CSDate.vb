@@ -92,15 +92,20 @@ Public Class CSDate
     End Function
 
     Public Shared Function mysql2vb(ByVal accessDate As String) As Date
-        'La Date est au format dd/MM/yyyy HH:mm:ss
-        Dim dy As String = accessDate.Substring(0, 2)
-        Dim mo As String = accessDate.Substring(3, 2)
-        Dim yr As String = accessDate.Substring(6, 4)
-        Dim hr As String = accessDate.Substring(11, 2)
-        Dim mi As String = accessDate.Substring(14, 2)
-        Dim se As String = accessDate.Substring(17, 2)
-        Dim vbDate As New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
-        Return vbDate
+        Try
+
+            'La Date est au format dd/MM/yyyy HH:mm:ss
+            Dim dy As String = accessDate.Substring(0, 2)
+            Dim mo As String = accessDate.Substring(3, 2)
+            Dim yr As String = accessDate.Substring(6, 4)
+            Dim hr As String = accessDate.Substring(11, 2)
+            Dim mi As String = accessDate.Substring(14, 2)
+            Dim se As String = accessDate.Substring(17, 2)
+            Dim vbDate As New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
+            Return vbDate
+        Catch ex As Exception
+            Return Date.MinValue
+        End Try
     End Function
 
     Public Shared Function CheckHours(ByVal pInputText As String) As Boolean

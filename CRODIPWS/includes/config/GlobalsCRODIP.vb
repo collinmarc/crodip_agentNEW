@@ -1,4 +1,3 @@
-Imports CRODIPWS
 Public Class GlobalsCRODIP
 
     Public Enum ALERTE As Integer
@@ -60,18 +59,16 @@ Public Class GlobalsCRODIP
     Public Shared GLOB_ENV_MODESIMPLIFIE As Boolean
     Public Shared GLOB_ENV_MODEFORMATION As Boolean
 
-    ' Conf
+    '' Conf
     Public Shared GLOB_XML_CONFIG As CSXml
     Public Shared GLOB_PID_FILE As String = "." & "\crodip_agent.pid"
 
-    ' Version
+    '' Version
     Public Shared GLOB_APPLI_VERSION As String
+    Public Shared GLOB_APPLI_DBVERSION As String
     Public Shared GLOB_APPLI_BUILD As String
-    Public Shared GLOB_ParamDiagRampe As String
-    Public Shared GLOB_ParamDiagArboViti As String
-
-
-    Public Shared GLOB_BLUE_CROPDIP As Color = Color.FromArgb(2, 129, 198)
+    'Public Shared GLOB_ParamDiagRampe As String = My.Settings.ParamDiagRampe
+    'Public Shared GLOB_ParamDiagArboViti As String = My.Settings.ParamDiagArboviti
 
 #End Region
 
@@ -91,15 +88,45 @@ Public Class GlobalsCRODIP
     Public Shared GLOB_XML_EMPLACEMENTIDENTIFICATION As CSXml
     Public Shared GLOB_XML_MODEUTILISATION As CSXml
 
-    Public Shared GLOB_STR_REFERENTIELBUSES_FILENAME As String = My.Settings.RepertoireParametres & "\referentiel_buse.csv"
-    Public Shared GLOB_STR_COMMUNES_FILENAME As String = My.Settings.RepertoireParametres & "\base_officielle_codes_postaux.csv"
-    Public Shared GLOB_STR_FACTURATIONCONFIG_FILENAME As String = "./config/facturation.xml"
+    Public Shared GLOB_STR_REFERENTIELBUSES_FILENAME As String
+    Public Shared GLOB_STR_COMMUNES_FILENAME As String
+    Public Shared GLOB_STR_FACTURATIONCONFIG_FILENAME
     ' Territoires
     'Public Shared GLOB_XML_TERRITOIRES As CSXml
     Public Shared GLOB_XML_CODESAPE As CSXml
 
 #End Region
+#Region "Param Config"
+    Public Shared GLOB_PARAM_aqw As String
+    Public Shared GLOB_PARAM_RepertoireParametres As String
+    Public Shared GLOB_PARAM_GestiondesPools As Boolean
+    Public Shared GLOB_PARAM_SynchroEtatDiagUrl As String
+    Public Shared GLOB_PARAM_SynchroEtatDiagUser As String
+    Public Shared GLOB_PARAM_SynchroEtatDiagPwd As String
+    Public Shared GLOB_PARAM_SynchroEtatFVBancUrl As String
+    Public Shared GLOB_PARAM_SynchroEtatFVBancUser As String
+    Public Shared GLOB_PARAM_SynchroEtatFVBancPwd As String
+    Public Shared GLOB_PARAM_SynchroEtatFVManoUrl As String
+    Public Shared GLOB_PARAM_SynchroEtatFVManoUser As String
+    Public Shared GLOB_PARAM_SynchroEtatFVManoPwd As String
+    Public Shared GLOB_PARAM_WSCrodipProduction As Boolean
+    Public Shared GLOB_PARAM_FTPuser As String
+    Public Shared GLOB_PARAM_FTPPassword As String
+    Public Shared GLOB_PARAM_FTPhost As String
+    Public Shared GLOB_PARAM_FTPuserTest As String
+    Public Shared GLOB_PARAM_FTPPasswordTest As String
+    Public Shared GLOB_PARAM_FTPhostTest As String
+    Public Shared GLOB_PARAM_ModuleDocumentaire As String
+    Public Shared GLOB_PARAM_WSCrodipURL As String
+    Public Shared GLOB_PARAM_WSCrodipURLTEST As String
 
+    Public Shared GLOB_PARAM_DB As String
+    Public Shared GLOB_PARAM_DBExtension As String
+
+    Public Shared GLOB_PARAM_Expect100Continue As Boolean
+    Public Shared GLOB_PARAM_SecurityProtocol As String
+    Public Shared GLOB_PARAM_checkNetwork As Boolean
+#End Region
 
 
 #Region " PATHS "
@@ -318,64 +345,65 @@ Public Class GlobalsCRODIP
 
 #End Region
 
-    Public Shared Sub Init()
-        My.Settings.Reload()
-        If My.Settings.BDDType = "ACCESS" Then
-            CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
-        End If
-        If My.Settings.BDDType = "SQLITE" Then
-            CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        End If
-        GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
-        GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "SIMPLIFIE")
-        GLOB_ENV_MODEFORMATION = (My.Settings.Mode = "FORMATION")
-        If GLOB_ENV_MODEFORMATION Then
-            GLOB_ENV_MODESIMPLIFIE = True
-        End If
-        GLOB_APPLI_VERSION = My.Settings.NumVersion
-        GLOB_APPLI_BUILD = My.Settings.NumBuild
-        GLOB_ParamDiagRampe = My.Settings.ParamDiagRampe
-        GLOB_ParamDiagArboViti = My.Settings.ParamDiagArboviti
+    'Public Shared Sub Init()
+    '    My.Settings.Reload()
+    '    Dim test As String = Configuration.ConfigurationManager.AppSettings("NumBuild")
+    '    If My.Settings.BDDType = "ACCESS" Then
+    '        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+    '    End If
+    '    If My.Settings.BDDType = "SQLITE" Then
+    '        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+    '    End If
+    '    GLOB_ENV_AUTOSYNC = My.Settings.AutoSync
+    '    GLOB_ENV_MODESIMPLIFIE = (My.Settings.Mode = "SIMPLIFIE")
+    '    GLOB_ENV_MODEFORMATION = (My.Settings.Mode = "FORMATION")
+    '    If GLOB_ENV_MODEFORMATION Then
+    '        GLOB_ENV_MODESIMPLIFIE = True
+    '    End If
+    '    GLOB_APPLI_VERSION = My.Settings.NumVersion
+    '    GLOB_APPLI_DBVERSION = GlobalsCRODIP.GLOB_PARAM_DBVersionExpected
+    '    GLOB_APPLI_BUILD = My.Settings.NumBuild
 
-        GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
-        CSDebug.dispInfo("GlobalsCRODIP.Init user LocalUserAppDataPath :" & Application.LocalUserAppDataPath)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.NumVersion:" & My.Settings.NumVersion)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.NumBuild:" & My.Settings.NumBuild)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DB:" & My.Settings.DB)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App NETWORK:" & GLOB_NETWORKAVAILABLE)
+    '    GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+    '    CSDebug.dispInfo("GlobalsCRODIP.Init App GlobalsCRODIP.GLOB_PARAM_DBVersion:" & GLOB_APPLI_VERSION)
+    '    CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.NumBuild:" & GLOB_APPLI_BUILD)
+    '    CSDebug.dispInfo("GlobalsCRODIP.Init App GlobalsCRODIP.GLOB_PARAM_DB:" & GlobalsCRODIP.GLOB_PARAM_DB)
+    '    CSDebug.dispInfo("GlobalsCRODIP.Init App GlobalsCRODIP.GLOB_PARAM_DBVersion:" & GLOB_APPLI_VERSION)
+    '    CSDebug.dispInfo("GlobalsCRODIP.Init App NETWORK:" & GLOB_NETWORKAVAILABLE)
 
-        ' Manometres
-        GlobalsCRODIP.GLOB_XML_MARQUES_MANO = New CSXml("." & "\config\marques.xml")
-        GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANO = New CSXml("." & "\config\fondEchelle.xml")
+    '    ' Manometres
+    '    GlobalsCRODIP.GLOB_XML_MARQUES_MANO = New CSXml("." & "\config\marques.xml")
+    '    GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANO = New CSXml("." & "\config\fondEchelle.xml")
 
-        ' Manometres de contrôle
-        'GlobalsCRODIP.GLOB_XML_MARQUES_MANOCONT = New CSXml("." & "\config\manometres-controle\marques.xml")
-        'GlobalsCRODIP.GLOB_XML_MODELES_MANOCONT = New CSXml("." & "\config\manometres-controle\modeles.xml")
-        'GlobalsCRODIP.GLOB_XML_CLASSES_MANOCONT = New CSXml("." & "\config\manometres-controle\classes.xml")
-        'GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANOCONT = New CSXml("." & "\config\manometres-controle\fondEchelle.xml")
-        ' Manometres étalon
-        'GlobalsCRODIP.GLOB_XML_MARQUES_MANOETA = New CSXml("." & "\config\manometres-etalon\marques.xml")
-        'GlobalsCRODIP.GLOB_XML_MODELES_MANOETA = New CSXml("." & "\config\manometres-etalon\modeles.xml")
-        'GlobalsCRODIP.GLOB_XML_CLASSES_MANOETA = New CSXml("." & "\config\manometres-etalon\classes.xml")
-        'GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANOETA = New CSXml("." & "\config\manometres-etalon\fondEchelle.xml")
+    '    ' Manometres de contrôle
+    '    'GlobalsCRODIP.GLOB_XML_MARQUES_MANOCONT = New CSXml("." & "\config\manometres-controle\marques.xml")
+    '    'GlobalsCRODIP.GLOB_XML_MODELES_MANOCONT = New CSXml("." & "\config\manometres-controle\modeles.xml")
+    '    'GlobalsCRODIP.GLOB_XML_CLASSES_MANOCONT = New CSXml("." & "\config\manometres-controle\classes.xml")
+    '    'GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANOCONT = New CSXml("." & "\config\manometres-controle\fondEchelle.xml")
+    '    ' Manometres étalon
+    '    'GlobalsCRODIP.GLOB_XML_MARQUES_MANOETA = New CSXml("." & "\config\manometres-etalon\marques.xml")
+    '    'GlobalsCRODIP.GLOB_XML_MODELES_MANOETA = New CSXml("." & "\config\manometres-etalon\modeles.xml")
+    '    'GlobalsCRODIP.GLOB_XML_CLASSES_MANOETA = New CSXml("." & "\config\manometres-etalon\classes.xml")
+    '    'GlobalsCRODIP.GLOB_XML_FONDECHELLE_MANOETA = New CSXml("." & "\config\manometres-etalon\fondEchelle.xml")
 
-        ' Pulvérisateurs
-        GlobalsCRODIP.GLOB_XML_MARQUES_MODELES_PULVE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurMarquesModeles.xml")
-        GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurTypesCategories.xml")
-        GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE = New CSXml(My.Settings.RepertoireParametres & "\Attelage.xml")
-        GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE = New CSXml(My.Settings.RepertoireParametres & "\Pulverisation.xml")
-        GlobalsCRODIP.GLOB_XML_REGULATION_PULVE = New CSXml("." & "\" & My.Settings.RepertoireParametres & "\PulverisateurRegulation.xml")
-        GlobalsCRODIP.GLOB_XML_EMPLACEMENTIDENTIFICATION = New CSXml(My.Settings.RepertoireParametres & "\EmplacementIdentification.xml")
-        GlobalsCRODIP.GLOB_XML_MODEUTILISATION = New CSXml(My.Settings.RepertoireParametres & "\PulverisateurModeUtilisation.xml")
+    '    ' Pulvérisateurs
+    '    GlobalsCRODIP.GLOB_XML_MARQUES_MODELES_PULVE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurMarquesModeles.xml")
+    '    GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielPulverisateurTypesCategories.xml")
+    '    GlobalsCRODIP.GLOB_XML_ATTELAGE_PULVE = New CSXml(My.Settings.RepertoireParametres & "\Attelage.xml")
+    '    GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE = New CSXml(My.Settings.RepertoireParametres & "\Pulverisation.xml")
+    '    GlobalsCRODIP.GLOB_XML_REGULATION_PULVE = New CSXml("." & "\" & My.Settings.RepertoireParametres & "\PulverisateurRegulation.xml")
+    '    GlobalsCRODIP.GLOB_XML_EMPLACEMENTIDENTIFICATION = New CSXml(My.Settings.RepertoireParametres & "\EmplacementIdentification.xml")
+    '    GlobalsCRODIP.GLOB_XML_MODEUTILISATION = New CSXml(My.Settings.RepertoireParametres & "\PulverisateurModeUtilisation.xml")
 
 
-        ' Territoires
-        'GlobalsCRODIP.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
-        GlobalsCRODIP.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
-        GlobalsCRODIP.GLOB_XML_CONFIG = New CSXml("config\config.xml")
+    '    ' Territoires
+    '    'GlobalsCRODIP.GLOB_XML_TERRITOIRES = New CSXml("." & "\config\territoire.xml")
+    '    GlobalsCRODIP.GLOB_XML_CODESAPE = New CSXml(My.Settings.RepertoireParametres & "\ReferentielCodesAPE.xml")
+    '    GlobalsCRODIP.GLOB_XML_CONFIG = New CSXml("config\config.xml")
 
-        GlobalsCRODIP.CONST_STOCK_PDFS = My.Settings.StockPDF
-    End Sub
+    '    GlobalsCRODIP.CONST_STOCK_PDFS = My.Settings.StockPDF
+    '    Pulverisateur.initConstantes()
+    'End Sub
     Public Shared Function StringToDouble(pInputString As String) As Double
         Dim dReturn As Double
         Dim ciClone As System.Globalization.CultureInfo = CType(System.Globalization.CultureInfo.InvariantCulture.Clone(), System.Globalization.CultureInfo)

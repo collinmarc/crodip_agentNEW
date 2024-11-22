@@ -25,6 +25,7 @@ Public Class AutoTestManager
         Dim bReturn As Integer
 
         Try
+            bReturn = 0
             Dim oCol As List(Of AutoTest)
             oCol = getcolControlesReguliers(pAgent, , , , True)
             If Not oCol Is Nothing Then
@@ -39,6 +40,7 @@ Public Class AutoTestManager
                             Case 0, 2, 4
                                 obj = WSgetById(puid, "")
                                 AutoTestManager.save(obj, True)
+                                bReturn = response
                             Case Else
                         End Select
 
@@ -46,7 +48,6 @@ Public Class AutoTestManager
                     Next
                 End If
             End If
-            bReturn = 0
         Catch ex As Exception
             CSDebug.dispError("AutoTestManager.WSSendList : ", ex)
             bReturn = -1

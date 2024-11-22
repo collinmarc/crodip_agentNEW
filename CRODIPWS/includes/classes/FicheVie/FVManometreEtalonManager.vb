@@ -148,10 +148,12 @@ Public Class FVManometreEtalonManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            Dim oAgent As Agent = AgentManager.getAgentById(pobjFV.idAgentControleur)
-            pobjFV.id = getNewId(oAgent)
+            If String.IsNullOrEmpty(pobjFV.aid) Then
+                Dim oAgent As Agent = AgentManager.getAgentById(pobjFV.idAgentControleur)
+                pobjFV.aid = getNewId(oAgent)
+            End If
             ' Initialisation de la requete
-            paramsQueryUpdate = "id='" & pobjFV.id & "',idManometre='" & CSDb.secureString(pobjFV.idManometre) & "'"
+            paramsQueryUpdate = "id='" & pobjFV.aid & "',idManometre='" & CSDb.secureString(pobjFV.idManometre) & "'"
             Dim paramsQuery_col As String = "id,idManometre"
             Dim paramsQuery As String = "'" & pobjFV.id & "','" & pobjFV.idManometre & "'"
 
@@ -232,7 +234,7 @@ Public Class FVManometreEtalonManager
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("Err FVManoEtalon - Save : " & ex.Message.ToString)
+            CSDebug.dispError("FVManoEtalonManager.Save ERR: ", ex)
             bReturn = False
         End Try
         If oCsdb IsNot Nothing Then
@@ -302,40 +304,42 @@ Public Class FVManometreEtalonManager
                     ' On rempli notre tableau
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
-                        Select Case tmpListProfils.GetName(tmpColId)
-                            Case "id"
-                                tmpFVManometreEtalon.id = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idManometre"
-                                tmpFVManometreEtalon.idManometre = tmpListProfils.Item(tmpColId).ToString()
-                            Case "type"
-                                tmpFVManometreEtalon.type = tmpListProfils.Item(tmpColId).ToString()
-                            Case "auteur"
-                                tmpFVManometreEtalon.auteur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idAgentControleur"
-                                tmpFVManometreEtalon.idAgentControleur = tmpListProfils.Item(tmpColId)
-                            Case "caracteristiques"
-                                tmpFVManometreEtalon.caracteristiques = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModif"
-                                tmpFVManometreEtalon.dateModif = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "blocage"
-                                tmpFVManometreEtalon.blocage = tmpListProfils.Item(tmpColId)
-                            Case "idReetalonnage"
-                                tmpFVManometreEtalon.idReetalonnage = tmpListProfils.Item(tmpColId).ToString()
-                            Case "nomLaboratoire"
-                                tmpFVManometreEtalon.nomLaboratoire = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateReetalonnage"
-                                tmpFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "pressionControle"
-                                tmpFVManometreEtalon.pressionControle = tmpListProfils.Item(tmpColId).ToString()
-                            Case "valeursMesurees"
-                                tmpFVManometreEtalon.valeursMesurees = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idManometreControleur"
-                                tmpFVManometreEtalon.idManometreControleur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip"
-                                tmpFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                        End Select
+                        If Not tmpListProfils.IsDBNull(tmpColId) Then
+                            Select Case tmpListProfils.GetName(tmpColId)
+                                Case "id"
+                                    tmpFVManometreEtalon.id = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idManometre"
+                                    tmpFVManometreEtalon.idManometre = tmpListProfils.Item(tmpColId).ToString()
+                                Case "type"
+                                    tmpFVManometreEtalon.type = tmpListProfils.Item(tmpColId).ToString()
+                                Case "auteur"
+                                    tmpFVManometreEtalon.auteur = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idAgentControleur"
+                                    tmpFVManometreEtalon.idAgentControleur = tmpListProfils.Item(tmpColId)
+                                Case "caracteristiques"
+                                    tmpFVManometreEtalon.caracteristiques = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateModif"
+                                    tmpFVManometreEtalon.dateModif = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "blocage"
+                                    tmpFVManometreEtalon.blocage = tmpListProfils.Item(tmpColId)
+                                Case "idReetalonnage"
+                                    tmpFVManometreEtalon.idReetalonnage = tmpListProfils.Item(tmpColId).ToString()
+                                Case "nomLaboratoire"
+                                    tmpFVManometreEtalon.nomLaboratoire = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateReetalonnage"
+                                    tmpFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "pressionControle"
+                                    tmpFVManometreEtalon.pressionControle = tmpListProfils.Item(tmpColId).ToString()
+                                Case "valeursMesurees"
+                                    tmpFVManometreEtalon.valeursMesurees = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idManometreControleur"
+                                    tmpFVManometreEtalon.idManometreControleur = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateModificationAgent"
+                                    tmpFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "dateModificationCrodip"
+                                    tmpFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                            End Select
+                        End If
                         tmpColId = tmpColId + 1
                     End While
                 End While
@@ -475,40 +479,42 @@ Public Class FVManometreEtalonManager
                     Dim tmpFVManometreEtalon As New FVManometreEtalon(New Agent())
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
-                        Select Case tmpListProfils.GetName(tmpColId)
-                            Case "id"
-                                tmpFVManometreEtalon.id = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idManometre"
-                                tmpFVManometreEtalon.idManometre = tmpListProfils.Item(tmpColId).ToString()
-                            Case "type"
-                                tmpFVManometreEtalon.type = tmpListProfils.Item(tmpColId).ToString()
-                            Case "auteur"
-                                tmpFVManometreEtalon.auteur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idAgentControleur"
-                                tmpFVManometreEtalon.idAgentControleur = tmpListProfils.Item(tmpColId)
-                            Case "caracteristiques"
-                                tmpFVManometreEtalon.caracteristiques = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModif"
-                                tmpFVManometreEtalon.dateModif = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "blocage"
-                                tmpFVManometreEtalon.blocage = tmpListProfils.Item(tmpColId)
-                            Case "idReetalonnage"
-                                tmpFVManometreEtalon.idReetalonnage = tmpListProfils.Item(tmpColId).ToString()
-                            Case "nomLaboratoire"
-                                tmpFVManometreEtalon.nomLaboratoire = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateReetalonnage"
-                                tmpFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "pressionControle"
-                                tmpFVManometreEtalon.pressionControle = tmpListProfils.Item(tmpColId).ToString()
-                            Case "valeursMesurees"
-                                tmpFVManometreEtalon.valeursMesurees = tmpListProfils.Item(tmpColId).ToString()
-                            Case "idManometreControleur"
-                                tmpFVManometreEtalon.idManometreControleur = tmpListProfils.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip"
-                                tmpFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
-                        End Select
+                        If Not tmpListProfils.IsDBNull(tmpColId) Then
+                            Select Case tmpListProfils.GetName(tmpColId)
+                                Case "id"
+                                    tmpFVManometreEtalon.id = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idManometre"
+                                    tmpFVManometreEtalon.idManometre = tmpListProfils.Item(tmpColId).ToString()
+                                Case "type"
+                                    tmpFVManometreEtalon.type = tmpListProfils.Item(tmpColId).ToString()
+                                Case "auteur"
+                                    tmpFVManometreEtalon.auteur = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idAgentControleur"
+                                    tmpFVManometreEtalon.idAgentControleur = tmpListProfils.Item(tmpColId)
+                                Case "caracteristiques"
+                                    tmpFVManometreEtalon.caracteristiques = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateModif"
+                                    tmpFVManometreEtalon.dateModif = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "blocage"
+                                    tmpFVManometreEtalon.blocage = tmpListProfils.Item(tmpColId)
+                                Case "idReetalonnage"
+                                    tmpFVManometreEtalon.idReetalonnage = tmpListProfils.Item(tmpColId).ToString()
+                                Case "nomLaboratoire"
+                                    tmpFVManometreEtalon.nomLaboratoire = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateReetalonnage"
+                                    tmpFVManometreEtalon.dateReetalonnage = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "pressionControle"
+                                    tmpFVManometreEtalon.pressionControle = tmpListProfils.Item(tmpColId).ToString()
+                                Case "valeursMesurees"
+                                    tmpFVManometreEtalon.valeursMesurees = tmpListProfils.Item(tmpColId).ToString()
+                                Case "idManometreControleur"
+                                    tmpFVManometreEtalon.idManometreControleur = tmpListProfils.Item(tmpColId).ToString()
+                                Case "dateModificationAgent"
+                                    tmpFVManometreEtalon.dateModificationAgent = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                                Case "dateModificationCrodip"
+                                    tmpFVManometreEtalon.dateModificationCrodip = CSDate.ToCRODIPString(tmpListProfils.Item(tmpColId).ToString())
+                            End Select
+                        End If
                         tmpColId = tmpColId + 1
                     End While
                     lstResponse.Add(tmpFVManometreEtalon)

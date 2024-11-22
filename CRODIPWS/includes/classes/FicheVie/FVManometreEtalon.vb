@@ -27,6 +27,9 @@ Public Class FVManometreEtalon
 
     Sub New(ByVal pAgent As Agent)
         _id = FVManometreEtalonManager.getNewId(pAgent)
+        idAgentControleur = pAgent.id
+        uidstructure = pAgent.uidstructure
+        uidagentcontroleur = pAgent.uid
     End Sub
 
 

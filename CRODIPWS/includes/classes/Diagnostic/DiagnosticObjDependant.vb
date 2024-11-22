@@ -26,7 +26,13 @@ Public Class DiagnosticObjDependant
             If String.IsNullOrEmpty(Trim(aid)) Then
                 Return 0
             Else
-                Return CInt(aid)
+                Try
+
+                    Return CInt(aid)
+                Catch ex As Exception
+                    Return 0
+                End Try
+
             End If
         End Get
         Set(ByVal Value As Integer)
@@ -50,6 +56,18 @@ Public Class DiagnosticObjDependant
             _aidDiagnostic = value
         End Set
     End Property
+    <XmlElement("uiddiagnostic")>
+    Public Property uiddiagnosticS() As String
+        Get
+            Return uiddiagnostic
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uiddiagnostic = value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property uiddiagnostic() As Integer
         Get
             Return _uidDiagnostic

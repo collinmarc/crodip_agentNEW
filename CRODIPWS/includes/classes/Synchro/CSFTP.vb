@@ -7,14 +7,14 @@ Public Class CSFTP
     Private m_host As String
 
     Public Sub New()
-        If Not GlobalsCRODIP.GLOB_ENV_DEBUG And My.Settings.WSCrodipProduction Then
-            m_user = My.Settings.FTPuser
-            m_password = My.Settings.FTPPassword
-            m_host = My.Settings.FTPHost
+        If Not GlobalsCRODIP.GLOB_ENV_DEBUG And GlobalsCRODIP.GLOB_PARAM_WSCrodipProduction Then
+            m_user = GlobalsCRODIP.GLOB_PARAM_FTPuser
+            m_password = GlobalsCRODIP.GLOB_PARAM_FTPPassword
+            m_host = GlobalsCRODIP.GLOB_PARAM_FTPhost
         Else
-            m_user = My.Settings.FTPUserTest ' Utilisateur de test
-            m_password = My.Settings.FTPPasswordTest 'Mot de passe de test
-            m_host = My.Settings.FTPHostTest
+            m_user = GlobalsCRODIP.GLOB_PARAM_FTPuserTest ' Utilisateur de test
+            m_password = GlobalsCRODIP.GLOB_PARAM_FTPPasswordTest 'Mot de passe de test
+            m_host = GlobalsCRODIP.GLOB_PARAM_FTPhostTest
         End If
 
 

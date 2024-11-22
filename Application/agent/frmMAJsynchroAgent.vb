@@ -47,7 +47,7 @@ Public Class frmMAJsynchroAgent
     End Sub
 
     Private Sub frmAgent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GlobalsCRODIP.Init()
+        ParamManager.initGlobalsCrodip()
         grpAgent.Visible = False
         objWSCrodip = WSCrodip.getWS()
         lblURLServeur.Text = objWSCrodip.Url
@@ -57,8 +57,16 @@ Public Class frmMAJsynchroAgent
     Private Sub btnMAJ_Click(sender As Object, e As EventArgs) Handles btnMAJ.Click
         If MessageBox.Show(Me, "Etes-vous sur de vouloir mettre à jour la date de dernière synhcro pour cet agent ?", "Mise à jour de la date de synchronisation", vbYesNo) = DialogResult.Yes Then
             Dim strDate As String = CSDate.ToCRODIPString(dtpDateSynchro.Value)
-            objWSCrodip.SetDateSynchroAgent(m_Agent.id, strDate)
-
+            Dim nReponse As Integer
+            nReponse = objWSCrodip.SetDateSynchroAgent(m_Agent.id, strDate)
+            Select Case nReponse
+                Case 0
+                    CSDebug.dispInfo("frmMAJsynchroAgent.btnMAJclick INFO : Mise à jour du serveur OK")
+                Case 9
+                    CSDebug.dispError("frmMAJsynchroAgent.btnMAJclick ERR : ERREUR SERVEUR NAD REQUEST")
+                Case Else
+                    CSDebug.dispInfo("frmMAJsynchroAgent.btnMAJclick INFO Code Retour =" & nReponse)
+            End Select
             m_Agent.dateDerniereSynchro = strDate
             AgentManager.save(m_Agent)
         End If

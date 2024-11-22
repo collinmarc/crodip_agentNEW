@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports CRODIPWS
 ''' <summary>
 ''' Objet observé par des obbservateurs
 ''' </summary>

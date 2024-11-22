@@ -1024,7 +1024,7 @@ Public Class frmdiagnostic_recap
 
                     m_Pulverisateur.SetControleEtat(m_diagnostic)
                     m_Pulverisateur.DecodageAutomatiqueDefauts(m_diagnostic.diagnosticItemsLst.Liste)
-                    PulverisateurManager.save(m_Pulverisateur, m_Exploit.id, m_oAgent)
+                    PulverisateurManager.save(m_Pulverisateur, m_Exploit, m_oAgent)
 
 
                     ' Enregistrement du diag

@@ -282,7 +282,7 @@ Public Class login
         'm_bsrcPools
         '
         Me.m_bsrcPools.AllowNew = False
-        Me.m_bsrcPools.DataSource = GetType(Pool)
+        Me.m_bsrcPools.DataSource = GetType(CRODIPWS.Pool)
         '
         'lblBaseDonnee
         '
@@ -797,7 +797,7 @@ Public Class login
                                     End If
                                 End While
                                 oAgentPC.idCrodip = Str
-                                oAgentPC.idStructure = _selectedAgent.idStructure
+                                oAgentPC.idstructure = _selectedAgent.idStructure
                                 AgentPCManager.save(oAgentPC)
                                 _selectedAgent.oPool.idCRODIPPC = Str
                                 PoolManager.Save(_selectedAgent.oPool)
@@ -1315,7 +1315,7 @@ Public Class login
         oExploit = ExploitationManager.getExploitationById("2-1110-3")
         oPulve = PulverisateurManager.getPulverisateurById("2-1110-3")
         oPulve.modeUtilisation = Pulverisateur.CO_PRORIETE
-        PulverisateurManager.save(oPulve, oExploit.id, oAgent)
+        PulverisateurManager.save(oPulve, oExploit, oAgent)
         oDiag = New Diagnostic(oAgent, oPulve, oExploit)
         oDiag.oContratCommercial.Lignes.Add(New FactureItem("TEST", "TEST", 15, 2, 0.2, ""))
         DiagnosticManager.save(oDiag)
@@ -1387,5 +1387,15 @@ Public Class login
 
     Private Sub btnValiderPool_Click(sender As Object, e As EventArgs) Handles btnValiderPool.Click
         SelectPool()
+    End Sub
+
+    Private Sub lbl_WS_Click(sender As Object, e As EventArgs) Handles lbl_WS.Click
+        If CSEnvironnement.checkWebService() Then
+            GlobalsCRODIP.GLOB_NETWORKAVAILABLE = True
+            lbl_WS.ForeColor = Drawing.Color.White
+        Else
+            GlobalsCRODIP.GLOB_NETWORKAVAILABLE = False
+            lbl_WS.ForeColor = Drawing.Color.Red
+        End If
     End Sub
 End Class

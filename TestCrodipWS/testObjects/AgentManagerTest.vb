@@ -653,7 +653,7 @@ Public Class AgentManagerTest
         oPulve.emplacementIdentification = "DERRIERE"
         'Assert.AreEqual("15.5", oPulve.getLargeurNbreRangs)
 
-        PulverisateurManager.save(oPulve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploitation, m_oAgent)
 
         Return oPulve.id
 
@@ -800,7 +800,7 @@ Public Class AgentManagerTest
             oFV.id = idMano
             oFV.idManometre = oMano.numeroNational
 
-            FVManometreControleManager.save(oFV)
+            FVManometreControleManager.save(pAgent, oFV)
 
         Next
     End Sub

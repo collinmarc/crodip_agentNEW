@@ -2,88 +2,105 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class PrestationCategorieManager
+    Inherits RootManager
 
 #Region "Methodes Web Service"
-
-    ' OK
-    Public Shared Function getWSPrestationCategorieById(pAgent As Agent, ByVal PrestationCategorie_id As Integer) As Object
-        Dim curObject As New PrestationCategorie
-        ' Try
-
-        ' déclarations
-        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-        ' Appel au WS
-        'Dim codeResponse As Integer = objWSCrodip.GetPrestationCategorie(pAgent.id, PrestationCategorie_id, pAgent.idStructure, objWSCrodip_response)
-        '    Select Case codeResponse
-        '        Case 0 ' OK
-        '            ' construction de l'objet
-        '            Dim objWSCrodip_responseItem As System.Xml.XmlNode
-        '            For Each objWSCrodip_responseItem In objWSCrodip_response
-        '                Select Case objWSCrodip_responseItem.Name()
-        '                    Case "id"
-        '                        If objWSCrodip_responseItem.InnerText() <> "" Then
-        '                            curObject.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
-        '                        End If
-        '                    Case "idStructure"
-        '                        If objWSCrodip_responseItem.InnerText() <> "" Then
-        '                            curObject.idStructure = CType(objWSCrodip_responseItem.InnerText(), Integer)
-        '                        End If
-        '                    Case "libelle"
-        '                        If objWSCrodip_responseItem.InnerText() <> "" Then
-        '                            curObject.description = CType(objWSCrodip_responseItem.InnerText(), String)
-        '                        End If
-        '                    Case "dateModificationCrodip"
-        '                        If objWSCrodip_responseItem.InnerText() <> "" Then
-        '                            curObject.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-        '                        End If
-        '                    Case "dateModificationAgent"
-        '                        If objWSCrodip_responseItem.InnerText() <> "" Then
-        '                            curObject.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-        '                        End If
-        '                End Select
-        '            Next
-        '        Case 1 ' NOK
-        '            CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById - Code 1 : Non-Trouvée")
-        '        Case 9 ' BADREQUEST
-        '            CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById - Code 9 : Bad Request")
-        '    End Select
-        'Catch ex As Exception
-        '    CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById : " & ex.Message)
-        'End Try
-        Return curObject
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As PrestationCategorie
+        Dim oreturn As PrestationCategorie
+        oreturn = RootWSGetById(Of PrestationCategorie)(p_uid, paid)
+        Return oreturn
     End Function
 
-    ' OK
-    Public Shared Function sendWSPrestationCategorie(ByVal curObject As PrestationCategorie, pAgent As Agent, ByRef updatedObject As Object) As Integer
+    Public Shared Function WSSend(ByVal pObjIn As PrestationCategorie, ByRef pobjOut As PrestationCategorie) As Integer
+        Dim nreturn As Integer
         Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            ''Return objWSCrodip.SendPrestationCategorie(pAgent.id, curObject, updatedObject)
+            nreturn = RootWSSend(Of PrestationCategorie)(pObjIn, pobjOut)
         Catch ex As Exception
-            Return -1
+            CSDebug.dispFatal("PrestationCategorieManager.WSSend ERR: " & ex.Message)
+            nreturn = -1
         End Try
+        Return nreturn
     End Function
 
     ' OK
-    Public Shared Function xml2object(ByVal arrXml As Object) As PrestationCategorie
-        Dim newObject As New PrestationCategorie
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    newObject.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idStructure"
-                    newObject.idStructure = CType(tmpSerializeItem.InnerText, Integer)
-                Case "libelle"
-                    newObject.description = CType(tmpSerializeItem.InnerText, String)
-                Case "dateModificationAgent"
-                    newObject.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    newObject.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
-        Return newObject
-    End Function
+    'Public Shared Function getWSPrestationCategorieById(pAgent As Agent, ByVal PrestationCategorie_id As Integer) As Object
+    '    Dim curObject As New PrestationCategorie
+    '    ' Try
+
+    '    ' déclarations
+    '    Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '    Dim objWSCrodip_response As New Object
+    '    ' Appel au WS
+    '    'Dim codeResponse As Integer = objWSCrodip.GetPrestationCategorie(pAgent.id, PrestationCategorie_id, pAgent.idStructure, objWSCrodip_response)
+    '    '    Select Case codeResponse
+    '    '        Case 0 ' OK
+    '    '            ' construction de l'objet
+    '    '            Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '    '            For Each objWSCrodip_responseItem In objWSCrodip_response
+    '    '                Select Case objWSCrodip_responseItem.Name()
+    '    '                    Case "id"
+    '    '                        If objWSCrodip_responseItem.InnerText() <> "" Then
+    '    '                            curObject.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '    '                        End If
+    '    '                    Case "idStructure"
+    '    '                        If objWSCrodip_responseItem.InnerText() <> "" Then
+    '    '                            curObject.idStructure = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '    '                        End If
+    '    '                    Case "libelle"
+    '    '                        If objWSCrodip_responseItem.InnerText() <> "" Then
+    '    '                            curObject.description = CType(objWSCrodip_responseItem.InnerText(), String)
+    '    '                        End If
+    '    '                    Case "dateModificationCrodip"
+    '    '                        If objWSCrodip_responseItem.InnerText() <> "" Then
+    '    '                            curObject.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
+    '    '                        End If
+    '    '                    Case "dateModificationAgent"
+    '    '                        If objWSCrodip_responseItem.InnerText() <> "" Then
+    '    '                            curObject.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
+    '    '                        End If
+    '    '                End Select
+    '    '            Next
+    '    '        Case 1 ' NOK
+    '    '            CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById - Code 1 : Non-Trouvée")
+    '    '        Case 9 ' BADREQUEST
+    '    '            CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById - Code 9 : Bad Request")
+    '    '    End Select
+    '    'Catch ex As Exception
+    '    '    CSDebug.dispFatal("TarifsManager::getWSPrestationCategorieById : " & ex.Message)
+    '    'End Try
+    '    Return curObject
+    'End Function
+
+    '' OK
+    'Public Shared Function sendWSPrestationCategorie(ByVal curObject As PrestationCategorie, pAgent As Agent, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+    '        ''Return objWSCrodip.SendPrestationCategorie(pAgent.id, curObject, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+
+    ' OK
+    'Public Shared Function xml2object(ByVal arrXml As Object) As PrestationCategorie
+    '    Dim newObject As New PrestationCategorie
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        Select Case tmpSerializeItem.LocalName()
+    '            Case "id"
+    '                newObject.id = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "idStructure"
+    '                newObject.idStructure = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "libelle"
+    '                newObject.description = CType(tmpSerializeItem.InnerText, String)
+    '            Case "dateModificationAgent"
+    '                newObject.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "dateModificationCrodip"
+    '                newObject.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '        End Select
+    '    Next
+    '    Return newObject
+    'End Function
 
 #End Region
 
@@ -120,15 +137,12 @@ Public Class PrestationCategorieManager
 
                         Dim paramsQuery As String = ""
 
+
                         If Not curObject.description Is Nothing Then
-                            paramsQuery = paramsQuery & " `libelle`='" & CSDb.secureString(curObject.description) & "'"
+                            paramsQuery = paramsQuery & " libelle='" & CSDb.secureString(curObject.description) & "'"
                         End If
-                        If Not curObject.dateModificationAgent Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.TOCRODIPString(curObject.dateModificationAgent) & "'"
-                        End If
-                        If Not curObject.dateModificationCrodip Is Nothing Then
-                            paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.TOCRODIPString(curObject.dateModificationCrodip) & "'"
-                        End If
+                        paramsQuery = paramsQuery & " ,uidstructure=" & curObject.uidstructure & " "
+                        paramsQuery = paramsQuery & curObject.getRootQuery()
 
                         '####################################################
                         '## Execution de la requete
@@ -207,7 +221,7 @@ Public Class PrestationCategorieManager
         Try
             '####################################################
             '## Execution de la requete
-            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.uidStructure & "','" & CSDate.TOCRODIPString(Date.Now) & "')"
+            bddCommande.CommandText = "INSERT INTO `PrestationCategorie` (`id`,`idStructure`,`dateModificationAgent`) VALUES ('" & id & "','" & pAgent.uidstructure & "','" & CSDate.ToCRODIPString(Date.Now) & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
@@ -438,8 +452,7 @@ Public Class PrestationCategorieManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As DbDataReader
-            '            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & agentCourant.idStructure & " AND ( dateModificationAgent<>dateModificationCrodip OR dateModificationCrodip Is Null) ORDER BY PrestationCategorie.id")
-            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & pAgent.uidStructure & " ORDER BY PrestationCategorie.id")
+            tmpResults = dbLink.getResult2s("SELECT * FROM PrestationCategorie WHERE PrestationCategorie.idStructure=" & pAgent.uidstructure & " ORDER BY PrestationCategorie.id")
             '################################################################
             Dim i As Integer = 0
             While tmpResults.Read()
@@ -448,18 +461,24 @@ Public Class PrestationCategorieManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
 
-                    Select Case tmpResults.GetName(tmpColId)
-                        Case "id"
-                            tmpObject.id = tmpResults.Item(tmpColId)
-                        Case "idStructure"
-                            tmpObject.idStructure = tmpResults.Item(tmpColId)
-                        Case "libelle"
-                            tmpObject.description = tmpResults.Item(tmpColId).ToString()
-                        Case "dateModificationAgent"
-                            tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                        Case "dateModificationCrodip"
-                            tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                    End Select
+                    If Not tmpResults.IsDBNull(tmpColId) Then
+                        Select Case tmpResults.GetName(tmpColId).Trim().ToUpper()
+                            Case "aid".Trim().ToUpper()
+                                tmpObject.aid = tmpResults.Item(tmpColId)
+                            Case "id".Trim().ToUpper()
+                                tmpObject.id = tmpResults.Item(tmpColId)
+                                tmpObject.uid = tmpResults.Item(tmpColId)
+                            Case "idStructure".Trim().ToUpper()
+                                tmpObject.idStructure = tmpResults.Item(tmpColId)
+                                tmpObject.uidstructure = tmpResults.Item(tmpColId)
+                            Case "libelle".Trim().ToUpper()
+                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
+                            Case "dateModificationAgent".Trim().ToUpper()
+                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                            Case "dateModificationCrodip".Trim().ToUpper()
+                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                        End Select
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 '# Ajout au tableau de résultats

@@ -615,10 +615,10 @@ Public Class FVBancManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatFVBancUrl)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & GlobalsCRODIP.GLOB_PARAM_SynchroEtatFVBancUrl)
             ' Dim uri As New Uri(objWSCrodip.Url & My.Settings.SynchroEtatFVBancUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynchroEtatFVBancPwd)
+            Dim Credential As New System.Net.NetworkCredential(GlobalsCRODIP.GLOB_PARAM_SynchroEtatFVBancUser, GlobalsCRODIP.GLOB_PARAM_SynchroEtatFVBancPwd)
             If System.IO.File.Exists(pFilePath) Then
                 My.Computer.Network.UploadFile(pFilePath, uri, Credential, False, 100000)
                 SynchronisationManager.LogSynchroElmt(pFilePath)

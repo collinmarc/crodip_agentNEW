@@ -11,7 +11,7 @@ Public Class Alertes
     Public Property NiveauxAlertes As List(Of NiveauAlerte)
 
     Public Shared Function readXML(Optional pstrFile As String = "Alertes.xml") As Alertes
-        Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
+        Dim strFileName As String = GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & pstrFile
         Dim oReturn As Alertes
         Try
 
@@ -33,7 +33,7 @@ Public Class Alertes
     Public Shared Function FTO_writeXml(pAlertes As Alertes, Optional ByVal pstrFile As String = "Alertes.xml") As Boolean
         Dim bReturn As Boolean
         Try
-            Dim strFileName As String = My.Settings.RepertoireParametres & "/" & pstrFile
+            Dim strFileName As String = GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & pstrFile
             Dim ns As New System.Xml.Serialization.XmlSerializerNamespaces()
             ns.Add("", "") 'No namespaces needed.
             Dim objStreamWriter As New StreamWriter(strFileName)

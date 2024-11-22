@@ -55,14 +55,14 @@ Public Class FVManometreControleManagerTest
         objFVManometreControle.idManometre = "9-99-99"
         objFVManometreControle.idAgentControleur = m_oAgent.id
 
-        Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle))
+        Assert.IsTrue(FVManometreControleManager.save(m_oAgent, objFVManometreControle))
         Dim FVId = objFVManometreControle.id
 
         objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById(FVId)
         Assert.AreEqual(FVId, objFVManometreControle2.id)
 
         objFVManometreControle2.caracteristiques = "TEST"
-        Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle2))
+        Assert.IsTrue(FVManometreControleManager.save(m_oAgent, objFVManometreControle2))
         objFVManometreControle = FVManometreControleManager.getFVManometreControleById(FVId)
         Assert.AreEqual("TEST", objFVManometreControle2.caracteristiques)
 
@@ -127,9 +127,9 @@ Public Class FVManometreControleManagerTest
 
         'Suppression du Manometre
         Threading.Thread.Sleep(1000)
-        Assert.IsFalse(oMano.isSupprimeWS)
+        Assert.IsFalse(oMano.isSupprime)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+        Assert.IsTrue(oMano.isSupprime)
 
 
         olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
@@ -210,9 +210,9 @@ Public Class FVManometreControleManagerTest
         Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
+        Assert.IsFalse(oMano.isSupprime)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+        Assert.IsTrue(oMano.isSupprime)
 
     End Sub
 End Class

@@ -50,7 +50,7 @@ Public Class Pulverisateurtest
         ExploitationManager.save(m_oExploitation, m_oAgent)
 
         m_oPulve = createPulve(m_oExploitation)
-        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
 
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
         m_oDiag.controleDateDebut = "19/05/2024"
@@ -63,7 +63,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(Pulverisateur.controleEtatNOKCV, m_oPulve.controleEtat)
         Assert.AreEqual("", m_oPulve.getDateDernierControle())
 
-        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
         Assert.IsTrue(bOK, "Erreur en SV de Pulve")
         bOK = DiagnosticManager.save(m_oDiag)
         Assert.IsTrue(bOK, "Erreur en SV de Diag")
@@ -99,7 +99,7 @@ Public Class Pulverisateurtest
         ExploitationManager.save(m_oExploitation, m_oAgent)
 
         m_oPulve = createPulve(m_oExploitation)
-        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
 
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
         m_oDiag.controleDateDebut = "06/02/2024"
@@ -112,7 +112,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(Pulverisateur.controleEtatOK, m_oPulve.controleEtat)
         Assert.AreEqual("", m_oPulve.getDateDernierControle())
 
-        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
         Assert.IsTrue(bOK, "Erreur en SV de Pulve")
         bOK = DiagnosticManager.save(m_oDiag)
         Assert.IsTrue(bOK, "Erreur en SV de Diag")
@@ -206,9 +206,9 @@ Public Class Pulverisateurtest
         oExploit = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         m_oAgent.oPool = New Pool()
         m_oAgent.oPool.idCRODIPPC = "12345"
@@ -258,7 +258,7 @@ Public Class Pulverisateurtest
         oPUlve.isReglageAutoHauteur = False
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         Dim oReturn As Pulverisateur
         PulverisateurManager.WSSend(oPUlve, oReturn)
 
@@ -287,7 +287,7 @@ Public Class Pulverisateurtest
         oPUlve2.isReglageAutoHauteur = True
         oPUlve2.immatCertificat = "321AQW321"
         oPUlve2.immatPlaque = "654ZSX654"
-        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve2, oExploitation, m_oAgent)
         PulverisateurManager.WSSend(oPUlve2, oReturn)
 
         oPUlve = PulverisateurManager.WSgetById(-1, strId)
@@ -329,7 +329,7 @@ Public Class Pulverisateurtest
         oPUlve.isReglageAutoHauteur = False
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         oSynchro.runAscSynchro()
 
         oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
@@ -364,7 +364,7 @@ Public Class Pulverisateurtest
         oPUlve.isReglageAutoHauteur = False
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
-        Assert.IsTrue(PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent))
+        Assert.IsTrue(PulverisateurManager.save(oPUlve, oExploitation, m_oAgent))
 
         oPUlve2 = PulverisateurManager.getPulverisateurById(strId)
         Assert.AreEqual(strId, oPUlve2.id)
@@ -392,7 +392,7 @@ Public Class Pulverisateurtest
         oPUlve2.immatCertificat = "321AQW321"
         oPUlve2.immatPlaque = "654ZSX654"
 
-        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve2, oExploitation, m_oAgent)
 
         oPUlve = PulverisateurManager.getPulverisateurById(strId)
         Assert.AreEqual(strId, oPUlve.id)
@@ -426,7 +426,7 @@ Public Class Pulverisateurtest
         oPUlve.numeroNational = "E001123456"
 
         ExploitationManager.save(pExploit:=oExploitation, pAgent:=m_oAgent)
-        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve, pExploit:=oExploitation, pAgent:=m_oAgent)
 
         'Création d'un Pulve Additionnel
 
@@ -435,7 +435,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(oPUlve.numeroNational, oPUlve2.pulvePrincipalNumNat)
         Assert.IsTrue(oPUlve2.isPulveAdditionnel)
 
-        PulverisateurManager.save(pPulve:=oPUlve2, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve2, pExploit:=oExploitation, pAgent:=m_oAgent)
         strDateModif1 = oPUlve2.dateModificationAgentS
         'Rechargement du Pulve Principal
         oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
@@ -445,7 +445,7 @@ Public Class Pulverisateurtest
         'Changement du numéro nationnal
         oPUlve.numeroNational = "E001456789"
         'Sauvegarde
-        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve, pExploit:=oExploitation, pAgent:=m_oAgent)
 
         'Rechargement du Pulve additionnel
         oPUlve2 = PulverisateurManager.getPulverisateurById(oPUlve2.id)

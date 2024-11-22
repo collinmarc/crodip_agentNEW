@@ -107,9 +107,9 @@ Public Class FVManometreControleManager
         Try
             bReturn = True
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & My.Settings.SynchroEtatFVManoUrl)
+            Dim uri As New Uri(objWSCrodip.Url.Replace("/server", "") & GlobalsCRODIP.GLOB_PARAM_SynchroEtatFVManoUrl)
             'Pour le moment les infos d'autehtification ne sont pas utilisées par le Serveur
-            Dim Credential As New System.Net.NetworkCredential(My.Settings.SynchroEtatFVBancUser, My.Settings.SynhcroEtatDiagPwd)
+            Dim Credential As New System.Net.NetworkCredential(GlobalsCRODIP.GLOB_PARAM_SynchroEtatFVBancUser, GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagPwd)
             If System.IO.File.Exists(filePath) Then
                 My.Computer.Network.UploadFile(filePath, uri, Credential, False, 100000)
                 SynchronisationManager.LogSynchroElmt(filePath)
@@ -126,7 +126,7 @@ Public Class FVManometreControleManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function save(ByVal objFVManometreControle As FVManometreControle, Optional bSyncro As Boolean = False) As Boolean
+    Public Shared Function save(pAgent As Agent, ByVal objFVManometreControle As FVManometreControle, Optional bSyncro As Boolean = False) As Boolean
         'Dim paramsQueryUpdate As String
         Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean
@@ -139,7 +139,7 @@ Public Class FVManometreControleManager
             ' L'Id du FV baanc est initialisé , l'idbanc de mesure est laissé à blanc
             If existsObject.id <> objFVManometreControle.id Then
                 ' Si il n'existe pas, on le crée
-                bReturn = insert(objFVManometreControle, bSyncro)
+                bReturn = insert(pAgent, objFVManometreControle, bSyncro)
             Else
                 bReturn = update(objFVManometreControle, bSyncro)
             End If
@@ -149,7 +149,7 @@ Public Class FVManometreControleManager
         End Try
         Return bReturn
     End Function
-    Private Shared Function insert(ByVal pobjFV As FVManometreControle, bSynchro As Boolean) As Boolean
+    Private Shared Function insert(pAgent As Agent, ByVal pobjFV As FVManometreControle, bSynchro As Boolean) As Boolean
         '        Dim paramsQueryUpdate As String
         Dim paramsQuery_col As String
         Dim paramsQuery As String
@@ -165,6 +165,12 @@ Public Class FVManometreControleManager
                 pobjFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
             Dim oAgent As Agent = AgentManager.getAgentById(pobjFV.idAgentControleur)
+            If oAgent.id = 0 Then
+                oAgent = pAgent
+            End If
+            If oAgent.idStructure = 0 Then
+                oAgent.idStructure = pAgent.idStructure
+            End If
             pobjFV.id = getNewId(oAgent)
 
             ' Initialisation de la requete
@@ -426,7 +432,9 @@ Public Class FVManometreControleManager
                 ' On rempli notre tableau
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
-                    tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
             End While
@@ -508,7 +516,9 @@ Public Class FVManometreControleManager
                     Dim tmpFVManometreControle As New FVManometreControle(New Agent())
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
-                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        If Not tmpListProfils.IsDBNull(tmpColId) Then
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        End If
                         tmpColId = tmpColId + 1
                     End While
                     lstResponse.Add(tmpFVManometreControle)
@@ -545,7 +555,9 @@ Public Class FVManometreControleManager
                 Dim tmpFVManometreControle As New FVManometreControle(New Agent())
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
-                    tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 lstResponse.Add(tmpFVManometreControle)

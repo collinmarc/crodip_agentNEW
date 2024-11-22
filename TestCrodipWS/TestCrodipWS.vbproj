@@ -406,6 +406,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ParamManager.vb" />
     <Compile Include="testObjects\AcquisitionTest.vb" />
     <Compile Include="testObjects\AgentManagerTest.vb" />
     <Compile Include="testObjects\AgentPCTest.vb" />

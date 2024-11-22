@@ -578,6 +578,66 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="Facture">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="aid" type="xsd:string" />
+            <xsd:element name="idFacture" type="xsd:string" />
+            <xsd:element name="uidstructure" type="xsd:int" />
+            <xsd:element name="idDiag" type="xsd:string" />
+            <xsd:element name="uiddiagnostic" type="xsd:int" />
+            <xsd:element name="idExploitation" type="xsd:string" />
+            <xsd:element name="uidexploitation" type="xsd:int" />
+            <xsd:element name="dateFacture" type="xsd:string" />
+            <xsd:element name="dateEcheance" type="xsd:string" />
+            <xsd:element name="commentaire" type="xsd:string" />
+            <xsd:element name="modeReglement" type="xsd:string" />
+            <xsd:element name="isReglee" type="xsd:boolean" />
+            <xsd:element name="refReglement" type="xsd:string" />
+            <xsd:element name="totalHT" type="xsd:string" />
+            <xsd:element name="txTVA" type="xsd:string" />
+            <xsd:element name="totalTTC" type="xsd:string" />
+            <xsd:element name="totalTVA" type="xsd:string" />
+            <xsd:element name="rsClient" type="xsd:string" />
+            <xsd:element name="nomClient" type="xsd:string" />
+            <xsd:element name="prenomClient" type="xsd:string" />
+            <xsd:element name="adresseClient" type="xsd:string" />
+            <xsd:element name="cpClient" type="xsd:string" />
+            <xsd:element name="communeClient" type="xsd:string" />
+            <xsd:element name="telfixeClient" type="xsd:string" />
+            <xsd:element name="telportClient" type="xsd:string" />
+            <xsd:element name="emailClient" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+            <xsd:element name="pathPDF" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FactureItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="aid" type="xsd:string" />
+            <xsd:element name="aidfacture" type="xsd:string" />
+            <xsd:element name="uidfacture" type="xsd:int" />
+            <xsd:element name="idFacture" type="xsd:string" />
+            <xsd:element name="uidcategorie" type="xsd:int" />
+            <xsd:element name="uidtarif" type="xsd:int" />
+            <xsd:element name="nFactureItem" type="xsd:int" />
+            <xsd:element name="categorie" type="xsd:string" />
+            <xsd:element name="prestation" type="xsd:string" />
+            <xsd:element name="quantite" type="xsd:string" />
+            <xsd:element name="pu" type="xsd:string" />
+            <xsd:element name="totalHTItem" type="xsd:string" />
+            <xsd:element name="totalTVAItem" type="xsd:string" />
+            <xsd:element name="totalTTCItem" type="xsd:string" />
+            <xsd:element name="txTVAItem" type="xsd:string" />
+            <xsd:element name="dateModificationAgent" type="xsd:string" />
+            <xsd:element name="dateModificationCrodip" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="ControleBancMesure">
         <xsd:complexType>
           <xsd:sequence>
@@ -2227,6 +2287,70 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="GetFactureRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="aid" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFactureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Facture" name="Facture" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFactureRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:Facture" name="Facture" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFactureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFactureItemRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="aid" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFactureItemResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:FactureItem" name="FactureItem" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFactureItemRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:FactureItem" name="FactureItem" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendFactureItemResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="GetControleBancMesureRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -3178,6 +3302,30 @@
   <wsdl:message name="SendExploitationTOPulverisateurResponse">
     <wsdl:part name="parameters" element="tns:SendExploitationTOPulverisateurResponse" />
   </wsdl:message>
+  <wsdl:message name="GetFactureRequest">
+    <wsdl:part name="parameters" element="tns:GetFactureRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetFactureResponse">
+    <wsdl:part name="parameters" element="tns:GetFactureResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFactureRequest">
+    <wsdl:part name="parameters" element="tns:SendFactureRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendFactureResponse">
+    <wsdl:part name="parameters" element="tns:SendFactureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFactureItemRequest">
+    <wsdl:part name="parameters" element="tns:GetFactureItemRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetFactureItemResponse">
+    <wsdl:part name="parameters" element="tns:GetFactureItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFactureItemRequest">
+    <wsdl:part name="parameters" element="tns:SendFactureItemRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendFactureItemResponse">
+    <wsdl:part name="parameters" element="tns:SendFactureItemResponse" />
+  </wsdl:message>
   <wsdl:message name="GetControleBancMesureRequest">
     <wsdl:part name="parameters" element="tns:GetControleBancMesureRequest" />
   </wsdl:message>
@@ -3659,6 +3807,22 @@
     <wsdl:operation name="SendExploitationTOPulverisateur">
       <wsdl:input message="tns:SendExploitationTOPulverisateurRequest" />
       <wsdl:output message="tns:SendExploitationTOPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFacture">
+      <wsdl:input message="tns:GetFactureRequest" />
+      <wsdl:output message="tns:GetFactureResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFacture">
+      <wsdl:input message="tns:SendFactureRequest" />
+      <wsdl:output message="tns:SendFactureResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFactureItem">
+      <wsdl:input message="tns:GetFactureItemRequest" />
+      <wsdl:output message="tns:GetFactureItemResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFactureItem">
+      <wsdl:input message="tns:SendFactureItemRequest" />
+      <wsdl:output message="tns:SendFactureItemResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetControleBancMesure">
       <wsdl:input message="tns:GetControleBancMesureRequest" />
@@ -4429,6 +4593,42 @@
     </wsdl:operation>
     <wsdl:operation name="SendExploitationTOPulverisateur">
       <soap:operation soapAction="http://www.example.org/crodip/sendExploitationTOPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFacture">
+      <soap:operation soapAction="http://www.example.org/crodip/getFacture" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFacture">
+      <soap:operation soapAction="http://www.example.org/crodip/sendFacture" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFactureItem">
+      <soap:operation soapAction="http://www.example.org/crodip/getFactureItem" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFactureItem">
+      <soap:operation soapAction="http://www.example.org/crodip/sendFactureItem" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

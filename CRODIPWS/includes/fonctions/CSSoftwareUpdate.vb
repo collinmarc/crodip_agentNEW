@@ -13,7 +13,7 @@ Public Class CSSoftwareUpdate
         Else
             CSSoftwareUpdate.majSoftware()
         End If
-        GlobalsCRODIP.Init()
+        'GlobalsCRODIP.Init()
     End Sub
 
     Private Shared _thread_majSoftware As Thread

@@ -14,9 +14,9 @@ Public Class AgentManager
 
     Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String) As Agent
         Dim oreturn As Agent
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
-            Dim tXmlnodes As Xml.XmlNode()
+            Dim tXmlnodes As Object
             Dim lstPools As Object
             '' déclarations
             Dim typeT As Type = GetType(Agent)
@@ -26,18 +26,20 @@ Public Class AgentManager
             Dim pInfo As String = ""
             codeResponse = objWSCrodip.GetAgent(pIdProfileAgent, pInfo, tXmlnodes, lstPools)
             Select Case codeResponse
-                Case 0 ' OK
+                Case 0, 4 ' OK
                     Dim ser As New XmlSerializer(GetType(Agent))
                     Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
                 Case 1 ' NOK
-                    CSDebug.dispError("getWSByKey2 - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 1 : Non-Trouvée")
+                Case 3 ' ???
+                    CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 3 : " & pInfo)
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("getWSByKey2 - Code 9 : Bad Request")
+                    CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("RootManager - getWSbyKey2 : ", ex)
+            CSDebug.dispError("AgentManager:WSGetByNumeroNational ERR : ", ex)
         Finally
         End Try
         Return oreturn
@@ -48,7 +50,7 @@ Public Class AgentManager
     Public Shared Function WSSend(ByVal pAgentIn As Agent, ByRef pReturn As Agent) As Integer
         Dim oreturn As Agent = Nothing
         Dim codeResponse As Integer = 99
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
             Dim pInfo As String = ""
             Dim puid As Integer
@@ -64,20 +66,20 @@ Public Class AgentManager
                     serializer.Serialize(writer, pAgentIn)
                     Dim xmlOutput As String = writer.ToString()
                     ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
-                    CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                    'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
 
                 Dim Params As Object() = {pAgentIn, pInfo}
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
                 '                puid = DirectCast(Params(2), Integer)
-                CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
+                'CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-'                    pobjreturn = getWSByKey(Of T)(CType(pobj, root).uid, CType(pobj, root).aid)
+                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational)
                 Case 4 ' CREATE OK
-                    'pReturn = WSgetByNumeroNational(Of T)(puid, "")
+                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational)
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST
@@ -569,7 +571,7 @@ Public Class AgentManager
 
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Agent WHERE (dateModificationAgent<>dateModificationCrodip Or dateModificationCrodip is null) AND idStructure=" & agent.uidStructure
+        bddCommande.CommandText = "SELECT * FROM Agent WHERE (dateModificationAgent>dateModificationCrodip Or dateModificationCrodip is null) AND isGestionnaire <>1 and isActif = 1 AND idStructure=" & agent.uidstructure
 
         Try
             ' On récupère les résultats

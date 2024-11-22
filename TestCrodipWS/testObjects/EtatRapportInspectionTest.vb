@@ -53,7 +53,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -162,7 +162,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -380,7 +380,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -468,7 +468,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1001,7 +1001,7 @@ Imports Crodip_agent
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
         oPulve.idStructure = m_oAgent.idStructure
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1103,7 +1103,7 @@ Imports Crodip_agent
         oPulvePrinc.marque = "vicon"
         oPulvePrinc.modele = "VRT520"
         oPulvePrinc.emplacementIdentification = "ARRIERE"
-        PulverisateurManager.save(oPulvePrinc, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulvePrinc, oExploit, m_oAgent)
 
         oPulve = New Pulverisateur()
         oPulve.idStructure = m_oAgent.idStructure
@@ -1137,7 +1137,7 @@ Imports Crodip_agent
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
         oPulve.idStructure = m_oAgent.idStructure
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1356,7 +1356,7 @@ Imports Crodip_agent
         oPulve.isFiltrationBuses = True
         oPulve.isRincagecircuit = True
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1470,7 +1470,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1578,7 +1578,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1686,7 +1686,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1842,7 +1842,7 @@ Imports Crodip_agent
         oPulve.isPompesDoseuses = True
         oPulve.nbPompesDoseuses = 2
         oPulve.categorie = "Rampe"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -1955,7 +1955,7 @@ Imports Crodip_agent
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
         oPulve.buseFonctionnement = "INJECTION D'AIR"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -2046,7 +2046,7 @@ Imports Crodip_agent
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
         oPulve.buseFonctionnement = "CUILLERES"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -2194,7 +2194,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -2304,7 +2304,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiagOrigine = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiagOrigine.controleLieu = "DANS LA COUR"

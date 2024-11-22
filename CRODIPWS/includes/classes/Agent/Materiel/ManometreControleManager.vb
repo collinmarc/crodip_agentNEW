@@ -519,7 +519,7 @@ Public Class ManometreControleManager
     Public Shared Function getManoControleByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManoControleByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
@@ -537,7 +537,7 @@ Public Class ManometreControleManager
     Public Shared Function getManoControleByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreControle)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManoControleByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)

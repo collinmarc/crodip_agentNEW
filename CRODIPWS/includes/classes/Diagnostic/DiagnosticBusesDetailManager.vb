@@ -38,7 +38,7 @@ Public Class DiagnosticBusesDetailManager
         'Tri sur IdLot puis idBuse
         objDiagnosticBusesDetailList.Liste = objDiagnosticBusesDetailList.Liste.OrderBy(Function(d)
                                                                                             Return d.idLot
-                                                                                        End Function).ThenBy(Function(d)
+                                                                                        End Function).ThenBy(Function(d) As String
                                                                                                                  Return d.id
                                                                                                              End Function).ToList
         Return objDiagnosticBusesDetailList

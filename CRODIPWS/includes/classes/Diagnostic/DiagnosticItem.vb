@@ -174,6 +174,18 @@ Public Class DiagnosticItem
         End Set
     End Property
     Private _uidDiagnostic As Integer
+    <XmlElement("uiddiagnostic")>
+    Public Property uiddiagnosticS() As String
+        Get
+            Return uiddiagnostic
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uiddiagnostic = value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property uiddiagnostic() As Integer
         Get
             Return _uidDiagnostic

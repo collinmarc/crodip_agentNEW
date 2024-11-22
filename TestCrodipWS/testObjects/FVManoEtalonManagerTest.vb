@@ -120,9 +120,9 @@ Public Class FVManoEtalonManagerTest
 
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
+        Assert.IsFalse(oMano.isSupprime)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+        Assert.IsTrue(oMano.isSupprime)
 
 
         olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
@@ -163,9 +163,9 @@ Public Class FVManoEtalonManagerTest
         Assert.IsTrue(oMano.etat)
 
         'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
+        Assert.IsFalse(oMano.isSupprime)
         oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+        Assert.IsTrue(oMano.isSupprime)
 
 
         Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)

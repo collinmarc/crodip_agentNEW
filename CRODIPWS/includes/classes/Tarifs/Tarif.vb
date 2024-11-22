@@ -1,15 +1,13 @@
 ﻿Imports System.Xml.Serialization
 Public Class Tarif
-    Protected m__id As Integer
+    Inherits root
     Protected m_idStructure As Integer
     Protected m_isCategorie As Boolean
     Protected m_description As String
-    'Uniquement pour pertation tarif
+    'Uniquement pour Prestationtarif
     Private _tarifHT As Decimal
     Private _tarifTTC As Decimal
     Private _tva As Decimal
-    Protected m_dateModificationAgent As String
-    Protected m_dateModificationCrodip As String
 
     Private m_etat As BDEtat
 
@@ -25,6 +23,8 @@ Public Class Tarif
         '        tva = My.Settings.TxTVADefaut
         tarifHT = 0
         tarifTTC = 0
+        dateModificationCrodip = Date.MinValue
+        dateModificationAgent = Date.Now
         m_etat = BDEtat.ETATNEW
     End Sub
     Protected Sub UpdateEtat()
@@ -41,11 +41,11 @@ Public Class Tarif
 
     Public Property id() As Integer
         Get
-            Return m__id
+            Return uid
         End Get
         Set(ByVal Value As Integer)
-            If Value <> m__id Then
-                m__id = Value
+            If Value <> uid Then
+                uid = Value
                 UpdateEtat()
                 dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
@@ -53,15 +53,38 @@ Public Class Tarif
     End Property
     Public Property idStructure() As Integer
         Get
-            Return m_idStructure
+            Return uidstructure
         End Get
         Set(ByVal Value As Integer)
-            If Value <> m_idStructure Then
-                m_idStructure = Value
+            If Value <> idStructure Then
+                uidstructure = Value
                 UpdateEtat()
                 dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
 
+        End Set
+    End Property
+    Private _uidstructure As Integer
+    <XmlElement("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                uidstructure = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property uidstructure() As Integer
+        Get
+            Return _uidstructure
+        End Get
+        Set(ByVal Value As Integer)
+            If Value <> m_idStructure Then
+                _uidstructure = Value
+            End If
         End Set
     End Property
 
@@ -159,44 +182,6 @@ Public Class Tarif
         End Get
         Set(ByVal Value As String)
             tva = GlobalsCRODIP.StringToDouble(Value)
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentWS() As String
-        Get
-            Return CSDate.GetDateForWS(m_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            Throw New NotSupportedException("Setting the dateModificationAgentWS property is not supported, needed for XML Serialize")
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return m_dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            m_dateModificationAgent = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipWS() As String
-        Get
-            Return CSDate.GetDateForWS(m_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            Throw New NotSupportedException("Setting the dateModificationCrodipWS property is not supported, needed for XML Serialize")
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return m_dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            m_dateModificationCrodip = Value
         End Set
     End Property
 

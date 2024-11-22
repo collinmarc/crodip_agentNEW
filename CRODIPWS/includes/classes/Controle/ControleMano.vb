@@ -97,7 +97,7 @@ Public Class ControleMano
             'Lecture de l'EMT paramétrée
             _EMTLue = oParamMetro.EMT
         Catch ex As Exception
-            CSDebug.dispError("controleMano.New ERR", ex)
+            CSDebug.dispError("controleMano.New(Lecture du paramétrage) ERR", ex)
             CSDebug.dispError("controleMano.New on garde les valeurs par défaut")
         End Try
 

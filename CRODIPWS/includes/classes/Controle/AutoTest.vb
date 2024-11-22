@@ -36,9 +36,11 @@ Public Class AutoTest
         _Etat = -1
         type = "MANOC"
         idMateriel = pMano.idCrodip
-        IdStructure = pMano.uidstructure
+        IdStructure = pAgent.uidstructure
         NumAgent = pAgent.id
         Traca = pMano.Traca
+        uidstructure = pAgent.uidstructure
+        uidmateriel = pMano.uid
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
         Id = -1
@@ -47,6 +49,8 @@ Public Class AutoTest
         idMateriel = pMano.idCrodip
         IdStructure = pMano.uidstructure
         NumAgent = pAgent.id
+        uidstructure = pAgent.uidstructure
+        uidmateriel = pMano.uid
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
         Id = -1
@@ -55,6 +59,8 @@ Public Class AutoTest
         idMateriel = pBanc.id
         IdStructure = pBanc.uidstructure
         NumAgent = pAgent.id
+        uidstructure = pAgent.uidstructure
+        uidmateriel = pBanc.uid
     End Sub
     Public Property Id() As Integer
         Get
@@ -77,6 +83,18 @@ Public Class AutoTest
         End Set
     End Property
     Private _uidstructure As Integer
+    <XmlElement("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidstructure = value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property uidstructure() As Integer
         Get
             Return _uidstructure
@@ -105,6 +123,18 @@ Public Class AutoTest
         End Set
     End Property
     Private _uidagent As Integer
+    <XmlElement("uidagent")>
+    Public Property uidagentS() As String
+        Get
+            Return uidagent
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                uidagent = value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property uidagent() As Integer
         Get
             Return _uidagent
@@ -156,7 +186,7 @@ Public Class AutoTest
         End Set
     End Property
     <XmlElement("uidmateriel")>
-    Public Property uidmateriels() As String
+    Public Property uidmaterielS() As String
         Get
             Return uidmateriel
         End Get

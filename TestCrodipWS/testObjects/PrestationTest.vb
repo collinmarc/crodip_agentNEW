@@ -126,17 +126,17 @@ Public Class PrestationTest
         Assert.AreEqual("TARIF STRUCTURE2", oPrestaTarif2.description)
         'Synchro ASC Structure1
         Dim obj As New Object()
-        PrestationCategorieManager.sendWSPrestationCategorie(oPrestaCategorie1, oAgent1, obj)
-        PrestationTarifManager.sendWSPrestationTarif(oPrestaTarif1, oAgent1, obj)
+        PrestationCategorieManager.WSSend(oPrestaCategorie1, obj)
+        PrestationTarifManager.WSSend(oPrestaTarif1, obj)
         'Synchro ASC Structure2
-        PrestationCategorieManager.sendWSPrestationCategorie(oPrestaCategorie2, oAgent2, obj)
-        PrestationTarifManager.sendWSPrestationTarif(oPrestaTarif2, oAgent2, obj)
+        PrestationCategorieManager.WSSend(oPrestaCategorie2, obj)
+        PrestationTarifManager.WSSend(oPrestaTarif2, obj)
         'Synhcro DESC Structure1
-        PrestationCategorieManager.getWSPrestationCategorieById(oAgent1, oPrestaCategorie1.id)
-        PrestationTarifManager.getWSPrestationTarifById(oPrestaTarif1.id, oPrestaTarif1.idCategorie, oAgent1)
+        PrestationCategorieManager.WSgetById(oPrestaCategorie1.uid, oPrestaCategorie1.aid)
+        PrestationTarifManager.WSgetById(oPrestaTarif1.uid, oPrestaTarif1.aid)
         'Synhcro DESC Structure2
-        PrestationCategorieManager.getWSPrestationCategorieById(oAgent2, oPrestaCategorie2.id)
-        PrestationTarifManager.getWSPrestationTarifById(oPrestaTarif2.id, oPrestaTarif2.idCategorie, oAgent2)
+        PrestationCategorieManager.WSgetById(oPrestaCategorie2.uid, oPrestaCategorie2.aid)
+        PrestationTarifManager.WSgetById(oPrestaTarif2.uid, oPrestaTarif2.aid)
         'Vérif Presta/Atrif Structure1
         oPrestaCategorie1 = PrestationCategorieManager.getCategoryById(oPrestaCategorie1.id, oStructure1.id)
         Assert.AreEqual("CAT STRUCTURE1", oPrestaCategorie1.libelle)

@@ -415,7 +415,7 @@ Public Class BuseManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE (dateModificationAgent<>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.uidStructure
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE (dateModificationAgent>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.uidstructure
 
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -568,7 +568,7 @@ Public Class BuseManager
     Public Shared Function getBusesByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Buse)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getBusesByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
@@ -582,7 +582,7 @@ Public Class BuseManager
     Public Shared Function getBusesByAgentJamaisServi(ByVal pAgent As Agent) As List(Of Buse)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getBusesByPoolIdJamaisServi(pAgent.idCRODIPPool)

@@ -11,5 +11,131 @@
     <Setting Name="GestiondesPools" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V4.1.01</Value>
+    </Setting>
+    <Setting Name="BDDType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SQLITE</Value>
+    </Setting>
+    <Setting Name="NumVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20241022170000</Value>
+    </Setting>
+    <Setting Name="DB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip_Agent</Value>
+    </Setting>
+    <Setting Name="StockPDF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DOSSIERCACHE</Value>
+    </Setting>
+    <Setting Name="aqw" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">zsx</Value>
+    </Setting>
+    <Setting Name="Mode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NORMAL</Value>
+    </Setting>
+    <Setting Name="AutoSync" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoTestDefaultFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">public/Exports/AutoTest.csv</Value>
+    </Setting>
+    <Setting Name="Expect100Continue" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="nbControlesAvantAlerteMax" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="TxTVADefaut" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="FTPuser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip-pdf</Value>
+    </Setting>
+    <Setting Name="FTPPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bvdkEn5xnQx</Value>
+    </Setting>
+    <Setting Name="FTPUserTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip-pp-pdf</Value>
+    </Setting>
+    <Setting Name="FTPPasswordTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3xnF9fTxWqL</Value>
+    </Setting>
+    <Setting Name="NbIdentifiantPulveMini" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="DesacMat" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SecurityProtocol" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4080</Value>
+    </Setting>
+    <Setting Name="SynchroEtatDiagUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-diagnostic-pdf</Value>
+    </Setting>
+    <Setting Name="SynchroEtatDiagUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="SynhcroEtatDiagPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="SynchroDescGetEtat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">../pdf/</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-fv-banc-pdf</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVManoUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/index/envoi-fv-mano-controle-pdf</Value>
+    </Setting>
+    <Setting Name="checkNetwork" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVBancpwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="DBExtension" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.db3</Value>
+    </Setting>
+    <Setting Name="WSCrodipURLTEST" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://admin-pp.crodip.net/server</Value>
+    </Setting>
+    <Setting Name="WSCrodipURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://admin.crodip.net/server</Value>
+    </Setting>
+    <Setting Name="FTPHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin.crodip.net</Value>
+    </Setting>
+    <Setting Name="FTPHostTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin-test.crodip.net</Value>
+    </Setting>
+    <Setting Name="GPSApplication" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CRODIPGPSFULL.EXE</Value>
+    </Setting>
+    <Setting Name="GPSRepertoireExport" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MESURESGPS</Value>
+    </Setting>
+    <Setting Name="AppercuRecap" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AcquisitionGPS" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="urlCRODIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin.crodip.net</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVMAnoUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutlisé</Value>
+    </Setting>
+    <Setting Name="SynchroEtatFVMAnoPwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inutilisé</Value>
+    </Setting>
+    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -130,13 +130,24 @@ Public MustInherit Class Materiel
             _DateSuppression = Value
         End Set
     End Property
-
+    <XmlIgnore()>
     Public Property jamaisServi() As Boolean
         Get
             Return _JamaisServi
         End Get
         Set(ByVal Value As Boolean)
             _JamaisServi = Value
+        End Set
+    End Property
+    <XmlElement("jamaisServi")>
+    Public Property jamaisServiS() As String
+        Get
+            Return jamaisServi
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                jamaisServi = Value
+            End If
         End Set
     End Property
     <XmlIgnoreAttribute()>
@@ -204,12 +215,12 @@ Public MustInherit Class Materiel
         Return bReturn
     End Function
     <XmlElement("etat")>
-    Public Property etatWS() As Integer
+    Public Property etatWS() As Boolean
         Get
-            Return CInt(_etat)
+            Return etat
         End Get
-        Set(ByVal Value As Integer)
-            _etat = CBool(Value)
+        Set(ByVal Value As Boolean)
+            etat = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>

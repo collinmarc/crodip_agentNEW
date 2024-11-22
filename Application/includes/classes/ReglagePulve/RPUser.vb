@@ -1,6 +1,4 @@
-﻿Imports CRODIPWS
-
-Public Class RPUser
+﻿Public Class RPUser
     Private _Code As String
     Private _PasswordCrypted As String
     Private _dateExp As Long
@@ -51,7 +49,7 @@ Public Class RPUser
     End Function
 
     Private Function Crypt(pValue As String) As String
-        pValue = CSCrypt.encode(pValue, "sha256")
+        pValue = CRODIPWS.CSCrypt.encode(pValue, "sha256")
         Return pValue
     End Function
 

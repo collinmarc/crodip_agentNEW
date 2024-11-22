@@ -100,6 +100,18 @@ Public MustInherit Class FVMateriel
             _aidAgentControleur = Value
         End Set
     End Property
+    <XmlElement("uidagentcontroleur")>
+    Public Property uidagentcontroleurS() As String
+        Get
+            Return uidagentcontroleur
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                uidagentcontroleur = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property uidagentcontroleur() As Integer
         Get
             Return _uidAgentControleur

@@ -19,7 +19,7 @@ Public Class DiagnosticItemManager
 #Region "Methodes acces Web Service"
     Public Shared Function WSGetList(puidDiag As Integer, paidDiag As String) As DiagnosticItemList
         Dim oreturn As New DiagnosticItemList
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
             Dim tXmlnodes As Object()
             Dim objWSCrodip_response() As Object = Nothing
@@ -45,12 +45,12 @@ Public Class DiagnosticItemManager
                     Next
 
                 Case 1 ' NOK
-                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("DiagnosticItemManager.WSGetList - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+                    CSDebug.dispError("DiagnosticItemManager.WSGetList - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+            CSDebug.dispError("DiagnosticItemManager.WSGetList - WSGetList : ", ex)
         Finally
         End Try
         Return oreturn
@@ -154,7 +154,7 @@ Public Class DiagnosticItemManager
             Dim sFichierConfig As String = oPulve.getParamDiag().fichierConfig
             '' Chargement de la liste des Défauts pour ce Type de pulvé
             Dim olst As New CRODIP_ControlLibrary.LstParamCtrlDiag()
-            olst.readXML(My.Settings.RepertoireParametres & "/" & sFichierConfig)
+            olst.readXML(GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & sFichierConfig)
 
             bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' And ItemCodeEtat <> 'B' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats

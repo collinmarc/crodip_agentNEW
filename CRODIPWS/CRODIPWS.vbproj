@@ -365,7 +365,7 @@
     <Compile Include="includes\classes\Tools\AttributesCrodip.vb" />
     <Compile Include="includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="includes\classes\WebServiceCRODIP.vb" />
-    <Compile Include="includes\config\Globals.vb" />
+    <Compile Include="includes\config\GlobalsCRODIP.vb" />
     <Compile Include="includes\config\variables_globales.vb" />
     <Compile Include="includes\fonctions\CSCheck.vb" />
     <Compile Include="includes\fonctions\CSCommand.vb" />

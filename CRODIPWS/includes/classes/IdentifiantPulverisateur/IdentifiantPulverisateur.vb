@@ -17,18 +17,14 @@ Public Class IdentifiantPulverisateur
 
     Public Property id As Long
         Get
-            Return m_id
+            If Not String.IsNullOrEmpty(aid) Then
+                Return aid
+            Else
+                Return 0
+            End If
         End Get
         Set(value As Long)
-            m_id = value
-        End Set
-    End Property
-    Public Property IdentifiantPulverisateur As String
-        Get
-            Return m_id
-        End Get
-        Set(value As String)
-
+            aid = value
         End Set
     End Property
     Public Property idStructure As Long
@@ -117,7 +113,7 @@ Public Class IdentifiantPulverisateur
         End Set
     End Property
 
-    Public Function Fill(pColName As String, pColValue As Object) As Boolean
+    Public Overrides Function Fill(pColName As String, pColValue As Object) As Boolean
         Dim bReturn As Boolean = True
         Try
             pColName = pColName.Replace("IdentifiantPulverisateur.", "")
@@ -130,7 +126,7 @@ Public Class IdentifiantPulverisateur
                         Me.numeroNational = pColValue.ToString()
                     Case "idStructure".ToUpper().Trim()
                         Me.idStructure = pColValue.ToString()
-                    Case "uidStructure".ToUpper().Trim()
+                    Case "uidstructure".ToUpper().Trim()
                         Me.uidstructure = pColValue.ToString()
                     Case "etat".ToUpper().Trim()
                         Me.etat = pColValue.ToString()

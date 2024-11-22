@@ -7,12 +7,12 @@ Imports System.Xml.Serialization
 'Imports RestSharp
 'Imports RestSharp.Authenticators
 Public Class RootManager
-    'Protected Shared BaseUrl As String = "https://admin-pp.crodip.net"
     Protected Shared Function RootWSGetById(Of T As root)(puid As Integer, paid As String) As T
         Dim oreturn As T = Nothing
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
         Try
-            Dim tXmlnodes As Xml.XmlNode() = Nothing
+            Dim tXmlnodes As Object = Nothing
             '' déclarations
             Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "Get" & typeT.Name
@@ -26,16 +26,20 @@ Public Class RootManager
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(T))
-                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                    strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
+                    Using reader As New StringReader(strXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
                 Case 1 ' NOK
-                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("RootWSgetByID - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+                    CSDebug.dispError("RootWSgetByID - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+            CSDebug.dispError("RootManager  RootWSgetByID (" & puid & "," & paid & "): ", ex)
+            If Not String.IsNullOrEmpty(strXml) Then
+                CSDebug.dispError("RootManager - strxml :" & strXml)
+            End If
         Finally
         End Try
         Return oreturn
@@ -45,7 +49,7 @@ Public Class RootManager
     Protected Shared Function RootWSSend(Of T As root)(pobj As T, ByRef pobjreturn As T) As Integer
         Dim oreturn As T = Nothing
         Dim codeResponse As Integer = 99
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
             Dim pInfo As String = ""
             Dim puid As Integer
@@ -54,6 +58,7 @@ Public Class RootManager
             Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "Send" & typeT.Name
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim Params As Object() = {pobj, pInfo, puid}
             If methode IsNot Nothing Then
                 'Invocation de la méthode
                 Dim serializer As New XmlSerializer(pobj.GetType())
@@ -64,16 +69,17 @@ Public Class RootManager
                     'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
 
-                Dim Params As Object() = {pobj, pInfo, puid}
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
-                puid = DirectCast(Params(2), Integer)
+
                 'CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
+                    puid = DirectCast(Params(2), Integer)
                     pobjreturn = RootWSGetById(Of T)(puid, CType(pobj, root).aid)
                 Case 4 ' CREATE OK
+                    puid = DirectCast(Params(2), Integer)
                     CType(pobj, root).uid = puid
                     pobjreturn = RootWSGetById(Of T)(puid, "")
                 Case 1 ' NOK
@@ -81,14 +87,13 @@ Public Class RootManager
                 Case 9 ' BADREQUEST
                     CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
                 Case 0 ' PAS DE MAJ
+                    pobjreturn = pobj
             End Select
         Catch ex As Exception
             CSDebug.dispError("RootManager - sendWS : ", ex)
         Finally
         End Try
         Return codeResponse
-
-
     End Function
     Protected Shared Function getByKey(Of T As {root, New})(pSQL As String) As T
         Dim oReturn As T = Nothing

@@ -84,7 +84,7 @@ Public Class FrmAddCoProp
         'Sauvegarde des Exploitants
         m_lstExploit.ForEach(Sub(oExploit)
                                  ExploitationManager.save(oExploit, m_oAgent)
-                                 ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, oExploit.isSuppressionCoprop, m_oAgent)
+                                 ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, m_oPulverisateur.uid, oExploit.uid, oExploit.isSuppressionCoprop, m_oAgent)
                              End Sub)
     End Sub
 

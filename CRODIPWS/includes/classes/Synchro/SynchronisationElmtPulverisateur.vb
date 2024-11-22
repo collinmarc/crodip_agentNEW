@@ -43,7 +43,7 @@ Public Class SynchronisationElmtPulverisateur
                 SetStatus("Réception MAJ Pulvérisateur n°" & Me.IdentifiantChaine & "...")
                 tmpObject = PulverisateurManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If tmpObject IsNot Nothing Then
-                    PulverisateurManager.save(tmpObject, "0", pAgent, True)
+                    PulverisateurManager.save(tmpObject, Nothing, pAgent, True)
                 End If
                 breturn = True
             Catch ex As Exception

@@ -178,8 +178,8 @@ Public Class Pulverisateur
     ''' il est initialisé au moment du chargement de l'objet en mémoire
     ''' </summary>
     ''' <returns></returns>
-    <XmlIgnore()>
     Dim _numeroNationalBis As String
+    <XmlIgnore()>
     Public Property numeroNationalBis() As String
         Get
             Return _numeroNationalBis
@@ -279,8 +279,18 @@ Public Class Pulverisateur
             _pulverisation = Value
         End Set
     End Property
-
-
+    <XmlElement("capacite")>
+    Public Property capaciteWS() As String
+        Get
+            Return capacite
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                capacite = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property capacite() As Integer
         Get
             Return _capacite
@@ -466,7 +476,18 @@ Public Class Pulverisateur
             _isLanceLavage = Value
         End Set
     End Property
-
+    <XmlElement("nombreBuses")>
+    Public Property nombreBusesWS() As String
+        Get
+            Return nombreBuses
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                nombreBuses = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property nombreBuses() As Integer
         Get
             Return _nombreBuses
@@ -767,6 +788,18 @@ Public Class Pulverisateur
             _RincageAutoAssiste = Value
         End Set
     End Property
+    <XmlElement("buseNbniveaux")>
+    Public Property buseNbniveauxWS() As String
+        Get
+            Return buseNbniveaux
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                buseNbniveaux = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property buseNbniveaux() As Integer
         Get
             Return _buseNbNiveaux
@@ -775,6 +808,18 @@ Public Class Pulverisateur
             _buseNbNiveaux = Value
         End Set
     End Property
+    <XmlElement("manometreNbniveaux")>
+    Public Property manometreNbniveauxWS() As String
+        Get
+            Return manometreNbniveaux
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                manometreNbniveaux = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property manometreNbniveaux() As Integer
         Get
             Return _manometreNbNiveaux
@@ -783,6 +828,18 @@ Public Class Pulverisateur
             _manometreNbNiveaux = Value
         End Set
     End Property
+    <XmlElement("manometreNbtroncons")>
+    Public Property manometreNbtronconsWS() As String
+        Get
+            Return manometreNbtroncons
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                manometreNbtroncons = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property manometreNbtroncons() As Integer
         Get
             Return _manometreNbTroncons
@@ -930,6 +987,18 @@ Public Class Pulverisateur
             _isRincagecircuit = Value
         End Set
     End Property
+    <XmlElement("nbPompesDoseuses")>
+    Public Property nbPompesDoseusesWS() As String
+        Get
+            Return nbPompesDoseuses
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                nbPompesDoseuses = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property nbPompesDoseuses() As Integer
         Get
             Return _nbPompesDoseuses
@@ -1247,7 +1316,7 @@ Public Class Pulverisateur
                 CSDebug.dispFatal("Impossible de trouver le fichier de configuration du controle pour le Pulve type = " & pPulve.type & ", categorie = " & pPulve.categorie)
                 bReturn = False
             Else
-                Dim sParamFile As String = My.Settings.RepertoireParametres & "/" & oParamDiag.fichierConfig
+                Dim sParamFile As String = GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & oParamDiag.fichierConfig
                 If Not System.IO.File.Exists(sParamFile) Then
                     CSDebug.dispFatal("le fichier de configuration du controle pour le Pulve type = " & pPulve.type & ", categorie = " & pPulve.categorie & " Fichier de config " & sParamFile & "n'existe pas")
                     bReturn = False
@@ -1406,7 +1475,7 @@ Public Class Pulverisateur
 
 
         Try
-            olstParam.readXML(My.Settings.RepertoireParametres & "/" & sfichierConfig)
+            olstParam.readXML(GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & sfichierConfig)
             ' DEfauut Pneumatiques
             '-----------------
             oDiagItem = New DiagnosticItemAuto("", "251", "0", "", DiagnosticItem.EtatDiagItemOK)

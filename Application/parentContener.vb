@@ -26,8 +26,7 @@ Public Class parentContener
         Me.Cursor = Cursors.WaitCursor
         CSDebug.dispInfo("ParentContainer.load")
         loadSplash()
-        GlobalsCRODIP.Init()
-
+        ParamManager.initGlobalsCrodip()
         ExecuteCMD()
 
         If Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
@@ -60,7 +59,7 @@ Public Class parentContener
         CSEnvironnement.createFolders()
         CSEnvironnement.Renamefiles()
         'Vérification de la version de la base de données
-        If Not DBVersionManagerManager.checkVersion(My.Settings.DBVersionExpected) Then
+        If Not DBVersionManagerManager.checkVersion(GlobalsCRODIP.GLOB_APPLI_DBVERSION) Then
             MsgBox("Votre base de données n'est pas à jour, contactez le CRODIP pour effectuer la mise à jour.", MsgBoxStyle.OkOnly, "ERREUR SUR BASE DE DONNEES")
             m_bCloseByUpdate = True
             Me.Close()

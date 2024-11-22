@@ -1670,7 +1670,7 @@ Public Class frmdiagnostic_facturationCoProp
         m_olstExploit.ForEach(Sub(oExploit)
                                   ExploitationManager.save(oExploit, m_oAgent)
                                   If m_oPulverisateur IsNot Nothing Then
-                                      ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, oExploit.isSuppressionCoprop, m_oAgent)
+                                      ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, m_oPulverisateur.uid, oExploit.uid, oExploit.isSuppressionCoprop, m_oAgent)
                                   End If
                               End Sub)
     End Sub

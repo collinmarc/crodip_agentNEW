@@ -7,7 +7,6 @@ Imports System.Data.Common
 Public Class Banc
     Inherits Materiel
 
-    Private Shadows _id As String
     Private _marque As String
     Private _modele As String
     Private _dateAchat As String
@@ -18,10 +17,10 @@ Public Class Banc
     <XmlIgnore>
     Public Overloads Property id() As String
         Get
-            Return aid
+            Return numeroNational
         End Get
         Set(ByVal value As String)
-            aid = value
+            numeroNational = value
         End Set
     End Property
     Sub New()
@@ -40,7 +39,14 @@ Public Class Banc
             _lstPools = value
         End Set
     End Property
-
+    Public Property idBancMesure() As String
+        Get
+            Return numeroNational
+        End Get
+        Set(ByVal value As String)
+            numeroNational = value
+        End Set
+    End Property
     Public Property marque() As String
         Get
             Return _marque
@@ -167,11 +173,12 @@ Public Class Banc
                 bReturn = True
                 ' Console.WriteLine(pColName & " . " & pcolValue.ToString())
                 Select Case pColName.Trim().ToUpper()
-                    Case "id".Trim().ToUpper()
+                    Case "id".Trim().ToUpper(), "numeroNational".Trim().ToUpper(), "idBancMesure".Trim().ToUpper()
                         Me.id = pcolValue.ToString() 'Public id As String
                         Me.numeroNational = pcolValue.ToString() 'Public id As String
+                        Me.idBancMesure = pcolValue.ToString() 'Public id As String
                     Case "idstructure".Trim().ToUpper()
-                        Me.uidstructure = pcolValue.ToString() 'Public idAgent As String
+                        Me.uidstructure = pcolValue.ToString()
                     Case "marque".Trim().ToUpper()
                         Me.marque = pcolValue.ToString() 'Public marque As String
                     Case "modele".Trim().ToUpper()
@@ -362,6 +369,7 @@ Public Class Banc
         Try
             Dim newFicheVieBanc As New FVBanc(pAgent)
             newFicheVieBanc.idBancMesure = Me.id
+            newFicheVieBanc.uidbancmesure = Me.uid
             newFicheVieBanc.type = pType
             newFicheVieBanc.auteur = "AGENT"
             newFicheVieBanc.caracteristiques =

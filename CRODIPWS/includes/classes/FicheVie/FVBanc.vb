@@ -16,6 +16,8 @@ Public Class FVBanc
     Sub New(ByVal pAgent As Agent)
 
         idAgentControleur = pAgent.id
+        uidagentcontroleur = pAgent.uid
+        uidstructure = pAgent.uidstructure
     End Sub
     Private _uidbancmesure As Integer
     <XmlIgnore>

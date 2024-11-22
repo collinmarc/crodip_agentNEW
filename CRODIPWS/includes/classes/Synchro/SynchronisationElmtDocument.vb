@@ -29,7 +29,7 @@
             'Le nom du fichier est stocké dans identifiantChaine
             'L'url dans ValeurAuxiliaire
             'Path de base du moduleDocumentaire
-            Dim pathRoot As String = My.Settings.ModuleDocumentaire
+            Dim pathRoot As String = GlobalsCRODIP.GLOB_PARAM_ModuleDocumentaire
             Dim targetPath As String
             Dim strFilename As String ' only the filenaame
             If Me.identifiantChaine.StartsWith("/") Then
@@ -129,7 +129,7 @@
             'Le nom du fichier est stocké dans identifiantChaine
             'L'url dans ValeurAuxiliaire
             'Path de base du moduleDocumentaire
-            Dim pathRoot As String = My.Settings.ModuleDocumentaire
+            Dim pathRoot As String = GlobalsCRODIP.GLOB_PARAM_ModuleDocumentaire
             Dim targetPath As String
             Dim strFilename As String ' only the filenaame
             If Me.identifiantChaine.StartsWith("/") Then

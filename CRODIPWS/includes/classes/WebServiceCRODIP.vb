@@ -6,10 +6,10 @@ Public Class WebServiceCRODIP
     Public Shared ReadOnly Property URL As String
         Get
             Dim strUrl As String
-            If My.Settings.WSCrodipProduction And Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
-                strUrl = My.Settings.WSCrodipURL
+            If GlobalsCRODIP.GLOB_PARAM_WSCRodipProduction And Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
+                strUrl = GlobalsCRODIP.GLOB_PARAM_WSCrodipURL
             Else
-                strUrl = My.Settings.WSCrodipURLTEST
+                strUrl = GlobalsCRODIP.GLOB_PARAM_WSCrodipURLTEST
             End If
             Return strUrl
         End Get

@@ -100,13 +100,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Next
 
         'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
+        oIdent2 = IdentifiantPulverisateurManager.WSgetById(nId, nId.ToString(), m_oAgent.uid)
         oIdent2.libelle = "TEST"
         oIdent2.SetEtatINUTILISABLE()
         IdentifiantPulverisateurManager.Save(oIdent2)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent2)
+        IdentifiantPulverisateurManager.WSSend(oIdent2, oIdent, m_oAgent.uid)
 
-        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+        oIdent = IdentifiantPulverisateurManager.WSgetById(oIdent2.uid, oIdent2.aid, m_oAgent.uid)
         Assert.AreEqual(oIdent2.id, oIdent.id)
         Assert.AreEqual(oIdent2.libelle, oIdent.libelle)
         Assert.AreEqual(oIdent2.numeroNational, oIdent.numeroNational)
@@ -117,8 +117,8 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
 
         IdentifiantPulverisateurManager.Save(oIdent)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+        IdentifiantPulverisateurManager.WSSend(oIdent, oIdent2, m_oAgent.uid)
+        oIdent2 = IdentifiantPulverisateurManager.WSgetById(oIdent.uid, oIdent.aid, m_oAgent.uid)
 
         Assert.AreEqual(oIdent.id, oIdent2.id)
         Assert.AreEqual(oIdent.libelle, oIdent2.libelle)
@@ -171,4 +171,26 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
     'End Sub
+    <TestMethod()>
+    Public Sub SynchroTest()
+        'NB il faut modifier un identifiantPulve sur le Serveur avant
+        Dim oCSDB As New CSDb(True)
+        oCSDB.RAZ_BASE_DONNEES()
+        oCSDB.free()
+        Dim oStructure = StructureManager.WSgetById(22, "22")
+        oStructure.idCrodip = "22"
+        StructureManager.save(oStructure, True)
+
+        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3")
+        AgentManager.save(oAgent)
+
+        Dim oSynchro As Synchronisation
+        oSynchro = New Synchronisation(oAgent)
+        oSynchro.Synchro(False, True)
+
+        Dim lst As List(Of IdentifiantPulverisateur)
+        lst = IdentifiantPulverisateurManager.getListeByStructure(oAgent.idStructure)
+
+        Assert.AreNotEqual(0, lst.Count)
+    End Sub
 End Class

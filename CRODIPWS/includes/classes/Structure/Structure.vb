@@ -33,10 +33,10 @@ Public Class [Structure]
     <XmlIgnore()>
     Public Property id() As Integer
         Get
-            Return _id
+            Return uid
         End Get
         Set(ByVal Value As Integer)
-            _id = Value
+            uid = Value
         End Set
     End Property
     <XmlIgnore()>

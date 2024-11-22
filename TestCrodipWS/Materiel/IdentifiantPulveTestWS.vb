@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim IdentifiantPulverisateur As CRODIPWS.IdentifiantPulverisateur
-        IdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(1187, 34443, "")
-        Assert.AreEqual(34443, IdentifiantPulverisateur.uid)
+        IdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(2411, "", 1286)
+        Assert.AreEqual(2411, IdentifiantPulverisateur.uid)
         Assert.IsNotNull(IdentifiantPulverisateur)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oIdentifiantPulverisateur As CRODIPWS.IdentifiantPulverisateur
-        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(1187, 34443, "")
+        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(2411, "", 1286)
         If oIdentifiantPulverisateur Is Nothing Then
             Exit Sub
         End If
@@ -26,31 +26,31 @@ Imports System.Net.Http
         oIdentifiantPulverisateur.libelle = "TESTMCO"
         oIdentifiantPulverisateur.numeroNational = "741852"
 
-        Dim oreturn As CRODIPWS.IdentifiantPulverisateur
+        Dim oreturn As CRODIPWS.IdentifiantPulverisateur = Nothing
         Dim nReturn As Integer
-        nReturn = IdentifiantPulverisateurManager.WSSend(1187, oIdentifiantPulverisateur, oreturn)
+        nReturn = IdentifiantPulverisateurManager.WSSend(oIdentifiantPulverisateur, oreturn, 1286)
         Assert.AreEqual(2, nReturn)
 
     End Sub
     <TestMethod()> Public Sub CRUDWS()
         Dim nreturn As Integer
         Dim oIdentifiantPulverisateur As CRODIPWS.IdentifiantPulverisateur
-        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(1187, 34443, "")
+        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(2411, "", 1286)
         oIdentifiantPulverisateur.SetEtatINUTILISABLE()
 
         ' Création de l'objet
         Dim oReturn As IdentifiantPulverisateur
-        nreturn = IdentifiantPulverisateurManager.WSSend(1187, oIdentifiantPulverisateur, oReturn)
+        nreturn = IdentifiantPulverisateurManager.WSSend(oIdentifiantPulverisateur, oReturn, 1286)
         Assert.AreEqual(2, nreturn)
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(1187, oReturn.uid, oReturn.aid)
+        oIdentifiantPulverisateur = IdentifiantPulverisateurManager.WSgetById(oReturn.uid, oReturn.aid, 1286)
         Assert.IsTrue(oIdentifiantPulverisateur.isEtatINUTILISABLE)
 
         'Update de l'objet
         oIdentifiantPulverisateur.SetEtatINUTILISE()
-        nreturn = IdentifiantPulverisateurManager.WSSend(1187, oIdentifiantPulverisateur, oReturn)
+        nreturn = IdentifiantPulverisateurManager.WSSend(oIdentifiantPulverisateur, oReturn, 1286)
         Assert.AreEqual(oIdentifiantPulverisateur.uid, oReturn.uid)
         Assert.AreEqual(2, nreturn)
         Assert.IsTrue(oIdentifiantPulverisateur.isEtatINUTILISE())

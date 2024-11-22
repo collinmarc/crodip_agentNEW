@@ -234,7 +234,7 @@ Public Class ajouter_profil
     Private Sub btn_ajouterProfil_seConnecter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ajouterProfil_seConnecter.Click
         Dim objAgent As New Agent
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ENCOURS, True)
-        If CSEnvironnement.checkNetwork() = True Then
+        If GlobalsCRODIP.GLOB_NETWORKAVAILABLE = True Then
             If addProfil_identifiant.Text <> "" And addProfil_password.Text <> "" Then
                 Try
                     ' on récupère notre agent via WS
@@ -269,6 +269,7 @@ Public Class ajouter_profil
                                 Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
                                 CSEnvironnement.delPid()
                                 Application.Exit()
+
                             Else
                                 Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)

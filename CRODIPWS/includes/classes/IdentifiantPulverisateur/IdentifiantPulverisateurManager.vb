@@ -7,94 +7,81 @@ Public Class IdentifiantPulverisateurManager
     Inherits RootManager
 
 #Region "Methodes Web Service"
-    Public Shared Function WSgetById(puidAgent As Integer, ByVal puid As Integer, paid As String) As IdentifiantPulverisateur
+    Public Shared Function WSgetById(ByVal puid As Integer, paid As String, puidAgent As Integer) As IdentifiantPulverisateur
         Dim oreturn As IdentifiantPulverisateur = Nothing
-        Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
         Try
-            Dim tXmlnodes As Xml.XmlNode() = Nothing
-            '' déclarations
-            Dim typeT As Type = GetType(IdentifiantPulverisateur)
-            Dim nomMethode As String = "Get" & typeT.Name
-            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim tXmlnodes As Object = Nothing
+            Dim pInfos As String = ""
             Dim codeResponse As Integer = 99 'Mehode non trouvée
-            Dim Params As Object()
-            If methode IsNot Nothing Then
-                Params = {puid, paid, puidAgent, tXmlnodes}
-                Dim pInfo As String = ""
-                codeResponse = objWSCrodip.GetIdentifiantPulverisateur(puid, paid, puidAgent, pInfo, oreturn)
-            End If
+            codeResponse = objWSCrodip.GetIdentifiantPulverisateur(puid, paid, puidAgent, pInfos, tXmlnodes)
+            '' déclarations
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(IdentifiantPulverisateur))
-                    Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
+                    strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
+                    Using reader As New StringReader(strXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
                 Case 1 ' NOK
-                    CSDebug.dispError("getWSByKey - Code 1 : Non-Trouvée")
-                    oreturn = Nothing
+                    CSDebug.dispError("IdentifiantPulveManager.WSGetById - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("getWSByKey - Code 9 : Bad Request")
+                    CSDebug.dispError("IdentifiantPulveManager.WSGetById : Bad Request")
             End Select
         Catch ex As Exception
-            CSDebug.dispError("RootManager - getWSbyKey : ", ex)
+            CSDebug.dispError("IdentifiantPulveManager.WSGetById (" & puid & "," & paid & ") ERR: ", ex)
         Finally
         End Try
         Return oreturn
-
     End Function
 
-    Public Shared Function WSSend(puidAgent As String, ByVal pObj As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur) As Integer
-        Dim nreturn As Integer
+    Public Shared Function WSSend(ByVal pObjIn As IdentifiantPulverisateur, ByRef pobjOut As IdentifiantPulverisateur, puidAgent As Integer) As Integer
+        Dim oreturn As IdentifiantPulverisateur = Nothing
+        Dim codeResponse As Integer = 99
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
-            Dim oreturn As IdentifiantPulverisateur = Nothing
-            Dim codeResponse As Integer = 99
-            Dim objWSCrodip As WSCRODIP.CrodipServer = New WSCRODIP.CrodipServer()
-            Try
-                Dim pInfo As String = ""
-                Dim puid As Integer
+            Dim pInfo As String = ""
+            Dim puid As Integer
 
-                'Determination du Nom de la méthode : exemple SendManometreControle
-                Dim typeT As Type = GetType(IdentifiantPulverisateur)
-                Dim nomMethode As String = "Send" & typeT.Name
-                Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
-                If methode IsNot Nothing Then
-                    'Invocation de la méthode
-                    Dim serializer As New XmlSerializer(pObj.GetType())
-                    Using writer As New StringWriter()
-                        serializer.Serialize(writer, pObj)
-                        Dim xmlOutput As String = writer.ToString()
-                        ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
-                        CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
-                    End Using
+            'Determination du Nom de la méthode : exemple SendManometreControle
+            Dim typeT As Type = GetType(IdentifiantPulverisateur)
+            Dim nomMethode As String = "Send" & typeT.Name
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim Params As Object() = {pObjIn, pInfo, puid}
+            If methode IsNot Nothing Then
+                'Invocation de la méthode
+                Dim serializer As New XmlSerializer(pObjIn.GetType())
+                Using writer As New StringWriter()
+                    serializer.Serialize(writer, pObjIn)
+                    Dim xmlOutput As String = writer.ToString()
+                    ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
+                    'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
+                End Using
 
-                    Dim Params As Object() = {pObj, pInfo, puid}
-                    codeResponse = methode.Invoke(objWSCrodip, Params)
-                    pInfo = DirectCast(Params(1), String)
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                pInfo = DirectCast(Params(1), String)
+
+            End If
+            Select Case codeResponse
+                Case 2 ' UPDATE OK
+                    puid = pObjIn.uid
+                    pobjOut = WSgetById(puid, "", puidAgent)
+                Case 4 ' CREATE OK
                     puid = DirectCast(Params(2), Integer)
-                    CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
-                End If
-                Select Case codeResponse
-                    Case 2 ' UPDATE OK
-                        pobjOut = WSgetById(puidAgent, pObj.uid, pObj.aid)
-                    Case 4 ' CREATE OK
-                        pobjOut = WSgetById(puidAgent, pObj.uid, pObj.aid)
-                    Case 1 ' NOK
-                        CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
-                    Case 9 ' BADREQUEST
-                        CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
-                    Case 0 ' PAS DE MAJ
-                End Select
-            Catch ex As Exception
-                CSDebug.dispError("RootManager - sendWS : ", ex)
-            Finally
-            End Try
-            Return codeResponse
-
+                    pobjOut = WSgetById(puid, "", puidAgent)
+                Case 1 ' NOK
+                    CSDebug.dispError("IdentifiantPulveManager.WSSend - Code 1 : Erreur Base de données Serveur")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("IdentifiantPulveManager.WSSend - Code 9 : Mauvaise Requete")
+                Case 0 ' PAS DE MAJ
+                    pobjOut = pObjIn
+            End Select
         Catch ex As Exception
-            CSDebug.dispFatal("sendWSIdentifiantPulverisateur : " & ex.Message)
-            nreturn = -1
+            CSDebug.dispError("IdentifiantPulveManager.WSSend ERR : ", ex)
+        Finally
         End Try
-        Return nreturn
+        Return codeResponse
     End Function
 #End Region
 
@@ -109,14 +96,14 @@ Public Class IdentifiantPulverisateurManager
             Else
                 pIdent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
             End If
-            If Not exists(pIdent.id) Then
+            If Not exists(pIdent.uid) Then
                 bReturn = Insert(pIdent)
             Else
                 bReturn = Update(pIdent)
             End If
 
         Catch ex As Exception
-            CSDebug.dispFatal("IdentifiantPulverisateurManager Save ERR : " & ex.Message)
+            CSDebug.dispFatal("IdentifiantPulverisateurManager Save ERR : ", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -129,7 +116,7 @@ Public Class IdentifiantPulverisateurManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As DbDataReader
-            tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE id=" & pId & "")
+            tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE uid=" & pId & "")
             bReturn = tmpResults.HasRows
             tmpResults.Close()
             dbLink.free()
@@ -140,9 +127,8 @@ Public Class IdentifiantPulverisateurManager
         Return bReturn
     End Function
     ''' <summary>
-    ''' Rend le nobre de publvérisateur par numéro national
+    ''' Rend le ProchainID de publvérisateur 
     ''' </summary>
-    ''' <param name="numeroNational">Numéro complet</param>
     ''' <returns>Nbre de pulvé</returns>
     ''' <remarks></remarks>
 
@@ -174,17 +160,20 @@ Public Class IdentifiantPulverisateurManager
     Private Shared Function Insert(pIdent As IdentifiantPulverisateur) As Boolean
         Dim bReturn As Boolean
         Try
+            If pIdent.id = 0 Then
+                pIdent.id = pIdent.uid
+            End If
             Dim strQuery As String
             strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle , dateModificationAgent ,  dateModificationCrodip "
             strQuery = strQuery & ",aid,  uid, uidstructure "
-            If My.Settings.GestiondesPools Then
+            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                 strQuery = strQuery & ",idCRODIPPOOL"
             End If
 
             strQuery = strQuery & ") VALUES ("
             strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
             strQuery = strQuery & ",'" & pIdent.aid & "'," & pIdent.uid & "," & pIdent.uidstructure
-            If My.Settings.GestiondesPools Then
+            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                 strQuery = strQuery & "'" & pIdent.idCRODIPPool & "'"
             End If
             strQuery = strQuery & " )"
@@ -214,8 +203,10 @@ Public Class IdentifiantPulverisateurManager
         Try
             Dim strQuery As String
             strQuery = "Update identifiantPulverisateur SET "
-            strQuery = strQuery & "  idStructure =" & pIdent.idStructure
-            strQuery = strQuery & ",  uidStructure =" & pIdent.uidstructure
+            strQuery = strQuery & "  id =" & pIdent.id & ""
+            strQuery = strQuery & ",  aid ='" & pIdent.aid & "'"
+            strQuery = strQuery & ",  idStructure =" & pIdent.idStructure
+            strQuery = strQuery & ",  uidstructure =" & pIdent.uidstructure
             strQuery = strQuery & ",  numeroNational ='" & CSDb.secureString(pIdent.numeroNational) & "'"
             strQuery = strQuery & ",  etat = '" & CSDb.secureString(pIdent.etat) & "'"
             strQuery = strQuery & ",  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'"
@@ -225,7 +216,7 @@ Public Class IdentifiantPulverisateurManager
             End If
             strQuery = strQuery & pIdent.getRootQuery()
 
-            strQuery = strQuery & "WHERE id = " & pIdent.id
+            strQuery = strQuery & "WHERE uid = " & pIdent.uid
 
 
             Dim oCSDb As New CSDb(True)
@@ -298,93 +289,6 @@ Public Class IdentifiantPulverisateurManager
         Return bReturn
     End Function 'Delete
     ''' <summary>
-    ''' Récupéraration d'un identifiantPulverisateur par WS à partir de son ID
-    ''' </summary>
-    ''' <param name="pAgent"></param>
-    ''' <param name="pId"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Shared Function getWSIdentifiantPulverisateurById(pAgent As Agent, ByVal pId As String) As IdentifiantPulverisateur
-        Dim objIdent As New IdentifiantPulverisateur
-        Try
-
-            ' déclarations
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            'Dim codeResponse As Integer = objWSCrodip.GetIdentifiantPulverisateur(pAgent.id, pId, objWSCrodip_response)
-            'Select Case codeResponse
-            '    Case 0 ' OK
-            '        ' construction de l'objet
-            '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
-            '        For Each objWSCrodip_responseItem In objWSCrodip_response
-            '            If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                objIdent.Fill(objWSCrodip_responseItem.Name(), objWSCrodip_responseItem.InnerText())
-            '            End If
-            '        Next
-            '    Case 1 ' NOK
-            '        CSDebug.dispError("Erreur - PulverisateurManager - Code 1 : Non-Trouvée")
-            '    Case 9 ' BADREQUEST
-            '        CSDebug.dispError("Erreur - PulverisateurManager - Code 9 : Bad Request")
-            'End Select
-        Catch ex As Exception
-            CSDebug.dispError("IDentifiantPulveristeurManager.getWSIdentifiantPulverisateurById (" & pId & "): " & ex.Message)
-            objIdent = Nothing
-        End Try
-        Return objIdent
-
-    End Function 'getWSIdentifiantPulverisateurById
-    ''' <summary>
-    ''' Envoie d'un identifiant Pulveristaeur par WS
-    ''' </summary>
-    ''' <param name="pAgent"></param>
-    ''' <param name="pIdentPulve"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Shared Function sendWSIdentifiantPulverisateur(pAgent As Agent, ByVal pIdentPulve As IdentifiantPulverisateur) As Boolean
-        Dim bReturn As Boolean
-        Try
-
-            ' déclarations
-            'Dim objWSCrodip2 As WSCRODIP2.CrodipServer = WebServiceCRODIP.getWS2(True)
-            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-            objWSCrodip.Timeout = 10000
-            Dim objWSCrodip_response As New IdentifiantPulverisateur
-            ' Appel au WS
-            'Dim rq As WSCrodip2.SendIdentifiantPulverisateurRequest
-            'Dim oWSIdentificateurPulve As New WSCrodip2.IdentifiantPulverisateur()
-            'oWSIdentificateurPulve.id = pIdentPulve.id
-            'oWSIdentificateurPulve.idStructure = pIdentPulve.idStructure
-            'oWSIdentificateurPulve.libelle = pIdentPulve.libelle
-            'oWSIdentificateurPulve.numeroNational = pIdentPulve.numeroNational
-            'oWSIdentificateurPulve.etat = pIdentPulve.etat
-            'oWSIdentificateurPulve.dateUtilisation = pIdentPulve.dateUtilisation
-            'oWSIdentificateurPulve.dateModificationCrodip = pIdentPulve.dateModificationCrodip
-            'oWSIdentificateurPulve.dateModificationAgent = pIdentPulve.dateModificationAgent
-            'SynchronisationManager.LogSynchroElmt(oWSIdentificateurPulve)
-
-            'rq = New WSCrodip2.SendIdentifiantPulverisateurRequest(pAgent.id, oWSIdentificateurPulve)
-            Dim pInfo As String
-            Dim pResult As Integer
-            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pIdentPulve, pInfo, pResult)
-            '            Dim codeResponse As Integer = objWSCrodip.SendIdentifiantPulverisateur(pAgent.id, pIdentPulve, objWSCrodip_response)
-            Select Case codeResponse
-                Case 0 ' OK
-                Case 1 ' NOK
-                    CSDebug.dispError("sendWSIdentifiantPulverisateurr - Code 1 : Non-Trouvée")
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("sendWSIdentifiantPulverisateur - Code 9 : Bad Request")
-            End Select
-            bReturn = True
-        Catch ex As Exception
-            CSDebug.dispError("IdentifiantPulverisateurManager.SendWSIdentifiantPulverisateur (" & pIdentPulve.ToString() & ") ERR: " & ex.Message)
-            bReturn = False
-        End Try
-        Return bReturn
-
-    End Function 'SendWSIndentifiantPulverisateur
-    ''' <summary>
     ''' Renvoie un tableau d'elements à synchroniser
     ''' </summary>
     ''' <param name="agent"></param>
@@ -395,7 +299,7 @@ Public Class IdentifiantPulverisateurManager
         Dim arrItems(0) As IdentifiantPulverisateur
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE (dateModificationAgent<>dateModificationCrodip  or dateModificationCrodip is null)"
+        bddCommande.CommandText = "SELECT * FROM IdentifiantPulverisateur WHERE (dateModificationAgent>dateModificationCrodip  or dateModificationCrodip is null)"
         bddCommande.CommandText = bddCommande.CommandText & " AND idStructure=" & agent.uidStructure
 
         Try
@@ -449,7 +353,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             olst = getListeByStructure(pAgent.uidStructure)
         Else
             olst = getListeByPool(pAgent.idCRODIPPool)
@@ -514,7 +418,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             olst = getListeInutiliseByStructure(pAgent.uidStructure)
         Else
             olst = getListeInutiliseByPool(pAgent.idCRODIPPool)

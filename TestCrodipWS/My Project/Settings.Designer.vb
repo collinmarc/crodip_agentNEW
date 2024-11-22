@@ -80,6 +80,384 @@ Namespace My
                 Return CType(Me("GestiondesPools"),Boolean)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("V4.1.01")>  _
+        Public ReadOnly Property DBVersionExpected() As String
+            Get
+                Return CType(Me("DBVersionExpected"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>  _
+        Public ReadOnly Property BDDType() As String
+            Get
+                Return CType(Me("BDDType"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4")>  _
+        Public ReadOnly Property NumVersion() As String
+            Get
+                Return CType(Me("NumVersion"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20241022170000")>  _
+        Public ReadOnly Property NumBuild() As String
+            Get
+                Return CType(Me("NumBuild"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("crodip_Agent")>  _
+        Public ReadOnly Property DB() As String
+            Get
+                Return CType(Me("DB"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("DOSSIERCACHE")>  _
+        Public ReadOnly Property StockPDF() As String
+            Get
+                Return CType(Me("StockPDF"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("zsx")>  _
+        Public ReadOnly Property aqw() As String
+            Get
+                Return CType(Me("aqw"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("NORMAL")>  _
+        Public ReadOnly Property Mode() As String
+            Get
+                Return CType(Me("Mode"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property AutoSync() As String
+            Get
+                Return CType(Me("AutoSync"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("public/Exports/AutoTest.csv")>  _
+        Public ReadOnly Property AutoTestDefaultFileName() As String
+            Get
+                Return CType(Me("AutoTestDefaultFileName"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property Expect100Continue() As Boolean
+            Get
+                Return CType(Me("Expect100Continue"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public ReadOnly Property nbControlesAvantAlerteMax() As Integer
+            Get
+                Return CType(Me("nbControlesAvantAlerteMax"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
+        Public ReadOnly Property TxTVADefaut() As Decimal
+            Get
+                Return CType(Me("TxTVADefaut"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("crodip-pdf")>  _
+        Public ReadOnly Property FTPuser() As String
+            Get
+                Return CType(Me("FTPuser"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bvdkEn5xnQx")>  _
+        Public ReadOnly Property FTPPassword() As String
+            Get
+                Return CType(Me("FTPPassword"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("crodip-pp-pdf")>  _
+        Public ReadOnly Property FTPUserTest() As String
+            Get
+                Return CType(Me("FTPUserTest"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3xnF9fTxWqL")>  _
+        Public ReadOnly Property FTPPasswordTest() As String
+            Get
+                Return CType(Me("FTPPasswordTest"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("20")>  _
+        Public ReadOnly Property NbIdentifiantPulveMini() As String
+            Get
+                Return CType(Me("NbIdentifiantPulveMini"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property DesacMat() As Boolean
+            Get
+                Return CType(Me("DesacMat"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4080")>  _
+        Public ReadOnly Property SecurityProtocol() As String
+            Get
+                Return CType(Me("SecurityProtocol"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>  _
+        Public ReadOnly Property SynchroEtatDiagUrl() As String
+            Get
+                Return CType(Me("SynchroEtatDiagUrl"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
+        Public ReadOnly Property SynchroEtatDiagUser() As String
+            Get
+                Return CType(Me("SynchroEtatDiagUser"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
+        Public ReadOnly Property SynhcroEtatDiagPwd() As String
+            Get
+                Return CType(Me("SynhcroEtatDiagPwd"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("../pdf/")>  _
+        Public ReadOnly Property SynchroDescGetEtat() As String
+            Get
+                Return CType(Me("SynchroDescGetEtat"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-banc-pdf")>  _
+        Public ReadOnly Property SynchroEtatFVBancUrl() As String
+            Get
+                Return CType(Me("SynchroEtatFVBancUrl"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-fv-mano-controle-pdf")>  _
+        Public ReadOnly Property SynchroEtatFVManoUrl() As String
+            Get
+                Return CType(Me("SynchroEtatFVManoUrl"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property checkNetwork() As Boolean
+            Get
+                Return CType(Me("checkNetwork"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
+        Public ReadOnly Property SynchroEtatFVBancUser() As String
+            Get
+                Return CType(Me("SynchroEtatFVBancUser"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
+        Public ReadOnly Property SynchroEtatFVBancpwd() As String
+            Get
+                Return CType(Me("SynchroEtatFVBancpwd"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _
+        Public ReadOnly Property DBExtension() As String
+            Get
+                Return CType(Me("DBExtension"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://admin-pp.crodip.net/server")>  _
+        Public ReadOnly Property WSCrodipURLTEST() As String
+            Get
+                Return CType(Me("WSCrodipURLTEST"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://admin.crodip.net/server")>  _
+        Public ReadOnly Property WSCrodipURL() As String
+            Get
+                Return CType(Me("WSCrodipURL"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.net")>  _
+        Public ReadOnly Property FTPHost() As String
+            Get
+                Return CType(Me("FTPHost"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("admin-test.crodip.net")>  _
+        Public ReadOnly Property FTPHostTest() As String
+            Get
+                Return CType(Me("FTPHostTest"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("CRODIPGPSFULL.EXE")>  _
+        Public ReadOnly Property GPSApplication() As String
+            Get
+                Return CType(Me("GPSApplication"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("MESURESGPS")>  _
+        Public ReadOnly Property GPSRepertoireExport() As String
+            Get
+                Return CType(Me("GPSRepertoireExport"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property AppercuRecap() As Boolean
+            Get
+                Return CType(Me("AppercuRecap"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property AcquisitionGPS() As Boolean
+            Get
+                Return CType(Me("AcquisitionGPS"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("admin.crodip.net")>  _
+        Public ReadOnly Property urlCRODIP() As String
+            Get
+                Return CType(Me("urlCRODIP"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutlisé")>  _
+        Public ReadOnly Property SynchroEtatFVMAnoUser() As String
+            Get
+                Return CType(Me("SynchroEtatFVMAnoUser"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("inutilisé")>  _
+        Public ReadOnly Property SynchroEtatFVMAnoPwd() As String
+            Get
+                Return CType(Me("SynchroEtatFVMAnoPwd"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property WSCrodipProduction() As Boolean
+            Get
+                Return CType(Me("WSCrodipProduction"),Boolean)
+            End Get
+        End Property
     End Class
 End Namespace
 

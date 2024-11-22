@@ -361,7 +361,7 @@ Public Class importCRODIP
                 End If
 
                 For Each oPulve As Pulverisateur In oExploit.lstPulveImport
-                    bReturn = PulverisateurManager.save(oPulve, oExploit.id, pAgent)
+                    bReturn = PulverisateurManager.save(oPulve, oExploit, pAgent)
                     If bReturn Then
                         oresult.nPulveimport = oresult.nPulveimport + 1
 

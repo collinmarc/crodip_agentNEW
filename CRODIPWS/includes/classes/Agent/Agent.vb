@@ -90,10 +90,10 @@ Public Class Agent
     <XmlIgnore>
     Public Property id() As Integer
         Get
-            Return _id
+            Return uid
         End Get
         Set(ByVal Value As Integer)
-            _id = Value
+            uid = Value
         End Set
     End Property
 
@@ -141,7 +141,19 @@ Public Class Agent
             _prenom = Value
         End Set
     End Property
-    Public Property uidStructure() As Integer
+    <XmlElement("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return uidstructure
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                idStructure = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore>
+    Public Property uidstructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -306,7 +318,6 @@ Public Class Agent
             _droitsPulves = value
         End Set
     End Property
-    <XmlIgnore()>
     Public Property isGestionnaire As Boolean
         Get
             Return _IsGestionnaire
@@ -418,7 +429,7 @@ Public Class Agent
                         Me.nom = pValue.ToString()
                     Case "prenom".Trim().ToUpper()
                         Me.prenom = pValue.ToString()
-                    Case "idStructure".Trim().ToUpper()
+                    Case "idStructure".Trim().ToUpper(), "uidstructure".Trim().ToUpper()
                         Me.uidStructure = pValue
                     Case "telephonePortable".Trim().ToUpper()
                         Me.telephonePortable = pValue.ToString()
@@ -843,7 +854,7 @@ Public Class Agent
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
         bReturn = False
-        If oPool IsNot Nothing And My.Settings.aqw <> "zsx" Then
+        If oPool IsNot Nothing And GlobalsCRODIP.GLOB_PARAM_aqw <> "zsx" Then
             'oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
             'If oAgentPC Is Nothing Then
             'La réception via le WS ne fonctionne pas, on charge celui qui est en base

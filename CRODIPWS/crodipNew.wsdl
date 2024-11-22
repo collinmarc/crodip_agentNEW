@@ -1904,7 +1904,7 @@
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
             <xsd:element name="info" type="xsd:string" />
-            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="uid" type="xsd:int" nillable="true" minOccurs="0" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>

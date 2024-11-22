@@ -149,7 +149,7 @@ Public Class BancManager
                     bddCommande = oCsdb.getConnection().CreateCommand()
 
                     ' Initialisation de la requete
-                    Dim paramsQuery As String = "id='" & objBanc.id & "'"
+                    Dim paramsQuery As String = "id='" & objBanc.idBancMesure & "'"
 
                     ' Mise a jour de la date de derniere modification
                     If Not bsynchro Then
@@ -197,7 +197,8 @@ Public Class BancManager
                     If objBanc.DateActivation <> Nothing Then
                         paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBanc.DateActivation) & "'"
                     End If
-                    paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.ModuleAcquisition & "'"
+                    paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.moduleAcquisition & "'"
+                    paramsQuery = paramsQuery & " , uidstructure='" & objBanc.uidstructure & "'"
 
                     paramsQuery = paramsQuery & objBanc.getRootQuery()
 
@@ -429,7 +430,7 @@ Public Class BancManager
     Public Shared Function getBancByAgent(pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Banc)
-        If My.Settings.GestiondesPools Then
+        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             'If agentCourant.oPool.idBanc <> "" Then
             '    BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
             '    arrResponse.Add(BancCourant)

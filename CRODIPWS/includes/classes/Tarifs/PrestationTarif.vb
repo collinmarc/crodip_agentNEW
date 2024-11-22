@@ -10,7 +10,14 @@ Public Class PrestationTarif
     Sub New()
         m_isCategorie = False
     End Sub
-
+    Public Property uidcategorie() As String
+        Get
+            Return idCategorie
+        End Get
+        Set(ByVal value As String)
+            idCategorie = value
+        End Set
+    End Property
 
 
     Public Property idCategorie() As Integer
@@ -33,10 +40,16 @@ Public Class PrestationTarif
             Select Case pName
                 Case "id"
                     Me.id = pValue
+                Case "uid"
+                    Me.uid = pValue
                 Case "idStructure"
                     Me.idStructure = pValue
+                Case "uidstructure"
+                    Me.uidstructure = pValue
                 Case "idCategorie"
                     Me.idCategorie = pValue
+                Case "uidcategorie"
+                    Me.uidcategorie = pValue
                 Case "description"
                     Me.description = pValue.ToString()
                 Case "tarifHT"

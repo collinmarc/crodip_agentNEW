@@ -595,7 +595,7 @@ Public Class DiagnosticManagerTest
         Dim oExploit As Exploitation = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         'Creation d'un Diagnostic
         oDiag = createDiagnostic(oExploit, oPulve, True)
@@ -1922,7 +1922,7 @@ Public Class DiagnosticManagerTest
         Dim oExploit As Exploitation = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         'Creation d'un Diagnostic
         oDiag = createDiagnostic(oExploit, oPulve)
         idDiag = DiagnosticManager.getNewId(m_oAgent)
@@ -4536,7 +4536,7 @@ Public Class DiagnosticManagerTest
         poPulve.manometrePressionTravail = "3"
 
         m_oExploitation = createExploitation()
-        PulverisateurManager.save(poPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(poPulve, m_oExploitation, m_oAgent)
 
         oDiag.setPulverisateur(poPulve)
         oDiag.SetProprietaire(m_oExploitation)
@@ -4853,7 +4853,7 @@ Public Class DiagnosticManagerTest
         '======================
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
@@ -4867,7 +4867,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4882,7 +4882,7 @@ Public Class DiagnosticManagerTest
         'Result CC => + 4 mois
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4900,7 +4900,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4915,7 +4915,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4931,7 +4931,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4949,7 +4949,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4964,7 +4964,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4980,7 +4980,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4997,7 +4997,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5013,7 +5013,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5029,7 +5029,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5046,7 +5046,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5062,7 +5062,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5078,7 +5078,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5094,7 +5094,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("01/08/2020")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5151,7 +5151,7 @@ Public Class DiagnosticManagerTest
 
         poPulve.controleEtat = pEtatPulveAvant
         poPulve.dateProchainControle = pDateProchainCtrlavant
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString(pDateCtrl)
@@ -5548,7 +5548,7 @@ Public Class DiagnosticManagerTest
         oExploit.commune = "CHASNE SUR ILLET"
         ExploitationManager.save(oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
 
         oDiag = New Diagnostic()
@@ -5636,7 +5636,7 @@ Public Class DiagnosticManagerTest
         oExploit.commune = "CHASNE SUR ILLET"
         ExploitationManager.save(oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         Assert.AreEqual("pulverisateur", oDiag.typeDiagnostic)
@@ -5701,7 +5701,7 @@ Public Class DiagnosticManagerTest
         ExploitationManager.save(oExploit, m_oAgent)
 
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"

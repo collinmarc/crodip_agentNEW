@@ -20,6 +20,8 @@ Public Class FVManometreControle
     Sub New(ByVal pAgent As Agent)
         id = FVManometreControleManager.getNewId(pAgent)
         idAgentControleur = pAgent.id
+        uidstructure = pAgent.uidstructure
+        uidagentcontroleur = pAgent.uid
     End Sub
 
 

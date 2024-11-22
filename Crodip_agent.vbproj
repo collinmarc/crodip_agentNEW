@@ -438,10 +438,13 @@
     <Compile Include="Application\includes\classes\DPEtat\EtatFDiagDefautsEtMesures.vb" />
     <Compile Include="Application\includes\classes\DPEtat\EtatFDiagPreliminaire.vb" />
     <Compile Include="Application\includes\classes\DPEtat\MoteurFrmDiag.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\includes\classes\root.vb" />
     <Compile Include="Application\includes\classes\Tools\DataGridViewDisableButtonCell.vb" />
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
+    <Compile Include="Application\includes\config\ParamManager.vb" />
     <Compile Include="Application\includes\fonctions\CSBoot.vb" />
     <Compile Include="Application\includes\fonctions\CSForm.vb" />
     <Compile Include="Application\includes\fonctions\CSListSorter.vb" />
@@ -642,10 +645,6 @@
     <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnosticManager.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\RPInfosBuses.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
     <Compile Include="Application\includes\classes\RootManager.vb" />
     <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
     <Compile Include="Application\includes\classes\CSStatusbar.vb">
@@ -663,12 +662,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Application\includes\classes\WSCrodip.vb" />
-    <Compile Include="Application\includes\config\Globals.vb">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Application\includes\config\variables_globales.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Application\includes\CSReglagePulve.vb" />
     <Compile Include="Application\includes\SortableBindingList.vb" />
     <Compile Include="Application\includes\PropertyComparer.vb" />
@@ -684,9 +677,6 @@
     <Compile Include="Application\parentContener.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagItem.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\RPDiagnostic.vb" />
-    <Compile Include="Application\includes\classes\ReglagePulve\RPParam.vb" />
     <Compile Include="Application\Signature\frmSignClientTelephone.Designer.vb">
       <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
     </Compile>
@@ -743,7 +733,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GZipTest.vb" />
-    <Compile Include="IObservateur.vb" />
     <Compile Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2345,15 +2334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\exploitant\fichevie\" />
-    <Folder Include="Application\includes\classes\Diagnostic\ContratFact\" />
-    <Folder Include="Application\includes\classes\Exploitation\" />
-    <Folder Include="Application\includes\classes\FicheVie\" />
-    <Folder Include="Application\includes\classes\IdentifiantPulverisateur\" />
-    <Folder Include="Application\includes\classes\Pulverisateur\" />
-    <Folder Include="Application\includes\classes\Referentiel\" />
-    <Folder Include="Application\includes\classes\Structure\" />
-    <Folder Include="Application\includes\classes\Synchro\" />
-    <Folder Include="Application\includes\classes\Tarifs\" />
     <Folder Include="MigrationBDD\" />
   </ItemGroup>
   <ItemGroup>

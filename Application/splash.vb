@@ -1,5 +1,6 @@
 Imports System.Threading
 Imports System.IO
+Imports CRODIPWS
 
 Public Class splash
     Inherits System.Windows.Forms.Form

@@ -92,7 +92,7 @@ Public Class ManometreControle
             If m_bIsUpdated Then
                 sLibelle = " * "
             End If
-            sLibelle = sLibelle + idCrodip
+            sLibelle = sLibelle + numeroNational
             If etat Then
                 sLibelle = sLibelle + " (OK) "
             Else
@@ -474,7 +474,7 @@ Public Class ManometreControle
 
 
                 CSDebug.dispInfo("ManometreControle.creerfFicheVieControle() :  Save oFV")
-                FVManometreControleManager.save(oFV)
+                FVManometreControleManager.save(pAgent, oFV)
 
                 oReturn = oFV
 
@@ -493,6 +493,7 @@ Public Class ManometreControle
         Try
             Dim oFV As New FVManometreControle(pAgent)
             oFV.idManometre = Me.idCrodip
+            oFV.uidmanometre = Me.uid
             oFV.type = pType
             oFV.auteur = "AGENT"
             oFV.idAgentControleur = pAgent.id
@@ -509,7 +510,7 @@ Public Class ManometreControle
         Me.dateModificationCrodip
             oFV.dateModif = CSDate.ToCRODIPString(Date.Now).ToString
             oFV.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
-            FVManometreControleManager.save(oFV)
+            FVManometreControleManager.save(pAgent, oFV)
             oReturn = oFV
         Catch ex As Exception
             CSDebug.dispError("ManometreControle.creerFicheVie : " & ex.Message)

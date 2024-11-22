@@ -516,7 +516,7 @@ Public Class ManometreEtalonManager
     Public Shared Function getManometreEtalonByAgent(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManometreEtalonByStructureId(pAgent.uidStructure, isShowAll)
         Else
             arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
@@ -530,7 +530,7 @@ Public Class ManometreEtalonManager
     Public Shared Function getManometreEtalonByAgentJamaisServi(ByVal pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of ManometreEtalon)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
-        If Not My.Settings.GestiondesPools Then
+        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
             arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)

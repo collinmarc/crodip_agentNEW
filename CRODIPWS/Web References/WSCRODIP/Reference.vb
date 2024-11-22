@@ -50,6 +50,8 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.FVManometreEtalon)),
         XmlInclude(GetType(CRODIPWS.AutoTest)),
         XmlInclude(GetType(CRODIPWS.IdentifiantPulverisateur)),
+        XmlInclude(GetType(CRODIPWS.PrestationCategorie)),
+        XmlInclude(GetType(CRODIPWS.PrestationTarif)),
       System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer
@@ -200,6 +202,14 @@ Namespace WSCRODIP
         Private GetExploitationTOPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
 
         Private SendExploitationTOPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetFactureOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private SendFactureOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetFactureItemOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private SendFactureItemOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetControleBancMesureOperationCompleted As System.Threading.SendOrPostCallback
 
@@ -515,6 +525,18 @@ Namespace WSCRODIP
 
         '''<remarks/>
         Public Event SendExploitationTOPulverisateurCompleted As SendExploitationTOPulverisateurCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetFactureCompleted As GetFactureCompletedEventHandler
+
+        '''<remarks/>
+        Public Event SendFactureCompleted As SendFactureCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetFactureItemCompleted As GetFactureItemCompletedEventHandler
+
+        '''<remarks/>
+        Public Event SendFactureItemCompleted As SendFactureItemCompletedEventHandler
 
         '''<remarks/>
         Public Event GetControleBancMesureCompleted As GetControleBancMesureCompletedEventHandler
@@ -2670,6 +2692,120 @@ Namespace WSCRODIP
             If (Not (Me.SendExploitationTOPulverisateurCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendExploitationTOPulverisateurCompleted(Me, New SendExploitationTOPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getFacture", RequestElementName:="GetFactureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetFacture(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Facture As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetFacture", New Object() {uid, aid})
+            Facture = CType(results(1), Object)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetFactureAsync(ByVal uid As Integer, ByVal aid As String)
+            Me.GetFactureAsync(uid, aid, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetFactureAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
+            If (Me.GetFactureOperationCompleted Is Nothing) Then
+                Me.GetFactureOperationCompleted = AddressOf Me.OnGetFactureOperationCompleted
+            End If
+            Me.InvokeAsync("GetFacture", New Object() {uid, aid}, Me.GetFactureOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetFactureOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetFactureCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetFactureCompleted(Me, New GetFactureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendFacture", RequestElementName:="SendFactureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function SendFacture(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal Facture As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendFacture", New Object() {Facture})
+            info = CType(results(1), String)
+            uid = CType(results(2), Integer)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub SendFactureAsync(ByVal Facture As Object)
+            Me.SendFactureAsync(Facture, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub SendFactureAsync(ByVal Facture As Object, ByVal userState As Object)
+            If (Me.SendFactureOperationCompleted Is Nothing) Then
+                Me.SendFactureOperationCompleted = AddressOf Me.OnSendFactureOperationCompleted
+            End If
+            Me.InvokeAsync("SendFacture", New Object() {Facture}, Me.SendFactureOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnSendFactureOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendFactureCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendFactureCompleted(Me, New SendFactureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getFactureItem", RequestElementName:="GetFactureItemRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetFactureItem(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FactureItem As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetFactureItem", New Object() {uid, aid})
+            FactureItem = CType(results(1), Object)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetFactureItemAsync(ByVal uid As Integer, ByVal aid As String)
+            Me.GetFactureItemAsync(uid, aid, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetFactureItemAsync(ByVal uid As Integer, ByVal aid As String, ByVal userState As Object)
+            If (Me.GetFactureItemOperationCompleted Is Nothing) Then
+                Me.GetFactureItemOperationCompleted = AddressOf Me.OnGetFactureItemOperationCompleted
+            End If
+            Me.InvokeAsync("GetFactureItem", New Object() {uid, aid}, Me.GetFactureItemOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetFactureItemOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetFactureItemCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetFactureItemCompleted(Me, New GetFactureItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/sendFactureItem", RequestElementName:="SendFactureItemRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function SendFactureItem(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal FactureItem As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendFactureItem", New Object() {FactureItem})
+            info = CType(results(1), String)
+            uid = CType(results(2), Integer)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub SendFactureItemAsync(ByVal FactureItem As Object)
+            Me.SendFactureItemAsync(FactureItem, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub SendFactureItemAsync(ByVal FactureItem As Object, ByVal userState As Object)
+            If (Me.SendFactureItemOperationCompleted Is Nothing) Then
+                Me.SendFactureItemOperationCompleted = AddressOf Me.OnSendFactureItemOperationCompleted
+            End If
+            Me.InvokeAsync("SendFactureItem", New Object() {FactureItem}, Me.SendFactureItemOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnSendFactureItemOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendFactureItemCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendFactureItemCompleted(Me, New SendFactureItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -6318,6 +6454,162 @@ Namespace WSCRODIP
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendExploitationTOPulverisateurCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property uid() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Integer)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetFactureCompletedEventHandler(ByVal sender As Object, ByVal e As GetFactureCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GetFactureCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property Facture() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),Object)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub SendFactureCompletedEventHandler(ByVal sender As Object, ByVal e As SendFactureCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class SendFactureCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property uid() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Integer)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetFactureItemCompletedEventHandler(ByVal sender As Object, ByVal e As GetFactureItemCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GetFactureItemCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property FactureItem() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),Object)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub SendFactureItemCompletedEventHandler(ByVal sender As Object, ByVal e As SendFactureItemCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class SendFactureItemCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
         
         Private results() As Object

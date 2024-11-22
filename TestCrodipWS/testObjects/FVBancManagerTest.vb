@@ -145,17 +145,17 @@ Public Class FVBancManagerTest
 
         'Suppression du Banc
         'on ne peut pas supprimé un banc utilisé
-        Assert.IsFalse(obanc.isSupprimeWS)
+        Assert.IsFalse(obanc.isSupprime)
         obanc.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsFalse(obanc.isSupprimeWS)
+        Assert.IsFalse(obanc.isSupprime)
 
         'Reset du nombre de controle
         obanc.isUtilise = False
         BancManager.save(obanc)
-        Assert.IsFalse(obanc.isSupprimeWS)
+        Assert.IsFalse(obanc.isSupprime)
         obanc.DeleteMateriel(m_oAgent, "TEST")
         obanc = BancManager.getBancById(obanc.id)
-        Assert.IsTrue(obanc.isSupprimeWS)
+        Assert.IsTrue(obanc.isSupprime)
 
         olstFV = FVBancManager.getlstFVBancByBancId(obanc.id)
         'création d'une Troisième fiche de vie SUPRESSION

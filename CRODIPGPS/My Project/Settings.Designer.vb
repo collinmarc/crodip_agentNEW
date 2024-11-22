@@ -74,15 +74,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
-        Public ReadOnly Property nbIntervalleVitesseConstante() As Integer
-            Get
-                Return CType(Me("nbIntervalleVitesseConstante"),Integer)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0.05")>  _
         Public ReadOnly Property EcartMAx() As Decimal
             Get
@@ -132,6 +123,15 @@ Namespace My
         Public ReadOnly Property VitessePort() As Integer
             Get
                 Return CType(Me("VitessePort"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public ReadOnly Property nbIntervalleVitesseConstante() As Integer
+            Get
+                Return CType(Me("nbIntervalleVitesseConstante"),Integer)
             End Get
         End Property
     End Class

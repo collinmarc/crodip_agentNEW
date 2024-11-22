@@ -70,9 +70,9 @@ Public Class CRODIPTest
     'End Sub
     '
     'Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test
-    <TestInitialize()> _
+    <TestInitialize()>
     Public Sub MyTestInitialize()
-        GlobalsCRODIP.Init()
+        ConfigManager.initGlobalsCrodip()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
         Dim oCSDB As New CSDb(True)
         oCSDB.RAZ_BASE_DONNEES()
@@ -207,7 +207,7 @@ Public Class CRODIPTest
         poPulve.modeUtilisation = "CUMA"
         poPulve.nombreExploitants = "10"
 
-        PulverisateurManager.save(poPulve, pExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, pExploit, m_oAgent)
         Return poPulve
     End Function
     Protected Function createAndSaveDiagnostic() As Diagnostic

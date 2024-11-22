@@ -33,13 +33,13 @@ Public Class CSDb
             _queryString = ""
             If _DBTYPE = EnumDBTYPE.MSACCESS Then
                 If pdbPath = "" Then
-                    conf_bddPath = My.Settings.DB
+                    conf_bddPath = GlobalsCRODIP.GLOB_PARAM_DB
                 Else
                     conf_bddPath = pdbPath
                 End If
 
                 If pdbExtension = "" Then
-                    DBextension = My.Settings.DBExtension
+                    DBextension = GlobalsCRODIP.GLOB_PARAM_DBExtension
                 Else
                     DBextension = pdbExtension
                 End If
@@ -54,8 +54,8 @@ Public Class CSDb
                     _dbName = conf_bddPath
                 End If
             Else
-                _dbName = My.Settings.DB
-                DBextension = My.Settings.DBExtension
+                _dbName = GlobalsCRODIP.GLOB_PARAM_DB
+                DBextension = GlobalsCRODIP.GLOB_PARAM_DBExtension
             End If
 
             _bddConnectString = getConnectString(_dbName, _DBTYPE)
@@ -69,7 +69,7 @@ Public Class CSDb
                     Case EnumDBTYPE.SQLITE
                         _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
                         Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                        oBuider.DataSource = "bdd/" & My.Settings.DB & My.Settings.DBExtension
+                        oBuider.DataSource = "bdd/" & GlobalsCRODIP.GLOB_PARAM_DB & GlobalsCRODIP.GLOB_PARAM_DBExtension
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                 End Select

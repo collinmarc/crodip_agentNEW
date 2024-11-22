@@ -935,21 +935,48 @@ Public Class Diagnostic
         End Get
         Set(ByVal Value As String)
             If oContratCommercial IsNot Nothing Then
-                oContratCommercial.TotalTTC = CDec(Value)
+                If Not String.IsNullOrEmpty(Value) Then
+                    oContratCommercial.TotalTTC = CDec(Value)
+                Else
+                    oContratCommercial.TotalTTC = 0D
+                End If
             End If
+
 
         End Set
     End Property
-
+    <XmlElement("controleIsPulveRepare")>
+    Public Property controleIsPulveRepareWS() As Boolean
+        Get
+            Return controleIsPulveRepare
+        End Get
+        Set(ByVal Value As Boolean)
+            controleIsPulveRepare = Value
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property controleIsPulveRepare() As Boolean
         Get
             Return _controleIsPulveRepare
         End Get
         Set(ByVal Value As Boolean)
-            _controleIsPulveRepare = Value
+            If Not String.IsNullOrEmpty(Value) Then
+                _controleIsPulveRepare = Value
+            End If
         End Set
     End Property
-
+    <XmlElement("controleIsPreControleProfessionel")>
+    Public Property controleIsPreControleProfessionelWS() As Boolean
+        Get
+            Return controleIsPreControleProfessionel
+        End Get
+        Set(ByVal Value As Boolean)
+            If Not String.IsNullOrEmpty(Value) Then
+                controleIsPreControleProfessionel = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property controleIsPreControleProfessionel() As Boolean
         Get
             Return _controleIsPreControleProfessionel
@@ -958,6 +985,18 @@ Public Class Diagnostic
             _controleIsPreControleProfessionel = Value
         End Set
     End Property
+    <XmlElement("controleIsAutoControle")>
+    Public Property controleIsAutoControleWS() As Boolean
+        Get
+            Return controleIsAutoControle
+        End Get
+        Set(ByVal Value As Boolean)
+            If Not String.IsNullOrEmpty(Value) Then
+                controleIsAutoControle = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property controleIsAutoControle() As Boolean
         Get
             Return _controleIsAutoControle
@@ -1185,6 +1224,18 @@ Public Class Diagnostic
         End Set
     End Property
 
+    <XmlElement("pulverisateurIsVentilateur")>
+    Public Property pulverisateurIsVentilateurWS() As Boolean
+        Get
+            Return pulverisateurIsVentilateur
+        End Get
+        Set(ByVal Value As Boolean)
+            If Not String.IsNullOrEmpty(Value) Then
+                pulverisateurIsVentilateur = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property pulverisateurIsVentilateur() As Boolean
         Get
             Return _pulverisateurIsVentilateur
@@ -2035,7 +2086,18 @@ Public Class Diagnostic
             _BancControleID = Value
         End Set
     End Property
-
+    <XmlElement("controleNbreNiveaux")>
+    Public Property controleNbreNiveauxWS() As String
+        Get
+            Return controleNbreNiveaux
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                controleNbreNiveaux = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property controleNbreNiveaux() As Integer
         Get
             Return m_controleNbreNiveaux
@@ -2044,6 +2106,18 @@ Public Class Diagnostic
             m_controleNbreNiveaux = Value
         End Set
     End Property
+    <XmlElement("controleNbreTroncons")>
+    Public Property controleNbreTronconsWS() As String
+        Get
+            Return controleNbreTroncons
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                controleNbreTroncons = Value
+            End If
+        End Set
+    End Property
+    <XmlIgnore()>
     Public Property controleNbreTroncons() As Integer
         Get
             Return m_controleNbreTroncons
@@ -2342,7 +2416,7 @@ Public Class Diagnostic
         Set(ByVal Value As String)
             If Value <> "" Then
                 If oContratCommercial IsNot Nothing Then
-                    oContratCommercial.TotalHT = CDec(Value)
+                    oContratCommercial.TotalHT = CDec(Replace(Value, ".", ","))
                 End If
             End If
         End Set
@@ -2391,9 +2465,9 @@ Public Class Diagnostic
 
         End Get
         Set(ByVal Value As String)
-            If Value <> "" Then
+            If Not String.IsNullOrEmpty(Value) Then
                 If oContratCommercial IsNot Nothing Then
-                    oContratCommercial.TotalTTC = Value
+                    oContratCommercial.TotalTTC = Replace(Value, ".", ",")
                 End If
             End If
         End Set

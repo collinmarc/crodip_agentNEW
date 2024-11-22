@@ -20,7 +20,7 @@ Public Class SynchronisationElmt
     Private _Update As Boolean 'A télécharger (0 = Non , 1 = Oui)
     Private _Status As String
     Protected m_SynchroBoolean As SynchroBooleans
-    Private _Agent As Agent
+    Protected _Agent As Agent
 
     Public Sub New(pAgent As Agent)
         _type = ""
@@ -186,7 +186,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New PrestationCategorie
                     Try
                         SetStatus("Réception MAJ Catégorie de prestation n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = PrestationCategorieManager.getWSPrestationCategorieById(pAgent, CType(pElement.IdentifiantChaine, Integer))
+                        tmpObject = PrestationCategorieManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
                         If tmpObject.libelle <> "" Then
                             PrestationCategorieManager.save(tmpObject, pAgent, True)
                         End If
@@ -201,11 +201,8 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New PrestationTarif
                     Try
                         ' Récup id's
-                        Dim tmpSplit() As String = pElement.IdentifiantChaine.Split("-")
-                        Dim idObject As Integer = CType(tmpSplit(0), Integer)
-                        Dim idCategorie As Integer = CType(tmpSplit(1), Integer)
-                        SetStatus("Réception MAJ Tarif de prestation n°" & idObject & "...")
-                        tmpObject = PrestationTarifManager.getWSPrestationTarifById(idObject, idCategorie, pAgent)
+                        SetStatus("Réception MAJ Tarif de prestation n°" & pElement.IdentifiantEntier & "...")
+                        tmpObject = PrestationTarifManager.WSgetById(pElement.IdentifiantEntier, pElement._identifiantChaine)
                         If tmpObject.description <> "" Then
                             PrestationTarifManager.save(tmpObject, pAgent, True)
                         End If
@@ -341,7 +338,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Agent
                     Try
                         SetStatus("Réception MAJ Agent n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = AgentManager.WSgetByNumeroNational(pElement.IdentifiantChaine)
+                        tmpObject = AgentManager.WSgetByNumeroNational(pElement.ValeurAuxiliaire)
                         If tmpObject.id <> 0 Then
                             pAgent = tmpObject
                             CSDebug.dispInfo("Synchronisation::runDescSynchro(GetAgent) Mot de passe = " & tmpObject.motDePasse)
@@ -372,7 +369,7 @@ Public Class SynchronisationElmt
                             oBuseE.etat = True
                         End If
 
-                        If My.Settings.GestiondesPools Then
+                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             BuseManager.getLstPoolById(oBuseE)
                         End If
                         BuseManager.save(oBuseE, True)
@@ -390,7 +387,7 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If My.Settings.GestiondesPools Then
+                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             ManometreControleManager.getLstPoolById(tmpObject)
                         End If
                         ManometreControleManager.save(tmpObject, True)
@@ -439,7 +436,7 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Fiche de vie Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = FVManometreControleManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        FVManometreControleManager.save(tmpObject, True)
+                        FVManometreControleManager.save(Me._Agent, tmpObject, True)
                         bReturn = True
                     Catch ex As Exception
                         CSDebug.dispFatal("Synchronisation::runDescSynchro(GetFVManometreControle) : " & ex.Message.ToString)
@@ -453,7 +450,7 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If My.Settings.GestiondesPools Then
+                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             ManometreEtalonManager.getLstPoolById(tmpObject)
                         End If
                         ManometreEtalonManager.save(tmpObject, True)
@@ -484,7 +481,7 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Banc n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = BancManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If My.Settings.GestiondesPools Then
+                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             BancManager.getLstPoolById(tmpObject)
                         End If
 
@@ -500,7 +497,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New FVBanc(pAgent)
                     Try
                         SetStatus("Réception MAJ Fiche de vie Banc n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = FVBancManager.WSgetById(pElement.IdentifiantChaine, "")
+                        tmpObject = FVBancManager.WSgetById(pElement.IdentifiantEntier, pElement._identifiantChaine)
                         If Not tmpObject Is Nothing Then
                             FVBancManager.save(tmpObject, True)
                         Else
@@ -580,4 +577,7 @@ Public Class SynchronisationElmt
 
     End Function
 
+    Public Sub setAgent(pAgent As Agent)
+        Me._Agent = pAgent
+    End Sub
 End Class

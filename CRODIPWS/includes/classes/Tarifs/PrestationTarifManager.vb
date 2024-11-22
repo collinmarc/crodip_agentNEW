@@ -2,112 +2,128 @@ Imports System.Collections.Generic
 Imports System.Data.Common
 
 Public Class PrestationTarifManager
-
+    Inherits RootManager
 #Region "Methodes Web Service"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As PrestationTarif
+        Dim oreturn As PrestationTarif
+        oreturn = RootWSGetById(Of PrestationTarif)(p_uid, paid)
+        Return oreturn
+    End Function
 
-    ' OK
-    Public Shared Function getWSPrestationTarifById(ByVal PrestationTarif_id As Integer, ByVal PrestationTarif_idCategorie As Integer, pAgent As Agent) As Object
-        Dim curObject As New PrestationTarif
+    Public Shared Function WSSend(ByVal pObjIn As PrestationTarif, ByRef pobjOut As PrestationTarif) As Integer
+        Dim nreturn As Integer
         Try
-
-            ' déclarations
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            Dim objWSCrodip_response As New Object
-            ' Appel au WS
-            'Dim codeResponse As Integer = objWSCrodip.GetPrestationTarif(pAgent.id, PrestationTarif_id, pAgent.idStructure, PrestationTarif_idCategorie, objWSCrodip_response)
-            'Select Case codeResponse
-            '    Case 0 ' OK
-            '        ' construction de l'objet
-            '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
-            '        For Each objWSCrodip_responseItem In objWSCrodip_response
-            '            Select Case objWSCrodip_responseItem.Name()
-            '                Case "id"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
-            '                    End If
-            '                Case "idStructure"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.idStructure = CType(objWSCrodip_responseItem.InnerText(), Integer)
-            '                    End If
-            '                Case "idCategorie"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.idCategorie = CType(objWSCrodip_responseItem.InnerText(), Integer)
-            '                    End If
-            '                Case "description"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.description = CType(objWSCrodip_responseItem.InnerText(), String)
-            '                    End If
-            '                Case "tarifHT"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.tarifHT = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
-            '                    End If
-            '                Case "tarifTTC"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.tarifTTC = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
-            '                    End If
-            '                Case "tva"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.tva = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
-            '                    End If
-            '                Case "dateModificationCrodip"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
-            '                    End If
-            '                Case "dateModificationAgent"
-            '                    If objWSCrodip_responseItem.InnerText() <> "" Then
-            '                        curObject.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
-            '                    End If
-            '            End Select
-            '        Next
-            '    Case 1 ' NOK
-            '        CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById - Code 1 : Non-Trouvée")
-            '    Case 9 ' BADREQUEST
-            '        CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById - Code 9 : Bad Request")
-            'End Select
+            nreturn = RootWSSend(Of PrestationTarif)(pObjIn, pobjOut)
         Catch ex As Exception
-            CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById : " & ex.Message)
+            CSDebug.dispFatal("PrestationTarifManager.WSSend ERR: ", ex)
+            nreturn = -1
         End Try
-        Return curObject
+        Return nreturn
     End Function
 
     ' OK
-    Public Shared Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object) As Integer
-        Try
-            ' Appel au Web Service
-            Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-            '            'Return objWSCrodip.SendPrestationTarif(pAgent.id, curObject, updatedObject)
-        Catch ex As Exception
-            Return -1
-        End Try
-    End Function
+    'Public Shared Function getWSPrestationTarifById(ByVal PrestationTarif_id As Integer, ByVal PrestationTarif_idCategorie As Integer, pAgent As Agent) As Object
+    '    Dim curObject As New PrestationTarif
+    '    Try
 
-    ' OK
-    Public Shared Function xml2object(ByVal arrXml As Object) As PrestationTarif
-        Dim newObject As New PrestationTarif
-        For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
-            Select Case tmpSerializeItem.LocalName()
-                Case "id"
-                    newObject.id = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idStructure"
-                    newObject.idStructure = CType(tmpSerializeItem.InnerText, Integer)
-                Case "idCategorie"
-                    newObject.idCategorie = CType(tmpSerializeItem.InnerText, Integer)
-                Case "description"
-                    newObject.description = CType(tmpSerializeItem.InnerText, String)
-                Case "tarifHT"
-                    newObject.tarifHT = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
-                Case "tarifTTC"
-                    newObject.tarifTTC = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
-                Case "tva"
-                    newObject.tva = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
-                Case "dateModificationAgent"
-                    newObject.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-                Case "dateModificationCrodip"
-                    newObject.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
-            End Select
-        Next
-        Return newObject
-    End Function
+    '        ' déclarations
+    '        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+    '        Dim objWSCrodip_response As New Object
+    '        ' Appel au WS
+    '        'Dim codeResponse As Integer = objWSCrodip.GetPrestationTarif(pAgent.id, PrestationTarif_id, pAgent.idStructure, PrestationTarif_idCategorie, objWSCrodip_response)
+    '        'Select Case codeResponse
+    '        '    Case 0 ' OK
+    '        '        ' construction de l'objet
+    '        '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
+    '        '        For Each objWSCrodip_responseItem In objWSCrodip_response
+    '        '            Select Case objWSCrodip_responseItem.Name()
+    '        '                Case "id"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.id = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '        '                    End If
+    '        '                Case "idStructure"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.idStructure = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '        '                    End If
+    '        '                Case "idCategorie"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.idCategorie = CType(objWSCrodip_responseItem.InnerText(), Integer)
+    '        '                    End If
+    '        '                Case "description"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.description = CType(objWSCrodip_responseItem.InnerText(), String)
+    '        '                    End If
+    '        '                Case "tarifHT"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.tarifHT = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
+    '        '                    End If
+    '        '                Case "tarifTTC"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.tarifTTC = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
+    '        '                    End If
+    '        '                Case "tva"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.tva = CType(objWSCrodip_responseItem.InnerText().Replace(".", ","), Double)
+    '        '                    End If
+    '        '                Case "dateModificationCrodip"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.dateModificationCrodip = CType(objWSCrodip_responseItem.InnerText(), String)
+    '        '                    End If
+    '        '                Case "dateModificationAgent"
+    '        '                    If objWSCrodip_responseItem.InnerText() <> "" Then
+    '        '                        curObject.dateModificationAgent = CType(objWSCrodip_responseItem.InnerText(), String)
+    '        '                    End If
+    '        '            End Select
+    '        '        Next
+    '        '    Case 1 ' NOK
+    '        '        CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById - Code 1 : Non-Trouvée")
+    '        '    Case 9 ' BADREQUEST
+    '        '        CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById - Code 9 : Bad Request")
+    '        'End Select
+    '    Catch ex As Exception
+    '        CSDebug.dispFatal("TarifsManager::getWSPrestationTarifById : " & ex.Message)
+    '    End Try
+    '    Return curObject
+    'End Function
+
+    '' OK
+    'Public Shared Function sendWSPrestationTarif(ByVal curObject As PrestationTarif, pAgent As Agent, ByRef updatedObject As Object) As Integer
+    '    Try
+    '        ' Appel au Web Service
+    '        Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
+    '        '            'Return objWSCrodip.SendPrestationTarif(pAgent.id, curObject, updatedObject)
+    '    Catch ex As Exception
+    '        Return -1
+    '    End Try
+    'End Function
+
+    '' OK
+    'Public Shared Function xml2object(ByVal arrXml As Object) As PrestationTarif
+    '    Dim newObject As New PrestationTarif
+    '    For Each tmpSerializeItem As System.Xml.XmlElement In arrXml
+    '        Select Case tmpSerializeItem.LocalName()
+    '            Case "id"
+    '                newObject.id = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "idStructure"
+    '                newObject.idStructure = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "idCategorie"
+    '                newObject.idCategorie = CType(tmpSerializeItem.InnerText, Integer)
+    '            Case "description"
+    '                newObject.description = CType(tmpSerializeItem.InnerText, String)
+    '            Case "tarifHT"
+    '                newObject.tarifHT = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
+    '            Case "tarifTTC"
+    '                newObject.tarifTTC = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
+    '            Case "tva"
+    '                newObject.tva = CType(tmpSerializeItem.InnerText.ToString.Replace(".", ","), Double)
+    '            Case "dateModificationAgent"
+    '                newObject.dateModificationAgent = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '            Case "dateModificationCrodip"
+    '                newObject.dateModificationCrodip = CSDate.ToCRODIPString(CType(tmpSerializeItem.InnerText, String))
+    '        End Select
+    '    Next
+    '    Return newObject
+    'End Function
 
 #End Region
 
@@ -144,12 +160,10 @@ Public Class PrestationTarifManager
                     paramsQuery = paramsQuery & " , `tarifTTC`='" & CSDb.secureString(curObject.tarifTTC) & "'"
                     'End If
                     paramsQuery = paramsQuery & " , `tva`='" & CSDb.secureString(curObject.tva) & "'"
-                    If Not curObject.dateModificationAgent Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationAgent`='" & CSDate.TOCRODIPString(curObject.dateModificationAgent) & "'"
-                    End If
-                    If Not curObject.dateModificationCrodip Is Nothing Then
-                        paramsQuery = paramsQuery & " , `dateModificationCrodip`='" & CSDate.TOCRODIPString(curObject.dateModificationCrodip) & "'"
-                    End If
+                    paramsQuery = paramsQuery & " , uidstructure=" & curObject.uidstructure & ""
+                    paramsQuery = paramsQuery & " , uidcategorie=" & curObject.uidcategorie & ""
+
+                    paramsQuery = paramsQuery & curObject.getRootQuery()
 
                     '####################################################
                     '## Execution de la requete
