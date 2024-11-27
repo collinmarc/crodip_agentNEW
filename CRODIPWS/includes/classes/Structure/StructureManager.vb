@@ -252,7 +252,7 @@ Public Class StructureManager
         Dim arrItems(0) As [Structure]
         Dim oCSDB As New CSDb(True)
         Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT * FROM Structure WHERE (Structure.dateModificationAgent<>Structure.dateModificationCrodip or Structure.dateModificationCrodip is null) AND Structure.id=" & agent.uidStructure
+        bddCommande.CommandText = "SELECT * FROM Structure WHERE (Structure.dateModificationAgent>Structure.dateModificationCrodip or Structure.dateModificationCrodip is null) AND Structure.id=" & agent.uidstructure
 
         Try
             ' On récupère les résultats

@@ -9,11 +9,11 @@ Imports System.Runtime.InteropServices
 ' Vérifiez les valeurs des attributs de l'assembly
 
 <Assembly: AssemblyTitle("CRODIPWS")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("CRODIPWS")>
+<Assembly: AssemblyDescription("bibliothèque Objet du Logiciel Crodip agent")>
+<Assembly: AssemblyCompany("CRODIP")>
+<Assembly: AssemblyProduct("Logiciel agent")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTrademark("CRODIP")>
 
 <Assembly: ComVisible(False)>
 
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' en utilisant '*', comme indiqué ci-dessous :
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("4.0.0.0")>
+<Assembly: AssemblyFileVersion("2024.11.22.1200")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodipWS")>

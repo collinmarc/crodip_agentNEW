@@ -25,12 +25,6 @@ Public Class ParamManager
         GlobalsCRODIP.GLOB_APPLI_DBVERSION = My.Settings.DBVersionExpected
         GlobalsCRODIP.GLOB_APPLI_BUILD = My.Settings.NumBuild
 
-        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DBVersion:" & GlobalsCRODIP.GLOB_APPLI_VERSION)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.NumBuild:" & GlobalsCRODIP.GLOB_APPLI_BUILD)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DB:" & My.Settings.DB)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DBVersion:" & GlobalsCRODIP.GLOB_APPLI_VERSION)
-        CSDebug.dispInfo("GlobalsCRODIP.Init App NETWORK:" & GlobalsCRODIP.GLOB_NETWORKAVAILABLE)
 
         ' Manometres
         GlobalsCRODIP.GLOB_XML_MARQUES_MANO = New CSXml("." & "\config\marques.xml")
@@ -94,10 +88,17 @@ Public Class ParamManager
 
         GlobalsCRODIP.GLOB_PARAM_DB = My.Settings.DB
         GlobalsCRODIP.GLOB_PARAM_DBExtension = My.Settings.DBExtension
-
         GlobalsCRODIP.GLOB_PARAM_Expect100Continue = My.Settings.Expect100Continue
         GlobalsCRODIP.GLOB_PARAM_SecurityProtocol = My.Settings.SecurityProtocol
         GlobalsCRODIP.GLOB_PARAM_checkNetwork = My.Settings.checkNetwork
+
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DBVersion:" & GlobalsCRODIP.GLOB_APPLI_VERSION)
+        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.NumBuild:" & GlobalsCRODIP.GLOB_APPLI_BUILD)
+        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DB:" & My.Settings.DB)
+        CSDebug.dispInfo("GlobalsCRODIP.Init App My.Settings.DBVersion:" & GlobalsCRODIP.GLOB_APPLI_VERSION)
+        CSDebug.dispInfo("GlobalsCRODIP.Init App NETWORK:" & GlobalsCRODIP.GLOB_NETWORKAVAILABLE)
+
 
 
 

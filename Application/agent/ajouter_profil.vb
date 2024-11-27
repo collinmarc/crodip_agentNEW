@@ -255,7 +255,7 @@ Public Class ajouter_profil
                                 oStructure = StructureManager.getStructureById(objAgent.idStructure)
                                 If oStructure.id <> objAgent.idStructure Then
                                     'La Structure n'existe pas , il faut la Récupéré
-                                    oStructure = StructureManager.WSgetById(-1, objAgent.idStructure)
+                                    oStructure = StructureManager.WSgetById(objAgent.uidstructure, objAgent.idStructure)
                                     StructureManager.save(oStructure, True)
                                 End If
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.

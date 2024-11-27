@@ -39,7 +39,7 @@ Public Class [Structure]
             uid = Value
         End Set
     End Property
-    <XmlIgnore()>
+    <XmlElement("idStructure")>
     Public Property idCrodip() As String
         Get
             Return _idCrodip
