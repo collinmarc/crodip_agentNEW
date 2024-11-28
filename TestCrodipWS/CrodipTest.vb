@@ -157,7 +157,7 @@ Public Class CRODIPTest
     Protected Function createPulve(pExploit As Exploitation) As Pulverisateur
         Dim poPulve As New Pulverisateur
         poPulve.numeroNational = "E001123456"
-        poPulve.uidStructure = m_oAgent.uidStructure
+        poPulve.uidstructure = m_oAgent.uidStructure
         poPulve.ancienIdentifiant = "ANCID"
         poPulve.marque = "MARQUEPULVE"
         poPulve.modele = "MODELEPULVE"

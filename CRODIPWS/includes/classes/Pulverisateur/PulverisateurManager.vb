@@ -191,7 +191,7 @@ Public Class PulverisateurManager
     Private Shared Function createPulve(ByVal poPulve As Pulverisateur, ByVal pExploit As Exploitation, ByVal pAgent As Agent) As Boolean
         Debug.Assert(poPulve IsNot Nothing)
         Debug.Assert(Not String.IsNullOrEmpty(poPulve.id), "L'id du pulve doit être renseigné")
-        Debug.Assert(poPulve.uidStructure <> -1, "L'idStructure du pulve doit être renseigné")
+        Debug.Assert(poPulve.uidstructure <> -1, "L'idStructure du pulve doit être renseigné")
         Dim bReturn As Boolean
         Dim oCSDB As New CSDb(True)
         Try
@@ -199,7 +199,7 @@ Public Class PulverisateurManager
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.uidStructure & "')"
+            bddCommande.CommandText = "INSERT INTO Pulverisateur (id, idStructure ) VALUES ('" & poPulve.id & "','" & poPulve.uidstructure & "')"
             bddCommande.ExecuteNonQuery()
             oCSDB.free()
             'En synchro, le ClientId n'est pas connu, l'exploitToPulve viendra ensuite
@@ -241,7 +241,7 @@ Public Class PulverisateurManager
                 ' On test si le Pulverisateur existe ou non
                 Dim existsPulverisateur As Object
                 If Not pAgent.isGestionnaire Then
-                    pPulve.uidStructure = pAgent.uidstructure
+                    pPulve.uidstructure = pAgent.uidstructure
                 End If
                 existsPulverisateur = PulverisateurManager.getPulverisateurById(pPulve.id)
                 If existsPulverisateur.id = "" Then
@@ -379,8 +379,8 @@ Public Class PulverisateurManager
                 paramsQuery = paramsQuery & " , numeroChassis='" & CSDb.secureString(pPulve.numeroChassis) & "'"
                 paramsQuery = paramsQuery & " , immatCertificat='" & CSDb.secureString(pPulve.immatCertificat) & "'"
                 paramsQuery = paramsQuery & " , immatPlaque='" & CSDb.secureString(pPulve.immatPlaque) & "'"
-                If pPulve.uidStructure > 0 Then
-                    paramsQuery = paramsQuery & " , uidstructure=" & pPulve.uidStructure & ""
+                If pPulve.uidstructure > 0 Then
+                    paramsQuery = paramsQuery & " , uidstructure=" & pPulve.uidstructure & ""
                 End If
                 paramsQuery = paramsQuery & pPulve.getRootQuery()
 

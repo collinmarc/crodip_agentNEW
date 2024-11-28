@@ -651,7 +651,7 @@ Public Class Pulverisateur
             _dateProchainControle = Value
         End Set
     End Property
-    Public Property uidStructure() As Integer
+    Public Property uidstructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -662,10 +662,10 @@ Public Class Pulverisateur
     <XmlIgnore>
     Public Property idStructure() As Integer
         Get
-            Return uidStructure
+            Return uidstructure
         End Get
         Set(ByVal Value As Integer)
-            uidStructure = Value
+            uidstructure = Value
         End Set
     End Property
     Public Property emplacementIdentification() As String
@@ -1170,7 +1170,7 @@ Public Class Pulverisateur
                             Me.dateProchainControle = CSDate.ToCRODIPString(pColValue.ToString())
                         End If
                     Case "idStructure".ToUpper().Trim()
-                        Me.uidStructure = pColValue
+                        Me.uidstructure = pColValue
                     Case "emplacementIdentification".ToUpper().Trim()
                         Me.emplacementIdentification = pColValue
                     Case "ancienIdentifiant".ToUpper().Trim()
@@ -1241,7 +1241,7 @@ Public Class Pulverisateur
                     Case "uid".Trim().ToUpper()
                         Me.uid = pColValue
                     Case "uidstructure".Trim().ToUpper()
-                        Me.uidStructure = pColValue
+                        Me.uidstructure = pColValue
                     Case Else
                         bReturn = False
                 End Select

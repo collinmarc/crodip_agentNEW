@@ -1,9 +1,11 @@
 #TRUNK
 MASTER
-BUILD 20241127090000
+BUILD XXXXXXXX
+		BUG Pulverisateur.idstructure
 		Synchro Structures
 BUILD 20241122120000
 		0001323: Refonte des WS + sécurisation
+		Synchro Structures
 
 BUILD 20241022120000
 	0001715: pulve Additionnel : le pulve princicpal n'est pas correct
