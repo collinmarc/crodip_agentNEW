@@ -1693,7 +1693,11 @@ Public Class DiagnosticManager
             If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
                 oCmd.CommandText = oCmd.CommandText & "id ,  "
             End If
-            oCmd.CommandText = oCmd.CommandText & "idDiagnostic ,  "
+            oCmd.CommandText = oCmd.CommandText & "uid ,  "
+            oCmd.CommandText = oCmd.CommandText & "aid ,  "
+            oCmd.CommandText = oCmd.CommandText & "uiddiagnostic ,  "
+            oCmd.CommandText = oCmd.CommandText & "aiddiagnostic ,  "
+            oCmd.CommandText = oCmd.CommandText & "iddiagnostic ,  "
             oCmd.CommandText = oCmd.CommandText & "idItem ,  "
             oCmd.CommandText = oCmd.CommandText & "itemValue ,  "
             oCmd.CommandText = oCmd.CommandText & "itemCodeEtat ,  "
@@ -1704,7 +1708,7 @@ Public Class DiagnosticManager
             If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
                 oCmd.CommandText = oCmd.CommandText & " @ID, "
             End If
-            oCmd.CommandText = oCmd.CommandText & " @idDiag,@idItem,@itemValue,@itemCodeEtat,@cause,@dateModificationAgent,@dateModificationCrodip"
+            oCmd.CommandText = oCmd.CommandText & " @uid,@aid,@uiddiagnostic,@aiddiagnostic,@idDiag,@idItem,@itemValue,@itemCodeEtat,@cause,@dateModificationAgent,@dateModificationCrodip"
             oCmd.CommandText = oCmd.CommandText & " ) "
             oCmd.Prepare()
             If Not pDiagnostic.diagnosticItemsLst Is Nothing Then
@@ -1726,6 +1730,44 @@ Public Class DiagnosticManager
                                 End With
                                 oCmd.Parameters.Add(oParam)
                             End If
+
+                            oParam = oCmd.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@uid"
+                                End If
+                                .DbType = DbType.String
+                                .Value = oDiagItem.uid
+                            End With
+                            oCmd.Parameters.Add(oParam)
+
+                            oParam = oCmd.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@aid"
+                                End If
+                                .DbType = DbType.String
+                                .Value = oDiagItem.aid
+                            End With
+                            oCmd.Parameters.Add(oParam)
+                            oParam = oCmd.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@uiddiagnostic"
+                                End If
+                                .DbType = DbType.String
+                                .Value = oDiagItem.uiddiagnostic
+                            End With
+                            oCmd.Parameters.Add(oParam)
+                            oParam = oCmd.CreateParameter()
+                            With oParam
+                                If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                                    .ParameterName = "@aiddiagnostic"
+                                End If
+                                .DbType = DbType.String
+                                .Value = oDiagItem.aiddiagnostic
+                            End With
+                            oCmd.Parameters.Add(oParam)
 
                             oParam = oCmd.CreateParameter()
                             With oParam
@@ -1788,7 +1830,7 @@ Public Class DiagnosticManager
                                     .ParameterName = "@dateModificationAgent"
                                 End If
                                 .DbType = DbType.DateTime
-                                .Value = oDiagItem.dateModificationAgent
+                                .Value = CSDate.ToCRODIPString(oDiagItem.dateModificationAgent)
                             End With
                             oCmd.Parameters.Add(oParam)
 
@@ -1798,7 +1840,7 @@ Public Class DiagnosticManager
                                     .ParameterName = "@dateModificationCrodip"
                                 End If
                                 .DbType = DbType.DateTime
-                                .Value = oDiagItem.dateModificationCrodip
+                                .Value = CSDate.ToCRODIPString(oDiagItem.dateModificationCrodip)
                             End With
                             oCmd.Parameters.Add(oParam)
 

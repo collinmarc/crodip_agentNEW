@@ -201,7 +201,7 @@ Public Class AutoTestManager
 
                 Dim paramsQuery As String
                 paramsQuery = ""
-                paramsQuery = paramsQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.DateControle).Substring(0, 10) & "'  "
+                paramsQuery = paramsQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'  "
                 paramsQuery = paramsQuery & " , CTRG_STRUCTUREID=" & pCtrlRegulier.IdStructure & "  "
                 paramsQuery = paramsQuery & " , uidstructure=" & pCtrlRegulier.uidstructure & "  "
                 paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.type & "'  "
@@ -358,7 +358,7 @@ Public Class AutoTestManager
                 arrBanc = BancManager.getBancByAgent(pAgent, False)
                 For Each oBanc As Banc In arrBanc
                     oCtrlRegulier = New AutoTest(pAgent, oBanc)
-                    oCtrlRegulier.DateControle = pDateControle
+                    oCtrlRegulier.dateControle = pDateControle
                     oColReturn.Add(oCtrlRegulier)
                 Next
             End If
@@ -368,7 +368,7 @@ Public Class AutoTestManager
                 arrManoC = ManometreControleManager.getManoControleByAgent(pAgent, False)
                 For Each oManoC As ManometreControle In arrManoC
                     oCtrlRegulier = New AutoTest(pAgent, oManoC)
-                    oCtrlRegulier.DateControle = pDateControle
+                    oCtrlRegulier.dateControle = pDateControle
                     oColReturn.Add(oCtrlRegulier)
                 Next
             End If
@@ -412,7 +412,7 @@ Public Class AutoTestManager
             oFile.WriteLine("ID;DateControle;IDStructure;NumAgent;type;IdMateriel;etat;dateModifAgent;dateModifCrodip")
             Dim strLine As String
             For Each oCtrlRegulier In oCol
-                strLine = oCtrlRegulier.Id & ";" & oCtrlRegulier.DateControle.ToString("d") & ";" & oCtrlRegulier.IdStructure & ";" & oCtrlRegulier.NumAgent & ";" & oCtrlRegulier.TypeLibelle & ";" & oCtrlRegulier.idMateriel & ";" & oCtrlRegulier.etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
+                strLine = oCtrlRegulier.Id & ";" & oCtrlRegulier.dateControle.ToString("d") & ";" & oCtrlRegulier.IdStructure & ";" & oCtrlRegulier.NumAgent & ";" & oCtrlRegulier.TypeLibelle & ";" & oCtrlRegulier.idMateriel & ";" & oCtrlRegulier.etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
                 oFile.WriteLine(strLine)
             Next
             oFile.Close()

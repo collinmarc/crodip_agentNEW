@@ -196,17 +196,17 @@ Public Class AutoTest
             End If
         End Set
     End Property
-    <XmlElement("DateControle")>
-    Public Property DateControleS() As String
+    <XmlElement("dateControle")>
+    Public Property dateControleS() As String
         Get
             Return CSDate.ToCRODIPString(_dateControle)
         End Get
         Set(ByVal Value As String)
-            Throw New NotSupportedException("Setting the DateControle property is not supported, needed for XML Serialize")
+            dateControle = Value
         End Set
     End Property
     <XmlIgnoreAttribute()>
-    Public Property DateControle() As Date
+    Public Property dateControle() As Date
         Get
             Return _dateControle
         End Get
@@ -280,7 +280,7 @@ Public Class AutoTest
                     Case "CTRG_ID".Trim().ToUpper(), "Id".Trim.ToUpper()
                         Me.setId(CInt(pValue))
                     Case "CTRG_date".Trim().ToUpper(), "DateControle".Trim.ToUpper()
-                        Me.DateControle = CSDate.ToCRODIPString(pValue.ToString())
+                        Me.dateControle = CSDate.ToCRODIPString(pValue.ToString())
                     Case "CTRG_STRUCTUREID".Trim().ToUpper(), "IdStructure".Trim.ToUpper()
                         Me.IdStructure = pValue.ToString()
                     Case "CTRG_TYPE".Trim().ToUpper(), "Type".Trim.ToUpper()

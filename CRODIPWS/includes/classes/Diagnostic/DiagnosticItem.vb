@@ -342,6 +342,10 @@ Public Class DiagnosticItem
                 '               isItemCode2 = pcolValue
                 Case "cause".ToUpper()
                     cause = pcolValue.ToString
+                Case "uid".ToUpper()
+                    uid = pcolValue
+                Case "aid".ToUpper()
+                    aid = pcolValue
                 Case Else
                     bReturn = False
             End Select

@@ -101,8 +101,8 @@ Public Class AutoTestTest
 
         obj.setId(15)
         Assert.IsTrue(obj.Id = 15)
-        obj.DateControle = CDate("06/02/1964")
-        Assert.AreEqual(obj.DateControle, CDate("06/02/1964"))
+        obj.dateControle = CDate("06/02/1964")
+        Assert.AreEqual(obj.dateControle, CDate("06/02/1964"))
         obj.Type = "MANO"
         Assert.AreEqual(obj.Type, "MANO")
         obj.IdMateriel = "TEST"
@@ -132,7 +132,7 @@ Public Class AutoTestTest
         obj = New AutoTest(m_oAgent)
 
 
-        obj.DateControle = CDate("06/02/1964")
+        obj.dateControle = CDate("06/02/1964")
         obj.Type = "Mano"
         obj.IdMateriel = "Mano001"
         obj.isNOK = True
@@ -146,7 +146,7 @@ Public Class AutoTestTest
         Assert.AreEqual(obj2.NumAgent, obj.NumAgent)
         Assert.AreEqual(obj2.Type, obj.Type)
         Assert.AreEqual(obj2.IdMateriel, obj.IdMateriel)
-        Assert.AreEqual(obj2.DateControle, obj.DateControle)
+        Assert.AreEqual(obj2.dateControle, obj.dateControle)
 
         Assert.IsTrue(AutoTestManager.delete(obj2.Id))
         obj2 = AutoTestManager.getById(m_oAgent, obj.Id)
@@ -510,7 +510,7 @@ Public Class AutoTestTest
         Dim nId As Integer
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/02/1964")
+        obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -553,7 +553,7 @@ Public Class AutoTestTest
         Dim obj As AutoTest
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/02/1964")
+        obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -574,7 +574,7 @@ Public Class AutoTestTest
         Dim obj As AutoTest
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/02/1964")
+        obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -582,7 +582,7 @@ Public Class AutoTestTest
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/03/1964")
+        obj.dateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -590,7 +590,7 @@ Public Class AutoTestTest
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/04/1964")
+        obj.dateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -620,7 +620,7 @@ Public Class AutoTestTest
         Dim obj As AutoTest
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/02/1964")
+        obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -628,7 +628,7 @@ Public Class AutoTestTest
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/03/1964")
+        obj.dateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
@@ -636,7 +636,7 @@ Public Class AutoTestTest
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
-        obj.DateControle = CDate("25/04/1964")
+        obj.dateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
         obj.IdStructure = m_oAgent.idStructure
