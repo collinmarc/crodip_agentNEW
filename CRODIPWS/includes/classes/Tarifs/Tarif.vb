@@ -1,6 +1,7 @@
 ﻿Imports System.Xml.Serialization
 Public Class Tarif
     Inherits root
+    Protected m_id As Integer
     Protected m_idStructure As Integer
     Protected m_isCategorie As Boolean
     Protected m_description As String
@@ -41,11 +42,11 @@ Public Class Tarif
 
     Public Property id() As Integer
         Get
-            Return uid
+            Return m_id
         End Get
         Set(ByVal Value As Integer)
-            If Value <> uid Then
-                uid = Value
+            If Value <> id Then
+                m_id = Value
                 UpdateEtat()
                 dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If

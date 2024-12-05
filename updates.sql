@@ -476,5 +476,17 @@ INSERT INTO Agent2 (Id,numeroNational,motdepasse,nom,prenom,idStructure,telephon
 ALTER TABLE Agent RENAME TO Agent1;
 ALTER TABLE Agent2 RENAME TO Agent;
 
+-- Suppression de la contrainte unique sur id
+CREATE TABLE PrestationCategorie2 (id                     INT (1, 1)     NOT NULL,idStructure            INT            ,libelle                NVARCHAR (255),dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER);
+insert into PrestationCategorie2 (id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure) SELECT id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure FROM PrestationCategorie;
+ALTER TABLE PrestationCategorie RENAME TO PrestationCategorie1;
+ALTER TABLE PrestationCategorie2 RENAME TO PrestationCategorie;
+
+-- Suppression de la contrainte unique sur l'id et la existence de la categorie
+CREATE TABLE PrestationTarif2 (id INT (1, 1)     NOT NULL,idCategorie            INT,idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,description            NVARCHAR (255),tarifHT                FLOAT,tarifTTC               FLOAT,tva                    FLOAT,dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,uidcategorie           INTEGER);
+insert into PrestationTarif2 (id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie) Select id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie from Prestationtarif;
+ALTER TABLE PrestationTarif RENAME TO PrestationTarif1;
+ALTER TABLE PrestationTarif2 RENAME TO PrestationTarif;
+
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');

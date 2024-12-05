@@ -1,7 +1,10 @@
 #TRUNK
 MASTER
 BUILD XXXXXXXX
-		BUG Pulverisateur.idstructure
+	0001719: synchro des tarifs
+	0001718: WS : DiagItems Sauvegarde des uid,aid,uidDiagnostic,aiddiagnostic
+
+BUG Pulverisateur.idstructure
 		Synchro Structures
 BUILD 20241122120000
 		0001323: Refonte des WS + sécurisation

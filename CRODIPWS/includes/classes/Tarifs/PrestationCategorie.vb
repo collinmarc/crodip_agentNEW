@@ -24,6 +24,14 @@ Public Class PrestationCategorie
         End Set
     End Property
 
+    Public Property numCategorie() As Integer
+        Get
+            Return id
+        End Get
+        Set(ByVal value As Integer)
+            id = value
+        End Set
+    End Property
 
 
 End Class

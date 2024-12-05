@@ -6,20 +6,25 @@ Public Class PrestationTarif
     Inherits Tarif
 
     Private _idCategorie As Integer
+    Private _uidCategorie As Integer
 
     Sub New()
         m_isCategorie = False
     End Sub
     Public Property uidcategorie() As String
         Get
-            Return idCategorie
+            Return _uidCategorie
         End Get
         Set(ByVal value As String)
-            idCategorie = value
+            If value <> uidcategorie Then
+                _uidCategorie = value
+                UpdateEtat()
+                dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+            End If
         End Set
     End Property
 
-
+    <XmlElement("numCategorie")>
     Public Property idCategorie() As Integer
         Get
             Return _idCategorie
@@ -32,8 +37,16 @@ Public Class PrestationTarif
             End If
         End Set
     End Property
+    Public Property numTarif() As Integer
+        Get
+            Return id
+        End Get
+        Set(ByVal value As Integer)
+            id = value
+        End Set
+    End Property
 
-    Public Function Fill(ByVal pName As String, ByVal pValue As Object) As Boolean
+    Public Overrides Function Fill(ByVal pName As String, ByVal pValue As Object) As Boolean
         Dim bReturn As Boolean
         Try
 
@@ -48,6 +61,10 @@ Public Class PrestationTarif
                     Me.uidstructure = pValue
                 Case "idCategorie"
                     Me.idCategorie = pValue
+                Case "numCategorie"
+                    Me.idCategorie = pValue
+                Case "numTarif"
+                    Me.id = pValue
                 Case "uidcategorie"
                     Me.uidcategorie = pValue
                 Case "description"

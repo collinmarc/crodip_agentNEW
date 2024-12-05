@@ -522,26 +522,7 @@ Public Class PrestationTarifManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
                     If Not tmpResults.IsDBNull(tmpColId) Then
-                        Select Case tmpResults.GetName(tmpColId).ToUpper.Trim()
-                            Case "id".ToUpper.Trim()
-                                tmpObject.id = tmpResults.Item(tmpColId)
-                            Case "idStructure".ToUpper.Trim()
-                                tmpObject.idStructure = tmpResults.Item(tmpColId)
-                            Case "idCategorie".ToUpper.Trim()
-                                tmpObject.idCategorie = tmpResults.Item(tmpColId)
-                            Case "description".ToUpper.Trim()
-                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
-                            Case "tarifHT".ToUpper.Trim()
-                                tmpObject.tarifHT = tmpResults.Item(tmpColId)
-                            Case "tarifTTC".ToUpper.Trim()
-                                tmpObject.tarifTTC = tmpResults.Item(tmpColId)
-                            Case "tva".ToUpper.Trim()
-                                tmpObject.tva = tmpResults.Item(tmpColId)
-                            Case "dateModificationAgent".ToUpper.Trim()
-                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip".ToUpper.Trim()
-                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                        End Select
+                        tmpObject.Fill(tmpResults.GetName(tmpColId), tmpResults.GetValue(tmpColId))
                     End If
                     tmpColId = tmpColId + 1
                 End While

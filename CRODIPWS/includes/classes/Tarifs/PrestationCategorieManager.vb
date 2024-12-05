@@ -467,6 +467,7 @@ Public Class PrestationCategorieManager
                                 tmpObject.aid = tmpResults.Item(tmpColId)
                             Case "id".Trim().ToUpper()
                                 tmpObject.id = tmpResults.Item(tmpColId)
+                            Case "uid".Trim().ToUpper()
                                 tmpObject.uid = tmpResults.Item(tmpColId)
                             Case "idStructure".Trim().ToUpper()
                                 tmpObject.idStructure = tmpResults.Item(tmpColId)
