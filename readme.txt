@@ -1,6 +1,6 @@
 #TRUNK
 MASTER
-BUILD XXXXXXXX
+BUILD 20241205120000
 	0001719: synchro des tarifs
 	0001718: WS : DiagItems Sauvegarde des uid,aid,uidDiagnostic,aiddiagnostic
 
