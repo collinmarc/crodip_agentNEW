@@ -139,8 +139,9 @@ Public Class accueil
     Friend WithEvents PulvePrincipalNumNatDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FichePulve As DataGridViewImageColumn
     Friend WithEvents btnMAJPulveFromDiag As Button
-    Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents typeLibelle As DataGridViewTextBoxColumn
+    Friend WithEvents idMateriel As DataGridViewTextBoxColumn
     Friend WithEvents Type As DataGridViewTextBoxColumn
     Friend WithEvents OK As DataGridViewCheckBoxColumn
     Friend WithEvents NOK As DataGridViewCheckBoxColumn
@@ -382,7 +383,6 @@ Public Class accueil
         Me.Label20 = New System.Windows.Forms.Label()
         Me.btn_controleQuotdien_Valider = New System.Windows.Forms.Button()
         Me.dgv_ControleRegulier = New System.Windows.Forms.DataGridView()
-        Me.bsControleQuotidien = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label15 = New System.Windows.Forms.Label()
         Me.picsRefresh = New System.Windows.Forms.PictureBox()
         Me.accueil_panelAlertes = New System.Windows.Forms.Panel()
@@ -391,6 +391,7 @@ Public Class accueil
         Me.Label9 = New System.Windows.Forms.Label()
         Me.title_mesAlertes = New System.Windows.Forms.Label()
         Me.tabAccueil_mesinfos = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lbl_infosAgent_dateDernCnx = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_IdCrodip = New System.Windows.Forms.Label()
         Me.pctLogo = New System.Windows.Forms.PictureBox()
@@ -409,19 +410,8 @@ Public Class accueil
         Me.laAjoutPulveAdditionnel = New System.Windows.Forms.Label()
         Me.dgvPulveExploit = New System.Windows.Forms.DataGridView()
         Me.IconPulveCol = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IconPulveColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FichePulve = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.m_bsrcPulverisateurTMP = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnTransfertPulve = New System.Windows.Forms.Button()
         Me.btnAjoutPulve = New System.Windows.Forms.Button()
         Me.btn_ficheClient_diagnostic_nouveau = New System.Windows.Forms.Label()
@@ -615,15 +605,8 @@ Public Class accueil
         Me.btnExportFacture = New System.Windows.Forms.Button()
         Me.btnAjoutFacture = New System.Windows.Forms.Button()
         Me.dgvFactures = New System.Windows.Forms.DataGridView()
-        Me.IdFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ClientColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalTTCDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IsRegleeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.PDFColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnRechercher = New System.Windows.Forms.Button()
         Me.dtpDeb = New System.Windows.Forms.DateTimePicker()
@@ -634,8 +617,27 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
-        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bsControleQuotidien = New System.Windows.Forms.BindingSource(Me.components)
+        Me.NumeroNationalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MarqueDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModeleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreBusesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CapaciteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AttelageDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnneeAchatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateProchainControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.m_bsrcPulverisateurTMP = New System.Windows.Forms.BindingSource(Me.components)
+        Me.IdFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateFactureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDiagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalHTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalTTCDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsRegleeDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.m_bsFacture = New System.Windows.Forms.BindingSource(Me.components)
+        Me.typeLibelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idMateriel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.NOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
@@ -644,16 +646,15 @@ Public Class accueil
         Me.tabControl_accueil.SuspendLayout()
         Me.accueil_panelAlertesContener.SuspendLayout()
         CType(Me.dgv_ControleRegulier, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bsControleQuotidien, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picsRefresh, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.accueil_panelAlertes.SuspendLayout()
         Me.tabAccueil_mesinfos.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_clientele.SuspendLayout()
         Me.panel_clientele_ficheClient.SuspendLayout()
         Me.grp_ficheClient_ListePulve.SuspendLayout()
         CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.panel_ListeDesControles.SuspendLayout()
         Me.panel_clientele_LstCtrlCtriteres.SuspendLayout()
@@ -687,8 +688,10 @@ Public Class accueil
         CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl_Facturation.SuspendLayout()
         CType(Me.dgvFactures, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.bsControleQuotidien, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImageList_synchro
@@ -912,17 +915,13 @@ Public Class accueil
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.Type, Me.OK, Me.NOK})
+        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.typeLibelle, Me.idMateriel, Me.Type, Me.OK, Me.NOK})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
         Me.dgv_ControleRegulier.Location = New System.Drawing.Point(6, 251)
         Me.dgv_ControleRegulier.Name = "dgv_ControleRegulier"
         Me.dgv_ControleRegulier.RowHeadersWidth = 10
         Me.dgv_ControleRegulier.Size = New System.Drawing.Size(429, 252)
         Me.dgv_ControleRegulier.TabIndex = 10
-        '
-        'bsControleQuotidien
-        '
-        Me.bsControleQuotidien.DataSource = GetType(CRODIPWS.AutoTest)
         '
         'Label15
         '
@@ -1013,6 +1012,7 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabAccueil_mesinfos.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.tabAccueil_mesinfos.Controls.Add(Me.PictureBox1)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_dateDernCnx)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lbl_infosAgent_IdCrodip)
         Me.tabAccueil_mesinfos.Controls.Add(Me.pctLogo)
@@ -1029,6 +1029,17 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Name = "tabAccueil_mesinfos"
         Me.tabAccueil_mesinfos.Size = New System.Drawing.Size(1009, 136)
         Me.tabAccueil_mesinfos.TabIndex = 0
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox1.Image = Global.Crodip_agent.Resources.e_pulve_logo_blanc_bleu_1
+        Me.PictureBox1.Location = New System.Drawing.Point(733, 24)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(114, 84)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 9
+        Me.PictureBox1.TabStop = False
         '
         'lbl_infosAgent_dateDernCnx
         '
@@ -1247,81 +1258,6 @@ Public Class accueil
         Me.IconPulveCol.Name = "IconPulveCol"
         Me.IconPulveCol.ReadOnly = True
         '
-        'NumeroNationalDataGridViewTextBoxColumn
-        '
-        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
-        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
-        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
-        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
-        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TypeDataGridViewTextBoxColumn1
-        '
-        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
-        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
-        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
-        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'MarqueDataGridViewTextBoxColumn
-        '
-        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
-        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
-        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
-        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ModeleDataGridViewTextBoxColumn
-        '
-        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
-        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
-        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
-        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
-        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NombreBusesDataGridViewTextBoxColumn
-        '
-        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
-        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
-        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
-        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
-        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CapaciteDataGridViewTextBoxColumn
-        '
-        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
-        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
-        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
-        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
-        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AttelageDataGridViewTextBoxColumn
-        '
-        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
-        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
-        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
-        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
-        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AnneeAchatDataGridViewTextBoxColumn
-        '
-        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
-        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
-        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
-        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
-        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateProchainControleDataGridViewTextBoxColumn
-        '
-        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
-        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
-        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
-        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'IconPulveColumn
         '
         Me.IconPulveColumn.DataPropertyName = "PulvePrincipalAdditionel"
@@ -1331,14 +1267,6 @@ Public Class accueil
         Me.IconPulveColumn.ReadOnly = True
         Me.IconPulveColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
-        'PulvePrincipalNumNatDataGridViewTextBoxColumn
-        '
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
-        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'FichePulve
         '
         Me.FichePulve.FillWeight = 3.0!
@@ -1346,10 +1274,6 @@ Public Class accueil
         Me.FichePulve.Image = Global.Crodip_agent.Resources.oeil16x16
         Me.FichePulve.Name = "FichePulve"
         Me.FichePulve.ReadOnly = True
-        '
-        'm_bsrcPulverisateurTMP
-        '
-        Me.m_bsrcPulverisateurTMP.DataSource = GetType(CRODIPWS.Pulverisateur)
         '
         'btnTransfertPulve
         '
@@ -3715,25 +3639,6 @@ Public Class accueil
         Me.dgvFactures.Size = New System.Drawing.Size(986, 512)
         Me.dgvFactures.TabIndex = 34
         '
-        'IdFactureDataGridViewTextBoxColumn
-        '
-        Me.IdFactureDataGridViewTextBoxColumn.DataPropertyName = "idFacture"
-        Me.IdFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
-        Me.IdFactureDataGridViewTextBoxColumn.HeaderText = "Facture"
-        Me.IdFactureDataGridViewTextBoxColumn.Name = "IdFactureDataGridViewTextBoxColumn"
-        Me.IdFactureDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateFactureDataGridViewTextBoxColumn
-        '
-        Me.DateFactureDataGridViewTextBoxColumn.DataPropertyName = "dateFacture"
-        DataGridViewCellStyle5.Format = "d"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.DateFactureDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
-        Me.DateFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
-        Me.DateFactureDataGridViewTextBoxColumn.HeaderText = "Date"
-        Me.DateFactureDataGridViewTextBoxColumn.Name = "DateFactureDataGridViewTextBoxColumn"
-        Me.DateFactureDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'ClientColumn
         '
         Me.ClientColumn.DataPropertyName = "RaisonSocialeExploitant"
@@ -3741,45 +3646,6 @@ Public Class accueil
         Me.ClientColumn.HeaderText = "Client"
         Me.ClientColumn.Name = "ClientColumn"
         Me.ClientColumn.ReadOnly = True
-        '
-        'IdDiagDataGridViewTextBoxColumn
-        '
-        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
-        Me.IdDiagDataGridViewTextBoxColumn.FillWeight = 83.18756!
-        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "Controle"
-        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
-        Me.IdDiagDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TotalHTDataGridViewTextBoxColumn
-        '
-        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
-        Me.TotalHTDataGridViewTextBoxColumn.FillWeight = 83.18756!
-        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
-        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
-        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TotalTTCDataGridViewTextBoxColumn
-        '
-        Me.TotalTTCDataGridViewTextBoxColumn.DataPropertyName = "TotalTTC"
-        DataGridViewCellStyle7.Format = "C2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.TotalTTCDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
-        Me.TotalTTCDataGridViewTextBoxColumn.FillWeight = 83.18756!
-        Me.TotalTTCDataGridViewTextBoxColumn.HeaderText = "Total TTC"
-        Me.TotalTTCDataGridViewTextBoxColumn.Name = "TotalTTCDataGridViewTextBoxColumn"
-        Me.TotalTTCDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IsRegleeDataGridViewCheckBoxColumn
-        '
-        Me.IsRegleeDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.IsRegleeDataGridViewCheckBoxColumn.DataPropertyName = "isReglee"
-        Me.IsRegleeDataGridViewCheckBoxColumn.HeaderText = "Reglée"
-        Me.IsRegleeDataGridViewCheckBoxColumn.Name = "IsRegleeDataGridViewCheckBoxColumn"
-        Me.IsRegleeDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.IsRegleeDataGridViewCheckBoxColumn.Width = 50
         '
         'PDFColumn
         '
@@ -3790,10 +3656,6 @@ Public Class accueil
         Me.PDFColumn.Name = "PDFColumn"
         Me.PDFColumn.ReadOnly = True
         Me.PDFColumn.Width = 40
-        '
-        'm_bsFacture
-        '
-        Me.m_bsFacture.DataSource = GetType(CRODIPWS.Facture)
         '
         'Panel3
         '
@@ -3902,26 +3764,178 @@ Public Class accueil
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
         '
-        'TypeDataGridViewTextBoxColumn
+        'bsControleQuotidien
         '
-        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "TypeLibelle"
-        Me.TypeDataGridViewTextBoxColumn.FillWeight = 40.0!
-        Me.TypeDataGridViewTextBoxColumn.HeaderText = "Type"
-        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
-        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.bsControleQuotidien.DataSource = GetType(CRODIPWS.AutoTest)
         '
-        'IdDataGridViewTextBoxColumn
+        'NumeroNationalDataGridViewTextBoxColumn
         '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "IdMateriel"
-        Me.IdDataGridViewTextBoxColumn.FillWeight = 20.0!
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NumeroNationalDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
+        Me.NumeroNationalDataGridViewTextBoxColumn.FillWeight = 10.0!
+        Me.NumeroNationalDataGridViewTextBoxColumn.HeaderText = "Identifiant pulvé"
+        Me.NumeroNationalDataGridViewTextBoxColumn.Name = "NumeroNationalDataGridViewTextBoxColumn"
+        Me.NumeroNationalDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TypeDataGridViewTextBoxColumn1
+        '
+        Me.TypeDataGridViewTextBoxColumn1.DataPropertyName = "type"
+        Me.TypeDataGridViewTextBoxColumn1.FillWeight = 16.0!
+        Me.TypeDataGridViewTextBoxColumn1.HeaderText = "Type"
+        Me.TypeDataGridViewTextBoxColumn1.Name = "TypeDataGridViewTextBoxColumn1"
+        Me.TypeDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'MarqueDataGridViewTextBoxColumn
+        '
+        Me.MarqueDataGridViewTextBoxColumn.DataPropertyName = "marque"
+        Me.MarqueDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.MarqueDataGridViewTextBoxColumn.HeaderText = "Marque"
+        Me.MarqueDataGridViewTextBoxColumn.Name = "MarqueDataGridViewTextBoxColumn"
+        Me.MarqueDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ModeleDataGridViewTextBoxColumn
+        '
+        Me.ModeleDataGridViewTextBoxColumn.DataPropertyName = "modele"
+        Me.ModeleDataGridViewTextBoxColumn.FillWeight = 12.0!
+        Me.ModeleDataGridViewTextBoxColumn.HeaderText = "Modèle"
+        Me.ModeleDataGridViewTextBoxColumn.Name = "ModeleDataGridViewTextBoxColumn"
+        Me.ModeleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NombreBusesDataGridViewTextBoxColumn
+        '
+        Me.NombreBusesDataGridViewTextBoxColumn.DataPropertyName = "LargeurNombreRangs"
+        Me.NombreBusesDataGridViewTextBoxColumn.FillWeight = 5.0!
+        Me.NombreBusesDataGridViewTextBoxColumn.HeaderText = "Largeur"
+        Me.NombreBusesDataGridViewTextBoxColumn.Name = "NombreBusesDataGridViewTextBoxColumn"
+        Me.NombreBusesDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CapaciteDataGridViewTextBoxColumn
+        '
+        Me.CapaciteDataGridViewTextBoxColumn.DataPropertyName = "capacite"
+        Me.CapaciteDataGridViewTextBoxColumn.FillWeight = 7.0!
+        Me.CapaciteDataGridViewTextBoxColumn.HeaderText = "Capacité"
+        Me.CapaciteDataGridViewTextBoxColumn.Name = "CapaciteDataGridViewTextBoxColumn"
+        Me.CapaciteDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AttelageDataGridViewTextBoxColumn
+        '
+        Me.AttelageDataGridViewTextBoxColumn.DataPropertyName = "attelage"
+        Me.AttelageDataGridViewTextBoxColumn.FillWeight = 11.0!
+        Me.AttelageDataGridViewTextBoxColumn.HeaderText = "Attelage"
+        Me.AttelageDataGridViewTextBoxColumn.Name = "AttelageDataGridViewTextBoxColumn"
+        Me.AttelageDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AnneeAchatDataGridViewTextBoxColumn
+        '
+        Me.AnneeAchatDataGridViewTextBoxColumn.DataPropertyName = "anneeAchat"
+        Me.AnneeAchatDataGridViewTextBoxColumn.FillWeight = 6.0!
+        Me.AnneeAchatDataGridViewTextBoxColumn.HeaderText = "Année Construct."
+        Me.AnneeAchatDataGridViewTextBoxColumn.Name = "AnneeAchatDataGridViewTextBoxColumn"
+        Me.AnneeAchatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateProchainControleDataGridViewTextBoxColumn
+        '
+        Me.DateProchainControleDataGridViewTextBoxColumn.DataPropertyName = "dateProchainControleAsDate"
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.DateProchainControleDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DateProchainControleDataGridViewTextBoxColumn.FillWeight = 9.0!
+        Me.DateProchainControleDataGridViewTextBoxColumn.HeaderText = "Prochain contrôle"
+        Me.DateProchainControleDataGridViewTextBoxColumn.Name = "DateProchainControleDataGridViewTextBoxColumn"
+        Me.DateProchainControleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PulvePrincipalNumNatDataGridViewTextBoxColumn
+        '
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.DataPropertyName = "pulvePrincipalNumNat"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.FillWeight = 8.0!
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.HeaderText = "ID Principal"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.Name = "PulvePrincipalNumNatDataGridViewTextBoxColumn"
+        Me.PulvePrincipalNumNatDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'm_bsrcPulverisateurTMP
+        '
+        Me.m_bsrcPulverisateurTMP.DataSource = GetType(CRODIPWS.Pulverisateur)
+        '
+        'IdFactureDataGridViewTextBoxColumn
+        '
+        Me.IdFactureDataGridViewTextBoxColumn.DataPropertyName = "idFacture"
+        Me.IdFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.IdFactureDataGridViewTextBoxColumn.HeaderText = "Facture"
+        Me.IdFactureDataGridViewTextBoxColumn.Name = "IdFactureDataGridViewTextBoxColumn"
+        Me.IdFactureDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateFactureDataGridViewTextBoxColumn
+        '
+        Me.DateFactureDataGridViewTextBoxColumn.DataPropertyName = "dateFacture"
+        DataGridViewCellStyle5.Format = "d"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.DateFactureDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DateFactureDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.DateFactureDataGridViewTextBoxColumn.HeaderText = "Date"
+        Me.DateFactureDataGridViewTextBoxColumn.Name = "DateFactureDataGridViewTextBoxColumn"
+        Me.DateFactureDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IdDiagDataGridViewTextBoxColumn
+        '
+        Me.IdDiagDataGridViewTextBoxColumn.DataPropertyName = "idDiag"
+        Me.IdDiagDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.IdDiagDataGridViewTextBoxColumn.HeaderText = "Controle"
+        Me.IdDiagDataGridViewTextBoxColumn.Name = "IdDiagDataGridViewTextBoxColumn"
+        Me.IdDiagDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TotalHTDataGridViewTextBoxColumn
+        '
+        Me.TotalHTDataGridViewTextBoxColumn.DataPropertyName = "TotalHT"
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.TotalHTDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        Me.TotalHTDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.TotalHTDataGridViewTextBoxColumn.HeaderText = "Total HT"
+        Me.TotalHTDataGridViewTextBoxColumn.Name = "TotalHTDataGridViewTextBoxColumn"
+        Me.TotalHTDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TotalTTCDataGridViewTextBoxColumn
+        '
+        Me.TotalTTCDataGridViewTextBoxColumn.DataPropertyName = "TotalTTC"
+        DataGridViewCellStyle7.Format = "C2"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.TotalTTCDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        Me.TotalTTCDataGridViewTextBoxColumn.FillWeight = 83.18756!
+        Me.TotalTTCDataGridViewTextBoxColumn.HeaderText = "Total TTC"
+        Me.TotalTTCDataGridViewTextBoxColumn.Name = "TotalTTCDataGridViewTextBoxColumn"
+        Me.TotalTTCDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IsRegleeDataGridViewCheckBoxColumn
+        '
+        Me.IsRegleeDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.IsRegleeDataGridViewCheckBoxColumn.DataPropertyName = "isReglee"
+        Me.IsRegleeDataGridViewCheckBoxColumn.HeaderText = "Reglée"
+        Me.IsRegleeDataGridViewCheckBoxColumn.Name = "IsRegleeDataGridViewCheckBoxColumn"
+        Me.IsRegleeDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.IsRegleeDataGridViewCheckBoxColumn.Width = 50
+        '
+        'm_bsFacture
+        '
+        Me.m_bsFacture.DataSource = GetType(CRODIPWS.Facture)
+        '
+        'typeLibelle
+        '
+        Me.typeLibelle.DataPropertyName = "typeLibelle"
+        Me.typeLibelle.FillWeight = 30.0!
+        Me.typeLibelle.HeaderText = "Type"
+        Me.typeLibelle.Name = "typeLibelle"
+        Me.typeLibelle.ReadOnly = True
+        '
+        'idMateriel
+        '
+        Me.idMateriel.DataPropertyName = "idMateriel"
+        Me.idMateriel.FillWeight = 20.0!
+        Me.idMateriel.HeaderText = "Id"
+        Me.idMateriel.Name = "idMateriel"
         '
         'Type
         '
         Me.Type.DataPropertyName = "Traca"
-        Me.Type.FillWeight = 10.0!
+        Me.Type.FillWeight = 20.0!
         Me.Type.HeaderText = "Traca"
         Me.Type.Name = "Type"
         Me.Type.ReadOnly = True
@@ -3960,16 +3974,15 @@ Public Class accueil
         Me.accueil_panelAlertesContener.ResumeLayout(False)
         Me.accueil_panelAlertesContener.PerformLayout()
         CType(Me.dgv_ControleRegulier, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bsControleQuotidien, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picsRefresh, System.ComponentModel.ISupportInitialize).EndInit()
         Me.accueil_panelAlertes.ResumeLayout(False)
         Me.tabAccueil_mesinfos.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_clientele.ResumeLayout(False)
         Me.panel_clientele_ficheClient.ResumeLayout(False)
         Me.grp_ficheClient_ListePulve.ResumeLayout(False)
         CType(Me.dgvPulveExploit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.panel_ListeDesControles.ResumeLayout(False)
         Me.panel_clientele_LstCtrlCtriteres.ResumeLayout(False)
@@ -4009,9 +4022,11 @@ Public Class accueil
         CType(Me.pctLogoStat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabControl_Facturation.ResumeLayout(False)
         CType(Me.dgvFactures, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.bsControleQuotidien, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPulverisateurTMP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsFacture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -6914,5 +6929,9 @@ Public Class accueil
         If dgv_ControleRegulier.IsCurrentCellDirty Then
             dgv_ControleRegulier.CommitEdit(DataGridViewDataErrorContexts.Commit)
         End If
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Process.Start(My.Settings.epulve)
     End Sub
 End Class

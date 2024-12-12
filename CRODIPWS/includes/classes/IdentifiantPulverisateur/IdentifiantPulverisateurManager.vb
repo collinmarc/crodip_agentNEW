@@ -59,8 +59,11 @@ Public Class IdentifiantPulverisateurManager
                     'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
 
+                SynchronisationManager.LogSynchroDebut(nomMethode)
+                SynchronisationManager.LogSynchroREPONSE(pObjIn, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
+                SynchronisationManager.LogSynchroREPONSE(codeResponse, nomMethode)
 
             End If
             Select Case codeResponse
@@ -77,6 +80,7 @@ Public Class IdentifiantPulverisateurManager
                 Case 0 ' PAS DE MAJ
                     pobjOut = pObjIn
             End Select
+            SynchronisationManager.LogSynchroFin()
         Catch ex As Exception
             CSDebug.dispError("IdentifiantPulveManager.WSSend ERR : ", ex)
         Finally

@@ -20,13 +20,21 @@ Public Class RootManager
             Dim codeResponse As Integer = 99 'Mehode non trouvée
             If methode IsNot Nothing Then
                 Dim Params As Object() = {puid, paid, tXmlnodes}
+                SynchronisationManager.LogSynchroDebut(nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 tXmlnodes = Params(2)
+                SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
+                SynchronisationManager.LogSynchroFin()
             End If
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(T))
-                    strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
+                    If GetType(T) Is GetType(Banc) Then
+                        strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
+                    Else
+                        strXml = tXmlnodes(0).ParentNode.OuterXml
+                    End If
                     Using reader As New StringReader(strXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
@@ -68,9 +76,12 @@ Public Class RootManager
                     ' Vous pouvez maintenant vérifier ou envoyer cette chaîne sérialisée
                     'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
-
+                SynchronisationManager.LogSynchroDebut(nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
+                SynchronisationManager.LogSynchroREPONSE(codeResponse, nomMethode)
+                SynchronisationManager.LogSynchroFin()
 
                 'CSDebug.dispTrace("WS-" & nomMethode & " Return = codeReponse=" & codeResponse & "[ info=" & pInfo & ",uid=" & puid & "]")
             End If

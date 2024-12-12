@@ -395,6 +395,7 @@ Public Class PulverisateurManager
                     oExploit2Pulve.idExploitation = pExploit.id
                     oExploit2Pulve.uidpulverisateur = pPulve.uid
                     oExploit2Pulve.uidexploitation = pExploit.uid
+                    oExploit2Pulve.uidstructure = pExploit.uidstructure
                     oExploit2Pulve.isSupprimeCoProp = False
                     ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
                 End If

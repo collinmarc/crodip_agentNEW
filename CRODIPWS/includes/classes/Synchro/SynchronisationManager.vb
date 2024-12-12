@@ -50,14 +50,48 @@ Public Class SynchronisationManager
     ''' <param name="obj"></param>
     ''' <remarks></remarks>
     Public Shared Sub LogSynchroElmt(ByVal obj As Object, Optional pComm As String = "")
-        Dim oXS As New XmlSerializer(obj.GetType(), "")
-        Dim oStreamWriter As New System.IO.StringWriter()
-        oXS.Serialize(oStreamWriter, obj)
-        oStreamWriter.Close()
+        Try
 
-        logger.Trace("<SynchroElmt type='" & obj.GetType().Name & "' comment ='" & pComm & "'>")
-        logger.Trace(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
-        logger.Trace("</SynchroElmt>")
+            Dim oXS As New XmlSerializer(obj.GetType(), "")
+            Dim oStreamWriter As New System.IO.StringWriter()
+            oXS.Serialize(oStreamWriter, obj)
+            oStreamWriter.Close()
+
+            logger.Trace("<SynchroElmt type='" & obj.GetType().Name & "' comment ='" & pComm & "'>")
+            logger.Trace(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
+            logger.Trace("</SynchroElmt>")
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
+    Public Shared Sub LogSynchroDebut(pContext As String)
+        logger.Trace("<WS Nom='" & pContext & "' date ='" & DateTime.Now.ToShortDateString() & " " & DateTime.Now.ToLongTimeString() & "' >")
+    End Sub
+    Public Shared Sub LogSynchroFin()
+        logger.Trace("</WS>")
+    End Sub
+    Public Shared Sub LogSynchrodEMANDE(ByVal obj As Object, Optional pContext As String = "")
+        LogSynchro("DEMANDE", obj, pContext)
+    End Sub
+    Public Shared Sub LogSynchroREPONSE(ByVal obj As Object, Optional pContext As String = "")
+        LogSynchro("REPONSE", obj, pContext)
+    End Sub
+    Private Shared Sub LogSynchro(pType As String, ByVal obj As Object, Optional pContext As String = "")
+        Try
+
+            Dim oXS As New XmlSerializer(obj.GetType(), "")
+            Dim oStreamWriter As New System.IO.StringWriter()
+            oXS.Serialize(oStreamWriter, obj)
+            oStreamWriter.Close()
+
+            logger.Trace("<WS" & pType & " context='" & pContext & "'>")
+            logger.Trace(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
+            logger.Trace("</WS" & pType & ">")
+        Catch ex As Exception
+
+        End Try
 
 
     End Sub

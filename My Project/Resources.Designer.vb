@@ -326,6 +326,16 @@ Friend Class Resources
     '''<summary>
     '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
     '''</summary>
+    Friend Shared ReadOnly Property e_pulve_logo_blanc_bleu_1() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("e-pulve-logo-blanc-bleu-1", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+    '''</summary>
     Friend Shared ReadOnly Property Favorites() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("Favorites", resourceCulture)

@@ -1,10 +1,13 @@
 #TRUNK
 MASTER
 
+BUILD 20241212170000
 	0001721: synchro des tarifs
 	0001720: Consultation des Lieux de controles => plantage
 	0001719: synchro des tarifs
 	0001722: synchronisation des Controles Regulier => uniquement les OK et NOK
+	0001723: uidstructure dans ExploitToPulve
+	0001724: Ajout du bouton epulve
 
 BUILD 20241206120000
 	Synhcro des controles reguliers

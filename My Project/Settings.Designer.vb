@@ -589,6 +589,15 @@ Partial Friend NotInheritable Class MySettings
             Return CType(Me("WSCrodipProduction"),Boolean)
         End Get
     End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("https://epulve.crodip.net")>  _
+    Public ReadOnly Property epulve() As String
+        Get
+            Return CType(Me("epulve"),String)
+        End Get
+    End Property
 End Class
 
 Namespace My

@@ -495,5 +495,8 @@ insert into CONTROLE_REGULIER2 (CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTR
 ALTER TABLE CONTROLE_REGULIER RENAME TO CONTROLE_REGULIER1;
 ALTER TABLE CONTROLE_REGULIER2 RENAME TO CONTROLE_REGULIER;
 
+--ExploitationToPulverisateur
+ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidstructure integer;
+UPDATE ExploitationToPulverisateur SET uidstructure = (select uidstructure from exploitation where exploitation.id = ExploitationTOPulverisateur.idExploitation);
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
