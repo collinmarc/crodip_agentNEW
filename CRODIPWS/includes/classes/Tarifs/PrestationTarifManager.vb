@@ -143,6 +143,8 @@ Public Class PrestationTarifManager
                 Else
                     If curObject.id = 0 Then
                         curObject.id = PrestationTarifManager.getNextId()
+                    End If
+                    If Not exists(curObject) Then
                         PrestationTarifManager.create(curObject)
                     End If
 
@@ -227,11 +229,7 @@ Public Class PrestationTarifManager
             '## Execution de la requete
             Dim oCmd As DbCommand
             oCmd = dbLink.getConnection().CreateCommand()
-            If exists(pTarif) Then
-                oCmd.CommandText = "UPDATE PrestationTarif SET idStructure = " & pTarif.idStructure & " , idCategorie = " & pTarif.idCategorie & " where id = " & pTarif.id & ""
-            Else
-                oCmd.CommandText = "INSERT INTO PrestationTarif (id,idStructure,idCategorie) VALUES (" & pTarif.id & "," & pTarif.idStructure & "," & pTarif.idCategorie & ")"
-            End If
+            oCmd.CommandText = "INSERT INTO PrestationTarif (id,idStructure,idCategorie) VALUES (" & pTarif.id & "," & pTarif.idStructure & "," & pTarif.idCategorie & ")"
             oCmd.ExecuteNonQuery()
             dbLink.free()
             bReturn = True

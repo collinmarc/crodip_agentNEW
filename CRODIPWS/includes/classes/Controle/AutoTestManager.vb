@@ -139,32 +139,27 @@ Public Class AutoTestManager
         Dim bddCommande As DbCommand
         Dim oCtrlRegulier As New AutoTest(pAgent)
         Try
+            Dim sqlQuery As String
+            Dim id As Integer
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
+            sqlQuery = "SELECT MAX(CTRG_ID) as ctrg_id FROM CONTROLE_REGULIER "
+            bddCommande.CommandText = sqlQuery
+            Dim obj = bddCommande.ExecuteScalar()
+            If IsNumeric(obj) Then
+                id = CInt(obj)
+            Else
+                id = 0
+            End If
+            oCtrlRegulier.Id = id + 1
+
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Controle_Regulier (CTRG_date) VALUES(NULL)"
+            bddCommande.CommandText = "INSERT INTO Controle_Regulier (CTRG_ID) VALUES(" & oCtrlRegulier.Id & ")"
             bddCommande.ExecuteNonQuery()
 
-            '## Execution de la requete
-            Dim oDBReader As DbDataReader
-            Dim sqlQuery As String
-            sqlQuery = "SELECT MAX(CTRG_ID) as ctrg_id FROM CONTROLE_REGULIER "
-            oDBReader = oCsdb.getResult2s(sqlQuery)
-
-            '################################################################
-            Dim i As Integer = 0
-            oDBReader.Read()
-            If oDBReader.HasRows Then
-                Dim tmpColId As Integer = 0
-                If Not oDBReader.IsDBNull(tmpColId) Then
-                    oCtrlRegulier.setId(oDBReader.GetInt32(tmpColId))
-                End If
-            End If
-            oDBReader.Close()
-
-        Catch ex As Exception
-            CSDebug.dispFatal("AutoTestManager - create : " & ex.Message)
+            Catch ex As Exception
+                CSDebug.dispFatal("AutoTestManager - create : " & ex.Message)
         End Try
 
         If Not oCsdb Is Nothing Then
@@ -180,7 +175,7 @@ Public Class AutoTestManager
         Try
             bReturn = True
             'Si l'ID n'est pas initialisé => le controle n'a pas été créé
-            If pCtrlRegulier.Id = -1 Then
+            If Not exists(pCtrlRegulier) Then
                 Dim oTemp As AutoTest
                 Dim oAgent As Agent
                 oAgent = AgentManager.getAgentById(pCtrlRegulier.NumAgent)
@@ -202,7 +197,7 @@ Public Class AutoTestManager
                 Dim paramsQuery As String
                 paramsQuery = ""
                 paramsQuery = paramsQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'  "
-                paramsQuery = paramsQuery & " , CTRG_STRUCTUREID=" & pCtrlRegulier.IdStructure & "  "
+                paramsQuery = paramsQuery & " , CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
                 paramsQuery = paramsQuery & " , uidstructure=" & pCtrlRegulier.uidstructure & "  "
                 paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.type & "'  "
                 paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
@@ -217,8 +212,18 @@ Public Class AutoTestManager
                 oCsdb = New CSDb(True)
                 Dim bddCommande As DbCommand
                 bddCommande = oCsdb.getConnection().CreateCommand
+                Dim strQuery As String
+                strQuery = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE "
+                If pCtrlRegulier.Id > 0 Then
+                    strQuery = strQuery & " CTRG_ID=" & pCtrlRegulier.Id & ""
+                Else
+                    strQuery = strQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
+                    strQuery = strQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
+                    strQuery = strQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
+                    strQuery = strQuery & " AND CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
 
-                bddCommande.CommandText = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE CTRG_ID=" & pCtrlRegulier.Id & ""
+                End If
+                bddCommande.CommandText = strQuery
                 bddCommande.ExecuteNonQuery()
                 oCsdb.free()
             End If
@@ -230,6 +235,41 @@ Public Class AutoTestManager
             oCsdb.free()
         End If
         Return bReturn
+    End Function
+    Private Shared Function exists(pCtrlRegulier As AutoTest) As Boolean
+        Dim breturn As Boolean
+        Dim oCSDB As New CSDb(True)
+        Try
+            Dim cmd As DbCommand
+            Dim sqlQuery As String
+            breturn = True
+
+            cmd = oCSDB.getConnection().CreateCommand()
+            sqlQuery = "SELECT Count(*) from CONTROLE_REGULIER where "
+            sqlQuery = sqlQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
+            sqlQuery = sqlQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
+            sqlQuery = sqlQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
+            sqlQuery = sqlQuery & " AND CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
+
+            cmd.CommandText = sqlQuery
+
+            Dim obj
+            obj = cmd.ExecuteScalar()
+            If IsNumeric(obj) Then
+                Dim n As Integer
+                n = CInt(obj)
+                breturn = (n > 0)
+            Else
+                breturn = False
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("AutoTestManager .exists ERR", ex)
+            breturn = False
+        End Try
+        If oCSDB IsNot Nothing Then
+            oCSDB.free()
+        End If
+        Return breturn
     End Function
 
     Public Shared Function saveSynchro(ByVal pCtrlRegulier As AutoTest) As Boolean

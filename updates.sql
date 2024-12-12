@@ -489,4 +489,11 @@ ALTER TABLE PrestationTarif RENAME TO PrestationTarif1;
 ALTER TABLE PrestationTarif2 RENAME TO PrestationTarif;
 
 
+-- Suppression de la contrainte unique sur l'id 
+CREATE TABLE CONTROLE_REGULIER2 (CTRG_ID                INTEGER,CTRG_DATE              DATE,CTRG_STRUCTUREID       INTEGER,CTRG_TYPE              VARCHAR (256),CTRG_MATID             VARCHAR (256),CTRG_NUMAGENT          VARCHAR (256),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,CTRG_ETAT              VARCHAR (256),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,aidagent               INTEGER,uidagent               INTEGER,uidmateriel            INTEGER);
+insert into CONTROLE_REGULIER2 (CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel) SELECT CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel from CONTROLE_REGULIER;
+ALTER TABLE CONTROLE_REGULIER RENAME TO CONTROLE_REGULIER1;
+ALTER TABLE CONTROLE_REGULIER2 RENAME TO CONTROLE_REGULIER;
+
+
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');

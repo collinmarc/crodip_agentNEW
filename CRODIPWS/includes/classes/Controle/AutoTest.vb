@@ -64,15 +64,15 @@ Public Class AutoTest
     End Sub
     Public Property Id() As Integer
         Get
-            Return aid
+            Return _id
         End Get
         Set(ByVal Value As Integer)
 
-            aid = Value
+            _id = Value
         End Set
     End Property
     Public Sub setId(ByVal pId As Integer)
-        aid = pId
+        Id = pId
     End Sub
     Public Property IdStructure() As Integer
         Get
@@ -167,7 +167,7 @@ Public Class AutoTest
             Return _Type
         End Get
     End Property
-    Public Property idMateriel() As String
+    Public Property IdMateriel() As String
         Get
             Return _idMateriel
         End Get

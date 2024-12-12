@@ -1,5 +1,12 @@
 #TRUNK
 MASTER
+
+	0001721: synchro des tarifs
+	0001720: Consultation des Lieux de controles => plantage
+	0001719: synchro des tarifs
+
+BUILD 20241206120000
+	Synhcro des controles reguliers
 BUILD 20241205120000
 	0001719: synchro des tarifs
 	0001718: WS : DiagItems Sauvegarde des uid,aid,uidDiagnostic,aiddiagnostic
