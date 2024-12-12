@@ -4,6 +4,7 @@ MASTER
 	0001721: synchro des tarifs
 	0001720: Consultation des Lieux de controles => plantage
 	0001719: synchro des tarifs
+	0001722: synchronisation des Controles Regulier => uniquement les OK et NOK
 
 BUILD 20241206120000
 	Synhcro des controles reguliers

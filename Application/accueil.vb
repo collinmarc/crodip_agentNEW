@@ -142,9 +142,8 @@ Public Class accueil
     Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Type As DataGridViewTextBoxColumn
-    Friend WithEvents isOK As DataGridViewCheckBoxColumn
-    Friend WithEvents isNOK As DataGridViewCheckBoxColumn
-    Friend WithEvents isNonEffectue As DataGridViewCheckBoxColumn
+    Friend WithEvents OK As DataGridViewCheckBoxColumn
+    Friend WithEvents NOK As DataGridViewCheckBoxColumn
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -297,7 +296,6 @@ Public Class accueil
     Friend WithEvents m_SaveFileDialog As System.Windows.Forms.SaveFileDialog
     Friend WithEvents dtp_ControleRegulier As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents btn_controleQuotdien_Exporter As System.Windows.Forms.Button
     Friend WithEvents btn_controleQuotdien_Valider As System.Windows.Forms.Button
     Friend WithEvents dgv_ControleRegulier As System.Windows.Forms.DataGridView
     Friend WithEvents btn_imprimerDoc As System.Windows.Forms.Label
@@ -382,7 +380,6 @@ Public Class accueil
         Me.lla_Rappeltolérance = New System.Windows.Forms.LinkLabel()
         Me.dtp_ControleRegulier = New System.Windows.Forms.DateTimePicker()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.btn_controleQuotdien_Exporter = New System.Windows.Forms.Button()
         Me.btn_controleQuotdien_Valider = New System.Windows.Forms.Button()
         Me.dgv_ControleRegulier = New System.Windows.Forms.DataGridView()
         Me.bsControleQuotidien = New System.Windows.Forms.BindingSource(Me.components)
@@ -640,9 +637,8 @@ Public Class accueil
         Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.isOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.isNOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.isNonEffectue = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.OK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -845,7 +841,6 @@ Public Class accueil
         Me.accueil_panelAlertesContener.Controls.Add(Me.lla_Rappeltolérance)
         Me.accueil_panelAlertesContener.Controls.Add(Me.dtp_ControleRegulier)
         Me.accueil_panelAlertesContener.Controls.Add(Me.Label20)
-        Me.accueil_panelAlertesContener.Controls.Add(Me.btn_controleQuotdien_Exporter)
         Me.accueil_panelAlertesContener.Controls.Add(Me.btn_controleQuotdien_Valider)
         Me.accueil_panelAlertesContener.Controls.Add(Me.dgv_ControleRegulier)
         Me.accueil_panelAlertesContener.Controls.Add(Me.Label15)
@@ -888,16 +883,6 @@ Public Class accueil
         Me.Label20.TabIndex = 13
         Me.Label20.Text = "Contrôle régulier du : "
         '
-        'btn_controleQuotdien_Exporter
-        '
-        Me.btn_controleQuotdien_Exporter.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btn_controleQuotdien_Exporter.Location = New System.Drawing.Point(459, 446)
-        Me.btn_controleQuotdien_Exporter.Name = "btn_controleQuotdien_Exporter"
-        Me.btn_controleQuotdien_Exporter.Size = New System.Drawing.Size(120, 27)
-        Me.btn_controleQuotdien_Exporter.TabIndex = 12
-        Me.btn_controleQuotdien_Exporter.Text = "Exporter"
-        Me.btn_controleQuotdien_Exporter.UseVisualStyleBackColor = True
-        '
         'btn_controleQuotdien_Valider
         '
         Me.btn_controleQuotdien_Valider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -927,7 +912,7 @@ Public Class accueil
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.Type, Me.isOK, Me.isNOK, Me.isNonEffectue})
+        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TypeDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.Type, Me.OK, Me.NOK})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
         Me.dgv_ControleRegulier.Location = New System.Drawing.Point(6, 251)
         Me.dgv_ControleRegulier.Name = "dgv_ControleRegulier"
@@ -937,7 +922,7 @@ Public Class accueil
         '
         'bsControleQuotidien
         '
-        Me.bsControleQuotidien.DataSource = GetType(AutoTest)
+        Me.bsControleQuotidien.DataSource = GetType(CRODIPWS.AutoTest)
         '
         'Label15
         '
@@ -1364,7 +1349,7 @@ Public Class accueil
         '
         'm_bsrcPulverisateurTMP
         '
-        Me.m_bsrcPulverisateurTMP.DataSource = GetType(Pulverisateur)
+        Me.m_bsrcPulverisateurTMP.DataSource = GetType(CRODIPWS.Pulverisateur)
         '
         'btnTransfertPulve
         '
@@ -3808,7 +3793,7 @@ Public Class accueil
         '
         'm_bsFacture
         '
-        Me.m_bsFacture.DataSource = GetType(Facture)
+        Me.m_bsFacture.DataSource = GetType(CRODIPWS.Facture)
         '
         'Panel3
         '
@@ -3941,26 +3926,19 @@ Public Class accueil
         Me.Type.Name = "Type"
         Me.Type.ReadOnly = True
         '
-        'isOK
+        'OK
         '
-        Me.isOK.DataPropertyName = "isOK"
-        Me.isOK.FillWeight = 10.0!
-        Me.isOK.HeaderText = "OK"
-        Me.isOK.Name = "isOK"
+        Me.OK.DataPropertyName = "isOK"
+        Me.OK.FillWeight = 10.0!
+        Me.OK.HeaderText = "OK"
+        Me.OK.Name = "OK"
         '
-        'isNOK
+        'NOK
         '
-        Me.isNOK.DataPropertyName = "isNOK"
-        Me.isNOK.FillWeight = 10.0!
-        Me.isNOK.HeaderText = "NOK"
-        Me.isNOK.Name = "isNOK"
-        '
-        'isNonEffectue
-        '
-        Me.isNonEffectue.DataPropertyName = "isNonEffectue"
-        Me.isNonEffectue.FillWeight = 10.0!
-        Me.isNonEffectue.HeaderText = "NON"
-        Me.isNonEffectue.Name = "isNonEffectue"
+        Me.NOK.DataPropertyName = "isNOK"
+        Me.NOK.FillWeight = 10.0!
+        Me.NOK.HeaderText = "NOK"
+        Me.NOK.Name = "NOK"
         '
         'accueil
         '
@@ -4186,7 +4164,6 @@ Public Class accueil
             panel_ListeDesControles.Dock = DockStyle.Fill
 
         Else
-            btn_controleQuotdien_Exporter.Enabled = False
             btn_controleQuotdien_Valider.Enabled = False
             btn_ficheClient_diagnostic_nouveau.Enabled = False
             btn_ficheClient_diagnostic_nouvelleCV.Enabled = False
@@ -4207,7 +4184,6 @@ Public Class accueil
             btn_proprietaire_exportCsv.Enabled = False
             btn_proprietaire_supprimer.Enabled = False
             btnAjoutPulve.Enabled = False
-            btn_controleQuotdien_Exporter.Visible = False
             btn_controleQuotdien_Valider.Visible = False
             btn_ficheClient_diagnostic_nouveau.Visible = False
             btn_ficheClient_diagnostic_nouvelleCV.Visible = False
@@ -6077,7 +6053,7 @@ Public Class accueil
 
                 End If
 
-                Else
+            Else
                 Statusbar.display("Synchronisation impossible, serveur Crodip momentanément indisponible.", False)
                 MsgBox("Synchronisation impossible, serveur Crodip momentanément indisponible.", MsgBoxStyle.Exclamation)
             End If
@@ -6224,35 +6200,13 @@ Public Class accueil
         Return bReturn
     End Function
 
-    Private Sub dgv_ControleRegulier_CurrentCellDirtyStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Trace.WriteLine("dgv_ControleRegulier_CurrentCellDirtyStateChanged")
-        If dgv_ControleRegulier.CurrentCell.ColumnIndex > 1 And dgv_ControleRegulier.IsCurrentCellDirty Then
-            dgv_ControleRegulier.CommitEdit(DataGridViewDataErrorContexts.Commit)
-        End If
-
-    End Sub
-
-
-
 #End Region
 
 
 
 
 
-    Private Sub btn_controleQuotdien_Exporter_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleQuotdien_Exporter.Click
-        Dim oDlg As New dlgExportAutoTest()
 
-        If oDlg.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            'Sauvegarde des Autotests en cours
-            For Each obj As AutoTest In bsControleQuotidien
-                AutoTestManager.save(obj)
-            Next
-            AutoTestManager.ExportAsCSV(oDlg.getDateDeb(), oDlg.getDateFin(), agentCourant, oDlg.getFileName())
-
-        End If
-
-    End Sub
 
     Private Sub btn_controleQuotdien_Valider_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleQuotdien_Valider.Click
         For Each obj As AutoTest In bsControleQuotidien
@@ -6936,5 +6890,29 @@ Public Class accueil
 
     End Sub
 
+    Private Sub dgv_ControleRegulier_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_ControleRegulier.CellValueChanged
+        ' Vérifiez si la colonne modifiée est "OK"
+        Try
+            If e.RowIndex > 0 Then
 
+                If e.ColumnIndex = 3 Then
+                    ' Récupérez la ligne où la valeur a changé
+                    Dim row As DataGridViewRow = dgv_ControleRegulier.Rows(e.RowIndex)
+
+                    ' Si la case "OK" est cochée, décochez la case "NOK"
+                    If Convert.ToBoolean(row.Cells(3).Value) Then
+                        row.Cells(4).Value = False ' Décoche la case "NOK"
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("dgv_ControleRegulier_CellValueChanged ERR", ex)
+        End Try
+    End Sub
+
+    Private Sub dgv_ControleRegulier_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles dgv_ControleRegulier.CurrentCellDirtyStateChanged
+        If dgv_ControleRegulier.IsCurrentCellDirty Then
+            dgv_ControleRegulier.CommitEdit(DataGridViewDataErrorContexts.Commit)
+        End If
+    End Sub
 End Class

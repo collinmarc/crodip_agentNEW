@@ -16,53 +16,53 @@ Public Class AutoTest
     Private _dateModificationAgent As Date
     Private _dateModificationCrodip As Date
     Public Sub New()
-        Id = -1
+        id = -1
         _Etat = -1
-        NumAgent = ""
-        IdStructure = 0
+        numAgent = ""
+        idStructure = 0
         _dateModificationAgent = Date.Now()
         _dateModificationCrodip = CDate("01/01/1970")
     End Sub
     Public Sub New(pAgent As Agent)
-        Id = -1
+        id = -1
         _Etat = -1
-        NumAgent = pAgent.id
-        IdStructure = pAgent.uidStructure
+        numAgent = pAgent.id
+        idStructure = pAgent.uidstructure
         _dateModificationAgent = Date.Now()
         _dateModificationCrodip = CDate("01/01/1970")
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreControle)
-        Id = -1
+        id = -1
         _Etat = -1
         type = "MANOC"
         idMateriel = pMano.idCrodip
-        IdStructure = pAgent.uidstructure
-        NumAgent = pAgent.id
-        Traca = pMano.Traca
+        idStructure = pAgent.uidstructure
+        numAgent = pAgent.id
+        traca = pMano.Traca
         uidstructure = pAgent.uidstructure
         uidmateriel = pMano.uid
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
-        Id = -1
+        id = -1
         _Etat = -1
         type = "MANOE"
         idMateriel = pMano.idCrodip
-        IdStructure = pMano.uidstructure
-        NumAgent = pAgent.id
+        idStructure = pMano.uidstructure
+        numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pMano.uid
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
-        Id = -1
+        id = -1
         _Etat = -1
         type = "BANC"
         idMateriel = pBanc.id
-        IdStructure = pBanc.uidstructure
-        NumAgent = pAgent.id
+        idStructure = pBanc.uidstructure
+        numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pBanc.uid
     End Sub
-    Public Property Id() As Integer
+    Public Property id() As Integer
         Get
             Return _id
         End Get
@@ -72,9 +72,9 @@ Public Class AutoTest
         End Set
     End Property
     Public Sub setId(ByVal pId As Integer)
-        Id = pId
+        id = pId
     End Sub
-    Public Property IdStructure() As Integer
+    Public Property idStructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -104,7 +104,7 @@ Public Class AutoTest
         End Set
     End Property
     <XmlIgnore>
-    Public Property NumAgent() As String
+    Public Property numAgent() As String
         Get
             Return uidagent
         End Get
@@ -152,7 +152,7 @@ Public Class AutoTest
         End Set
     End Property
     <XmlIgnore>
-    Public ReadOnly Property TypeLibelle() As String
+    Public ReadOnly Property typeLibelle() As String
         Get
             Select Case _Type
                 Case "BANC"
@@ -167,7 +167,7 @@ Public Class AutoTest
             Return _Type
         End Get
     End Property
-    Public Property IdMateriel() As String
+    Public Property idMateriel() As String
         Get
             Return _idMateriel
         End Get
@@ -225,11 +225,11 @@ Public Class AutoTest
     <System.Xml.Serialization.XmlIgnoreAttribute()>
     Public Property isOK() As Boolean
         Get
-            Return (_Etat = 0)
+            Return (_Etat = 1)
         End Get
         Set(ByVal Value As Boolean)
             If Value Then
-                _Etat = 0
+                _Etat = 1
             Else
                 '                Debug.Assert(False, "uniquement true")
             End If
@@ -239,11 +239,11 @@ Public Class AutoTest
     <System.Xml.Serialization.XmlIgnoreAttribute()>
     Public Property isNOK() As Boolean
         Get
-            Return (_Etat = 1)
+            Return (_Etat = 0)
         End Get
         Set(ByVal Value As Boolean)
             If Value Then
-                _Etat = 1
+                _Etat = 0
             Else
                 '               Debug.Assert(False, "uniquement true")
             End If
@@ -282,15 +282,15 @@ Public Class AutoTest
                     Case "CTRG_date".Trim().ToUpper(), "DateControle".Trim.ToUpper()
                         Me.dateControle = CSDate.ToCRODIPString(pValue.ToString())
                     Case "CTRG_STRUCTUREID".Trim().ToUpper(), "IdStructure".Trim.ToUpper()
-                        Me.IdStructure = pValue.ToString()
+                        Me.idStructure = pValue.ToString()
                     Case "CTRG_TYPE".Trim().ToUpper(), "Type".Trim.ToUpper()
                         Me.type = pValue.ToString()
                     Case "CTRG_MATID".Trim().ToUpper(), "IdMateriel".Trim.ToUpper()
                         Me.idMateriel = pValue.ToString()
                     Case "CTRG_ETAT".Trim().ToUpper(), "Etat".Trim.ToUpper()
-                        Me.etat = CType(pValue, Boolean)
+                        Me.etat = pValue
                     Case "CTRG_NUMAGENT".Trim().ToUpper(), "NumAgent".Trim.ToUpper()
-                        Me.NumAgent = pValue
+                        Me.numAgent = pValue
                     Case "uidstructure".Trim().ToUpper()
                         Me.uidstructure = CInt(pValue)
                     Case "aidagent".Trim().ToUpper()
@@ -311,7 +311,7 @@ Public Class AutoTest
     End Function
     Private m_Traca As String
     <XmlIgnore()>
-    Public Property Traca() As String
+    Public Property traca() As String
         Get
             Return m_Traca
         End Get

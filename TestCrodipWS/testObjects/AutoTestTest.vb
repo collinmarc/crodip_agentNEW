@@ -90,23 +90,23 @@ Public Class AutoTestTest
         Dim obj As AutoTest
 
         obj = New AutoTest(m_oAgent)
-        Assert.IsTrue(obj.Id = -1)
+        Assert.IsTrue(obj.id = -1)
         Assert.IsTrue(obj.Etat = -1)
         Assert.IsTrue(obj.isNonEffectue)
         Assert.IsTrue(Not obj.isOK)
         Assert.IsTrue(Not obj.isNOK)
-        Assert.AreEqual(m_oAgent.idStructure, obj.IdStructure)
-        Assert.AreEqual(m_oAgent.id.ToString(), obj.NumAgent)
+        Assert.AreEqual(m_oAgent.idStructure, obj.idStructure)
+        Assert.AreEqual(m_oAgent.id.ToString(), obj.numAgent)
         Dim str As String
 
         obj.setId(15)
-        Assert.IsTrue(obj.Id = 15)
+        Assert.IsTrue(obj.id = 15)
         obj.dateControle = CDate("06/02/1964")
         Assert.AreEqual(obj.dateControle, CDate("06/02/1964"))
         obj.Type = "MANO"
         Assert.AreEqual(obj.Type, "MANO")
-        obj.IdMateriel = "TEST"
-        Assert.AreEqual(obj.IdMateriel, "TEST")
+        obj.idMateriel = "TEST"
+        Assert.AreEqual(obj.idMateriel, "TEST")
         obj.Etat = 0
         Assert.AreEqual(obj.Etat, 0)
         Assert.IsTrue(obj.isOK = True)
@@ -134,22 +134,22 @@ Public Class AutoTestTest
 
         obj.dateControle = CDate("06/02/1964")
         obj.Type = "Mano"
-        obj.IdMateriel = "Mano001"
+        obj.idMateriel = "Mano001"
         obj.isNOK = True
 
         Assert.IsTrue(AutoTestManager.save(obj), "SAVE")
-        Assert.IsTrue(obj.Id <> -1, "ID renseigné après le save")
+        Assert.IsTrue(obj.id <> -1, "ID renseigné après le save")
 
         Dim obj2 As AutoTest
-        obj2 = AutoTestManager.getById(m_oAgent, obj.Id)
+        obj2 = AutoTestManager.getById(m_oAgent, obj.id)
         Assert.IsNotNull(obj2)
-        Assert.AreEqual(obj2.NumAgent, obj.NumAgent)
+        Assert.AreEqual(obj2.numAgent, obj.numAgent)
         Assert.AreEqual(obj2.Type, obj.Type)
-        Assert.AreEqual(obj2.IdMateriel, obj.IdMateriel)
+        Assert.AreEqual(obj2.idMateriel, obj.idMateriel)
         Assert.AreEqual(obj2.dateControle, obj.dateControle)
 
-        Assert.IsTrue(AutoTestManager.delete(obj2.Id))
-        obj2 = AutoTestManager.getById(m_oAgent, obj.Id)
+        Assert.IsTrue(AutoTestManager.delete(obj2.id))
+        obj2 = AutoTestManager.getById(m_oAgent, obj.id)
         Assert.IsNull(obj2)
 
     End Sub
@@ -211,15 +211,15 @@ Public Class AutoTestTest
         ManometreEtalonManager.save(objManometreEtalon)
 
         objB1 = New AutoTest(m_oAgent, objBanc)
-        Assert.AreEqual(objB1.IdMateriel, objBanc.id)
+        Assert.AreEqual(objB1.idMateriel, objBanc.id)
         Assert.AreEqual(objB1.Type, "BANC")
 
         objMC1 = New AutoTest(m_oAgent, objManometreControle)
-        Assert.AreEqual(objMC1.IdMateriel, objManometreControle.idCrodip)
+        Assert.AreEqual(objMC1.idMateriel, objManometreControle.idCrodip)
         Assert.AreEqual(objMC1.Type, "MANOC")
 
         objME1 = New AutoTest(m_oAgent, objManometreEtalon)
-        Assert.AreEqual(objME1.IdMateriel, objManometreEtalon.idCrodip)
+        Assert.AreEqual(objME1.idMateriel, objManometreEtalon.idCrodip)
         Assert.AreEqual(objME1.Type, "MANOE")
 
 
@@ -308,7 +308,7 @@ Public Class AutoTestTest
         ' Test de chaque controle
         For Each oCtrl As AutoTest In col
             Assert.AreEqual(oCtrl.Type, "BANC")
-            Assert.AreEqual(oCtrl.IdMateriel, objBanc.id)
+            Assert.AreEqual(oCtrl.idMateriel, objBanc.id)
         Next
 
         col = AutoTestManager.getcolControlesReguliers(m_oAgent, "RIEN")
@@ -337,10 +337,10 @@ Public Class AutoTestTest
 
         'Controle de chaque Mano
         For Each oCtrl As AutoTest In col
-            Assert.AreEqual(oCtrl.IdMateriel, objManometreControle.idCrodip)
+            Assert.AreEqual(oCtrl.idMateriel, objManometreControle.idCrodip)
             Assert.AreEqual(oCtrl.Type, "MANOC")
-            Assert.AreEqual(objMC1.IdMateriel, objManometreControle.idCrodip)
-            Assert.AreEqual(objMC1.IdStructure, m_oAgent.idStructure)
+            Assert.AreEqual(objMC1.idMateriel, objManometreControle.idCrodip)
+            Assert.AreEqual(objMC1.idStructure, m_oAgent.idStructure)
         Next
 
         objME1 = New AutoTest(m_oAgent, objManometreEtalon)
@@ -472,24 +472,24 @@ Public Class AutoTestTest
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "BANC")
         Assert.AreEqual(2, oColCtrl.Count)
         octrl = CType(oColCtrl(0), AutoTest)
-        Assert.AreEqual("MonBanc1", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual("MonBanc1", octrl.idMateriel)
+        Assert.AreEqual(m_oAgent.idStructure, octrl.idStructure)
         octrl = CType(oColCtrl(1), AutoTest)
-        Assert.AreEqual("MonBanc2", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual("MonBanc2", octrl.idMateriel)
+        Assert.AreEqual(m_oAgent.idStructure, octrl.idStructure)
 
         'Creation des controles Regulier des Manos
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "MANOC")
         Assert.AreEqual(oColCtrl.Count, 3)
         octrl = CType(oColCtrl(0), AutoTest)
-        Assert.AreEqual("MonManometreControle1", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual("MonManometreControle1", octrl.idMateriel)
+        Assert.AreEqual(m_oAgent.idStructure, octrl.idStructure)
         octrl = CType(oColCtrl(1), AutoTest)
-        Assert.AreEqual("MonManometreControle2", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual("MonManometreControle2", octrl.idMateriel)
+        Assert.AreEqual(m_oAgent.idStructure, octrl.idStructure)
         octrl = CType(oColCtrl(2), AutoTest)
-        Assert.AreEqual("MonManometreControle3", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual("MonManometreControle3", octrl.idMateriel)
+        Assert.AreEqual(m_oAgent.idStructure, octrl.idStructure)
 
         'Creation des controles Regulier de tous les matériels
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "TOUS")
@@ -512,13 +512,13 @@ Public Class AutoTestTest
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
 
         Assert.IsTrue(AutoTestManager.save(obj))
 
-        nId = obj.Id
+        nId = obj.id
 
         Dim col As List(Of AutoTest)
         col = AutoTestManager.getcolControlesReguliers(m_oAgent)
@@ -555,8 +555,8 @@ Public Class AutoTestTest
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -576,24 +576,24 @@ Public Class AutoTestTest
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -622,24 +622,24 @@ Public Class AutoTestTest
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
         obj = New AutoTest(m_oAgent)
         obj.dateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
-        obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.idMateriel = "Mano001"
+        obj.idStructure = m_oAgent.idStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 

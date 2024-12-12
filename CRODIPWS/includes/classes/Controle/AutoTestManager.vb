@@ -151,15 +151,15 @@ Public Class AutoTestManager
             Else
                 id = 0
             End If
-            oCtrlRegulier.Id = id + 1
+            oCtrlRegulier.id = id + 1
 
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Controle_Regulier (CTRG_ID) VALUES(" & oCtrlRegulier.Id & ")"
+            bddCommande.CommandText = "INSERT INTO Controle_Regulier (CTRG_ID) VALUES(" & oCtrlRegulier.id & ")"
             bddCommande.ExecuteNonQuery()
 
-            Catch ex As Exception
-                CSDebug.dispFatal("AutoTestManager - create : " & ex.Message)
+        Catch ex As Exception
+            CSDebug.dispFatal("AutoTestManager - create : " & ex.Message)
         End Try
 
         If Not oCsdb Is Nothing Then
@@ -178,13 +178,13 @@ Public Class AutoTestManager
             If Not exists(pCtrlRegulier) Then
                 Dim oTemp As AutoTest
                 Dim oAgent As Agent
-                oAgent = AgentManager.getAgentById(pCtrlRegulier.NumAgent)
+                oAgent = AgentManager.getAgentById(pCtrlRegulier.numAgent)
                 oTemp = create(oAgent)
-                If oTemp.Id = -1 Then
+                If oTemp.id = -1 Then
                     CSDebug.dispError("ControleRegulierManager.save ERROR : Impossible de créer un nouveau controle")
                     bReturn = False
                 Else
-                    pCtrlRegulier.setId(oTemp.Id)
+                    pCtrlRegulier.setId(oTemp.id)
                     bReturn = True
                 End If
             End If
@@ -192,6 +192,8 @@ Public Class AutoTestManager
 
                 If Not bSyncro Then
                     pCtrlRegulier.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                Else
+                    pCtrlRegulier.dateModificationCrodip = pCtrlRegulier.dateModificationAgent
                 End If
 
                 Dim paramsQuery As String
@@ -202,7 +204,7 @@ Public Class AutoTestManager
                 paramsQuery = paramsQuery & " , CTRG_TYPE='" & pCtrlRegulier.type & "'  "
                 paramsQuery = paramsQuery & " , CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
                 paramsQuery = paramsQuery & " , CTRG_ETAT=" & pCtrlRegulier.etat & " "
-                paramsQuery = paramsQuery & " , CTRG_NUMAGENT='" & pCtrlRegulier.NumAgent & "' "
+                paramsQuery = paramsQuery & " , CTRG_NUMAGENT='" & pCtrlRegulier.numAgent & "' "
                 paramsQuery = paramsQuery & " , aidagent='" & pCtrlRegulier.aidagent & "' "
                 paramsQuery = paramsQuery & " , uidagent='" & pCtrlRegulier.uidagent & "' "
                 paramsQuery = paramsQuery & " , uidmateriel='" & pCtrlRegulier.uidmateriel & "' "
@@ -214,13 +216,13 @@ Public Class AutoTestManager
                 bddCommande = oCsdb.getConnection().CreateCommand
                 Dim strQuery As String
                 strQuery = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE "
-                If pCtrlRegulier.Id > 0 Then
-                    strQuery = strQuery & " CTRG_ID=" & pCtrlRegulier.Id & ""
+                If pCtrlRegulier.id > 0 Then
+                    strQuery = strQuery & " CTRG_ID=" & pCtrlRegulier.id & ""
                 Else
                     strQuery = strQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
                     strQuery = strQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
                     strQuery = strQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
-                    strQuery = strQuery & " AND CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
+                    strQuery = strQuery & " AND CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
 
                 End If
                 bddCommande.CommandText = strQuery
@@ -249,7 +251,7 @@ Public Class AutoTestManager
             sqlQuery = sqlQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
             sqlQuery = sqlQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
             sqlQuery = sqlQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
-            sqlQuery = sqlQuery & " AND CTRG_MATID='" & pCtrlRegulier.IdMateriel & "'  "
+            sqlQuery = sqlQuery & " AND CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
 
             cmd.CommandText = sqlQuery
 
@@ -279,7 +281,7 @@ Public Class AutoTestManager
         Try
             bReturn = True
             'Si l'ID n'est pas initialisé => le controle n'a pas été créé
-            If pCtrlRegulier.Id = -1 Then
+            If pCtrlRegulier.id = -1 Then
                 bReturn = False
             End If
             If bReturn Then
@@ -294,7 +296,7 @@ Public Class AutoTestManager
                 Dim bddCommande As DbCommand
                 bddCommande = oCsdb.getConnection().CreateCommand
 
-                bddCommande.CommandText = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE CTRG_ID=" & pCtrlRegulier.Id & ""
+                bddCommande.CommandText = "Update CONTROLE_REGULIER set " & paramsQuery & " WHERE CTRG_ID=" & pCtrlRegulier.id & ""
                 bddCommande.ExecuteNonQuery()
                 oCsdb.free()
             End If
@@ -310,7 +312,7 @@ Public Class AutoTestManager
     Public Shared Function delete(ByVal curObject As AutoTest) As Boolean
         Dim bReturn As Boolean
         Try
-            bReturn = AutoTestManager.delete(curObject.Id)
+            bReturn = AutoTestManager.delete(curObject.id)
         Catch ex As Exception
             CSDebug.dispFatal("ControleManoManager::delete() : " & ex.Message)
             bReturn = False
@@ -358,7 +360,7 @@ Public Class AutoTestManager
                     sqlQuery = sqlQuery & " AND CTRG_date <='" & CSDate.ToCRODIPString(pDateFin).Substring(0, 10) & "'"
                 End If
                 If pSynchro Then
-                    sqlQuery = sqlQuery & " AND ( dateModificationAgent > dateModificationCrodip  or dateModificationCrodip is null)"
+                    sqlQuery = sqlQuery & " AND ( dateModificationAgent > dateModificationCrodip  or dateModificationCrodip is null) And CTRG_ETAT <>-1"
                 End If
                 oDBReader = dbLink.getResult2s(sqlQuery & " ORDER BY CTRG_ID")
 
@@ -452,7 +454,7 @@ Public Class AutoTestManager
             oFile.WriteLine("ID;DateControle;IDStructure;NumAgent;type;IdMateriel;etat;dateModifAgent;dateModifCrodip")
             Dim strLine As String
             For Each oCtrlRegulier In oCol
-                strLine = oCtrlRegulier.Id & ";" & oCtrlRegulier.dateControle.ToString("d") & ";" & oCtrlRegulier.IdStructure & ";" & oCtrlRegulier.NumAgent & ";" & oCtrlRegulier.TypeLibelle & ";" & oCtrlRegulier.idMateriel & ";" & oCtrlRegulier.etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
+                strLine = oCtrlRegulier.id & ";" & oCtrlRegulier.dateControle.ToString("d") & ";" & oCtrlRegulier.idStructure & ";" & oCtrlRegulier.numAgent & ";" & oCtrlRegulier.typeLibelle & ";" & oCtrlRegulier.idMateriel & ";" & oCtrlRegulier.etat & ";" & oCtrlRegulier.dateModificationAgent & ";" & oCtrlRegulier.dateModificationCrodip
                 oFile.WriteLine(strLine)
             Next
             oFile.Close()
