@@ -326,7 +326,6 @@ Public Class Agent
             _IsGestionnaire = value
         End Set
     End Property
-    <XmlElement("SignatureElect")>
     Public Property isSignElecActive As Boolean
         Get
             Return _IsSignElecActive

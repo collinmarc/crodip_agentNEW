@@ -371,7 +371,7 @@ Public Class AgentManager
     ''' <param name="pNom"></param>
     ''' <param name="pIdStructure"></param>
     ''' <returns></returns>
-    Private Shared Sub createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer)
+    Private Shared Sub createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer, puidStructure As Integer)
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
@@ -383,7 +383,7 @@ Public Class AgentManager
 
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom, idStructure) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "'," & pIdStructure & ")"
+            bddCommande.CommandText = "INSERT INTO Agent (id,numeroNational, nom, idStructure, uidstructure) VALUES (" & id & ",'" & pNumeronational & "', '" & pNom & "'," & pIdStructure & "," & puidStructure & " )"
             bddCommande.ExecuteNonQuery()
             oCsdb.free()
             'oAgent = getAgentByNumeroNational(pNumeronational)
@@ -465,7 +465,7 @@ Public Class AgentManager
                 Dim nb As Integer = bddCommande.ExecuteScalar()
                 If nb = 0 Then
                     oCsdb.free()
-                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.uidStructure)
+                    createAgent(agent.id, agent.numeroNational, agent.nom, agent.idStructure, agent.uidstructure)
                     oCsdb = New CSDb(True)
                     bddCommande = oCsdb.getConnection.CreateCommand()
                 End If
@@ -479,6 +479,10 @@ Public Class AgentManager
                 End If
 
                 paramsQuery = paramsQuery & " id=" & agent.id
+                paramsQuery = paramsQuery & " ,uid=" & agent.uid
+                paramsQuery = paramsQuery & " ,aid='" & agent.aid & "'"
+                paramsQuery = paramsQuery & " ,idstructure=" & agent.idStructure
+                paramsQuery = paramsQuery & " ,uidstructure=" & agent.uidstructure
                 If Not agent.numeroNational Is Nothing Then
                     paramsQuery = paramsQuery & ", numeroNational='" & CSDb.secureString(agent.numeroNational) & "'"
                 End If
@@ -491,7 +495,6 @@ Public Class AgentManager
                 If Not agent.prenom Is Nothing Then
                     paramsQuery = paramsQuery & " , prenom='" & CSDb.secureString(agent.prenom) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & agent.uidStructure & ""
                 If Not agent.telephonePortable Is Nothing Then
                     paramsQuery = paramsQuery & " , telephonePortable='" & CSDb.secureString(agent.telephonePortable) & "'"
                 End If
