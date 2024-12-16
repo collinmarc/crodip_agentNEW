@@ -1,5 +1,7 @@
 #TRUNK
 MASTER
+BUILD 20241216120000
+	0001726: synchronisation des Transferts de pulvés
 
 BUILD 20241212170000
 	0001721: synchro des tarifs

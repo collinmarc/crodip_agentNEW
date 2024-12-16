@@ -624,6 +624,11 @@ Public Class Synchronisation
                             'Case 2 ' SENDPROFILAGENT_UPDATE
                             '                           listSynchro = listSynchro & "Catégorie de tarif (n°" & tmpUpdatePrestationCategorie.id & ") ; "
                             'PrestationCategorieManager.save(PrestationCategorieManager.xml2object(updatedObject), m_Agent, True)
+                            Case 4 ' CREATE
+                                PrestationCategorieManager.save(UpdatedObject, m_Agent, True)
+                                'Mise à jour des Pulvé et des diagnostic
+                                PrestationCategorieManager.UpdateTarif(UpdatedObject)
+
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationCategorie) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST
@@ -652,9 +657,9 @@ Public Class Synchronisation
                             Case 0, 2 ' OK
                                 PrestationTarifManager.setSynchro(tmpUpdatePrestationTarif)
                             'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
-                            'Case 2 ' SENDPROFILAGENT_UPDATE
-                            'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
-                            'PrestationTarifManager.save(PrestationTarifManager.xml2object(updatedObject), m_Agent, True)
+                            Case 4 ' CREATE
+                                'listSynchro = listSynchro & "Tarif (n°" & tmpUpdatePrestationTarif.id & ") ; "
+                                PrestationTarifManager.save(UpdatedObjectT, m_Agent, True)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSPrestationTarif) - Le web service a répondu : Non-Ok")
                             Case 9 ' BADREQUEST

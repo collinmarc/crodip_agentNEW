@@ -308,10 +308,12 @@ Public Class gestion_tarifs
     Private Sub AddPrestation()
         If Not DataGridView1.CurrentRow Is Nothing Then
             Dim categorieId As Integer
+            Dim uidcategorie As Integer
             Dim oTarif As Tarif = m_bsTarif.Current
             Dim nIndex As Integer = m_bsTarif.Position
             If oTarif.isCategorie Then
                 categorieId = oTarif.id
+                uidcategorie = oTarif.uid
                 'Recherche du dernier tarif de la categorie
                 Dim bFin As Boolean = False
                 Dim obj As Tarif
@@ -329,9 +331,10 @@ Public Class gestion_tarifs
             Else
                 Dim oPresta As PrestationTarif = m_bsTarif.Current
                 categorieId = oPresta.idCategorie
+                uidcategorie = oPresta.uidcategorie
                 nIndex = nIndex + 1
             End If
-            Dim formAddPresta As New gestion_tarifs_addPresta(categorieId)
+            Dim formAddPresta As New gestion_tarifs_addPresta(m_Agent, categorieId, uidcategorie)
             If formAddPresta.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 m_bsTarif.Insert(nIndex, formAddPresta.Tarif)
             End If
@@ -367,7 +370,7 @@ Public Class gestion_tarifs
                         Else
                             oPrestation = oTarif
                             oPrestation.idCategorie = oCategorie.id
-
+                            oPrestation.uidcategorie = oCategorie.uid
                         End If
                     Next
                 End If

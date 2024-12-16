@@ -1283,19 +1283,22 @@ Public Class Pulverisateur
     ''' <param name="pExploitCibleId"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function TransfertPulve(pExploitOrigineId As String, pExploitCibleId As String, pAgent As Agent) As Boolean
+    Public Function TransfertPulve(pExploitOrigine As Exploitation, pExploitCible As Exploitation, pAgent As Agent) As Boolean
         Dim bReturn As Boolean
         Try
             bReturn = False
             Dim oExpl2Pulve As ExploitationTOPulverisateur
-            oExpl2Pulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(pExploitOrigineId, id)
+            oExpl2Pulve = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(pExploitOrigine.id, id)
             If Not String.IsNullOrEmpty(oExpl2Pulve.id) Then
                 oExpl2Pulve.isSupprimeCoProp = True
                 ExploitationTOPulverisateurManager.save(oExpl2Pulve, pAgent)
             End If
             oExpl2Pulve = New ExploitationTOPulverisateur()
-            oExpl2Pulve.idExploitation = pExploitCibleId
+            oExpl2Pulve.idExploitation = pExploitCible.id
+            oExpl2Pulve.uidexploitation = pExploitCible.uid
             oExpl2Pulve.idPulverisateur = Me.id
+            oExpl2Pulve.uidpulverisateur = Me.uid
+            oExpl2Pulve.uidstructure = Me.uidstructure
             bReturn = ExploitationTOPulverisateurManager.save(oExpl2Pulve, pAgent)
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.TransfertPulve ERR" & ex.Message)

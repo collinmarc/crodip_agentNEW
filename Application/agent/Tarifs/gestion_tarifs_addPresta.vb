@@ -3,7 +3,9 @@ Imports CRODIPWS
 Public Class gestion_tarifs_addPresta
     Inherits System.Windows.Forms.Form
 
-    Public categorieId As String
+    Public _idcategorie As Integer
+    Public _uidcategorie As Integer
+    Public _Agent As Agent
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents lblCategorie As System.Windows.Forms.Label
     Private _Tarif As PrestationTarif
@@ -18,11 +20,12 @@ Public Class gestion_tarifs_addPresta
 
 #Region " Code généré par le Concepteur Windows Form "
 
-    Public Sub New(ByVal tmpCategorieId As String)
+    Public Sub New(pAgent As Agent, ByVal pidCategorie As Integer, puidCategorie As Integer)
         MyBase.New()
 
-        categorieId = tmpCategorieId
-
+        _idcategorie = pidCategorie
+        _uidcategorie = puidCategorie
+        _Agent = pAgent
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
@@ -317,8 +320,10 @@ Public Class gestion_tarifs_addPresta
         Me.Cursor = Cursors.WaitCursor
         If tb_description.Text <> "" And tb_tarifHT.Text <> "" And tb_TVA.Text <> "" Then
             Tarif = New PrestationTarif
-            Tarif.idCategorie = CType(categorieId, Integer)
-            Tarif.idStructure = agentCourant.idStructure
+            Tarif.idCategorie = CType(_idcategorie, Integer)
+            Tarif.uidcategorie = CType(_uidcategorie, Integer)
+            Tarif.idStructure = _Agent.idStructure
+            Tarif.uidstructure = _Agent.uidstructure
             Tarif.description = tb_description.Text
             Tarif.tarifHT = tb_tarifHT.DecimalValue
             Tarif.tarifTTC = tb_tarifTTC.DecimalValue
@@ -345,7 +350,7 @@ Public Class gestion_tarifs_addPresta
     Private Sub gestion_tarifs_addPresta_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         tb_TVA.Text = My.Settings.TxTVADefaut
         Dim oCat As PrestationCategorie
-        oCat = PrestationCategorieManager.getCategoryById(categorieId, agentCourant.idStructure)
+        oCat = PrestationCategorieManager.getCategoryById(_idcategorie, _Agent.idStructure)
         If Not oCat Is Nothing Then
             lblCategorie.Text = oCat.description
         End If

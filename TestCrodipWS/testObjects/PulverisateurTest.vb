@@ -188,7 +188,7 @@ Public Class Pulverisateurtest
 
         Dim oRelation As ExploitationTOPulverisateur
 
-        m_oPulve.TransfertPulve(m_oExploitation.id, oExploit2.id, m_oAgent)
+        m_oPulve.TransfertPulve(m_oExploitation, oExploit2, m_oAgent)
 
         oRelation = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(m_oExploitation.id, m_oPulve.id)
         'La relation a bien été supprimée

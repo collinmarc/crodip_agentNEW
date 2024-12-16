@@ -164,6 +164,29 @@ Public Class PrestationCategorieManager
         End If
         Return bReturn
     End Function
+    Public Shared Function UpdateTarif(ByVal pCategorie As PrestationCategorie) As Boolean
+        Dim oCsdb As CSDb = Nothing
+        Dim bReturn As Boolean = False
+
+        Try
+
+            Dim query As String
+            Dim Paramsquery As String
+            oCsdb = New CSDb(True)
+            'MISE A JOUR DE TARIF
+            Paramsquery = "uidCategorie = " & pCategorie.uid
+            Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
+            query = "UPDATE PrestationTarif SET " & Paramsquery & " WHERE (uidCategorie =0 or uidCategorie is null ) and idCategorie = " & pCategorie.id & ""
+            bReturn = oCsdb.Execute(query)
+            If Not bReturn Then
+                CSDebug.dispError("PrestationCategorieManager.UpdateTarif ERR EX1")
+            End If
+        Catch ex As Exception
+            CSDebug.dispError("PrestationCategorieManager.UpdateTarif ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
     ''' <summary>
     ''' Retourne le prochain ID disposible pour la structure
     ''' </summary>
@@ -317,18 +340,26 @@ Public Class PrestationCategorieManager
                     Dim tmpObject As New PrestationCategorie
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpResults.FieldCount()
-                        Select Case tmpResults.GetName(tmpColId)
-                            Case "id"
-                                tmpObject.id = tmpResults.Item(tmpColId)
-                            Case "idStructure"
-                                tmpObject.idStructure = tmpResults.Item(tmpColId)
-                            Case "libelle"
-                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip"
-                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                        End Select
+                        If Not tmpResults.IsDBNull(tmpColId) Then
+                            Select Case tmpResults.GetName(tmpColId).ToUpper().Trim()
+                                Case "id".ToUpper.Trim()
+                                    tmpObject.id = tmpResults.Item(tmpColId)
+                                Case "aid".ToUpper.Trim()
+                                    tmpObject.aid = tmpResults.Item(tmpColId)
+                                Case "uid".ToUpper.Trim()
+                                    tmpObject.uid = tmpResults.Item(tmpColId)
+                                Case "idStructure".ToUpper.Trim()
+                                    tmpObject.idStructure = tmpResults.Item(tmpColId)
+                                Case "uidstructure".ToUpper.Trim()
+                                    tmpObject.uidstructure = tmpResults.Item(tmpColId)
+                                Case "libelle".ToUpper.Trim()
+                                    tmpObject.description = tmpResults.Item(tmpColId).ToString()
+                                Case "dateModificationAgent".ToUpper.Trim()
+                                    tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                                Case "dateModificationCrodip".ToUpper.Trim()
+                                    tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                            End Select
+                        End If
                         tmpColId = tmpColId + 1
                     End While
                     '# Ajout au tableau de résultats
@@ -366,18 +397,26 @@ Public Class PrestationCategorieManager
                     Dim tmpObject As New PrestationCategorie
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpResults.FieldCount()
-                        Select Case tmpResults.GetName(tmpColId)
-                            Case "id"
-                                tmpObject.id = tmpResults.Item(tmpColId)
-                            Case "idStructure"
-                                tmpObject.idStructure = tmpResults.Item(tmpColId)
-                            Case "libelle"
-                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
-                            Case "dateModificationAgent"
-                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                            Case "dateModificationCrodip"
-                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                        End Select
+                        If Not tmpResults.IsDBNull(tmpColId) Then
+                            Select Case tmpResults.GetName(tmpColId).ToUpper().Trim()
+                                Case "id".ToUpper().Trim()
+                                    tmpObject.id = tmpResults.Item(tmpColId)
+                                Case "aid".ToUpper().Trim()
+                                    tmpObject.aid = tmpResults.Item(tmpColId)
+                                Case "uid".ToUpper().Trim()
+                                    tmpObject.uid = tmpResults.Item(tmpColId)
+                                Case "idStructure".ToUpper().Trim()
+                                    tmpObject.idStructure = tmpResults.Item(tmpColId)
+                                Case "uidstructure".ToUpper().Trim()
+                                    tmpObject.uidstructure = tmpResults.Item(tmpColId)
+                                Case "libelle".ToUpper().Trim()
+                                    tmpObject.description = tmpResults.Item(tmpColId).ToString()
+                                Case "dateModificationAgent".ToUpper().Trim()
+                                    tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                                Case "dateModificationCrodip".ToUpper().Trim()
+                                    tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                            End Select
+                        End If
                         tmpColId = tmpColId + 1
                     End While
                     '# Ajout au tableau de résultats
@@ -414,18 +453,26 @@ Public Class PrestationCategorieManager
                 Dim tmpObject As New PrestationCategorie
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
-                    Select Case tmpResults.GetName(tmpColId)
-                        Case "id"
-                            tmpObject.id = tmpResults.Item(tmpColId)
-                        Case "idStructure"
-                            tmpObject.idStructure = tmpResults.Item(tmpColId)
-                        Case "libelle"
-                            tmpObject.description = tmpResults.Item(tmpColId).ToString()
-                        Case "dateModificationAgent"
-                            tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                        Case "dateModificationCrodip"
-                            tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
-                    End Select
+                    If Not tmpResults.IsDBNull(tmpColId) Then
+                        Select Case tmpResults.GetName(tmpColId).ToUpper().Trim()
+                            Case "id".ToUpper().Trim()
+                                tmpObject.id = tmpResults.Item(tmpColId)
+                            Case "aid".ToUpper().Trim()
+                                tmpObject.aid = tmpResults.Item(tmpColId)
+                            Case "uid".ToUpper().Trim()
+                                tmpObject.uid = tmpResults.Item(tmpColId)
+                            Case "idStructure".ToUpper().Trim()
+                                tmpObject.idStructure = tmpResults.Item(tmpColId)
+                            Case "uidstructure".ToUpper().Trim()
+                                tmpObject.uidstructure = tmpResults.Item(tmpColId)
+                            Case "libelle".ToUpper().Trim()
+                                tmpObject.description = tmpResults.Item(tmpColId).ToString()
+                            Case "dateModificationAgent".ToUpper().Trim()
+                                tmpObject.dateModificationAgent = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                            Case "dateModificationCrodip".ToUpper().Trim()
+                                tmpObject.dateModificationCrodip = CSDate.ToCRODIPString(tmpResults.Item(tmpColId).ToString())
+                        End Select
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 '# Ajout au tableau de résultats
