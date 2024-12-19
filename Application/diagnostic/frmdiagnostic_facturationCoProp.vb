@@ -14,6 +14,7 @@ Imports CRODIPWS
 
 Public Class frmdiagnostic_facturationCoProp
     Inherits System.Windows.Forms.Form
+    Private _bFermetureAutorise As Boolean = False
     Public ReadOnly Property lstFacture() As List(Of Facture)
         Get
             Return m_olstFacture
@@ -2006,11 +2007,7 @@ Public Class frmdiagnostic_facturationCoProp
                 End If
             End If
         End If
-        If MdiParent IsNot Nothing Then
-            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
-        Else
-            Me.Close()
-        End If
+        FermetureFenetre()
     End Sub
 
     Private Sub m_bsFacture_CurrentChanged(sender As Object, e As EventArgs) Handles m_bsFacture.CurrentChanged
@@ -2112,14 +2109,22 @@ Public Class frmdiagnostic_facturationCoProp
             If m_oDiag IsNot Nothing Then
                 DiagnosticManager.UpdateFileNames(m_oDiag)
             End If
-            If MdiParent IsNot Nothing Then
-                TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
-            Else
-                Me.Close()
-            End If
+
+            FermetureFenetre()
         End If
 
     End Sub
+
+    Private Sub FermetureFenetre()
+        If MdiParent IsNot Nothing Then
+            _bFermetureAutorise = True
+            TryCast(Me.MdiParent, parentContener).Action(New ActionFDiagNext())
+        Else
+            _bFermetureAutorise = True
+            Me.Close()
+        End If
+    End Sub
+
     Private Sub EnableClient(pEnable As Boolean)
         tbrsClient.Enabled = pEnable
         tbNomClient.Enabled = pEnable
@@ -2148,5 +2153,12 @@ Public Class frmdiagnostic_facturationCoProp
 
     Private Sub dgvLignes_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLignes.CellMouseDoubleClick
 
+    End Sub
+
+    Private Sub frmdiagnostic_facturationCoProp_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        'on ne peur fermer la fenêtre que par les boutons
+        If Not _bFermetureAutorise Then
+            e.Cancel = True
+        End If
     End Sub
 End Class

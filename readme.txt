@@ -2,6 +2,8 @@
 MASTER
 BUILD 20241216120000
 	0001726: synchronisation des Transferts de pulvés, isSignElecActive
+	0001727: Affichage des date de prochain controle dans la liste des exploitations
+	0001728: Interdire la fermeture de la fenêtre facture par la croix
 
 BUILD 20241212170000
 	0001721: synchro des tarifs
