@@ -3112,6 +3112,7 @@ Public Class liste_diagnosticPulve2
 
                     m_oDiag.isSupprime = False
                     m_oDiag.diagRemplacementId = idDiagOrigine
+                    m_oDiag.uid = -1
                     m_oDiag.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
                     '                m_oDiag.controleDateDebut = CSDate.TOCRODIPString(Date.Now)
                     '                m_oDiag.controleDateFin = CSDate.TOCRODIPString(Date.Now)
@@ -3301,6 +3302,8 @@ Public Class liste_diagnosticPulve2
                 m_oDiag.SetAsContreVisite(agentCourant)
                 'on le Clone
                 diagnosticCourant = m_oDiag.Clone()
+                diagnosticCourant.uid = -1
+                diagnosticCourant.id = ""
                 diagnosticCourant.controleCodePostal = ""
                 diagnosticCourant.controleCommune = ""
                 diagnosticCourant.controleNomSite = ""

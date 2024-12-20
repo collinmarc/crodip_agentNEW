@@ -79,46 +79,31 @@ Public Class CRODIPTest
         oCSDB.free()
 
         'Création de la Structure
-        m_oStructure = New [Structure]()
-        m_oStructure.id = m_idStructure
-        m_oStructure.idCrodip = "8888"
-        m_oStructure.nom = "Structure TestsUnitaires"
+        m_oStructure = StructureManager.WSgetById(22, "22")
+        Assert.IsNotNull(m_oStructure, "erreur en Récupération de la structure")
         StructureManager.save(m_oStructure)
+        m_idStructure = m_oStructure.id
 
         'Creation d'un agent
-        m_oAgent = New Agent(m_IdAgent, "TESTUNIT", "TEST", m_oStructure.id)
-        m_oAgent.uidStructure = m_idStructure
+        m_oAgent = AgentManager.WSgetByNumeroNational("MCO22")
         m_oAgent.nom = "Agent de test unitaires"
         m_oAgent.prenom = "Agent de test unitaires"
         m_oAgent.telephonePortable = "0606060606"
         m_oAgent.eMail = "a@a.com"
         m_oAgent.isActif = True
-        m_oAgent.numeroNational = "004"
-        m_oAgent.bTest = True   'JE SUIS EN TEST
+        Assert.IsNotNull(m_oAgent, "erreur en Récupération d'un agent")
         AgentManager.save(m_oAgent)
-        Assert.IsNotNull(m_oAgent, "erreur en création d'un agent")
-        '        AgentManager.getWSUpdates(m_oAgent.id,
+        m_IdAgent = m_oAgent.id
+
 
         'Récupération du banc de la structure
-        m_oBanc = BancManager.getBancById(m_idStructure & "-" & m_IdAgent & "-1")
-        If m_oBanc.id = "0" Or m_oBanc.id = "" Then
-            'Si il n'existe pas on le récupère du WS
-            m_oBanc = BancManager.WSgetById(0, m_idStructure & "-" & m_IdAgent & "-1")
-            'Si il n'existe pas sur le WS , je je créé en base (Normalement impossible)
-            If m_oBanc Is Nothing Then
-                CSDebug.dispError("Le banc n'existe pas je le recree, (Normalement impossible)")
-                m_oBanc = New CRODIPWS.Banc()
-                m_oBanc.id = BancManager.FTO_getNewId(m_oAgent)
-                m_oBanc.uidstructure = m_oAgent.uidStructure
-            End If
-            m_oBanc.uidstructure = m_idStructure
-            BancManager.save(m_oBanc)
-        End If
+        'Si il n'existe pas on le récupère du WS
+        m_oBanc = BancManager.WSgetById(-1, "00791")
+        Assert.IsNotNull(m_oAgent, "erreur en Récupération du banc")
 
         Dim oSynchro As New Synchronisation(m_oAgent)
 
         oSynchro.MAJDateDerniereSynchro()
-
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté

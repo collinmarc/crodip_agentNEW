@@ -6083,6 +6083,61 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(125.5D, oDiag.TotalHT)
 
     End Sub
+    <TestMethod()>
+    Public Sub testCVEtSynchro()
+        Dim oDiag As Diagnostic
+        Dim oDiag2 As Diagnostic
+        Dim idDiag As String
+        Dim idDiag2 As String
+        Dim oSynchro As New Synchronisation(m_oAgent)
+        oSynchro.Synchro(True, True)
+
+        oDiag = createAndSaveDiagnostic()
+        oDiag.controleEtat = Diagnostic.controleEtatNOKCV
+        DiagnosticManager.save(oDiag)
+        idDiag = oDiag.id
+
+        oSynchro.runAscSynchro()
+        oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+
+        Assert.AreEqual(oDiag.controleEtat, Diagnostic.controleEtatNOKCV)
+
+        'Idem Dans l'interface
+        'on le positionne comme une contrevisite
+        oDiag.SetAsContreVisite(m_oAgent)
+        'on le Clone
+        oDiag2 = oDiag.Clone()
+        oDiag2.controleCodePostal = ""
+        oDiag2.controleCommune = ""
+        oDiag2.controleNomSite = ""
+        oDiag2.controleSite = ""
+        oDiag2.controleIsSiteSecurise = False
+        oDiag2.controleIsRecupResidus = False
+        oDiag2.proprietaireRepresentant = ""
+        oDiag2.controleIsPremierControle = False
+        oDiag2.isContrevisiteImmediate = False
+        oDiag2.TotalHT = 0
+        oDiag2.TotalTVA = 0
+        oDiag2.TotalTTC = 0
+        oDiag2.uid = -1
+        oDiag2.id = DiagnosticManager.getNewId(m_oAgent)
+
+        oDiag2.controleEtat = Diagnostic.controleEtatOK
+        DiagnosticManager.save(oDiag2)
+        idDiag2 = oDiag2.id
+        oDiag2 = DiagnosticManager.getDiagnosticById(idDiag2)
+        Assert.AreEqual(oDiag2.controleEtat, Diagnostic.controleEtatOK)
+
+        oSynchro.Synchro(True, True)
+        oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+        Assert.AreEqual(oDiag.controleEtat, Diagnostic.controleEtatNOKCV)
+
+        oDiag2 = DiagnosticManager.getDiagnosticById(idDiag2)
+        Assert.AreEqual(oDiag2.controleEtat, Diagnostic.controleEtatOK)
+
+
+
+    End Sub
 
 
 

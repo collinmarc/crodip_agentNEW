@@ -1,469 +1,937 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ArrayOfParamDiag>
+
   <ParamDiag>
+
     <id>1</id>
+
     <libelle>Cultures basses</libelle>
+
     <fichierConfig>paramdiagRampe.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
 		<!-- REGLE >=MINI AND <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9.999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="10" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="2.0">
+
           <!-- Ecart en valeur <= 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2.001" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
-          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="1000" Imprecision="2" />
+
+          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>10</limite8333>
+
       <!--Tableau des pressions-->
+
       <Pression1>1.6</Pression1>
+
       <Pression2>2</Pression2>
+
       <Pression3>3</Pression3>
+
       <Pression4>4</Pression4>
+
       <PressionParDefaut>4</PressionParDefaut>
+
     </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
-    </ParamDiagCalc922>
-  </ParamDiag>
-  <ParamDiag>
-    <id>2</id>
-    <libelle>Arbres</libelle>
-    <fichierConfig>paramdiagArbre.xml</fichierConfig>
-    <ParamDiagCalc542>
-      <!-- REGLE > MINI <=MAXI -->
-      <!-- Ecart Constant >0-->
-      <TYPEECART Type="CONSTANT">
-        <!--Plage Presssion <10 bars-->
-        <PLAGEPRESSION Mini="0" Maxi="9,999">
-          <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
-          <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
-          <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
-          <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
-        </PLAGEPRESSION>
-        <!--Plage Presssion >=10 bars -->
-        <PLAGEPRESSION Mini="9,999" Maxi="999">
-          <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
-          <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
-          <!-- Ecart en valeur >1 => Imprecision = FORTE-->
-          <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
-        </PLAGEPRESSION>
-      </TYPEECART>
-      <!-- Ecart Variable-->
-      <TYPEECART Type="VARIABLE">
-        <!--Plage Presssion <2 bars -->
-        <PLAGEPRESSION Mini="0" Maxi="1.999">
-          <!-- Ecart en valeur < 0,2 => Imprecision = FAIBLE -->
-          <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
-          <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
-          <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
-        </PLAGEPRESSION>
-        <!--Plage Presssion >=2 bars -->
-        <PLAGEPRESSION Mini="2" Maxi="999">
-          <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
-          <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
-          <!-- Ecart en % > 10%  => Imprecision = FORTE -->
-          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10,001" Maxi="100" Imprecision="2" />
-        </PLAGEPRESSION>
-      </TYPEECART>
-    </ParamDiagCalc542>
-    <ParamDiagCalc833>
-      <!-- Hétérogénéité-->
-      <limite8332>10</limite8332>
-      <!-- Ecart-->
-      <limite8333>15</limite8333>
-      <!--Tableau des pressions-->
-      <Pression1>5</Pression1>
-      <Pression2>10</Pression2>
-      <Pression3>15</Pression3>
-      <Pression4>20</Pression4>
-      <PressionParDefaut>4</PressionParDefaut>
-    </ParamDiagCalc833>
-    <ParamDiagCalc922>
-      <limitePctBuseUsees>33</limitePctBuseUsees>
-      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
 
   </ParamDiag>
+
   <ParamDiag>
+
+    <id>2</id>
+
+    <libelle>Arbres</libelle>
+
+    <fichierConfig>paramdiagArbre.xml</fichierConfig>
+
+    <ParamDiagCalc542>
+
+      <!-- REGLE > MINI <=MAXI -->
+
+      <!-- Ecart Constant >0-->
+
+      <TYPEECART Type="CONSTANT">
+
+        <!--Plage Presssion <10 bars-->
+
+        <PLAGEPRESSION Mini="0" Maxi="9,999">
+
+          <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
+          <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
+          <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
+          <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
+        </PLAGEPRESSION>
+
+        <!--Plage Presssion >=10 bars -->
+
+        <PLAGEPRESSION Mini="9,999" Maxi="999">
+
+          <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
+          <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
+          <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
+          <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
+        </PLAGEPRESSION>
+
+      </TYPEECART>
+
+      <!-- Ecart Variable-->
+
+      <TYPEECART Type="VARIABLE">
+
+        <!--Plage Presssion <2 bars -->
+
+        <PLAGEPRESSION Mini="0" Maxi="1.999">
+
+          <!-- Ecart en valeur < 0,2 => Imprecision = FAIBLE -->
+
+          <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
+          <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
+          <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
+        </PLAGEPRESSION>
+
+        <!--Plage Presssion >=2 bars -->
+
+        <PLAGEPRESSION Mini="2" Maxi="999">
+
+          <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
+          <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
+          <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
+          <ECART TypeValeur="%_PRESSION_REELLE" Mini="10,001" Maxi="100" Imprecision="2" />
+
+        </PLAGEPRESSION>
+
+      </TYPEECART>
+
+    </ParamDiagCalc542>
+
+    <ParamDiagCalc833>
+
+      <!-- Hétérogénéité-->
+
+      <limite8332>10</limite8332>
+
+      <!-- Ecart-->
+
+      <limite8333>15</limite8333>
+
+      <!--Tableau des pressions-->
+
+      <Pression1>5</Pression1>
+
+      <Pression2>10</Pression2>
+
+      <Pression3>15</Pression3>
+
+      <Pression4>20</Pression4>
+
+      <PressionParDefaut>4</PressionParDefaut>
+
+    </ParamDiagCalc833>
+
+    <ParamDiagCalc922>
+
+      <limitePctBuseUsees>33</limitePctBuseUsees>
+
+      <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
+    </ParamDiagCalc922>
+
+
+
+  </ParamDiag>
+
+  <ParamDiag>
+
     <id>3</id>
+
     <libelle>Vigne</libelle>
+
     <fichierConfig>paramdiagVigne.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE > MINI <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9,999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="9,999" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="1.999">
+
           <!-- Ecart en valeur < 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10,001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>15</limite8333>
+
         <!--Tableau des pressions-->
+
         <Pression1>5</Pression1>
+
         <Pression2>10</Pression2>
+
         <Pression3>15</Pression3>
+
         <Pression4>20</Pression4>
+
         <PressionParDefaut>4</PressionParDefaut>
+
       </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>15</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
   <ParamDiag>
+
     <id>4</id>
+
     <libelle>Arbustes</libelle>
+
     <fichierConfig>paramdiagArbre.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE >=MINI AND <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9.999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="10" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="2.0">
+
           <!-- Ecart en valeur <= 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2.001" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>15</limite8333>
+
       <!--Tableau des pressions-->
+
       <Pression1>1.6</Pression1>
+
       <Pression2>2</Pression2>
+
       <Pression3>3</Pression3>
+
       <Pression4>4</Pression4>
+
       <PressionParDefaut>4</PressionParDefaut>
+
     </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
   <ParamDiag>
+
     <id>5</id>
+
     <libelle>Pulvérisateurs combinés</libelle>
+
     <fichierConfig>paramdiagCombine.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE >=MINI AND <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9.999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="10" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="2.0">
+
           <!-- Ecart en valeur <= 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2.001" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>15</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>15</limite8333>
+
       <!--Tableau des pressions-->
+
       <Pression1>1.6</Pression1>
+
       <Pression2>2</Pression2>
+
       <Pression3>3</Pression3>
+
       <Pression4>4</Pression4>
+
       <PressionParDefaut>4</PressionParDefaut>
+
     </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
   <ParamDiag>
+
     <id>6</id>
+
     <libelle>Pulvérisateurs fixes ou semi mobiles</libelle>
+
     <fichierConfig>paramdiagFixeSM.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE >=MINI AND <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9.999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="10" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="2.0">
+
           <!-- Ecart en valeur <= 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2.001" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10.001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>10</limite8333>
+
       <!--Tableau des pressions-->
+
       <Pression1>1.6</Pression1>
+
       <Pression2>2</Pression2>
+
       <Pression3>3</Pression3>
+
       <Pression4>4</Pression4>
+
       <PressionParDefaut>4</PressionParDefaut>
+
     </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
  <ParamDiag>
+
     <id>7</id>
+
     <libelle>Autres arbres ou arbustes</libelle>
+
     <fichierConfig>paramdiagArbre.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE > MINI <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9,999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="9,999" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="1.999">
+
           <!-- Ecart en valeur < 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10,001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>15</limite8333>
+
         <!--Tableau des pressions-->
+
         <Pression1>5</Pression1>
+
         <Pression2>10</Pression2>
+
         <Pression3>15</Pression3>
+
         <Pression4>20</Pression4>
+
         <PressionParDefaut>4</PressionParDefaut>
+
       </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
   <ParamDiag>
+
     <id>8</id>
+
     <libelle>Culture maraîchères palissées</libelle>
+
     <fichierConfig>paramdiagArbre.xml</fichierConfig>
+
     <ParamDiagCalc542>
+
       <!-- REGLE > MINI <=MAXI -->
+
       <!-- Ecart Constant >0-->
+
       <TYPEECART Type="CONSTANT">
+
         <!--Plage Presssion <10 bars-->
+
         <PLAGEPRESSION Mini="0" Maxi="9,999">
+
           <!-- Ecart en valeur < 0,5 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="0,5" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,5 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,501" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=10 bars -->
+
         <PLAGEPRESSION Mini="9,999" Maxi="999">
+
           <!-- Ecart en valeur <= 1 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,001" Maxi="1" Imprecision="1" />
+
           <!-- Ecart en valeur >1 => Imprecision = FORTE-->
+
           <ECART TypeValeur="VALEUR" Mini="1,001" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
       <!-- Ecart Variable-->
+
       <TYPEECART Type="VARIABLE">
+
         <!--Plage Presssion <2 bars -->
+
         <PLAGEPRESSION Mini="0" Maxi="1.999">
+
           <!-- Ecart en valeur < 0,2 => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,1" Maxi="0,2" Imprecision="1" />
+
           <!-- Ecart en valeur > 0,2 => Imprecision = FORTE -->
+
           <ECART TypeValeur="VALEUR" Mini="0,201" Maxi="999" Imprecision="2" />
+
         </PLAGEPRESSION>
+
         <!--Plage Presssion >=2 bars -->
+
         <PLAGEPRESSION Mini="2" Maxi="999">
+
           <!-- Ecart en % comprise entre 5 et 10  => Imprecision = FAIBLE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="5" Maxi="10" Imprecision="1" />
+
           <!-- Ecart en % > 10%  => Imprecision = FORTE -->
+
           <ECART TypeValeur="%_PRESSION_REELLE" Mini="10,001" Maxi="100" Imprecision="2" />
+
         </PLAGEPRESSION>
+
       </TYPEECART>
+
     </ParamDiagCalc542>
+
     <ParamDiagCalc833>
+
       <!-- Hétérogénéité-->
+
       <limite8332>10</limite8332>
+
       <!-- Ecart-->
+
       <limite8333>15</limite8333>
+
         <!--Tableau des pressions-->
+
         <Pression1>5</Pression1>
+
         <Pression2>10</Pression2>
+
         <Pression3>15</Pression3>
+
         <Pression4>20</Pression4>
+
         <PressionParDefaut>4</PressionParDefaut>
+
       </ParamDiagCalc833>
+
     <ParamDiagCalc922>
+
       <limitePctBuseUsees>33</limitePctBuseUsees>
+
       <pctToleranceDebitNominal>5</pctToleranceDebitNominal>
+
     </ParamDiagCalc922>
+
   </ParamDiag>
+
  
+
 </ArrayOfParamDiag>
