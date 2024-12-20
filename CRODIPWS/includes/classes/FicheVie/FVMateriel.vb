@@ -8,7 +8,7 @@ Public MustInherit Class FVMateriel
     Private _id As String
     Private _type As String
     Private _auteur As String
-    Private _aidAgentControleur As Integer
+    Private _aidAgentControleur As String
     Private _uidAgentControleur As Integer
     Private _caracteristiques As String
     Private _dateModificationAgent As String
@@ -86,17 +86,21 @@ Public MustInherit Class FVMateriel
     <XmlIgnore>
     Public Property idAgentControleur() As Integer
         Get
-            Return _aidAgentControleur
+            If IsNumeric(_aidAgentControleur) Then
+                Return _aidAgentControleur
+            Else
+                Return 0
+            End If
         End Get
         Set(ByVal Value As Integer)
             _aidAgentControleur = Value
         End Set
     End Property
-    Public Property aidagentcontroleur() As Integer
+    Public Property aidagentcontroleur() As String
         Get
             Return _aidAgentControleur
         End Get
-        Set(ByVal Value As Integer)
+        Set(ByVal Value As String)
             _aidAgentControleur = Value
         End Set
     End Property

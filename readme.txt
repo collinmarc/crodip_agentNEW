@@ -4,7 +4,8 @@ BUILD XXXXXXX
 	0001739: ContreVisite et synchro
 	0001737: En catégorie rampe, j’ai les défaut 2.6 et 2.7 actif
 	0001729: Le numéro de mano de réf sur le logiciel agent, n’est pas le sticker apposé
-	
+	0001731: Absence de remonté de l’historique de vérif Mano de controle sur le logiciel agent
+
 	BUILD 20241216120000
 	0001726: synchronisation des Transferts de pulvés, isSignElecActive
 	0001727: Affichage des date de prochain controle dans la liste des exploitations

@@ -504,7 +504,7 @@ Public Class FVManometreControleManager
         If pIdManometre <> "" Then
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.idManometre='" & pIdManometre & "' ORDER BY dateModif ASC"
+            bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.idManometre='" & pIdManometre & "' ORDER BY dateModif DESC"
             Try
 
                 ' On récupère les résultats
