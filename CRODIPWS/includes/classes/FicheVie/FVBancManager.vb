@@ -370,18 +370,18 @@ Public Class FVBancManager
         Return bReturn
     End Function 'delete
 
-    Private Shared Function getNewId(ByVal pIdAgent As String) As String
+    Public Shared Function getNewId(ByVal pIdAgent As String) As String
         ' déclarations
         Dim oAgent As Agent
         Dim tmpObjectId As String = ""
         oAgent = AgentManager.getAgentById(pIdAgent)
         If oAgent.id = pIdAgent Then
-            If oAgent.uidStructure <> 0 Then
+            If oAgent.uidstructure <> 0 Then
                 Dim bdd As New CSDb(True)
 
                 Try
                     ' On récupère les résultats
-                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.uidStructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
+                    Dim oDataReader As DbDataReader = bdd.getResult2s("SELECT `id` FROM `FichevieBancMesure` WHERE `id` LIKE '" & oAgent.uidstructure & "-" & oAgent.id & "-%' ORDER BY `id` DESC")
                     ' Puis on les parcours
                     Dim newId As Integer = 0
                     While oDataReader.Read()
@@ -396,7 +396,7 @@ Public Class FVBancManager
                     End While
                     oDataReader.Close()
                     newId = newId + 1
-                    tmpObjectId = oAgent.uidStructure & "-" & oAgent.id & "-" & (newId + 1)
+                    tmpObjectId = oAgent.uidstructure & "-" & oAgent.id & "-" & (newId + 1)
                 Catch ex As Exception ' On intercepte l'erreur
                     CSDebug.dispError("FVBancManager.getnewId ERR : " & ex.Message)
                 End Try
@@ -506,7 +506,7 @@ Public Class FVBancManager
         Try
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection.CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.idBancMesure='" & pBancId & "' ORDER BY dateModif ASC"
+            bddCommande.CommandText = "SELECT * FROM FichevieBancMesure WHERE FichevieBancMesure.idBancMesure='" & pBancId & "' ORDER BY dateModif DESC"
             Try
 
                 ' On récupère les résultats

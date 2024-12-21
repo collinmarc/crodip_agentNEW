@@ -157,7 +157,7 @@
     End Sub
 
     Public Sub SetBuse(pbuse As Buse)
-        Me.NumNatBuse = pbuse.idCrodip
+        Me.NumNatBuse = pbuse.numeroNational
         Me.Couleur = pbuse.couleur
         Me.pressionEtal = "3"
         Me.debitEtal = pbuse.debitEtalonnage.ToString()
@@ -196,20 +196,22 @@
         If IsNumeric(Me.ecart_3bar) Then
             EcartAutorise = CType(Replace(ecart_3bar, ".", ","), Double)
         End If
+        Try
+            'Calcul du Résulat
+            Dim calc As Decimal = (debitEtalonne * (Math.Sqrt(3) / Math.Sqrt(pressionEtalonnage)))
 
-        'Calcul du Résulat
-        Dim calc As Decimal = (debitEtalonne * (Math.Sqrt(3) / Math.Sqrt(pressionEtalonnage)))
+            If Math.Abs(calc - moyenne3bar) > EcartAutorise Then
+                Me.resultat_3bar = False
+            Else
+                Me.resultat_3bar = True
 
-        If Math.Abs(calc - moyenne3bar) > EcartAutorise Then
-            Me.resultat_3bar = False
-        Else
-            Me.resultat_3bar = True
-
-        End If
-        '=-1+H18/(D18*(3^0.5/C18^0.5))
-        Dim pct As Decimal = (-1 + (moyenne3bar / calc)) * 100
-        pctEcart_3bar = "" + CStr(Math.Round(pct, 2)) + "%"
-        'buse1_tab2_3bars = -1 + tmp_3bar_moyenne1 / (tmp_debit_etalon1 * (Sqrt(3) / Sqrt(tmp_pression_etalon1)))
+            End If
+            '=-1+H18/(D18*(3^0.5/C18^0.5))
+            Dim pct As Decimal = (-1 + (moyenne3bar / calc)) * 100
+            pctEcart_3bar = "" + CStr(Math.Round(pct, 2)) + "%"
+            'buse1_tab2_3bars = -1 + tmp_3bar_moyenne1 / (tmp_debit_etalon1 * (Sqrt(3) / Sqrt(tmp_pression_etalon1)))
+        Catch
+        End Try
 
 
     End Sub

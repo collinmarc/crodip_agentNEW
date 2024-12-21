@@ -433,7 +433,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses1
         '
-        Me.m_bsBuses1.DataSource = GetType(Buse)
+        Me.m_bsBuses1.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label7
         '
@@ -459,7 +459,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses2
         '
-        Me.m_bsBuses2.DataSource = GetType(Buse)
+        Me.m_bsBuses2.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label15
         '
@@ -485,7 +485,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses3
         '
-        Me.m_bsBuses3.DataSource = GetType(Buse)
+        Me.m_bsBuses3.DataSource = GetType(CRODIPWS.Buse)
         '
         'controleBanc_buse4
         '
@@ -500,9 +500,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses4
         '
-
-
-        Me.m_bsBuses4.DataSource = GetType(Buse)
+        Me.m_bsBuses4.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label29
         '
@@ -528,7 +526,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses5
         '
-        Me.m_bsBuses5.DataSource = GetType(Buse)
+        Me.m_bsBuses5.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label30
         '
@@ -554,7 +552,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsBuses6
         '
-        Me.m_bsBuses6.DataSource = GetType(Buse)
+        Me.m_bsBuses6.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label31
         '
@@ -569,7 +567,7 @@ Public Class frmcontrole_bancs
         '
         'm_bsControleBanc
         '
-        Me.m_bsControleBanc.DataSource = GetType(ControleBanc)
+        Me.m_bsControleBanc.DataSource = GetType(CRODIPWS.ControleBanc)
         '
         'grp_temperatures
         '
@@ -1950,6 +1948,7 @@ Public Class frmcontrole_bancs
         Dim oBuse As Buse
         m_oControleBanc.tempEau = controleBanc_eauTemp.Text
         m_oControleBanc.tempExt = controleBanc_extTemp.Text
+        m_oControleBanc.DateVerif = CSDate.GetDateForWS(dtpDateVerif.Value)
 
         ' On récupère le banc
         Dim curBanc As Banc = BancManager.getBancById(controleBanc_numBanc.SelectedItem.Id.ToString)
@@ -1957,7 +1956,7 @@ Public Class frmcontrole_bancs
         ' Mise a jour de l'objet Banc
         Try
             curBanc.etat = m_oControleBanc.bResultat
-            curBanc.dateDernierControleS = dtpDateVerif.Value
+            curBanc.dateDernierControleS = m_oControleBanc.DateVerif
             BancManager.save(curBanc)
         Catch ex As Exception
             CSDebug.dispFatal("controle_banc::btn_controleBanc_valider_Click : " & ex.Message)

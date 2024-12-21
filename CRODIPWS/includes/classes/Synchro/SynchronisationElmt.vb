@@ -499,6 +499,10 @@ Public Class SynchronisationElmt
                         SetStatus("Réception MAJ Fiche de vie Banc n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = FVBancManager.WSgetById(pElement.IdentifiantEntier, pElement._identifiantChaine)
                         If Not tmpObject Is Nothing Then
+                            'on supprime l'id créé par le serveur
+                            If tmpObject.auteur = "CRODIP" Then
+                                tmpObject.id = FVBancManager.getNewId(pAgent.id)
+                            End If
                             FVBancManager.save(tmpObject, True)
                         Else
                             CSDebug.dispFatal("Synchronisation::runDescSynchro(GetFVBanc) : [" & pElement.IdentifiantChaine & "]" & "Banc introuvable sur le server")

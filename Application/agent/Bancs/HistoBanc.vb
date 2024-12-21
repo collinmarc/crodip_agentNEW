@@ -494,7 +494,7 @@ Public Class HistoBanc
     Private Sub dispBancCourant()
         Try
 
-            ficheBanc_id.Text = BancCourant.id
+            ficheBanc_id.Text = BancCourant.numeroNational
             ficheBanc_marque.Text = BancCourant.marque
             ficheBanc_modele.Text = BancCourant.modele
 

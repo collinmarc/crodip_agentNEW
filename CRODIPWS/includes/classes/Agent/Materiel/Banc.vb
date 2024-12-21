@@ -350,6 +350,7 @@ Public Class Banc
                 ' On CONSTruit le PDF de rapport à partir de l'objet m_oControleBanc
                 'Dim sFileName As String = pControleBanc.buildPDF(Me, pAgent)
                 oFV.FVFileName = pFileName
+                oFV.dateModif = pControleBanc.DateVerif
 
                 FVBancManager.save(oFV)
                 oReturn = oFV
