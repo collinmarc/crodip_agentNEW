@@ -14,6 +14,9 @@ Public Class EtatFDiagRecap
         Dim oReturn As Form
         Dim oAgent As Agent = AgentManager.getAgentById(oDiag.inspecteurId)
         oReturn = New frmdiagnostic_recap(DiagMode, oDiag, oPulve, oExploit, oAgent, Nothing)
+        oReturn.ControlBox = False
+        oReturn.MinimizeBox = False
+        oReturn.MaximizeBox = False
         Return oReturn
     End Function
 

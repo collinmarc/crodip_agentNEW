@@ -123,7 +123,9 @@ Public Class frmdiagnostic_facturationCoProp
         InitializeComponent()
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
-
+        Me.ControlBox = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
     End Sub
 
     'La méthode substituée Dispose du formulaire pour nettoyer la liste des composants.
@@ -348,7 +350,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsFacture
         '
-        Me.m_bsFacture.DataSource = GetType(Facture)
+        Me.m_bsFacture.DataSource = GetType(CRODIPWS.Facture)
         '
         'Label25
         '
@@ -672,7 +674,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsrcStructure
         '
-        Me.m_bsrcStructure.DataSource = GetType([Structure])
+        Me.m_bsrcStructure.DataSource = GetType(CRODIPWS.[Structure])
         '
         'tbDernNumFact
         '
@@ -806,7 +808,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsExploitant
         '
-        Me.m_bsExploitant.DataSource = GetType(Exploitation)
+        Me.m_bsExploitant.DataSource = GetType(CRODIPWS.Exploitation)
         Me.m_bsExploitant.Filter = "not isSuppressionCoprop"
         '
         'pnlClient
@@ -854,7 +856,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsCommunes
         '
-        Me.m_bsCommunes.DataSource = GetType(Commune)
+        Me.m_bsCommunes.DataSource = GetType(CRODIPWS.Commune)
         '
         'pnlPourcentage
         '
@@ -879,7 +881,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsContratCommercial
         '
-        Me.m_bsContratCommercial.DataSource = GetType(ContratCommercial)
+        Me.m_bsContratCommercial.DataSource = GetType(CRODIPWS.ContratCommercial)
         '
         'btnCalc
         '
@@ -1122,7 +1124,7 @@ Public Class frmdiagnostic_facturationCoProp
         '
         'm_bsDiag
         '
-        Me.m_bsDiag.DataSource = GetType(Diagnostic)
+        Me.m_bsDiag.DataSource = GetType(CRODIPWS.Diagnostic)
         '
         'tbMarquePulve
         '
@@ -1579,7 +1581,11 @@ Public Class frmdiagnostic_facturationCoProp
         End If
         ActivationFacture()
         Me.Cursor = Cursors.Default
-
+        If m_TypeInit = TypeInit.INIT_FROM_DIAG Then
+            Me.ControlBox = False
+            Me.MinimizeBox = False
+            Me.MaximizeBox = False
+        End If
     End Sub
 
 #End Region

@@ -19,6 +19,9 @@ Public Class EtatFDiagFacture
 
         oReturn = New frmdiagnostic_facturationCoProp()
         CType(oReturn, frmdiagnostic_facturationCoProp).setContexte(oDiag, oAgent)
+        oReturn.ControlBox = False
+        oReturn.MinimizeBox = False
+        oReturn.MaximizeBox = False
         Return oReturn
     End Function
     Public Overrides Function Action(pAction As ActionFDiag) As EtatFDiag
