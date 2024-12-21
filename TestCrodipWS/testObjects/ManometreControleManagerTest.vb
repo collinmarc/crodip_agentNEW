@@ -429,8 +429,12 @@ Public Class ManometreControleManagerTest
         oManoC.etat = False
         oManoC.JamaisServi = True
         ManometreControleManager.save(oManoC)
+        'Récupération du uid
+        ManometreControleManager.WSSend(oManoC, oManoC)
+        ManometreControleManager.save(oManoC)
 
-        lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
+
+        lstFV = FVManometreControleManager.getLstFVManometreControleByuid(oManoC.uid)
         Assert.AreEqual(0, lstFV.Count)
 
         Assert.IsTrue(oManoC.ActiverMateriel(CDate("01/02/1987"), m_oAgent))
@@ -444,7 +448,7 @@ Public Class ManometreControleManagerTest
         '        Assert.AreEqual(CDate("01/02/1987"), CDate(oManoC.dateDernierControleS))
         Assert.AreEqual("", oManoC.dateDernierControleS)
 
-        lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
+        lstFV = FVManometreControleManager.getLstFVManometreControleByuid(oManoC.uid)
         Assert.AreEqual(1, lstFV.Count)
         oFVManoC = lstFV(0)
 
@@ -477,9 +481,13 @@ Public Class ManometreControleManagerTest
         oManoC.etat = False
         oManoC.JamaisServi = True
         ManometreControleManager.save(oManoC)
+        'Récupération du uid
+        ManometreControleManager.WSSend(oManoC, oManoC)
+        ManometreControleManager.save(oManoC)
+
 
         'Pas de Fiche de vie par défaut
-        lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
+        lstFV = FVManometreControleManager.getLstFVManometreControleByuid(oManoC.uid)
         Assert.AreEqual(0, lstFV.Count)
 
         'Première utilisation
@@ -489,7 +497,7 @@ Public Class ManometreControleManagerTest
         'Vérification du flag utilise
         Assert.IsTrue(oManoC.isUtilise)
         'Vérification de la création de la fiche de vie
-        lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
+        lstFV = FVManometreControleManager.getLstFVManometreControleByuid(oManoC.uid)
         Assert.AreEqual(1, lstFV.Count)
         oFVManoC = lstFV(0)
         Assert.AreEqual(FVBanc.FVTYPE_PREMIEREUTILISATION, oFVManoC.type)
@@ -503,7 +511,7 @@ Public Class ManometreControleManagerTest
         'Vérification du flag utilise
         Assert.IsTrue(oManoC.isUtilise)
         'Pas de création d'une seconde fiche de vie
-        lstFV = FVManometreControleManager.getLstFVManometreControle(idMano)
+        lstFV = FVManometreControleManager.getLstFVManometreControleByuid(oManoC.uid)
         Assert.AreEqual(1, lstFV.Count)
         oFVManoC = lstFV(0)
 

@@ -446,7 +446,7 @@ Public Class HistoMano
             ficheBanc_marque.Text = ManoCourant.marque
 
             m_bsrcFVMano.Clear()
-            Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControle(ManoCourant.numeroNational)
+            Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControleByuid(ManoCourant.uid)
             For Each oFV As FVManometreControle In olst
                 m_bsrcFVMano.Add(oFV)
                 Dim oCell As DataGridViewDisableButtonCell = DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(col_FVFileName.Index)

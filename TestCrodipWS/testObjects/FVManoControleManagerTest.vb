@@ -88,8 +88,11 @@ Public Class FVManometreControleManagerTest
         oMano.jamaisServi = True
         oMano.isUtilise = False
         ManometreControleManager.save(oMano)
+        'Récupération du uid
+        ManometreControleManager.WSSend(oMano, oMano)
+        ManometreControleManager.save(oMano)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         Assert.AreEqual(0, olstFV.Count) 'Pas de fiche de vie
 
         oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
@@ -98,7 +101,7 @@ Public Class FVManometreControleManagerTest
         Assert.IsFalse(oMano.jamaisServi)
         Assert.AreEqual(CDate("01/06/2014"), oMano.DateActivation)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         Assert.AreEqual(1, olstFV.Count) 'une fiche de vie Activation
         oFVManometreControle = olstFV(0)
         Assert.AreEqual(oFVManometreControle.idManometre, oMano.idCrodip)
@@ -115,7 +118,7 @@ Public Class FVManometreControleManagerTest
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         'Test de création d'une fiche de vie
         Assert.AreEqual(2, olstFV.Count) 'une fiche de vie "DESACTIVATION"
         oFVManometreControle = olstFV(1)
@@ -132,7 +135,7 @@ Public Class FVManometreControleManagerTest
         Assert.IsTrue(oMano.isSupprime)
 
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         'création d'une Troisième fiche de vie SUPRESSION
         Assert.AreEqual(3, olstFV.Count) 'une fiche de vie SUPPRESSION
         oFVManometreControle = olstFV(2)
@@ -156,8 +159,11 @@ Public Class FVManometreControleManagerTest
         oMano.jamaisServi = True
         oMano.isUtilise = False
         ManometreControleManager.save(oMano)
+        'Récupération du uid
+        ManometreControleManager.WSSend(oMano, oMano)
+        ManometreControleManager.save(oMano)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
         ManometreControleManager.save(oMano)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
@@ -190,7 +196,7 @@ Public Class FVManometreControleManagerTest
         oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 
         Dim oLst As New List(Of FVManometreControle)
-        oLst = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        oLst = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
         'La FV de controle est la dernière créee
         Dim oFV As FVManometreControle = oLst(oLst.Count - 1)
         Dim strFVFileName As String = oFV.FVFileName
