@@ -85,7 +85,7 @@ Public Class Buse
 
     Public Property dateAchat() As String
         Get
-            Return _dateAchat
+            Return CSDate.GetDateForWS(_dateAchat)
         End Get
         Set(ByVal Value As String)
             If Value <> "" Then

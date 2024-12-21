@@ -417,6 +417,7 @@ Public Class gestion_busesEtalons
                 '## Le label
                 Dim tmpLabel As New Label
                 tmpLabel.Name = "buseEtalon_" & tmpBuseEtalon.numeroNational & "_numeroNational"
+                tmpLabel.Text = tmpBuseEtalon.numeroNational
                 Controls.Add(tmpLabel)
                 ' Position
                 tmpLabel.Parent = gestionBusesEtalon_panel_id
@@ -424,7 +425,6 @@ Public Class gestion_busesEtalons
                 tmpLabel.Top = positionTop
                 ' Taille
                 tmpLabel.Width = 54
-                tmpLabel.Text = tmpBuseEtalon.idCrodip
                 ' Apparence
                 tmpLabel.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
                 tmpLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

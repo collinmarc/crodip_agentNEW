@@ -5,6 +5,7 @@ BUILD XXXXXXX
 	0001737: En catégorie rampe, j’ai les défaut 2.6 et 2.7 actif
 	0001729: Le numéro de mano de réf sur le logiciel agent, n’est pas le sticker apposé
 	0001731: Absence de remonté de l’historique de vérif Mano de controle sur le logiciel agent
+	0001740: Les buses étalons sur le logiciel agent, ne sont pas visible sur l’admin, je ne peux pas tester la vérif du banc
 
 	BUILD 20241216120000
 	0001726: synchronisation des Transferts de pulvés, isSignElecActive

@@ -30,6 +30,7 @@ Public Class CSDate
             Return Format(dDate, pFormat)
         Catch ex As Exception
             Dim mysqlDate As Date
+            mysqlDate = New Date(1970, 1, 1)
             mysqlDate.AddDays(0)
             mysqlDate.AddMonths(0)
             mysqlDate.AddYears(0)
