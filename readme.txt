@@ -1,5 +1,9 @@
 #TRUNK
 MASTER
+BUILD XXXXXXXX
+
+0001741: Affichage des Identifiant dans Fiche Verif Mano, fiche Buses et Mano
+
 BUILD 20241221140000
 	0001739: ContreVisite et synchrov
 	0001737: En catégorie rampe, j’ai les défaut 2.6 et 2.7 actif

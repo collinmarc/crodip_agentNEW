@@ -622,7 +622,10 @@ Public Class fiche_manometre
 
     End Sub
     Private Sub DisplayManoCourant()
-        ficheMano_idCrodip.Text = manometreCourant.idCrodip
+
+        Me.Text = Me.Text & "[aid" & manometreCourant.idCrodip & ",uid" & manometreCourant.uid & "]"
+
+        ficheMano_idCrodip.Text = manometreCourant.numeroNational
         ficheMano_marque.Text = manometreCourant.marque
         ficheMano_classe.Text = manometreCourant.classe
         ficheMano_type.Text = manometreCourant.type
@@ -635,7 +638,7 @@ Public Class fiche_manometre
             ficheMano_resolution.Text = oMano.resolution
         End If
 
-        If manometreCourant.JamaisServi Then
+        If manometreCourant.jamaisServi Then
             pbEtat.Image = imagesEtatMateriel.Images(2)
         Else
             If manometreCourant.etat Then
@@ -645,10 +648,10 @@ Public Class fiche_manometre
             End If
         End If
 
-        btnActiver.Visible = manometreCourant.JamaisServi
-        If Not manometreCourant.JamaisServi Then
-            If Not CSDate.isDateNull(manometreCourant.DateActivation) Then
-                ficheMano_dateActivation.Text = CSDate.ToCRODIPString(manometreCourant.DateActivation)
+        btnActiver.Visible = manometreCourant.jamaisServi
+        If Not manometreCourant.jamaisServi Then
+            If Not CSDate.isDateNull(manometreCourant.dateActivation) Then
+                ficheMano_dateActivation.Text = CSDate.ToCRODIPString(manometreCourant.dateActivation)
             End If
         End If
         If Not CSDate.isDateNull(manometreCourant.dateDernierControleS) Then

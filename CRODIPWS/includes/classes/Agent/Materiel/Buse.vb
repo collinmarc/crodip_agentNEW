@@ -104,7 +104,7 @@ Public Class Buse
     <XmlIgnore>
     Public Overrides Property Libelle() As String
         Get
-            Return idCrodip + " (" & Me.couleur & ")"
+            Return numeroNational + " (" & Me.couleur & ")"
         End Get
         Set(value As String)
 

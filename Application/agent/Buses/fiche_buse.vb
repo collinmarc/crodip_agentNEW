@@ -388,7 +388,8 @@ Public Class fiche_buse
     End Sub
 
     Private Sub DisplayBuse()
-        ficheBuse_idCrodip.Text = BuseCourant.idCrodip
+        Me.Text = Me.Text & "[aid" & BuseCourant.idCrodip & ",uid" & BuseCourant.uid & "]"
+        ficheBuse_idCrodip.Text = BuseCourant.numeroNational
         ficheBuse_couleur.Text = BuseCourant.couleur
         ficheBuse_pressionReference.Text = "3"
         ficheBuse_debitReference.Text = BuseCourant.debitEtalonnage
@@ -407,10 +408,10 @@ Public Class fiche_buse
             End If
         End If
         btnActiver.Visible = BuseCourant.jamaisServi
-        If CSDate.isDateNull(BuseCourant.DateActivation) Or BuseCourant.jamaisServi Then
+        If CSDate.isDateNull(BuseCourant.dateActivation) Or BuseCourant.jamaisServi Then
             ficheBuse_dateActivation.Text = ""
         Else
-            ficheBuse_dateActivation.Text = CSDate.ToCRODIPString(BuseCourant.DateActivation)
+            ficheBuse_dateActivation.Text = CSDate.ToCRODIPString(BuseCourant.dateActivation)
         End If
 
         'Parcours de la Liste des Pools pour checker ceux qui sont les Pool du manoCourant

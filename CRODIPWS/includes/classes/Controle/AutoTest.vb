@@ -15,6 +15,7 @@ Public Class AutoTest
     Private _Etat As Integer '-1 = non effectué, 0 = OK, 1 = NOK
     Private _dateModificationAgent As Date
     Private _dateModificationCrodip As Date
+    Private _numeroNational As String
     Public Sub New()
         id = -1
         _Etat = -1
@@ -41,6 +42,7 @@ Public Class AutoTest
         traca = pMano.Traca
         uidstructure = pAgent.uidstructure
         uidmateriel = pMano.uid
+        numeroNational = pMano.numeroNational
     End Sub
     Public Sub New(pAgent As Agent, ByVal pMano As ManometreEtalon)
         id = -1
@@ -51,6 +53,7 @@ Public Class AutoTest
         numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pMano.uid
+        numeroNational = pMano.numeroNational
     End Sub
     Public Sub New(pAgent As Agent, pBanc As Banc)
         id = -1
@@ -61,6 +64,7 @@ Public Class AutoTest
         numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pBanc.uid
+        numeroNational = pBanc.numeroNational
     End Sub
     Public Property id() As Integer
         Get
@@ -317,6 +321,15 @@ Public Class AutoTest
         End Get
         Set(ByVal value As String)
             m_Traca = value
+        End Set
+    End Property
+    <XmlIgnore()>
+    Public Property numeroNational() As String
+        Get
+            Return _numeroNational
+        End Get
+        Set(ByVal value As String)
+            _numeroNational = value
         End Set
     End Property
 End Class

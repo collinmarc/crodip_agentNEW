@@ -406,6 +406,7 @@ Public Class accueil
         Me.lbl_infosAgent_Nom = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_Prenom = New System.Windows.Forms.Label()
         Me.lbl_infosAgent_dateDernSynchro = New System.Windows.Forms.Label()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.tabControl_clientele = New System.Windows.Forms.TabPage()
         Me.panel_clientele_ficheClient = New System.Windows.Forms.Panel()
         Me.grp_ficheClient_ListePulve = New System.Windows.Forms.GroupBox()
@@ -637,7 +638,6 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.typeLibelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.idMateriel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -1154,6 +1154,16 @@ Public Class accueil
         Me.lbl_infosAgent_dateDernSynchro.Name = "lbl_infosAgent_dateDernSynchro"
         Me.lbl_infosAgent_dateDernSynchro.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_dateDernSynchro.TabIndex = 8
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.Location = New System.Drawing.Point(733, 111)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(114, 25)
+        Me.LinkLabel1.TabIndex = 10
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Accès à e-pulve"
+        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'tabControl_clientele
         '
@@ -3920,16 +3930,6 @@ Public Class accueil
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
         '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.Location = New System.Drawing.Point(733, 111)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(114, 25)
-        Me.LinkLabel1.TabIndex = 10
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Accès à e-pulve"
-        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
         'typeLibelle
         '
         Me.typeLibelle.DataPropertyName = "typeLibelle"
@@ -3940,9 +3940,9 @@ Public Class accueil
         '
         'idMateriel
         '
-        Me.idMateriel.DataPropertyName = "idMateriel"
+        Me.idMateriel.DataPropertyName = "numeroNational"
         Me.idMateriel.FillWeight = 20.0!
-        Me.idMateriel.HeaderText = "Id"
+        Me.idMateriel.HeaderText = "Identifiant"
         Me.idMateriel.Name = "idMateriel"
         '
         'Type
