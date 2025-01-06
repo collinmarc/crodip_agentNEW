@@ -52,9 +52,7 @@ Public Class login
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents btn_login_seConnecter As System.Windows.Forms.Label
     Friend WithEvents btn_login_ajouterProfil As System.Windows.Forms.Label
-    Friend WithEvents title_alertes As System.Windows.Forms.Label
     Public WithEvents panel_splashSynchro As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents lbl_environnement_ws As System.Windows.Forms.Label
     Friend WithEvents lbl_environnement_debugType As System.Windows.Forms.Label
     Friend WithEvents lbl_environnement_debugLvl As System.Windows.Forms.Label
@@ -89,6 +87,8 @@ Public Class login
     Friend WithEvents NbPastillesVertesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IDCRODIPPC As DataGridViewTextBoxColumn
     Friend WithEvents idBanc As DataGridViewTextBoxColumn
+    Friend WithEvents pctSynchro As PictureBox
+    Friend WithEvents lblSynchro As Label
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -131,14 +131,14 @@ Public Class login
         Me.btnTestDiagContext = New System.Windows.Forms.Button()
         Me.btnTest = New System.Windows.Forms.Button()
         Me.panel_splashSynchro = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.title_alertes = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.picto_profil = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
+        Me.lblSynchro = New System.Windows.Forms.Label()
+        Me.pctSynchro = New System.Windows.Forms.PictureBox()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlPools.SuspendLayout()
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,8 +146,8 @@ Public Class login
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
         Me.panel_splashSynchro.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button3
@@ -582,37 +582,14 @@ Public Class login
         Me.panel_splashSynchro.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.panel_splashSynchro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.panel_splashSynchro.CausesValidation = False
-        Me.panel_splashSynchro.Controls.Add(Me.PictureBox1)
-        Me.panel_splashSynchro.Controls.Add(Me.title_alertes)
+        Me.panel_splashSynchro.Controls.Add(Me.pctSynchro)
+        Me.panel_splashSynchro.Controls.Add(Me.lblSynchro)
         Me.panel_splashSynchro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.panel_splashSynchro.Location = New System.Drawing.Point(446, 518)
+        Me.panel_splashSynchro.Location = New System.Drawing.Point(402, 506)
         Me.panel_splashSynchro.Name = "panel_splashSynchro"
         Me.panel_splashSynchro.Size = New System.Drawing.Size(468, 102)
         Me.panel_splashSynchro.TabIndex = 25
         Me.panel_splashSynchro.Visible = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.PictureBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(123, 64)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(220, 19)
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
-        '
-        'title_alertes
-        '
-        Me.title_alertes.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.title_alertes.ForeColor = System.Drawing.Color.White
-        Me.title_alertes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.title_alertes.Location = New System.Drawing.Point(9, -12)
-        Me.title_alertes.Name = "title_alertes"
-        Me.title_alertes.Size = New System.Drawing.Size(448, 68)
-        Me.title_alertes.TabIndex = 1
-        Me.title_alertes.Text = "Veuillez patienter pendant que votre logiciel se synchronise avec le Crodip."
-        Me.title_alertes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label6
         '
@@ -687,6 +664,29 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'lblSynchro
+        '
+        Me.lblSynchro.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSynchro.ForeColor = System.Drawing.Color.White
+        Me.lblSynchro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSynchro.Location = New System.Drawing.Point(7, -1)
+        Me.lblSynchro.Name = "lblSynchro"
+        Me.lblSynchro.Size = New System.Drawing.Size(448, 68)
+        Me.lblSynchro.TabIndex = 3
+        Me.lblSynchro.Text = "Veuillez patienter pendant que votre logiciel se synchronise avec le Crodip."
+        Me.lblSynchro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'pctSynchro
+        '
+        Me.pctSynchro.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.pctSynchro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.pctSynchro.Image = CType(resources.GetObject("pctSynchro.Image"), System.Drawing.Image)
+        Me.pctSynchro.Location = New System.Drawing.Point(120, 70)
+        Me.pctSynchro.Name = "pctSynchro"
+        Me.pctSynchro.Size = New System.Drawing.Size(220, 19)
+        Me.pctSynchro.TabIndex = 4
+        Me.pctSynchro.TabStop = False
+        '
         'login
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -708,8 +708,8 @@ Public Class login
         Me.pnlLoginControls.PerformLayout()
         Me.GroupBox_test.ResumeLayout(False)
         Me.panel_splashSynchro.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -774,6 +774,7 @@ Public Class login
                         CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
                         Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Le service de synchronisation n'est pas accessible", False)
                         MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Le service de synchronisation n'est pas accessible, déconnectez-vous d'internet pour continuer d'utiliser le logiciel")
+
                         Application.Exit()
                     End Try
                 Else
@@ -1343,7 +1344,11 @@ Public Class login
         'Synchronisation 
         If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not pAgent.isGestionnaire Then
             If CSEnvironnement.checkWebService() = True Then
+
+                lblSynchro.Visible = True
+                pctSynchro.Visible = True
                 panel_splashSynchro.Visible = True
+                panel_splashSynchro.Refresh()
                 Threading.Thread.Sleep(500) ' Pause de 500ms
 
                 ' On vérifie les mises à jour
@@ -1358,6 +1363,8 @@ Public Class login
             End If
         End If
         agentCourant = pAgent
+        lblSynchro.Visible = False
+        pctSynchro.Visible = False
         panel_splashSynchro.Visible = False
         ' On met à jour la barre de status
         Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)

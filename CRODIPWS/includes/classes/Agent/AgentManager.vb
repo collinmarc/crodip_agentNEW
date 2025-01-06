@@ -26,15 +26,15 @@ Public Class AgentManager
             Dim pInfo As String = ""
             codeResponse = objWSCrodip.GetAgent(pIdProfileAgent, pInfo, tXmlnodes, lstPools)
             Select Case codeResponse
-                Case 0, 4 ' OK
+                Case 0, 4, 3 ' OK
                     Dim ser As New XmlSerializer(GetType(Agent))
                     Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
                 Case 1 ' NOK
                     CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 1 : Non-Trouvée")
-                Case 3 ' ???
-                    CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 3 : " & pInfo)
+                Case 5 ' SERVICE DESACTIVE
+                    CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 5 : Service Désactivé")
                 Case 9 ' BADREQUEST
                     CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 9 : Bad Request")
             End Select
