@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("CRODIP")>
 <Assembly: AssemblyProduct("Logiciel agent")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
-<Assembly: AssemblyTrademark("20241221140000")>
+<Assembly: AssemblyTrademark("20250106170000")>
 
 <Assembly: ComVisible(False)>
 
@@ -32,5 +32,5 @@ Imports System.Runtime.InteropServices
 ' <Assembly: AssemblyVersion("1.0.*")>
 
 <Assembly: AssemblyVersion("4.0.0.0")>
-<Assembly: AssemblyFileVersion("2024.12.21.1400")>
+<Assembly: AssemblyFileVersion("2025.01.06.1700")>
 <Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCrodipWS")>

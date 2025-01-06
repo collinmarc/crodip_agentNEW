@@ -751,21 +751,30 @@ Public Class login
                             bAgentExistant = True
                         Else
                             bAgentExistant = False
-                            If tmpObject.id > 0 And tmpObject.isSupprime Then
-                                'Suppression de l'agent en base
-                                AgentManager.save(tmpObject)
+                            If tmpObject.id > 0 Then
+                                If tmpObject.isSupprime Then
+                                    'Suppression de l'agent en base
+                                    AgentManager.save(tmpObject)
+                                End If
+                                If Not tmpObject.isActif Then
+                                    Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                    MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé , contactez le Crodip")
+                                End If
+                            Else
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
+                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Le service de synchronisation n'est pas accessible, déconnectez-vous d'internet pour continuer d'utiliser le logiciel")
+                                'On recharge la Liste des profils 
+                                FillCbxAgent()
+                                login_password.Clear()
+                                pnlLoginControls.Enabled = True
                             End If
-                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
-                            MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.")
-                            'On recharge la Liste des profils 
-                            FillCbxAgent()
-                            login_password.Clear()
-                            pnlLoginControls.Enabled = True
-
                             Exit Sub
                         End If
                     Catch ex As Exception
                         CSDebug.dispError("doLogin():: GetAgent mot de passe : " & ex.Message.ToString)
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Le service de synchronisation n'est pas accessible", False)
+                        MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Le service de synchronisation n'est pas accessible, déconnectez-vous d'internet pour continuer d'utiliser le logiciel")
+                        Application.Exit()
                     End Try
                 Else
                     'Pas de WS => on considère que l'agent est OK
