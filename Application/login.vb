@@ -759,6 +759,10 @@ Public Class login
                                 If Not tmpObject.isActif Then
                                     Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
                                     MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé , contactez le Crodip")
+                                    'On recharge la Liste des profils 
+                                    FillCbxAgent()
+                                    login_password.Clear()
+                                    pnlLoginControls.Enabled = True
                                 End If
                             Else
                                 Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
