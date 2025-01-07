@@ -1,5 +1,7 @@
 #TRUNK
 MASTER
+BUILD 20250107190000
+	0001745: Controle des Mano : Affichage des id interne => Numero national
 BUILD 20250106170000
 	0001741: Affichage des Identifiant dans Fiche Verif Mano, fiche Buses et Mano
 	0001743: WS inactivés => Message d'erreur
