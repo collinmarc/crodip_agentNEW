@@ -1,5 +1,10 @@
 #TRUNK
 MASTER
+BUILD 20250117150000
+	0001748: Plantage en Clé 12123 Pompe doseuses
+	0001747: Plantage en validation du debitmetre 552 sans valeur
+	0001749: inversion NumeroNational et idCrodip sur les manomètres après synchro
+
 BUILD 20250107190000
 	0001745: Controle des Mano : Affichage des id interne => Numero national
 BUILD 20250106170000

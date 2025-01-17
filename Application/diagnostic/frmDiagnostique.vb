@@ -932,7 +932,7 @@ Public Class FrmDiagnostique
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant)
         Dim positionTop As Integer = 0
         For Each tmpManoControle As ManometreControle In arrManoControle
-            Dim objComboItem As New objComboItem(tmpManoControle.numeroNational, tmpManoControle.idCrodip & " - " & tmpManoControle.type & " (" & tmpManoControle.marque & ")")
+            Dim objComboItem As New objComboItem(tmpManoControle.idCrodip, tmpManoControle.numeroNational & " - " & tmpManoControle.type & " (" & tmpManoControle.marque & ")")
             manoTroncon_listManoControle.Items.Add(objComboItem)
             'buses_listManoControle.Items.Add(objComboItem)
         Next
@@ -2413,7 +2413,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                 Dim oManoC As ManometreControle
                                 oManoC = ManometreControleManager.getManometreControleByTraca(m_diagnostic.organismePresId, oTroncon.Traca)
                                 If oManoC IsNot Nothing Then
-                                    oDiagtroncons833.ManocId = oManoC.numeroNational
+                                    oDiagtroncons833.ManocId = oManoC.idCrodip
                                 End If
                             End If
 
@@ -9088,7 +9088,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                                 m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionMano(m_diagnostic.diagnosticMano542List.diagnosticMano542Array(nPression - 1).pressionControled)
                                 m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).SetPressionLue(oDiagTroncon833.pressionSortie)
                                 Dim oMano As ManometreControle = m_bsrcManoCPression.List.OfType(Of ManometreControle).Where(Function(M)
-                                                                                                                                 Return M.numeroNational = oDiagTroncon833.ManocId
+                                                                                                                                 Return M.idCrodip = oDiagTroncon833.ManocId
                                                                                                                              End Function).FirstOrDefault()
                                 If oMano IsNot Nothing Then
                                     m_RelevePression833_Current.colNiveaux(oDiagTroncon833.nNiveau - 1).colTroncons(oDiagTroncon833.nTroncon - 1).Traca = oMano.Traca

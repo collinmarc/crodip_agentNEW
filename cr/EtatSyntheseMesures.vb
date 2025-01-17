@@ -175,7 +175,7 @@ Public Class EtatSyntheseMesures
                 For Each oTroncon As DiagnosticTroncons833 In m_oDiag.diagnosticTroncons833.ListeparPression(p)
                     oReleve.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).SetPressionLue(oTroncon.pressionSortie)
 
-                    Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByNumeroNational(oTroncon.ManocId)
+                    Dim oManoc As ManometreControle = ManometreControleManager.getManometreControleByidCrodip(oTroncon.ManocId)
                     If oManoc IsNot Nothing Then
                         oReleve.colNiveaux(oTroncon.nNiveau - 1).colTroncons(oTroncon.nTroncon - 1).Traca = oManoc.Traca
                     End If

@@ -564,7 +564,7 @@ Public Class gestion_manometres
             Else
                 lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True)
                 'Ajout des Mano JamaisServi
-                lstMano.AddRange(ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(agentCourant))
+                'lstMano.AddRange(ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(agentCourant))
             End If
             m_bsMAnoEtalon.Clear()
 

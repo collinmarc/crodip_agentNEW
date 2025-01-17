@@ -476,7 +476,9 @@ Public Class FVManometreControleManager
                 Dim tmpFVManometreControle As New FVManometreControle(agent)
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
-                    tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 arrItems(i) = tmpFVManometreControle
@@ -576,6 +578,46 @@ Public Class FVManometreControleManager
         Return lstResponse
     End Function
 
+    Public Shared Function getLstFVManometreControleByidCrodip(ByVal pidCrodip As String) As List(Of FVManometreControle)
+        Debug.Assert(Not String.IsNullOrEmpty(pidCrodip), "L'UID doit êtr initialisé")
+        Dim lstResponse As New List(Of FVManometreControle)
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
+
+        If pidCrodip <> "" Then
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.idManometre='" & pidCrodip & "' ORDER BY dateModif DESC"
+            Try
+
+                ' On récupère les résultats
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                While tmpListProfils.Read()
+
+                    ' On rempli notre tableau
+                    Dim tmpFVManometreControle As New FVManometreControle(New Agent())
+                    Dim tmpColId As Integer = 0
+                    While tmpColId < tmpListProfils.FieldCount()
+                        If Not tmpListProfils.IsDBNull(tmpColId) Then
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        End If
+                        tmpColId = tmpColId + 1
+                    End While
+                    lstResponse.Add(tmpFVManometreControle)
+                End While
+                tmpListProfils.Close()
+            Catch ex As Exception
+                CSDebug.dispError("FVManometreControleManager.getLstFVManometreControleByuid ERR : ", ex)
+            End Try
+
+            If oCsdb IsNot Nothing Then
+                oCsdb.free()
+            End If
+
+        End If
+        Return lstResponse
+    End Function
 #End Region
     Public Shared Function delete(ByVal pId As String) As Boolean
         Debug.Assert(Not String.IsNullOrEmpty(pId), " le paramètre ID doit être initialisé")

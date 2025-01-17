@@ -470,7 +470,9 @@ Public Class FVBancManager
                 Dim tmpFVBanc As New FVBanc(pAgent)
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
-                    tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    If Not tmpListProfils.IsDBNull(tmpColId) Then
+                        tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                    End If
                     tmpColId = tmpColId + 1
                 End While
                 arrItems(i) = tmpFVBanc

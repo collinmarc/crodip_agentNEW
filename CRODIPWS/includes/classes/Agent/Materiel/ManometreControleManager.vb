@@ -204,17 +204,17 @@ Public Class ManometreControleManager
     ''' <summary>
     ''' Lecture du mano de controle avec son 'NumeroNational' (Son Id unique)
     ''' </summary>
-    ''' <param name="pManoId">ID Mano (pas l'idCrodip)</param>
+    ''' <param name="pNumNatMano">ID Mano (pas l'idCrodip)</param>
     ''' <returns></returns>
-    Public Shared Function getManometreControleByNumeroNational(ByVal pManoId As String) As ManometreControle
+    Public Shared Function getManometreControleByNumeroNational(ByVal pNumNatMano As String) As ManometreControle
         ' déclarations
         Dim tmpManometreControle As New ManometreControle
         Dim oCSDB As New CSDb(True)
-        If pManoId <> "" Then
+        If pNumNatMano <> "" Then
 
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE numeroNational='" & pManoId & "'"
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE numeroNational='" & pNumNatMano & "'"
             Try
                 ' On récupère les résultats
                 Using tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -234,6 +234,46 @@ Public Class ManometreControleManager
                 End Using
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("ManometreControleManager Error: " & ex.Message)
+            End Try
+
+            ' Test pour fermeture de connection BDD
+            If Not oCSDB Is Nothing Then
+                ' On ferme la connexion
+                oCSDB.free()
+            End If
+
+        End If
+        'on retourne le manometrecontrole ou un objet vide en cas d'erreur
+        Return tmpManometreControle
+    End Function
+    Public Shared Function getManometreControleByidCrodip(ByVal pIdCrodip As String) As ManometreControle
+        ' déclarations
+        Dim tmpManometreControle As New ManometreControle
+        Dim oCSDB As New CSDb(True)
+        If pIdCrodip <> "" Then
+
+            Dim bddCommande As DbCommand
+            bddCommande = oCSDB.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE idCrodip='" & pIdCrodip & "'"
+            Try
+                ' On récupère les résultats
+                Using tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                    ' Puis on les parcours
+                    While tmpListProfils.Read()
+                        ' On rempli notre tableau
+                        Dim tmpColId As Integer = 0
+                        While tmpColId < tmpListProfils.FieldCount()
+                            If Not tmpListProfils.IsDBNull(tmpColId) Then
+                                tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            End If
+                            tmpColId = tmpColId + 1
+
+                        End While
+                    End While
+                    tmpListProfils.Close()
+                End Using
+            Catch ex As Exception ' On intercepte l'erreur
+                CSDebug.dispFatal("ManometreControleManager.getByIdCrodip Error: " & ex.Message)
             End Try
 
             ' Test pour fermeture de connection BDD

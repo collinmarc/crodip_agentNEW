@@ -35,7 +35,7 @@ Public Class EtatFVManoGrpah
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
                     Dim oMano As ManometreControle
-                    oMano = ManometreControleManager.getManometreControleByNumeroNational(m_oControle.idMano)
+                    oMano = ManometreControleManager.getManometreControleByidCrodip(m_oControle.idMano)
                     m_FileName = CSDiagPdf.makeFilename(oMano.idCrodip, CSDiagPdf.TYPE_FV_MANOCTRL) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions

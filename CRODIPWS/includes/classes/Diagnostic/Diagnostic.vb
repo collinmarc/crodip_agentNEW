@@ -2136,6 +2136,7 @@ Public Class Diagnostic
     End Property
     ''' <summary>
     ''' Mano de controle utilisé pour ce diagnostique
+    ''' ATTENTION CE N'EST PAS LE NUMERO NATIONAL (STICKER) MAIS l'ID !!!!
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -3657,7 +3658,7 @@ Public Class Diagnostic
         Dim bReturn As Boolean
         Try
             If Not String.IsNullOrEmpty(Me.controleManoControleNumNational) Then
-                Dim oMano As ManometreControle = ManometreControleManager.getManometreControleByNumeroNational(Me.controleManoControleNumNational)
+                Dim oMano As ManometreControle = ManometreControleManager.getManometreControleByidCrodip(Me.controleManoControleNumNational)
                 If oMano IsNot Nothing Then
                     oMano.setUtilise(pAgent)
                     oMano.incNbControles()

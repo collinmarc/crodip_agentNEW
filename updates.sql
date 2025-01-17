@@ -499,4 +499,13 @@ ALTER TABLE CONTROLE_REGULIER2 RENAME TO CONTROLE_REGULIER;
 ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidstructure integer;
 UPDATE ExploitationToPulverisateur SET uidstructure = (select uidstructure from exploitation where exploitation.id = ExploitationTOPulverisateur.idExploitation);
 
+--Inversion du Numero national et idCrodip dans les bases Mano et buses
+Update AgentManoControle SET numeroNational = idCrodip, idCrodip = numeroNational;
+Update AgentManoEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
+Update AgentbuseEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
+
+Update AgentManoControle SET aid = idCrodip;
+Update AgentManoEtalon SET aid = idCrodip;
+Update AgentbuseEtalon SET aid = idCrodip;
+
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
