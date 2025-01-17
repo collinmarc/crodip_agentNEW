@@ -2,6 +2,7 @@
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.Drawing
 '''
 <Serializable()> _
 Public Class DiagnosticHelp12123Mesure
@@ -35,24 +36,23 @@ Public Class DiagnosticHelp12123Mesure
         m_numPompe = pPompe.numero
         m_numMesure = pNumMesure
     End Sub
-    '<XmlIgnore>
-    'Public Property Image() As Bitmap
-    '    Get
-    '        If Resultat = DiagnosticItem.EtatDiagItemOK Then
-    '            Return Resources.PuceVerteT
-    '        Else
-    '            If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
-    '                Return Resources.PuceRougeT
-    '            Else
-    '                Return Resources.PuceGriseT
-    '            End If
-    '        End If
-    '    End Get
-    '    Set(ByVal value As Bitmap)
-    '        '            _image = value
-    '    End Set
-    'End Property
-
+    <XmlIgnore>
+    Public Property Image() As Bitmap
+        Get
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return My.Resources.PuceVerteT
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return My.Resources.PuceRougeT
+                Else
+                    Return My.Resources.PuceGriseT
+                End If
+            End If
+        End Get
+        Set(ByVal value As Bitmap)
+            '            _image = value
+        End Set
+       End Property
 
     Public Property numeroPompe() As Integer
         Get

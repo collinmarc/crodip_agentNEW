@@ -2,6 +2,7 @@
 Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.Drawing
 '''
 <Serializable()>
 Public Class DiagnosticHelp12123PompeTrtSem
@@ -65,19 +66,19 @@ Public Class DiagnosticHelp12123PompeTrtSem
         m_id = pId
         m_idDiag = pIdDiag
     End Sub
-    'Public ReadOnly Property Image() As Bitmap
-    '    Get
-    '        If Resultat = DiagnosticItem.EtatDiagItemOK Then
-    '            Return Resources.PuceVerteT
-    '        Else
-    '            If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
-    '                Return Resources.PuceRougeT
-    '            Else
-    '                Return Resources.PuceGriseT
-    '            End If
-    '        End If
-    '    End Get
-    'End Property
+    Public ReadOnly Property Image() As Bitmap
+        Get
+            If Resultat = DiagnosticItem.EtatDiagItemOK Then
+                Return My.Resources.PuceVerteT
+            Else
+                If Resultat = DiagnosticItem.EtatDiagItemMAJEUR Then
+                    Return My.Resources.PuceRougeT
+                Else
+                    Return My.Resources.PuceGriseT
+                End If
+            End If
+        End Get
+    End Property
     Public ReadOnly Property LabelResultat() As String
         Get
             If Resultat = DiagnosticItem.EtatDiagItemOK Then

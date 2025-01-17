@@ -4873,7 +4873,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Dim oDlg552 As New Diagnostic_dlghelp552()
             oDlg552.setContexte(Diagnostic_dlghelp552.Help552Mode.Mode552, m_diagnostic, tbDebitMoyen3bars.Text, tbPressionMesure.Text, (GlobalsCRODIP.DiagMode.CTRL_VISU = m_modeAffichage))
             oDlg552.ShowDialog(Me)
-            If oDlg552.DialogResult = Windows.Forms.DialogResult.OK Then
+            If oDlg552.DialogResult = Windows.Forms.DialogResult.OK And m_diagnostic.diagnosticHelp552.Resultat IsNot Nothing Then
                 m_diagnostic.syntheseErreurDebitmetre = m_diagnostic.diagnosticHelp552.ErreurDebitMetre
                 If m_diagnostic.diagnosticHelp552.Resultat.ToUpper() = "IMPRECISION" Then
                     RadioButton_diagnostic_5522.Checked = True

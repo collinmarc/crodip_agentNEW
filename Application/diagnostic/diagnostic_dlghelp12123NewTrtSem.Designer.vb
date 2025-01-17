@@ -76,7 +76,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.PeseeMoyenneDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EcartMoyenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ResultatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.m_bsrcMesures = New System.Windows.Forms.BindingSource(Me.components)
         Me.m_bsrcPompes = New System.Windows.Forms.BindingSource(Me.components)
         Me.tbEcartMoyen = New CRODIP_ControlLibrary.TBNumeric()
@@ -149,7 +148,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         'm_bsrcH12123
         '
-        Me.m_bsrcH12123.DataSource = GetType(DiagnosticHelp12123)
+        Me.m_bsrcH12123.DataSource = GetType(CRODIPWS.DiagnosticHelp12123)
         '
         'rbFonctinonementInjection
         '
@@ -376,7 +375,7 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.BCalculeDataGridViewCheckBoxColumn, Me.NumPompeDataGridViewTextBoxColumn, Me.numeroMesurestr, Me.QteGrainsDataGridViewTextBoxColumn, Me.DebitSouhaiteDataGridViewTextBoxColumn, Me.Pesee1DataGridViewTextBoxColumn, Me.Ecart1DataGridViewTextBoxColumn, Me.Pesee2DataGridViewTextBoxColumn, Me.Ecart2DataGridViewTextBoxColumn, Me.Pesee3DataGridViewTextBoxColumn, Me.Ecart3DataGridViewTextBoxColumn, Me.PeseeMoyenneDataGridViewTextBoxColumn, Me.EcartMoyenDataGridViewTextBoxColumn, Me.ResultatDataGridViewTextBoxColumn, Me.ImageDataGridViewImageColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.BCalculeDataGridViewCheckBoxColumn, Me.NumPompeDataGridViewTextBoxColumn, Me.numeroMesurestr, Me.QteGrainsDataGridViewTextBoxColumn, Me.DebitSouhaiteDataGridViewTextBoxColumn, Me.Pesee1DataGridViewTextBoxColumn, Me.Ecart1DataGridViewTextBoxColumn, Me.Pesee2DataGridViewTextBoxColumn, Me.Ecart2DataGridViewTextBoxColumn, Me.Pesee3DataGridViewTextBoxColumn, Me.Ecart3DataGridViewTextBoxColumn, Me.PeseeMoyenneDataGridViewTextBoxColumn, Me.EcartMoyenDataGridViewTextBoxColumn, Me.ResultatDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
@@ -537,12 +536,6 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
         Me.ResultatDataGridViewTextBoxColumn.ReadOnly = True
         Me.ResultatDataGridViewTextBoxColumn.Width = 80
-        '
-        'ImageDataGridViewImageColumn
-        '
-        Me.ImageDataGridViewImageColumn.DataPropertyName = "Image"
-        Me.ImageDataGridViewImageColumn.HeaderText = ""
-        Me.ImageDataGridViewImageColumn.Name = "ImageDataGridViewImageColumn"
         '
         'm_bsrcMesures
         '

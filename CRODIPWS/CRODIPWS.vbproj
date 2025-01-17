@@ -79,6 +79,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Linq.Async, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
@@ -416,6 +417,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PuceVerteT.jpg" />
     <None Include="app.config" />
     <None Include="crodipAncien.wsdl" />
     <None Include="crodipNew.wsdl" />
@@ -573,6 +575,10 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="img\puces\v.jpg" />
+    <None Include="img\puces\g.jpg" />
+    <None Include="img\puces\r.jpg" />
+    <None Include="img\puces\j.jpg" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
