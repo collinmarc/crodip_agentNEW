@@ -1,4 +1,5 @@
 ﻿Imports Crodip_agent
+Imports CRODIPWS
 Imports System.Data.Common
 Imports System.Data.OleDb
 Public Class frmMAJDB

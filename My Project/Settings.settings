@@ -149,9 +149,6 @@
     <Setting Name="urlCRODIP" Type="System.String" Scope="Application">
       <Value Profile="(Default)">admin.crodip.net</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20241022120000</Value>
-    </Setting>
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V4.1.01</Value>
     </Setting>
@@ -172,6 +169,9 @@
     </Setting>
     <Setting Name="epulve" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://epulve.crodip.net</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20250117150000</Value>
     </Setting>
   </Settings>
 </SettingsFile>
