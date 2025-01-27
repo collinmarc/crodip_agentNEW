@@ -12,7 +12,7 @@ Imports Crodip_agent
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idstructure = m_oAgent.idStructure
+        oManoRef.uidstructure = m_oAgent.idStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -24,7 +24,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idstructure = m_oAgent.idStructure
+        oManoCtrl.uidstructure = m_oAgent.idStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -152,7 +152,7 @@ Imports Crodip_agent
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idstructure = m_oAgent.idStructure
+        oManoRef.uidstructure = m_oAgent.idStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -164,7 +164,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idstructure = m_oAgent.idStructure
+        oManoCtrl.uidstructure = m_oAgent.idStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -176,7 +176,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl2 As ManometreControle
         oManoCtrl2 = New ManometreControle()
-        oManoCtrl2.idstructure = m_oAgent.idStructure
+        oManoCtrl2.uidstructure = m_oAgent.idStructure
         oManoCtrl2.idCrodip = "888"
         oManoCtrl2.numeroNational = "10004"
         oManoCtrl2.marque = "BAUMER-BOURDON"

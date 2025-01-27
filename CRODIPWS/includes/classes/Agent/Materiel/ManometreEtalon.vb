@@ -50,7 +50,7 @@ Public Class ManometreEtalon
                     Case "idCrodip".Trim().ToUpper()
                         Me.idCrodip = CType(pcolValue, String)
                     Case "idStructure".Trim().ToUpper(), "uidStructure".Trim().ToUpper()
-                        Me.uidstructure = CType(pcolValue, Integer)
+                        Me.uidStructure = CType(pcolValue, Integer)
                     Case "marque".Trim().ToUpper()
                         Me.marque = CType(pcolValue, String)
                     Case "classe".Trim().ToUpper()
@@ -162,7 +162,7 @@ Public Class ManometreEtalon
             Me.classe & "|" &
             Me.type & "|" &
             Me.fondEchelle & "|" &
-            Me.uidstructure & "|" &
+            Me.uidStructure & "|" &
             Me.isSynchro & "|" &
             Me.dateDernierControleS & "|" &
             Me.dateModificationAgent & "|" &

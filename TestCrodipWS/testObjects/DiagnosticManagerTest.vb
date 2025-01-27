@@ -5368,7 +5368,7 @@ Public Class DiagnosticManagerTest
         oManoC = New ManometreControle()
         oManoC.idCrodip = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
-        oManoC.idstructure = m_oAgent.idStructure
+        oManoC.uidstructure = m_oAgent.idStructure
         oManoC.marque = "Manoc de test"
         ManometreControleManager.save(oManoC)
 

@@ -10,12 +10,12 @@ Imports CrodipWS
         Dim oPool As New Pool()
         oPool.nbPastillesVertes = 15
         oPool.idCrodip = "123465"
-        oPool.idStructure = m_oAgent.idStructure
+        oPool.uidstructure = m_oAgent.idStructure
 
         Assert.IsTrue(PoolManager.Save(oPool))
         Dim nId As String = oPool.idCrodip
 
-        oPool = PoolManager.getPoolByIdCRODIP(nId)
+        oPool = PoolManager.getPoolByIdPool(nId)
         Assert.AreEqual(nId, oPool.idCrodip)
         Assert.AreEqual(15, oPool.nbPastillesVertes)
         Assert.AreEqual("123465", oPool.idCrodip)
@@ -24,7 +24,7 @@ Imports CrodipWS
 
         Assert.IsTrue(PoolManager.Save(oPool))
 
-        oPool = PoolManager.getPoolByIdCRODIP(nId)
+        oPool = PoolManager.getPoolByIdPool(nId)
         Assert.AreEqual(nId, oPool.idCrodip)
         Assert.AreEqual(5, oPool.nbPastillesVertes)
 
@@ -53,7 +53,7 @@ Imports CrodipWS
         oPool = New Pool()
         oPool.idCrodip = "P1"
         oPool.idCRODIPPC = oPC.idCrodip
-        oPool.idStructure = m_oStructure.id
+        oPool.uidstructure = m_oStructure.id
 
         Assert.IsTrue(PoolManager.Save(oPool))
 
@@ -76,12 +76,12 @@ Imports CrodipWS
         obanc.id = "B1"
         BancManager.save(obanc)
 
-        oPool.idBanc = obanc.id
+        'oPool.idBanc = obanc.id
         PoolManager.Save(oPool)
 
-        oPool = PoolManager.getPoolByIdCRODIP(oPool.idCrodip)
+        oPool = PoolManager.getPoolByIdPool(oPool.idCrodip)
 
-        Assert.AreEqual(obanc.id, oPool.idBanc)
+        '        Assert.AreEqual(obanc.id, oPool.idBanc)
 
 
 

@@ -49,7 +49,7 @@ Public Class AutoTest
         _Etat = -1
         type = "MANOE"
         idMateriel = pMano.idCrodip
-        idStructure = pMano.uidstructure
+        idStructure = pMano.uidStructure
         numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pMano.uid
@@ -60,7 +60,7 @@ Public Class AutoTest
         _Etat = -1
         type = "BANC"
         idMateriel = pBanc.id
-        idStructure = pBanc.uidstructure
+        idStructure = pBanc.uidStructure
         numAgent = pAgent.id
         uidstructure = pAgent.uidstructure
         uidmateriel = pBanc.uid

@@ -51,22 +51,30 @@ Public Class materiels_supprimes
     Friend WithEvents m_bsrcBuseSuppr As System.Windows.Forms.BindingSource
     Friend WithEvents m_bsrcManoControlSuppr As System.Windows.Forms.BindingSource
     Friend WithEvents m_bsrcBancSuppr As System.Windows.Forms.BindingSource
-    Friend WithEvents idCrodip As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AgentSuppressionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IdCrodipDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AgentSuppressionDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IdCrodipDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AgentSuppressionDataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AgentSuppressionDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents idCrodip As DataGridViewTextBoxColumn
+    Friend WithEvents agentSuppression As DataGridViewTextBoxColumn
+    Friend WithEvents raison As DataGridViewTextBoxColumn
+    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents agentSuppressionME As DataGridViewTextBoxColumn
+    Friend WithEvents raisonSuppressionME As DataGridViewTextBoxColumn
+    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents IdCrodipDataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents agentSuppressionBS As DataGridViewTextBoxColumn
+    Friend WithEvents raisonSuppressionBS As DataGridViewTextBoxColumn
+    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents agentSuppressionBC As DataGridViewTextBoxColumn
+    Friend WithEvents raisonSuppressionBC As DataGridViewTextBoxColumn
+    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents btn_ValiderQuitter As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -82,52 +90,52 @@ Public Class materiels_supprimes
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgv_ManoControleSuppr = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcManoControlSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label82 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvManoEtalonSuppr = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcManoEtalonSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_gestionManometresEtalon_valider = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvBusesSuppr = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcBuseSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.dgvBancsSuppr = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcBancSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btn_ValiderQuitter = New System.Windows.Forms.Label()
         Me.btn_gestionManometresControle_valider = New System.Windows.Forms.Label()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.idCrodip = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AgentSuppressionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RaisonSuppressionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppression = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raison = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSuppressionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcManoControlSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.IdCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AgentSuppressionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RaisonSuppressionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raisonSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSuppressionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcManoEtalonSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.IdCrodipDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AgentSuppressionDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RaisonSuppressionDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raisonSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSuppressionDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcBuseSuppr = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AgentSuppressionDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RaisonSuppressionDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppressionBC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raisonSuppressionBC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSuppressionDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcBancSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgv_ManoControleSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcManoControlSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.dgvManoEtalonSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcManoEtalonSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.dgvBusesSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcBuseSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.dgvBancsSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcManoControlSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcManoEtalonSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcBuseSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcBancSuppr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -177,7 +185,7 @@ Public Class materiels_supprimes
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgv_ManoControleSuppr.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ManoControleSuppr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_ManoControleSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idCrodip, Me.AgentSuppressionDataGridViewTextBoxColumn, Me.RaisonSuppressionDataGridViewTextBoxColumn, Me.DateSuppressionDataGridViewTextBoxColumn})
+        Me.dgv_ManoControleSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idCrodip, Me.agentSuppression, Me.raison, Me.DateSuppressionDataGridViewTextBoxColumn})
         Me.dgv_ManoControleSuppr.DataSource = Me.m_bsrcManoControlSuppr
         Me.dgv_ManoControleSuppr.Location = New System.Drawing.Point(10, 45)
         Me.dgv_ManoControleSuppr.Name = "dgv_ManoControleSuppr"
@@ -192,6 +200,10 @@ Public Class materiels_supprimes
         Me.dgv_ManoControleSuppr.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgv_ManoControleSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgv_ManoControleSuppr.TabIndex = 38
+        '
+        'm_bsrcManoControlSuppr
+        '
+        Me.m_bsrcManoControlSuppr.DataSource = GetType(CRODIPWS.ManometreControle)
         '
         'Label82
         '
@@ -237,7 +249,7 @@ Public Class materiels_supprimes
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvManoEtalonSuppr.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvManoEtalonSuppr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvManoEtalonSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdCrodipDataGridViewTextBoxColumn, Me.AgentSuppressionDataGridViewTextBoxColumn1, Me.RaisonSuppressionDataGridViewTextBoxColumn1, Me.DateSuppressionDataGridViewTextBoxColumn1})
+        Me.dgvManoEtalonSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdCrodipDataGridViewTextBoxColumn, Me.agentSuppressionME, Me.raisonSuppressionME, Me.DateSuppressionDataGridViewTextBoxColumn1})
         Me.dgvManoEtalonSuppr.DataSource = Me.m_bsrcManoEtalonSuppr
         Me.dgvManoEtalonSuppr.Location = New System.Drawing.Point(8, 37)
         Me.dgvManoEtalonSuppr.Name = "dgvManoEtalonSuppr"
@@ -252,6 +264,10 @@ Public Class materiels_supprimes
         Me.dgvManoEtalonSuppr.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvManoEtalonSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgvManoEtalonSuppr.TabIndex = 41
+        '
+        'm_bsrcManoEtalonSuppr
+        '
+        Me.m_bsrcManoEtalonSuppr.DataSource = GetType(CRODIPWS.ManometreEtalon)
         '
         'Label1
         '
@@ -309,7 +325,7 @@ Public Class materiels_supprimes
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvBusesSuppr.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvBusesSuppr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBusesSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdCrodipDataGridViewTextBoxColumn2, Me.AgentSuppressionDataGridViewTextBoxColumn3, Me.RaisonSuppressionDataGridViewTextBoxColumn3, Me.DateSuppressionDataGridViewTextBoxColumn3})
+        Me.dgvBusesSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdCrodipDataGridViewTextBoxColumn2, Me.agentSuppressionBS, Me.raisonSuppressionBS, Me.DateSuppressionDataGridViewTextBoxColumn3})
         Me.dgvBusesSuppr.DataSource = Me.m_bsrcBuseSuppr
         Me.dgvBusesSuppr.Location = New System.Drawing.Point(12, 29)
         Me.dgvBusesSuppr.Name = "dgvBusesSuppr"
@@ -324,6 +340,10 @@ Public Class materiels_supprimes
         Me.dgvBusesSuppr.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvBusesSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgvBusesSuppr.TabIndex = 42
+        '
+        'm_bsrcBuseSuppr
+        '
+        Me.m_bsrcBuseSuppr.DataSource = GetType(CRODIPWS.Buse)
         '
         'Label2
         '
@@ -368,7 +388,7 @@ Public Class materiels_supprimes
         DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvBancsSuppr.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.dgvBancsSuppr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBancsSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.AgentSuppressionDataGridViewTextBoxColumn2, Me.RaisonSuppressionDataGridViewTextBoxColumn2, Me.DateSuppressionDataGridViewTextBoxColumn2})
+        Me.dgvBancsSuppr.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.agentSuppressionBC, Me.raisonSuppressionBC, Me.DateSuppressionDataGridViewTextBoxColumn2})
         Me.dgvBancsSuppr.DataSource = Me.m_bsrcBancSuppr
         Me.dgvBancsSuppr.Location = New System.Drawing.Point(12, 29)
         Me.dgvBancsSuppr.Name = "dgvBancsSuppr"
@@ -383,6 +403,10 @@ Public Class materiels_supprimes
         Me.dgvBancsSuppr.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvBancsSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgvBancsSuppr.TabIndex = 43
+        '
+        'm_bsrcBancSuppr
+        '
+        Me.m_bsrcBancSuppr.DataSource = GetType(CRODIPWS.Banc)
         '
         'Label3
         '
@@ -440,26 +464,19 @@ Public Class materiels_supprimes
         Me.idCrodip.Name = "idCrodip"
         Me.idCrodip.ReadOnly = True
         '
-        'id
+        'agentSuppression
         '
-        Me.id.DataPropertyName = "id"
-        Me.id.HeaderText = "Identifiant"
-        Me.id.Name = "id"
-        Me.id.ReadOnly = True
+        Me.agentSuppression.DataPropertyName = "agentSuppression"
+        Me.agentSuppression.HeaderText = "agent"
+        Me.agentSuppression.Name = "agentSuppression"
+        Me.agentSuppression.ReadOnly = True
         '
-        'AgentSuppressionDataGridViewTextBoxColumn
+        'raison
         '
-        Me.AgentSuppressionDataGridViewTextBoxColumn.DataPropertyName = "AgentSuppression"
-        Me.AgentSuppressionDataGridViewTextBoxColumn.HeaderText = "Nom de l'agent"
-        Me.AgentSuppressionDataGridViewTextBoxColumn.Name = "AgentSuppressionDataGridViewTextBoxColumn"
-        Me.AgentSuppressionDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'RaisonSuppressionDataGridViewTextBoxColumn
-        '
-        Me.RaisonSuppressionDataGridViewTextBoxColumn.DataPropertyName = "RaisonSuppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn.HeaderText = "Raison de la suppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn.Name = "RaisonSuppressionDataGridViewTextBoxColumn"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn.ReadOnly = True
+        Me.raison.DataPropertyName = "raisonSuppression"
+        Me.raison.HeaderText = "raisonSuppression"
+        Me.raison.Name = "raison"
+        Me.raison.ReadOnly = True
         '
         'DateSuppressionDataGridViewTextBoxColumn
         '
@@ -468,30 +485,26 @@ Public Class materiels_supprimes
         Me.DateSuppressionDataGridViewTextBoxColumn.Name = "DateSuppressionDataGridViewTextBoxColumn"
         Me.DateSuppressionDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'm_bsrcManoControlSuppr
-        '
-        Me.m_bsrcManoControlSuppr.DataSource = GetType(ManometreControle)
-        '
         'IdCrodipDataGridViewTextBoxColumn
         '
-        Me.IdCrodipDataGridViewTextBoxColumn.DataPropertyName = "idCrodip"
+        Me.IdCrodipDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
         Me.IdCrodipDataGridViewTextBoxColumn.HeaderText = "Identifiant"
         Me.IdCrodipDataGridViewTextBoxColumn.Name = "IdCrodipDataGridViewTextBoxColumn"
         Me.IdCrodipDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'AgentSuppressionDataGridViewTextBoxColumn1
+        'agentSuppressionME
         '
-        Me.AgentSuppressionDataGridViewTextBoxColumn1.DataPropertyName = "AgentSuppression"
-        Me.AgentSuppressionDataGridViewTextBoxColumn1.HeaderText = "Nom de l'agent"
-        Me.AgentSuppressionDataGridViewTextBoxColumn1.Name = "AgentSuppressionDataGridViewTextBoxColumn1"
-        Me.AgentSuppressionDataGridViewTextBoxColumn1.ReadOnly = True
+        Me.agentSuppressionME.DataPropertyName = "agentSuppression"
+        Me.agentSuppressionME.HeaderText = "agent"
+        Me.agentSuppressionME.Name = "agentSuppressionME"
+        Me.agentSuppressionME.ReadOnly = True
         '
-        'RaisonSuppressionDataGridViewTextBoxColumn1
+        'raisonSuppressionME
         '
-        Me.RaisonSuppressionDataGridViewTextBoxColumn1.DataPropertyName = "RaisonSuppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn1.HeaderText = "Raison de la suppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn1.Name = "RaisonSuppressionDataGridViewTextBoxColumn1"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn1.ReadOnly = True
+        Me.raisonSuppressionME.DataPropertyName = "raisonSuppression"
+        Me.raisonSuppressionME.HeaderText = "raison"
+        Me.raisonSuppressionME.Name = "raisonSuppressionME"
+        Me.raisonSuppressionME.ReadOnly = True
         '
         'DateSuppressionDataGridViewTextBoxColumn1
         '
@@ -500,30 +513,26 @@ Public Class materiels_supprimes
         Me.DateSuppressionDataGridViewTextBoxColumn1.Name = "DateSuppressionDataGridViewTextBoxColumn1"
         Me.DateSuppressionDataGridViewTextBoxColumn1.ReadOnly = True
         '
-        'm_bsrcManoEtalonSuppr
-        '
-        Me.m_bsrcManoEtalonSuppr.DataSource = GetType(ManometreEtalon)
-        '
         'IdCrodipDataGridViewTextBoxColumn2
         '
-        Me.IdCrodipDataGridViewTextBoxColumn2.DataPropertyName = "idCrodip"
+        Me.IdCrodipDataGridViewTextBoxColumn2.DataPropertyName = "numeroNational"
         Me.IdCrodipDataGridViewTextBoxColumn2.HeaderText = "Identifiant"
         Me.IdCrodipDataGridViewTextBoxColumn2.Name = "IdCrodipDataGridViewTextBoxColumn2"
         Me.IdCrodipDataGridViewTextBoxColumn2.ReadOnly = True
         '
-        'AgentSuppressionDataGridViewTextBoxColumn3
+        'agentSuppressionBS
         '
-        Me.AgentSuppressionDataGridViewTextBoxColumn3.DataPropertyName = "AgentSuppression"
-        Me.AgentSuppressionDataGridViewTextBoxColumn3.HeaderText = "Nom de l'agent"
-        Me.AgentSuppressionDataGridViewTextBoxColumn3.Name = "AgentSuppressionDataGridViewTextBoxColumn3"
-        Me.AgentSuppressionDataGridViewTextBoxColumn3.ReadOnly = True
+        Me.agentSuppressionBS.DataPropertyName = "agentSuppression"
+        Me.agentSuppressionBS.HeaderText = "agent"
+        Me.agentSuppressionBS.Name = "agentSuppressionBS"
+        Me.agentSuppressionBS.ReadOnly = True
         '
-        'RaisonSuppressionDataGridViewTextBoxColumn3
+        'raisonSuppressionBS
         '
-        Me.RaisonSuppressionDataGridViewTextBoxColumn3.DataPropertyName = "RaisonSuppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn3.HeaderText = "Raison de la suppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn3.Name = "RaisonSuppressionDataGridViewTextBoxColumn3"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn3.ReadOnly = True
+        Me.raisonSuppressionBS.DataPropertyName = "raisonSuppression"
+        Me.raisonSuppressionBS.HeaderText = "raison"
+        Me.raisonSuppressionBS.Name = "raisonSuppressionBS"
+        Me.raisonSuppressionBS.ReadOnly = True
         '
         'DateSuppressionDataGridViewTextBoxColumn3
         '
@@ -532,23 +541,26 @@ Public Class materiels_supprimes
         Me.DateSuppressionDataGridViewTextBoxColumn3.Name = "DateSuppressionDataGridViewTextBoxColumn3"
         Me.DateSuppressionDataGridViewTextBoxColumn3.ReadOnly = True
         '
-        'm_bsrcBuseSuppr
+        'id
         '
-        Me.m_bsrcBuseSuppr.DataSource = GetType(Buse)
+        Me.id.DataPropertyName = "id"
+        Me.id.HeaderText = "Identifiant"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
         '
-        'AgentSuppressionDataGridViewTextBoxColumn2
+        'agentSuppressionBC
         '
-        Me.AgentSuppressionDataGridViewTextBoxColumn2.DataPropertyName = "AgentSuppression"
-        Me.AgentSuppressionDataGridViewTextBoxColumn2.HeaderText = "Nom de l'agent"
-        Me.AgentSuppressionDataGridViewTextBoxColumn2.Name = "AgentSuppressionDataGridViewTextBoxColumn2"
-        Me.AgentSuppressionDataGridViewTextBoxColumn2.ReadOnly = True
+        Me.agentSuppressionBC.DataPropertyName = "agentSuppression"
+        Me.agentSuppressionBC.HeaderText = "agent"
+        Me.agentSuppressionBC.Name = "agentSuppressionBC"
+        Me.agentSuppressionBC.ReadOnly = True
         '
-        'RaisonSuppressionDataGridViewTextBoxColumn2
+        'raisonSuppressionBC
         '
-        Me.RaisonSuppressionDataGridViewTextBoxColumn2.DataPropertyName = "RaisonSuppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn2.HeaderText = "Raison de la suppression"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn2.Name = "RaisonSuppressionDataGridViewTextBoxColumn2"
-        Me.RaisonSuppressionDataGridViewTextBoxColumn2.ReadOnly = True
+        Me.raisonSuppressionBC.DataPropertyName = "raisonSuppression"
+        Me.raisonSuppressionBC.HeaderText = "raison"
+        Me.raisonSuppressionBC.Name = "raisonSuppressionBC"
+        Me.raisonSuppressionBC.ReadOnly = True
         '
         'DateSuppressionDataGridViewTextBoxColumn2
         '
@@ -556,10 +568,6 @@ Public Class materiels_supprimes
         Me.DateSuppressionDataGridViewTextBoxColumn2.HeaderText = "Date de la suppression"
         Me.DateSuppressionDataGridViewTextBoxColumn2.Name = "DateSuppressionDataGridViewTextBoxColumn2"
         Me.DateSuppressionDataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'm_bsrcBancSuppr
-        '
-        Me.m_bsrcBancSuppr.DataSource = GetType(Banc)
         '
         'materiels_supprimes
         '
@@ -571,6 +579,7 @@ Public Class materiels_supprimes
         Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MinimizeBox = False
         Me.Name = "materiels_supprimes"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
@@ -579,15 +588,15 @@ Public Class materiels_supprimes
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.dgv_ManoControleSuppr, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcManoControlSuppr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         CType(Me.dgvManoEtalonSuppr, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcManoEtalonSuppr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.dgvBusesSuppr, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcBuseSuppr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.dgvBancsSuppr, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcManoControlSuppr, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcManoEtalonSuppr, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcBuseSuppr, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcBancSuppr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

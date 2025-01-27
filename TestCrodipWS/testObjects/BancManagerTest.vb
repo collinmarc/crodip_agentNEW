@@ -24,7 +24,7 @@ Public Class BancManagerTest
         Dim objBanc2 As Banc
         objBanc = New Banc()
         objBanc.id = "MonBanc"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -531,7 +531,7 @@ Public Class BancManagerTest
         idBanc = "M1E"
         oBanc.id = idBanc
         oBanc.idCrodip = idBanc
-        oBanc.idStructure = m_oAgent.idStructure
+        oBanc.uidstructure = m_oAgent.idStructure
         oBanc.isSupprime = False
         oBanc.etat = True
         oBanc.JamaisServi = False

@@ -44,7 +44,7 @@ Public MustInherit Class Materiel
     '    End Set
     'End Property
     <XmlIgnore()>
-    Public Property numeroNational() As String
+    Public Overridable Property numeroNational() As String
         Get
             Return _numeroNational
         End Get
@@ -63,15 +63,6 @@ Public MustInherit Class Materiel
         End Set
     End Property
     Public Property uidstructure() As Integer
-        Get
-            Return idstructure
-        End Get
-        Set(ByVal Value As Integer)
-            idstructure = Value
-        End Set
-    End Property
-    <XmlIgnore()>
-    Public Property idstructure() As Integer
         Get
             Return _idStructure
         End Get
@@ -174,6 +165,7 @@ Public MustInherit Class Materiel
             End If
         End Set
     End Property
+
     <XmlElement("dateDernierControle")>
     Public Property dateDernierControleS() As String
         Get
@@ -277,7 +269,7 @@ Public MustInherit Class Materiel
                     Case "jamaisServi".Trim().ToUpper()
                         Me.jamaisServi = pcolValue
                     Case "dateActivation".Trim().ToUpper()
-                        Me.DateActivation = pcolValue
+                        Me.dateActivation = pcolValue
                     Case Else
                         bReturn = False
                 End Select

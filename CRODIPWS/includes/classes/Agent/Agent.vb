@@ -468,8 +468,10 @@ Public Class Agent
                         Me.isSignElecActive = pValue
                     Case "idCRODIPPool".Trim().ToUpper()
                         Me.idCRODIPPool = pValue
-                        If idCRODIPPool <> "" Then
-                            oPool = PoolManager.getPoolByIdCRODIP(idCRODIPPool)
+                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                            If idCRODIPPool <> "" Then
+                                oPool = PoolManager.getPoolByIdPool(idCRODIPPool)
+                            End If
                         End If
                 End Select
             End If

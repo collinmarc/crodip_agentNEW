@@ -156,7 +156,7 @@ Public Class BancManager
                         objBanc.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                     End If
 
-                    paramsQuery = paramsQuery & " , idStructure=" & objBanc.uidstructure & ""
+                    paramsQuery = paramsQuery & " , idStructure=" & objBanc.uidStructure & ""
 
                     If Not objBanc.marque Is Nothing Then
                         paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objBanc.marque) & "'"
@@ -198,7 +198,7 @@ Public Class BancManager
                         paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBanc.DateActivation) & "'"
                     End If
                     paramsQuery = paramsQuery & " , ModuleAcquisition='" & objBanc.moduleAcquisition & "'"
-                    paramsQuery = paramsQuery & " , uidstructure='" & objBanc.uidstructure & "'"
+                    paramsQuery = paramsQuery & " , uidstructure='" & objBanc.uidStructure & "'"
 
                     paramsQuery = paramsQuery & objBanc.getRootQuery()
 
@@ -206,18 +206,20 @@ Public Class BancManager
                     ' On finalise la requete et en l'execute
                     bddCommande.CommandText = "UPDATE BancMesure SET " & paramsQuery & " WHERE id='" & objBanc.id & "'"
                     bddCommande.ExecuteNonQuery()
+                    If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
 
-                    'Suppression des Pools avant insertion
-                    clearlstPoolByBanc(objBanc.id)
-                    'Insertion des Pools
-                    objBanc.lstPools.ForEach(Sub(p)
-                                                 insertPoolBanc(p.idCrodip, objBanc.id)
-                                             End Sub)
+                        'Suppression des Pools avant insertion
+                        clearlstPoolByBanc(objBanc.id)
+                        'Insertion des Pools
+                        objBanc.lstPools.ForEach(Sub(p)
+                                                     insertPoolBanc(p.idCrodip, objBanc.id)
+                                                 End Sub)
+                    End If
 
                     bReturn = True
-                End If
+                    End If
 
-            End If
+                End If
         Catch ex As Exception
             CSDebug.dispError("Err BancManager - Save : " & ex.Message.ToString)
             bReturn = False
@@ -395,7 +397,7 @@ Public Class BancManager
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
-                bddCommande.CommandText = "SELECT * FROM BancMesure WHERE idStructure=" & pIdStructure & " AND isSupprime=" & True & " ORDER BY dateSuppression DESC"
+                bddCommande.CommandText = "SELECT * FROM BancMesure WHERE idStructure=" & pIdStructure & " AND isSupprime<>0 ORDER BY dateSuppression DESC"
             End If
             oDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours

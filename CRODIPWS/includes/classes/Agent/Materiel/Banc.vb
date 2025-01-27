@@ -178,7 +178,7 @@ Public Class Banc
                         Me.numeroNational = pcolValue.ToString() 'Public id As String
                         Me.idBancMesure = pcolValue.ToString() 'Public id As String
                     Case "idstructure".Trim().ToUpper()
-                        Me.uidstructure = pcolValue.ToString()
+                        Me.uidStructure = pcolValue.ToString()
                     Case "marque".Trim().ToUpper()
                         Me.marque = pcolValue.ToString() 'Public marque As String
                     Case "modele".Trim().ToUpper()
@@ -222,7 +222,7 @@ Public Class Banc
                         Me.ModuleAcquisition = pcolValue
                     Case "idCrodipPool".Trim().ToUpper()
                     Case "uidstructure".Trim().ToUpper()
-                        Me.uidstructure = pcolValue
+                        Me.uidStructure = pcolValue
                     Case Else
                         CSDebug.dispError("Banc.Fill  (" + pColName + "," + pcolValue.ToString + ") ERR : Champs inconnu")
                         bReturn = False
@@ -275,6 +275,8 @@ Public Class Banc
         oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.Banc)
         If IsDateControle() Then
             bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+        Else
+            bReturn = MyBase.getAlerte(Date.MinValue, oNiveau)
         End If
         If bReturn = GlobalsCRODIP.ALERTE.NONE Then
             If etat = False Then
@@ -378,7 +380,7 @@ Public Class Banc
             Me.marque & "|" &
             Me.modele & "|" &
             Me.dateAchat & "|" &
-            Me.uidstructure & "|" &
+            Me.uidStructure & "|" &
             Me.DateActivation & "|" &
             Me.dateDernierControleS & "|" &
             Me.dateModificationAgent & "|" &

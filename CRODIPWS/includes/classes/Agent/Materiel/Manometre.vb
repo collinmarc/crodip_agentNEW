@@ -21,10 +21,10 @@ Public Class Manometre
     End Sub
     Public Property idManometre() As String
         Get
-            Return numeroNational
+            Return _numeroNational
         End Get
         Set(ByVal value As String)
-            numeroNational = value
+            _numeroNational = value
         End Set
     End Property
 

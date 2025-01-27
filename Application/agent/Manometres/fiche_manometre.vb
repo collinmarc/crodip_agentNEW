@@ -610,7 +610,7 @@ Public Class fiche_manometre
             Me.pnlManoControle.Visible = False
         End If
         Dim oLst As List(Of Pool)
-        oLst = PoolManager.GetListe(manometreCourant.idStructure)
+        oLst = PoolManager.GetListe(manometreCourant.uidstructure)
         m_bsrcPool.Clear()
         oLst.ForEach(Sub(p)
                          m_bsrcPool.Add(p)

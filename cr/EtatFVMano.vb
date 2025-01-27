@@ -152,7 +152,7 @@ Public Class EtatFVMano
         m_oControle.DateVerif = pMano.dateDernierControleS
         m_oControle.Proprietaire = pAgent.NomStructure
         m_oControle.AgentVerif = pAgent.nom & " " & pAgent.prenom
-        m_oControle.idMano = pMano.idManometre
+        m_oControle.idMano = pMano.numeroNational
 
         '        Dim oEtat As New EtatFVBanc(Me)
         Dim bReturn As Boolean = genereEtat()

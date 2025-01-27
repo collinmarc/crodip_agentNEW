@@ -167,7 +167,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -184,7 +184,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -201,7 +201,7 @@ Public Class AutoTestTest
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
         objManometreEtalon.incertitudeEtalon = "0.562"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.uidstructure = m_oAgent.idStructure
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -243,7 +243,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -260,7 +260,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -277,7 +277,7 @@ Public Class AutoTestTest
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
         objManometreEtalon.incertitudeEtalon = "0.562"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.uidstructure = m_oAgent.idStructure
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -378,7 +378,7 @@ Public Class AutoTestTest
         'Création de 3 bancs (2 OK + 1 Supprimé)
         objBanc = New Banc()
         objBanc.id = "MonBanc1"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = False
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
@@ -388,7 +388,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc2"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = False
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
@@ -398,7 +398,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc3"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidstructure = m_oAgent.idStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -416,7 +416,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -429,7 +429,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -442,7 +442,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -455,7 +455,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"

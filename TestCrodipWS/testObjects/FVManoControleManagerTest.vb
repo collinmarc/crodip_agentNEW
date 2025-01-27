@@ -82,7 +82,7 @@ Public Class FVManometreControleManagerTest
         Dim olstFV As New List(Of FVManometreControle)
         'Création du mano de controle
         oMano = New ManometreControle()
-        oMano.idstructure = m_oAgent.idStructure
+        oMano.uidstructure = m_oAgent.idStructure
         oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
         oMano.jamaisServi = True
@@ -153,7 +153,7 @@ Public Class FVManometreControleManagerTest
         Dim oMano As ManometreControle
         Dim olstFV As New List(Of FVManometreControle)
         oMano = New ManometreControle()
-        oMano.idstructure = m_oAgent.idStructure
+        oMano.uidstructure = m_oAgent.idStructure
         oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
         oMano.jamaisServi = True
@@ -180,9 +180,9 @@ Public Class FVManometreControleManagerTest
         Dim oCtrl As ControleMano = New ControleMano(oMano, m_oAgent)
         Dim oManoE As ManometreEtalon
         oManoE = New ManometreEtalon()
-        oManoE.idstructure = m_oAgent.idStructure
-        oManoE.numeroNational = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
-        oManoE.idCrodip = oMano.numeroNational
+        oManoE.uidstructure = m_oAgent.idStructure
+        oManoE.idCrodip = ManometreEtalonManager.FTO_getNewId(m_oAgent)
+        oManoE.numeroNational = oMano.idCrodip
         oManoE.jamaisServi = True
         oManoE.isUtilise = False
         ManometreEtalonManager.save(oManoE)

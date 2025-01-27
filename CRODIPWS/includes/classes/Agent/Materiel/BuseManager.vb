@@ -132,15 +132,15 @@ Public Class BuseManager
         Dim bReturn As Boolean
 
         Try
-            If objBuseEtalon.numeroNational <> "" Then
+            If objBuseEtalon.idCrodip <> "" Then
 
 
                 ' On test si l'object existe ou non
-                Dim existsObject As Object
-                existsObject = BuseManager.getBuseByNumeroNational(objBuseEtalon.numeroNational)
-                If existsObject.numeroNational = "" Or existsObject.numeroNational = "0" Then
+                Dim existsObject As Buse
+                existsObject = BuseManager.getBuseByIdCrodip(objBuseEtalon.idCrodip)
+                If existsObject.idCrodip = "" Or existsObject.idCrodip = "0" Then
                     ' Si il n'existe pas, on le crée
-                    createBuse(objBuseEtalon.numeroNational)
+                    createBuse(objBuseEtalon.idCrodip)
                 End If
 
                 oCsdb = New CSDb(True)
@@ -157,11 +157,7 @@ Public Class BuseManager
                     objBuseEtalon.dateModificationAgent = objBuseEtalon.dateModificationCrodip
                 End If
 
-                If Not objBuseEtalon.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , idCrodip='" & objBuseEtalon.idCrodip & "'"
-
-                End If
-                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.idstructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.uidstructure & ""
                 paramsQuery = paramsQuery & " , uidStructure=" & objBuseEtalon.uidstructure & ""
                 If Not objBuseEtalon.couleur Is Nothing Then
                     paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
@@ -187,22 +183,23 @@ Public Class BuseManager
                     paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBuseEtalon.dateSuppression) & "'"
                 End If
                 paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.jamaisServi & ""
-                If objBuseEtalon.DateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.DateActivation) & "'"
+                If objBuseEtalon.dateActivation <> Nothing Then
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.dateActivation) & "'"
                 End If
 
                 paramsQuery = paramsQuery & objBuseEtalon.getRootQuery()
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE numeroNational='" & objBuseEtalon.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE idCrodip='" & objBuseEtalon.idCrodip & "'"
                 bddCommande.ExecuteNonQuery()
-
-                'Suppression des Pools avant insertion
-                clearlstPoolByBuse(objBuseEtalon.numeroNational)
-                'Insertion des Pools
-                objBuseEtalon.lstPools.ForEach(Sub(p)
-                                                   insertPoolBuse(p.idCrodip, objBuseEtalon.numeroNational)
-                                               End Sub)
+                If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                    'Suppression des Pools avant insertion
+                    clearlstPoolByBuse(objBuseEtalon.idCrodip)
+                    'Insertion des Pools
+                    objBuseEtalon.lstPools.ForEach(Sub(p)
+                                                       insertPoolBuse(p.idCrodip, objBuseEtalon.numeroNational)
+                                                   End Sub)
+                End If
 
             End If
             bReturn = True
@@ -240,6 +237,37 @@ Public Class BuseManager
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE numeroNational='" & buse_id & "'"
+            Try
+                ' On récupère les résultats
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                While tmpListProfils.Read()
+                    tmpBuse.FillDR(tmpListProfils)
+                End While
+            Catch ex As Exception ' On intercepte l'erreur
+                CSDebug.dispError("BuseManager Error: " & ex.Message)
+            End Try
+
+
+        End If
+        ' Test pour fermeture de connection BDD
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
+        'on retourne le buse ou un objet vide en cas d'erreur
+        Return tmpBuse
+    End Function
+    Public Shared Function getBuseByIdCrodip(ByVal pIdCrodip As String) As Buse
+        ' déclarations
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
+
+        Dim tmpBuse As New Buse
+        If pIdCrodip <> "" Then
+            oCsdb = New CSDb(True)
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idCrodip ='" & pIdCrodip & "'"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -346,7 +374,7 @@ Public Class BuseManager
             bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentBuseEtalon (numeroNational) VALUES ('" & buse_id & "')"
+            bddCommande.CommandText = "INSERT INTO AgentBuseEtalon (idCrodip, aid) VALUES ('" & buse_id & "','" & buse_id & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
 
@@ -375,7 +403,7 @@ Public Class BuseManager
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
-                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND isSupprime=" & True & " ORDER BY dateSuppression DESC"
+                bddCommande.CommandText = "SELECT * FROM AgentBuseEtalon WHERE idStructure=" & pIdStructure & " AND isSupprime<>0 ORDER BY dateSuppression DESC"
                 oDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim i As Integer = 0

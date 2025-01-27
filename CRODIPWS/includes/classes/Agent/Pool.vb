@@ -1,5 +1,4 @@
 ﻿Imports System.Xml.Serialization
-Imports Crodip_agent
 
 Public Class Pool
     Inherits Materiel
@@ -31,16 +30,33 @@ Public Class Pool
             _idPCRODIPPC = value
         End Set
     End Property
-    Private _idBanc As String
-    Public Property idBanc() As String
+    Private _aidBanc As String
+    Public Property aidbanc() As String
         Get
-            Return _idBanc
+            Return _aidBanc
         End Get
         Set(ByVal value As String)
-            _idBanc = value
+            _aidBanc = value
         End Set
     End Property
-
+    Private _uidbanc As Integer
+    Public Property uidbanc() As Integer
+        Get
+            Return _uidbanc
+        End Get
+        Set(ByVal value As Integer)
+            _uidbanc = value
+        End Set
+    End Property
+    '' Pour cohérence avec le serveur
+    Public Property dateMiseEnService() As String
+        Get
+            Return dateActivationS
+        End Get
+        Set(ByVal Value As String)
+            dateActivationS = Value
+        End Set
+    End Property
     Public Sub New()
         libelle = ""
         nbPastillesVertes = 0
@@ -55,14 +71,16 @@ Public Class Pool
                 Select Case pcolName.Trim().ToUpper()
                     Case "libelle".Trim().ToUpper()
                         Me.libelle = pValue.ToString()
-                    Case "idCRODIPPC".Trim().ToUpper()
-                        Me.idCRODIPPC = pValue
+                    Case "idPool".Trim().ToUpper()
+                        Me.idCrodip = pValue
                     Case "idStructure".Trim().ToUpper()
                         Me.uidstructure = pValue
                     Case "nbPastillesVertes".Trim().ToUpper()
                         Me.nbPastillesVertes = pValue
-                    Case "idBanc".Trim().ToUpper()
-                        Me.idBanc = pValue
+                    Case "idbanc".Trim().ToUpper()
+                        Me.aidbanc = pValue
+                    Case "uidbanc".Trim().ToUpper()
+                        Me.uidbanc = pValue
                     Case Else
                         bReturn = False
                 End Select

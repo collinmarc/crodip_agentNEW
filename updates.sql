@@ -340,172 +340,210 @@
 --ALTER TABLE Pulverisateur DROP COLUMN numchassis;
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V3.1.01','2024-01-16 12:00:00','Immatriculation Pulve');
 
-ALTER TABLE Exploitation ADD COLUMN uid integer;
-ALTER TABLE Exploitation ADD COLUMN aid text;
-ALTER TABLE Exploitation ADD COLUMN uidstructure integer;
-update Exploitation set aid = id;
-update Exploitation set uidstructure = idstructure;
-ALTER TABLE pulverisateur ADD COLUMN uid integer;
-ALTER TABLE pulverisateur ADD COLUMN uidstructure integer;
-ALTER TABLE pulverisateur ADD COLUMN aid text;
-update Pulverisateur set aid = id;
-update Pulverisateur set uidStructure = idstructure;
-ALTER TABLE ExploitationToPulverisateur ADD COLUMN uid integer;
-ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidexploitation integer;
-ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidpulverisateur integer;
-ALTER TABLE ExploitationToPulverisateur ADD COLUMN aid text;
-update ExploitationToPulverisateur set aid = id;
-ALTER TABLE Agent ADD COLUMN uid integer;
-ALTER TABLE Agent ADD COLUMN aid text;
-ALTER TABLE Agent ADD COLUMN uidstructure integer;
-update Agent set aid = id;
-ALTER TABLE Diagnostic ADD COLUMN uid integer;
-ALTER TABLE Diagnostic ADD COLUMN aid text;
-ALTER TABLE Diagnostic ADD COLUMN uidstructure integer;
-ALTER TABLE Diagnostic ADD COLUMN uidexploitation integer;
-ALTER TABLE Diagnostic ADD COLUMN uidpulverisateur integer;
-ALTER TABLE Diagnostic ADD COLUMN uidagent integer;
-update Diagnostic set aid = id;
-ALTER TABLE DiagnosticItem ADD COLUMN uid integer;
-ALTER TABLE DiagnosticItem ADD COLUMN aid text;
-ALTER TABLE DiagnosticItem ADD COLUMN uiddiagnostic integer;
-ALTER TABLE DiagnosticItem ADD COLUMN aiddiagnostic integer;
-update DiagnosticItem set aid = id;
-update DiagnosticItem set aiddiagnostic = iddiagnostic;
+-- Suppression des Categorie vides
+--DELETE FROM PrestationCategorie where libelle = ""
+DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale is null and nomExploitant is Null);
+DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
+--DELETE from agentManoControle where isSupprime<>0;
+--DELETE from agentManoEtalon where isSupprime<>0;
+--DELETE from agentBuseEtalon where isSupprime<>0;
 
-ALTER TABLE DiagnosticBuses ADD COLUMN uid integer;
-ALTER TABLE DiagnosticBuses ADD COLUMN aid text;
-ALTER TABLE Diagnosticbuses ADD COLUMN uiddiagnostic integer;
-ALTER TABLE Diagnosticbuses ADD COLUMN aiddiagnostic text;
-update DiagnosticBuses set aid = id;
-update DiagnosticBuses set aiddiagnostic = iddiagnostic;
-ALTER TABLE DiagnosticBusesDetail ADD COLUMN uid integer;
-ALTER TABLE DiagnosticBusesDetail ADD COLUMN aid text;
-ALTER TABLE DiagnosticbusesDetail ADD COLUMN uiddiagnostic integer;
-ALTER TABLE DiagnosticbusesDetail ADD COLUMN aiddiagnostic text;
-update DiagnosticBusesDetail set aid = id;
-update DiagnosticBusesDetail set aiddiagnostic = iddiagnostic;
-ALTER TABLE DiagnosticMano542 ADD COLUMN uid integer;
-ALTER TABLE DiagnosticMano542 ADD COLUMN aid text;
-ALTER TABLE DiagnosticMano542 ADD COLUMN uiddiagnostic integer;
-ALTER TABLE DiagnosticMano542 ADD COLUMN aiddiagnostic text;
-update DiagnosticMano542 set aid = id;
-update DiagnosticMano542 set aiddiagnostic = iddiagnostic;
-ALTER TABLE DiagnosticTroncons833 ADD COLUMN uid integer;
-ALTER TABLE DiagnosticTroncons833 ADD COLUMN aid text;
-ALTER TABLE DiagnosticTroncons833 ADD COLUMN uiddiagnostic integer;
-ALTER TABLE DiagnosticTroncons833 ADD COLUMN aiddiagnostic text;
-update DiagnosticTroncons833 set aid = id;
-update DiagnosticTroncons833 set aiddiagnostic = iddiagnostic;
-
-ALTER TABLE BancMesure ADD COLUMN uid integer;
-ALTER TABLE BancMesure ADD COLUMN aid text;
-ALTER TABLE BancMesure ADD COLUMN uidstructure integer;
-update BancMesure set aid = id;
-update BancMesure set uidstructure = idStructure;
-
-ALTER TABLE AgentManoControle ADD COLUMN uid integer;
-ALTER TABLE AgentManoControle ADD COLUMN aid text;
-ALTER TABLE AgentManoControle ADD COLUMN uidstructure integer;
-update AgentManoControle set aid = idcrodip;
-update AgentManoControle set uidStructure = idstructure;
-
-ALTER TABLE AgentManoEtalon ADD COLUMN uid integer;
-ALTER TABLE AgentManoEtalon ADD COLUMN aid text;
-ALTER TABLE AgentManoEtalon ADD COLUMN uidstructure integer;
-update AgentManoEtalon set aid = idcrodip;
-update AgentManoEtalon set uidStructure = idstructure;
-
-ALTER TABLE FicheVieBancMesure ADD COLUMN uid integer;
-ALTER TABLE FicheVieBancMesure ADD COLUMN aid text;
-ALTER TABLE FicheVieBancMesure ADD COLUMN uidstructure integer;
-ALTER TABLE FicheVieBancMesure ADD COLUMN uidbancmesure integer;
-ALTER TABLE FicheVieBancMesure ADD COLUMN uidagentcontroleur integer;
-update FicheVieBancMesure set aid = id;
-
-ALTER TABLE FicheVieManometreControle ADD COLUMN uid integer;
-ALTER TABLE FicheVieManometreControle ADD COLUMN aid text;
-ALTER TABLE FicheVieManometreControle ADD COLUMN uidstructure integer;
-ALTER TABLE FicheVieManometreControle ADD COLUMN uidManometre integer;
-ALTER TABLE FicheVieManometreControle ADD COLUMN uidagentcontroleur integer;
-update FicheVieManometreControle set aid = id;
-
-ALTER TABLE FicheVieManometreetalon ADD COLUMN uid integer;
-ALTER TABLE FicheVieManometreetalon ADD COLUMN aid text;
-ALTER TABLE FicheVieManometreetalon ADD COLUMN uidstructure integer;
-ALTER TABLE FicheVieManometreetalon ADD COLUMN uidManometre integer;
-ALTER TABLE FicheVieManometreetalon ADD COLUMN uidagentcontroleur integer;
-update FicheVieManometreetalon set aid = id;
-
-ALTER TABLE AgentBuseetalon ADD COLUMN uid integer;
-ALTER TABLE AgentBuseetalon ADD COLUMN aid text;
-ALTER TABLE AgentBuseetalon ADD COLUMN uidstructure integer;
-update AgentBuseetalon set aid = idcrodip;
-
-ALTER TABLE IdentifiantPulverisateur ADD COLUMN uid integer;
-ALTER TABLE IdentifiantPulverisateur ADD COLUMN aid text;
-ALTER TABLE IdentifiantPulverisateur ADD COLUMN uidstructure integer;
-update IdentifiantPulverisateur set aid = id;
-update IdentifiantPulverisateur set uidstructure = idStructure;
-
-ALTER TABLE Controle_Regulier ADD COLUMN uid integer;
-ALTER TABLE Controle_Regulier ADD COLUMN aid text;
-ALTER TABLE Controle_Regulier ADD COLUMN uidstructure integer;
-ALTER TABLE Controle_Regulier ADD COLUMN aidagent integer;
-ALTER TABLE Controle_Regulier ADD COLUMN uidagent integer;
-ALTER TABLE Controle_Regulier ADD COLUMN uidmateriel integer;
-update Controle_Regulier set aid = ctrg_id;
-update Controle_Regulier set uidstructure = ctrg_StructureId;
-
-ALTER TABLE prestationcategorie ADD COLUMN uid integer;
-ALTER TABLE prestationcategorie ADD COLUMN aid text;
-ALTER TABLE prestationcategorie ADD COLUMN uidstructure integer;
-update prestationcategorie set aid = id;
-update prestationcategorie set uidstructure = idStructure;
-
-ALTER TABLE prestationTarif ADD COLUMN uid integer;
-ALTER TABLE prestationTarif ADD COLUMN aid text;
-ALTER TABLE prestationTarif ADD COLUMN uidstructure integer;
-ALTER TABLE prestationTarif ADD COLUMN uidcategorie integer;
-update prestationTarif set aid = id;
-update prestationTarif set uidstructure = idStructure;
-
---Suppression de la contrainte pool sur Agent
-CREATE TABLE AGENT2 (    Id                     INT            PRIMARY KEY,numeroNational         NVARCHAR (50)  UNIQUE,    motdepasse             NVARCHAR (255),    nom                    VARCHAR (256),    prenom                 VARCHAR (256),    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,    telephoneportable      VARCHAR (256),    email                  VARCHAR (256),    dateCreation           DATETIME2,    dateDerniereConnexion  DATETIME2,    dateDerniereSynchro    DATETIME2,    dateModificationAgent  DATETIME2,    dateModificationCrodip DATETIME2,    versionLogiciel        VARCHAR (256),    commentaire            VARCHAR (256),    cleActivation          VARCHAR (256),    isActif                BIT            DEFAULT 0,    droitsPulves           VARCHAR (2560),    isGestionnaire         BIT            DEFAULT 0,    signatureElect         BIT            DEFAULT 0,    statut                 VARCHAR (50),    idCRODIPPOOL           TEXT,    uid                    INTEGER,    aid                    TEXT,    uidstructure           INTEGER);
-INSERT INTO Agent2 (Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure) SELECT Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure FROM Agent;
-ALTER TABLE Agent RENAME TO Agent1;
-ALTER TABLE Agent2 RENAME TO Agent;
-
--- Suppression de la contrainte unique sur id
-CREATE TABLE PrestationCategorie2 (id                     INT (1, 1)     NOT NULL,idStructure            INT            ,libelle                NVARCHAR (255),dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER);
-insert into PrestationCategorie2 (id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure) SELECT id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure FROM PrestationCategorie;
-ALTER TABLE PrestationCategorie RENAME TO PrestationCategorie1;
-ALTER TABLE PrestationCategorie2 RENAME TO PrestationCategorie;
-
--- Suppression de la contrainte unique sur l'id et la existence de la categorie
-CREATE TABLE PrestationTarif2 (id INT (1, 1)     NOT NULL,idCategorie            INT,idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,description            NVARCHAR (255),tarifHT                FLOAT,tarifTTC               FLOAT,tva                    FLOAT,dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,uidcategorie           INTEGER);
-insert into PrestationTarif2 (id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie) Select id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie from Prestationtarif;
-ALTER TABLE PrestationTarif RENAME TO PrestationTarif1;
-ALTER TABLE PrestationTarif2 RENAME TO PrestationTarif;
-
-
--- Suppression de la contrainte unique sur l'id 
-CREATE TABLE CONTROLE_REGULIER2 (CTRG_ID                INTEGER,CTRG_DATE              DATE,CTRG_STRUCTUREID       INTEGER,CTRG_TYPE              VARCHAR (256),CTRG_MATID             VARCHAR (256),CTRG_NUMAGENT          VARCHAR (256),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,CTRG_ETAT              VARCHAR (256),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,aidagent               INTEGER,uidagent               INTEGER,uidmateriel            INTEGER);
-insert into CONTROLE_REGULIER2 (CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel) SELECT CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel from CONTROLE_REGULIER;
-ALTER TABLE CONTROLE_REGULIER RENAME TO CONTROLE_REGULIER1;
-ALTER TABLE CONTROLE_REGULIER2 RENAME TO CONTROLE_REGULIER;
-
+--ALTER TABLE Exploitation ADD COLUMN uid integer;
+--ALTER TABLE Exploitation ADD COLUMN aid text;
+--ALTER TABLE Exploitation ADD COLUMN uidstructure integer;
+--update Exploitation set aid = id;
+--update Exploitation set uidstructure = idstructure;
+--ALTER TABLE pulverisateur ADD COLUMN uid integer;
+--ALTER TABLE pulverisateur ADD COLUMN uidstructure integer;
+--ALTER TABLE pulverisateur ADD COLUMN aid text;
+--update Pulverisateur set aid = id;
+--update Pulverisateur set uidStructure = idstructure;
+--ALTER TABLE ExploitationToPulverisateur ADD COLUMN uid integer;
+--ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidexploitation integer;
+--ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidpulverisateur integer;
+--ALTER TABLE ExploitationToPulverisateur ADD COLUMN aid text;
+--update ExploitationToPulverisateur set aid = id;
+--ALTER TABLE Agent ADD COLUMN uid integer;
+--ALTER TABLE Agent ADD COLUMN aid text;
+--ALTER TABLE Agent ADD COLUMN uidstructure integer;
+--update Agent set aid = id;
+--ALTER TABLE Diagnostic ADD COLUMN uid integer;
+--ALTER TABLE Diagnostic ADD COLUMN aid text;
+--ALTER TABLE Diagnostic ADD COLUMN uidstructure integer;
+--ALTER TABLE Diagnostic ADD COLUMN uidexploitation integer;
+--ALTER TABLE Diagnostic ADD COLUMN uidpulverisateur integer;
+--ALTER TABLE Diagnostic ADD COLUMN uidagent integer;
+--update Diagnostic set aid = id;
+--ALTER TABLE DiagnosticItem ADD COLUMN uid integer;
+--ALTER TABLE DiagnosticItem ADD COLUMN aid text;
+--ALTER TABLE DiagnosticItem ADD COLUMN uiddiagnostic integer;
+--ALTER TABLE DiagnosticItem ADD COLUMN aiddiagnostic integer;
+--update DiagnosticItem set aid = id;
+--update DiagnosticItem set aiddiagnostic = iddiagnostic;
+--
+--ALTER TABLE DiagnosticBuses ADD COLUMN uid integer;
+--ALTER TABLE DiagnosticBuses ADD COLUMN aid text;
+--ALTER TABLE Diagnosticbuses ADD COLUMN uiddiagnostic integer;
+--ALTER TABLE Diagnosticbuses ADD COLUMN aiddiagnostic text;
+--update DiagnosticBuses set aid = id;
+--update DiagnosticBuses set aiddiagnostic = iddiagnostic;
+--ALTER TABLE DiagnosticBusesDetail ADD COLUMN uid integer;
+--ALTER TABLE DiagnosticBusesDetail ADD COLUMN aid text;
+--ALTER TABLE DiagnosticbusesDetail ADD COLUMN uiddiagnostic integer;
+--ALTER TABLE DiagnosticbusesDetail ADD COLUMN aiddiagnostic text;
+--update DiagnosticBusesDetail set aid = id;
+--update DiagnosticBusesDetail set aiddiagnostic = iddiagnostic;
+--ALTER TABLE DiagnosticMano542 ADD COLUMN uid integer;
+--ALTER TABLE DiagnosticMano542 ADD COLUMN aid text;
+--ALTER TABLE DiagnosticMano542 ADD COLUMN uiddiagnostic integer;
+--ALTER TABLE DiagnosticMano542 ADD COLUMN aiddiagnostic text;
+--update DiagnosticMano542 set aid = id;
+--update DiagnosticMano542 set aiddiagnostic = iddiagnostic;
+--ALTER TABLE DiagnosticTroncons833 ADD COLUMN uid integer;
+--ALTER TABLE DiagnosticTroncons833 ADD COLUMN aid text;
+--ALTER TABLE DiagnosticTroncons833 ADD COLUMN uiddiagnostic integer;
+--ALTER TABLE DiagnosticTroncons833 ADD COLUMN aiddiagnostic text;
+--update DiagnosticTroncons833 set aid = id;
+--update DiagnosticTroncons833 set aiddiagnostic = iddiagnostic;
+--
+--ALTER TABLE BancMesure ADD COLUMN uid integer;
+--ALTER TABLE BancMesure ADD COLUMN aid text;
+--ALTER TABLE BancMesure ADD COLUMN uidstructure integer;
+--update BancMesure set aid = id;
+--update BancMesure set uidstructure = idStructure;
+--
+--ALTER TABLE AgentManoControle ADD COLUMN uid integer;
+--ALTER TABLE AgentManoControle ADD COLUMN aid text;
+--ALTER TABLE AgentManoControle ADD COLUMN uidstructure integer;
+--update AgentManoControle set aid = idcrodip;
+--update AgentManoControle set uidStructure = idstructure;
+--
+--ALTER TABLE AgentManoEtalon ADD COLUMN uid integer;
+--ALTER TABLE AgentManoEtalon ADD COLUMN aid text;
+--ALTER TABLE AgentManoEtalon ADD COLUMN uidstructure integer;
+--update AgentManoEtalon set aid = idcrodip;
+--update AgentManoEtalon set uidStructure = idstructure;
+--
+--ALTER TABLE FicheVieBancMesure ADD COLUMN uid integer;
+--ALTER TABLE FicheVieBancMesure ADD COLUMN aid text;
+--ALTER TABLE FicheVieBancMesure ADD COLUMN uidstructure integer;
+--ALTER TABLE FicheVieBancMesure ADD COLUMN uidbancmesure integer;
+--ALTER TABLE FicheVieBancMesure ADD COLUMN uidagentcontroleur integer;
+--update FicheVieBancMesure set aid = id;
+--
+--ALTER TABLE FicheVieManometreControle ADD COLUMN uid integer;
+--ALTER TABLE FicheVieManometreControle ADD COLUMN aid text;
+--ALTER TABLE FicheVieManometreControle ADD COLUMN uidstructure integer;
+--ALTER TABLE FicheVieManometreControle ADD COLUMN uidManometre integer;
+--ALTER TABLE FicheVieManometreControle ADD COLUMN uidagentcontroleur integer;
+--update FicheVieManometreControle set aid = id;
+--
+--ALTER TABLE FicheVieManometreetalon ADD COLUMN uid integer;
+--ALTER TABLE FicheVieManometreetalon ADD COLUMN aid text;
+--ALTER TABLE FicheVieManometreetalon ADD COLUMN uidstructure integer;
+--ALTER TABLE FicheVieManometreetalon ADD COLUMN uidManometre integer;
+--ALTER TABLE FicheVieManometreetalon ADD COLUMN uidagentcontroleur integer;
+--update FicheVieManometreetalon set aid = id;
+--
+--ALTER TABLE AgentBuseetalon ADD COLUMN uid integer;
+--ALTER TABLE AgentBuseetalon ADD COLUMN aid text;
+--ALTER TABLE AgentBuseetalon ADD COLUMN uidstructure integer;
+--update AgentBuseetalon set aid = idcrodip;
+--
+--ALTER TABLE IdentifiantPulverisateur ADD COLUMN uid integer;
+--ALTER TABLE IdentifiantPulverisateur ADD COLUMN aid text;
+--ALTER TABLE IdentifiantPulverisateur ADD COLUMN uidstructure integer;
+--update IdentifiantPulverisateur set aid = id;
+--update IdentifiantPulverisateur set uidstructure = idStructure;
+--
+--ALTER TABLE Controle_Regulier ADD COLUMN uid integer;
+--ALTER TABLE Controle_Regulier ADD COLUMN aid text;
+--ALTER TABLE Controle_Regulier ADD COLUMN uidstructure integer;
+--ALTER TABLE Controle_Regulier ADD COLUMN aidagent integer;
+--ALTER TABLE Controle_Regulier ADD COLUMN uidagent integer;
+--ALTER TABLE Controle_Regulier ADD COLUMN uidmateriel integer;
+--update Controle_Regulier set aid = ctrg_id;
+--update Controle_Regulier set uidstructure = ctrg_StructureId;
+--
+--ALTER TABLE prestationcategorie ADD COLUMN uid integer;
+--ALTER TABLE prestationcategorie ADD COLUMN aid text;
+--ALTER TABLE prestationcategorie ADD COLUMN uidstructure integer;
+--update prestationcategorie set aid = id;
+--update prestationcategorie set uidstructure = idStructure;
+--
+--ALTER TABLE prestationTarif ADD COLUMN uid integer;
+--ALTER TABLE prestationTarif ADD COLUMN aid text;
+--ALTER TABLE prestationTarif ADD COLUMN uidstructure integer;
+--ALTER TABLE prestationTarif ADD COLUMN uidcategorie integer;
+--update prestationTarif set aid = id;
+--update prestationTarif set uidstructure = idStructure;
+--
+----Suppression de la contrainte pool sur Agent
+--CREATE TABLE AGENT2 (    Id                     INT            PRIMARY KEY,numeroNational         NVARCHAR (50)  UNIQUE,    motdepasse             NVARCHAR (255),    nom                    VARCHAR (256),    prenom                 VARCHAR (256),    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,    telephoneportable      VARCHAR (256),    email                  VARCHAR (256),    dateCreation           DATETIME2,    dateDerniereConnexion  DATETIME2,    dateDerniereSynchro    DATETIME2,    dateModificationAgent  DATETIME2,    dateModificationCrodip DATETIME2,    versionLogiciel        VARCHAR (256),    commentaire            VARCHAR (256),    cleActivation          VARCHAR (256),    isActif                BIT            DEFAULT 0,    droitsPulves           VARCHAR (2560),    isGestionnaire         BIT            DEFAULT 0,    signatureElect         BIT            DEFAULT 0,    statut                 VARCHAR (50),    idCRODIPPOOL           TEXT,    uid                    INTEGER,    aid                    TEXT,    uidstructure           INTEGER);
+--INSERT INTO Agent2 (Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure) SELECT Id,numeroNational,motdepasse,nom,prenom,idStructure,telephoneportable,email,dateCreation,dateDerniereConnexion,dateDerniereSynchro,dateModificationAgent,dateModificationCrodip,versionLogiciel,commentaire,cleActivation,isActif,droitsPulves,isGestionnaire,signatureElect,statut,idCRODIPPOOL,uid,aid,uidstructure FROM Agent;
+--ALTER TABLE Agent RENAME TO Agent1;
+--ALTER TABLE Agent2 RENAME TO Agent;
+--
+---- Suppression de la contrainte unique sur id
+--CREATE TABLE PrestationCategorie2 (id                     INT (1, 1)     NOT NULL,idStructure            INT            ,libelle                NVARCHAR (255),dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER);
+--insert into PrestationCategorie2 (id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure) SELECT id,idStructure,libelle,dateModificationAgent,dateModificationCrodip,uid,aid,uidstructure FROM PrestationCategorie;
+--ALTER TABLE PrestationCategorie RENAME TO PrestationCategorie1;
+--ALTER TABLE PrestationCategorie2 RENAME TO PrestationCategorie;
+--
+---- Suppression de la contrainte unique sur l'id et la existence de la categorie
+--CREATE TABLE PrestationTarif2 (id INT (1, 1)     NOT NULL,idCategorie            INT,idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,description            NVARCHAR (255),tarifHT                FLOAT,tarifTTC               FLOAT,tva                    FLOAT,dateModificationAgent  DATETIME2 (0),dateModificationCrodip DATETIME2 (0),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,uidcategorie           INTEGER);
+--insert into PrestationTarif2 (id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie) Select id,idCategorie,idStructure,description,tarifHT,tarifTTC,tva,dateModificationAgent,dateModificationCrodip ,uid,aid,uidstructure,uidcategorie from Prestationtarif;
+--ALTER TABLE PrestationTarif RENAME TO PrestationTarif1;
+--ALTER TABLE PrestationTarif2 RENAME TO PrestationTarif;
+--
+--
+---- Suppression de la contrainte unique sur l'id 
+--CREATE TABLE CONTROLE_REGULIER2 (CTRG_ID                INTEGER,CTRG_DATE              DATE,CTRG_STRUCTUREID       INTEGER,CTRG_TYPE              VARCHAR (256),CTRG_MATID             VARCHAR (256),CTRG_NUMAGENT          VARCHAR (256),dateModificationAgent  DATETIME,dateModificationCrodip DATETIME,CTRG_ETAT              VARCHAR (256),uid                    INTEGER,aid                    TEXT,uidstructure           INTEGER,aidagent               INTEGER,uidagent               INTEGER,uidmateriel            INTEGER);
+--insert into CONTROLE_REGULIER2 (CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel) SELECT CTRG_ID,CTRG_DATE,CTRG_STRUCTUREID,CTRG_TYPE,CTRG_MATID,CTRG_NUMAGENT,dateModificationAgent,dateModificationCrodip,CTRG_ETAT,uid,aid,uidstructure,aidagent,uidagent,uidmateriel from CONTROLE_REGULIER;
+--ALTER TABLE CONTROLE_REGULIER RENAME TO CONTROLE_REGULIER1;
+--ALTER TABLE CONTROLE_REGULIER2 RENAME TO CONTROLE_REGULIER;
+--
 --ExploitationToPulverisateur
-ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidstructure integer;
-UPDATE ExploitationToPulverisateur SET uidstructure = (select uidstructure from exploitation where exploitation.id = ExploitationTOPulverisateur.idExploitation);
+--ALTER TABLE ExploitationToPulverisateur ADD COLUMN uidstructure integer;
+--UPDATE ExploitationToPulverisateur SET uidstructure = (select uidstructure from exploitation where exploitation.id = ExploitationTOPulverisateur.idExploitation);
+
+-- Suppression de la contrainte unique sur le numéro national sur agentManocontrole 
+--CREATE TABLE AgentManoControle2 ( numeroNational Text,idCrodip text ,marque text ,classe text ,type text ,fondEchelle text ,etat BIT,idStructure INT,isSynchro BIT,dateDernierControle datetime ,dateModificationAgent datetime ,dateModificationCrodip datetime ,isUtilise BIT,isSupprime BIT,nbControles INT,nbControlesTotal INT,resolution text ,agentSuppression text ,raisonSuppression text ,dateSuppression datetime ,jamaisServi BIT,dateActivation datetime ,bAjusteur BIT,resolutionLecture TEXT,typeTraca TEXT,numTraca INT,typeRaccord TEXT,uid INTEGER,aid TEXT,uidstructure INTEGER);
+--insert into AgentManoControle2 (numeroNational,idCrodip,marque,classe,type,fondEchelle,etat,idStructure,isSynchro,dateDernierControle,dateModificationAgent,dateModificationCrodip,isUtilise,isSupprime,nbControles,nbControlesTotal,resolution,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,bAjusteur,resolutionLecture,typeTraca,numTraca,typeRaccord,uid,aid,uidstructure) SELECT numeroNational,idCrodip,marque,classe,type,fondEchelle,etat,idStructure,isSynchro,dateDernierControle,dateModificationAgent,dateModificationCrodip,isUtilise,isSupprime,nbControles,nbControlesTotal,resolution,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,bAjusteur,resolutionLecture,typeTraca,numTraca,typeRaccord,uid,aid,uidstructure from AgentManoControle;
+--ALTER TABLE AgentManoControle RENAME TO AgentManoControle2201;
+--ALTER TABLE AgentManoControle2 RENAME TO AgentManoControle;
+
+-- Suppression de la contrainte unique sur le numéro national sur agentManoEtalon 
+--CREATE TABLE AgentManoEtalon2 (numeroNational text, idCrodip text,marque text ,classe text ,type text ,fondEchelle text ,idStructure INT ,isSynchro BIT,dateDernierControle datetime ,dateModificationAgent datetime ,dateModificationCrodip datetime ,etat BIT,isUtilise BIT ,isSupprime BIT ,nbControles INT ,nbControlesTotal INT ,incertitudeEtalon text ,agentSuppression text ,raisonSuppression text ,dateSuppression datetime ,jamaisServi BIT,dateActivation datetime ,uid INTEGER,aid TEXT,uidstructure INTEGER);
+--insert into AgentManoEtalon2 (numeroNational,idCrodip,marque,classe,type,fondEchelle,idStructure,isSynchro,dateDernierControle,dateModificationAgent,dateModificationCrodip,etat,isUtilise,isSupprime,nbControles,nbControlesTotal,incertitudeEtalon,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,uid,aid,uidstructure)	SELECT numeroNational,idCrodip,marque,classe,type,fondEchelle,idStructure,isSynchro,dateDernierControle,dateModificationAgent,dateModificationCrodip,etat,isUtilise,isSupprime,nbControles,nbControlesTotal,incertitudeEtalon,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,uid,aid,uidstructure from AgentManoEtalon;
+--ALTER TABLE AgentManoEtalon RENAME TO AgentManoEtalon2201;
+--ALTER TABLE AgentManoEtalon2 RENAME TO AgentManoEtalon;
+
+-- Suppression de la contrainte unique sur le numéro national sur AgentbuseEtalon 
+--CREATE TABLE AgentbuseEtalon2 (	numeroNational text,idCrodip text ,couleur text ,pressionEtalonnage FLOAT,debitEtalonnage FLOAT,idStructure INT,isSynchro BIT,dateAchat datetime,dateModificationAgent datetime,dateModificationCrodip datetime,etat BIT,isSupprime BIT,isUtilise BIT,agentSuppression text ,raisonSuppression text ,dateSuppression datetime,jamaisServi BIT,dateActivation datetime,uid INTEGER,aid TEXT,uidstructure INTEGER);
+--insert into AgentbuseEtalon2 (numeroNational,idCrodip,couleur,pressionEtalonnage,debitEtalonnage,idStructure,isSynchro,dateAchat,dateModificationAgent,dateModificationCrodip,etat,isSupprime,isUtilise,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,uid,aid,uidstructure) SELECT  numeroNational,idCrodip,couleur,pressionEtalonnage,debitEtalonnage,idStructure,isSynchro,dateAchat,dateModificationAgent,dateModificationCrodip,etat,isSupprime,isUtilise,agentSuppression,raisonSuppression,dateSuppression,jamaisServi,dateActivation,uid,aid,uidstructure from AgentbuseEtalon;
+--ALTER TABLE AgentbuseEtalon RENAME TO AgentbuseEtalon2201;
+--ALTER TABLE AgentbuseEtalon2 RENAME TO AgentbuseEtalon;
 
 --Inversion du Numero national et idCrodip dans les bases Mano et buses
-Update AgentManoControle SET numeroNational = idCrodip, idCrodip = numeroNational;
-Update AgentManoEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
-Update AgentbuseEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
+--Update AgentManoControle SET numeroNational = idCrodip, idCrodip = numeroNational;
+--Update AgentManoEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
+--Update AgentbuseEtalon SET numeroNational = idCrodip, idCrodip = numeroNational;
 
-Update AgentManoControle SET aid = idCrodip;
-Update AgentManoEtalon SET aid = idCrodip;
-Update AgentbuseEtalon SET aid = idCrodip;
+--Update AgentManoControle SET aid = idCrodip;
+--Update AgentManoEtalon SET aid = idCrodip;
+--Update AgentbuseEtalon SET aid = idCrodip;
 
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
+
+
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
+
+--DROP TABLE POOL;
+--DROP TABLE POOLBanc;
+--DROP TABLE POOLBUSE;
+--DROP TABLE POOLMAnoc;
+--DROP TABLE POOLMAnoE;
+--Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
+--Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
+
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','pool2');

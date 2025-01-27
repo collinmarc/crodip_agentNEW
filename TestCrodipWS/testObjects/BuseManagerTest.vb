@@ -23,7 +23,7 @@ Public Class BuseManagerTest
         Dim objBuse2 As Buse
         objBuse = New Buse()
         objBuse.idCrodip = "MonBuse"
-        objBuse.idStructure = m_oAgent.idStructure
+        objBuse.uidstructure = m_oAgent.idStructure
         objBuse.couleur = "Bleue"
         objBuse.numeroNational = "001"
         objBuse.etat = True
@@ -35,7 +35,7 @@ Public Class BuseManagerTest
         objBuse.DateSuppression = "06/02/1964"
 
         Assert.AreEqual(objBuse.idCrodip, "MonBuse")
-        Assert.AreEqual(objBuse.idStructure, m_oAgent.idStructure)
+        Assert.AreEqual(objBuse.uidstructure, m_oAgent.idStructure)
         Assert.AreEqual(objBuse.couleur, "Bleue")
         Assert.AreEqual(objBuse.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse.pressionEtalonnage, 16.5)
@@ -52,7 +52,7 @@ Public Class BuseManagerTest
         Assert.AreEqual("001", objBuse2.numeroNational)
 
         Assert.AreEqual(objBuse2.idCrodip, "MonBuse")
-        Assert.AreEqual(objBuse2.idStructure, m_oAgent.idStructure)
+        Assert.AreEqual(objBuse2.uidstructure, m_oAgent.idStructure)
         Assert.AreEqual(objBuse2.couleur, "Bleue")
         Assert.AreEqual(objBuse2.debitEtalonnage, 15.5)
         Assert.AreEqual(objBuse2.pressionEtalonnage, 16.5)
@@ -99,7 +99,7 @@ Public Class BuseManagerTest
         oBuse = New Buse()
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -145,7 +145,7 @@ Public Class BuseManagerTest
         oBuse = New Buse()
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
-        oBuse.idstructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -178,7 +178,7 @@ Public Class BuseManagerTest
         objBuse = New Buse()
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         objBuse.idCrodip = "MonBuse"
-        objBuse.idstructure = m_oAgent.idStructure
+        objBuse.uidstructure = m_oAgent.idStructure
         objBuse.couleur = "Bleue"
         objBuse.debitEtalonnage = 15.5
         objBuse.numeroNational = "001"
@@ -211,7 +211,7 @@ Public Class BuseManagerTest
 
         objBuse = New Buse()
         objBuse.idCrodip = "MonBuse"
-        objBuse.idstructure = m_oAgent.idStructure
+        objBuse.uidstructure = m_oAgent.idStructure
         objBuse.numeroNational = "001"
         objBuse.etat = True
         objBuse.debitEtalonnage = 15.5
@@ -268,7 +268,7 @@ Public Class BuseManagerTest
         'oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
         oBuse.numeroNational = idBuse
-        oBuse.idstructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -306,7 +306,7 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
-        oBuse.idstructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -356,7 +356,7 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.idCrodip = idBuse
         oBuse.numeroNational = idBuse
-        oBuse.idstructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
@@ -392,7 +392,7 @@ Public Class BuseManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(m_oAgent)
         oBuse.numeroNational = idBuse
         oBuse.idCrodip = idBuse
-        oBuse.idstructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = False
         oBuse.jamaisServi = True
@@ -486,7 +486,7 @@ Public Class BuseManagerTest
         idMano = "M1E"
         oBuse.numeroNational = idMano
         oBuse.idCrodip = idMano
-        oBuse.idStructure = m_oAgent.idStructure
+        oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
         oBuse.JamaisServi = False

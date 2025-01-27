@@ -7,17 +7,49 @@ Imports System.Threading.Tasks
 
 Public Class PoolManager
     Inherits RootManager
+#Region "WebServices"
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As Pool
+        Dim oreturn As Pool
+        oreturn = RootWSGetById(Of Pool)(p_uid, paid)
+        Return oreturn
+    End Function
 
-    Public Shared Function getPoolByIdCRODIP(pIdCRODIP As String) As Pool
-        Debug.Assert(Not String.IsNullOrEmpty(pIdCRODIP), "IDCRODIP doit être initialisé")
+    Public Shared Function WSSend(ByVal pObjIn As Pool, ByRef pobjOut As Pool) As Integer
+        Dim nreturn As Integer
+        Try
+            nreturn = RootWSSend(Of Pool)(pObjIn, pobjOut)
+
+        Catch ex As Exception
+            CSDebug.dispFatal("PoolManager.WSSend : ", ex)
+            nreturn = -1
+        End Try
+        Return nreturn
+    End Function
+
+#End Region
+    Public Shared Function getPoolByuid(puid As Integer) As Pool
+        Debug.Assert(puid > 0, "puid doit être initialisé")
         Dim oReturn As Pool = Nothing
         Try
 
-            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE idCRODIP= '" & pIdCRODIP & "'")
+            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE uid= " & puid & "")
 
 
         Catch ex As Exception
-            CSDebug.dispError("PoolManager.getPoolById ERR", ex)
+            CSDebug.dispError("PoolManager.getPoolByuid ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
+    Public Shared Function getPoolByIdPool(pIdPool As String) As Pool
+        Debug.Assert(Not String.IsNullOrEmpty(pIdPool), "idPool doit être initialisé")
+        Dim oReturn As Pool = Nothing
+        Try
+
+            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE idPool= '" & pIdPool & "'")
+
+        Catch ex As Exception
+            CSDebug.dispError("PoolManager.getPoolByIdPool ERR", ex)
             oReturn = Nothing
         End Try
         Return oReturn
@@ -30,7 +62,7 @@ Public Class PoolManager
 
         Try
             Dim bddCommande As DbCommand = pCSDB.getConnection().CreateCommand
-            bddCommande.CommandText = "insert into Pool (idCrodip) VALUES('" & pPool.idCrodip & "')"
+            bddCommande.CommandText = "insert into Pool (uid, idPool) VALUES(" & pPool.uid & ",'" & pPool.aid & "' )"
             bddCommande.ExecuteNonQuery()
         Catch ex As Exception
             CSDebug.dispError("PoolManager.createPool ERR", ex)
@@ -47,7 +79,7 @@ Public Class PoolManager
         Try
 
             Dim oCSDB As New CSDb(True)
-            Dim n As Integer = oCSDB.getValue("SELECT Count(*) from POOL Where IDCRODIP = '" & pPool.idCrodip & "'")
+            Dim n As Integer = oCSDB.getValue("SELECT Count(*) from POOL Where uid = " & pPool.uid & "")
             If n = 0 Then
                 createPool(oCSDB, pPool)
             End If
@@ -55,14 +87,20 @@ Public Class PoolManager
             oCmd.CommandText =
 "UPDATE POOL
    SET 
+       uidstructure =@uidstructure,
+       uidbanc = @uidbanc,
+       aidbanc = @aidbanc,
        libelle = @libelle,
-       nbPastillesVertes = @nbPastillesVertes,
-idStructure =@idStructure,
-idBanc = @idBanc,
-idCRODIPPC = @idCRODIPPC,
+       etat = @etat,
+       agentSuppression = @agentSuppression,
+       raisonSuppression = @raisonSuppression,
+       dateSuppression = @dateSuppression,
+       isSupprime = @isSupprime,
        dateModificationAgent = @dateModificationAgent,
-       dateModificationCrodip = @dateModificationCrodip
- WHERE idCRODIP = @idCRODIP
+       dateModificationCrodip = @dateModificationCrodip,
+       nbPastillesVertes = @nbPastillesVertes
+
+ WHERE uid = @uid
 "
             If pSynhcro Then
                 pPool.dateModificationAgent = pPool.dateModificationCrodip
@@ -72,9 +110,45 @@ idCRODIPPC = @idCRODIPPC,
 
             oParam = oCmd.CreateParameter()
             With oParam
-                .ParameterName = "@idCRODIP"
+                .ParameterName = "@uid"
                 .DbType = DbType.String
-                .Value = pPool.idCrodip
+                .Value = pPool.uid
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@uidstructure"
+                .DbType = DbType.Int32
+                If pPool.uidStructure > 0 Then
+                    .Value = pPool.uidStructure
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@uidbanc"
+                .DbType = DbType.String
+                If pPool.uidbanc > 0 Then
+                    .Value = pPool.uidbanc
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@aidbanc"
+                .DbType = DbType.String
+                If Not String.IsNullOrEmpty(pPool.aidbanc) Then
+                    .Value = pPool.aidbanc
+                Else
+                    .Value = DBNull.Value
+                End If
             End With
             oCmd.Parameters.Add(oParam)
 
@@ -82,24 +156,8 @@ idCRODIPPC = @idCRODIPPC,
             With oParam
                 .ParameterName = "@libelle"
                 .DbType = DbType.String
-                .Value = pPool.libelle
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@nbPastillesVertes"
-                .DbType = DbType.Int32
-                .Value = pPool.nbPastillesVertes
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@idStructure"
-                .DbType = DbType.Int32
-                If pPool.uidstructure > 0 Then
-                    .Value = pPool.uidstructure
+                If Not String.IsNullOrEmpty(pPool.libelle) Then
+                    .Value = pPool.libelle
                 Else
                     .Value = DBNull.Value
                 End If
@@ -108,29 +166,55 @@ idCRODIPPC = @idCRODIPPC,
 
             oParam = oCmd.CreateParameter()
             With oParam
-                .ParameterName = "@idBanc"
+                .ParameterName = "@etat"
+                .DbType = DbType.Boolean
+                .Value = pPool.etat
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@agentSuppression"
                 .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.idBanc) Then
-                    .Value = pPool.idBanc
+                If Not String.IsNullOrEmpty(pPool.agentSuppression) Then
+                    .Value = pPool.agentSuppression
                 Else
                     .Value = DBNull.Value
                 End If
             End With
             oCmd.Parameters.Add(oParam)
-
 
             oParam = oCmd.CreateParameter()
             With oParam
-                .ParameterName = "@idCRODIPPC"
+                .ParameterName = "@raisonSuppression"
                 .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.idCRODIPPC) Then
-                    .Value = pPool.idCRODIPPC
+                If Not String.IsNullOrEmpty(pPool.agentSuppression) Then
+                    .Value = pPool.raisonSuppression
                 Else
                     .Value = DBNull.Value
                 End If
             End With
             oCmd.Parameters.Add(oParam)
 
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@dateSuppression"
+                .DbType = DbType.DateTime
+                If Not String.IsNullOrEmpty(pPool.dateSuppression) Then
+                    .Value = CSDate.ToCRODIPString(pPool.dateSuppression)
+                Else
+                    .Value = DBNull.Value
+                End If
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@isSupprime"
+                .DbType = DbType.Boolean
+                .Value = pPool.isSupprime()
+            End With
+            oCmd.Parameters.Add(oParam)
 
             oParam = oCmd.CreateParameter()
             With oParam
@@ -148,6 +232,21 @@ idCRODIPPC = @idCRODIPPC,
             End With
             oCmd.Parameters.Add(oParam)
 
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@dateActivation"
+                .DbType = DbType.DateTime
+                .Value = pPool.dateActivation
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@nbPastillesVertes"
+                .DbType = DbType.Int32
+                .Value = pPool.nbPastillesVertes
+            End With
+            oCmd.Parameters.Add(oParam)
 
             oCmd.ExecuteNonQuery()
             oCSDB.free()
@@ -173,37 +272,7 @@ idCRODIPPC = @idCRODIPPC,
 
     End Function
 
-    'Public Shared Function RESTgetPoolByIDCrodip(pAgent As Agent, pidCrodip As String) As Pool
-    '    Dim oReturn As Pool = Nothing
-    '    Try
-    '        oReturn = RESTgetByID(Of Pool)("getPool", pAgent, pidCrodip)
-    '    Catch ex As Exception
-    '        CSDebug.dispError("PoolManager.RESTgetPoolByidCrodip ERR", ex)
-    '    End Try
-    '    Return oReturn
-    'End Function
 
-    'Public Shared Function RESTgetPools(pAgent As Agent) As List(Of Pool)
-    '    Dim oReturn As New List(Of Pool)
-    '    Try
-
-    '        oReturn = RESTgetList(Of Pool)("getPools", pAgent)
-    '    Catch ex As Exception
-    '        CSDebug.dispError("PoolManager.RESTgetPools ERR", ex)
-    '    End Try
-    '    Return oReturn
-    'End Function
-
-    'Public Shared Function RESTsetPool(pAgent As Agent, pPool As Pool) As Boolean
-    '    Dim oReturn As Boolean
-    '    Try
-    '        oReturn = RESTset(Of Pool)("setPool", pAgent, pPool)
-
-    '    Catch ex As Exception
-    '        CSDebug.dispError("PoolManager.RESTsetPool ERR", ex)
-    '    End Try
-    '    Return oReturn
-    'End Function
 End Class
 
 

@@ -374,7 +374,7 @@ Public Class fiche_buse
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
         Dim oLst As List(Of Pool)
-        oLst = PoolManager.GetListe(BuseCourant.idStructure)
+        oLst = PoolManager.GetListe(BuseCourant.uidstructure)
         m_bsrcPool.Clear()
         oLst.ForEach(Sub(p)
                          m_bsrcPool.Add(p)

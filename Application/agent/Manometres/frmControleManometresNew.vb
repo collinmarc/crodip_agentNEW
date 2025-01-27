@@ -1881,7 +1881,7 @@ Public Class frmControleManometresNew
         oControle.tempAir = tbTemperature.Text
         oControle.DateVerif = dtpDateControle.Value
         oControle.manoEtalon = m_bsManoEtalon.Current.Numeronational
-        oControle.idStructure = oMano.idstructure
+        oControle.idStructure = oMano.uidstructure
         oControle.idMano = oMano.idCrodip
         '        oControle.resultat = oMano.etat
         oControle.DateVerif = CSDate.ToCRODIPString(dtpDateControle.Value)

@@ -17,7 +17,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         idManometreControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreControle.idCrodip = idManometreControle
         oManometreControle.numeroNational = idManometreControle
-        oManometreControle.idStructure = m_oAgent.idStructure
+        oManometreControle.uidstructure = m_oAgent.idStructure
         oManometreControle.isSupprime = False
         oManometreControle.marque = "MaMarque"
         oManometreControle.etat = True

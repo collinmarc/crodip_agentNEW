@@ -410,12 +410,13 @@ Public Class fiche_banc
         For Each oMod As CRODIPAcquisition.ModuleAcq In olstModules
             cbxModulesAcquisition.Items.Add(oMod.Nom)
         Next
-        Dim lstPool As List(Of Pool)
-        lstPool = PoolManager.GetListe(BancCourant.idStructure)
-        lstPool.ForEach(Sub(p)
-                            m_bsrcPool.Add(p)
-                        End Sub)
-
+        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+            Dim lstPool As List(Of Pool)
+            lstPool = PoolManager.GetListe(BancCourant.uidstructure)
+            lstPool.ForEach(Sub(p)
+                                m_bsrcPool.Add(p)
+                            End Sub)
+        End If
         dispBancCourant()
 #If DEBUG Then
         cbxPool.Enabled = True
@@ -476,11 +477,13 @@ Public Class fiche_banc
                 '             BancCourant.dateAchat = CSDate.TOCRODIPString(ficheBanc_dateAchat.Value)
                 '    End If
                 BancManager.save(BancCourant)
-                'Sauvegarde du Pool
-                Dim oPool As Pool
-                oPool = m_bsrcPool.Current
-                oPool.idBanc = BancCourant.id
-                PoolManager.Save(oPool)
+                If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                    'Sauvegarde du Pool
+                    Dim oPool As Pool
+                    oPool = m_bsrcPool.Current
+                    '                oPool.idBanc = BancCourant.id
+                    PoolManager.Save(oPool)
+                End If
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Catch ex As Exception

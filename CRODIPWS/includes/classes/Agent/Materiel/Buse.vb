@@ -122,7 +122,7 @@ Public Class Buse
                 Case "idCrodip".Trim().ToUpper()
                     Me.idCrodip = pValue.ToString()
                 Case "idStructure".Trim().ToUpper(), "uidStructure".Trim().ToUpper()
-                    Me.uidstructure = pValue.ToString()
+                    Me.uidStructure = pValue.ToString()
                 Case "couleur".Trim().ToUpper()
                     Me.couleur = pValue.ToString()
                 Case "pressionEtalonnage".Trim().ToUpper()

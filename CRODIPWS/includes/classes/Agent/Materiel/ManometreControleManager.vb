@@ -81,30 +81,25 @@ Public Class ManometreControleManager
 
 
                 ' On test si l'object existe ou non
-                Dim existsObject As Object
-                existsObject = ManometreControleManager.getManometreControleByNumeroNational(objManometreControle.numeroNational)
-                If existsObject.numeroNational = "" Or existsObject.numeroNational = "0" Then
+                Dim existsObject As ManometreControle
+                existsObject = ManometreControleManager.getManometreControleByidCrodip(objManometreControle.idCrodip)
+                If existsObject.idCrodip = "" Or existsObject.idCrodip = "0" Then
                     ' Si il n'existe pas, on le crée
-                    createManometreControle(objManometreControle.numeroNational)
+                    createManometreControle(objManometreControle.idCrodip)
                 End If
 
                 Dim bddCommande As DbCommand
 
                 bddCommande = oCSDb.getConnection().CreateCommand()
 
-                ' Initialisation de la requete
-                Dim paramsQuery As String = "numeroNational='" & objManometreControle.numeroNational & "'"
-
                 ' Mise a jour de la date de derniere modification
                 If Not bSynhcro Then
                     objManometreControle.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 End If
-
-                If Not objManometreControle.idCrodip Is Nothing Then
-                    paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreControle.idCrodip) & "'"
-                End If
+                ' Initialisation de la requete
+                Dim paramsQuery As String = "numeroNational='" & objManometreControle.numeroNational & "'"
                 paramsQuery = paramsQuery & " , idStructure=" & objManometreControle.uidstructure & ""
-                paramsQuery = paramsQuery & " , uidStructure=" & objManometreControle.uidstructure & ""
+                paramsQuery = paramsQuery & " , uidstructure=" & objManometreControle.uidstructure & ""
                 If Not objManometreControle.marque Is Nothing Then
                     paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreControle.marque) & "'"
                 End If
@@ -153,18 +148,19 @@ Public Class ManometreControleManager
 
                 paramsQuery = paramsQuery & objManometreControle.getRootQuery()
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE numeroNational='" & objManometreControle.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE idCrodip='" & objManometreControle.idCrodip & "'"
                 bddCommande.ExecuteNonQuery()
-
-                'Suppression des Pools avant insertion
-                clearlstPoolByManoC(objManometreControle.numeroNational)
-                'Insertion des Pools
-                objManometreControle.lstPools.ForEach(Sub(p)
-                                                          insertPoolManoC(p.idCrodip, objManometreControle.numeroNational)
-                                                      End Sub)
+                If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                    'Suppression des Pools avant insertion
+                    clearlstPoolByManoC(objManometreControle.idCrodip)
+                    'Insertion des Pools
+                    objManometreControle.lstPools.ForEach(Sub(p)
+                                                              insertPoolManoC(p.idCrodip, objManometreControle.numeroNational)
+                                                          End Sub)
+                End If
 
                 bReturn = True
-            End If
+                End If
         Catch ex As Exception
             CSDebug.dispFatal("ManometreControleManager - Save : " & ex.Message.ToString)
             bReturn = False
@@ -355,7 +351,7 @@ Public Class ManometreControleManager
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
-                bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE idStructure=" & pIdStructure & " AND isSupprime=" & True & " ORDER BY dateSuppression DESC"
+                bddCommande.CommandText = "SELECT * FROM AgentManoControle WHERE idStructure=" & pIdStructure & " AND isSupprime<>0  ORDER BY dateSuppression DESC"
             End If
             oDataReader = bddCommande.ExecuteReader
             ' Puis on les parcours
@@ -384,14 +380,14 @@ Public Class ManometreControleManager
 
 #End Region
 
-    Private Shared Sub createManometreControle(ByVal pNumeroNational As String)
+    Private Shared Sub createManometreControle(ByVal pIdCrodip As String)
         Dim oCSDB As New CSDb(True)
         Try
             Dim bddCommande As DbCommand
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentManoControle (numeroNational) VALUES ('" & pNumeroNational & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoControle (idCrodip, aid) VALUES ('" & pIdCrodip & "', '" & pIdCrodip & "')"
             bddCommande.ExecuteNonQuery()
 
         Catch ex As Exception

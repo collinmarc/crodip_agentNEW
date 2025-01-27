@@ -682,7 +682,7 @@ Public Class AgentManagerTest
         idBuse = BuseManager.getNewNumeroNationalforTestOnly(pAgent)
         oBuseEtalon.numeroNational = idBuse
         oBuseEtalon.idCrodip = "idCrodip"
-        oBuseEtalon.idStructure = pAgent.idStructure
+        oBuseEtalon.uidstructure = pAgent.idStructure
         oBuseEtalon.couleur = "JAUNE"
 
         BuseManager.save(oBuseEtalon)
@@ -695,7 +695,7 @@ Public Class AgentManagerTest
         numnat = ManometreControleManager.FTO_getNewNumeroNational(pAgent)
         oMano.numeroNational = numnat
         oMano.idCrodip = "idCrodip"
-        oMano.idStructure = pAgent.idStructure
+        oMano.uidstructure = pAgent.idStructure
         oMano.marque = "JAUNE"
 
         ManometreControleManager.save(oMano)
@@ -705,10 +705,10 @@ Public Class AgentManagerTest
     Private Function createManoEtalon(ByVal pAgent As Agent) As String
         Dim oMano As New ManometreEtalon()
         Dim numnat As String
-        numnat = ManometreEtalonManager.FTO_getNewNumeroNational(pAgent)
+        numnat = ManometreEtalonManager.FTO_getNewId(pAgent)
         oMano.numeroNational = numnat
         oMano.idCrodip = "idCrodip"
-        oMano.idStructure = pAgent.idStructure
+        oMano.uidstructure = pAgent.idStructure
         oMano.marque = "JAUNE"
 
         ManometreEtalonManager.save(oMano)
@@ -720,7 +720,7 @@ Public Class AgentManagerTest
         Dim numnat As String
         numnat = BancManager.FTO_getNewId(pAgent)
         oBanc.id = numnat
-        oBanc.idStructure = pAgent.idStructure
+        oBanc.uidstructure = pAgent.idStructure
         oBanc.marque = "JAUNE"
         oBanc.JamaisServi = False
         oBanc.etat = True

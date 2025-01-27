@@ -24,7 +24,7 @@ Public Class ManometreControleManagerTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -135,7 +135,7 @@ Public Class ManometreControleManagerTest
         idManometreControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreControle.idCrodip = idManometreControle
         oManometreControle.numeroNational = idManometreControle
-        oManometreControle.idstructure = m_oAgent.idStructure
+        oManometreControle.uidstructure = m_oAgent.idStructure
         oManometreControle.isSupprime = False
         oManometreControle.marque = "MaMarque"
         oManometreControle.etat = True
@@ -198,7 +198,7 @@ Public Class ManometreControleManagerTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idstructure = m_oAgent.idStructure
+        objManometreControle.uidstructure = m_oAgent.idStructure
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
 
@@ -233,7 +233,7 @@ Public Class ManometreControleManagerTest
         idManoControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         'oManoControle.numeroNational = idManoControle
         oManoControle.numeroNational = idManoControle
-        oManoControle.idstructure = m_oAgent.idStructure
+        oManoControle.uidstructure = m_oAgent.idStructure
         oManoControle.isSupprime = False
         oManoControle.etat = True
         Assert.IsTrue(ManometreControleManager.save(oManoControle))
@@ -264,7 +264,7 @@ Public Class ManometreControleManagerTest
         'oBanc.numeroNational = idBanc
         oMano.numeroNational = idMano
         oMano.idCrodip = idMano
-        oMano.idStructure = m_oAgent.idStructure
+        oMano.uidstructure = m_oAgent.idStructure
         oMano.isSupprime = False
         oMano.etat = True
 
@@ -301,7 +301,7 @@ Public Class ManometreControleManagerTest
         idManometreControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreControle.idCrodip = idManometreControle
         oManometreControle.numeroNational = idManometreControle
-        oManometreControle.idStructure = m_oAgent.idStructure
+        oManometreControle.uidstructure = m_oAgent.idStructure
         oManometreControle.isSupprime = False
         oManometreControle.marque = "MaMarque"
         oManometreControle.etat = True
@@ -387,7 +387,7 @@ Public Class ManometreControleManagerTest
         idMano = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         pMano.numeroNational = idMano
         pMano.idCrodip = idMano
-        pMano.idStructure = m_oAgent.idStructure
+        pMano.uidstructure = m_oAgent.idStructure
         pMano.isSupprime = False
         pMano.etat = True
         ManometreControleManager.save(pMano)
@@ -424,7 +424,7 @@ Public Class ManometreControleManagerTest
         idMano = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = idMano
         oManoC.idCrodip = idMano
-        oManoC.idStructure = m_oAgent.idStructure
+        oManoC.uidstructure = m_oAgent.idStructure
         oManoC.isSupprime = False
         oManoC.etat = False
         oManoC.JamaisServi = True
@@ -476,7 +476,7 @@ Public Class ManometreControleManagerTest
         idMano = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = idMano
         oManoC.idCrodip = idMano
-        oManoC.idStructure = m_oAgent.idStructure
+        oManoC.uidstructure = m_oAgent.idStructure
         oManoC.isSupprime = False
         oManoC.etat = False
         oManoC.JamaisServi = True
@@ -546,7 +546,7 @@ Public Class ManometreControleManagerTest
         idMano = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = idMano
         oManoC.idCrodip = idMano
-        oManoC.idStructure = m_oAgent.idStructure
+        oManoC.uidstructure = m_oAgent.idStructure
         oManoC.isSupprime = False
         oManoC.etat = True
         oManoC.JamaisServi = False

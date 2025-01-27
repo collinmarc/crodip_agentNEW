@@ -285,7 +285,7 @@ Public Class ManometreControle
                 Case "idCrodip".Trim.ToUpper()
                     Me.idCrodip = pValue.ToString()
                 Case "idStructure".Trim.ToUpper(), "uidstructure".Trim.ToUpper()
-                    Me.uidstructure = pValue.ToString()
+                    Me.uidStructure = pValue.ToString()
                 Case "marque".Trim.ToUpper()
                     Me.marque = pValue.ToString() 'Public marque As String
                 Case "classe".Trim.ToUpper()
@@ -391,17 +391,22 @@ Public Class ManometreControle
     Public Overloads Function getAlerte() As GlobalsCRODIP.ALERTE
         Dim bReturn As GlobalsCRODIP.ALERTE
         bReturn = GlobalsCRODIP.ALERTE.NONE
+        Dim dateDernCtrl As Date
+
+        If Not String.IsNullOrEmpty(dateDernierControleS) Then
+            dateDernCtrl = dateDernCtrl
+        Else
+            dateDernCtrl = dateActivation
+        End If
 
         Dim oNiveau As NiveauAlerte
-        If Not String.IsNullOrEmpty(dateDernierControleS) Then
-            oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
+        oNiveau = getNiveauAlerte(NiveauAlerte.Enum_typeMateriel.ManometreControle)
 
-            bReturn = MyBase.getAlerte(dateDernierControle, oNiveau)
+        bReturn = MyBase.getAlerte(dateDernCtrl, oNiveau)
 
-            If bReturn = GlobalsCRODIP.ALERTE.NONE And etat = False Then
-                bReturn = GlobalsCRODIP.ALERTE.CONTROLE
-            End If
-        End If
+        If bReturn = GlobalsCRODIP.ALERTE.NONE And etat = False Then
+                    bReturn = GlobalsCRODIP.ALERTE.CONTROLE
+                End If
         Return bReturn
     End Function
     '''
@@ -450,7 +455,7 @@ Public Class ManometreControle
                 Me.classe & "|" &
                 Me.type & "|" &
                 Me.fondEchelle & "|" &
-                Me.idstructure & "|" &
+                Me.uidstructure & "|" &
                 Me.isSynchro & "|" &
                 Me.dateDernierControleS & "|" &
                 Me.dateModificationAgent & "|" &
@@ -503,7 +508,7 @@ Public Class ManometreControle
         Me.classe & "|" &
         Me.type & "|" &
         Me.fondEchelle & "|" &
-        Me.uidstructure & "|" &
+        Me.uidStructure & "|" &
         Me.isSynchro & "|" &
         Me.dateDernierControleS & "|" &
         Me.dateModificationAgent & "|" &

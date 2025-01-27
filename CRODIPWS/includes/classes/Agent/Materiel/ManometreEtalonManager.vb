@@ -82,15 +82,15 @@ Public Class ManometreEtalonManager
 
 #Region "Methodes Locales"
 
-    Public Shared Function FTO_getNewNumeroNational(ByVal pAgent As Agent) As String
+    Public Shared Function FTO_getNewId(ByVal pAgent As Agent) As String
         ' déclarations
-        Dim tmpObjectId As String = pAgent.uidStructure & "-" & pAgent.id & "-1"
-        If pAgent.uidStructure <> 0 Then
+        Dim tmpObjectId As String = pAgent.uidstructure & "-" & pAgent.id & "-1"
+        If pAgent.uidstructure <> 0 Then
 
             Dim bddCommande As DbCommand
             Dim oCSDB As New CSDb(True)
             bddCommande = oCSDB.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT AgentManoEtalon.numeroNational FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.uidStructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.numeroNational DESC"
+            bddCommande.CommandText = "SELECT AgentManoEtalon.idCrodip FROM AgentManoEtalon WHERE AgentManoEtalon.numeroNational LIKE '" & pAgent.uidstructure & "-" & pAgent.id & "-%' ORDER BY AgentManoEtalon.idCrodip DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -100,12 +100,12 @@ Public Class ManometreEtalonManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpObjectId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpObjectId.Replace(pAgent.uidStructure & "-" & pAgent.id & "-", ""))
+                    tmpId = CInt(tmpObjectId.Replace(pAgent.uidstructure & "-" & pAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpObjectId = pAgent.uidStructure & "-" & pAgent.id & "-" & (newId + 1)
+                tmpObjectId = pAgent.uidstructure & "-" & pAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManoEtalon - newId : " & ex.Message & vbNewLine)
             End Try
@@ -132,11 +132,11 @@ Public Class ManometreEtalonManager
 
 
                 ' On test si l'object existe ou non
-                Dim existsObject As Object
-                existsObject = ManometreEtalonManager.getManometreEtalonByNumeroNational(objManometreEtalon.numeroNational)
-                If existsObject.numeroNational = "" Or existsObject.numeroNational = "0" Then
+                Dim existsObject As ManometreEtalon
+                existsObject = ManometreEtalonManager.getManometreEtalonByidCrodip(objManometreEtalon.idCrodip)
+                If existsObject.idCrodip = "" Or existsObject.idCrodip = "0" Then
                     ' Si il n'existe pas, on le crée
-                    createManometreEtalon(objManometreEtalon.numeroNational)
+                    createManometreEtalon(objManometreEtalon.idCrodip)
                 End If
 
                 Dim bddCommande As DbCommand
@@ -153,8 +153,8 @@ Public Class ManometreEtalonManager
                 If Not objManometreEtalon.idCrodip Is Nothing Then
                     paramsQuery = paramsQuery & " , idCrodip='" & CSDb.secureString(objManometreEtalon.idCrodip) & "'"
                 End If
-                paramsQuery = paramsQuery & " , idStructure=" & objManometreEtalon.idstructure & ""
-                paramsQuery = paramsQuery & " , uidstructure=" & objManometreEtalon.uidstructure & ""
+                paramsQuery = paramsQuery & " , idStructure=" & objManometreEtalon.uidstructure & ""
+                paramsQuery = paramsQuery & " , uidstructure=" & objManometreEtalon.uidStructure & ""
                 If Not objManometreEtalon.marque Is Nothing Then
                     paramsQuery = paramsQuery & " , marque='" & CSDb.secureString(objManometreEtalon.marque) & "'"
                 End If
@@ -195,17 +195,18 @@ Public Class ManometreEtalonManager
                 End If
                 paramsQuery = paramsQuery & objManometreEtalon.getRootQuery()
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE numeroNational='" & objManometreEtalon.numeroNational & "'"
+                bddCommande.CommandText = "UPDATE AgentManoEtalon SET " & paramsQuery & " WHERE idCrodip='" & objManometreEtalon.idCrodip & "'"
                 bddCommande.ExecuteNonQuery()
-                'Suppression des Pools avant insertion
-                clearlstPoolByManoE(objManometreEtalon.numeroNational)
-                'Insertion des Pools
-                objManometreEtalon.lstPools.ForEach(Sub(p)
-                                                        insertPoolManoE(p.idCrodip, objManometreEtalon.numeroNational)
-                                                    End Sub)
-
+                If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                    'Suppression des Pools avant insertion
+                    clearlstPoolByManoE(objManometreEtalon.numeroNational)
+                    'Insertion des Pools
+                    objManometreEtalon.lstPools.ForEach(Sub(p)
+                                                            insertPoolManoE(p.idCrodip, objManometreEtalon.numeroNational)
+                                                        End Sub)
+                End If
                 bReturn = True
-            End If
+                End If
         Catch ex As Exception
             CSDebug.dispFatal("ManometreEtalonManager.Save  Error : " & ex.Message.ToString() & paramsQuery)
             bReturn = False
@@ -270,6 +271,37 @@ Public Class ManometreEtalonManager
                 tmpListProfils.Close()
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispError("ManometreEtalonManager Error: " & ex.Message)
+            End Try
+
+            ' Test pour fermeture de connection BDD
+            If Not oCsdb Is Nothing Then
+                ' On ferme la connexion
+                oCsdb.free()
+            End If
+
+        End If
+        'on retourne le manometreetalon ou un objet vide en cas d'erreur
+        Return tmpManometreEtalon
+    End Function
+    Public Shared Function getManometreEtalonByidCrodip(ByVal pIdCrodip As String) As ManometreEtalon
+        ' déclarations
+        Dim tmpManometreEtalon As New ManometreEtalon
+        Dim oCsdb As CSDb = Nothing
+        If pIdCrodip <> "" Then
+            oCsdb = New CSDb(True)
+            Dim bddCommande As DbCommand
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE AgentManoEtalon.idCrodip='" & pIdCrodip & "'"
+            Try
+                ' On récupère les résultats
+                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                While tmpListProfils.Read()
+                    tmpManometreEtalon.FillDR(tmpListProfils)
+                End While
+                tmpListProfils.Close()
+            Catch ex As Exception ' On intercepte l'erreur
+                CSDebug.dispError("ManometreEtalonManager.getManometreEtalonByIdCrodip Error: ", ex)
             End Try
 
             ' Test pour fermeture de connection BDD
@@ -370,7 +402,7 @@ Public Class ManometreEtalonManager
             If pIdStructure <> "" Then
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
-                bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pIdStructure & " AND isSupprime=" & True & " ORDER BY dateSuppression DESC"
+                bddCommande.CommandText = "SELECT * FROM AgentManoEtalon WHERE idStructure=" & pIdStructure & " AND isSupprime<>0 ORDER BY dateSuppression DESC"
                 oDataReader = bddCommande.ExecuteReader
                 ' Puis on les parcours
                 Dim i As Integer = 0
@@ -443,7 +475,7 @@ Public Class ManometreEtalonManager
 
 #End Region
 
-    Private Shared Function createManometreEtalon(ByVal manometreetalon_id As String) As Boolean
+    Private Shared Function createManometreEtalon(ByVal pCrodipId As String) As Boolean
         Dim bReturn As Boolean
         Dim oCsdb As CSDb = Nothing
         Try
@@ -452,7 +484,7 @@ Public Class ManometreEtalonManager
             bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentManoEtalon (numeroNational) VALUES ('" & manometreetalon_id & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoEtalon (idCrodip, aid) VALUES ('" & pCrodipId & ",'" & pCrodipId & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception

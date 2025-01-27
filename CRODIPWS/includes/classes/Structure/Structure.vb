@@ -402,7 +402,7 @@ Public Class [Structure]
 
             Dim oPool As New Pool
             oPool.idCrodip = Me.id & "-0"
-            oPool.uidstructure = Me.id
+            oPool.uidStructure = Me.id
             CSDebug.dispInfo("Creation du Pool [" & Me.id & "]")
             PoolManager.Save(oPool)
 

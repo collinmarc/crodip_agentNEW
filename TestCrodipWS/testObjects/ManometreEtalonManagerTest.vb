@@ -29,7 +29,7 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
         objManometreEtalon.incertitudeEtalon = "0.562"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.uidstructure = m_oAgent.idStructure
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -120,10 +120,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewId(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = "00447"
-        oManometreEtalon.idstructure = 2
+        oManometreEtalon.uidstructure = 2
         oManometreEtalon.isSupprime = True
         oManometreEtalon.jamaisServi = True
         oManometreEtalon.isUtilise = True
@@ -199,7 +199,7 @@ Public Class ManometreEtalonManagerTest
         objManometreEtalon.classe = "MaClasse"
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
-        objManometreEtalon.idstructure = m_oAgent.idStructure
+        objManometreEtalon.uidstructure = m_oAgent.idStructure
         objManometreEtalon.nbControles = 5
         objManometreEtalon.nbControlesTotal = 15
 
@@ -230,10 +230,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
-        'oManometreEtalon.numeroNational = idManometreEtalon
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewId(m_oAgent)
+        oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idstructure = m_oAgent.idStructure
+        oManometreEtalon.uidstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.etat = True
         Assert.IsTrue(ManometreEtalonManager.save(oManometreEtalon))
@@ -263,11 +263,11 @@ Public Class ManometreEtalonManagerTest
         'Creation d'un Banc
         oMano = New ManometreEtalon
         Assert.IsFalse(oMano.jamaisServi)
-        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
-        'oBanc.numeroNational = idBanc
+        idMano = ManometreEtalonManager.FTO_getNewId(m_oAgent)
+        oMano.idCrodip = idMano
         oMano.numeroNational = idMano
         oMano.idCrodip = idMano
-        oMano.idstructure = m_oAgent.idStructure
+        oMano.uidstructure = m_oAgent.idStructure
         oMano.isSupprime = False
         oMano.etat = True
 
@@ -301,10 +301,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewId(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idstructure = m_oAgent.idStructure
+        oManometreEtalon.uidstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.marque = "MaMarque"
         oManometreEtalon.etat = True
@@ -388,10 +388,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un Banc
         pMano = New ManometreEtalon()
-        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
+        idMano = ManometreEtalonManager.FTO_getNewId(m_oAgent)
         pMano.numeroNational = idMano
         pMano.idCrodip = idMano
-        pMano.idstructure = m_oAgent.idStructure
+        pMano.uidstructure = m_oAgent.idStructure
         pMano.isSupprime = False
         pMano.etat = True
         ManometreEtalonManager.save(pMano)
@@ -425,10 +425,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un Mano
         oManoE = New ManometreEtalon()
-        idMano = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
+        idMano = ManometreEtalonManager.FTO_getNewId(m_oAgent)
         oManoE.numeroNational = idMano
         oManoE.idCrodip = idMano
-        oManoE.idstructure = m_oAgent.idStructure
+        oManoE.uidstructure = m_oAgent.idStructure
         oManoE.isSupprime = False
         oManoE.etat = False
         oManoE.jamaisServi = True
@@ -467,10 +467,10 @@ Public Class ManometreEtalonManagerTest
 
         'Creation d'un ManometreEtalon
         oManometreEtalon = New ManometreEtalon()
-        idManometreEtalon = ManometreEtalonManager.FTO_getNewNumeroNational(m_oAgent)
+        idManometreEtalon = ManometreEtalonManager.FTO_getNewId(m_oAgent)
         oManometreEtalon.idCrodip = idManometreEtalon
         oManometreEtalon.numeroNational = idManometreEtalon
-        oManometreEtalon.idstructure = m_oAgent.idStructure
+        oManometreEtalon.uidstructure = m_oAgent.idStructure
         oManometreEtalon.isSupprime = False
         oManometreEtalon.marque = "MaMarque"
         oManometreEtalon.etat = True
@@ -523,7 +523,7 @@ Public Class ManometreEtalonManagerTest
         idMano = "M1E"
         oMano.numeroNational = idMano
         oMano.idCrodip = idMano
-        oMano.idStructure = m_oAgent.idStructure
+        oMano.uidstructure = m_oAgent.idStructure
         oMano.isSupprime = False
         oMano.etat = True
         oMano.JamaisServi = False
