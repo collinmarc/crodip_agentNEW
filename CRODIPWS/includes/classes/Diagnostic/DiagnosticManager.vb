@@ -1863,17 +1863,6 @@ Public Class DiagnosticManager
         End Try
         Return bReturn
     End Function
-    Public Shared Sub setSynchro(ByVal objDiagnostic As Diagnostic)
-        Try
-            Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
-            dbLink.queryString = "UPDATE Diagnostic SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objDiagnostic.id & "'"
-            dbLink.Execute()
-            dbLink.free()
-        Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticManager::setSynchro : " & ex.Message)
-        End Try
-    End Sub
 
 
 #End Region

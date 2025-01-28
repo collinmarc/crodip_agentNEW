@@ -407,7 +407,7 @@ Public Class Diagnostic
     '        <xsd:element name = "uidagent" type="xsd:int" />
     '        <xsd:element name = "uidstructure" type="xsd:int" />
 
-    Private _uidpulverisateur As Integer
+    Private _uidpulverisateur As Integer = 0
     <XmlIgnore()>
     Public Property uidpulverisateur() As Integer
         Get
@@ -428,7 +428,7 @@ Public Class Diagnostic
             End If
         End Set
     End Property
-    Private _uidexploitation As Integer
+    Private _uidexploitation As Integer = 0
     <XmlIgnore()>
     Public Property uidexploitation() As Integer
         Get

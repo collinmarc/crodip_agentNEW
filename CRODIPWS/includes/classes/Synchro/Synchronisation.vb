@@ -525,7 +525,7 @@ Public Class Synchronisation
                 Case 0, 2, 4 ' OK
                     PulverisateurManager.save(UpdatedObject, Nothing, m_Agent, True)
                     'Mise à jour des Pulvé et des diagnostic
-                    PulverisateurManager.UpdateExploitDiag(UpdatedObject)
+                    PulverisateurManager.UpdateExploit2Pulve(UpdatedObject)
 
                     'Ajout du pulvé dand la liste des element synchronisé
                     Dim oElement As SynchronisationElmt
@@ -578,7 +578,7 @@ Public Class Synchronisation
                 Case 2, 4 ' OK
                     ExploitationManager.save(oReturn, m_Agent, True)
                     'Mise à jour des Pulvé et des diagnostic
-                    ExploitationManager.UpdatePulveDiag(oReturn)
+                    ExploitationManager.UpdateExploitToPulve(oReturn)
                     'Ajout de l'exploitation dans la liste des elements Synchronisés 
                     Dim oElement As SynchronisationElmt
                     oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitation.getLabelGet(), m_SynchroBoolean)
@@ -739,6 +739,28 @@ Public Class Synchronisation
                 pDiag.diagnosticItemsLst = Nothing
                 Dim oDiagBusesList As DiagnosticBusesList = pDiag.diagnosticBusesList
                 pDiag.diagnosticBusesList = Nothing
+                'Mise à jour des uidPulverisateur , uidExploitation si nécessaire
+                '================================================================
+                If pDiag.uidexploitation = 0 Then
+                    Dim oExploit As Exploitation
+                    oExploit = ExploitationManager.getExploitationById(pDiag.proprietaireId)
+                    If oExploit IsNot Nothing Then
+                        If oExploit.uid <> 0 Then
+                            pDiag.uidexploitation = oExploit.uid
+                        End If
+                    End If
+
+                End If
+                If pDiag.uidpulverisateur = 0 Then
+                    Dim oPulve As Pulverisateur
+                    oPulve = PulverisateurManager.getPulverisateurById(pDiag.pulverisateurId)
+                    If oPulve IsNot Nothing Then
+                        If oPulve.uid <> 0 Then
+                            pDiag.uidpulverisateur = oPulve.uid
+                        End If
+                    End If
+
+                End If
                 Dim response As Integer = DiagnosticManager.WSSend(pDiag, oreturnDiag)
                 'Après Synchro on replace les propriétés
                 pDiag.diagnosticItemsLst = oDiagItemList

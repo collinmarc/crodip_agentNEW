@@ -1,5 +1,11 @@
 #TRUNK
 MASTER
+
+BUILD XXXXXXXX
+	0001770: Gestion des materiels supprimés
+	0001771: Après migration la MAJ d'un pulvé déclenche la synhcro des diag de ce client
+
+
 BUILD 20250117150000
 	0001748: Plantage en Clé 12123 Pompe doseuses
 	0001747: Plantage en validation du debitmetre 552 sans valeur

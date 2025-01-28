@@ -22,7 +22,7 @@ Public Class PulverisateurManager
         End Try
         Return nreturn
     End Function
-    Public Shared Function UpdateExploitDiag(ByVal pPulve As Pulverisateur) As Boolean
+    Public Shared Function UpdateExploit2Pulve(ByVal pPulve As Pulverisateur) As Boolean
         Dim oCsdb As CSDb = Nothing
         Dim bReturn As Boolean = False
 
@@ -39,15 +39,15 @@ Public Class PulverisateurManager
             If Not bReturn Then
                 CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX1")
             End If
-            'MISE A JOUR DE DIAGNOSTIC
-            Paramsquery = "uidpulverisateur = " & pPulve.uid
-            Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
-            query = "UPDATE Diagnostic SET " & Paramsquery & " WHERE (uidpulverisateur =0 or uidpulverisateur is Null) and pulverisateurId = '" & pPulve.id & "'"
+            'MISE A JOUR DE DIAGNOSTIC 'Déportée avant la Synchro Ascendante
+            'Paramsquery = "uidpulverisateur = " & pPulve.uid
+            'Paramsquery = Paramsquery & ", dateModificationAgent = '" & CSDate.ToCRODIPString(DateTime.Now) & "'"
+            'query = "UPDATE Diagnostic SET " & Paramsquery & " WHERE (uidpulverisateur =0 or uidpulverisateur is Null) and pulverisateurId = '" & pPulve.id & "'"
 
-            bReturn = oCsdb.Execute(query)
-            If Not bReturn Then
-                CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX2")
-            End If
+            'bReturn = oCsdb.Execute(query)
+            'If Not bReturn Then
+            '    CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR EX2")
+            'End If
         Catch ex As Exception
             CSDebug.dispError("PulverisateurManager.UpdateExploitDiag ERR : ", ex)
             bReturn = False
