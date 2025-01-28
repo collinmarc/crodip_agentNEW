@@ -344,9 +344,10 @@
 --DELETE FROM PrestationCategorie where libelle = ""
 DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale is null and nomExploitant is Null);
 DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
---DELETE from agentManoControle where isSupprime<>0;
---DELETE from agentManoEtalon where isSupprime<>0;
---DELETE from agentBuseEtalon where isSupprime<>0;
+DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
+DELETE from FichesVieBancMesure where caracteristiques = 'RECUP'
+DELETE from FichesVieManometreControle where caracteristiques = 'RECUP'
+DELETE from FichesVieManometreEtalon where caracteristiques = 'RECUP'
 
 --ALTER TABLE Exploitation ADD COLUMN uid integer;
 --ALTER TABLE Exploitation ADD COLUMN aid text;

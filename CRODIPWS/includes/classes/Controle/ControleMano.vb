@@ -93,9 +93,10 @@ Public Class ControleMano
                 For Each oParam As ParamMetrologiePression In oParamMetro.Repetitions
                     _lst.Add("REPE" & oParam.Num, New ControleManoDetail("REPE", oParam.Num, oParam.Valeur, oMano))
                 Next
+                _EMTLue = oParamMetro.EMT
+
             End If
             'Lecture de l'EMT paramétrée
-            _EMTLue = oParamMetro.EMT
         Catch ex As Exception
             CSDebug.dispError("controleMano.New(Lecture du paramétrage) ERR", ex)
             CSDebug.dispError("controleMano.New on garde les valeurs par défaut")

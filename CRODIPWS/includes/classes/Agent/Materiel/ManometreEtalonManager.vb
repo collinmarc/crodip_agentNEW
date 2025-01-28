@@ -484,7 +484,7 @@ Public Class ManometreEtalonManager
             bddCommande = oCsdb.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentManoEtalon (idCrodip, aid) VALUES ('" & pCrodipId & ",'" & pCrodipId & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoEtalon (idCrodip, aid) VALUES ('" & pCrodipId & "','" & pCrodipId & "')"
             bddCommande.ExecuteNonQuery()
             bReturn = True
         Catch ex As Exception
