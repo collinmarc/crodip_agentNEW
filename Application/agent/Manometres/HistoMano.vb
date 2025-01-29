@@ -14,21 +14,6 @@ Public Class HistoMano
     Friend WithEvents col_Blocage As DataGridViewImageColumn
     Friend WithEvents col_dateModifS As DataGridViewTextBoxColumn
     Friend WithEvents col_FVFileName As DataGridViewDisableButtonColumn
-    Friend WithEvents PressionControleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ValeursMesureesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AuteurDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IdAgentControleurDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents CaracteristiquesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DateModifDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DateModifSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents BlocageDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
-    Friend WithEvents DateModificationAgentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DateModificationCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DateModificationAgentSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DateModificationCrodipSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents FVFileNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents imagesEtatMateriel As System.Windows.Forms.ImageList
 
 
@@ -77,9 +62,9 @@ Public Class HistoMano
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HistoMano))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ficheBanc_id = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -90,26 +75,11 @@ Public Class HistoMano
         Me.btn_ficheMano_valider = New System.Windows.Forms.Label()
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcFVMano = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
         Me.col_Blocage = New System.Windows.Forms.DataGridViewImageColumn()
         Me.col_dateModifS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.col_FVFileName = New Crodip_agent.DataGridViewDisableButtonColumn()
-        Me.PressionControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ValeursMesureesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AuteurDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdAgentControleurDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CaracteristiquesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateModifDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateModifSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BlocageDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.DateModificationAgentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateModificationCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateModificationAgentSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateModificationCrodipSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FVFileNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcFVMano = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataGridViewDisableButtonColumn1 = New Crodip_agent.DataGridViewDisableButtonColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcFVMano, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -215,6 +185,7 @@ Public Class HistoMano
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -224,7 +195,7 @@ Public Class HistoMano
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col_Blocage, Me.col_dateModifS, Me.col_FVFileName, Me.PressionControleDataGridViewTextBoxColumn, Me.ValeursMesureesDataGridViewTextBoxColumn, Me.IdDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.AuteurDataGridViewTextBoxColumn, Me.IdAgentControleurDataGridViewTextBoxColumn, Me.CaracteristiquesDataGridViewTextBoxColumn, Me.DateModifDataGridViewTextBoxColumn, Me.DateModifSDataGridViewTextBoxColumn, Me.BlocageDataGridViewCheckBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn, Me.FVFileNameDataGridViewTextBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.col_Blocage, Me.col_dateModifS, Me.col_FVFileName})
         Me.DataGridView1.DataSource = Me.m_bsrcFVMano
         Me.DataGridView1.Location = New System.Drawing.Point(13, 126)
         Me.DataGridView1.MultiSelect = False
@@ -234,6 +205,27 @@ Public Class HistoMano
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DataGridView1.Size = New System.Drawing.Size(403, 131)
         Me.DataGridView1.TabIndex = 15
+        '
+        'm_bsrcFVMano
+        '
+        Me.m_bsrcFVMano.DataSource = GetType(CRODIPWS.FVManometreControle)
+        Me.m_bsrcFVMano.Sort = "dateModif DESC"
+        '
+        'DataGridViewDisableButtonColumn1
+        '
+        Me.DataGridViewDisableButtonColumn1.DataPropertyName = "FVFileName"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.DodgerBlue
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewDisableButtonColumn1.HeaderText = "FVFileName"
+        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
+        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewDisableButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewDisableButtonColumn1.Text = "Visualiser"
+        Me.DataGridViewDisableButtonColumn1.ToolTipText = "Visualiser la fiche de vérification"
+        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
         '
         'col_Blocage
         '
@@ -255,7 +247,6 @@ Public Class HistoMano
         Me.col_dateModifS.HeaderText = "Date"
         Me.col_dateModifS.Name = "col_dateModifS"
         Me.col_dateModifS.ReadOnly = True
-        Me.col_dateModifS.Width = 17
         '
         'col_FVFileName
         '
@@ -273,133 +264,6 @@ Public Class HistoMano
         Me.col_FVFileName.Text = "Visualiser"
         Me.col_FVFileName.ToolTipText = "Visualiser la fiche de vérification"
         Me.col_FVFileName.UseColumnTextForButtonValue = True
-        Me.col_FVFileName.Width = 17
-        '
-        'PressionControleDataGridViewTextBoxColumn
-        '
-        Me.PressionControleDataGridViewTextBoxColumn.DataPropertyName = "pressionControle"
-        Me.PressionControleDataGridViewTextBoxColumn.HeaderText = "pressionControle"
-        Me.PressionControleDataGridViewTextBoxColumn.Name = "PressionControleDataGridViewTextBoxColumn"
-        Me.PressionControleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ValeursMesureesDataGridViewTextBoxColumn
-        '
-        Me.ValeursMesureesDataGridViewTextBoxColumn.DataPropertyName = "valeursMesurees"
-        Me.ValeursMesureesDataGridViewTextBoxColumn.HeaderText = "valeursMesurees"
-        Me.ValeursMesureesDataGridViewTextBoxColumn.Name = "ValeursMesureesDataGridViewTextBoxColumn"
-        Me.ValeursMesureesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TypeDataGridViewTextBoxColumn
-        '
-        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "type"
-        Me.TypeDataGridViewTextBoxColumn.HeaderText = "type"
-        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
-        Me.TypeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AuteurDataGridViewTextBoxColumn
-        '
-        Me.AuteurDataGridViewTextBoxColumn.DataPropertyName = "auteur"
-        Me.AuteurDataGridViewTextBoxColumn.HeaderText = "auteur"
-        Me.AuteurDataGridViewTextBoxColumn.Name = "AuteurDataGridViewTextBoxColumn"
-        Me.AuteurDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdAgentControleurDataGridViewTextBoxColumn
-        '
-        Me.IdAgentControleurDataGridViewTextBoxColumn.DataPropertyName = "idAgentControleur"
-        Me.IdAgentControleurDataGridViewTextBoxColumn.HeaderText = "idAgentControleur"
-        Me.IdAgentControleurDataGridViewTextBoxColumn.Name = "IdAgentControleurDataGridViewTextBoxColumn"
-        Me.IdAgentControleurDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CaracteristiquesDataGridViewTextBoxColumn
-        '
-        Me.CaracteristiquesDataGridViewTextBoxColumn.DataPropertyName = "caracteristiques"
-        Me.CaracteristiquesDataGridViewTextBoxColumn.HeaderText = "caracteristiques"
-        Me.CaracteristiquesDataGridViewTextBoxColumn.Name = "CaracteristiquesDataGridViewTextBoxColumn"
-        Me.CaracteristiquesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateModifDataGridViewTextBoxColumn
-        '
-        Me.DateModifDataGridViewTextBoxColumn.DataPropertyName = "dateModif"
-        Me.DateModifDataGridViewTextBoxColumn.HeaderText = "dateModif"
-        Me.DateModifDataGridViewTextBoxColumn.Name = "DateModifDataGridViewTextBoxColumn"
-        Me.DateModifDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateModifSDataGridViewTextBoxColumn
-        '
-        Me.DateModifSDataGridViewTextBoxColumn.DataPropertyName = "dateModifS"
-        Me.DateModifSDataGridViewTextBoxColumn.HeaderText = "dateModifS"
-        Me.DateModifSDataGridViewTextBoxColumn.Name = "DateModifSDataGridViewTextBoxColumn"
-        Me.DateModifSDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'BlocageDataGridViewCheckBoxColumn
-        '
-        Me.BlocageDataGridViewCheckBoxColumn.DataPropertyName = "blocage"
-        Me.BlocageDataGridViewCheckBoxColumn.HeaderText = "blocage"
-        Me.BlocageDataGridViewCheckBoxColumn.Name = "BlocageDataGridViewCheckBoxColumn"
-        Me.BlocageDataGridViewCheckBoxColumn.ReadOnly = True
-        '
-        'DateModificationAgentDataGridViewTextBoxColumn
-        '
-        Me.DateModificationAgentDataGridViewTextBoxColumn.DataPropertyName = "dateModificationAgent"
-        Me.DateModificationAgentDataGridViewTextBoxColumn.HeaderText = "dateModificationAgent"
-        Me.DateModificationAgentDataGridViewTextBoxColumn.Name = "DateModificationAgentDataGridViewTextBoxColumn"
-        Me.DateModificationAgentDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateModificationCrodipDataGridViewTextBoxColumn
-        '
-        Me.DateModificationCrodipDataGridViewTextBoxColumn.DataPropertyName = "dateModificationCrodip"
-        Me.DateModificationCrodipDataGridViewTextBoxColumn.HeaderText = "dateModificationCrodip"
-        Me.DateModificationCrodipDataGridViewTextBoxColumn.Name = "DateModificationCrodipDataGridViewTextBoxColumn"
-        Me.DateModificationCrodipDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateModificationAgentSDataGridViewTextBoxColumn
-        '
-        Me.DateModificationAgentSDataGridViewTextBoxColumn.DataPropertyName = "dateModificationAgentS"
-        Me.DateModificationAgentSDataGridViewTextBoxColumn.HeaderText = "dateModificationAgentS"
-        Me.DateModificationAgentSDataGridViewTextBoxColumn.Name = "DateModificationAgentSDataGridViewTextBoxColumn"
-        Me.DateModificationAgentSDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DateModificationCrodipSDataGridViewTextBoxColumn
-        '
-        Me.DateModificationCrodipSDataGridViewTextBoxColumn.DataPropertyName = "dateModificationCrodipS"
-        Me.DateModificationCrodipSDataGridViewTextBoxColumn.HeaderText = "dateModificationCrodipS"
-        Me.DateModificationCrodipSDataGridViewTextBoxColumn.Name = "DateModificationCrodipSDataGridViewTextBoxColumn"
-        Me.DateModificationCrodipSDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'FVFileNameDataGridViewTextBoxColumn
-        '
-        Me.FVFileNameDataGridViewTextBoxColumn.DataPropertyName = "FVFileName"
-        Me.FVFileNameDataGridViewTextBoxColumn.HeaderText = "FVFileName"
-        Me.FVFileNameDataGridViewTextBoxColumn.Name = "FVFileNameDataGridViewTextBoxColumn"
-        Me.FVFileNameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'm_bsrcFVMano
-        '
-        Me.m_bsrcFVMano.DataSource = GetType(FVManometreControle)
-        Me.m_bsrcFVMano.Sort = "dateModif DESC"
-        '
-        'DataGridViewDisableButtonColumn1
-        '
-        Me.DataGridViewDisableButtonColumn1.DataPropertyName = "FVFileName"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.DodgerBlue
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewDisableButtonColumn1.DefaultCellStyle = DataGridViewCellStyle4
-        Me.DataGridViewDisableButtonColumn1.HeaderText = "FVFileName"
-        Me.DataGridViewDisableButtonColumn1.Name = "DataGridViewDisableButtonColumn1"
-        Me.DataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewDisableButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DataGridViewDisableButtonColumn1.Text = "Visualiser"
-        Me.DataGridViewDisableButtonColumn1.ToolTipText = "Visualiser la fiche de vérification"
-        Me.DataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = True
         '
         'HistoMano
         '
@@ -446,7 +310,7 @@ Public Class HistoMano
             ficheBanc_marque.Text = ManoCourant.marque
 
             m_bsrcFVMano.Clear()
-            Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControleByidCrodip(ManoCourant.idCrodip)
+            Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControleByidCrodip(ManoCourant)
             For Each oFV As FVManometreControle In olst
                 m_bsrcFVMano.Add(oFV)
                 Dim oCell As DataGridViewDisableButtonCell = DataGridView1.Rows(DataGridView1.Rows.Count - 1).Cells(col_FVFileName.Index)

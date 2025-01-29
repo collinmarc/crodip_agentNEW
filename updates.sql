@@ -344,10 +344,12 @@
 --DELETE FROM PrestationCategorie where libelle = ""
 DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale is null and nomExploitant is Null);
 DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
-DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
-DELETE from FichesVieBancMesure where caracteristiques = 'RECUP'
-DELETE from FichesVieManometreControle where caracteristiques = 'RECUP'
-DELETE from FichesVieManometreEtalon where caracteristiques = 'RECUP'
+DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale = '' and nomExploitant = '');
+DELETE from Exploitation where raisonsociale = '' and nomExploitant = '';
+
+DELETE from FicheVieBancMesure where caracteristiques = 'RECUP';
+DELETE from FicheVieManometreControle where caracteristiques = 'RECUP';
+DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
 
 --ALTER TABLE Exploitation ADD COLUMN uid integer;
 --ALTER TABLE Exploitation ADD COLUMN aid text;
@@ -535,7 +537,16 @@ DELETE from FichesVieManometreEtalon where caracteristiques = 'RECUP'
 --Update AgentManoEtalon SET aid = idCrodip;
 --Update AgentbuseEtalon SET aid = idCrodip;
 
+ALTER TABLE FichevieManometreControle ADD COLUMN numnatMano text;
+ALTER TABLE FichevieManometreControle ADD COLUMN IdCrodipMano text;
+Update FichevieManometreControle set IdCrodipMano = idManometre where AUTEUR = 'CRODIP' ;
+Update FichevieManometreControle set IdCrodipMano = (SELECT idCrodip from AgentManoControle where numeroNational = idManometre and isSupprime=0) where AUTEUR = 'AGENT' ;
 
+Update FichevieManometreControle set numnatMano = (SELECT numeroNational from AgentManoControle where idCrodip = idManometre) WHERE AUTEUR = 'CRODIP' ;
+Update FichevieManometreControle set numnatMano = idManometre WHERE AUTEUR = 'AGENT' ;
+
+ALTER TABLE FichevieManometreControle RENAME Column idManometre to idManometreOLD;
+ALTER TABLE FichevieManometreControle RENAME COLUMN idCrodipMano to idManometre;
 
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
 

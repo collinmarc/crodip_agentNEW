@@ -390,7 +390,7 @@ Public Class FVManometreEtalonManager
         oCsdb = New CSDb(True)
         bddCommande = oCsdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT FichevieManometreEtalon.* FROM FichevieManometreEtalon INNER JOIN AgentManoEtalon ON FichevieManometreEtalon.idManometre = AgentManoEtalon.idCrodip "
-        bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieManometreEtalon.dateModificationAgent<>FichevieManometreEtalon.dateModificationCrodip  or FichevieManometreEtalon.dateModificationCrodip is null)"
+        bddCommande.CommandText = bddCommande.CommandText & " WHERE (FichevieManometreEtalon.dateModificationAgent>FichevieManometreEtalon.dateModificationCrodip  or FichevieManometreEtalon.dateModificationCrodip is null)"
         bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoEtalon.idStructure=" & agent.uidStructure
 
         Try

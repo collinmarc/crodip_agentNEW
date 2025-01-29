@@ -59,10 +59,6 @@ Public Class materiels_supprimes
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AgentSuppressionDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RaisonSuppressionDataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents idCrodip As DataGridViewTextBoxColumn
-    Friend WithEvents agentSuppression As DataGridViewTextBoxColumn
-    Friend WithEvents raison As DataGridViewTextBoxColumn
-    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents IdCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents agentSuppressionME As DataGridViewTextBoxColumn
     Friend WithEvents raisonSuppressionME As DataGridViewTextBoxColumn
@@ -71,6 +67,10 @@ Public Class materiels_supprimes
     Friend WithEvents agentSuppressionBS As DataGridViewTextBoxColumn
     Friend WithEvents raisonSuppressionBS As DataGridViewTextBoxColumn
     Friend WithEvents DateSuppressionDataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents idCrodip As DataGridViewTextBoxColumn
+    Friend WithEvents agentSuppression As DataGridViewTextBoxColumn
+    Friend WithEvents raison As DataGridViewTextBoxColumn
+    Friend WithEvents DateSuppressionDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents id As DataGridViewTextBoxColumn
     Friend WithEvents agentSuppressionBC As DataGridViewTextBoxColumn
     Friend WithEvents raisonSuppressionBC As DataGridViewTextBoxColumn
@@ -94,11 +94,19 @@ Public Class materiels_supprimes
         Me.Label82 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvManoEtalonSuppr = New System.Windows.Forms.DataGridView()
+        Me.IdCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raisonSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateSuppressionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcManoEtalonSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_gestionManometresEtalon_valider = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvBusesSuppr = New System.Windows.Forms.DataGridView()
+        Me.IdCrodipDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.agentSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.raisonSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateSuppressionDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.m_bsrcBuseSuppr = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -112,14 +120,6 @@ Public Class materiels_supprimes
         Me.agentSuppression = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.raison = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateSuppressionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.agentSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.raisonSuppressionME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateSuppressionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdCrodipDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.agentSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.raisonSuppressionBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateSuppressionDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.agentSuppressionBC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.raisonSuppressionBC = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -265,6 +265,34 @@ Public Class materiels_supprimes
         Me.dgvManoEtalonSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgvManoEtalonSuppr.TabIndex = 41
         '
+        'IdCrodipDataGridViewTextBoxColumn
+        '
+        Me.IdCrodipDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
+        Me.IdCrodipDataGridViewTextBoxColumn.HeaderText = "Identifiant"
+        Me.IdCrodipDataGridViewTextBoxColumn.Name = "IdCrodipDataGridViewTextBoxColumn"
+        Me.IdCrodipDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'agentSuppressionME
+        '
+        Me.agentSuppressionME.DataPropertyName = "agentSuppression"
+        Me.agentSuppressionME.HeaderText = "agent"
+        Me.agentSuppressionME.Name = "agentSuppressionME"
+        Me.agentSuppressionME.ReadOnly = True
+        '
+        'raisonSuppressionME
+        '
+        Me.raisonSuppressionME.DataPropertyName = "raisonSuppression"
+        Me.raisonSuppressionME.HeaderText = "raison"
+        Me.raisonSuppressionME.Name = "raisonSuppressionME"
+        Me.raisonSuppressionME.ReadOnly = True
+        '
+        'DateSuppressionDataGridViewTextBoxColumn1
+        '
+        Me.DateSuppressionDataGridViewTextBoxColumn1.DataPropertyName = "dateSuppression"
+        Me.DateSuppressionDataGridViewTextBoxColumn1.HeaderText = "date de la suppression"
+        Me.DateSuppressionDataGridViewTextBoxColumn1.Name = "DateSuppressionDataGridViewTextBoxColumn1"
+        Me.DateSuppressionDataGridViewTextBoxColumn1.ReadOnly = True
+        '
         'm_bsrcManoEtalonSuppr
         '
         Me.m_bsrcManoEtalonSuppr.DataSource = GetType(CRODIPWS.ManometreEtalon)
@@ -340,6 +368,34 @@ Public Class materiels_supprimes
         Me.dgvBusesSuppr.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvBusesSuppr.Size = New System.Drawing.Size(965, 519)
         Me.dgvBusesSuppr.TabIndex = 42
+        '
+        'IdCrodipDataGridViewTextBoxColumn2
+        '
+        Me.IdCrodipDataGridViewTextBoxColumn2.DataPropertyName = "numeroNational"
+        Me.IdCrodipDataGridViewTextBoxColumn2.HeaderText = "Identifiant"
+        Me.IdCrodipDataGridViewTextBoxColumn2.Name = "IdCrodipDataGridViewTextBoxColumn2"
+        Me.IdCrodipDataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'agentSuppressionBS
+        '
+        Me.agentSuppressionBS.DataPropertyName = "agentSuppression"
+        Me.agentSuppressionBS.HeaderText = "agent"
+        Me.agentSuppressionBS.Name = "agentSuppressionBS"
+        Me.agentSuppressionBS.ReadOnly = True
+        '
+        'raisonSuppressionBS
+        '
+        Me.raisonSuppressionBS.DataPropertyName = "raisonSuppression"
+        Me.raisonSuppressionBS.HeaderText = "raison"
+        Me.raisonSuppressionBS.Name = "raisonSuppressionBS"
+        Me.raisonSuppressionBS.ReadOnly = True
+        '
+        'DateSuppressionDataGridViewTextBoxColumn3
+        '
+        Me.DateSuppressionDataGridViewTextBoxColumn3.DataPropertyName = "dateSuppression"
+        Me.DateSuppressionDataGridViewTextBoxColumn3.HeaderText = "Date de la suppression"
+        Me.DateSuppressionDataGridViewTextBoxColumn3.Name = "DateSuppressionDataGridViewTextBoxColumn3"
+        Me.DateSuppressionDataGridViewTextBoxColumn3.ReadOnly = True
         '
         'm_bsrcBuseSuppr
         '
@@ -459,7 +515,7 @@ Public Class materiels_supprimes
         '
         'idCrodip
         '
-        Me.idCrodip.DataPropertyName = "idCrodip"
+        Me.idCrodip.DataPropertyName = "numeroNational"
         Me.idCrodip.HeaderText = "Identifiant"
         Me.idCrodip.Name = "idCrodip"
         Me.idCrodip.ReadOnly = True
@@ -485,65 +541,9 @@ Public Class materiels_supprimes
         Me.DateSuppressionDataGridViewTextBoxColumn.Name = "DateSuppressionDataGridViewTextBoxColumn"
         Me.DateSuppressionDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'IdCrodipDataGridViewTextBoxColumn
-        '
-        Me.IdCrodipDataGridViewTextBoxColumn.DataPropertyName = "numeroNational"
-        Me.IdCrodipDataGridViewTextBoxColumn.HeaderText = "Identifiant"
-        Me.IdCrodipDataGridViewTextBoxColumn.Name = "IdCrodipDataGridViewTextBoxColumn"
-        Me.IdCrodipDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'agentSuppressionME
-        '
-        Me.agentSuppressionME.DataPropertyName = "agentSuppression"
-        Me.agentSuppressionME.HeaderText = "agent"
-        Me.agentSuppressionME.Name = "agentSuppressionME"
-        Me.agentSuppressionME.ReadOnly = True
-        '
-        'raisonSuppressionME
-        '
-        Me.raisonSuppressionME.DataPropertyName = "raisonSuppression"
-        Me.raisonSuppressionME.HeaderText = "raison"
-        Me.raisonSuppressionME.Name = "raisonSuppressionME"
-        Me.raisonSuppressionME.ReadOnly = True
-        '
-        'DateSuppressionDataGridViewTextBoxColumn1
-        '
-        Me.DateSuppressionDataGridViewTextBoxColumn1.DataPropertyName = "dateSuppression"
-        Me.DateSuppressionDataGridViewTextBoxColumn1.HeaderText = "date de la suppression"
-        Me.DateSuppressionDataGridViewTextBoxColumn1.Name = "DateSuppressionDataGridViewTextBoxColumn1"
-        Me.DateSuppressionDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'IdCrodipDataGridViewTextBoxColumn2
-        '
-        Me.IdCrodipDataGridViewTextBoxColumn2.DataPropertyName = "numeroNational"
-        Me.IdCrodipDataGridViewTextBoxColumn2.HeaderText = "Identifiant"
-        Me.IdCrodipDataGridViewTextBoxColumn2.Name = "IdCrodipDataGridViewTextBoxColumn2"
-        Me.IdCrodipDataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'agentSuppressionBS
-        '
-        Me.agentSuppressionBS.DataPropertyName = "agentSuppression"
-        Me.agentSuppressionBS.HeaderText = "agent"
-        Me.agentSuppressionBS.Name = "agentSuppressionBS"
-        Me.agentSuppressionBS.ReadOnly = True
-        '
-        'raisonSuppressionBS
-        '
-        Me.raisonSuppressionBS.DataPropertyName = "raisonSuppression"
-        Me.raisonSuppressionBS.HeaderText = "raison"
-        Me.raisonSuppressionBS.Name = "raisonSuppressionBS"
-        Me.raisonSuppressionBS.ReadOnly = True
-        '
-        'DateSuppressionDataGridViewTextBoxColumn3
-        '
-        Me.DateSuppressionDataGridViewTextBoxColumn3.DataPropertyName = "dateSuppression"
-        Me.DateSuppressionDataGridViewTextBoxColumn3.HeaderText = "Date de la suppression"
-        Me.DateSuppressionDataGridViewTextBoxColumn3.Name = "DateSuppressionDataGridViewTextBoxColumn3"
-        Me.DateSuppressionDataGridViewTextBoxColumn3.ReadOnly = True
-        '
         'id
         '
-        Me.id.DataPropertyName = "id"
+        Me.id.DataPropertyName = "numeroNational"
         Me.id.HeaderText = "Identifiant"
         Me.id.Name = "id"
         Me.id.ReadOnly = True

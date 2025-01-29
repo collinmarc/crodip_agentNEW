@@ -1,7 +1,7 @@
 #TRUNK
 MASTER
 
-BUILD XXXXXXXX
+BUILD 20250128190000
 	0001770: Gestion des materiels supprimés
 	0001771: Après migration la MAJ d'un pulvé déclenche la synhcro des diag de ce client
 

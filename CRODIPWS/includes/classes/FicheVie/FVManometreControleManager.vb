@@ -578,16 +578,15 @@ Public Class FVManometreControleManager
         Return lstResponse
     End Function
 
-    Public Shared Function getLstFVManometreControleByidCrodip(ByVal pidCrodip As String) As List(Of FVManometreControle)
-        Debug.Assert(Not String.IsNullOrEmpty(pidCrodip), "L'UID doit êtr initialisé")
+    Public Shared Function getLstFVManometreControleByidCrodip(ByVal pMano As ManometreControle) As List(Of FVManometreControle)
         Dim lstResponse As New List(Of FVManometreControle)
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
 
-        If pidCrodip <> "" Then
+        If pMano.uid > 0 Then
             oCsdb = New CSDb(True)
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE FichevieManometreControle.idManometre='" & pidCrodip & "' ORDER BY dateModif DESC"
+            bddCommande.CommandText = "SELECT * FROM FichevieManometreControle WHERE uidManometre=" & pMano.uid & " ORDER BY dateModif DESC"
             Try
 
                 ' On récupère les résultats
@@ -608,7 +607,7 @@ Public Class FVManometreControleManager
                 End While
                 tmpListProfils.Close()
             Catch ex As Exception
-                CSDebug.dispError("FVManometreControleManager.getLstFVManometreControleByuid ERR : ", ex)
+                CSDebug.dispError("FVManometreControleManager.getLstFVManometreControleByidCrodip ERR : ", ex)
             End Try
 
             If oCsdb IsNot Nothing Then
