@@ -342,8 +342,6 @@
 
 -- Suppression des Categorie vides
 --DELETE FROM PrestationCategorie where libelle = ""
-DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale is null and nomExploitant is Null);
-DELETE from Exploitation where raisonsociale is null and nomExploitant is Null;
 DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale = '' and nomExploitant = '');
 DELETE from Exploitation where raisonsociale = '' and nomExploitant = '';
 

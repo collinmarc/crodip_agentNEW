@@ -413,6 +413,13 @@ Public Class ManometreControle
     ''' Calcul du nombre de jours restant avant L'alerteRouge
     Public Function getNbJoursAvantAlerteRouge() As Integer
         Dim tmpDateLCManoControle As Date = CSDate.FromCrodipString(Me.dateDernierControleS)
+        'Dim dateDernCtrl As Date
+
+        If Not String.IsNullOrEmpty(dateDernierControleS) Then
+            tmpDateLCManoControle = dateDernierControle
+        Else
+            tmpDateLCManoControle = dateActivation
+        End If
         Dim DL As Date
         Dim n As Integer
         Dim oNiveau As NiveauAlerte
@@ -423,7 +430,7 @@ Public Class ManometreControle
 
         n = DateDiff(DateInterval.DayOfYear, DL, tmpDateLCManoControle)
 
-        Return n
+        Return Math.Abs(n)
     End Function
     Public Overrides Function creerFicheVieActivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVManometreControle.FVTYPE_MISENSERVICE, pAgent) IsNot Nothing
