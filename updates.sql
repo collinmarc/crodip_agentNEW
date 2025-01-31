@@ -344,6 +344,8 @@
 --DELETE FROM PrestationCategorie where libelle = ""
 DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale = '' and nomExploitant = '');
 DELETE from Exploitation where raisonsociale = '' and nomExploitant = '';
+DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale IS NULL and nomExploitant IS NULL);
+DELETE from Exploitation where raisonsociale IS NULL and nomExploitant IS NULL;
 
 DELETE from FicheVieBancMesure where caracteristiques = 'RECUP';
 DELETE from FicheVieManometreControle where caracteristiques = 'RECUP';

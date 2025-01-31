@@ -371,9 +371,9 @@ Public Class ManometreControle
         Dim bReturn As Boolean
 
         Try
-            creerFicheVieDesactivation(pAgent)
             ' On bloque le mano
             Me.etat = False
+            creerFicheVieDesactivation(pAgent)
             ManometreControleManager.save(Me)
             bReturn = True
         Catch ex As Exception
@@ -394,7 +394,7 @@ Public Class ManometreControle
         Dim dateDernCtrl As Date
 
         If Not String.IsNullOrEmpty(dateDernierControleS) Then
-            dateDernCtrl = dateDernCtrl
+            dateDernCtrl = dateDernierControle
         Else
             dateDernCtrl = dateActivation
         End If
@@ -509,6 +509,7 @@ Public Class ManometreControle
             oFV.type = pType
             oFV.auteur = "AGENT"
             oFV.idAgentControleur = pAgent.id
+            oFV.blocage = Not Me.etat
             oFV.caracteristiques =
         Me.idCrodip & "|" &
         Me.marque & "|" &

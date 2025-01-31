@@ -12,15 +12,14 @@ Imports CRODIPWS
 <TestClass()> _
 Public Class CRODIPTest
 
-    'Private m_IdAgent As Integer = 1053
-    'Private m_idStructure As Integer = 99
-
-    'Private m_IdAgent As Integer = 1119
-    'Private m_idStructure As Integer = 498
 
     'Admin-test.crodip.net
-    Private m_IdAgent As Integer = 72
-    Private m_idStructure As Integer = 22
+    Private m_IdAgent As Integer = 1293
+    Private m_numNatAgent As String = "MCOTU"
+    Private m_idStructure As Integer = 562
+    Private m_aidBanc As String = "BCTU"
+    Private m_uidBanc As Integer = 96
+
 
 
     Private testContextInstance As TestContext
@@ -79,27 +78,20 @@ Public Class CRODIPTest
         oCSDB.free()
 
         'Création de la Structure
-        m_oStructure = StructureManager.WSgetById(22, "22")
+        m_oStructure = StructureManager.WSgetById(m_idStructure, m_idStructure)
         Assert.IsNotNull(m_oStructure, "erreur en Récupération de la structure")
         StructureManager.save(m_oStructure)
         m_idStructure = m_oStructure.id
 
         'Creation d'un agent
-        m_oAgent = AgentManager.WSgetByNumeroNational("MCO22")
-        m_oAgent.nom = "Agent de test unitaires"
-        m_oAgent.prenom = "Agent de test unitaires"
-        m_oAgent.telephonePortable = "0606060606"
-        m_oAgent.eMail = "a@a.com"
-        m_oAgent.isActif = True
-        Assert.IsNotNull(m_oAgent, "erreur en Récupération d'un agent")
-        AgentManager.save(m_oAgent)
+        m_oAgent = AgentManager.WSgetByNumeroNational(m_numNatAgent)
         m_IdAgent = m_oAgent.id
 
 
         'Récupération du banc de la structure
         'Si il n'existe pas on le récupère du WS
-        m_oBanc = BancManager.WSgetById(-1, "00791")
-        Assert.IsNotNull(m_oAgent, "erreur en Récupération du banc")
+        m_oBanc = BancManager.WSgetById(m_uidBanc, m_aidBanc)
+        Assert.IsNotNull(m_oBanc, "erreur en Récupération du banc")
 
         Dim oSynchro As New Synchronisation(m_oAgent)
 

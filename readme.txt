@@ -4,7 +4,7 @@ MASTER
 BUILD 20250128190000
 	0001770: Gestion des materiels supprimés
 	0001771: Après migration la MAJ d'un pulvé déclenche la synhcro des diag de ce client
-
+	0001776: Nommage des fichiers PDfs sur Controle Mano
 
 BUILD 20250117150000
 	0001748: Plantage en Clé 12123 Pompe doseuses

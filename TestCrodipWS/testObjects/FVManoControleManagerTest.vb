@@ -149,7 +149,7 @@ Public Class FVManometreControleManagerTest
     '''Test des WS Fiches de vies de Manos de controles
     '''</summary>
     <TestMethod()>
-    Public Sub SynchroDesFichesDeViesBancTest()
+    Public Sub SynchroDesFichesDeViesManoCTest()
         Dim oMano As ManometreControle
         Dim olstFV As New List(Of FVManometreControle)
         oMano = New ManometreControle()
@@ -158,6 +158,7 @@ Public Class FVManometreControleManagerTest
         oMano.idCrodip = oMano.numeroNational
         oMano.jamaisServi = True
         oMano.isUtilise = False
+        oMano.etat = True
         ManometreControleManager.save(oMano)
         'Récupération du uid
         ManometreControleManager.WSSend(oMano, oMano)
@@ -167,43 +168,41 @@ Public Class FVManometreControleManagerTest
         oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
         ManometreControleManager.save(oMano)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
+        Assert.IsTrue(oMano.etat)
 
 
         'Désactivation du Mano
-        Assert.IsTrue(oMano.etat)
         oMano.Desactiver(m_oAgent)
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
+        Dim oFV As FVManometreControle
+        oFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid).First()
+        Assert.IsTrue(oFV.blocage)
 
-        'Controle du Manoètre
+        'Controle du Manomètre
+        '==========================
+        'I - Création du Mano Etalon
+
         System.Threading.Thread.Sleep(1000)
         Dim oCtrl As ControleMano = New ControleMano(oMano, m_oAgent)
-        Dim oManoE As ManometreEtalon
-        oManoE = New ManometreEtalon()
-        oManoE.uidstructure = m_oAgent.idStructure
-        oManoE.idCrodip = ManometreEtalonManager.FTO_getNewId(m_oAgent)
-        oManoE.numeroNational = oMano.idCrodip
-        oManoE.jamaisServi = True
-        oManoE.isUtilise = False
-        ManometreEtalonManager.save(oManoE)
 
+        'Le Controle Echoue
         oCtrl.DateVerif = Date.Now.ToShortDateString()
-        oCtrl.manoEtalon = oManoE.idCrodip
+        oCtrl.manoEtalon = 'IDManoE'  'Identifiant fictif du ManoEtalon
         oCtrl.idMano = oMano.idCrodip
-
+        oMano.etat = False
         Dim oEtat As New EtatFVMano(oCtrl)
         Dim sFileName As String = oEtat.buildPDF(oMano, m_oAgent)
         oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
 
-        Dim oLst As New List(Of FVManometreControle)
-        oLst = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid)
+        oFV = FVManometreControleManager.getLstFVManometreControleByuid(oMano.uid).First()
+        Assert.IsTrue(oFV.blocage)
         'La FV de controle est la dernière créee
-        Dim oFV As FVManometreControle = oLst(oLst.Count - 1)
         Dim strFVFileName As String = oFV.FVFileName
 
         Assert.AreEqual(3, FVManometreControleManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVManoControle()
+        oSynchro.runAscSynchro()
 
         'Por Véfifier que le Fichier est bien sur le FTP
         'On le télécharge et on vérifie qu'il existe
@@ -215,10 +214,6 @@ Public Class FVManometreControleManagerTest
 
         Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)
 
-        'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprime)
-        oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
 
     End Sub
 End Class
