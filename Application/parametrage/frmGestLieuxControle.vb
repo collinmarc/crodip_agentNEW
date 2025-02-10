@@ -6,9 +6,27 @@ Imports System.Collections.Generic
 Imports CsvHelper.Configuration
 Imports CRODIPWS
 
+
 Public Class frmGestLieuxControle
+    Private _lstCommunes As List(Of Commune)
 
     Private Sub frmLieuxControle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim oReferentiel As ReferentielCommunesCSV
+        oReferentiel = New ReferentielCommunesCSV()
+        _lstCommunes = oReferentiel.getCommunes("")
+        'm_bsCommune.Clear()
+        'If Not String.IsNullOrEmpty(pCodePostal) Then
+        '    lstCommunes = oReferentiel.getCommunes(pCodePostal)
+        '    cbxCommunes2.SuspendLayout()
+        '    Dim n As Integer = 0
+        '    lstCommunes.ForEach(
+        '        Sub(c) m_bsCommune.Add(c)
+        '            )
+        '    cbxCommunes2.ResumeLayout()
+        '    If m_bsLieuxControle.Current.commune = "" Then
+        '        m_bsLieuxControle.Current.Commune = lstCommunes(0).Nom
+        '    End If
+        'End If
         initFenetre()
     End Sub
     Private Sub initFenetre()
@@ -45,6 +63,8 @@ Public Class frmGestLieuxControle
         oLieu.Nom = "Nouveau"
         m_bsLieuxControle.Add(oLieu)
         m_bsLieuxControle.MoveLast()
+        tbnomSite.Focus()
+
     End Sub
 
     Private Sub btnSupprimer_Click(sender As Object, e As EventArgs)
@@ -82,21 +102,18 @@ Public Class frmGestLieuxControle
 
     End Sub
     Protected Sub LoadCommunes(pCodePostal As String)
-        Dim oReferentiel As ReferentielCommunesCSV
-        Dim lstCommunes As List(Of Commune)
-        oReferentiel = New ReferentielCommunesCSV()
-        m_bsCommune.Clear()
+        Dim lstCommunesFiltrees As List(Of Commune)
         If Not String.IsNullOrEmpty(pCodePostal) Then
-            lstCommunes = oReferentiel.getCommunes(pCodePostal)
-            cbxCommunes2.SuspendLayout()
-            Dim n As Integer = 0
-            lstCommunes.ForEach(
-                Sub(c) m_bsCommune.Add(c)
-                    )
-            cbxCommunes2.ResumeLayout()
-            If m_bsLieuxControle.Current.commune = "" Then
-                m_bsLieuxControle.Current.Commune = lstCommunes(0).Nom
-            End If
+            lstCommunesFiltrees = _lstCommunes.Where(Function(c)
+                                                         Return c.CodePostal.StartsWith(pCodePostal)
+                                                     End Function).ToList()
+            Me.SuspendLayout()
+            m_bsCommune.SuspendBinding()
+            m_bsCommune.Clear()
+            m_bsCommune.DataSource = lstCommunesFiltrees
+            m_bsCommune.ResumeBinding()
+            Me.ResumeLayout()
+
         End If
     End Sub
 
@@ -131,5 +148,20 @@ Public Class frmGestLieuxControle
 
     Private Sub btnSuppimer_Click(sender As Object, e As EventArgs) Handles btnSuppimer.Click
         SupprimerLieu()
+    End Sub
+
+    Private Sub cbxCommunes2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCommunes2.SelectedIndexChanged
+        If cbxCommunes2.SelectedItem IsNot Nothing Then
+            Dim communeSelectionnee As Commune = cbxCommunes2.SelectedItem
+
+            ' Trouver la commune dans la liste
+            Dim commune = _lstCommunes.FirstOrDefault(Function(c) c.Nom = communeSelectionnee.Nom)
+
+            If commune IsNot Nothing Then
+                'tbcodePostal.Text = commune.CodePostal
+                m_bsLieuxControle.Current.codePostal = commune.CodePostal
+            End If
+        End If
+
     End Sub
 End Class

@@ -76,14 +76,14 @@ Partial Class frmGestLieuxControle
         '
         Me.cbxSite2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsLieuxControle, "Site", True))
         Me.cbxSite2.FormattingEnabled = True
-        Me.cbxSite2.Location = New System.Drawing.Point(131, 67)
+        Me.cbxSite2.Location = New System.Drawing.Point(132, 91)
         Me.cbxSite2.Name = "cbxSite2"
         Me.cbxSite2.Size = New System.Drawing.Size(160, 21)
-        Me.cbxSite2.TabIndex = 9
+        Me.cbxSite2.TabIndex = 3
         '
         'm_bsLieuxControle
         '
-        Me.m_bsLieuxControle.DataSource = GetType(LieuxControle)
+        Me.m_bsLieuxControle.DataSource = GetType(CRODIPWS.LieuxControle)
         '
         'cbxCommunes2
         '
@@ -93,19 +93,19 @@ Partial Class frmGestLieuxControle
         Me.cbxCommunes2.DataSource = Me.m_bsCommune
         Me.cbxCommunes2.DisplayMember = "Nom"
         Me.cbxCommunes2.FormattingEnabled = True
-        Me.cbxCommunes2.Location = New System.Drawing.Point(131, 38)
+        Me.cbxCommunes2.Location = New System.Drawing.Point(132, 62)
         Me.cbxCommunes2.Name = "cbxCommunes2"
         Me.cbxCommunes2.Size = New System.Drawing.Size(160, 21)
-        Me.cbxCommunes2.TabIndex = 8
+        Me.cbxCommunes2.TabIndex = 2
         '
         'm_bsCommune
         '
-        Me.m_bsCommune.DataSource = GetType(Commune)
+        Me.m_bsCommune.DataSource = GetType(CRODIPWS.Commune)
         '
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 38)
+        Me.Label4.Location = New System.Drawing.Point(13, 62)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(104, 16)
         Me.Label4.TabIndex = 1
@@ -115,7 +115,7 @@ Partial Class frmGestLieuxControle
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Location = New System.Drawing.Point(13, 39)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(104, 16)
         Me.Label1.TabIndex = 1
@@ -125,7 +125,7 @@ Partial Class frmGestLieuxControle
         'Label2
         '
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(9, 68)
+        Me.Label2.Location = New System.Drawing.Point(10, 92)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(104, 16)
         Me.Label2.TabIndex = 1
@@ -135,7 +135,7 @@ Partial Class frmGestLieuxControle
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(9, 95)
+        Me.Label3.Location = New System.Drawing.Point(10, 13)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(104, 16)
         Me.Label3.TabIndex = 1
@@ -145,18 +145,18 @@ Partial Class frmGestLieuxControle
         'tbcodePostal
         '
         Me.tbcodePostal.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsLieuxControle, "CodePostal", True))
-        Me.tbcodePostal.Location = New System.Drawing.Point(131, 14)
+        Me.tbcodePostal.Location = New System.Drawing.Point(132, 38)
         Me.tbcodePostal.Name = "tbcodePostal"
         Me.tbcodePostal.Size = New System.Drawing.Size(56, 20)
-        Me.tbcodePostal.TabIndex = 0
+        Me.tbcodePostal.TabIndex = 1
         '
         'tbnomSite
         '
         Me.tbnomSite.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsLieuxControle, "Nom", True))
-        Me.tbnomSite.Location = New System.Drawing.Point(131, 94)
+        Me.tbnomSite.Location = New System.Drawing.Point(132, 12)
         Me.tbnomSite.Name = "tbnomSite"
         Me.tbnomSite.Size = New System.Drawing.Size(160, 20)
-        Me.tbnomSite.TabIndex = 3
+        Me.tbnomSite.TabIndex = 0
         '
         'ckisRecuperationResidus
         '
@@ -166,7 +166,7 @@ Partial Class frmGestLieuxControle
         Me.ckisRecuperationResidus.Location = New System.Drawing.Point(12, 142)
         Me.ckisRecuperationResidus.Name = "ckisRecuperationResidus"
         Me.ckisRecuperationResidus.Size = New System.Drawing.Size(136, 37)
-        Me.ckisRecuperationResidus.TabIndex = 7
+        Me.ckisRecuperationResidus.TabIndex = 5
         Me.ckisRecuperationResidus.Text = "Récupération des résidus :"
         Me.ckisRecuperationResidus.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -178,7 +178,7 @@ Partial Class frmGestLieuxControle
         Me.ckisSiteSecurise.Location = New System.Drawing.Point(12, 120)
         Me.ckisSiteSecurise.Name = "ckisSiteSecurise"
         Me.ckisSiteSecurise.Size = New System.Drawing.Size(136, 16)
-        Me.ckisSiteSecurise.TabIndex = 6
+        Me.ckisSiteSecurise.TabIndex = 4
         Me.ckisSiteSecurise.Text = "Site sécurisé :"
         Me.ckisSiteSecurise.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
@@ -209,6 +209,7 @@ Partial Class frmGestLieuxControle
         Me.btnValider.BackColor = System.Drawing.Color.Transparent
         Me.btnValider.BackgroundImage = Global.Crodip_agent.Resources.btn_valider
         Me.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnValider.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnValider.FlatAppearance.BorderSize = 0
         Me.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnValider.ForeColor = System.Drawing.Color.White
@@ -258,6 +259,7 @@ Partial Class frmGestLieuxControle
         Me.btnSuppimer.BackColor = System.Drawing.Color.Transparent
         Me.btnSuppimer.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
         Me.btnSuppimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnSuppimer.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnSuppimer.FlatAppearance.BorderSize = 0
         Me.btnSuppimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSuppimer.ForeColor = System.Drawing.Color.White
@@ -270,10 +272,8 @@ Partial Class frmGestLieuxControle
         '
         'frmGestLieuxControle
         '
-        Me.AcceptButton = Me.btnValider
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.btnAnnuler
         Me.ClientSize = New System.Drawing.Size(679, 296)
         Me.Controls.Add(Me.btnSuppimer)
         Me.Controls.Add(Me.btn_Ajouter)
