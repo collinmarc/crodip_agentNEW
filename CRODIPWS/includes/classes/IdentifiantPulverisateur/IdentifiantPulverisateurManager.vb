@@ -100,7 +100,7 @@ Public Class IdentifiantPulverisateurManager
             Else
                 pIdent.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
             End If
-            If Not exists(pIdent.uid) Then
+            If Not exists(pIdent.uid, pIdent.id) Then
                 bReturn = Insert(pIdent)
             Else
                 bReturn = Update(pIdent)
@@ -112,7 +112,7 @@ Public Class IdentifiantPulverisateurManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function exists(ByVal pId As Long) As Boolean
+    Public Shared Function exists(ByVal puId As Integer, pId As Long) As Boolean
         Dim bReturn As Boolean
 
         Try
@@ -120,7 +120,7 @@ Public Class IdentifiantPulverisateurManager
             Dim dbLink As New CSDb(True)
             '## Execution de la requete
             Dim tmpResults As DbDataReader
-            tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE uid=" & pId & "")
+            tmpResults = dbLink.getResult2s("SELECT * FROM IdentifiantPulverisateur WHERE uid=" & puId & " or id = " & pId & "")
             bReturn = tmpResults.HasRows
             tmpResults.Close()
             dbLink.free()
@@ -215,8 +215,10 @@ Public Class IdentifiantPulverisateurManager
             strQuery = strQuery & ",  etat = '" & CSDb.secureString(pIdent.etat) & "'"
             strQuery = strQuery & ",  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'"
             strQuery = strQuery & ",  libelle ='" & CSDb.secureString(pIdent.libelle) & "'"
-            If Not String.IsNullOrEmpty(pIdent.idCRODIPPool) Then
-                strQuery = strQuery & ",  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'"
+            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                If Not String.IsNullOrEmpty(pIdent.idCRODIPPool) Then
+                    strQuery = strQuery & ",  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'"
+                End If
             End If
             strQuery = strQuery & pIdent.getRootQuery()
 
@@ -277,7 +279,7 @@ Public Class IdentifiantPulverisateurManager
         Dim bReturn As Boolean
         Try
 
-            If exists(pIdent.id) Then
+            If exists(pIdent.uid, pIdent.id) Then
                 Dim strQuery As String
                 strQuery = "DELETE from identifiantPulverisateur "
                 strQuery = strQuery & "WHERE id = " & pIdent.id

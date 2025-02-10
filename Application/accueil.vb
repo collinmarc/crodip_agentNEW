@@ -6882,7 +6882,7 @@ Public Class accueil
                 clientCourant = ExploitationManager.getExploitationById(list_clients.SelectedItems().Item(0).Tag)
                 pulverisateurCourant = opulve.Clone()
                 pulverisateurCourant.id = ""
-                pulverisateurCourant.uid = ""
+                pulverisateurCourant.uid = 0
                 pulverisateurCourant.SetPulverisateurAdditionnel(opulve)
                 pulverisateurCourant.isPulveAdditionnel = True
                 pulverisateurCourant.pulvePrincipalNumNat = opulve.numeroNational

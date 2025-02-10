@@ -537,25 +537,29 @@ DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
 --Update AgentManoEtalon SET aid = idCrodip;
 --Update AgentbuseEtalon SET aid = idCrodip;
 
-ALTER TABLE FichevieManometreControle ADD COLUMN numnatMano text;
-ALTER TABLE FichevieManometreControle ADD COLUMN IdCrodipMano text;
-Update FichevieManometreControle set IdCrodipMano = idManometre where AUTEUR = 'CRODIP' ;
-Update FichevieManometreControle set IdCrodipMano = (SELECT idCrodip from AgentManoControle where numeroNational = idManometre and isSupprime=0) where AUTEUR = 'AGENT' ;
+--ALTER TABLE FichevieManometreControle ADD COLUMN numnatMano text;
+--ALTER TABLE FichevieManometreControle ADD COLUMN IdCrodipMano text;
+--Update FichevieManometreControle set IdCrodipMano = idManometre where AUTEUR = 'CRODIP' ;
+--Update FichevieManometreControle set IdCrodipMano = (SELECT idCrodip from AgentManoControle where numeroNational = idManometre and isSupprime=0) where AUTEUR = 'AGENT' ;
 
-Update FichevieManometreControle set numnatMano = (SELECT numeroNational from AgentManoControle where idCrodip = idManometre) WHERE AUTEUR = 'CRODIP' ;
-Update FichevieManometreControle set numnatMano = idManometre WHERE AUTEUR = 'AGENT' ;
+--Update FichevieManometreControle set numnatMano = (SELECT numeroNational from AgentManoControle where idCrodip = idManometre) WHERE AUTEUR = 'CRODIP' ;
+--Update FichevieManometreControle set numnatMano = idManometre WHERE AUTEUR = 'AGENT' ;
 
-ALTER TABLE FichevieManometreControle RENAME Column idManometre to idManometreOLD;
-ALTER TABLE FichevieManometreControle RENAME COLUMN idCrodipMano to idManometre;
+--ALTER TABLE FichevieManometreControle RENAME Column idManometre to idManometreOLD;
+--ALTER TABLE FichevieManometreControle RENAME COLUMN idCrodipMano to idManometre;
 
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
+CREATE TABLE IdentifiantPulverisateur2 (id INT,idStructure INT ,numeroNational text  ,etat text, dateUtilisation  Text, libelle TEXT, dateModificationAgent  NVARCHAR (255),dateModificationCrodip NVARCHAR (255),uid  INTEGER,aid  TEXT,uidstructure  INTEGER);
+insert into IdentifiantPulverisateur2 (id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure  ) SELECT  id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure from IdentifiantPulverisateur;
+ALTER TABLE IdentifiantPulverisateur RENAME TO IdentifiantPulverisateur0702;
+ALTER TABLE IdentifiantPulverisateur2 RENAME TO IdentifiantPulverisateur;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.02','2025-02-07 12:00:00','IdentPulve');
 
 --DROP TABLE POOL;
 --DROP TABLE POOLBanc;
 --DROP TABLE POOLBUSE;
 --DROP TABLE POOLMAnoc;
 --DROP TABLE POOLMAnoE;
---Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
 --Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
 
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','pool2');

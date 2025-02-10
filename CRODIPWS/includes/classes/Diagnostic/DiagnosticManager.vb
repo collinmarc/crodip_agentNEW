@@ -964,7 +964,7 @@ Public Class DiagnosticManager
         If pAgent.bTest Then
             id = id & WSGetNewId(pAgent)
         Else
-            If pAgent.oPool IsNot Nothing Then
+            If AgentPCManager.GetListe().Count() > 0 Then
                 id = getNewIdNew(pAgent)
             Else
                 id = getNewIdOLD(pAgent)
@@ -996,11 +996,10 @@ Public Class DiagnosticManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
-        Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
         Dim idStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
-        idPC = pAgent.oPool.getAgentPC().idCrodip
+        idPC = AgentPCManager.GetListe()(0).idCrodip
         Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 

@@ -34,10 +34,10 @@ Public Class parentContener
         End If
         Try
 
-            StructureManager.getList().ForEach(Sub(S)
+            '    StructureManager.getList().ForEach(Sub(S)
 
-                                                   S.CreatePool()
-                                               End Sub)
+            '                                           S.CreatePool()
+            '                                       End Sub)
         Catch ex As Exception
             CSDebug.dispError(ex.Message, ex)
             Application.Exit()

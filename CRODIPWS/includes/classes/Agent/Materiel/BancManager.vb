@@ -269,9 +269,10 @@ Public Class BancManager
         If Not oCSdb Is Nothing Then
             oCSdb.free()
         End If
-
-        'Charegement de la Liste des pools 
-        tmpBanc.lstPools.AddRange(getlstPoolByBanc(tmpBanc.id))
+        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+            'Charegement de la Liste des pools 
+            tmpBanc.lstPools.AddRange(getlstPoolByBanc(tmpBanc.id))
+        End If
 
         'on retourne le banc ou un objet vide en cas d'erreur
         Return tmpBanc

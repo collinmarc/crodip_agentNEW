@@ -106,7 +106,7 @@ Public Class PulverisateurManager
     ''' <remarks></remarks>
     '''
     Public Shared Function getNewId(pAgent As Agent) As String
-        If pAgent.oPool IsNot Nothing Then
+        If AgentPCManager.GetListe().Count() > 0 Then
             Return getNewIdNew(pAgent)
         Else
             Return getNewIdOLD(pAgent)
@@ -117,11 +117,10 @@ Public Class PulverisateurManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
         Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
-        Debug.Assert(pAgent.oPool IsNot Nothing, "Le pool doit être renseigné")
         ' déclarations
         Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
-        idPC = pAgent.oPool.idCRODIPPC
+        idPC = AgentPCManager.GetListe()(0).idCrodip
         Dim Racine As String = idCrodipStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 

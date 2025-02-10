@@ -264,14 +264,16 @@ Public Class ajouter_profil
                                 objAgent.idCRODIPPool = ""
                                 AgentManager.save(objAgent)
                                 'Création du pool de la structure
-                                oStructure.CreatePool()
+                                If My.Settings.GestionDesPools Then
+                                    oStructure.CreatePool()
+                                End If
                                 MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
-                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
-                                CSEnvironnement.delPid()
-                                Application.Exit()
+                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
+                                    CSEnvironnement.delPid()
+                                    Application.Exit()
 
-                            Else
-                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
+                                Else
+                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If
                         Else

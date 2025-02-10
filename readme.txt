@@ -1,6 +1,13 @@
 #TRUNK
 MASTER
 
+BUILD 20250210100000
+	0001779: Identifiant Pulve : pas de Mise à jour
+	0001780: Ajout d'un pulve additionnel
+	0001778: Paramétrage des lieux de contrôles
+
+BUILD 20250128190000
+	NUMEROTATION DES DIAG, PULVE, EXPLOITATION
 BUILD 20250128190000
 	0001770: Gestion des materiels supprimés
 	0001771: Après migration la MAJ d'un pulvé déclenche la synhcro des diag de ce client

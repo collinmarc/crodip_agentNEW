@@ -94,6 +94,9 @@ Public Class frmGestLieuxControle
                 Sub(c) m_bsCommune.Add(c)
                     )
             cbxCommunes2.ResumeLayout()
+            If m_bsLieuxControle.Current.commune = "" Then
+                m_bsLieuxControle.Current.Commune = lstCommunes(0).Nom
+            End If
         End If
     End Sub
 

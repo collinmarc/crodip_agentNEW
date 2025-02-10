@@ -795,6 +795,23 @@ Public Class login
                             CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
                             AgentManager.save(_selectedAgent)
                         End If
+                        If AgentPCManager.GetListe().Count() = 0 Then
+                            Dim oAgentPC As New AgentPC()
+                            Dim Str As String = ""
+                            While (Str.Length <> 5 Or Not IsNumeric(Str))
+                                Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                                If Str.Length = 0 Then
+                                    'On sort si on click sur Annul
+                                    login_password.Text = ""
+                                    pnlLoginControls.Enabled = True
+                                    Exit Sub
+                                End If
+                            End While
+                            oAgentPC.idCrodip = Str
+                            oAgentPC.uidstructure = _selectedAgent.uidstructure
+                            AgentPCManager.save(oAgentPC)
+
+                        End If
                         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
                                 'L'agent à un pool Affecté
