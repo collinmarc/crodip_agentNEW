@@ -1151,6 +1151,20 @@ CREATE TABLE FichevieManometreEtalon (
 DROP TABLE IF EXISTS IdentifiantPulverisateur;
 
 CREATE TABLE IdentifiantPulverisateur (
+    id                     INT,
+    idStructure            INT,
+    numeroNational         TEXT,
+    etat                   TEXT,
+    dateUtilisation        TEXT,
+    libelle                TEXT,
+    dateModificationAgent  NVARCHAR (255),
+    dateModificationCrodip NVARCHAR (255),
+    uid                    INTEGER,
+    aid                    TEXT,
+    uidstructure           INTEGER
+);
+
+CREATE TABLE IdentifiantPulverisateur0702 (
     id                     INT            NOT NULL
                                           PRIMARY KEY,
     idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
