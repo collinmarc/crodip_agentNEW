@@ -208,6 +208,7 @@ Public Class IdentifiantPulverisateurManager
             Dim strQuery As String
             strQuery = "Update identifiantPulverisateur SET "
             strQuery = strQuery & "  id =" & pIdent.id & ""
+            strQuery = strQuery & ",  uid =" & pIdent.uid & ""
             strQuery = strQuery & ",  aid ='" & pIdent.aid & "'"
             strQuery = strQuery & ",  idStructure =" & pIdent.idStructure
             strQuery = strQuery & ",  uidstructure =" & pIdent.uidstructure
@@ -222,7 +223,7 @@ Public Class IdentifiantPulverisateurManager
             End If
             strQuery = strQuery & pIdent.getRootQuery()
 
-            strQuery = strQuery & "WHERE uid = " & pIdent.uid
+            strQuery = strQuery & "WHERE uid = " & pIdent.uid & " or id = " & pIdent.id
 
 
             Dim oCSDb As New CSDb(True)
