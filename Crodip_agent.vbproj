@@ -1331,6 +1331,12 @@
     <None Include="rustdesk-1.3.3-x86_64.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="bdd\baseVide.db3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bdd\createbaseVide.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\e-pulve-logo-blanc-bleu-1.png" />
     <Content Include="wgssSTU.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
