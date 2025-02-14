@@ -549,11 +549,21 @@ DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
 --ALTER TABLE FichevieManometreControle RENAME COLUMN idCrodipMano to idManometre;
 
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
-CREATE TABLE IdentifiantPulverisateur2 (id INT,idStructure INT ,numeroNational text  ,etat text, dateUtilisation  Text, libelle TEXT, dateModificationAgent  NVARCHAR (255),dateModificationCrodip NVARCHAR (255),uid  INTEGER,aid  TEXT,uidstructure  INTEGER);
-insert into IdentifiantPulverisateur2 (id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure  ) SELECT  id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure from IdentifiantPulverisateur;
-ALTER TABLE IdentifiantPulverisateur RENAME TO IdentifiantPulverisateur0702;
-ALTER TABLE IdentifiantPulverisateur2 RENAME TO IdentifiantPulverisateur;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.02','2025-02-07 12:00:00','IdentPulve');
+--CREATE TABLE IdentifiantPulverisateur2 (id INT,idStructure INT ,numeroNational text  ,etat text, dateUtilisation  Text, libelle TEXT, dateModificationAgent  NVARCHAR (255),dateModificationCrodip NVARCHAR (255),uid  INTEGER,aid  TEXT,uidstructure  INTEGER);
+--insert into IdentifiantPulverisateur2 (id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure  ) SELECT  id ,idStructure ,numeroNational ,etat , dateUtilisation  , libelle , dateModificationAgent  ,dateModificationCrodip ,uid,aid  ,uidstructure from IdentifiantPulverisateur;
+--ALTER TABLE IdentifiantPulverisateur RENAME TO IdentifiantPulverisateur0702;
+--ALTER TABLE IdentifiantPulverisateur2 RENAME TO IdentifiantPulverisateur;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.02','2025-02-07 12:00:00','IdentPulve');
+
+DROP TABLE IF EXISTS Agent1;
+DROP TABLE IF EXISTS AgentbuseEtalon2201;
+DROP TABLE IF EXISTS AgentManoControle2201;
+DROP TABLE IF EXISTS AgentManoEtalon2201;
+DROP TABLE IF EXISTS CONTROLE_REGULIER1;
+DROP TABLE IF EXISTS CONTROLE_REGULIER0702;
+DROP TABLE IF EXISTS CONTROLE_REGULIER2;
+DROP TABLE IF EXISTS PrestationCategorie1;
+DROP TABLE IF EXISTS PrestationTarif1;
 
 --DROP TABLE POOL;
 --DROP TABLE POOLBanc;

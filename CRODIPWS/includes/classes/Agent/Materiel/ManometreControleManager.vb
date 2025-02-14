@@ -485,7 +485,7 @@ Public Class ManometreControleManager
             If Not isShowAll Then
                 bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.etat=" & True & ""
             End If
-            bddCommande.CommandText = bddCommande.CommandText & " ORDER BY idCrodip"
+            bddCommande.CommandText = bddCommande.CommandText & " ORDER BY TypeTraca, numTraca"
 
             Try
                 ' On récupère les résultats
@@ -594,7 +594,7 @@ Public Class ManometreControleManager
         If Not isShowAll Then
             bddCommande.CommandText = bddCommande.CommandText & " AND AgentManoControle.etat=" & True
         End If
-        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY AgentManoControle.idCrodip"
+        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY TypeTraca, numTraca"
 
         Try
             ' On récupère les résultats

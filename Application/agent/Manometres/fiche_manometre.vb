@@ -610,12 +610,13 @@ Public Class fiche_manometre
             Me.pnlManoControle.Visible = False
         End If
         Dim oLst As List(Of Pool)
-        oLst = PoolManager.GetListe(manometreCourant.uidstructure)
-        m_bsrcPool.Clear()
-        oLst.ForEach(Sub(p)
-                         m_bsrcPool.Add(p)
-                     End Sub)
-
+        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+            oLst = PoolManager.GetListe(manometreCourant.uidstructure)
+            m_bsrcPool.Clear()
+            oLst.ForEach(Sub(p)
+                             m_bsrcPool.Add(p)
+                         End Sub)
+        End If
         DisplayManoCourant()
         bManoMAJ = False
 

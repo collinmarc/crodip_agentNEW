@@ -93,6 +93,7 @@ Public Class ManometreControle
                 sLibelle = " * "
             End If
             sLibelle = sLibelle + numeroNational
+            sLibelle = sLibelle + "[" + Traca + "]"
             If etat Then
                 sLibelle = sLibelle + " (OK) "
             Else

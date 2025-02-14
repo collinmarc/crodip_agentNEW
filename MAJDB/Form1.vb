@@ -25,6 +25,8 @@ Public Class frmMAJDB
     End Sub
 
     Private Sub frmMAJDB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ParamManager.initGlobalsCrodip()
+
         Dim oCSDB As New CSDb()
         Me.Text = Me.Text & "[" & oCSDB.getbddPathName() & "]"
         oCSDB.free()

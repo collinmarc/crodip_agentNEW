@@ -1,5 +1,8 @@
 #TRUNK
 MASTER
+BUILD XXXXX
+	0001781: Affichage des Manometres dans l'ordre des traca
+
 
 BUILD 20250210100000
 	0001779: Identifiant Pulve : pas de Mise à jour
