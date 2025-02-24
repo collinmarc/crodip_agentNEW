@@ -117,12 +117,12 @@ Public Class PrestationTest
         'Vérif Presta/Atrif Structure1
         oPrestaCategorie1 = PrestationCategorieManager.getCategoryById(oPrestaCategorie1.id, oStructure1.id)
         Assert.AreEqual("CAT STRUCTURE1", oPrestaCategorie1.libelle)
-        oPrestaTarif1 = PrestationTarifManager.getById(oPrestaTarif1.id, oStructure1.id)
+        oPrestaTarif1 = PrestationTarifManager.getByuId(oPrestaTarif1.uid, oStructure1.id)
         Assert.AreEqual("TARIF STRUCTURE1", oPrestaTarif1.description)
         'Vérif Presta/Atrif Structure2
         oPrestaCategorie2 = PrestationCategorieManager.getCategoryById(oPrestaCategorie2.id, oStructure2.id)
         Assert.AreEqual("CAT STRUCTURE2", oPrestaCategorie2.libelle)
-        oPrestaTarif2 = PrestationTarifManager.getById(oPrestaTarif2.id, oStructure2.id)
+        oPrestaTarif2 = PrestationTarifManager.getByuId(oPrestaTarif2.uid, oStructure2.id)
         Assert.AreEqual("TARIF STRUCTURE2", oPrestaTarif2.description)
         'Synchro ASC Structure1
         Dim obj As New Object()
@@ -140,12 +140,12 @@ Public Class PrestationTest
         'Vérif Presta/Atrif Structure1
         oPrestaCategorie1 = PrestationCategorieManager.getCategoryById(oPrestaCategorie1.id, oStructure1.id)
         Assert.AreEqual("CAT STRUCTURE1", oPrestaCategorie1.libelle)
-        oPrestaTarif1 = PrestationTarifManager.getById(oPrestaTarif1.id, oStructure1.id)
+        oPrestaTarif1 = PrestationTarifManager.getByuId(oPrestaTarif1.uid, oStructure1.id)
         Assert.AreEqual("TARIF STRUCTURE1", oPrestaTarif1.description)
         'Vérif Presta/Atrif Structure2
         oPrestaCategorie2 = PrestationCategorieManager.getCategoryById(oPrestaCategorie2.id, oStructure2.id)
         Assert.AreEqual("CAT STRUCTURE2", oPrestaCategorie2.libelle)
-        oPrestaTarif2 = PrestationTarifManager.getById(oPrestaTarif2.id, oStructure2.id)
+        oPrestaTarif2 = PrestationTarifManager.getByuId(oPrestaTarif2.uid, oStructure2.id)
         Assert.AreEqual("TARIF STRUCTURE2", oPrestaTarif2.description)
 
 

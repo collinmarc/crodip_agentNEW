@@ -301,7 +301,7 @@ Public Class PrestationTarifManager
     End Sub
 
     ' 
-    Public Shared Function getById(ByVal idObject As Integer, pIdStructure As Integer) As PrestationTarif
+    Public Shared Function getByuId(ByVal idObject As Integer, pIdStructure As Integer) As PrestationTarif
         Debug.Assert(idObject > 0)
         Debug.Assert(pIdStructure > 0)
         Dim curObject As PrestationTarif = New PrestationTarif
@@ -311,7 +311,7 @@ Public Class PrestationTarifManager
                 Dim dbLink As New CSDb(True)
                 '## Execution de la requete
                 Dim tmpResults As DbDataReader
-                tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE id=" & idObject & "")
+                tmpResults = dbLink.getResult2s("SELECT * FROM `PrestationTarif` WHERE uid=" & idObject)
                 '################################################################
                 Dim i As Integer = 0
                 While tmpResults.Read()

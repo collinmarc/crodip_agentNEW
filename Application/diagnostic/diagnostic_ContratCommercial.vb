@@ -749,7 +749,7 @@ Public Class diagnostic_ContratCommercial
                 ' On récupère la presta sélectionnée
                 Dim curPrestation As New PrestationTarif
                 Try
-                    curPrestation = PrestationTarifManager.getById(CType(listTarif_prestations.SelectedItem.id, Integer), m_oAgent.idStructure)
+                    curPrestation = PrestationTarifManager.getByuId(CType(listTarif_prestations.SelectedItem.id, Integer), m_oAgent.idStructure)
                 Catch ex As Exception
                     CSDebug.dispError("Récupération tarif : " & ex.Message.ToString)
                 End Try
@@ -910,7 +910,7 @@ Public Class diagnostic_ContratCommercial
             Dim arrPrestations() As PrestationTarif = PrestationTarifManager.getArrayByCategorieId(listTarif_categories.SelectedItem.Id)
             For Each tmpPrestation As PrestationTarif In arrPrestations
                 Try
-                    Dim objComboItem As New objComboItem(tmpPrestation.id.ToString, tmpPrestation.description)
+                    Dim objComboItem As New objComboItem(tmpPrestation.uid.ToString, tmpPrestation.description)
                     listTarif_prestations.Items.Add(objComboItem)
                 Catch ex As Exception
                     CSDebug.dispError("Diagnostic.listTarif : " & ex.Message.ToString)
