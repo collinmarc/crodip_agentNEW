@@ -395,8 +395,9 @@ Public Class gestion_tarifs
             CSDebug.dispError("Gestion-tarifs.Valider ERR : " & ex.Message)
         End Try
 
-        'Remise à zéro des information de dernier controle
-        My.Settings.Save()
+        'Remise à zéro des informations de dernier controle
+        '        My.Settings.Save()
+        MsgBox("Avant d'utiliser les nouveaux tarifs, vous devez arrêter et redemarrer le logiciel")
         Me.Cursor = Me.DefaultCursor
         TryCast(MdiParent, parentContener).ReturnToAccueil()
 
