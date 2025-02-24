@@ -1858,6 +1858,7 @@ Public Class Pulverisateur
     Public Sub SetPulverisateurAdditionnel(pPulvePrinc As Pulverisateur)
         Me.isPulveAdditionnel = True
         Me.pulvePrincipalNumNat = pPulvePrinc.numeroNational
+        Me.numeroNationalBis = ""
         Me.numeroNational = pPulvePrinc.numeroNational.Substring(0, 4)
         Me.marque = ""
         Me.modele = ""

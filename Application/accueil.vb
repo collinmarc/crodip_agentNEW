@@ -6884,8 +6884,6 @@ Public Class accueil
                 pulverisateurCourant.id = ""
                 pulverisateurCourant.uid = 0
                 pulverisateurCourant.SetPulverisateurAdditionnel(opulve)
-                pulverisateurCourant.isPulveAdditionnel = True
-                pulverisateurCourant.pulvePrincipalNumNat = opulve.numeroNational
                 formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
                 '        formAddPulve.MdiParent = Me.MdiParent
                 formAddPulve.ShowDialog(Me)

@@ -1,8 +1,9 @@
 #TRUNK
 MASTER
-BUILD XXXXX  (FileVersion 20250214120000)
-	0001781: Affichage des Manometres dans l'ordre des traca
-	0001782: Selection d'un tarif
+BUILD 20250210100001  
+	0001781: Affichage des Manometres dans l'ordre des traca (FileVersion 20250214120000)
+	0001782: Selection d'un tarif (FileVersion 20250214120000)
+	0001783: Ajout d'un pulve additionnel : Pblm identifiant Pulvé
 
 BUILD 20250210100000
 	0001779: Identifiant Pulve : pas de Mise à jour
