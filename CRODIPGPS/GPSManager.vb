@@ -29,6 +29,8 @@ Public Class GPSManager
     ' Dernières coordonnées GPS
     Public startLatitude As Double
     Public startLongitude As Double
+    Public Latitude As Double
+    Public Longitude As Double
 
     ' Port série pour la lecture des données GPS
     Private serialPort As SerialPort
@@ -195,6 +197,8 @@ Public Class GPSManager
             startLatitude = lat2
             startLongitude = lon2
         Else
+            Latitude = lat2
+            Longitude = lon2
             Dim R As Double = 6371 ' Rayon de la Terre en kilomètres
             Dim dLat As Double = (lat2 - startLatitude) * (Math.PI / 180)
             Dim dLon As Double = (lon2 - startLongitude) * (Math.PI / 180)
@@ -238,4 +242,16 @@ Public Class GPSManager
     Public Function IsSerialPortOpen() As Boolean
         Return serialPort.IsOpen
     End Function
+    Public ReadOnly Property PositionDepart() As String
+
+        Get
+            Return startLatitude & "," & startLongitude
+        End Get
+    End Property
+    Public ReadOnly Property PositionArrivee() As String
+
+        Get
+            Return Latitude & "," & Longitude
+        End Get
+    End Property
 End Class

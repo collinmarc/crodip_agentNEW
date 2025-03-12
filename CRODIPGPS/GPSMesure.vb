@@ -18,7 +18,6 @@
             _num = value
         End Set
     End Property
-    Private newPropertyValue As Boolean
     Public Property IsNum1() As Boolean
         Get
             Return Num = 1
@@ -49,30 +48,39 @@
     End Property
     Public ReadOnly Property TempAffichage As Decimal
         Get
-            Return Decimal.Round(_temps, 3)
+            Return Decimal.Round(CDec(_temps / 1000), 3)
         End Get
     End Property
-    Private _temps As Decimal
-    Public Property Temps() As Decimal
+
+    Private _temps As Double
+    ''' <summary>
+    ''' Le Temps écoulé en millisecondes
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Temps() As Double
         Get
             Return _temps
         End Get
-        Set(ByVal value As Decimal)
+        Set(ByVal value As Double)
             If value <> _temps Then
                 _temps = value
                 Vitesse = calculeVitesse(Distance, Temps)
             End If
         End Set
     End Property
-    Public Function calculeVitesse(pdistance As Decimal, pTemps As Decimal) As Decimal
+    Public Function calculeVitesse(pdistance As Decimal, pTemps As Double) As Decimal
         Dim dReturn As Decimal = 0
         If pTemps <> 0 And pdistance <> 0 Then
-            dReturn = (pdistance / 1000 / pTemps) * 3600
+            dReturn = (pdistance / 1000 / (pTemps * 1000)) * 3600
         End If
         Return dReturn
     End Function
 
     Private _vitesse As Decimal
+    ''' <summary>
+    ''' Vitesse en Km/h
+    ''' </summary>
+    ''' <returns></returns>
     Public Property Vitesse() As Decimal
         Get
             Return Math.Round(_vitesse, 2)
@@ -91,20 +99,13 @@
             _VitessseLue = value
         End Set
     End Property
-    Public Sub SetValues(pDistance As Decimal, pTemps As Decimal)
-        _distance = pDistance
-        _temps = pTemps
-        'Vitesse = Distance(m)/Temps(S)*(3600 / 1000)
-        Vitesse = Distance / Temps * 3.6
-
-    End Sub
-    Private _NumPulve As String
 
     Public Sub New()
         _tabVitesse.Clear()
 
     End Sub
 
+    Private _NumPulve As String
     Public Property NumPulve() As String
         Get
             Return _NumPulve
@@ -113,11 +114,29 @@
             _NumPulve = value
         End Set
     End Property
+    Private _PositionDepart As String
+    Public Property PositionDepart() As String
+        Get
+            Return _PositionDepart
+        End Get
+        Set(ByVal value As String)
+            _PositionDepart = value
+        End Set
+    End Property
+    Private _PositionArrivee As String
+    Public Property PositionArrivee() As String
+        Get
+            Return _PositionArrivee
+        End Get
+        Set(ByVal value As String)
+            _PositionArrivee = value
+        End Set
+    End Property
     Public Function ToCsv(pFile As String) As Boolean
         Dim bReturn As Boolean
         Try
 
-            System.IO.File.AppendAllText(pFile, NumPulve & ";" & Num & ";" & Distance & ";" & Temps & ";" & Vitesse & ";" & VitesseLue & vbCrLf)
+            System.IO.File.AppendAllText(pFile, NumPulve & ";" & Num & ";" & Distance & ";" & Temps & ";" & Vitesse & ";" & VitesseLue & ";" & PositionDepart & ";" & PositionArrivee & vbCrLf)
             bReturn = True
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -150,4 +169,11 @@
             Me.VitesseConstante = False
         End If
     End Sub
+    Public ReadOnly Property Text() As String
+        Get
+            Return "S:" & PositionDepart & "E:" & PositionArrivee & "D:" & Distance & "V:" & Vitesse
+        End Get
+    End Property
+
+
 End Class

@@ -56,10 +56,8 @@ Public Class Form1
         'TimerDetectionGPS.Enabled = True
         'TimerDetectionGPS.Start()
 
-#If DEBUG Then
-        'CkTest.Checked = True
+        CkTest.Checked = My.Settings.Test
 
-#End If
 
     End Sub
 
@@ -132,8 +130,8 @@ Public Class Form1
         m_bsrcGPSMesure.Position = p
         CbMesureSuivante.Enabled = False
         ckVitessseStable.Checked = False
-        laVitesseMesuree.Visible = False
-        tbVitesseMesuree.Visible = False
+        laVitesseMesuree.Visible = CkTest.Checked
+        tbVitesseMesuree.Visible = CkTest.Checked
         _MesureEncours.Distance = 0
         _MesureEncours.Temps = 0
         _MesureEncours.VitesseLue = 0
@@ -174,8 +172,8 @@ Public Class Form1
         pbMesure.Value = 0
         CbMesureSuivante.Enabled = False
         'La Vitesse mesurée n'est pas affichée encours d'acquiqition
-        tbVitesseMesuree.Visible = False
-        laVitesseMesuree.Visible = False
+        tbVitesseMesuree.Visible = CkTest.Checked
+        laVitesseMesuree.Visible = CkTest.Checked
         rbMesure1.Enabled = False
         rbMesure2.Enabled = False
         cbValiderVitesseLue.Visible = False
@@ -257,55 +255,58 @@ Public Class Form1
             Dim temps As Double
             'Récupération du temps
             elapsedTime = DateTime.Now - startTime
-            temps = elapsedTime.TotalSeconds
+            temps = elapsedTime.TotalMilliseconds
             'Récupération de la distance
             If gpsManager.IsSerialPortOpen Then
-                TraceMsg("Ecoute[" & gpsManager.startLatitude & "," & gpsManager.startLongitude & "=" & gpsManager.distance & "]")
-                distance = gpsManager.distance
-            Else
-                Randomize()
-                distance = _MesureEncours.Distance + (Rnd() * 10)
-                TraceMsg("Ecoute generée[" & distance & "]")
-            End If
-
-            'Calcul de vitesse
-            If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
-                _MesureEncours.Distance = distance
-                _MesureEncours.Temps = CDec(temps)
-                vitesse = _MesureEncours.Vitesse
-            Else
-                vitesse = _MesureEncours.calculeVitesse(distance, temps)
-            End If
-            _MesureEncours.Vitesse = vitesse
-            TraceMsg("Vitesse[" & vitesse & "]")
-
-            'Vérification de la vitesse Constante
-            If Not _MesureEncours.VitesseConstante Then
-                If vitesse > 0 Then
-                    _MesureEncours.ajouteVitesse(vitesse)
-                End If
-                If _MesureEncours.VitesseConstante Then
-                    SetAction(ACTION.Action_VITESSESTABLE)
-                End If
-            End If
-
-
-            'La Mesure est-elle complête ?
-            If _EtatForm = ETAT.Etat_3MESUREENCOURS Then
-                If _MesureEncours.Vitesse < My.Settings.LimiteVitesse Then
-                    If _MesureEncours.Distance > My.Settings.Distance1 Then
-                        SetAction(ACTION.Action_ARRETABLE)
-                    End If
+                    TraceMsg("Ecoute[" & gpsManager.startLatitude & "," & gpsManager.startLongitude & "=" & gpsManager.distance & "]")
+                    distance = gpsManager.distance
                 Else
-                    If _MesureEncours.Distance > My.Settings.Distance2 Then
-                        SetAction(ACTION.Action_ARRETABLE)
-                    End If
-
+                    Randomize()
+                    TraceMsg("Ecoute generée[" & distance & "]")
+                    distance = _MesureEncours.Distance + (Rnd() * 10)
                 End If
-            End If
 
-            m_bsrcGPSMesure.ResetBindings(False)
-        End If
+                'Calcul de vitesse
+                If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
+                    _MesureEncours.Distance = distance
+                _MesureEncours.Temps = temps
+                vitesse = _MesureEncours.Vitesse
+                _MesureEncours.PositionDepart = gpsManager.PositionDepart
+                _MesureEncours.PositionArrivee = gpsManager.PositionArrivee
+                Else
+                    vitesse = _MesureEncours.calculeVitesse(distance, temps)
+                    _MesureEncours.Distance = 0
+                    _MesureEncours.Temps = 0
+                    _MesureEncours.Vitesse = vitesse
+                End If
+
+                'Vérification de la vitesse Constante
+                If Not _MesureEncours.VitesseConstante Then
+                    If vitesse > 0 Then
+                        _MesureEncours.ajouteVitesse(vitesse)
+                    End If
+                    If _MesureEncours.VitesseConstante Then
+                        SetAction(ACTION.Action_VITESSESTABLE)
+                    End If
+                End If
+
+
+                'La Mesure est-elle complête ?
+                If _EtatForm = ETAT.Etat_3MESUREENCOURS Then
+                    If _MesureEncours.Vitesse < My.Settings.LimiteVitesse Then
+                        If _MesureEncours.Distance > My.Settings.Distance1 Then
+                            SetAction(ACTION.Action_ARRETABLE)
+                        End If
+                    Else
+                        If _MesureEncours.Distance > My.Settings.Distance2 Then
+                            SetAction(ACTION.Action_ARRETABLE)
+                        End If
+
+                    End If
+                End If
+
+                m_bsrcGPSMesure.ResetBindings(False)
+            End If
 
     End Sub
     Private Function isVitesseStable() As Boolean
@@ -338,12 +339,13 @@ Public Class Form1
     End Sub
     Private Sub GPSActif()
         TraceMsg("GPSActif()")
-        TimerDetectionGPS.Enabled = False
+        '        TimerDetectionGPS.Enabled = False
+        TimerDetectionGPS.Stop()
         ckGPSActif.Checked = True
         SetEtat1GPSACTIF()
         startTime = DateTime.Now
         elapsedTime = TimeSpan.MinValue
-        TimerLectureGPS.Enabled = True
+        '       TimerLectureGPS.Enabled = True
         TimerLectureGPS.Start()
     End Sub
 
@@ -376,7 +378,11 @@ Public Class Form1
         ' End If
         TraceMsg("Enregistrement dans : " & _FichierExport)
         Exporter(_FichierExport)
-        Me.Close()
+        If CkTest.Checked Then
+            Process.Start("notepad.exe", _FichierExport)
+        Else
+            Me.Close()
+        End If
     End Sub
 
     Private Function Exporter(pFile As String) As Boolean
@@ -464,13 +470,15 @@ Public Class Form1
         PnlCacheCkTest.Top = TableLayoutPanel2.Top
         PnlCacheCkTest.Left = TableLayoutPanel2.Left
         PnlCacheCkTest.Visible = Not CkTest.Checked
-        laVitesse.Visible = CkTest.Checked 'Visible en mode test
+        laMesure.Visible = CkTest.Checked 'Visible en mode test
         ' CkTest.Visible = CkTest.Checked
         ckGPSActif.Visible = CkTest.Checked
         ckVitessseStable.Visible = CkTest.Checked
         ckGPSActif.Enabled = CkTest.Checked
         ckVitessseStable.Enabled = CkTest.Checked
         tbVitesseMesuree.ForeColor = tbVitesseMesuree.BackColor
+        laVitesseMesuree.Visible = CkTest.Checked
+        tbVitesseMesuree.Visible = CkTest.Checked
     End Sub
 
     '==================================
@@ -665,6 +673,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbReset_Click(sender As Object, e As EventArgs) Handles cbReset.Click
+        _MesureEncours.PositionArrivee = gpsManager.Latitude & " "
         SetAction(ACTION.Action_RESET)
     End Sub
 End Class

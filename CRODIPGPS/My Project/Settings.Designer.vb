@@ -62,13 +62,22 @@ Namespace My
                 Return CType(Me("RepertoireExport"),String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("500")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>
         Public ReadOnly Property intervalGPS() As Integer
             Get
                 Return CType(Me("intervalGPS"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+        Public ReadOnly Property nbIntervalleVitesseConstante() As Integer
+            Get
+                Return CType(Me("nbIntervalleVitesseConstante"),Integer)
             End Get
         End Property
         
@@ -128,10 +137,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
-        Public ReadOnly Property nbIntervalleVitesseConstante() As Integer
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property Test() As Boolean
             Get
-                Return CType(Me("nbIntervalleVitesseConstante"),Integer)
+                Return CType(Me("Test"),Boolean)
             End Get
         End Property
     End Class

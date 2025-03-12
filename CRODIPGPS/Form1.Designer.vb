@@ -28,8 +28,8 @@ Partial Class Form1
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.laMesure = New MaterialSkin.Controls.MaterialLabel()
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.lblNumPulvé = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel5 = New MaterialSkin.Controls.MaterialLabel()
@@ -37,9 +37,7 @@ Partial Class Form1
         Me.CbMesureSuivante = New MaterialSkin.Controls.MaterialButton()
         Me.pbMesure = New MaterialSkin.Controls.MaterialProgressBar()
         Me.MaterialLabel1 = New MaterialSkin.Controls.MaterialLabel()
-        Me.tbDistance = New MaterialSkin.Controls.MaterialTextBox()
         Me.MaterialLabel2 = New MaterialSkin.Controls.MaterialLabel()
-        Me.tbTemps = New MaterialSkin.Controls.MaterialTextBox()
         Me.laVitesseLue = New MaterialSkin.Controls.MaterialLabel()
         Me.laVitesseMesuree = New MaterialSkin.Controls.MaterialLabel()
         Me.tbVitesseMesuree = New MaterialSkin.Controls.MaterialTextBox()
@@ -51,17 +49,19 @@ Partial Class Form1
         Me.rbMesure2 = New MaterialSkin.Controls.MaterialRadioButton()
         Me.rbMesure1 = New MaterialSkin.Controls.MaterialRadioButton()
         Me.CkTest = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
         Me.TableLayoutPanelVitesseLue = New System.Windows.Forms.TableLayoutPanel()
         Me.tbVitesseLue = New MaterialSkin.Controls.MaterialTextBox()
         Me.VitesseLueMoins = New MaterialSkin.Controls.MaterialButton()
         Me.VitesseLuePlus = New MaterialSkin.Controls.MaterialButton()
         Me.cbReset = New MaterialSkin.Controls.MaterialButton()
+        Me.laDistance = New MaterialSkin.Controls.MaterialLabel()
+        Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TimerLectureGPS
@@ -75,7 +75,7 @@ Partial Class Form1
         'PnlCacheCkTest
         '
         Me.PnlCacheCkTest.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PnlCacheCkTest.Location = New System.Drawing.Point(186, 27)
+        Me.PnlCacheCkTest.Location = New System.Drawing.Point(257, 27)
         Me.PnlCacheCkTest.Name = "PnlCacheCkTest"
         Me.PnlCacheCkTest.Size = New System.Drawing.Size(392, 37)
         Me.PnlCacheCkTest.TabIndex = 34
@@ -89,6 +89,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
+        Me.TableLayoutPanel2.Controls.Add(Me.laMesure, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.ckVitessseStable, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ckGPSActif, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.lblNumPulvé, 2, 2)
@@ -97,9 +98,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.Controls.Add(Me.CbMesureSuivante, 0, 10)
         Me.TableLayoutPanel2.Controls.Add(Me.pbMesure, 0, 5)
         Me.TableLayoutPanel2.Controls.Add(Me.MaterialLabel1, 0, 6)
-        Me.TableLayoutPanel2.Controls.Add(Me.tbDistance, 1, 6)
         Me.TableLayoutPanel2.Controls.Add(Me.MaterialLabel2, 0, 7)
-        Me.TableLayoutPanel2.Controls.Add(Me.tbTemps, 1, 7)
         Me.TableLayoutPanel2.Controls.Add(Me.laVitesseLue, 0, 8)
         Me.TableLayoutPanel2.Controls.Add(Me.laVitesseMesuree, 0, 9)
         Me.TableLayoutPanel2.Controls.Add(Me.tbVitesseMesuree, 1, 9)
@@ -107,9 +106,10 @@ Partial Class Form1
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 0, 11)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanelMesures, 0, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.CkTest, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.laVitesse, 2, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanelVitesseLue, 1, 8)
         Me.TableLayoutPanel2.Controls.Add(Me.cbReset, 2, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.laDistance, 1, 6)
+        Me.TableLayoutPanel2.Controls.Add(Me.laVitesse, 1, 7)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(11, 67)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 12
@@ -125,8 +125,24 @@ Partial Class Form1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(386, 530)
         Me.TableLayoutPanel2.TabIndex = 35
+        '
+        'laMesure
+        '
+        Me.laMesure.AutoSize = True
+        Me.TableLayoutPanel2.SetColumnSpan(Me.laMesure, 3)
+        Me.laMesure.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Text", True))
+        Me.laMesure.Depth = 0
+        Me.laMesure.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.laMesure.Location = New System.Drawing.Point(3, 41)
+        Me.laMesure.MouseState = MaterialSkin.MouseState.HOVER
+        Me.laMesure.Name = "laMesure"
+        Me.laMesure.Size = New System.Drawing.Size(32, 19)
+        Me.laMesure.TabIndex = 44
+        Me.laMesure.Text = "Text"
+        Me.laMesure.Visible = False
         '
         'ckVitessseStable
         '
@@ -147,10 +163,6 @@ Partial Class Form1
         Me.ckVitessseStable.Text = "&VitesseStable"
         Me.ckVitessseStable.UseVisualStyleBackColor = True
         Me.ckVitessseStable.Visible = False
-        '
-        'm_bsrcGPSMesure
-        '
-        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'ckGPSActif
         '
@@ -268,26 +280,6 @@ Partial Class Form1
         Me.MaterialLabel1.TabIndex = 3
         Me.MaterialLabel1.Text = "Distance (m) :"
         '
-        'tbDistance
-        '
-        Me.tbDistance.AnimateReadOnly = True
-        Me.tbDistance.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.tbDistance.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Distance", True))
-        Me.tbDistance.Depth = 0
-        Me.tbDistance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbDistance.Enabled = False
-        Me.tbDistance.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.tbDistance.LeadingIcon = Nothing
-        Me.tbDistance.Location = New System.Drawing.Point(131, 244)
-        Me.tbDistance.MaxLength = 50
-        Me.tbDistance.MouseState = MaterialSkin.MouseState.OUT
-        Me.tbDistance.Multiline = False
-        Me.tbDistance.Name = "tbDistance"
-        Me.tbDistance.Size = New System.Drawing.Size(122, 50)
-        Me.tbDistance.TabIndex = 6
-        Me.tbDistance.Text = "154.90"
-        Me.tbDistance.TrailingIcon = Nothing
-        '
         'MaterialLabel2
         '
         Me.MaterialLabel2.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -300,26 +292,6 @@ Partial Class Form1
         Me.MaterialLabel2.Size = New System.Drawing.Size(81, 19)
         Me.MaterialLabel2.TabIndex = 4
         Me.MaterialLabel2.Text = "Temps (s) :"
-        '
-        'tbTemps
-        '
-        Me.tbTemps.AnimateReadOnly = False
-        Me.tbTemps.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.tbTemps.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "TempAffichage", True))
-        Me.tbTemps.Depth = 0
-        Me.tbTemps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbTemps.Enabled = False
-        Me.tbTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.tbTemps.LeadingIcon = Nothing
-        Me.tbTemps.Location = New System.Drawing.Point(131, 294)
-        Me.tbTemps.MaxLength = 50
-        Me.tbTemps.MouseState = MaterialSkin.MouseState.OUT
-        Me.tbTemps.Multiline = False
-        Me.tbTemps.Name = "tbTemps"
-        Me.tbTemps.Size = New System.Drawing.Size(122, 50)
-        Me.tbTemps.TabIndex = 7
-        Me.tbTemps.Text = "90"
-        Me.tbTemps.TrailingIcon = Nothing
         '
         'laVitesseLue
         '
@@ -519,20 +491,6 @@ Partial Class Form1
         Me.CkTest.Text = "Mode &Test"
         Me.CkTest.UseVisualStyleBackColor = True
         '
-        'laVitesse
-        '
-        Me.laVitesse.AutoSize = True
-        Me.laVitesse.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Vitesse", True))
-        Me.laVitesse.Depth = 0
-        Me.laVitesse.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.laVitesse.Location = New System.Drawing.Point(259, 41)
-        Me.laVitesse.MouseState = MaterialSkin.MouseState.HOVER
-        Me.laVitesse.Name = "laVitesse"
-        Me.laVitesse.Size = New System.Drawing.Size(65, 19)
-        Me.laVitesse.TabIndex = 39
-        Me.laVitesse.Text = "laVitesse"
-        Me.laVitesse.Visible = False
-        '
         'TableLayoutPanelVitesseLue
         '
         Me.TableLayoutPanelVitesseLue.ColumnCount = 3
@@ -629,6 +587,46 @@ Partial Class Form1
         Me.cbReset.UseAccentColor = False
         Me.cbReset.UseVisualStyleBackColor = False
         '
+        'laDistance
+        '
+        Me.laDistance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.laDistance.BackColor = System.Drawing.SystemColors.Window
+        Me.laDistance.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Distance", True))
+        Me.laDistance.Depth = 0
+        Me.laDistance.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.laDistance.Location = New System.Drawing.Point(131, 244)
+        Me.laDistance.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
+        Me.laDistance.MouseState = MaterialSkin.MouseState.HOVER
+        Me.laDistance.Name = "laDistance"
+        Me.laDistance.Size = New System.Drawing.Size(122, 47)
+        Me.laDistance.TabIndex = 45
+        Me.laDistance.Text = "154.80"
+        Me.laDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'laVitesse
+        '
+        Me.laVitesse.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.laVitesse.BackColor = System.Drawing.SystemColors.Window
+        Me.laVitesse.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "TempAffichage", True))
+        Me.laVitesse.Depth = 0
+        Me.laVitesse.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.laVitesse.Location = New System.Drawing.Point(131, 294)
+        Me.laVitesse.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
+        Me.laVitesse.MouseState = MaterialSkin.MouseState.HOVER
+        Me.laVitesse.Name = "laVitesse"
+        Me.laVitesse.Size = New System.Drawing.Size(122, 47)
+        Me.laVitesse.TabIndex = 46
+        Me.laVitesse.Text = "90"
+        Me.laVitesse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'm_bsrcGPSMesure
+        '
+        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
+        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
@@ -644,11 +642,11 @@ Partial Class Form1
         Me.Text = "Acquisition GPS CRODIP"
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanelMesures.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -665,9 +663,7 @@ Partial Class Form1
     Friend WithEvents CbMesureSuivante As MaterialSkin.Controls.MaterialButton
     Friend WithEvents pbMesure As MaterialSkin.Controls.MaterialProgressBar
     Friend WithEvents MaterialLabel1 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents tbDistance As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialLabel2 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents tbTemps As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents laVitesseLue As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents laVitesseMesuree As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents tbVitesseMesuree As MaterialSkin.Controls.MaterialTextBox
@@ -679,10 +675,12 @@ Partial Class Form1
     Friend WithEvents rbMesure2 As MaterialSkin.Controls.MaterialRadioButton
     Friend WithEvents rbMesure1 As MaterialSkin.Controls.MaterialRadioButton
     Friend WithEvents CkTest As MaterialSkin.Controls.MaterialCheckbox
-    Friend WithEvents laVitesse As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents TableLayoutPanelVitesseLue As TableLayoutPanel
     Friend WithEvents tbVitesseLue As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents VitesseLueMoins As MaterialSkin.Controls.MaterialButton
     Friend WithEvents VitesseLuePlus As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbReset As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents laMesure As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents laDistance As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents laVitesse As MaterialSkin.Controls.MaterialLabel
 End Class
