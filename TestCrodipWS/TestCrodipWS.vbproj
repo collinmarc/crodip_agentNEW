@@ -466,6 +466,8 @@
     <Compile Include="testObjects\NiveauAlerteTest.vb" />
     <Compile Include="testObjects\ParamDiagTest.vb" />
     <Compile Include="testObjects\ParamMetrologieTest.vb" />
+    <Compile Include="testObjects\PoolManoEtalonTest.vb" />
+    <Compile Include="testObjects\PoolManoControleTest.vb" />
     <Compile Include="testObjects\PoolBuseTest.vb" />
     <Compile Include="testObjects\PoolPcTest.vb" />
     <Compile Include="testObjects\PoolAgentTest.vb" />

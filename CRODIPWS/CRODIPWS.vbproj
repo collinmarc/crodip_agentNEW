@@ -196,7 +196,11 @@
     <Compile Include="includes\classes\Acquisition\Acquiring.vb" />
     <Compile Include="includes\classes\Acquisition\AcquiringManager.vb" />
     <Compile Include="includes\classes\Agent\Agent.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoEtalon.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoControle.vb" />
     <Compile Include="includes\classes\Agent\PoolBuse.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoEtalonManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoControleManager.vb" />
     <Compile Include="includes\classes\Agent\PoolPc.vb" />
     <Compile Include="includes\classes\Agent\PoolBuseManager.vb" />
     <Compile Include="includes\classes\Agent\PoolPcManager.vb" />

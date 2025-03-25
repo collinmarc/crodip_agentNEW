@@ -612,4 +612,29 @@ CREATE TABLE PoolBuse (
   dateModificationCrodip datetime NULL DEFAULT NULL
   );
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:00:00','poolBuse');
-
+CREATE TABLE PoolManoControle (
+  uid bigint(20) NOT NULL,
+  aid Text  DEFAULT '',
+  uidpool bigint(20) Default 0,
+  namepool Text  DEFAULT '',
+  uidmanoc bigint(20) Default 0,
+  idManometre text  DEFAULT '',
+  uidstructure bigint(20) DEFAULT 0,
+  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  dateModificationAgent datetime NULL DEFAULT NULL,
+  dateModificationCrodip datetime NULL DEFAULT NULL
+);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:10:00','poolManoControle');
+CREATE TABLE PoolManoEtalon (
+  uid bigint(20) NOT NULL,
+  aid Text  DEFAULT '',
+  uidpool bigint(20) Default 0,
+  namepool Text  DEFAULT '',
+  uidmanoe bigint(20) Default 0,
+  idManometre text  DEFAULT '',
+  uidstructure bigint(20) DEFAULT 0,
+  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  dateModificationAgent datetime NULL DEFAULT NULL,
+  dateModificationCrodip datetime NULL DEFAULT NULL
+);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:20:00','poolManoEtalon');
