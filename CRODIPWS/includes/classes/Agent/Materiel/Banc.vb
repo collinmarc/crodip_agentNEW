@@ -133,7 +133,7 @@ Public Class Banc
         End Set
     End Property
     <XmlIgnore()>
-    Public Overrides Property Libelle() As String
+    Public Overrides Property libelle() As String
         Get
             Return "Banc de mesure : " + id
         End Get

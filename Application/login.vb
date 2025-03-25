@@ -813,56 +813,56 @@ Public Class login
 
                         End If
                         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
-                                'L'agent à un pool Affecté
-                                '==========================
-                                If _selectedAgent.oPool.idCRODIPPC = "" Then
-                                    Dim oAgentPC As New AgentPC()
-                                    Dim Str As String = ""
-                                    While (Str.Length <> 5 Or Not IsNumeric(Str))
-                                        Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                                        If Str.Length = 0 Then
-                                            'On sort si on click sur Annul
-                                            login_password.Text = ""
-                                            pnlLoginControls.Enabled = True
-                                            Exit Sub
-                                        End If
-                                    End While
-                                    oAgentPC.idCrodip = Str
-                                    oAgentPC.uidstructure = _selectedAgent.uidstructure
-                                    AgentPCManager.save(oAgentPC)
-                                    _selectedAgent.oPool.idCRODIPPC = Str
-                                    PoolManager.Save(_selectedAgent.oPool)
-                                End If
+                            'If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
+                            '    'L'agent à un pool Affecté
+                            '    '==========================
+                            '    If _selectedAgent.oPool.idCRODIPPC = "" Then
+                            '        Dim oAgentPC As New AgentPC()
+                            '        Dim Str As String = ""
+                            '        While (Str.Length <> 5 Or Not IsNumeric(Str))
+                            '            Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                            '            If Str.Length = 0 Then
+                            '                'On sort si on click sur Annul
+                            '                login_password.Text = ""
+                            '                pnlLoginControls.Enabled = True
+                            '                Exit Sub
+                            '            End If
+                            '        End While
+                            '        oAgentPC.idCrodip = Str
+                            '        oAgentPC.uidstructure = _selectedAgent.uidstructure
+                            '        AgentPCManager.save(oAgentPC)
+                            '        _selectedAgent.oPool.idCRODIPPC = Str
+                            '        PoolManager.Save(_selectedAgent.oPool)
+                            '    End If
 
-                                If Not _selectedAgent.checkPC() Then
-                                    CSDebug.dispFatal("Le PC n'est pas reconnu")
-                                    MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
-                                    Application.Exit()
-                                End If
-                            Else
-                                'L'agent n'a pas de pool Affecté
-                                '===============================
-                                'Chargement de la liste de pools
-                                PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
-                                                                                             m_bsrcPools.Add(p)
-                                                                                         End Sub)
-                                If m_bsrcPools.Count > 1 Then
-                                    'il y a plus d'un pool, on demande à l'inspecteur de choisir
-                                    pnlPools.Visible = True
-                                Else
-                                    If m_bsrcPools.Count = 1 Then
-                                        'il y a un seul pool, on l'affecte à l'inspecteur
-                                        Dim oPool As Pool
-                                        oPool = m_bsrcPools(0)
-                                        _selectedAgent.idCRODIPPool = oPool.idCrodip
-                                        AgentManager.save(_selectedAgent)
-                                    End If
-                                    'il n'y a pas de pool dans la base => on passe à la suite
-                                    SynchroEtSuite(_selectedAgent)
-                                End If
+                            '    If Not _selectedAgent.checkPC() Then
+                            '        CSDebug.dispFatal("Le PC n'est pas reconnu")
+                            '        MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
+                            '        Application.Exit()
+                            '    End If
+                            'Else
+                            '    'L'agent n'a pas de pool Affecté
+                            '    '===============================
+                            '    'Chargement de la liste de pools
+                            '    PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
+                            '                                                                 m_bsrcPools.Add(p)
+                            '                                                             End Sub)
+                            '    If m_bsrcPools.Count > 1 Then
+                            '        'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                            '        pnlPools.Visible = True
+                            '    Else
+                            '        If m_bsrcPools.Count = 1 Then
+                            '            'il y a un seul pool, on l'affecte à l'inspecteur
+                            '            Dim oPool As Pool
+                            '            oPool = m_bsrcPools(0)
+                            '            _selectedAgent.idCRODIPPool = oPool.idCrodip
+                            '            AgentManager.save(_selectedAgent)
+                            '        End If
+                            '        'il n'y a pas de pool dans la base => on passe à la suite
+                            '        SynchroEtSuite(_selectedAgent)
+                            '    End If
 
-                            End If
+                            'End If
                         End If
                         'sUITE DE LA SYNCHRO
                         SynchroEtSuite(_selectedAgent)

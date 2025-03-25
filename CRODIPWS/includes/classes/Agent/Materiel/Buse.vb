@@ -102,7 +102,7 @@ Public Class Buse
         End Set
     End Property
     <XmlIgnore>
-    Public Overrides Property Libelle() As String
+    Public Overrides Property libelle() As String
         Get
             Return numeroNational + " (" & Me.couleur & ")"
         End Get

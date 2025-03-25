@@ -200,39 +200,29 @@ Public Class Pulverisateurtest
     End Sub
     <TestMethod()>
     Public Sub testGetNewId()
-        Dim oExploit As Exploitation
-        Dim oPulve As Pulverisateur
+        Dim oAgentPC As AgentPC
+        Dim breturn As Boolean
 
-        oExploit = createExploitation()
-        ExploitationManager.save(oExploit, m_oAgent)
-        oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
-        oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
-
-        m_oAgent.oPool = New Pool()
-        m_oAgent.oPool.idCRODIPPC = "12345"
+        oAgentPC = New AgentPC()
+        oAgentPC.idCrodip = "12345"
+        oAgentPC.uidstructure = m_oAgent.uidstructure
+        breturn = AgentPCManager.save(oAgentPC)
+        Assert.IsTrue(breturn)
 
         Dim str As String
         str = PulverisateurManager.getNewId(m_oAgent)
         Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
+
+        oAgentPC.idCrodip = "1119"
+        oAgentPC.uidstructure = m_oAgent.uidstructure
+        breturn = AgentPCManager.save(oAgentPC)
+        Assert.IsTrue(breturn)
+        str = PulverisateurManager.getNewId(m_oAgent)
         Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
 
-
-
-        m_oAgent.oPool.idCRODIPPC = "1119"
+        CSDb.ExecuteSQL("DELETE FROM AgentPC")
         str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual("8888-004-1119-1", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
-
-        m_oAgent.oPool = Nothing
-        str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.id & "-" & m_oAgent.id & "-3", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oAgent.idStructure & "-" & m_oAgent.id & "-3", str)
-
+        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.id & "-1", str)
 
     End Sub
     <TestMethod()>

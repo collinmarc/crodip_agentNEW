@@ -86,7 +86,7 @@ Public Class ManometreControle
         End Set
     End Property
     <XmlIgnore>
-    Public Overrides Property Libelle() As String
+    Public Overrides Property libelle() As String
         Get
             Dim sLibelle As String = "   "
             If m_bIsUpdated Then

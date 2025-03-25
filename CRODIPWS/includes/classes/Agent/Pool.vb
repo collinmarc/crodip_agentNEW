@@ -2,7 +2,6 @@
 
 Public Class Pool
     Inherits Materiel
-
     Private _libelle As String
     Public Overrides Property libelle() As String
         Get
@@ -12,6 +11,15 @@ Public Class Pool
             _libelle = value
         End Set
     End Property
+
+    Public Property idPool() As String
+        Get
+            Return idCrodip
+        End Get
+        Set(ByVal value As String)
+            idCrodip = value
+        End Set
+    End Property
     Private _nbPastillesVertes As Integer
     Public Property nbPastillesVertes() As Integer
         Get
@@ -19,15 +27,6 @@ Public Class Pool
         End Get
         Set(ByVal value As Integer)
             _nbPastillesVertes = value
-        End Set
-    End Property
-    Private _idPCRODIPPC As String
-    Public Property idCRODIPPC() As String
-        Get
-            Return _idPCRODIPPC
-        End Get
-        Set(ByVal value As String)
-            _idPCRODIPPC = value
         End Set
     End Property
     Private _aidBanc As String
@@ -73,7 +72,7 @@ Public Class Pool
                         Me.libelle = pValue.ToString()
                     Case "idPool".Trim().ToUpper()
                         Me.idCrodip = pValue
-                    Case "idStructure".Trim().ToUpper()
+                    Case "uidStructure".Trim().ToUpper()
                         Me.uidstructure = pValue
                     Case "nbPastillesVertes".Trim().ToUpper()
                         Me.nbPastillesVertes = pValue
@@ -92,18 +91,6 @@ Public Class Pool
         Return bReturn
     End Function
 
-    Public Function getAgentPC() As AgentPC
-        Dim oReturn As AgentPC = Nothing
-        Try
-            If Not String.IsNullOrEmpty(idCRODIPPC) Then
-                oReturn = AgentPCManager.getAgentPCByIdCRODIP(idCRODIPPC)
-            End If
-        Catch ex As Exception
-            CSDebug.dispError("Pool.getAgentPC ERR", ex)
-            oReturn = Nothing
-        End Try
-        Return oReturn
-    End Function
 
     Public Overrides Function creerFichevieActivation(pAgent As Agent) As Boolean
         Return False

@@ -565,11 +565,24 @@ DROP TABLE IF EXISTS CONTROLE_REGULIER2;
 DROP TABLE IF EXISTS PrestationCategorie1;
 DROP TABLE IF EXISTS PrestationTarif1;
 
---DROP TABLE POOL;
---DROP TABLE POOLBanc;
---DROP TABLE POOLBUSE;
---DROP TABLE POOLMAnoc;
---DROP TABLE POOLMAnoE;
---Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
+DROP TABLE POOL;
+DROP TABLE POOLBanc;
+DROP TABLE POOLBUSE;
+DROP TABLE POOLMAnoc;
+DROP TABLE POOLMAnoE;
+Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
 
---INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','pool2');
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-01 12:00:00','pool2');
+CREATE TABLE PoolAgent (
+  uid integer NOT NULL,
+  aid text  NOT NULL,
+  uidpool integer NOT NULL,
+  namepool text  DEFAULT NULL,
+  uidagent integer NOT NULL,
+  aidagent text  DEFAULT NULL,
+  uidstructure integer DEFAULT '0',
+  dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  dateModificationAgent datemime NULL DEFAULT NULL,
+  dateModificationCrodip datetime NULL DEFAULT NULL
+) ;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 12:00:00','poolAgent');

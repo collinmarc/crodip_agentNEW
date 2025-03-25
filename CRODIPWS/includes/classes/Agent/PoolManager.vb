@@ -62,7 +62,7 @@ Public Class PoolManager
 
         Try
             Dim bddCommande As DbCommand = pCSDB.getConnection().CreateCommand
-            bddCommande.CommandText = "insert into Pool (uid, idPool) VALUES(" & pPool.uid & ",'" & pPool.aid & "' )"
+            bddCommande.CommandText = "insert into Pool (uid, idPool) VALUES(" & pPool.uid & ",'" & pPool.idPool & "' )"
             bddCommande.ExecuteNonQuery()
         Catch ex As Exception
             CSDebug.dispError("PoolManager.createPool ERR", ex)
@@ -87,6 +87,7 @@ Public Class PoolManager
             oCmd.CommandText =
 "UPDATE POOL
    SET 
+       idPool =@idpool,
        uidstructure =@uidstructure,
        uidbanc = @uidbanc,
        aidbanc = @aidbanc,
@@ -113,6 +114,14 @@ Public Class PoolManager
                 .ParameterName = "@uid"
                 .DbType = DbType.String
                 .Value = pPool.uid
+            End With
+            oCmd.Parameters.Add(oParam)
+
+            oParam = oCmd.CreateParameter()
+            With oParam
+                .ParameterName = "@idpool"
+                .DbType = DbType.String
+                .Value = pPool.idPool
             End With
             oCmd.Parameters.Add(oParam)
 

@@ -31,7 +31,7 @@ Public Class ManometreEtalon
         End Get
     End Property
     <XmlIgnore()>
-    Public Overrides Property Libelle() As String
+    Public Overrides Property libelle() As String
         Get
             Return "Manomètre Etalon : " + idCrodip
         End Get

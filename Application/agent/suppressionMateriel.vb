@@ -175,7 +175,7 @@ Public Class SuppressionMateriel
 
     Private Sub SuppressionMateriel_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Debug.Assert(Not m_MaterielCourant Is Nothing)
-        lblMatASupprimer.Text = m_MaterielCourant.Libelle
+        lblMatASupprimer.Text = m_MaterielCourant.libelle
     End Sub
 
     Private Sub btn_ficheMano_supprimer_Click(sender As System.Object, e As System.EventArgs) Handles btn_ficheMano_supprimer.Click

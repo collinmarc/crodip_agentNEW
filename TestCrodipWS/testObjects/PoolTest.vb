@@ -8,84 +8,69 @@ Imports CrodipWS
 
     <TestMethod()> Public Sub CRUD()
         Dim oPool As New Pool()
-        oPool.nbPastillesVertes = 15
+        oPool.libelle = "Pool1"
+        oPool.idPool = "123465"
+        oPool.uidstructure = m_oAgent.idStructure
+
+        Assert.IsTrue(PoolManager.Save(oPool))
+        Dim nIdPool As String = oPool.idPool
+
+        oPool = PoolManager.getPoolByIdPool(nIdPool)
+        Assert.AreEqual(nIdPool, oPool.idCrodip)
+        Assert.AreEqual("Pool1", oPool.libelle)
+        Assert.AreEqual("123465", oPool.idPool)
+
+        oPool.libelle = "Pool2"
+
+        Assert.IsTrue(PoolManager.Save(oPool))
+
+        oPool = PoolManager.getPoolByIdPool(nIdPool)
+        Assert.AreEqual(nIdPool, oPool.idPool)
+        Assert.AreEqual("Pool2", oPool.libelle)
+
+
+    End Sub
+    <TestMethod()> Public Sub WSCRUD()
+        Dim oPool As New Pool()
+        Dim oPool2 As Pool = Nothing
+        Dim nReturn As Integer
+        oPool.libelle = "Pool1"
         oPool.idCrodip = "123465"
         oPool.uidstructure = m_oAgent.idStructure
 
         Assert.IsTrue(PoolManager.Save(oPool))
-        Dim nId As String = oPool.idCrodip
-
-        oPool = PoolManager.getPoolByIdPool(nId)
-        Assert.AreEqual(nId, oPool.idCrodip)
-        Assert.AreEqual(15, oPool.nbPastillesVertes)
-        Assert.AreEqual("123465", oPool.idCrodip)
-
-        oPool.nbPastillesVertes = 5
+        Dim nId As String = oPool.idPool
 
         Assert.IsTrue(PoolManager.Save(oPool))
 
-        oPool = PoolManager.getPoolByIdPool(nId)
-        Assert.AreEqual(nId, oPool.idCrodip)
-        Assert.AreEqual(5, oPool.nbPastillesVertes)
+        nReturn = PoolManager.WSSend(oPool, oPool2)
+        Assert.AreEqual(2, nReturn, "Code Retour = 2")
+        Assert.IsNotNull(oPool2)
+        Assert.AreNotEqual(0, oPool2.uid)
+        Assert.AreEqual(oPool.idPool, oPool2.idPool)
+        Assert.AreEqual(oPool.libelle, oPool2.libelle)
+
+        oPool = PoolManager.WSgetById(oPool2.uid, oPool2.idPool)
+
+        Assert.AreEqual(oPool2.uid, oPool.uid)
+        Assert.AreEqual(oPool2.idPool, oPool.idPool)
+        Assert.AreEqual(oPool2.libelle, oPool.libelle)
+
+
+        oPool.libelle = "Pool2"
+        Assert.IsTrue(PoolManager.Save(oPool))
+
+        nReturn = PoolManager.WSSend(oPool, oPool2)
+        Assert.AreEqual(2, nReturn, "Code Retour = 2")
+
+        oPool = PoolManager.WSgetById(oPool2.uid, oPool2.idPool)
+
+        Assert.AreEqual("Pool2", oPool.libelle)
+
 
 
     End Sub
 
-    <TestMethod()> Public Sub AgentPool()
-
-        m_oAgent.idCRODIPPool = ""
-        AgentManager.save(m_oAgent)
-
-        m_oAgent = AgentManager.getAgentById(m_oAgent.id)
-        Assert.AreEqual("", m_oAgent.idCRODIPPool)
-        Assert.IsNull(m_oAgent.oPool)
-
-        'Création du PC
-        Dim oPC As AgentPC
-        oPC = New AgentPC()
-        oPC.idCrodip = "123"
-        oPC.libelle = "VAIO"
-
-        Assert.IsTrue(AgentPCManager.save(oPC))
-
-        'Création d'un pool
-        Dim oPool As Pool
-        oPool = New Pool()
-        oPool.idCrodip = "P1"
-        oPool.idCRODIPPC = oPC.idCrodip
-        oPool.uidstructure = m_oStructure.id
-
-        Assert.IsTrue(PoolManager.Save(oPool))
-
-        'Rattachement de l'agent au pool
-        m_oAgent.idCRODIPPool = oPool.idCrodip
-        Assert.IsTrue(AgentManager.save(m_oAgent))
-
-        'Rechargement de l'agent
-        m_oAgent = AgentManager.getAgentById(m_oAgent.id)
-        Assert.AreEqual(oPool.idCrodip, m_oAgent.idCRODIPPool)
-        Assert.IsNotNull(m_oAgent.oPool)
-
-        Assert.AreEqual("P1", m_oAgent.oPool.idCrodip)
-        Assert.AreEqual(oPC.idCrodip, m_oAgent.oPool.idCRODIPPC)
-
-        'Création d'un banc
-        Dim obanc As Banc
-
-        obanc = New Banc()
-        obanc.id = "B1"
-        BancManager.save(obanc)
-
-        'oPool.idBanc = obanc.id
-        PoolManager.Save(oPool)
-
-        oPool = PoolManager.getPoolByIdPool(oPool.idCrodip)
-
-        '        Assert.AreEqual(obanc.id, oPool.idBanc)
-
-
-
-    End Sub
 
 
 

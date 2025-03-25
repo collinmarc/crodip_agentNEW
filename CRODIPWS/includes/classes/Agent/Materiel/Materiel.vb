@@ -225,7 +225,7 @@ Public MustInherit Class Materiel
         End Set
     End Property
     <XmlIgnoreAttribute()>
-    Public Overridable Property Libelle() As String
+    Public Overridable Property libelle() As String
         Get
             Return "Matériel : " + numeroNational
         End Get
