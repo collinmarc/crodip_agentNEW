@@ -196,6 +196,7 @@
     <Compile Include="includes\classes\Acquisition\Acquiring.vb" />
     <Compile Include="includes\classes\Acquisition\AcquiringManager.vb" />
     <Compile Include="includes\classes\Agent\Agent.vb" />
+    <Compile Include="includes\classes\Agent\PoolAgentManager.vb" />
     <Compile Include="includes\classes\Agent\AgentManager.vb" />
     <Compile Include="includes\classes\Agent\Materiel\AgentPC.vb" />
     <Compile Include="includes\classes\Agent\Materiel\AgentPCManager.vb" />
@@ -212,6 +213,7 @@
     <Compile Include="includes\classes\Agent\Materiel\Materiel.vb" />
     <Compile Include="includes\classes\Agent\Materiel\NiveauAlerte.vb" />
     <Compile Include="includes\classes\Agent\Materiel\PressionCtrl.vb" />
+    <Compile Include="includes\classes\Agent\PoolAgent.vb" />
     <Compile Include="includes\classes\Agent\Pool.vb" />
     <Compile Include="includes\classes\Agent\PoolManager.vb" />
     <Compile Include="includes\classes\Controle\AutoTest.vb" />

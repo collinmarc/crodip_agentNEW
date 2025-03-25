@@ -575,11 +575,11 @@ Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, u
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-01 12:00:00','pool2');
 CREATE TABLE PoolAgent (
   uid integer NOT NULL,
-  aid text  NOT NULL,
-  uidpool integer NOT NULL,
-  namepool text  DEFAULT NULL,
-  uidagent integer NOT NULL,
-  aidagent text  DEFAULT NULL,
+  aid text  ,
+  uidpool integer default 0,
+  namepool text  DEFAULT '',
+  uidagent integer default 0,
+  aidagent text  DEFAULT '',
   uidstructure integer DEFAULT '0',
   dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   dateModificationAgent datemime NULL DEFAULT NULL,

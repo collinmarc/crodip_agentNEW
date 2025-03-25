@@ -405,8 +405,10 @@ Public Class CSDb
 
             bddCommande.CommandText = "DELETE FROM AgentPC"
             bddCommande.ExecuteNonQuery()
-            'bddCommande.CommandText = "DELETE FROM Pool"
-            'bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Pool"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolAgent"
+            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Structure"
             bddCommande.ExecuteNonQuery()
             'bddCommande.CommandText = "DELETE FROM VERSION"

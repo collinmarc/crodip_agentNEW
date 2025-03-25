@@ -157,6 +157,54 @@ Public Class RootManager
 
     End Function
 
+    Protected Shared Function create(pTable As String, puid As Integer) As Boolean
+        Dim breturn As Boolean
+        breturn = False
+        Dim oCsdb = New CSDb(True)
+        Try
+            Dim nEnr As Integer = 0
+            Dim sql As String = "SELECT count(*) From " & pTable & " where uid=" & puid & ""
+            Dim _dbCommande As DbCommand = oCsdb.getConnection().CreateCommand
+            _dbCommande.CommandText = sql
+            nEnr = _dbCommande.ExecuteScalar()
+
+            If nEnr = 0 Then
+                oCsdb.Execute("insert into " & pTable & "(uid) values (" & puid & ")")
+            End If
+            breturn = True
+
+
+        Catch ex As Exception
+            breturn = False
+        End Try
+        oCsdb.free()
+        Return breturn
+    End Function
+
+    Public Shared Function Update(pTable As String, pobj As root, psql As String) As Boolean
+        Dim bddCommande As DbCommand
+        Dim nResult As Integer
+        Dim oCsdb = New CSDb(True)
+        Dim bReturn As Boolean
+        Try
+
+            psql = psql & pobj.getRootQuery()
+
+            bddCommande = oCsdb.getConnection.CreateCommand()
+
+            bddCommande.CommandText = "UPDATE " & pTable & " SET " & psql & " WHERE uid=" & pobj.uid & ""
+            nResult = bddCommande.ExecuteNonQuery()
+            Debug.Assert(nResult = 1, "RootManager.update[" & pTable & "," & pobj.uid & "]: Erreur en update 0 ou  plus d'une ligne concernée")
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("RootManager.update ERR", ex)
+            bReturn = False
+        End Try
+        oCsdb.free()
+        Return bReturn
+    End Function
+
+
     'Protected Shared Async Function executePost(Of T)(pClient As RestClient, prequest As RestRequest) As Task(Of RestResponse(Of T))
     '    'Pourquoi mettre ConfigureAwait(False) : 
     '    'https://stackoverflow.com/questions/37129427/api-request-waitingforactivation-not-yet-computed-error
