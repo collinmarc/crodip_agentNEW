@@ -599,4 +599,17 @@ CREATE TABLE PoolPc (
   dateModificationCrodip datetime NULL DEFAULT NULL
 )  ;
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 14:00:00','poolPc');
+CREATE TABLE PoolBuse (
+  uid bigint(20) NOT NULL,
+  aid Text  DEFAULT '',
+  uidpool bigint(20) ,
+  namepool Text  DEFAULT '',
+  uidbuse bigint(20),
+  idBuse Text  DEFAULT '',
+  uidstructure bigint(20) DEFAULT '0',
+  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  dateModificationAgent datetime NULL DEFAULT NULL,
+  dateModificationCrodip datetime NULL DEFAULT NULL
+  );
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:00:00','poolBuse');
 
