@@ -574,15 +574,29 @@ Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, u
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-01 12:00:00','pool2');
 CREATE TABLE PoolAgent (
-  uid integer NOT NULL,
+  uid BIGINT(20) NOT NULL,
   aid text  ,
-  uidpool integer default 0,
+  uidpool BIGINT(20) default 0,
   namepool text  DEFAULT '',
-  uidagent integer default 0,
+  uidagent BIGINT(20) default 0,
   aidagent text  DEFAULT '',
-  uidstructure integer DEFAULT '0',
+  uidstructure BIGINT(20) DEFAULT '0',
   dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   dateModificationAgent datemime NULL DEFAULT NULL,
   dateModificationCrodip datetime NULL DEFAULT NULL
 ) ;
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 12:00:00','poolAgent');
+CREATE TABLE PoolPc (
+  uid BIGINT(20) NOT NULL,
+  aid text  DEFAULT  '',
+  uidpool BIGINT(20) DEFAULT 0,
+  namepool text  DEFAULT '',
+  uidpc BIGINT(20) DEFAULT 0,
+  idPc text  DEFAULT '',
+  uidstructure BIGINT(20) DEFAULT '0',
+  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  dateModificationAgent datetime NULL DEFAULT NULL,
+  dateModificationCrodip datetime NULL DEFAULT NULL
+)  ;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 14:00:00','poolPc');
+

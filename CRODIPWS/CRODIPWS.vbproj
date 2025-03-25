@@ -196,6 +196,8 @@
     <Compile Include="includes\classes\Acquisition\Acquiring.vb" />
     <Compile Include="includes\classes\Acquisition\AcquiringManager.vb" />
     <Compile Include="includes\classes\Agent\Agent.vb" />
+    <Compile Include="includes\classes\Agent\PoolPc.vb" />
+    <Compile Include="includes\classes\Agent\PoolPcManager.vb" />
     <Compile Include="includes\classes\Agent\PoolAgentManager.vb" />
     <Compile Include="includes\classes\Agent\AgentManager.vb" />
     <Compile Include="includes\classes\Agent\Materiel\AgentPC.vb" />

@@ -3,18 +3,18 @@ Imports System.IO
 Imports System.Linq
 Imports System.Xml.Serialization
 
-Public Class PoolAgentManager
+Public Class PoolPcManager
     Inherits RootManager
-    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As PoolAgent
-        Dim oreturn As PoolAgent
-        oreturn = RootWSGetById(Of PoolAgent)(p_uid, paid)
+    Public Shared Function WSgetById(ByVal p_uid As Integer, paid As String) As PoolPc
+        Dim oreturn As PoolPc
+        oreturn = RootWSGetById(Of PoolPc)(p_uid, paid)
         Return oreturn
     End Function
 
 
-    Public Shared Function WSSend(ByVal pAgentIn As PoolAgent, ByRef pReturn As PoolAgent) As Integer
+    Public Shared Function WSSend(ByVal pAgentIn As PoolPc, ByRef pReturn As PoolPc) As Integer
         Dim codeResponse As Integer = 99
-        codeResponse = RootWSSend(Of PoolAgent)(pAgentIn, pReturn)
+        codeResponse = RootWSSend(Of PoolPc)(pAgentIn, pReturn)
         Select Case codeResponse
             Case 2 ' UPDATE OK
             Case 4 ' CREATE OK
@@ -26,19 +26,19 @@ Public Class PoolAgentManager
         End Select
         Return codeResponse
     End Function
-    Public Shared Function GetByuid(puid As Integer) As PoolAgent
-        Dim oReturn As PoolAgent
+    Public Shared Function GetByuid(puid As Integer) As PoolPc
+        Dim oReturn As PoolPc
 
-        oReturn = getByKey(Of PoolAgent)("Select * from PoolAgent where uid = " & puid)
+        oReturn = getByKey(Of PoolPc)("Select * from PoolPc where uid = " & puid)
         Return oReturn
     End Function
-    Public Shared Function Save(ByVal pObj As PoolAgent, Optional bSynchro As Boolean = False) As Boolean
+    Public Shared Function Save(ByVal pObj As PoolPc, Optional bSynchro As Boolean = False) As Boolean
 
         Dim bReturn As Boolean
 
         Try
             bReturn = False
-            create("PoolAgent", pObj.uid)
+            create("PoolPc", pObj.uid)
 
 
             Dim paramsQuery As String
@@ -51,14 +51,14 @@ Public Class PoolAgentManager
 
             paramsQuery = paramsQuery & " uidpool=" & pObj.uidpool
             paramsQuery = paramsQuery & " ,namepool='" & pObj.namepool & "'"
-            paramsQuery = paramsQuery & " ,uidagent=" & pObj.uidagent
-            paramsQuery = paramsQuery & " ,aidagent='" & pObj.aidagent & "'"
+            paramsQuery = paramsQuery & " ,uidpc=" & pObj.uidpc
+            paramsQuery = paramsQuery & " ,idPC='" & pObj.idPc & "'"
             paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure
             paramsQuery = paramsQuery & " ,dateAssociation='" & CSDate.ToCRODIPString(pObj.dateAssociation) & "'"
 
-            bReturn = Update("PoolAgent", pObj, paramsQuery)
+            bReturn = Update("PoolPc", pObj, paramsQuery)
         Catch ex As Exception
-            CSDebug.dispFatal("PoolAgentManager.save ERR : ", ex)
+            CSDebug.dispFatal("PoolPcManager.save ERR : ", ex)
             bReturn = False
         End Try
         Return bReturn
