@@ -469,6 +469,7 @@
     <Compile Include="testObjects\PoolManoEtalonTest.vb" />
     <Compile Include="testObjects\PoolManoControleTest.vb" />
     <Compile Include="testObjects\PoolBuseTest.vb" />
+    <Compile Include="testObjects\PcTest.vb" />
     <Compile Include="testObjects\PoolPcTest.vb" />
     <Compile Include="testObjects\PoolAgentTest.vb" />
     <Compile Include="testObjects\PoolTest.vb" />

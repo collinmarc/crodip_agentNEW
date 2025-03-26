@@ -62,12 +62,24 @@ Public MustInherit Class Materiel
             aid = Value
         End Set
     End Property
+    <XmlIgnore()>
     Public Property uidstructure() As Integer
         Get
             Return _idStructure
         End Get
         Set(ByVal Value As Integer)
             _idStructure = Value
+        End Set
+    End Property
+    <XmlAttribute("uidstructure")>
+    Public Property uidstructureS() As String
+        Get
+            Return _idStructure
+        End Get
+        Set(ByVal Value As String)
+            If Not String.IsNullOrEmpty(Value) Then
+                _idStructure = Value
+            End If
         End Set
     End Property
 

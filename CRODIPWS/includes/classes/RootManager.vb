@@ -30,7 +30,7 @@ Public Class RootManager
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(T))
-                    If GetType(T) Is GetType(Banc) Then
+                    If GetType(T) Is GetType(Banc) Or GetType(T) Is GetType(Pc) Then
                         strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
                     Else
                         strXml = tXmlnodes(0).ParentNode.OuterXml

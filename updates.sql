@@ -638,3 +638,40 @@ CREATE TABLE PoolManoEtalon (
   dateModificationCrodip datetime NULL DEFAULT NULL
 );
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:20:00','poolManoEtalon');
+Alter Table AgentPC Add Column uid Bigint(20) Default 0;
+Alter Table AgentPC Add Column idPC text Default '';
+Alter Table AgentPC Add Column uidstructure Bigint(20) Default 0;
+Alter Table AgentPC add Column idRegistre Text Default '';
+Alter Table AgentPC add Column marque Text Default '';
+Alter Table AgentPC add Column modele Text Default '';
+Alter Table AgentPC add Column systeme Text Default '';
+Alter Table AgentPC add Column memoire Text Default '';
+Alter Table AgentPC add Column disque Text Default '';
+Alter Table AgentPC add Column memo Text Default '';
+Alter Table AgentPC add Column owc_etat Text Default '';
+Alter Table AgentPC add Column owc_folder Text Default '';
+Alter Table AgentPC add Column owc_commun Text Default '';
+Alter Table AgentPC add Column owc_parametres Text Default '';
+Alter Table AgentPC add Column owc_organismes Text Default '';
+Alter Table AgentPC add Column owc_user Text Default '';
+Alter Table AgentPC add Column owc_password Text Default '';
+Alter Table AgentPC add Column owc_version Text Default '';
+Alter Table AgentPC add Column isSecours Text Default '';
+Alter Table AgentPC add Column SignatureElect Text Default '0';
+Alter Table AgentPC add Column isSignElecActive Text Default '0';
+Alter Table AgentPC add Column modeSignature Text Default '';
+Alter Table AgentPC add Column versionLogiciel Text Default '';
+Alter Table AgentPC add Column isReinitialisationMode BIT NOT NULL DEFAULT '0';
+Alter Table AgentPC add Column isMasterMode BIT NOT NULL DEFAULT '1';
+Alter Table AgentPC add Column isDownloadMetrologieMode BIT NOT NULL DEFAULT '0';
+Alter Table AgentPC add Column isDownloadTarificationMode BIT NOT NULL DEFAULT '0';
+Alter Table AgentPC add Column isDownloadPulveExploitationMode BIT NOT NULL DEFAULT '0';
+Alter Table AgentPC add Column isDownloadIdentifiantPulveMode BIT NOT NULL DEFAULT '0';
+Update AgentPC set idPC = idCRODIP, uidStructure = idStructure, idRegistre = numinterne;
+Alter Table AgentPC drop Column idCrodip;
+Alter Table AgentPC drop Column idStructure;
+Alter Table AgentPC drop Column numInterne;
+
+
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 16:10:00','AgentPC');
+

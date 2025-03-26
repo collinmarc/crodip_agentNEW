@@ -125,86 +125,86 @@ Public Class BuseManager
     End Function
 
 
-    Public Shared Function save(ByVal objBuseEtalon As Buse, Optional bSynchro As Boolean = False) As Boolean
+    Public Shared Function save(ByVal pBuse As Buse, Optional bSynchro As Boolean = False) As Boolean
 
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
         Dim bReturn As Boolean
 
         Try
-            If objBuseEtalon.idCrodip <> "" Then
+            If pBuse.idCrodip <> "" Then
 
 
                 ' On test si l'object existe ou non
                 Dim existsObject As Buse
-                existsObject = BuseManager.getBuseByIdCrodip(objBuseEtalon.idCrodip)
+                existsObject = BuseManager.getBuseByIdCrodip(pBuse.idCrodip)
                 If existsObject.idCrodip = "" Or existsObject.idCrodip = "0" Then
                     ' Si il n'existe pas, on le crée
-                    createBuse(objBuseEtalon.idCrodip)
+                    createBuse(pBuse.idCrodip)
                 End If
 
                 oCsdb = New CSDb(True)
                 bddCommande = oCsdb.getConnection().CreateCommand()
 
                 ' Initialisation de la requete
-                Dim paramsQuery As String = "numeroNational='" & objBuseEtalon.numeroNational & "'"
+                Dim paramsQuery As String = "numeroNational='" & pBuse.numeroNational & "'"
 
                 ' Mise a jour de la date de derniere modification
 
                 If Not bSynchro Then
-                    objBuseEtalon.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
+                    pBuse.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
                 Else
-                    objBuseEtalon.dateModificationAgent = objBuseEtalon.dateModificationCrodip
+                    pBuse.dateModificationAgent = pBuse.dateModificationCrodip
                 End If
 
-                paramsQuery = paramsQuery & " , idStructure=" & objBuseEtalon.uidstructure & ""
-                paramsQuery = paramsQuery & " , uidStructure=" & objBuseEtalon.uidstructure & ""
-                If Not objBuseEtalon.couleur Is Nothing Then
-                    paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(objBuseEtalon.couleur) & "'"
+                paramsQuery = paramsQuery & " , idStructure=" & pBuse.uidstructure & ""
+                paramsQuery = paramsQuery & " , uidStructure=" & pBuse.uidstructure & ""
+                If Not pBuse.couleur Is Nothing Then
+                    paramsQuery = paramsQuery & " , couleur='" & CSDb.secureString(pBuse.couleur) & "'"
                 End If
-                paramsQuery = paramsQuery & " , pressionEtalonnage='" & objBuseEtalon.pressionEtalonnage & "'"
-                paramsQuery = paramsQuery & " , debitEtalonnage='" & objBuseEtalon.debitEtalonnage & "'"
-                paramsQuery = paramsQuery & " , isSynchro=" & objBuseEtalon.isSynchro & ""
-                If Not objBuseEtalon.dateAchat Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateAchat='" & CSDate.ToCRODIPString(objBuseEtalon.dateAchat) & "'"
+                paramsQuery = paramsQuery & " , pressionEtalonnage='" & pBuse.pressionEtalonnage & "'"
+                paramsQuery = paramsQuery & " , debitEtalonnage='" & pBuse.debitEtalonnage & "'"
+                paramsQuery = paramsQuery & " , isSynchro=" & pBuse.isSynchro & ""
+                If Not pBuse.dateAchat Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateAchat='" & CSDate.ToCRODIPString(pBuse.dateAchat) & "'"
                 End If
-                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationAgent) & "'"
-                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(objBuseEtalon.dateModificationCrodip) & "'"
-                paramsQuery = paramsQuery & " , etat=" & objBuseEtalon.etat & ""
-                paramsQuery = paramsQuery & " , isSupprime=" & objBuseEtalon.isSupprime & ""
-                paramsQuery = paramsQuery & " , isUtilise=" & objBuseEtalon.isUtilise & ""
-                If Not objBuseEtalon.agentSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , agentSuppression='" & objBuseEtalon.agentSuppression & "'"
+                paramsQuery = paramsQuery & " , dateModificationAgent='" & CSDate.ToCRODIPString(pBuse.dateModificationAgent) & "'"
+                paramsQuery = paramsQuery & " , dateModificationCrodip='" & CSDate.ToCRODIPString(pBuse.dateModificationCrodip) & "'"
+                paramsQuery = paramsQuery & " , etat=" & pBuse.etat & ""
+                paramsQuery = paramsQuery & " , isSupprime=" & pBuse.isSupprime & ""
+                paramsQuery = paramsQuery & " , isUtilise=" & pBuse.isUtilise & ""
+                If Not pBuse.agentSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , agentSuppression='" & pBuse.agentSuppression & "'"
                 End If
-                If Not objBuseEtalon.raisonSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , raisonSuppression='" & objBuseEtalon.raisonSuppression & "'"
+                If Not pBuse.raisonSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , raisonSuppression='" & pBuse.raisonSuppression & "'"
                 End If
-                If Not objBuseEtalon.dateSuppression Is Nothing Then
-                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(objBuseEtalon.dateSuppression) & "'"
+                If Not pBuse.dateSuppression Is Nothing Then
+                    paramsQuery = paramsQuery & " , dateSuppression='" & CSDate.ToCRODIPString(pBuse.dateSuppression) & "'"
                 End If
-                paramsQuery = paramsQuery & " , jamaisServi=" & objBuseEtalon.jamaisServi & ""
-                If objBuseEtalon.dateActivation <> Nothing Then
-                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(objBuseEtalon.dateActivation) & "'"
+                paramsQuery = paramsQuery & " , jamaisServi=" & pBuse.jamaisServi & ""
+                If pBuse.dateActivation <> Nothing Then
+                    paramsQuery = paramsQuery & " , dateActivation='" & CSDate.ToCRODIPString(pBuse.dateActivation) & "'"
                 End If
 
-                paramsQuery = paramsQuery & objBuseEtalon.getRootQuery()
+                paramsQuery = paramsQuery & pBuse.getRootQuery()
 
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE idCrodip='" & objBuseEtalon.idCrodip & "'"
+                bddCommande.CommandText = "UPDATE AgentBuseEtalon SET " & paramsQuery & " WHERE idCrodip='" & pBuse.idCrodip & "'"
                 bddCommande.ExecuteNonQuery()
                 If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                     'Suppression des Pools avant insertion
-                    clearlstPoolByBuse(objBuseEtalon.idCrodip)
+                    clearlstPoolByBuse(pBuse.idCrodip)
                     'Insertion des Pools
-                    objBuseEtalon.lstPools.ForEach(Sub(p)
-                                                       insertPoolBuse(p.idCrodip, objBuseEtalon.numeroNational)
-                                                   End Sub)
+                    pBuse.lstPools.ForEach(Sub(p)
+                                               insertPoolBuse(p.idCrodip, pBuse.numeroNational)
+                                           End Sub)
                 End If
 
             End If
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("BuseManager - Save : [" & objBuseEtalon.numeroNational & "]" & ex.Message.ToString)
+            CSDebug.dispFatal("BuseManager - Save : [" & pBuse.numeroNational & "]" & ex.Message.ToString)
             bReturn = False
         End Try
         ' Test pour fermeture de connection BDD
