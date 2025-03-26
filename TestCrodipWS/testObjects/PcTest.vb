@@ -75,16 +75,16 @@ Imports CRODIPWS
         oPc.owc_password = "owc_password"
         oPc.owc_version = "owc_version"
         oPc.isSecours = "1"
-        oPc.SignatureElect = "0"
+        oPc.signatureElect = "0"
         oPc.isSignElecActive = "1"
         oPc.modeSignature = "WACOM"
         oPc.versionLogiciel = "V4"
-        oPc.isReinitialisationMode = "0"
+        oPc.isReinitialisationMode = "1"
         oPc.isMasterMode = "0"
-        oPc.isDownloadMetrologieMode = "0"
-        oPc.isDownloadTarificationMode = "0"
-        oPc.isDownloadPulveExploitationMode = "0"
-        oPc.isDownloadIdentifiantPulve = "0"
+        oPc.isDownloadMetrologieMode = "1"
+        oPc.isDownloadTarificationMode = "1"
+        oPc.isDownloadPulveExploitationMode = "1"
+        oPc.isDownloadIdentifiantPulve = "1"
 
         '        oPc.uidstructure = m_oAgent.idStructure
 
@@ -101,9 +101,6 @@ Imports CRODIPWS
         Assert.AreEqual(oPc.raisonSuppression, oPC2.raisonSuppression, "RaisonSuppression")
         Assert.AreEqual(oPc.dateSuppression, oPC2.dateSuppression)
         Assert.AreEqual(oPc.isSupprime, oPC2.isSupprime)
-        '        oPc2.uidstructure
-        '       oPc2.idRegistre & "'"
-        '      oPc2.cleUtilisation & "'"
         Assert.AreEqual(oPc.marque, oPC2.marque, "MARQUE")
         Assert.AreEqual(oPc.modele, oPC2.modele, "MODELE")
         Assert.AreEqual(oPc.systeme, oPC2.systeme, "SYSTEME")
@@ -119,16 +116,21 @@ Imports CRODIPWS
         Assert.AreEqual(oPc.owc_password, oPC2.owc_password, "owc_password")
         Assert.AreEqual(oPc.owc_version, oPC2.owc_version, "owc_version")
         'Assert.AreEqual(oPc.isSecours, oPC2.isSecours, "Secours")
-        'Assert.AreEqual(oPc.SignatureElect, oPC2.SignatureElect, "0")
-        'Assert.AreEqual(oPc.isSignElecActive, oPC2.isSignElecActive, "1")
+        Assert.AreEqual(oPc.signatureElect, oPC2.signatureElect, "0")
+        Assert.AreEqual(oPc.isSignElecActive, oPC2.isSignElecActive, "1")
         Assert.AreEqual(oPc.modeSignature, oPC2.modeSignature, "WACOM")
         Assert.AreEqual(oPc.versionLogiciel, oPC2.versionLogiciel, "V4")
-        'Assert.AreEqual(oPc.isReinitialisationMode, oPC2.isReinitialisationMode, "0")
-        'Assert.AreEqual(oPc.isMasterMode, oPC2.isMasterMode, "0")
-        'Assert.AreEqual(oPc.isDownloadMetrologieMode, oPC2.isDownloadMetrologieMode, "0")
-        'Assert.AreEqual(oPc.isDownloadTarificationMode, oPC2.isDownloadTarificationMode, "0")
-        'Assert.AreEqual(oPc.isDownloadPulveExploitationMode, oPC2.isDownloadPulveExploitationMode, "0")
-        'Assert.AreEqual(oPc.isDownloadIdentifiantPulve, oPC2.isDownloadIdentifiantPulve, "0")
+        'Assert.AreEqual(oPc.isReinitialisationMode, oPC2.isReinitialisationMode, "isReinitialisationMode")
+        'Assert.AreEqual(oPc.isMasterMode, oPC2.isMasterMode, "isMasterMode")
+        'Assert.AreEqual(oPc.isDownloadMetrologieMode, oPC2.isDownloadMetrologieMode, "isDownloadMetrologieMode")
+        'Assert.AreEqual(oPc.isDownloadTarificationMode, oPC2.isDownloadTarificationMode, "isDownloadTarificationMode")
+        'Assert.AreEqual(oPc.isDownloadPulveExploitationMode, oPC2.isDownloadPulveExploitationMode, "isDownloadPulveExploitationMode")
+        'Assert.AreEqual(oPc.isDownloadIdentifiantPulve, oPC2.isDownloadIdentifiantPulve, "isDownloadIdentifiantPulve")
+
+        oPc.etat = False
+        nReturn = PcManager.WSSend(oPc, oPC2)
+        Assert.AreEqual(2, nReturn, "Code Retour = 2")
+        Assert.AreEqual(oPc.etat, oPC2.etat, "Code Etat")
 
     End Sub
 

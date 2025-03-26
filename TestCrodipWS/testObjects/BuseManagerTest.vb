@@ -110,7 +110,7 @@ Public Class BuseManagerTest
         oBuse.RaisonSuppression = "MaRaison"
         oBuse.dateSuppression = CSDate.ToCRODIPString(CDate("06/02/1964"))
         oBuse.AgentSuppression = m_oAgent.nom
-        oBuse.RaisonSuppression = "MaRaison"
+        oBuse.raisonSuppression = "MaRaison"
         Assert.IsTrue(BuseManager.save(oBuse))
         Dim oReturn As Buse
         Dim response As Integer = BuseManager.WSSend(oBuse, oReturn)

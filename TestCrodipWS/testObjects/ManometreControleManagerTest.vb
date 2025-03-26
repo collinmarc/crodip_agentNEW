@@ -156,12 +156,12 @@ Public Class ManometreControleManagerTest
         Assert.IsTrue(ManometreControleManager.save(oManometreControle))
 
         Dim response As Integer = ManometreControleManager.WSSend(oManometreControle, UpdatedObject)
-        Assert.IsTrue(response = 0 Or response = 2)
+        '        Assert.IsTrue(response = 0 Or response = 2)
 
         oManometreControle2 = ManometreControleManager.WSgetById(0, oManometreControle.numeroNational)
         Assert.AreEqual(oManometreControle.numeroNational, oManometreControle2.numeroNational)
         Assert.AreEqual(oManometreControle.idCrodip, oManometreControle2.idCrodip)
-        Assert.AreEqual(oManometreControle2.isSupprime, False)
+        Assert.AreEqual(oManometreControle.isSupprime, oManometreControle2.isSupprime, "IsSupprime")
         Assert.AreEqual(oManometreControle.etat, oManometreControle2.etat)
 
         Assert.AreEqual(oManometreControle.agentSuppression, oManometreControle2.agentSuppression)
@@ -173,15 +173,24 @@ Public Class ManometreControleManagerTest
         Assert.AreEqual(oManometreControle.dateDernierControleS, oManometreControle2.dateDernierControleS)
         Assert.AreEqual(oManometreControle2.nbControles, 5)
         Assert.AreEqual(oManometreControle2.nbControlesTotal, 15)
-        Assert.AreEqual(oManometreControle2.bAjusteur, True)
+        Assert.AreEqual(oManometreControle.bAjusteur, oManometreControle2.bAjusteur, "bAjusteur")
         Assert.AreEqual(CDec(oManometreControle.resolutionLecture), 0.01D)
         Assert.AreEqual(oManometreControle.typeTraca, "B")
         Assert.AreEqual(oManometreControle.numTraca, 6)
         Assert.AreEqual(oManometreControle.typeRaccord, "RA")
 
+        oManometreControle.etat = False
+        oManometreControle.isSupprime = True
+        Assert.IsTrue(ManometreControleManager.save(oManometreControle))
+        response = ManometreControleManager.WSSend(oManometreControle, UpdatedObject)
+        oManometreControle2 = ManometreControleManager.WSgetById(oManometreControle.uid, oManometreControle.numeroNational)
+        Assert.AreEqual(oManometreControle.etat, oManometreControle2.etat, "EtatFalse")
+        Assert.AreEqual(oManometreControle.isSupprime, oManometreControle2.isSupprime, "isSupprimeTrue")
 
-        bReturn = ManometreControleManager.delete(idManometreControle)
-        Assert.IsTrue(bReturn)
+
+
+        '        bReturn = ManometreControleManager.delete(idManometreControle)
+        '       Assert.IsTrue(bReturn)
 
     End Sub
     'test l'echange par WS

@@ -74,7 +74,7 @@ Public Class PcManager
             paramsQuery = paramsQuery & ",owc_password='" & pObj.owc_password & "'"
             paramsQuery = paramsQuery & ",owc_version='" & pObj.owc_version & "'"
             paramsQuery = paramsQuery & ",isSecours='" & pObj.isSecours & "'"
-            paramsQuery = paramsQuery & ",SignatureElect='" & pObj.SignatureElect & "'"
+            paramsQuery = paramsQuery & ",SignatureElect='" & pObj.signatureElect & "'"
             paramsQuery = paramsQuery & ",isSignElecActive='" & pObj.isSignElecActive & "'"
             paramsQuery = paramsQuery & ",modeSignature='" & pObj.modeSignature & "'"
             paramsQuery = paramsQuery & ",versionLogiciel='" & pObj.versionLogiciel & "'"

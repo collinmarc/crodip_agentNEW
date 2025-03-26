@@ -186,7 +186,7 @@ Public Class Pc
         End Set
     End Property
     Private _SignatureElect As String
-    Public Property SignatureElect() As String
+    Public Property signatureElect() As String
         Get
             Return _SignatureElect
         End Get
