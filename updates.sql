@@ -677,3 +677,8 @@ Alter Table Agent drop Column idCRODIPPOOL ;
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 16:10:00','AgentPC');
 
+Alter Table PoolManoEtalon Add Column isSupprime Bit default 0;
+Alter Table PoolManoControle Add Column isSupprime Bit default 0;
+Alter Table PoolBuse Add Column isSupprime Bit default 0;
+Alter Table PoolAgent Add Column isSupprime Bit default 0;
+Alter Table PoolPc Add Column isSupprime Bit default 0;

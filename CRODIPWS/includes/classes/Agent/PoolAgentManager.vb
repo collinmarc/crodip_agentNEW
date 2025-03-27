@@ -99,6 +99,7 @@ Public Class PoolAgentManager
             paramsQuery = paramsQuery & " ,aidagent='" & pObj.aidagent & "'"
             paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure
             paramsQuery = paramsQuery & " ,dateAssociation='" & CSDate.ToCRODIPString(pObj.dateAssociation) & "'"
+            paramsQuery = paramsQuery & " , isSupprime=" & pObj.isSupprime & ""
 
             bReturn = Update("PoolAgent", pObj, paramsQuery)
         Catch ex As Exception
@@ -108,11 +109,14 @@ Public Class PoolAgentManager
         Return bReturn
     End Function
 
-    Public Overloads Shared Function getListe(pAgent As Agent) As List(Of Pool)
+    Public Overloads Shared Function getListe(pAgent As Agent, Optional pTous As Boolean = False) As List(Of Pool)
         Dim lstReturn As New List(Of Pool)
         Try
             Dim sql As String
             sql = "SELECT * FROM PoolAgent where uidAgent = " & pAgent.uid
+            If Not pTous Then
+                sql = sql & " and isSupprime=False "
+            End If
             Dim lstPoolAgent As List(Of PoolAgent)
             lstPoolAgent = getListe(Of PoolAgent)(sql)
             For Each oPoolAgent As PoolAgent In lstPoolAgent

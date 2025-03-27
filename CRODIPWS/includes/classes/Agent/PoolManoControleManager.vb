@@ -55,6 +55,7 @@ Public Class PoolManoControleManager
             paramsQuery = paramsQuery & " ,idManometre='" & pObj.idManometre & "'"
             paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure
             paramsQuery = paramsQuery & " ,dateAssociation='" & CSDate.ToCRODIPString(pObj.dateAssociation) & "'"
+            paramsQuery = paramsQuery & " , isSupprime=" & pObj.isSupprime & ""
 
             bReturn = Update("PoolManoControle", pObj, paramsQuery)
         Catch ex As Exception

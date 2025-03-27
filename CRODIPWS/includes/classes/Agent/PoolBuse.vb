@@ -75,6 +75,25 @@ Public Class PoolBuse
             End If
         End Set
     End Property
+    Protected _isSupprime As Boolean = False
+    <XmlIgnore()>
+    Public Property isSupprime() As Integer
+        Get
+            Return CInt(_isSupprime)
+        End Get
+        Set(ByVal Value As Integer)
+            _isSupprime = CBool(Value)
+        End Set
+    End Property
+    <XmlElement("isSupprime")>
+    Public Property isSupprimeWS() As Boolean
+        Get
+            Return isSupprime
+        End Get
+        Set(ByVal Value As Boolean)
+            isSupprime = Value
+        End Set
+    End Property
     Public Sub New()
     End Sub
 

@@ -62,18 +62,35 @@ Imports CRODIPWS
     End Sub
     <TestMethod()> Public Sub GetListeTest()
 
-        Dim oPoolAgent As PoolAgent
-        oPoolAgent = PoolAgentManager.WSgetById(156, "")
-        Assert.IsTrue(PoolAgentManager.Save(oPoolAgent))
-        oPoolAgent = PoolAgentManager.GetByuid(156)
-        Assert.AreEqual(m_oAgent.uid, oPoolAgent.uidagent)
-        Assert.AreEqual(m_oAgent.uidstructure, oPoolAgent.uidstructure)
+        Dim oPool As New Pool()
+        oPool.uid = 999
+        oPool.idPool = "TEST"
+        oPool.libelle = "POOLTEST"
+        PoolManager.Save(oPool)
 
-        PoolAgentManager.Save(oPoolAgent)
+        Dim oPoolAgent As PoolAgent
+        oPoolAgent = New PoolAgent()
+        oPoolAgent.uid = 156
+        oPoolAgent.uidagent = m_oAgent.uid
+        oPoolAgent.uidpool = oPool.uid
+        Assert.IsTrue(PoolAgentManager.Save(oPoolAgent))
+
         Dim lstPool As List(Of Pool)
         lstPool = PoolAgentManager.getListe(m_oAgent)
 
         Assert.AreNotEqual(0, lstPool.Count)
+        oPool = lstPool(0)
+        Assert.AreEqual(999, oPool.uid)
+        Assert.AreEqual("TEST", oPool.idPool)
+        Assert.AreEqual("POOLTEST", oPool.libelle)
+
+        'Suppression du PoolAgent
+        oPoolAgent = PoolAgentManager.GetByuid(oPoolAgent.uid)
+        oPoolAgent.isSupprime = True
+        PoolAgentManager.Save(oPoolAgent)
+
+        lstPool = PoolAgentManager.getListe(m_oAgent)
+        Assert.AreEqual(0, lstPool.Count)
 
     End Sub
 

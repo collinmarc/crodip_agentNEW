@@ -55,6 +55,7 @@ Public Class PoolBuseManager
             paramsQuery = paramsQuery & " ,idBuse='" & pObj.idBuse & "'"
             paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure
             paramsQuery = paramsQuery & " ,dateAssociation='" & CSDate.ToCRODIPString(pObj.dateAssociation) & "'"
+            paramsQuery = paramsQuery & " , isSupprime=" & pObj.isSupprime & ""
 
             bReturn = Update("PoolBuse", pObj, paramsQuery)
         Catch ex As Exception
