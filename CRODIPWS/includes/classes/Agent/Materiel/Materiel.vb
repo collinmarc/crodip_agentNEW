@@ -71,14 +71,14 @@ Public MustInherit Class Materiel
             _idStructure = Value
         End Set
     End Property
-    <XmlAttribute("uidstructure")>
+    <XmlElement("uidstructure")>
     Public Property uidstructureS() As String
         Get
-            Return _idStructure
+            Return uidstructure
         End Get
         Set(ByVal Value As String)
             If Not String.IsNullOrEmpty(Value) Then
-                _idStructure = Value
+                uidstructure = Value
             End If
         End Set
     End Property

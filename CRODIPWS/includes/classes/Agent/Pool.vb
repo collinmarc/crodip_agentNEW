@@ -1,5 +1,4 @@
 ﻿Imports System.Xml.Serialization
-
 Public Class Pool
     Inherits Materiel
     Private _libelle As String

@@ -1,4 +1,7 @@
 ﻿Imports System.Xml.Serialization
+Public Class availablePools
+    Inherits PoolAgent
+End Class
 
 Public Class PoolAgent
     Inherits root

@@ -820,9 +820,8 @@ Public Class login
                             lstPool = _selectedAgent.getPoolList()
                             If lstPool.Count() = 0 Then
                                 _selectedAgent.oPool = Nothing
-                                'on va aller voir s'il y en a sur le serveur
-
-
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
+                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
                             End If
                             If lstPool.Count() = 1 Then
                                 _selectedAgent.oPool = lstPool(0)

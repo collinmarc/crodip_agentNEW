@@ -71,197 +71,37 @@ Public Class PoolManager
         Return bReturn
     End Function
 
-    Public Shared Function Save(pPool As Pool, Optional pSynhcro As Boolean = False) As Boolean
-        Debug.Assert(pPool IsNot Nothing, "pPool doit être initialisé")
-        Debug.Assert(Not String.IsNullOrEmpty(pPool.idCrodip), "idCrodip doit être initialisé")
-        Dim bReturn As Boolean = True
-        Dim oParam As DbParameter
+    Public Shared Function Save(pObj As Pool, Optional pSynchro As Boolean = False) As Boolean
+        Dim bReturn As Boolean
+
         Try
+            bReturn = False
+            create("Pool", pObj.uid)
 
-            Dim oCSDB As New CSDb(True)
-            Dim n As Integer = oCSDB.getValue("SELECT Count(*) from POOL Where uid = " & pPool.uid & "")
-            If n = 0 Then
-                createPool(oCSDB, pPool)
-            End If
-            Dim oCmd As DbCommand = oCSDB.getConnection().CreateCommand
-            oCmd.CommandText =
-"UPDATE POOL
-   SET 
-       idPool =@idpool,
-       uidstructure =@uidstructure,
-       uidbanc = @uidbanc,
-       aidbanc = @aidbanc,
-       libelle = @libelle,
-       etat = @etat,
-       agentSuppression = @agentSuppression,
-       raisonSuppression = @raisonSuppression,
-       dateSuppression = @dateSuppression,
-       isSupprime = @isSupprime,
-       dateModificationAgent = @dateModificationAgent,
-       dateModificationCrodip = @dateModificationCrodip,
-       nbPastillesVertes = @nbPastillesVertes
 
- WHERE uid = @uid
-"
-            If pSynhcro Then
-                pPool.dateModificationAgent = pPool.dateModificationCrodip
-            Else
-                pPool.dateModificationAgent = Now()
+            Dim paramsQuery As String
+            paramsQuery = ""
+
+            ' Mise a jour de la date de derniere modification
+            If Not pSynchro Then
+                pObj.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
 
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@uid"
-                .DbType = DbType.String
-                .Value = pPool.uid
-            End With
-            oCmd.Parameters.Add(oParam)
+            paramsQuery = paramsQuery & " idpool=" & pObj.idPool
+            paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure & ""
+            paramsQuery = paramsQuery & " ,uidbanc=" & pObj.uidbanc
+            paramsQuery = paramsQuery & " ,aidBanc='" & pObj.aidbanc & "'"
+            paramsQuery = paramsQuery & " ,libelle='" & pObj.libelle & "'"
+            paramsQuery = paramsQuery & " ,etat=" & pObj.etat & ""
+            paramsQuery = paramsQuery & " ,agentSuppression='" & pObj.agentSuppression & "'"
+            paramsQuery = paramsQuery & " ,raisonSuppression='" & pObj.raisonSuppression & "'"
+            paramsQuery = paramsQuery & " ,dateSuppression='" & CSDate.ToCRODIPString(pObj.dateSuppression) & "'"
+            paramsQuery = paramsQuery & " , isSupprime=" & pObj.isSupprime & ""
 
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@idpool"
-                .DbType = DbType.String
-                .Value = pPool.idPool
-            End With
-            oCmd.Parameters.Add(oParam)
+            bReturn = Update("Pool", pObj, paramsQuery)
 
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@uidstructure"
-                .DbType = DbType.Int32
-                If pPool.uidStructure > 0 Then
-                    .Value = pPool.uidStructure
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@uidbanc"
-                .DbType = DbType.String
-                If pPool.uidbanc > 0 Then
-                    .Value = pPool.uidbanc
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@aidbanc"
-                .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.aidbanc) Then
-                    .Value = pPool.aidbanc
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@libelle"
-                .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.libelle) Then
-                    .Value = pPool.libelle
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@etat"
-                .DbType = DbType.Boolean
-                .Value = pPool.etat
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@agentSuppression"
-                .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.agentSuppression) Then
-                    .Value = pPool.agentSuppression
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@raisonSuppression"
-                .DbType = DbType.String
-                If Not String.IsNullOrEmpty(pPool.agentSuppression) Then
-                    .Value = pPool.raisonSuppression
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@dateSuppression"
-                .DbType = DbType.DateTime
-                If Not String.IsNullOrEmpty(pPool.dateSuppression) Then
-                    .Value = CSDate.ToCRODIPString(pPool.dateSuppression)
-                Else
-                    .Value = DBNull.Value
-                End If
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@isSupprime"
-                .DbType = DbType.Boolean
-                .Value = pPool.isSupprime()
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@dateModificationAgent"
-                .DbType = DbType.DateTime
-                .Value = pPool.dateModificationAgent
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@dateModificationCrodip"
-                .DbType = DbType.DateTime
-                .Value = pPool.dateModificationCrodip
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@dateActivation"
-                .DbType = DbType.DateTime
-                .Value = pPool.dateActivation
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oParam = oCmd.CreateParameter()
-            With oParam
-                .ParameterName = "@nbPastillesVertes"
-                .DbType = DbType.Int32
-                .Value = pPool.nbPastillesVertes
-            End With
-            oCmd.Parameters.Add(oParam)
-
-            oCmd.ExecuteNonQuery()
-            oCSDB.free()
-            bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("PoolManager.Save ERR", ex)
+            CSDebug.dispFatal("PoolManager.save ERR : ", ex)
             bReturn = False
         End Try
         Return bReturn

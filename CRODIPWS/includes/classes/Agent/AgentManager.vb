@@ -12,7 +12,7 @@ Public Class AgentManager
     '    Return oreturn
     'End Function
 
-    Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String) As Agent
+    Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String, Optional pbLoadPools As Boolean = True) As Agent
         Dim oreturn As Agent
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
@@ -31,6 +31,28 @@ Public Class AgentManager
                     Using reader As New StringReader(tXmlnodes(0).ParentNode.OuterXml)
                         oreturn = ser.Deserialize(reader)
                     End Using
+                    If pbLoadPools Then
+                        Dim Ser2 As New XmlSerializer(GetType(availablePools))
+                        Dim nItems As Integer = lstPools.Length
+                        For n As Integer = 0 To nItems - 1
+                            Using reader As New StringReader(lstPools(n)(0).ParentNode.outerXml)
+                                Dim oPoolAgent As PoolAgent
+                                oPoolAgent = Ser2.Deserialize(reader)
+                                PoolAgentManager.Save(oPoolAgent)
+                                'Lecture du Pool en base ou en WS
+                                Dim oPool As Pool
+                                oPool = PoolManager.getPoolByuid(oPoolAgent.uidpool)
+                                If oPool IsNot Nothing Then
+                                    oreturn.oPool = oPool
+                                Else
+                                    oPool = PoolManager.WSgetById(oPoolAgent.uidpool, "")
+                                    PoolManager.Save(oPool)
+                                    oreturn.oPool = oPool
+                                End If
+                            End Using
+                        Next n
+                    End If
+
                 Case 1 ' NOK
                     CSDebug.dispError("AgentManager:WSGetByNumeroNational - Code 1 : Non-Trouvée")
                 Case 5 ' SERVICE DESACTIVE

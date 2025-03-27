@@ -829,6 +829,7 @@ Public Class Agent
             Me.versionLogiciel = pAgent.versionLogiciel
             Me.commentaire = pAgent.commentaire
             Me.isSignElecActive = pAgent.isSignElecActive
+            Me.oPool = pAgent.oPool
             bReturn = True
         Catch ex As Exception
 

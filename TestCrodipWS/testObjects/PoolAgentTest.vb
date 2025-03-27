@@ -94,6 +94,14 @@ Imports CRODIPWS
 
     End Sub
 
+    <TestMethod()> Public Sub WSGetListePoolTest()
+        m_oAgent.numeroNational = "MCOTU"
+        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational(m_oAgent.numeroNational, False)
+        Assert.IsNull(oAgent.oPool)
+        oAgent = AgentManager.WSgetByNumeroNational(m_oAgent.numeroNational, True)
+        Assert.IsNotNull(oAgent.oPool)
+        Assert.AreEqual(oAgent.oPool.uidstructure, m_oAgent.uidstructure)
+    End Sub
 
 
 End Class
