@@ -8,6 +8,7 @@ Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Collections.Generic
 Imports CRODIPWS
+Imports System.Linq
 
 Public Class login
     Inherits frmCRODIP
@@ -795,77 +796,48 @@ Public Class login
                             CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
                             AgentManager.save(_selectedAgent)
                         End If
-                        If AgentPCManager.GetListe().Count() = 0 Then
-                            Dim oAgentPC As New AgentPC()
-                            Dim Str As String = ""
-                            While (Str.Length <> 5 Or Not IsNumeric(Str))
-                                Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                                If Str.Length = 0 Then
-                                    'On sort si on click sur Annul
-                                    login_password.Text = ""
-                                    pnlLoginControls.Enabled = True
-                                    Exit Sub
-                                End If
-                            End While
-                            oAgentPC.idCrodip = Str
-                            oAgentPC.uidstructure = _selectedAgent.uidstructure
-                            AgentPCManager.save(oAgentPC)
 
-                        End If
+                        'If AgentPCManager.GetListe().Count() = 0 Then
+                        '    Dim oAgentPC As New AgentPC()
+                        '    Dim Str As String = ""
+                        '    While (Str.Length <> 5 Or Not IsNumeric(Str))
+                        '        Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                        '        If Str.Length = 0 Then
+                        '            'On sort si on click sur Annul
+                        '            login_password.Text = ""
+                        '            pnlLoginControls.Enabled = True
+                        '            Exit Sub
+                        '        End If
+                        '    End While
+                        '    oAgentPC.idCrodip = Str
+                        '    oAgentPC.uidstructure = _selectedAgent.uidstructure
+                        '    AgentPCManager.save(oAgentPC)
+
+                        'End If
                         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            'If Not String.IsNullOrEmpty(_selectedAgent.idCRODIPPool) Then
-                            '    'L'agent à un pool Affecté
-                            '    '==========================
-                            '    If _selectedAgent.oPool.idCRODIPPC = "" Then
-                            '        Dim oAgentPC As New AgentPC()
-                            '        Dim Str As String = ""
-                            '        While (Str.Length <> 5 Or Not IsNumeric(Str))
-                            '            Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                            '            If Str.Length = 0 Then
-                            '                'On sort si on click sur Annul
-                            '                login_password.Text = ""
-                            '                pnlLoginControls.Enabled = True
-                            '                Exit Sub
-                            '            End If
-                            '        End While
-                            '        oAgentPC.idCrodip = Str
-                            '        oAgentPC.uidstructure = _selectedAgent.uidstructure
-                            '        AgentPCManager.save(oAgentPC)
-                            '        _selectedAgent.oPool.idCRODIPPC = Str
-                            '        PoolManager.Save(_selectedAgent.oPool)
-                            '    End If
+                            Dim lstPool As List(Of Pool)
 
-                            '    If Not _selectedAgent.checkPC() Then
-                            '        CSDebug.dispFatal("Le PC n'est pas reconnu")
-                            '        MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
-                            '        Application.Exit()
-                            '    End If
-                            'Else
-                            '    'L'agent n'a pas de pool Affecté
-                            '    '===============================
-                            '    'Chargement de la liste de pools
-                            '    PoolManager.GetListe(_selectedAgent.idStructure).ForEach(Sub(p)
-                            '                                                                 m_bsrcPools.Add(p)
-                            '                                                             End Sub)
-                            '    If m_bsrcPools.Count > 1 Then
-                            '        'il y a plus d'un pool, on demande à l'inspecteur de choisir
-                            '        pnlPools.Visible = True
-                            '    Else
-                            '        If m_bsrcPools.Count = 1 Then
-                            '            'il y a un seul pool, on l'affecte à l'inspecteur
-                            '            Dim oPool As Pool
-                            '            oPool = m_bsrcPools(0)
-                            '            _selectedAgent.idCRODIPPool = oPool.idCrodip
-                            '            AgentManager.save(_selectedAgent)
-                            '        End If
-                            '        'il n'y a pas de pool dans la base => on passe à la suite
-                            '        SynchroEtSuite(_selectedAgent)
-                            '    End If
+                            lstPool = _selectedAgent.getPoolList()
+                            If lstPool.Count() = 0 Then
+                                _selectedAgent.oPool = Nothing
+                                'on va aller voir s'il y en a sur le serveur
 
-                            'End If
+
+                            End If
+                            If lstPool.Count() = 1 Then
+                                _selectedAgent.oPool = lstPool(0)
+                                SynchroEtSuite(_selectedAgent)
+                            End If
+
+                            If lstPool.Count > 1 Then
+                                lstPool.ForEach(Sub(p)
+                                                    m_bsrcPools.Add(p)
+                                                End Sub)
+                                'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                                pnlPools.Visible = True
+                                _selectedAgent.oPool = Nothing
+                            End If
                         End If
-                        'sUITE DE LA SYNCHRO
-                        SynchroEtSuite(_selectedAgent)
                     Else
                         ' On met à jour la barre de status
                         Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
@@ -1363,6 +1335,31 @@ Public Class login
 
     End Sub
     Private Sub SynchroEtSuite(pAgent As Agent)
+        Dim bContinue As Boolean = False
+
+        'Vérification du PC
+        If My.Settings.GestionDesPools Then
+            Dim lstPc As List(Of Pc)
+            lstPc = PoolPcManager.GetListe(pAgent.oPool)
+            If lstPc.Count() = 1 Then
+                Dim oPc As Pc
+                oPc = lstPc(0)
+                If My.Settings.aqw = "zsx" Then
+                    bContinue = oPc.checkRegistry()
+                Else
+                    bContinue = True
+                End If
+                If Not bContinue Then
+                    CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPool.uid & "]")
+                End If
+            Else
+                CSDebug.dispError("Login.SynchroEtSuite Err : Plus d'un PC associé à ce Pool [" & pAgent.oPool.uid & "]")
+                bContinue = False
+            End If
+        End If
+        If Not bContinue Then
+            Application.Exit()
+        End If
         'Synchronisation 
         If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not pAgent.isGestionnaire Then
             If CSEnvironnement.checkWebService() = True Then
@@ -1411,7 +1408,7 @@ Public Class login
         Dim oPool As Pool
         dgvPools.Enabled = False
         oPool = m_bsrcPools.Current
-        _selectedAgent.idCRODIPPool = oPool.idCrodip
+        '_selectedAgent.idCRODIPPool = oPool.idCrodip
         AgentManager.save(_selectedAgent)
         If Not _selectedAgent.checkPC() Then
             CSDebug.dispFatal("Le PC n'est pas reconnu")

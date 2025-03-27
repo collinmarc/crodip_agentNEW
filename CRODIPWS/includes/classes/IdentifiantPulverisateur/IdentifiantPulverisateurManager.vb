@@ -363,7 +363,7 @@ Public Class IdentifiantPulverisateurManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             olst = getListeByStructure(pAgent.uidStructure)
         Else
-            olst = getListeByPool(pAgent.idCRODIPPool)
+            'olst = getListeByPool(pAgent.idCRODIPPool)
         End If
 
         Return olst
@@ -428,7 +428,7 @@ Public Class IdentifiantPulverisateurManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             olst = getListeInutiliseByStructure(pAgent.uidStructure)
         Else
-            olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
+            'olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
         End If
 
         Return olst

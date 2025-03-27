@@ -127,8 +127,8 @@ Public Class SynchronisationManager
         Dim isComplete As Integer
 
         Dim DateDernSynhcro As DateTime
-        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.uidStructure)
-        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.uidStructure)
+        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.uidstructure)
+        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.uidstructure)
         CSDebug.dispInfo("Dernière date de synchro =   " & DateDernSynhcro.ToShortDateString())
         'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
         '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
@@ -137,7 +137,11 @@ Public Class SynchronisationManager
         CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
             Dim infod As String
-            objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, "", "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+            If pAgent.oPool Is Nothing Then
+                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, "", "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+            Else
+                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.idPool, "", "", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+            End If
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)
         End Try

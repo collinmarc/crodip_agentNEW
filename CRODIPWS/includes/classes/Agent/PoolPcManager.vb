@@ -32,6 +32,28 @@ Public Class PoolPcManager
         oReturn = getByKey(Of PoolPc)("Select * from PoolPc where uid = " & puid)
         Return oReturn
     End Function
+    Public Overloads Shared Function GetListe(pPool As Pool) As List(Of Pc)
+        Dim lstReturn As New List(Of Pc)
+        Try
+            Dim sql As String
+            sql = "SELECT * FROM PoolPc where uidPool = " & pPool.uid
+            Dim lstPoolAgent As List(Of PoolPc)
+            lstPoolAgent = getListe(Of PoolPc)(sql)
+            For Each oPoolPc As PoolPc In lstPoolAgent
+                Dim oPc As Pc
+                oPc = PcManager.GetByuid(oPoolPc.uid)
+                lstReturn.Add(oPc)
+            Next
+
+        Catch ex As Exception
+            CSDebug.dispError("PoolPcManager.getListe ERR", ex)
+            lstReturn.Clear()
+        End Try
+        Return lstReturn
+    End Function
+
+
+
     Public Shared Function Save(ByVal pObj As PoolPc, Optional bSynchro As Boolean = False) As Boolean
 
         Dim bReturn As Boolean

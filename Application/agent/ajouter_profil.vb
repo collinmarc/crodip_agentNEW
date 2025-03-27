@@ -261,7 +261,7 @@ Public Class ajouter_profil
                                 'La date de ernière synhcro est la plus petite date de synchro des agents en base.
                                 objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
                                 'Update de cet agent avec l'agent recu pas WS
-                                objAgent.idCRODIPPool = ""
+                                '                                objAgent.idCRODIPPool = ""
                                 AgentManager.save(objAgent)
                                 'Création du pool de la structure
                                 If My.Settings.GestionDesPools Then

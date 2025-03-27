@@ -672,6 +672,8 @@ Alter Table AgentPC drop Column idCrodip;
 Alter Table AgentPC drop Column idStructure;
 Alter Table AgentPC drop Column numInterne;
 
+Alter Table Agent add Column uidpool Bigint(20) DEFAULT 0;
+Alter Table Agent drop Column idCRODIPPOOL ;
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 16:10:00','AgentPC');
 

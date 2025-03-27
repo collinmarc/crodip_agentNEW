@@ -992,7 +992,7 @@ Public Class Synchronisation
         Next
         Return lstElementsASynchronisertotal
     End Function
-    Friend Function getListeElementsASynchroniserDESC(pAgent As Agent) As List(Of SynchronisationElmt)
+    Public Function getListeElementsASynchroniserDESC(pAgent As Agent) As List(Of SynchronisationElmt)
         Dim lstElementsASynchroniser As List(Of SynchronisationElmt)
         lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(pAgent, m_SynchroBoolean)
         Return lstElementsASynchroniser

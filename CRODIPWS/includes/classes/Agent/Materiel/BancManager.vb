@@ -441,7 +441,7 @@ Public Class BancManager
             '    'S'il n'y a pas de banc affecté au pool on prend tout
             '    arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, True)
             'End If
-            arrResponse = getBancByPoolId(pAgent.idCRODIPPool, isShowAll)
+            '            arrResponse = getBancByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools 
             arrResponse.ForEach(Sub(B)
                                     B.lstPools.AddRange(getlstPoolByBanc(B.id))

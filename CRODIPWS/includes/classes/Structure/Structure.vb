@@ -413,7 +413,7 @@ Public Class [Structure]
                                                   End Function)
                 CSDebug.dispInfo("MAJ Agent Pool [" & oAgent.id & "]")
 
-                oAgent.idCRODIPPool = oPool.idCrodip
+                'oAgent.idCRODIPPool = oPool.idCrodip
                 AgentManager.save(oAgent)
             Next
             'Affectation des Bancs

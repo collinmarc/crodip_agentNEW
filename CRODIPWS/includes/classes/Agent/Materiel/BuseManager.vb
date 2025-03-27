@@ -599,7 +599,7 @@ Public Class BuseManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getBusesByStructureId(pAgent.uidStructure, isShowAll)
         Else
-            arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'arrResponse = getBusesByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools 
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))
@@ -613,7 +613,7 @@ Public Class BuseManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getBusesEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
-            arrResponse = getBusesByPoolIdJamaisServi(pAgent.idCRODIPPool)
+            'arrResponse = getBusesByPoolIdJamaisServi(pAgent.idCRODIPPool)
             'Charegement de la Liste des pools du mano
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByBuse(M.numeroNational))

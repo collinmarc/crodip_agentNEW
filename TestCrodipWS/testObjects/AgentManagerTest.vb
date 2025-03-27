@@ -66,8 +66,23 @@ Public Class AgentManagerTest
 
         oAgent1 = AgentManager.getAgentById(oAgent2.id)
         Assert.IsFalse(oAgent2.isSignElecActive)
+        Assert.IsNull(oAgent2.oPool)
 
-        AgentManager.delete(oAgent1.id)
+        Dim oPool As New Pool()
+        oPool.uid = 99
+        oPool.idPool = "TEST"
+        oPool.libelle = "POOLTEST"
+        oAgent2.oPool = oPool
+        PoolManager.Save(oPool)
+
+        Assert.IsTrue(AgentManager.save(oAgent2))
+        oAgent1 = AgentManager.getAgentById(oAgent2.id)
+
+        Assert.IsNotNull(oAgent1.oPool)
+        Assert.AreEqual(99, oAgent1.oPool.uid)
+        Assert.AreEqual("POOLTEST", oAgent1.oPool.libelle)
+        Assert.AreEqual("TEST", oAgent1.oPool.idPool)
+
 
     End Sub
 

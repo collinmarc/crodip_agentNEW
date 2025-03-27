@@ -558,7 +558,7 @@ Public Class ManometreControleManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManoControleByStructureIdJamaisServi(pAgent.uidStructure)
         Else
-            arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
+            'arrResponse = getManoControleByPoolIdJamaisServi(pAgent.idCRODIPPool)
             If arrResponse.Count = 0 Then
                 arrResponse = getManoControleByStructureIdJamaisServi(pAgent.uidStructure)
             End If
@@ -576,7 +576,7 @@ Public Class ManometreControleManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManoControleByStructureId(pAgent.uidStructure, isShowAll)
         Else
-            arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'arrResponse = getManoControleByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools du mano
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByManoC(M.idCrodip))

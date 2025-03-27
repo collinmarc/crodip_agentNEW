@@ -46,7 +46,6 @@ Public Class Agent
     Private _droitsPulves As String
     Private _IsGestionnaire As Boolean
     Private _IsSignElecActive As Boolean
-    Private _idCRODIPPool As String
     Private _oPool As Pool
 
 
@@ -75,8 +74,8 @@ Public Class Agent
         _droitsPulves = ""
         _IsGestionnaire = False
         _IsSignElecActive = False
-        _idCRODIPPool = ""
         bTest = False
+        oPool = Nothing
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
@@ -334,14 +333,6 @@ Public Class Agent
             _IsSignElecActive = value
         End Set
     End Property
-    Public Property idCRODIPPool() As String
-        Get
-            Return _idCRODIPPool
-        End Get
-        Set(ByVal value As String)
-            _idCRODIPPool = value
-        End Set
-    End Property
     <XmlIgnore()>
     Public Property oPool() As Pool
         Get
@@ -351,6 +342,16 @@ Public Class Agent
             _oPool = value
         End Set
     End Property
+    Public Function getPoolList() As List(Of Pool)
+        Dim lstReturn As New List(Of Pool)
+        Try
+            lstReturn = PoolAgentManager.getListe(Me)
+        Catch ex As Exception
+
+        End Try
+        Return lstReturn
+    End Function
+
     ''' <summary>
     ''' Rend la liste des types et catégories de pulvés disponibles. L'utilisation des droits des inspecteurs est facultative
     ''' </summary>
@@ -466,13 +467,16 @@ Public Class Agent
                         Me.isSignElecActive = pValue
                     Case "isSignElecActive".Trim().ToUpper()
                         Me.isSignElecActive = pValue
-                    Case "idCRODIPPool".Trim().ToUpper()
-                        Me.idCRODIPPool = pValue
-                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            If idCRODIPPool <> "" Then
-                                oPool = PoolManager.getPoolByIdPool(idCRODIPPool)
+                    Case "uidpool".Trim().ToUpper()
+                        Try
+                            If CInt(pValue) <> 0 Then
+                                Me.oPool = PoolManager.getPoolByuid(pValue)
+                            Else
+                                Me.oPool = Nothing
                             End If
-                        End If
+                        Catch ex As Exception
+                            Me.oPool = Nothing
+                        End Try
                 End Select
             End If
 
@@ -813,7 +817,6 @@ Public Class Agent
                 Me.dateModificationAgent = pAgent.dateModificationAgent
                 Me.dateModificationCrodip = pAgent.dateModificationCrodip
                 Me.cleActivation = pAgent.cleActivation
-                Me.idCRODIPPool = pAgent.idCRODIPPool
             End If
             Me.nom = pAgent.nom
             Me.prenom = pAgent.prenom

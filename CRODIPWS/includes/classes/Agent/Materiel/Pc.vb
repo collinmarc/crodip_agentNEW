@@ -1,6 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Web.Services
 Imports System.Xml.Serialization
+Imports Microsoft.Win32
 
 <Serializable(), XmlInclude(GetType(Pc))>
 Public Class Pc
@@ -291,7 +292,7 @@ Public Class Pc
         Me.dateSuppression = Now.ToString()
         Me.dateModificationAgent = Now()
         Me.isSupprime = True
-        PcManager.save(Me)
+        PcManager.Save(Me)
         Return True
     End Function
     Public Overrides Function creerFicheVieActivation(ByVal pAgent As Agent) As Boolean
@@ -328,7 +329,7 @@ Public Class Pc
         Try
             ' On bloque la buse
             Me.etat = False
-            PcManager.save(Me)
+            PcManager.Save(Me)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Buse.desactiver : " & ex.Message)
@@ -337,6 +338,39 @@ Public Class Pc
         Return bReturn
 
 
+    End Function
+    Public Function checkRegistry() As Boolean
+        Dim bReturn As Boolean
+        Try
+            Const userRoot As String = "HKEY_CURRENT_USER"
+            Const subkey As String = "CRODIP"
+            Const keyName As String = userRoot & "\" & subkey
+
+            If String.IsNullOrEmpty(Me.idRegistre) Then
+                Dim g As New Guid()
+                g = Guid.NewGuid()
+                Me.idRegistre = g.ToString()
+                Registry.SetValue(keyName, "POOL", Me.idRegistre)
+                PcManager.Save(Me)
+
+            End If
+
+
+            Dim IDLu As String = Registry.GetValue(keyName, "POOL", "")
+            If IDLu.Equals(Me.idRegistre) Then
+                bReturn = True
+            Else
+                bReturn = False
+#If DEBUG Then
+                CSDebug.dispError("AgentPC.checkRegistry MauvaiseClé : (" & Me.idRegistre & "/" & IDLu)
+#End If
+            End If
+
+        Catch ex As Exception
+            CSDebug.dispError("AgentPC,CheckRegistry ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
     End Function
 
 End Class

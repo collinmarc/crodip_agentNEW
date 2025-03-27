@@ -551,7 +551,7 @@ Public Class ManometreEtalonManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManometreEtalonByStructureId(pAgent.uidStructure, isShowAll)
         Else
-            arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
+            'arrResponse = getManoEtalonByPoolId(pAgent.idCRODIPPool, isShowAll)
             'Charegement de la Liste des pools du mano
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))
@@ -565,7 +565,7 @@ Public Class ManometreEtalonManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             arrResponse = getManometreEtalonByStructureIdJamaisServi(pAgent.uidStructure)
         Else
-            arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)
+            'arrResponse = getManoEtalonByPoolIdJamaisServi(pAgent.idCRODIPPool)
             'Charegement de la Liste des pools du mano
             arrResponse.ForEach(Sub(M)
                                     M.lstPools.AddRange(getlstPoolByManoE(M.numeroNational))

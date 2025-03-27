@@ -119,7 +119,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         agent.DroitsPulves = "Rampes|Voute"
         agent.isGestionnaire = True
         agent.isSignElecActive = True
-        agent.idCRODIPPool = "123"
+        'agent.idCRODIPPool = "123"
         AgentManager.save(agent)
 
         actual = AgentManager.WSSend(agent, updatedObject)
@@ -146,7 +146,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Assert.AreEqual(agentLu.versionLogiciel, "VERSION")
         'Assert.AreEqual(agentLu.DroitsPulves, "Rampes|Voute")
         'Assert.AreEqual(True, agentLu.isSignElecActive)
-        Assert.AreEqual(agent.idCRODIPPool, "123")
+        'Assert.AreEqual(agent.idCRODIPPool, "123")
 
     End Sub
     <TestMethod()>

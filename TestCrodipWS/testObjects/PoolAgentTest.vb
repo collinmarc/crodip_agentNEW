@@ -60,7 +60,22 @@ Imports CRODIPWS
 
 
     End Sub
+    <TestMethod()> Public Sub GetListeTest()
 
+        Dim oPoolAgent As PoolAgent
+        oPoolAgent = PoolAgentManager.WSgetById(156, "")
+        Assert.IsTrue(PoolAgentManager.Save(oPoolAgent))
+        oPoolAgent = PoolAgentManager.GetByuid(156)
+        Assert.AreEqual(m_oAgent.uid, oPoolAgent.uidagent)
+        Assert.AreEqual(m_oAgent.uidstructure, oPoolAgent.uidstructure)
+
+        PoolAgentManager.Save(oPoolAgent)
+        Dim lstPool As List(Of Pool)
+        lstPool = PoolAgentManager.getListe(m_oAgent)
+
+        Assert.AreNotEqual(0, lstPool.Count)
+
+    End Sub
 
 
 

@@ -526,10 +526,10 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , droitsPulves='" & agent.DroitsPulves & "'"
                 paramsQuery = paramsQuery & " , isGestionnaire=" & agent.isGestionnaire & ""
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
-                If Not String.IsNullOrEmpty(agent.idCRODIPPool) Then
-                    paramsQuery = paramsQuery & " , idCRODIPPool='" & agent.idCRODIPPool & "'"
-                End If
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
+                If agent.oPool IsNot Nothing Then
+                    paramsQuery = paramsQuery & " , uidpool=" & agent.oPool.uid & ""
+                End If
 
                 paramsQuery = paramsQuery & agent.getRootQuery()
 
