@@ -244,7 +244,7 @@ Public Class Synchronisation
                                 'm_Agent = tmpAgentUpdated
                                 'agentCourant = m_Agent
                                 AgentManager.save(tmpAgentUpdated, True)
-                                m_Agent = AgentManager.getAgentById(tmpAgentUpdated.id)
+                                'm_Agent = AgentManager.getAgentById(tmpAgentUpdated.id)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro : Envoi Agent n°" & tmpUpdateAgent.id & " Erreur : Agent inconnu.")
                             Case 3 ' NOAGENT
@@ -274,6 +274,33 @@ Public Class Synchronisation
                                 StructureManager.setSynchro(oStructure)
                             Case 2 ' SENDPROFILAGENT_UPDATE
                                 StructureManager.setSynchro(oStructure)
+                            Case 1 ' NOK
+                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSStructuree) - Le web service a répondu : NOK")
+                            Case 9 ' BADREQUEST
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSStructuree) - Le web service a répondu : BadRequest")
+                        End Select
+                    Catch ex As Exception
+                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Structure) : " & ex.Message.ToString)
+                    End Try
+                Next
+            End If
+            If (m_SynchroBoolean.m_bSynchAscAgent) Then
+
+                ' Synchro des PC (idRegistre)
+                ' On récupère les mises à jours
+                Dim arrUpdates() As AgentPc = AgentPcManager.getUpdates(m_Agent)
+                For Each oItem As AgentPc In arrUpdates
+                    Try
+                        Dim UpdatedObject As New AgentPc
+                        Notice("AgentPC n°" & oItem.uid)
+                        Dim response As Integer = AgentPcManager.WSSend(oItem, UpdatedObject)
+                        Select Case response
+                            Case -1 ' ERROR
+                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSAgentPC) - Erreur Locale")
+                            Case 0 ' OK
+                                AgentPcManager.setSynchro(oItem)
+                            Case 2 ' SENDPROFILAGENT_UPDATE
+                                AgentPcManager.setSynchro(oItem)
                             Case 1 ' NOK
                                 CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSStructuree) - Le web service a répondu : NOK")
                             Case 9 ' BADREQUEST
@@ -1013,29 +1040,30 @@ Public Class Synchronisation
             SynchronisationManager.LogSynchroStart("DESC")
             Dim oList As AgentList
             oList = AgentManager.getAgentList(m_Agent.uidStructure)
+            lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(m_Agent)
 
-            'On récupère les éléments à synchroniser de chaque Agent
-            For Each oAgent As Agent In oList.items
-                If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
-                    CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
+            ''On récupère les éléments à synchroniser de chaque Agent
+            'For Each oAgent As Agent In oList.items
+            '    If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
+            '        CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
 
-                    lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+            '        lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
 
-                    'et on les fusionne dans la liste Globale
-                    CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")
-                    For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
-                        'Elimination des elements déjà traité
-                        Dim n As Integer = (From o In lstElementsASynchroniserTotal
-                                            Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
-                                            Select o) _
-                                            .Count()
-                        If n = 0 Then
-                            oelmt.setAgent(m_Agent)
-                            lstElementsASynchroniserTotal.Add(oelmt)
-                        End If
-                    Next
-                End If
-            Next
+            '        'et on les fusionne dans la liste Globale
+            '        CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")
+            '        For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+            '            'Elimination des elements déjà traité
+            '            Dim n As Integer = (From o In lstElementsASynchroniserTotal
+            '                                Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
+            '                                Select o) _
+            '                                .Count()
+            '            If n = 0 Then
+            '                oelmt.setAgent(m_Agent)
+            '                lstElementsASynchroniserTotal.Add(oelmt)
+            '            End If
+            '        Next
+            '    End If
+            'Next
 
             CSDebug.dispInfo("RunDescSynchro [" & lstElementsASynchroniserTotal.Count & "]")
             bReturn = runDescSynchro(lstElementsASynchroniserTotal)
@@ -1084,7 +1112,7 @@ Public Class Synchronisation
             Next
 
             'On recharge l'agent courant
-            m_Agent = AgentManager.getAgentById(m_Agent.id)
+            'm_Agent = AgentManager.getAgentById(m_Agent.id)
             '            agentCourant = m_Agent
             'Si l'agent n'est pas supprimé
             If Not String.IsNullOrEmpty(m_Agent.id) Then

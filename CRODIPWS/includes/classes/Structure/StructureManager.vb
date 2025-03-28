@@ -238,7 +238,7 @@ Public Class StructureManager
     Public Shared Sub setSynchro(ByVal objStructure As [Structure])
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now)
             dbLink.queryString = "UPDATE Structure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id=" & objStructure.id & ""
             dbLink.Execute()
             dbLink.free()

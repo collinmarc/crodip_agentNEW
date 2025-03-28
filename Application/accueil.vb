@@ -4652,7 +4652,7 @@ Public Class accueil
     Private Sub loadAccueilAlertsManoEtalon(ByRef positionTopAlertes As Integer)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOETALON_LOAD, True)
         'Chargement de tous les manos
-        Dim lstMano As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True) _
+        Dim lstMano As List(Of ManometreEtalon) = ManometreEtalonManager.getlstByAgent(agentCourant, True) _
                                                                     .Where(Function(M)
                                                                                Try
                                                                                    Return M.fondEchelle >= 6 And M.fondEchelle <= 10
@@ -4662,22 +4662,22 @@ Public Class accueil
                                                                            End Function).ToList()
         loadAccueilAlertsManoEtalon(lstMano, "[6-10] bar", positionTopAlertes)
 
-        lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True).Where(Function(M)
-                                                                                                 Try
-                                                                                                     Return M.fondEchelle >= 20 And M.fondEchelle <= 25
-                                                                                                 Catch ex As Exception
-                                                                                                     Return False
-                                                                                                 End Try
-                                                                                             End Function).ToList()
+        lstMano = ManometreEtalonManager.getlstByAgent(agentCourant, True).Where(Function(M)
+                                                                                     Try
+                                                                                         Return M.fondEchelle >= 20 And M.fondEchelle <= 25
+                                                                                     Catch ex As Exception
+                                                                                         Return False
+                                                                                     End Try
+                                                                                 End Function).ToList()
         loadAccueilAlertsManoEtalon(lstMano, "[20-25] bar", positionTopAlertes)
 
-        lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True).Where(Function(M)
-                                                                                                 Try
-                                                                                                     Return Not ((M.fondEchelle >= 6 And M.fondEchelle <= 10) Or (M.fondEchelle >= 20 And M.fondEchelle <= 25))
-                                                                                                 Catch ex As Exception
-                                                                                                     Return True
-                                                                                                 End Try
-                                                                                             End Function).ToList()
+        lstMano = ManometreEtalonManager.getlstByAgent(agentCourant, True).Where(Function(M)
+                                                                                     Try
+                                                                                         Return Not ((M.fondEchelle >= 6 And M.fondEchelle <= 10) Or (M.fondEchelle >= 20 And M.fondEchelle <= 25))
+                                                                                     Catch ex As Exception
+                                                                                         Return True
+                                                                                     End Try
+                                                                                 End Function).ToList()
         loadAccueilAlertsManoEtalon(lstMano, "diverses", positionTopAlertes)
 
 
@@ -4804,7 +4804,7 @@ Public Class accueil
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
         'Chargement de tous les manos
-        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True) _
+        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, True) _
                                                                     .Where(Function(M)
                                                                                Try
                                                                                    Return M.IsTypeTracaB
@@ -4814,22 +4814,22 @@ Public Class accueil
                                                                            End Function).ToList()
         loadAccueilAlertsManoControle(lstMano, "[6-10] bar", positionTopAlertes)
 
-        lstMano = ManometreControleManager.getManoControleByAgent(agentCourant, True).Where(Function(M)
-                                                                                                Try
-                                                                                                    Return M.IsTypeTracaH
-                                                                                                Catch ex As Exception
-                                                                                                    Return False
-                                                                                                End Try
-                                                                                            End Function).ToList()
+        lstMano = ManometreControleManager.getlstByAgent(agentCourant, True).Where(Function(M)
+                                                                                       Try
+                                                                                           Return M.IsTypeTracaH
+                                                                                       Catch ex As Exception
+                                                                                           Return False
+                                                                                       End Try
+                                                                                   End Function).ToList()
         loadAccueilAlertsManoControle(lstMano, "[20-25] bar", positionTopAlertes)
 
-        lstMano = ManometreControleManager.getManoControleByAgent(agentCourant, True).Where(Function(M)
-                                                                                                Try
-                                                                                                    Return Not (M.IsTypeTracaB Or M.IsTypeTracaH)
-                                                                                                Catch ex As Exception
-                                                                                                    Return True
-                                                                                                End Try
-                                                                                            End Function).ToList()
+        lstMano = ManometreControleManager.getlstByAgent(agentCourant, True).Where(Function(M)
+                                                                                       Try
+                                                                                           Return Not (M.IsTypeTracaB Or M.IsTypeTracaH)
+                                                                                       Catch ex As Exception
+                                                                                           Return True
+                                                                                       End Try
+                                                                                   End Function).ToList()
         loadAccueilAlertsManoControle(lstMano, "", positionTopAlertes)
 
 
@@ -5045,7 +5045,7 @@ Public Class accueil
         Dim alerte As GlobalsCRODIP.ALERTE = GlobalsCRODIP.ALERTE.NONE
 
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BUSESETALON_LOAD, True)
-        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesByAgent(agentCourant, True)
+        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getlstByAgent(agentCourant, True)
         For Each tmpBuseEtalon As Buse In arrBusesEtalon
             If Not String.IsNullOrEmpty(tmpBuseEtalon.dateAchat) Then
                 alerte = tmpBuseEtalon.getAlerte()

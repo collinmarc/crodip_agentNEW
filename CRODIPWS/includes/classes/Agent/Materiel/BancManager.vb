@@ -206,20 +206,11 @@ Public Class BancManager
                     ' On finalise la requete et en l'execute
                     bddCommande.CommandText = "UPDATE BancMesure SET " & paramsQuery & " WHERE id='" & objBanc.id & "'"
                     bddCommande.ExecuteNonQuery()
-                    If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-
-                        'Suppression des Pools avant insertion
-                        clearlstPoolByBanc(objBanc.id)
-                        'Insertion des Pools
-                        objBanc.lstPools.ForEach(Sub(p)
-                                                     insertPoolBanc(p.idCrodip, objBanc.id)
-                                                 End Sub)
-                    End If
 
                     bReturn = True
-                    End If
-
                 End If
+
+            End If
         Catch ex As Exception
             CSDebug.dispError("Err BancManager - Save : " & ex.Message.ToString)
             bReturn = False
@@ -234,7 +225,7 @@ Public Class BancManager
     Public Shared Sub setSynchro(ByVal objBanc As Banc)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now)
             dbLink.queryString = "UPDATE BancMesure SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id='" & objBanc.id & "'"
             dbLink.Execute()
             dbLink.free()
@@ -269,13 +260,19 @@ Public Class BancManager
         If Not oCSdb Is Nothing Then
             oCSdb.free()
         End If
-        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            'Charegement de la Liste des pools 
-            tmpBanc.lstPools.AddRange(getlstPoolByBanc(tmpBanc.id))
-        End If
 
         'on retourne le banc ou un objet vide en cas d'erreur
         Return tmpBanc
+    End Function
+    Public Shared Function getBancByuId(ByVal puid As String) As Banc
+        Debug.Assert(Not String.IsNullOrEmpty(puid), "L'Id doit être non null")
+        Dim oReturn As Banc
+        Dim sql As String
+        sql = "SELECT * FROM BancMesure WHERE BancMesure.uid=" & puid & ""
+        oReturn = getByKey(Of Banc)(sql)
+
+        'on retourne le banc ou un objet vide en cas d'erreur
+        Return oReturn
     End Function
 #End Region
     '''
@@ -432,63 +429,19 @@ Public Class BancManager
 
     Public Shared Function getBancByAgent(pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
-        Dim arrResponse As New List(Of Banc)
+        Dim lstReturn As New List(Of Banc)
         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            'If agentCourant.oPool.idBanc <> "" Then
-            '    BancCourant = BancManager.getBancById(agentCourant.oPool.idBanc)
-            '    arrResponse.Add(BancCourant)
-            'Else
-            '    'S'il n'y a pas de banc affecté au pool on prend tout
-            '    arrResponse = BancManager.getBancByStructureId(agentCourant.idStructure, True)
-            'End If
-            '            arrResponse = getBancByPoolId(pAgent.idCRODIPPool, isShowAll)
-            'Charegement de la Liste des pools 
-            arrResponse.ForEach(Sub(B)
-                                    B.lstPools.AddRange(getlstPoolByBanc(B.id))
-                                End Sub)
-
+            Dim obanc As Banc = Nothing
+            If pAgent.oPool IsNot Nothing Then
+                obanc = BancManager.getBancByuId(pAgent.oPool.uidbanc)
+            End If
+            If obanc IsNot Nothing Then
+                lstReturn.Add(obanc)
+            End If
         Else
-            arrResponse = BancManager.getBancByStructureId(pAgent.uidStructure, isShowAll)
+            lstReturn = BancManager.getBancByStructureId(pAgent.uidstructure, isShowAll)
         End If
-        Return arrResponse
-    End Function
-    Private Shared Function getBancByPoolId(ByVal pIdCrodipPool As String, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
-        Debug.Assert(Not String.IsNullOrEmpty(pIdCrodipPool), "L'IDPool doit être renseigné")
-        Dim arrResponse As New List(Of Banc)
-
-        Dim oCsdb As New CSDb(True)
-        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT BancMesure.* FROM BancMesure , PoolBanc WHERE BancMesure.id = PoolBanc.numeronationalBanc AND PoolBanc.idCRODIPPool = '" & pIdCrodipPool & "' AND BancMesure.isSupprime=" & False & " And BancMesure.jamaisServi = " & False & ""
-        If Not isShowAll Then
-            bddCommande.CommandText = bddCommande.CommandText & " AND BancMesure.etat=" & True
-        End If
-        bddCommande.CommandText = bddCommande.CommandText & " ORDER BY BancMesure.id"
-
-        Try
-            ' On récupère les résultats
-            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
-            ' Puis on les parcours
-            Dim i As Integer = 0
-            While oDataReader.Read()
-
-                ' On remplit notre tableau
-                Dim oBanc As New Banc
-                If oBanc.FillDR(oDataReader) Then
-                    arrResponse.Add(oBanc)
-                End If
-            End While
-            oDataReader.Close()
-        Catch ex As Exception
-            ' On catch l'erreur
-            CSDebug.dispError("BancManager.getBancByPoolId : " & ex.Message)
-        End Try
-        ' Test pour fermeture de connection BDD
-        If Not oCsdb Is Nothing Then
-            ' On ferme la connexion
-            oCsdb.free()
-        End If
-
-        Return arrResponse
+        Return lstReturn
     End Function
 
     '''
@@ -577,117 +530,5 @@ Public Class BancManager
 
         End If
         Return lstBanc
-    End Function
-    ''' <summary>
-    ''' Charegement de la liste de Pool d'un Banc
-    ''' </summary>
-    ''' <param name="pnumeronationalBanc"></param>
-    ''' <returns></returns>
-    Private Shared Function getlstPoolByBanc(pnumeronationalBanc As String) As List(Of Pool)
-
-        Dim oreturn As New List(Of Pool)
-
-        Dim oCsdb As New CSDb(True)
-        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "SELECT Pool.* FROM Pool , PoolBanc WHERE Pool.idCrodip = PoolBanc.idCRODIPPool AND PoolBanc.numeronationalBanc = '" & pnumeronationalBanc & "'"
-
-        Try
-            ' On récupère les résultats
-            Dim oDataReader As DbDataReader = bddCommande.ExecuteReader
-            ' Puis on les parcours
-            Dim i As Integer = 0
-            While oDataReader.Read()
-
-                ' On remplit le Pool
-                Dim oPool As New Pool
-                If oPool.FillDR(oDataReader) Then
-                    'et on l'ajoute à la collection
-                    oreturn.Add(oPool)
-                End If
-            End While
-            oDataReader.Close()
-        Catch ex As Exception
-            ' On catch l'erreur
-            CSDebug.dispError("BancManager.getlstPoolByBanc : " & ex.Message)
-        End Try
-        ' Test pour fermeture de connection BDD
-        If Not oCsdb Is Nothing Then
-            ' On ferme la connexion
-            oCsdb.free()
-        End If
-
-        Return oreturn
-    End Function
-    Private Shared Function clearlstPoolByBanc(numeronationalBanc As String) As Boolean
-
-        Dim oreturn As Boolean
-
-        Dim oCsdb As New CSDb(True)
-        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "DELETE FROM PoolBanc WHERE  PoolBanc.numeronationalBanc = '" & numeronationalBanc & "'"
-
-        Try
-            ' On récupère les résultats
-            bddCommande.ExecuteNonQuery()
-            oCsdb.free()
-            oreturn = True
-        Catch ex As Exception
-            ' On catch l'erreur
-            CSDebug.dispError("BancManager.clearlstPoolByBanc : " & ex.Message)
-            oreturn = False
-        End Try
-
-
-        Return oreturn
-    End Function
-    Private Shared Function insertPoolBanc(pIdPool As String, pnumeronational As String) As Boolean
-
-        Dim oreturn As Boolean
-
-        Dim oCsdb As New CSDb(True)
-        Dim bddCommande As DbCommand = oCsdb.getConnection().CreateCommand()
-        bddCommande.CommandText = "insert into PoolBanc (idCRODIPPool, numeronationalBanc) values ( '" & pIdPool & "','" & pnumeronational & "')"
-
-        Try
-            ' On récupère les résultats
-            bddCommande.ExecuteNonQuery()
-            oCsdb.free()
-            oreturn = True
-        Catch ex As Exception
-            ' On catch l'erreur
-            CSDebug.dispError("BancManager.addPoolBanc : " & ex.Message)
-            oreturn = False
-        End Try
-
-
-        Return oreturn
-    End Function
-    Public Shared Function getLstPoolById(pItem As Banc) As Boolean
-
-        ' déclarations
-        Dim bReturn As Boolean = False
-        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-        Dim objWSCrodip_response As New Object
-        Debug.Assert("FONCTION BancManager.getlstPoolByID Non implémentée")
-        '' Appel au WS
-        'Dim codeResponse As Integer = objWSCrodip.GetlstPoolByBuseId(agentCourant.id, pBuse.idCrodip, objWSCrodip_response)
-        'Select Case codeResponse
-        '    Case 0 ' OK
-        '        ' construction de l'objet
-        '        Dim objWSCrodip_responseItem As System.Xml.XmlNode
-        '        For Each objWSCrodip_responseItem In objWSCrodip_response
-        '            If objWSCrodip_responseItem.InnerText() <> "" Then
-
-        '            End If
-        '        Next
-        '        bReturn = True
-        '    Case 1 ' NOK
-        '        CSDebug.dispError("Erreur - BuseManager - Code 1 : Non-Trouvée")
-        '    Case 9 ' BADREQUEST
-        '        CSDebug.dispError("Erreur - BuseManager - Code 9 : Bad Request")
-        'End Select
-
-
-        Return bReturn
     End Function
 End Class

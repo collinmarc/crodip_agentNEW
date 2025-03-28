@@ -855,32 +855,32 @@ Public Class Agent
 
 
     Public Function checkPC() As Boolean
-        'Dim oAgentPC As AgentPC
-        'Dim bReturn As Boolean
-        'Dim bCleARegenerer As Boolean = False
-        'bReturn = False
-        'If oPool IsNot Nothing And GlobalsCRODIP.GLOB_PARAM_aqw <> "zsx" Then
-        '    'oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
-        '    'If oAgentPC Is Nothing Then
-        '    'La réception via le WS ne fonctionne pas, on charge celui qui est en base
-        '    oAgentPC = oPool.getAgentPC()
-        '    'End If
-        '    's'il y a un PC , on vérifie la base de registre, sinon on arrête
-        '    If oAgentPC IsNot Nothing Then
-        '        bCleARegenerer = String.IsNullOrEmpty(oAgentPC.numInterne)
-        '        bReturn = oAgentPC.checkRegistry()
-        '        If bCleARegenerer Then
-        '            AgentPCManager.save(oAgentPC)
-        '            'AgentPCManager.RESTsetAgentPC(Me, oAgentPC)
-        '        End If
-        '    Else
-        '        bReturn = False
-        '    End If
-        'Else
-        '    bReturn = True
-        'End If
+        Dim oAgentPC As AgentPC
+        Dim bReturn As Boolean
+        Dim bCleARegenerer As Boolean = False
+        bReturn = False
+        If oPool IsNot Nothing And GlobalsCRODIP.GLOB_PARAM_aqw <> "zsx" Then
+            'oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
+            'If oAgentPC Is Nothing Then
+            'La réception via le WS ne fonctionne pas, on charge celui qui est en base
+            oAgentPC = oPool.getAgentPC()
+            'End If
+            's'il y a un PC , on vérifie la base de registre, sinon on arrête
+            If oAgentPC IsNot Nothing Then
+                bCleARegenerer = String.IsNullOrEmpty(oAgentPC.idRegistre)
+                bReturn = oAgentPC.checkRegistry()
+                If bCleARegenerer Then
+                    AgentPCManager.save(oAgentPC)
+                    'AgentPCManager.RESTsetAgentPC(Me, oAgentPC)
+                End If
+            Else
+                bReturn = False
+            End If
+        Else
+            bReturn = True
+        End If
 
-        'Return bReturn
+        Return bReturn
     End Function
     Private _bTest As Boolean
 

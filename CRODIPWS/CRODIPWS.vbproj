@@ -196,8 +196,8 @@
     <Compile Include="includes\classes\Acquisition\Acquiring.vb" />
     <Compile Include="includes\classes\Acquisition\AcquiringManager.vb" />
     <Compile Include="includes\classes\Agent\Agent.vb" />
-    <Compile Include="includes\classes\Agent\Materiel\Pc.vb" />
-    <Compile Include="includes\classes\Agent\Materiel\PcManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPc.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPcManager.vb" />
     <Compile Include="includes\classes\Agent\PoolManoEtalon.vb" />
     <Compile Include="includes\classes\Agent\PoolManoControle.vb" />
     <Compile Include="includes\classes\Agent\PoolBuse.vb" />
@@ -208,8 +208,8 @@
     <Compile Include="includes\classes\Agent\PoolPcManager.vb" />
     <Compile Include="includes\classes\Agent\PoolAgentManager.vb" />
     <Compile Include="includes\classes\Agent\AgentManager.vb" />
-    <Compile Include="includes\classes\Agent\Materiel\AgentPC.vb" />
-    <Compile Include="includes\classes\Agent\Materiel\AgentPCManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPCOLD.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPCOLDManager.vb" />
     <Compile Include="includes\classes\Agent\Materiel\Alertes.vb" />
     <Compile Include="includes\classes\Agent\Materiel\Banc.vb" />
     <Compile Include="includes\classes\Agent\Materiel\BancManager.vb" />
@@ -363,6 +363,13 @@
     <Compile Include="includes\classes\Synchro\SynchronisationElmtDocument.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtAgentPc.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolBuse.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoEtalon.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoControle.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolPc.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolAgent.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPool.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtIdentifiantPulve.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationGetSynchroDateTime.vb" />

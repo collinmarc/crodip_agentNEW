@@ -558,13 +558,13 @@ Public Class gestion_manometres
         Try
             Dim lstMano As List(Of ManometreEtalon)
             If ckTousManoC.Checked Then
-                lstMano = ManometreEtalonManager.getManometreEtalonByStructureId(agentCourant.idStructure, True)
+                lstMano = ManometreEtalonManager.getlstByAgent(agentCourant, True)
                 'Ajout des Mano JamaisServi
-                lstMano.AddRange(ManometreEtalonManager.getManometreEtalonByStructureIdJamaisServi(agentCourant.idStructure))
+                lstMano.AddRange(ManometreEtalonManager.getlstByAgentJamaisServi(agentCourant))
             Else
-                lstMano = ManometreEtalonManager.getManometreEtalonByAgent(agentCourant, True)
+                lstMano = ManometreEtalonManager.getlstByAgent(agentCourant, False)
                 'Ajout des Mano JamaisServi
-                'lstMano.AddRange(ManometreEtalonManager.getManometreEtalonByAgentJamaisServi(agentCourant))
+                'lstMano.AddRange(ManometreEtalonManager.getLstByAgentJamaisServi(agentCourant))
             End If
             m_bsMAnoEtalon.Clear()
 
@@ -584,13 +584,9 @@ Public Class gestion_manometres
         Try
             Dim arrManoControle As List(Of ManometreControle)
             If ckTousManoC.Checked Then
-                arrManoControle = ManometreControleManager.getManoControleByStructureId(agentCourant.idStructure, True)
-                'Ajout des Mano JamaisServi
-                arrManoControle.AddRange(ManometreControleManager.getManoControleByStructureIdJamaisServi(agentCourant.idStructure))
+                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True)
             Else
-                arrManoControle = ManometreControleManager.getManoControleByAgent(agentCourant, True)
-                'Ajout des Mano JamaisServi
-                arrManoControle.AddRange(ManometreControleManager.getManoControleByAgentJamaisServi(agentCourant))
+                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, False)
             End If
             m_bsManoControle.Clear()
             For Each oMano As ManometreControle In arrManoControle

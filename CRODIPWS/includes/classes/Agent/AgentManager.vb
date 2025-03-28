@@ -49,6 +49,11 @@ Public Class AgentManager
                                     PoolManager.Save(oPool)
                                     oreturn.oPool = oPool
                                 End If
+                                Dim lst As New List(Of AgentPc)
+                                '                                lst = AgentPcManager.WSgetlstByPoolId(oPool.uid)
+                                For Each oAgentPC In lst
+                                    AgentPcManager.Save(oAgentPC)
+                                Next
                             End Using
                         Next n
                     End If
@@ -573,7 +578,7 @@ Public Class AgentManager
     Public Shared Sub setSynchro(ByVal agent As Agent)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now)
             dbLink.queryString = "UPDATE Agent SET dateModificationCrodip='" & CSDate.ToCRODIPString(newDate) & "',dateModificationAgent='" & CSDate.ToCRODIPString(newDate) & "' WHERE id=" & agent.id & ""
             dbLink.Execute()
         Catch ex As Exception

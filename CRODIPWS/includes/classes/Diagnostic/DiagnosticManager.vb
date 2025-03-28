@@ -964,7 +964,7 @@ Public Class DiagnosticManager
         If pAgent.bTest Then
             id = id & WSGetNewId(pAgent)
         Else
-            If AgentPCManager.GetListe().Count() > 0 Then
+            If AgentPcManager.GetListe(pAgent.uidstructure).Count() > 0 Then
                 id = getNewIdNew(pAgent)
             Else
                 id = getNewIdOLD(pAgent)
@@ -999,7 +999,7 @@ Public Class DiagnosticManager
         ' déclarations
         Dim idStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
-        idPC = AgentPCManager.GetListe()(0).idCrodip
+        idPC = AgentPcManager.GetListe(pAgent.uidstructure)(0).idCrodip
         Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 

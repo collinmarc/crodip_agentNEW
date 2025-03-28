@@ -140,7 +140,7 @@ Public Class SynchronisationManager
             If pAgent.oPool Is Nothing Then
                 objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, "", "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
             Else
-                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.idPool, "", "", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.uid, "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
             End If
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)

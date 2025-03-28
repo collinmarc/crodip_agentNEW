@@ -58,7 +58,7 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.PoolBuse)),
         XmlInclude(GetType(CRODIPWS.PoolManoControle)),
         XmlInclude(GetType(CRODIPWS.PoolManoEtalon)),
-        XmlInclude(GetType(CRODIPWS.Pc)),
+        XmlInclude(GetType(CRODIPWS.AgentPc)),
       System.ComponentModel.DesignerCategoryAttribute("code"),
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
     Partial Public Class CrodipServer

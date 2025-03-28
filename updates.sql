@@ -342,14 +342,14 @@
 
 -- Suppression des Categorie vides
 --DELETE FROM PrestationCategorie where libelle = ""
-DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale = '' and nomExploitant = '');
-DELETE from Exploitation where raisonsociale = '' and nomExploitant = '';
-DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale IS NULL and nomExploitant IS NULL);
-DELETE from Exploitation where raisonsociale IS NULL and nomExploitant IS NULL;
+--DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale = '' and nomExploitant = '');
+--DELETE from Exploitation where raisonsociale = '' and nomExploitant = '';
+--DELETE from ExploitationToPulverisateur where idExploitation in (select id from exploitation where raisonsociale IS NULL and nomExploitant IS NULL);
+--DELETE from Exploitation where raisonsociale IS NULL and nomExploitant IS NULL;
 
-DELETE from FicheVieBancMesure where caracteristiques = 'RECUP';
-DELETE from FicheVieManometreControle where caracteristiques = 'RECUP';
-DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
+--DELETE from FicheVieBancMesure where caracteristiques = 'RECUP';
+--DELETE from FicheVieManometreControle where caracteristiques = 'RECUP';
+--DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
 
 --ALTER TABLE Exploitation ADD COLUMN uid integer;
 --ALTER TABLE Exploitation ADD COLUMN aid text;
@@ -555,6 +555,14 @@ DELETE from FicheVieManometreEtalon where caracteristiques = 'RECUP';
 --ALTER TABLE IdentifiantPulverisateur2 RENAME TO IdentifiantPulverisateur;
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.02','2025-02-07 12:00:00','IdentPulve');
 
+DROP TABLE IF EXISTS POOL;
+DROP TABLE IF EXISTS POOLBanc;
+DROP TABLE IF EXISTS POOLBUSE;
+DROP TABLE IF EXISTS POOLMAnoc;
+DROP TABLE IF EXISTS POOLMAnoE;
+DROP TABLE IF EXISTS POOLMAnoEtalon;
+DROP TABLE IF EXISTS POOLAgent;
+
 DROP TABLE IF EXISTS Agent1;
 DROP TABLE IF EXISTS AgentbuseEtalon2201;
 DROP TABLE IF EXISTS AgentManoControle2201;
@@ -564,80 +572,42 @@ DROP TABLE IF EXISTS CONTROLE_REGULIER0702;
 DROP TABLE IF EXISTS CONTROLE_REGULIER2;
 DROP TABLE IF EXISTS PrestationCategorie1;
 DROP TABLE IF EXISTS PrestationTarif1;
+DROP TABLE IF EXISTS IdentifiantPulverisateur0702;
 
-DROP TABLE POOL;
-DROP TABLE POOLBanc;
-DROP TABLE POOLBUSE;
-DROP TABLE POOLMAnoc;
-DROP TABLE POOLMAnoE;
+DROP TABLE IF EXISTS POOL;
 Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
 
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-01 12:00:00','pool2');
-CREATE TABLE PoolAgent (
-  uid BIGINT(20) NOT NULL,
-  aid text  ,
-  uidpool BIGINT(20) default 0,
-  namepool text  DEFAULT '',
-  uidagent BIGINT(20) default 0,
-  aidagent text  DEFAULT '',
-  uidstructure BIGINT(20) DEFAULT '0',
-  dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dateModificationAgent datemime NULL DEFAULT NULL,
-  dateModificationCrodip datetime NULL DEFAULT NULL
-) ;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 12:00:00','poolAgent');
-CREATE TABLE PoolPc (
-  uid BIGINT(20) NOT NULL,
-  aid text  DEFAULT  '',
-  uidpool BIGINT(20) DEFAULT 0,
-  namepool text  DEFAULT '',
-  uidpc BIGINT(20) DEFAULT 0,
-  idPc text  DEFAULT '',
-  uidstructure BIGINT(20) DEFAULT '0',
-  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dateModificationAgent datetime NULL DEFAULT NULL,
-  dateModificationCrodip datetime NULL DEFAULT NULL
-)  ;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 14:00:00','poolPc');
-CREATE TABLE PoolBuse (
-  uid bigint(20) NOT NULL,
-  aid Text  DEFAULT '',
-  uidpool bigint(20) ,
-  namepool Text  DEFAULT '',
-  uidbuse bigint(20),
-  idBuse Text  DEFAULT '',
-  uidstructure bigint(20) DEFAULT '0',
-  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dateModificationAgent datetime NULL DEFAULT NULL,
-  dateModificationCrodip datetime NULL DEFAULT NULL
-  );
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:00:00','poolBuse');
-CREATE TABLE PoolManoControle (
-  uid bigint(20) NOT NULL,
-  aid Text  DEFAULT '',
-  uidpool bigint(20) Default 0,
-  namepool Text  DEFAULT '',
-  uidmanoc bigint(20) Default 0,
-  idManometre text  DEFAULT '',
-  uidstructure bigint(20) DEFAULT 0,
-  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dateModificationAgent datetime NULL DEFAULT NULL,
-  dateModificationCrodip datetime NULL DEFAULT NULL
-);
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:10:00','poolManoControle');
-CREATE TABLE PoolManoEtalon (
-  uid bigint(20) NOT NULL,
-  aid Text  DEFAULT '',
-  uidpool bigint(20) Default 0,
-  namepool Text  DEFAULT '',
-  uidmanoe bigint(20) Default 0,
-  idManometre text  DEFAULT '',
-  uidstructure bigint(20) DEFAULT 0,
-  dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dateModificationAgent datetime NULL DEFAULT NULL,
-  dateModificationCrodip datetime NULL DEFAULT NULL
-);
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 15:20:00','poolManoEtalon');
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-01 12:00:00','pool2');
+
+DROP TABLE IF EXISTS POOLAgent;
+CREATE TABLE PoolAgent (uid BIGINT(20) NOT NULL,aid text  ,uidpool BIGINT(20) default 0,namepool text  DEFAULT '',uidagent BIGINT(20) default 0,aidagent text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datemime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL) ;
+
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 12:00:00','poolAgent');
+
+DROP TABLE IF EXISTS POOLPc;
+CREATE TABLE PoolPc (uid BIGINT(20) NOT NULL,aid text  DEFAULT  '',uidpool BIGINT(20) DEFAULT 0,namepool text  DEFAULT '',uidpc BIGINT(20) DEFAULT 0,idPc text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL)  ;
+
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 14:00:00','poolPc');
+
+DROP TABLE IF EXISTS POOLBuse;
+CREATE TABLE PoolBuse (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) ,namepool Text  DEFAULT '',uidbuse bigint(20),idBuse Text  DEFAULT '',uidstructure bigint(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:00:00','poolBuse');
+
+DROP TABLE IF EXISTS POOLManoControle;
+CREATE TABLE PoolManoControle (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoc bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:10:00','poolManoControle');
+
+DROP TABLE IF EXISTS POOLManoEtalon;
+CREATE TABLE PoolManoEtalon (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoe bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:20:00','poolManoEtalon');
+
+DROP TABLE IF EXISTS AgentPC2;
+CREATE TABLE AgentPC2 (idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle TEXT,etat BIT,numInterne TEXT,AgentSuppression TEXT,RaisonSuppression TEXT,dateSuppression DATETIME,isSupprime BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+insert into AgentPC2 (idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip ) SELECT idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip  from AgentPC
+
+Drop Table AgentPC;
+ALTER TABLE AgentPC2 RENAME TO AgentPc;
+
 Alter Table AgentPC Add Column uid Bigint(20) Default 0;
 Alter Table AgentPC Add Column idPC text Default '';
 Alter Table AgentPC Add Column uidstructure Bigint(20) Default 0;
@@ -675,7 +645,7 @@ Alter Table AgentPC drop Column numInterne;
 Alter Table Agent add Column uidpool Bigint(20) DEFAULT 0;
 Alter Table Agent drop Column idCRODIPPOOL ;
 
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 16:10:00','AgentPC');
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','AgentPC');
 
 Alter Table PoolManoEtalon Add Column isSupprime Bit default 0;
 Alter Table PoolManoControle Add Column isSupprime Bit default 0;
@@ -683,4 +653,4 @@ Alter Table PoolBuse Add Column isSupprime Bit default 0;
 Alter Table PoolAgent Add Column isSupprime Bit default 0;
 Alter Table PoolPc Add Column isSupprime Bit default 0;
 Alter Table Pool Add Column aid Text default '';
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2025-03-25 16:10:00','Pool');
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','Pool');

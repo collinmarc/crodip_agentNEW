@@ -32,16 +32,16 @@ Public Class PoolPcManager
         oReturn = getByKey(Of PoolPc)("Select * from PoolPc where uid = " & puid)
         Return oReturn
     End Function
-    Public Overloads Shared Function GetListe(pPool As Pool) As List(Of Pc)
-        Dim lstReturn As New List(Of Pc)
+    Friend Overloads Shared Function GetLstAgentPcByPool(pPool As Pool) As List(Of AgentPc)
+        Dim lstReturn As New List(Of AgentPc)
         Try
             Dim sql As String
             sql = "SELECT * FROM PoolPc where uidPool = " & pPool.uid
             Dim lstPoolAgent As List(Of PoolPc)
             lstPoolAgent = getListe(Of PoolPc)(sql)
             For Each oPoolPc As PoolPc In lstPoolAgent
-                Dim oPc As Pc
-                oPc = PcManager.GetByuid(oPoolPc.uid)
+                Dim oPc As AgentPc
+                oPc = AgentPcManager.GetByuid(oPoolPc.uid)
                 lstReturn.Add(oPc)
             Next
 

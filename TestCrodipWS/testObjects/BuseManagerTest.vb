@@ -312,36 +312,36 @@ Public Class BuseManagerTest
         oBuse.dateAchat = CSDate.ToCRODIPString(CDate("06/02/1965"))
 
         Assert.IsTrue(BuseManager.save(oBuse))
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(1, tabBuse.Count)
 
         'Suppression du Buse
         oBuse.isSupprime = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBuse.Count)
 
         'Buse Jamais Servi
         oBuse.isSupprime = False
         oBuse.jamaisServi = True
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, True)
         Assert.AreEqual(0, tabBuse.Count)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent, False)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBuse.Count)
 
         oBuse.jamaisServi = False 'Le Buse n'a pas jamaisservi => il est actif
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(1, tabBuse.Count)
 
         oBuse.etat = False 'Buse non controlé
         BuseManager.save(oBuse)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent, True)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, True)
         Assert.AreEqual(1, tabBuse.Count)
-        tabBuse = BuseManager.getBusesByAgent(m_oAgent)
+        tabBuse = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(0, tabBuse.Count)
 
 
@@ -407,7 +407,7 @@ Public Class BuseManagerTest
         'Etat True 
         Assert.IsTrue(oBuse.etat)
 
-        Assert.AreEqual(CDate("01/02/1987"), oBuse.DateActivation)
+        Assert.AreEqual(CDate("01/02/1987"), oBuse.dateActivation)
         '        Assert.AreEqual(CDate("01/02/1987"), CDate(oBuse.dateDernierControleS))
 
 
@@ -489,26 +489,26 @@ Public Class BuseManagerTest
         oBuse.uidstructure = m_oAgent.idStructure
         oBuse.isSupprime = False
         oBuse.etat = True
-        oBuse.JamaisServi = False
+        oBuse.jamaisServi = False
         oBuse.lstPools.Add(oPool)
         BuseManager.save(oBuse)
 
         Dim lst As List(Of Buse)
-        lst = BuseManager.getBusesByAgent(m_oAgent)
+        lst = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(1, lst.Count)
 
         'Si l'agent utilise le Pool2 , il ne voit pas le Mano
         'm_oAgent.idCRODIPPool = oPool2.idCrodip
         AgentManager.save(m_oAgent)
 
-        lst = BuseManager.getBusesByAgent(m_oAgent)
+        lst = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(0, lst.Count)
 
         'Ajout du Pool2 dans le Mano
         oBuse.lstPools.Add(oPool2)
         BuseManager.save(oBuse)
         'Le Mano est bien chargé
-        lst = BuseManager.getBusesByAgent(m_oAgent)
+        lst = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(1, lst.Count)
         'il appartient Bien aux 2 pool
         Assert.AreEqual(2, lst(0).lstPools.Count)
@@ -516,7 +516,7 @@ Public Class BuseManagerTest
         'm_oAgent.idCRODIPPool = oPool.idCrodip
         AgentManager.save(m_oAgent)
 
-        lst = BuseManager.getBusesByAgent(m_oAgent)
+        lst = BuseManager.getlstByAgent(m_oAgent, False)
         Assert.AreEqual(1, lst.Count)
 
 

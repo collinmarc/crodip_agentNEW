@@ -94,4 +94,18 @@ Public Class Pool
     Public Overrides Function creerFichevieActivation(pAgent As Agent) As Boolean
         Return False
     End Function
+
+    Public Function getAgentPc() As AgentPc
+        Dim oReturn As AgentPc = Nothing
+        Try
+            Dim lst As List(Of AgentPc)
+            lst = PoolPcManager.GetLstAgentPcByPool(Me)
+            oReturn = lst(0)
+        Catch ex As Exception
+
+            CSDebug.dispError("Pool.getagentPC Err", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
 End Class

@@ -1850,7 +1850,7 @@ Public Class frmcontrole_bancs
         '################ Chargement des buses etalon ##############
         '###########################################################
         ' On récupère les buses étalon de l'agent
-        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getBusesByAgent(agentCourant)
+        Dim arrBusesEtalon As List(Of Buse) = BuseManager.getlstByAgent(agentCourant, False)
         ' On rempli les listes
         Dim positionTop As Integer = 0
         For Each tmpBuseEtalon As Buse In arrBusesEtalon

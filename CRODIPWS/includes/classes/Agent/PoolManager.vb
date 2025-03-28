@@ -87,7 +87,7 @@ Public Class PoolManager
                 pObj.dateModificationAgent = CSDate.ToCRODIPString(Date.Now).ToString
             End If
 
-            paramsQuery = paramsQuery & " idpool=" & pObj.idPool
+            paramsQuery = paramsQuery & " idpool='" & pObj.idPool & "'"
             paramsQuery = paramsQuery & " ,uidstructure=" & pObj.uidstructure & ""
             paramsQuery = paramsQuery & " ,uidbanc=" & pObj.uidbanc
             paramsQuery = paramsQuery & " ,aidBanc='" & pObj.aidbanc & "'"
@@ -111,7 +111,7 @@ Public Class PoolManager
         Debug.Assert(pidStructure > 0, "IdStructure doit être initialisé")
         Dim oList As New List(Of Pool)
         Try
-            oList = getListe(Of Pool)("SELECT* FROM POOL WHERE idStructure = " & pidStructure)
+            oList = getListe(Of Pool)("SELECT* FROM POOL WHERE uidStructure = " & pidStructure)
 
         Catch ex As Exception
             CSDebug.dispError("PoolManager.GetListe ERR", ex)

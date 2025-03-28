@@ -369,9 +369,6 @@ Public Class SynchronisationElmt
                             oBuseE.etat = True
                         End If
 
-                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            BuseManager.getLstPoolById(oBuseE)
-                        End If
                         BuseManager.save(oBuseE, True)
                         bReturn = True
                     Catch ex As Exception
@@ -387,9 +384,6 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Manomètre de Controle n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = ManometreControleManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            ManometreControleManager.getLstPoolById(tmpObject)
-                        End If
                         ManometreControleManager.save(tmpObject, True)
 
                         bReturn = True
@@ -450,9 +444,6 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Manomètre Etalon n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = ManometreEtalonManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            ManometreEtalonManager.getLstPoolById(tmpObject)
-                        End If
                         ManometreEtalonManager.save(tmpObject, True)
 
                         bReturn = True
@@ -481,9 +472,9 @@ Public Class SynchronisationElmt
                     Try
                         SetStatus("Réception MAJ Banc n°" & pElement.IdentifiantChaine & "...")
                         tmpObject = BancManager.WSgetById(pElement.IdentifiantEntier, pElement.IdentifiantChaine)
-                        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                            BancManager.getLstPoolById(tmpObject)
-                        End If
+                        'If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+                        '    BancManager.getLstPoolById(tmpObject)
+                        'End If
 
                         BancManager.save(tmpObject, True)
                         bReturn = True
@@ -572,6 +563,20 @@ Public Class SynchronisationElmt
                 oReturn = New SynchronisationElmtExploitationToPulverisateur(pSynchroBooleans)
             Case SynchronisationElmtPulverisateur.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtPulverisateur(pSynchroBooleans)
+            Case SynchronisationElmtPool.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPool(pSynchroBooleans)
+            Case SynchronisationElmtPoolAgent.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPoolAgent(pSynchroBooleans)
+            Case SynchronisationElmtIdentifiantAgentPc.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtIdentifiantAgentPc(pSynchroBooleans)
+            Case SynchronisationElmtPoolPc.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPoolPc(pSynchroBooleans)
+            Case SynchronisationElmtPoolBuse.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPoolBuse(pSynchroBooleans)
+            Case SynchronisationElmtPoolManoControle.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPoolManoControle(pSynchroBooleans)
+            Case SynchronisationElmtPoolManoEtalon.getLabelGet.ToUpper().Trim()
+                oReturn = New SynchronisationElmtPoolManoEtalon(pSynchroBooleans)
 
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)

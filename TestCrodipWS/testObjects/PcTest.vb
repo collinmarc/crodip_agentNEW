@@ -7,42 +7,42 @@ Imports CRODIPWS
     Inherits CRODIPTest
 
     <TestMethod()> Public Sub CRUD()
-        Dim oPc As New Pc()
-        Dim oPc2 As Pc
+        Dim oPc As New AgentPc()
+        Dim oPc2 As AgentPc
         oPc.uid = 12345
-        oPc.idPC = "ID12345"
+        oPc.idPc = "ID12345"
         oPc.cleUtilisation = "CLE12345"
         Dim g As New Guid()
         g = Guid.NewGuid()
         oPc.idRegistre = g.ToString()
         oPc.uidstructure = m_oAgent.idStructure
 
-        Assert.IsTrue(PcManager.Save(oPc))
+        Assert.IsTrue(AgentPcManager.Save(oPc))
 
-        oPc2 = PcManager.GetByuid(12345)
+        oPc2 = AgentPcManager.GetByuid(12345)
         Assert.IsNotNull(oPc2)
         Assert.AreEqual(oPc.uid, oPc2.uid)
         Assert.AreEqual(oPc.aid, oPc2.aid)
-        Assert.AreEqual(oPc.idPC, oPc2.idPC)
+        Assert.AreEqual(oPc.idPc, oPc2.idPc)
         Assert.AreEqual(oPc.idRegistre, oPc2.idRegistre)
         Assert.AreEqual(oPc.cleUtilisation, oPc2.cleUtilisation)
         Assert.AreEqual(oPc.uidstructure, oPc2.uidstructure)
 
         oPc.idRegistre = Guid.NewGuid().ToString()
         oPc.cleUtilisation = "CLE12345-2"
-        PcManager.Save(oPc)
-        oPc2 = PcManager.GetByuid(12345)
+        AgentPcManager.Save(oPc)
+        oPc2 = AgentPcManager.GetByuid(12345)
         Assert.IsNotNull(oPc2)
         Assert.AreEqual(oPc.idRegistre, oPc2.idRegistre)
         Assert.AreEqual(oPc.cleUtilisation, oPc2.cleUtilisation)
 
     End Sub
     <TestMethod()> Public Sub WSCRUD()
-        Dim oPc As Pc
-        Dim oPC2 As Pc = Nothing
+        Dim oPc As AgentPc
+        Dim oPC2 As AgentPc = Nothing
         Dim nReturn As Integer
 
-        oPc = PcManager.WSgetById(1, "")
+        oPc = AgentPcManager.WSgetById(1, "")
 
         Assert.AreEqual(1, oPc.uid)
 
@@ -88,10 +88,10 @@ Imports CRODIPWS
 
         '        oPc.uidstructure = m_oAgent.idStructure
 
-        nReturn = PcManager.WSSend(oPc, oPC2)
+        nReturn = AgentPcManager.WSSend(oPc, oPC2)
         Assert.AreEqual(2, nReturn, "Code Retour = 2")
 
-        oPC2 = PcManager.WSgetById(oPC2.uid, oPC2.aid)
+        oPC2 = AgentPcManager.WSgetById(oPC2.uid, oPC2.aid)
 
         Assert.AreEqual(oPc.cleUtilisation, oPC2.cleUtilisation)
         Assert.AreEqual(oPc.idRegistre, oPC2.idRegistre)
@@ -128,7 +128,7 @@ Imports CRODIPWS
         'Assert.AreEqual(oPc.isDownloadIdentifiantPulve, oPC2.isDownloadIdentifiantPulve, "isDownloadIdentifiantPulve")
 
         oPc.etat = False
-        nReturn = PcManager.WSSend(oPc, oPC2)
+        nReturn = AgentPcManager.WSSend(oPc, oPC2)
         Assert.AreEqual(2, nReturn, "Code Retour = 2")
         Assert.AreEqual(oPc.etat, oPC2.etat, "Code Etat")
 

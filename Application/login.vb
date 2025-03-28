@@ -85,11 +85,11 @@ Public Class login
     Friend WithEvents Label1 As Label
     Friend WithEvents btnValiderPool As Label
     Friend WithEvents LibelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents NbPastillesVertesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents IDCRODIPPC As DataGridViewTextBoxColumn
-    Friend WithEvents idBanc As DataGridViewTextBoxColumn
     Friend WithEvents pctSynchro As PictureBox
     Friend WithEvents lblSynchro As Label
+    Friend WithEvents idPool As DataGridViewTextBoxColumn
+    Friend WithEvents libelle As DataGridViewTextBoxColumn
+    Friend WithEvents aidbanc As DataGridViewTextBoxColumn
     Friend WithEvents lbl_WS As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -100,11 +100,6 @@ Public Class login
         Me.btnValiderPool = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dgvPools = New System.Windows.Forms.DataGridView()
-        Me.LibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NbPastillesVertesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDCRODIPPC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.idBanc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.lblMode = New System.Windows.Forms.Label()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
@@ -132,23 +127,27 @@ Public Class login
         Me.btnTestDiagContext = New System.Windows.Forms.Button()
         Me.btnTest = New System.Windows.Forms.Button()
         Me.panel_splashSynchro = New System.Windows.Forms.Panel()
+        Me.pctSynchro = New System.Windows.Forms.PictureBox()
+        Me.lblSynchro = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.picto_profil = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.lblSynchro = New System.Windows.Forms.Label()
-        Me.pctSynchro = New System.Windows.Forms.PictureBox()
+        Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
+        Me.idPool = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.aidbanc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlPools.SuspendLayout()
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
         Me.panel_splashSynchro.SuspendLayout()
-        CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button3
@@ -188,7 +187,7 @@ Public Class login
         '
         'pnlPools
         '
-        Me.pnlPools.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.pnlPools.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.pnlPools.Controls.Add(Me.btnValiderPool)
         Me.pnlPools.Controls.Add(Me.Label1)
         Me.pnlPools.Controls.Add(Me.dgvPools)
@@ -204,8 +203,9 @@ Public Class login
         Me.btnValiderPool.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnValiderPool.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnValiderPool.ForeColor = System.Drawing.Color.White
-        Me.btnValiderPool.Image = Global.Crodip_agent.Resources.btn_valider
-        Me.btnValiderPool.Location = New System.Drawing.Point(305, 104)
+        Me.btnValiderPool.Image = CType(resources.GetObject("btnValiderPool.Image"), System.Drawing.Image)
+        Me.btnValiderPool.Location = New System.Drawing.Point(302, 104)
+        Me.btnValiderPool.Margin = New System.Windows.Forms.Padding(0)
         Me.btnValiderPool.Name = "btnValiderPool"
         Me.btnValiderPool.Size = New System.Drawing.Size(128, 24)
         Me.btnValiderPool.TabIndex = 3
@@ -236,10 +236,10 @@ Public Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvPools.AutoGenerateColumns = False
         Me.dgvPools.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvPools.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dgvPools.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.dgvPools.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvPools.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPools.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LibelleDataGridViewTextBoxColumn, Me.NbPastillesVertesDataGridViewTextBoxColumn, Me.IDCRODIPPC, Me.idBanc})
+        Me.dgvPools.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idPool, Me.libelle, Me.aidbanc})
         Me.dgvPools.DataSource = Me.m_bsrcPools
         Me.dgvPools.Location = New System.Drawing.Point(0, 27)
         Me.dgvPools.MultiSelect = False
@@ -248,42 +248,6 @@ Public Class login
         Me.dgvPools.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvPools.Size = New System.Drawing.Size(436, 71)
         Me.dgvPools.TabIndex = 0
-        '
-        'LibelleDataGridViewTextBoxColumn
-        '
-        Me.LibelleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.LibelleDataGridViewTextBoxColumn.DataPropertyName = "Libelle"
-        Me.LibelleDataGridViewTextBoxColumn.Frozen = True
-        Me.LibelleDataGridViewTextBoxColumn.HeaderText = "Nom"
-        Me.LibelleDataGridViewTextBoxColumn.Name = "LibelleDataGridViewTextBoxColumn"
-        Me.LibelleDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LibelleDataGridViewTextBoxColumn.Width = 99
-        '
-        'NbPastillesVertesDataGridViewTextBoxColumn
-        '
-        Me.NbPastillesVertesDataGridViewTextBoxColumn.DataPropertyName = "nbPastillesVertes"
-        Me.NbPastillesVertesDataGridViewTextBoxColumn.HeaderText = "Pastilles vertes"
-        Me.NbPastillesVertesDataGridViewTextBoxColumn.Name = "NbPastillesVertesDataGridViewTextBoxColumn"
-        Me.NbPastillesVertesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IDCRODIPPC
-        '
-        Me.IDCRODIPPC.DataPropertyName = "IDCRODIPPC"
-        Me.IDCRODIPPC.HeaderText = "Numéro du PC"
-        Me.IDCRODIPPC.Name = "IDCRODIPPC"
-        Me.IDCRODIPPC.ReadOnly = True
-        '
-        'idBanc
-        '
-        Me.idBanc.DataPropertyName = "idBanc"
-        Me.idBanc.HeaderText = "Banc"
-        Me.idBanc.Name = "idBanc"
-        Me.idBanc.ReadOnly = True
-        '
-        'm_bsrcPools
-        '
-        Me.m_bsrcPools.AllowNew = False
-        Me.m_bsrcPools.DataSource = GetType(CRODIPWS.Pool)
         '
         'lblBaseDonnee
         '
@@ -592,6 +556,29 @@ Public Class login
         Me.panel_splashSynchro.TabIndex = 25
         Me.panel_splashSynchro.Visible = False
         '
+        'pctSynchro
+        '
+        Me.pctSynchro.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.pctSynchro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.pctSynchro.Image = CType(resources.GetObject("pctSynchro.Image"), System.Drawing.Image)
+        Me.pctSynchro.Location = New System.Drawing.Point(120, 70)
+        Me.pctSynchro.Name = "pctSynchro"
+        Me.pctSynchro.Size = New System.Drawing.Size(220, 19)
+        Me.pctSynchro.TabIndex = 4
+        Me.pctSynchro.TabStop = False
+        '
+        'lblSynchro
+        '
+        Me.lblSynchro.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSynchro.ForeColor = System.Drawing.Color.White
+        Me.lblSynchro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblSynchro.Location = New System.Drawing.Point(7, -1)
+        Me.lblSynchro.Name = "lblSynchro"
+        Me.lblSynchro.Size = New System.Drawing.Size(448, 68)
+        Me.lblSynchro.TabIndex = 3
+        Me.lblSynchro.Text = "Veuillez patienter pendant que votre logiciel se synchronise avec le Crodip."
+        Me.lblSynchro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Label6
         '
         Me.Label6.BackColor = System.Drawing.Color.Transparent
@@ -665,28 +652,31 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'lblSynchro
+        'm_bsrcPools
         '
-        Me.lblSynchro.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSynchro.ForeColor = System.Drawing.Color.White
-        Me.lblSynchro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblSynchro.Location = New System.Drawing.Point(7, -1)
-        Me.lblSynchro.Name = "lblSynchro"
-        Me.lblSynchro.Size = New System.Drawing.Size(448, 68)
-        Me.lblSynchro.TabIndex = 3
-        Me.lblSynchro.Text = "Veuillez patienter pendant que votre logiciel se synchronise avec le Crodip."
-        Me.lblSynchro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.m_bsrcPools.AllowNew = False
+        Me.m_bsrcPools.DataSource = GetType(CRODIPWS.Pool)
         '
-        'pctSynchro
+        'idPool
         '
-        Me.pctSynchro.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(179, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.pctSynchro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.pctSynchro.Image = CType(resources.GetObject("pctSynchro.Image"), System.Drawing.Image)
-        Me.pctSynchro.Location = New System.Drawing.Point(120, 70)
-        Me.pctSynchro.Name = "pctSynchro"
-        Me.pctSynchro.Size = New System.Drawing.Size(220, 19)
-        Me.pctSynchro.TabIndex = 4
-        Me.pctSynchro.TabStop = False
+        Me.idPool.DataPropertyName = "idPool"
+        Me.idPool.HeaderText = "Numéro"
+        Me.idPool.Name = "idPool"
+        Me.idPool.ReadOnly = True
+        '
+        'libelle
+        '
+        Me.libelle.DataPropertyName = "Libelle"
+        Me.libelle.HeaderText = "Libelle"
+        Me.libelle.Name = "libelle"
+        Me.libelle.ReadOnly = True
+        '
+        'aidbanc
+        '
+        Me.aidbanc.DataPropertyName = "aidbanc"
+        Me.aidbanc.HeaderText = "Banc"
+        Me.aidbanc.Name = "aidbanc"
+        Me.aidbanc.ReadOnly = True
         '
         'login
         '
@@ -704,13 +694,13 @@ Public Class login
         Me.pnlPrincipal.PerformLayout()
         Me.pnlPools.ResumeLayout(False)
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoginControls.ResumeLayout(False)
         Me.pnlLoginControls.PerformLayout()
         Me.GroupBox_test.ResumeLayout(False)
         Me.panel_splashSynchro.ResumeLayout(False)
-        CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -829,6 +819,7 @@ Public Class login
                             End If
 
                             If lstPool.Count > 1 Then
+                                m_bsrcPools.Clear()
                                 lstPool.ForEach(Sub(p)
                                                     m_bsrcPools.Add(p)
                                                 End Sub)
@@ -836,6 +827,9 @@ Public Class login
                                 pnlPools.Visible = True
                                 _selectedAgent.oPool = Nothing
                             End If
+                        Else
+                            'Sans Gestion des pools
+                            SynchroEtSuite(_selectedAgent)
                         End If
                     Else
                         ' On met à jour la barre de status
@@ -1334,27 +1328,30 @@ Public Class login
 
     End Sub
     Private Sub SynchroEtSuite(pAgent As Agent)
+        Debug.Assert(pAgent IsNot Nothing, "Agent doit être initialisé")
         Dim bContinue As Boolean = False
 
         'Vérification du PC
         If My.Settings.GestionDesPools Then
-            Dim lstPc As List(Of Pc)
-            lstPc = PoolPcManager.GetListe(pAgent.oPool)
-            If lstPc.Count() = 1 Then
-                Dim oPc As Pc
-                oPc = lstPc(0)
+            Debug.Assert(pAgent.oPool IsNot Nothing, "Pool doit être initialisé")
+            Dim oPC As AgentPc
+            oPC = pAgent.oPool.getAgentPc()
+            If oPC IsNot Nothing Then
                 If My.Settings.aqw = "zsx" Then
-                    bContinue = oPc.checkRegistry()
+                    bContinue = oPC.checkRegistry()
+                    If Not bContinue Then
+                        CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPool.uid & "]")
+                    End If
                 Else
                     bContinue = True
                 End If
-                If Not bContinue Then
-                    CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPool.uid & "]")
-                End If
             Else
-                CSDebug.dispError("Login.SynchroEtSuite Err : Plus d'un PC associé à ce Pool [" & pAgent.oPool.uid & "]")
-                bContinue = False
+                CSDebug.dispError("Login.SynchroetSuite : Pas de Pc rattaché au pool[" & pAgent.oPool.uid & "]")
+                bContinue = True
             End If
+
+        Else
+            bContinue = True
         End If
         If Not bContinue Then
             Application.Exit()
@@ -1407,7 +1404,7 @@ Public Class login
         Dim oPool As Pool
         dgvPools.Enabled = False
         oPool = m_bsrcPools.Current
-        '_selectedAgent.idCRODIPPool = oPool.idCrodip
+        _selectedAgent.oPool = oPool
         AgentManager.save(_selectedAgent)
         If Not _selectedAgent.checkPC() Then
             CSDebug.dispFatal("Le PC n'est pas reconnu")

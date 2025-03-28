@@ -929,7 +929,7 @@ Public Class FrmDiagnostique
     End Sub
 
     Protected Overridable Sub getListeManoControle()
-        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant)
+        Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, False)
         Dim positionTop As Integer = 0
         For Each tmpManoControle As ManometreControle In arrManoControle
             Dim objComboItem As New objComboItem(tmpManoControle.idCrodip, tmpManoControle.numeroNational & " - " & tmpManoControle.type & " (" & tmpManoControle.marque & ")")
@@ -5447,19 +5447,19 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim iReturn As Integer = 3 'Etat initial = 3 Gris
         'If gdvPressions1.Columns.GetColumnCount(DataGridViewElementStates.None) > 1 Then
         If CheckIfManoTronconsAreFilled() Then
-                iReturn = 2 'OK = vert
-                If manopulveResultat.Text.Trim().ToUpper() = "IMPORTANTE" Then
-                    iReturn = 0 'Rouge
-                End If
-
-                If lblP833DefautHeterogeneite.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
-                    iReturn = 0 'Rouge
-                End If
-
-                If lblp833DefautEcart.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
-                    iReturn = 0 'Rouge
-                End If
+            iReturn = 2 'OK = vert
+            If manopulveResultat.Text.Trim().ToUpper() = "IMPORTANTE" Then
+                iReturn = 0 'Rouge
             End If
+
+            If lblP833DefautHeterogeneite.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
+                iReturn = 0 'Rouge
+            End If
+
+            If lblp833DefautEcart.Text.Trim().ToUpper() <> "OK" And isTab833Enabled() Then
+                iReturn = 0 'Rouge
+            End If
+        End If
         'End If
         Return iReturn
     End Function
@@ -8761,7 +8761,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     manopulvePressionControle_4.Text = ""
                 End If
             End If
-                designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 1)
+            designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 1)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 2)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 3)
             designdgv(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons, 4)
@@ -9475,28 +9475,28 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     Private Sub setRelevePressionparDeFaut(ByVal nPression As Integer, ByVal bValue As Boolean)
         'If bValue Then
         Dim oReleve As RelevePression833 = Nothing
-            Select Case nPression
-                Case 1
-                    oReleve = m_RelevePression833_P1
-                Case 2
-                    oReleve = m_RelevePression833_P2
-                Case 3
-                    oReleve = m_RelevePression833_P3
-                Case 4
-                    oReleve = m_RelevePression833_P4
-            End Select
-            If oReleve IsNot Nothing Then
-                oReleve.PressionManoPourCalculDefaut = bValue
+        Select Case nPression
+            Case 1
+                oReleve = m_RelevePression833_P1
+            Case 2
+                oReleve = m_RelevePression833_P2
+            Case 3
+                oReleve = m_RelevePression833_P3
+            Case 4
+                oReleve = m_RelevePression833_P4
+        End Select
+        If oReleve IsNot Nothing Then
+            oReleve.PressionManoPourCalculDefaut = bValue
             'Affichage de l'onglet de la pression par défaut
             '            If bValue Then
             '#07/12/2023 : le 
             'tab_833.SelectedTab = tab_833.TabPages(nPression - 1)
             'tab833_changeTab() ' on ne sait pas pourquoi, mais l'evt Selectindex ne se déclence automatiquement
             AfficheDefautEcartGeneral()
-                AfficheDefautHeterogeneiteGeneral()
+            AfficheDefautHeterogeneiteGeneral()
             '           End If
         End If
-            checkIsOk(7)
+        checkIsOk(7)
         'End If
     End Sub
     Private Sub rbPression4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbPression4.CheckedChanged
@@ -10799,7 +10799,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
 
             'Chargement des manomètres
-            m_olstManoC = ManometreControleManager.getManoControleByAgent(agentCourant)
+            m_olstManoC = ManometreControleManager.getlstByAgent(agentCourant, False)
             m_olstManoC.Sort()
 
             If m_diagnostic IsNot Nothing Then

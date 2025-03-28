@@ -8,24 +8,24 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub CRUD()
 
         Dim oAgentPC As New AgentPC()
-        oAgentPC.numInterne = "AQWZSX"
+        oAgentPC.idRegistre = "AQWZSX"
         oAgentPC.idCrodip = "123465"
 
         Assert.IsTrue(AgentPCManager.save(oAgentPC))
         Dim sIdCrodip As String = oAgentPC.idCrodip
 
-        oAgentPC = AgentPCManager.getAgentPCByIdCRODIP("123465")
+        oAgentPC = AgentPcManager.GetByuid("123465")
         Assert.AreEqual(sIdCrodip, oAgentPC.idCrodip)
-        Assert.AreEqual("AQWZSX", oAgentPC.numInterne)
+        Assert.AreEqual("AQWZSX", oAgentPC.idRegistre)
         Assert.AreEqual("123465", oAgentPC.idCrodip)
 
-        oAgentPC.numInterne = "AZERTYUIOP"
+        oAgentPC.idRegistre = "AZERTYUIOP"
 
         Assert.IsTrue(AgentPCManager.save(oAgentPC))
 
-        oAgentPC = AgentPCManager.getAgentPCByIdCRODIP("123465")
+        oAgentPC = AgentPcManager.GetByuid("123465")
         Assert.AreEqual(sIdCrodip, oAgentPC.idCrodip)
-        Assert.AreEqual("AZERTYUIOP", oAgentPC.numInterne)
+        Assert.AreEqual("AZERTYUIOP", oAgentPC.idRegistre)
         Assert.AreEqual("123465", oAgentPC.idCrodip)
 
 

@@ -290,7 +290,7 @@ Public Class PrestationCategorieManager
     Public Shared Sub setSynchro(ByVal curObject As PrestationCategorie)
         Try
             Dim dbLink As New CSDb(True)
-            Dim newDate As String = Date.Now.ToString
+            Dim newDate As String = CSDate.ToCRODIPString(Date.Now)
             dbLink.queryString = "UPDATE PrestationCategorie SET dateModificationCrodip='" & newDate & "',dateModificationAgent='" & newDate & "' WHERE id=" & curObject.id & ""
             dbLink.Execute()
             dbLink.free()

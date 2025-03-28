@@ -407,7 +407,7 @@ Public Class AutoTestManager
             If pTypeMateriels.ToUpper() = "MANOC" Or pTypeMateriels.ToUpper() = "TOUS" Then
                 Dim arrManoC As List(Of ManometreControle)
                 ' On récupère les Mano de Controle  de la structure
-                arrManoC = ManometreControleManager.getManoControleByAgent(pAgent, False)
+                arrManoC = ManometreControleManager.getlstByAgent(pAgent, False)
                 For Each oManoC As ManometreControle In arrManoC
                     oCtrlRegulier = New AutoTest(pAgent, oManoC)
                     oCtrlRegulier.dateControle = pDateControle
