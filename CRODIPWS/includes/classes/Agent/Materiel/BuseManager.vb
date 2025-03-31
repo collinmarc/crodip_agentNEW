@@ -592,7 +592,7 @@ Public Class BuseManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of Buse)
         Dim sql As String
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+        If Not pAgent.oPool Is Nothing Then
             sql = "SELECT * FROM AgentBuseEtalon MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
         Else
             sql = "SELECT * FROM AgentBuseEtalon MAT inner join PoolBuse PA on MAT.uid = PA.uidBuse WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""

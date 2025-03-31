@@ -472,7 +472,7 @@ Public Class ManometreControleManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreControle)
         Dim sql As String
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+        If pAgent.oPool Is Nothing Then
             sql = "SELECT * FROM AgentManoControle MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
         Else
             sql = "SELECT * FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""

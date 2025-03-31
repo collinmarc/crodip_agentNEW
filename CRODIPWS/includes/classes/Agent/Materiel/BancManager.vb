@@ -430,11 +430,9 @@ Public Class BancManager
     Public Shared Function getBancByAgent(pAgent As Agent, Optional ByVal isShowAll As Boolean = False) As List(Of Banc)
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim lstReturn As New List(Of Banc)
-        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
+        If pAgent.oPool IsNot Nothing Then
             Dim obanc As Banc = Nothing
-            If pAgent.oPool IsNot Nothing Then
-                obanc = BancManager.getBancByuId(pAgent.oPool.uidbanc)
-            End If
+            obanc = BancManager.getBancByuId(pAgent.oPool.uidbanc)
             If obanc IsNot Nothing Then
                 lstReturn.Add(obanc)
             End If
