@@ -4316,7 +4316,7 @@ Public Class accueil
         End If
 
         If Not GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
-
+            btn_parametrage_verificationManometres.Enabled = False
         End If
     End Sub
 

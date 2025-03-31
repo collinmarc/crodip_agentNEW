@@ -83,10 +83,9 @@ Public Class login
     Friend WithEvents dgvPools As DataGridView
     Friend WithEvents m_bsrcPools As BindingSource
     Friend WithEvents Label1 As Label
-    Friend WithEvents btnValiderPool As Label
-    Friend WithEvents LibelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents pctSynchro As PictureBox
     Friend WithEvents lblSynchro As Label
+    Friend WithEvents btn_login_seConnecter2 As Label
     Friend WithEvents idPool As DataGridViewTextBoxColumn
     Friend WithEvents libelle As DataGridViewTextBoxColumn
     Friend WithEvents aidbanc As DataGridViewTextBoxColumn
@@ -97,9 +96,10 @@ Public Class login
         Me.Button3 = New System.Windows.Forms.Button()
         Me.pnlPrincipal = New System.Windows.Forms.Panel()
         Me.pnlPools = New System.Windows.Forms.Panel()
-        Me.btnValiderPool = New System.Windows.Forms.Label()
+        Me.btn_login_seConnecter2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dgvPools = New System.Windows.Forms.DataGridView()
+        Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblBaseDonnee = New System.Windows.Forms.Label()
         Me.lblMode = New System.Windows.Forms.Label()
         Me.pnlLoginControls = New System.Windows.Forms.Panel()
@@ -135,19 +135,18 @@ Public Class login
         Me.lbl_environnement_debugType = New System.Windows.Forms.Label()
         Me.lbl_environnement_debugLvl = New System.Windows.Forms.Label()
         Me.lbl_WS = New System.Windows.Forms.Label()
-        Me.m_bsrcPools = New System.Windows.Forms.BindingSource(Me.components)
         Me.idPool = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.aidbanc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlPrincipal.SuspendLayout()
         Me.pnlPools.SuspendLayout()
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoginControls.SuspendLayout()
         Me.GroupBox_test.SuspendLayout()
         Me.panel_splashSynchro.SuspendLayout()
         CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button3
@@ -188,7 +187,7 @@ Public Class login
         'pnlPools
         '
         Me.pnlPools.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.pnlPools.Controls.Add(Me.btnValiderPool)
+        Me.pnlPools.Controls.Add(Me.btn_login_seConnecter2)
         Me.pnlPools.Controls.Add(Me.Label1)
         Me.pnlPools.Controls.Add(Me.dgvPools)
         Me.pnlPools.Location = New System.Drawing.Point(459, 349)
@@ -197,20 +196,18 @@ Public Class login
         Me.pnlPools.TabIndex = 35
         Me.pnlPools.Visible = False
         '
-        'btnValiderPool
+        'btn_login_seConnecter2
         '
-        Me.btnValiderPool.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnValiderPool.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnValiderPool.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnValiderPool.ForeColor = System.Drawing.Color.White
-        Me.btnValiderPool.Image = CType(resources.GetObject("btnValiderPool.Image"), System.Drawing.Image)
-        Me.btnValiderPool.Location = New System.Drawing.Point(302, 104)
-        Me.btnValiderPool.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnValiderPool.Name = "btnValiderPool"
-        Me.btnValiderPool.Size = New System.Drawing.Size(128, 24)
-        Me.btnValiderPool.TabIndex = 3
-        Me.btnValiderPool.Text = "       Valider"
-        Me.btnValiderPool.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btn_login_seConnecter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_login_seConnecter2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_login_seConnecter2.ForeColor = System.Drawing.Color.White
+        Me.btn_login_seConnecter2.Image = CType(resources.GetObject("btn_login_seConnecter2.Image"), System.Drawing.Image)
+        Me.btn_login_seConnecter2.Location = New System.Drawing.Point(304, 104)
+        Me.btn_login_seConnecter2.Name = "btn_login_seConnecter2"
+        Me.btn_login_seConnecter2.Size = New System.Drawing.Size(128, 24)
+        Me.btn_login_seConnecter2.TabIndex = 4
+        Me.btn_login_seConnecter2.Text = "       Se connecter"
+        Me.btn_login_seConnecter2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
         '
@@ -248,6 +245,11 @@ Public Class login
         Me.dgvPools.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvPools.Size = New System.Drawing.Size(436, 71)
         Me.dgvPools.TabIndex = 0
+        '
+        'm_bsrcPools
+        '
+        Me.m_bsrcPools.AllowNew = False
+        Me.m_bsrcPools.DataSource = GetType(CRODIPWS.Pool)
         '
         'lblBaseDonnee
         '
@@ -652,11 +654,6 @@ Public Class login
         Me.lbl_WS.Text = "http://serveur_crodip/Server"
         Me.lbl_WS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'm_bsrcPools
-        '
-        Me.m_bsrcPools.AllowNew = False
-        Me.m_bsrcPools.DataSource = GetType(CRODIPWS.Pool)
-        '
         'idPool
         '
         Me.idPool.DataPropertyName = "idPool"
@@ -694,13 +691,13 @@ Public Class login
         Me.pnlPrincipal.PerformLayout()
         Me.pnlPools.ResumeLayout(False)
         CType(Me.dgvPools, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoginControls.ResumeLayout(False)
         Me.pnlLoginControls.PerformLayout()
         Me.GroupBox_test.ResumeLayout(False)
         Me.panel_splashSynchro.ResumeLayout(False)
         CType(Me.pctSynchro, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picto_profil, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPools, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -824,6 +821,8 @@ Public Class login
                                                     m_bsrcPools.Add(p)
                                                 End Sub)
                                 'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                                btn_login_seConnecter.Enabled = False
+                                btn_login_seConnecter2.Enabled = True
                                 pnlPools.Visible = True
                                 _selectedAgent.oPool = Nothing
                             End If
@@ -897,6 +896,12 @@ Public Class login
         Else
             lblBaseDonnee.Text = ""
         End If
+
+        'BUG sur le DataGridView (suppresson des dernières col)
+        For i As Integer = dgvPools.Columns.GetColumnCount(DataGridViewElementStates.Displayed) - 1 To 3 Step -1
+            dgvPools.Columns.RemoveAt(i)
+        Next
+
 
         ' Chargement de la statusbar
         Statusbardisplay("Chargement de la liste de profils...", True)
@@ -1416,10 +1421,6 @@ Public Class login
         End If
     End Sub
 
-    Private Sub btnValiderPool_Click(sender As Object, e As EventArgs) Handles btnValiderPool.Click
-        SelectPool()
-    End Sub
-
     Private Sub lbl_WS_Click(sender As Object, e As EventArgs) Handles lbl_WS.Click
         If CSEnvironnement.checkWebService() Then
             GlobalsCRODIP.GLOB_NETWORKAVAILABLE = True
@@ -1428,5 +1429,9 @@ Public Class login
             GlobalsCRODIP.GLOB_NETWORKAVAILABLE = False
             lbl_WS.ForeColor = Drawing.Color.Red
         End If
+    End Sub
+
+    Private Sub btn_login_seConnecter2_Click(sender As Object, e As EventArgs) Handles btn_login_seConnecter2.Click
+        SelectPool()
     End Sub
 End Class

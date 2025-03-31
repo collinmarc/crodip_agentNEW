@@ -595,7 +595,7 @@ Public Class BuseManager
         If Not pAgent.oPool Is Nothing Then
             sql = "SELECT * FROM AgentBuseEtalon MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
         Else
-            sql = "SELECT * FROM AgentBuseEtalon MAT inner join PoolBuse PA on MAT.uid = PA.uidBuse WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
+            sql = "SELECT MAT.* FROM AgentBuseEtalon MAT inner join PoolBuse PA on MAT.uid = PA.uidBuse WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         End If
         If Not isShowAll Then
             sql = sql & " AND MAT.etat=" & True & ""
@@ -619,7 +619,7 @@ Public Class BuseManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             sql = "SELECT * FROM AgentBuseEtalon MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " AND MAT.jamaisServi = " & False & " "
         Else
-            sql = "SELECT * FROM AgentBuseEtalon MAT inner join PoolBuse PA on MAT.uid = PA.uidbuse WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
+            sql = "SELECT MAT.* FROM AgentBuseEtalon MAT inner join PoolBuse PA on MAT.uid = PA.uidbuse WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         End If
         'If Not isShowAll Then
         '    sql = sql & " AND AgentManoControle.etat=" & True & ""

@@ -4,6 +4,7 @@ Imports System.Threading
 Imports CRODIPAcquisition
 Imports CRODIP_ControlLibrary
 Imports CRODIPWS
+Imports System.ComponentModel
 
 ''' <summary>
 ''' Fenêtre de controle des manomètres
@@ -733,7 +734,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101.0!))
         Me.tlpEntete.Controls.Add(Me.Label6, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label11, 6, 1)
@@ -758,7 +759,7 @@ Public Class frmControleManometresNew
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(380, 1)
+        Me.Label6.Location = New System.Drawing.Point(377, 1)
         Me.Label6.Margin = New System.Windows.Forms.Padding(0)
         Me.Label6.Name = "Label6"
         Me.tlpEntete.SetRowSpan(Me.Label6, 2)
@@ -773,9 +774,9 @@ Public Class frmControleManometresNew
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(460, 1)
+        Me.Label7.Location = New System.Drawing.Point(457, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(153, 28)
+        Me.Label7.Size = New System.Drawing.Size(156, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -785,9 +786,9 @@ Public Class frmControleManometresNew
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(521, 30)
+        Me.Label11.Location = New System.Drawing.Point(518, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(92, 29)
+        Me.Label11.Size = New System.Drawing.Size(95, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -797,7 +798,7 @@ Public Class frmControleManometresNew
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(460, 30)
+        Me.Label10.Location = New System.Drawing.Point(457, 30)
         Me.Label10.Name = "Label10"
         Me.Label10.Padding = New System.Windows.Forms.Padding(1)
         Me.Label10.Size = New System.Drawing.Size(54, 29)
@@ -810,7 +811,7 @@ Public Class frmControleManometresNew
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(282, 30)
+        Me.Label4.Location = New System.Drawing.Point(279, 30)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 29)
         Me.Label4.TabIndex = 22
@@ -822,7 +823,7 @@ Public Class frmControleManometresNew
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(181, 30)
+        Me.Label3.Location = New System.Drawing.Point(178, 30)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(94, 29)
         Me.Label3.TabIndex = 23
@@ -835,7 +836,7 @@ Public Class frmControleManometresNew
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(181, 1)
+        Me.Label2.Location = New System.Drawing.Point(178, 1)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(195, 28)
         Me.Label2.TabIndex = 24
@@ -851,7 +852,7 @@ Public Class frmControleManometresNew
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.tlpEntete.SetRowSpan(Me.Label1, 2)
-        Me.Label1.Size = New System.Drawing.Size(92, 58)
+        Me.Label1.Size = New System.Drawing.Size(89, 58)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Pression d'étalonnage (bar)"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -880,7 +881,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101.0!))
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
         Me.tlpPressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionCroissant.Location = New System.Drawing.Point(3, 66)
@@ -921,7 +922,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101.0!))
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
         Me.tlpPressionDecroissante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionDecroissante.Location = New System.Drawing.Point(3, 290)
@@ -961,7 +962,7 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101.0!))
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
         Me.tlpRepetition.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpRepetition.Location = New System.Drawing.Point(3, 477)
@@ -1147,14 +1148,19 @@ Public Class frmControleManometresNew
 
         ' On clear les onglets
         m_bsManoControle.Clear()
-
+        Statusbar.display("Chargement des Manomètres")
         ' On récupère la liste des manos de la structure de l'agent
         Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(m_oAgent, True)
+        Statusbar.display("Synchronisation des Manomètres")
         For Each oManoC As ManometreControle In arrManoControle
-            oManoC.creerControle(m_oAgent)
-            m_bsManoControle.Add(oManoC)
+            Dim oManoC_srv As ManometreControle
+            'Synchronisation depuis le serveur
+            oManoC_srv = ManometreControleManager.WSgetById(oManoC.uid, oManoC.aid)
+            oManoC_srv.creerControle(m_oAgent)
+            m_bsManoControle.Add(oManoC_srv)
         Next
         m_bsManoControle.MoveLast()
+        Statusbar.display("")
 
         If GlobalsCRODIP.GLOB_ENV_DEBUG Then
             tbTemperature.Text = "15"
@@ -1544,6 +1550,7 @@ Public Class frmControleManometresNew
             For Each curManoControle In m_bsManoControle
                 'On met a jour le manometreControle
                 If curManoControle.isUpdated Then
+                    Statusbar.display("Enregistrement Manomètre [" & curManoControle.numeroNational & "]")
                     oCtrlMano = curManoControle.controle
                     If oCtrlMano IsNot Nothing Then
                         oCtrlMano.manoEtalon = oManoEtalon.numeroNational
@@ -1566,14 +1573,13 @@ Public Class frmControleManometresNew
                         oCtrlMano.DateVerif = dtpDateControle.Value
                         curManoControle.dateDernierControle = dtpDateControle.Value
                         ' On construit notre nouvelle fiche de vie
+                        Statusbar.display("Création fiche de vie Manomètre [" & curManoControle.numeroNational & "]")
                         CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Construct FV Controle ")
                         Dim oEtat As New EtatFVMano(oCtrlMano)
                         Thread.Sleep(1000) 'on attend 1s pour être sur de bien avoir des fichiers différents
-                        Dim sFileName As String = oEtat.buildPDF(curManoControle, agentCourant)
+                        Dim sFileName As String = oEtat.buildPDF(curManoControle, m_oAgent)
                         Dim oFV As FVManometreControle
-                        oFV = curManoControle.creerfFicheVieControle(agentCourant, oCtrlMano, sFileName)
-
-                        ' curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano)
+                        oFV = curManoControle.creerfFicheVieControle(m_oAgent, oCtrlMano, sFileName)
 
                         ' On flag le mano etalon comme etant utilise
                         ' On récupère le mano
@@ -1581,6 +1587,10 @@ Public Class frmControleManometresNew
                         ' On le flag
                         CSDebug.dispInfo("frmControleManager.EnregistrerLesControles : Set ManoEtalon utilisé ")
                         ManometreEtalonManager.setUtilise(m_oAgent, tmpManometreEtalon)
+
+                        Statusbar.display("Synchronisation Manomètre [" & curManoControle.numeroNational & "]")
+                        SynchronisationManos(curManoControle, oFV, tmpManometreEtalon)
+                        Statusbar.display("")
                     End If
                 End If
             Next
@@ -1593,6 +1603,25 @@ Public Class frmControleManometresNew
         End Try
         Return bReturn
     End Function
+
+    Private Sub SynchronisationManos(curManoControle As ManometreControle, oFV As FVManometreControle, tmpManometreEtalon As ManometreEtalon)
+        'Remontée des infos vers le serveur
+        Dim oReturn As ManometreControle = Nothing
+        Dim oReturnFV As FVManometreControle = Nothing
+        Dim oReturnME As ManometreEtalon = Nothing
+        ManometreControleManager.WSSend(curManoControle, oReturn)
+        If oReturn IsNot Nothing Then
+            ManometreControleManager.save(oReturn, True)
+        End If
+        FVManometreControleManager.WSSend(oFV, oReturnFV)
+        If oReturnFV IsNot Nothing Then
+            FVManometreControleManager.save(m_oAgent, oReturnFV, True)
+        End If
+        ManometreEtalonManager.WSSend(tmpManometreEtalon, oReturnME)
+        If oReturnME IsNot Nothing Then
+            ManometreEtalonManager.save(oReturnME, True)
+        End If
+    End Sub
 
     ' Bouton "Suivant"
     Private Sub btn_controleManos_suivant_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleManos_suivant.Click
@@ -1907,5 +1936,7 @@ Public Class frmControleManometresNew
         End If
     End Sub
 
-
+    Private Sub frmControleManometresNew_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Statusbar.display("")
+    End Sub
 End Class

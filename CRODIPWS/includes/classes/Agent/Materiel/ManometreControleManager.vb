@@ -475,7 +475,7 @@ Public Class ManometreControleManager
         If pAgent.oPool Is Nothing Then
             sql = "SELECT * FROM AgentManoControle MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
         Else
-            sql = "SELECT * FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
+            sql = "SELECT MAT.* FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         End If
         If Not isShowAll Then
             sql = sql & " AND MAT.etat=" & True & ""
@@ -501,7 +501,7 @@ Public Class ManometreControleManager
         If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
             sql = "SELECT * FROM AgentManoControle MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " AND MAT.jamaisServi = " & False & " "
         Else
-            sql = "SELECT * FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
+            sql = "SELECT MAT.* FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         End If
         'If Not isShowAll Then
         '    sql = sql & " AND AgentManoControle.etat=" & True & ""
