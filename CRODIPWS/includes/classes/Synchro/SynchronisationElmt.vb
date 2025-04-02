@@ -338,7 +338,7 @@ Public Class SynchronisationElmt
                     Dim tmpObject As New Agent
                     Try
                         SetStatus("Réception MAJ Agent n°" & pElement.IdentifiantChaine & "...")
-                        tmpObject = AgentManager.WSgetByNumeroNational(pElement.ValeurAuxiliaire)
+                        tmpObject = AgentManager.WSgetByNumeroNational(pElement.IdentifiantEntier, False)
                         If tmpObject.id <> 0 Then
                             pAgent = tmpObject
                             CSDebug.dispInfo("Synchronisation::runDescSynchro(GetAgent) Mot de passe = " & tmpObject.motDePasse)

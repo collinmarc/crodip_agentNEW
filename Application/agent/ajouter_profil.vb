@@ -239,7 +239,7 @@ Public Class ajouter_profil
                 Try
                     ' on récupère notre agent via WS
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS, True)
-                    objAgent = AgentManager.WSgetByNumeroNational(addProfil_identifiant.Text)
+                    objAgent = AgentManager.WSgetByNumeroNational(addProfil_identifiant.Text, True)
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS, True)
                     If objAgent.numeroNational <> "" Then
                         ' Ok, profil trouvé et chargé. On vérifie le password

@@ -181,7 +181,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oStructure.idCrodip = "22"
         StructureManager.save(oStructure, True)
 
-        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3")
+        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3", False)
         AgentManager.save(oAgent)
 
         Dim oSynchro As Synchronisation

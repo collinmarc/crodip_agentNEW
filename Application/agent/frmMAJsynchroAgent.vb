@@ -27,7 +27,7 @@ Public Class frmMAJsynchroAgent
 
         'Récupération de l'agent
         Dim oResponse As Object = Nothing
-        m_Agent = AgentManager.WSgetByNumeroNational(tbNumNationalAgent.Text)
+        m_Agent = AgentManager.WSgetByNumeroNational(tbNumNationalAgent.Text, False)
         If m_Agent.id <> 0 Then
             ''Maj de l'agent 
 

@@ -152,6 +152,9 @@ Public Class root
                             propInfo.SetValue(Me, CSDate.FromCrodipString(pcolValue))
                         End If
                         bReturn = True
+                    Case "BOOLEAN"
+                        propInfo.SetValue(Me, CType(pcolValue, Boolean))
+                        bReturn = True
                     Case Else
                         propInfo.SetValue(Me, pcolValue)
                 End Select

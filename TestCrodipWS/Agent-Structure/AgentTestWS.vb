@@ -10,14 +10,14 @@ Imports System.Net.Http
 
     <TestMethod()> Public Sub getWS()
         Dim Agent As CRODIPWS.Agent
-        Agent = AgentManager.WSgetByNumeroNational("TSTVT")
+        Agent = AgentManager.WSgetByNumeroNational("TSTVT", False)
         Assert.AreEqual("TSTVT", Agent.numeroNational)
         Assert.IsNotNull(Agent)
 
     End Sub
     <TestMethod()> Public Sub sendWS()
         Dim oAgent As CRODIPWS.Agent
-        oAgent = AgentManager.WSgetByNumeroNational("TSTVT")
+        oAgent = AgentManager.WSgetByNumeroNational("TSTVT", False)
         Assert.IsNotNull(oAgent)
         Dim Nom As String = "TEST" + Now
         oAgent.nom = Nom
@@ -25,7 +25,7 @@ Imports System.Net.Http
         Dim nReturn As Integer
         nReturn = AgentManager.WSSend(oAgent, oreturn)
         Assert.AreEqual(2, nReturn)
-        oAgent = AgentManager.WSgetByNumeroNational("TSTVT")
+        oAgent = AgentManager.WSgetByNumeroNational("TSTVT", False)
         Assert.AreEqual(oAgent.nom, Nom)
 
     End Sub
@@ -43,7 +43,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oAgent = AgentManager.WSgetByNumeroNational(oReturn.numeroNational)
+        oAgent = AgentManager.WSgetByNumeroNational(oReturn.numeroNational, False)
 
         'Update de l'objet
         oAgent.nom = "TESTUPDATE"
@@ -72,7 +72,7 @@ Imports System.Net.Http
         Assert.IsNotNull(oReturn.uid)
 
         'Lecture de l'objet
-        oAgent = AgentManager.WSgetByNumeroNational(oReturn.numeroNational)
+        oAgent = AgentManager.WSgetByNumeroNational(oReturn.numeroNational, False)
         Assert.AreEqual(True, oAgent.isGestionnaire)
 
         'Update de l'objet
@@ -83,7 +83,7 @@ Imports System.Net.Http
         Assert.AreEqual(2, nreturn)
 
         'Lecture de l'objet
-        oAgent = AgentManager.WSgetByNumeroNational(oAgent.numeroNational)
+        oAgent = AgentManager.WSgetByNumeroNational(oAgent.numeroNational, False)
         Assert.AreEqual(False, oAgent.isGestionnaire)
 
 

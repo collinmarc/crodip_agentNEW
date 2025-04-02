@@ -124,7 +124,7 @@ Public Class AgentManagerTest
 
         actual = AgentManager.WSSend(agent, updatedObject)
 
-        agentLu = AgentManager.WSgetByNumeroNational(agent.numeroNational)
+        agentLu = AgentManager.WSgetByNumeroNational(agent.numeroNational, False)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
         Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)

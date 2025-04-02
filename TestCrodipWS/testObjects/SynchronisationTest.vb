@@ -839,7 +839,7 @@ Public Class SynchronisationTest
         Dim oStructure = StructureManager.WSgetById(22, "22")
         StructureManager.save(oStructure)
 
-        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3")
+        Dim oAgent As Agent = AgentManager.WSgetByNumeroNational("DEVMCO3", False)
         AgentManager.save(oAgent)
 
         Dim strDate As String = "2000-01-01 00:00:00"

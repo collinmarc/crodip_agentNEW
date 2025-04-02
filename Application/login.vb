@@ -729,7 +729,7 @@ Public Class login
                     ' On commence par redescendre le pass de l'agent courant
                     Dim tmpObject As New Agent
                     Try
-                        tmpObject = AgentManager.WSgetByNumeroNational(_selectedAgent.numeroNational)
+                        tmpObject = AgentManager.WSgetByNumeroNational(_selectedAgent.numeroNational, True)
                         If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
                             _selectedAgent.duppliqueInfosAgent(tmpObject, False)
                             If CSDate.FromCrodipString(_selectedAgent.dateDerniereSynchro).Year = 1970 Then
@@ -1391,7 +1391,7 @@ Public Class login
         CSDebug.dispInfo("Connexion réussie " & pAgent.nom)
         ' On met a jour la date de dernière connexion
         pAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
-        AgentManager.save(agentCourant)
+        AgentManager.save(pAgent)
         ' On affiche le formulaire d'accueil de l'application
         Dim formAccueil As New accueil
         globFormAccueil = formAccueil

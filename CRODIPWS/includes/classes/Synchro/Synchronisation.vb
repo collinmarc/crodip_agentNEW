@@ -210,7 +210,7 @@ Public Class Synchronisation
             Dim tmpObject As New Agent
             Try
                 'Statusbar_display("Réception MAJ Agent n°" & agent.numeroNational & "...")
-                tmpObject = AgentManager.WSgetByNumeroNational(m_Agent.numeroNational)
+                tmpObject = AgentManager.WSgetByNumeroNational(m_Agent.numeroNational, False)
                 If tmpObject.id <> 0 Then
                     If m_Agent.isActif <> tmpObject.isActif Then
                         m_Agent.isActif = tmpObject.isActif

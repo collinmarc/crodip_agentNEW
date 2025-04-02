@@ -4056,11 +4056,11 @@ Public Class accueil
             _idAgent = value
         End Set
     End Property
-    Public Sub SetContexte(pidAgent As Integer)
-        IDAgent = pidAgent
-        CSDebug.dispInfo("Accueil.SetContexte IdAgent = " & IDAgent)
-        agentCourant = AgentManager.getAgentById(IDAgent)
-    End Sub
+    'Public Sub SetContexte(pidAgent As Integer)
+    '    IDAgent = pidAgent
+    '    CSDebug.dispInfo("Accueil.SetContexte IdAgent = " & IDAgent)
+    '    agentCourant = AgentManager.getAgentById(IDAgent)
+    'End Sub
     ' Chargement form
     Private Sub accueil_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 

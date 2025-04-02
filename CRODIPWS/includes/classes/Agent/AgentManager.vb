@@ -12,7 +12,7 @@ Public Class AgentManager
     '    Return oreturn
     'End Function
 
-    Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String, Optional pbLoadPools As Boolean = True) As Agent
+    Public Shared Function WSgetByNumeroNational(ByVal pIdProfileAgent As String, pbLoadPools As Boolean) As Agent
         Dim oreturn As Agent
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
@@ -104,9 +104,9 @@ Public Class AgentManager
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational)
+                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational, False)
                 Case 4 ' CREATE OK
-                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational)
+                    pReturn = WSgetByNumeroNational(pAgentIn.numeroNational, False)
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST
