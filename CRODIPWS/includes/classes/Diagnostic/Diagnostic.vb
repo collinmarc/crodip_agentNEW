@@ -1152,7 +1152,7 @@ Public Class Diagnostic
             _pulverisateurNumNational = Value
         End Set
     End Property
-    Public Property pulverisateurNumChassis() As String
+    Public Property pulverisateurNumchassis() As String
         Get
             Return _pulverisateurNumChassis
         End Get
@@ -1160,7 +1160,24 @@ Public Class Diagnostic
             _pulverisateurNumChassis = Value
         End Set
     End Property
-
+    Private _pulverisateurImmatCertificat As String
+    Public Property pulverisateurImmatCertificat() As String
+        Get
+            Return _pulverisateurImmatCertificat
+        End Get
+        Set(ByVal value As String)
+            _pulverisateurImmatCertificat = value
+        End Set
+    End Property
+    Private _pulverisateurImmatPlaque As String
+    Public Property pulverisateurImmatPlaque() As String
+        Get
+            Return _pulverisateurImmatPlaque
+        End Get
+        Set(ByVal value As String)
+            _pulverisateurImmatPlaque = value
+        End Set
+    End Property
     Public Property pulverisateurMarque() As String
         Get
             Return _pulverisateurMarque
@@ -2702,13 +2719,13 @@ Public Class Diagnostic
         Try
 
 
-            organismePresId = pAgent.uidStructure
+            organismePresId = pAgent.uidstructure
             uidagent = pAgent.uid
-            uidstructure = pAgent.uidStructure
+            uidstructure = pAgent.uidstructure
 
             Dim structureCourante As [Structure]
             Try
-                structureCourante = StructureManager.getStructureById(pAgent.uidStructure)
+                structureCourante = StructureManager.getStructureById(pAgent.uidstructure)
             Catch ex As Exception
                 structureCourante = New [Structure]
             End Try
@@ -3068,7 +3085,11 @@ Public Class Diagnostic
                     Case "pulverisateurNumNational".ToUpper().Trim()
                         Me.pulverisateurNumNational = pcolValue.ToString()
                     Case "pulverisateurNumchassis".ToUpper().Trim()
-                        Me.pulverisateurNumChassis = pcolValue.ToString()
+                        Me.pulverisateurNumchassis = pcolValue.ToString()
+                    Case " pulverisateurImmatCertificat".ToUpper().Trim()
+                        Me.pulverisateurImmatCertificat = pcolValue.ToString()
+                    Case "pulverisateurImmatPlaque".ToUpper().Trim()
+                        Me.pulverisateurImmatPlaque = pcolValue.ToString()
                     'le typeDiag est le nom du champ dans le WS
                     Case "typeDiag".ToUpper().Trim(), "origineDiag".ToUpper().Trim()
                         Me.origineDiag = pcolValue.ToString()
@@ -3229,7 +3250,9 @@ Public Class Diagnostic
             uidpulverisateur = poPulve.uid
             Me.pulverisateurId = poPulve.id
             Me.pulverisateurNumNational = poPulve.numeroNational
-            Me.pulverisateurNumChassis = poPulve.numeroChassis
+            Me.pulverisateurNumchassis = poPulve.numeroChassis
+            Me.pulverisateurImmatPlaque = poPulve.immatPlaque
+            Me.pulverisateurImmatCertificat = poPulve.immatCertificat
             If String.IsNullOrEmpty(poPulve.ancienIdentifiant) Then
                 pulverisateurAncienId = ""
             Else
@@ -3316,6 +3339,7 @@ Public Class Diagnostic
             Me.manometreFondEchelle = poPulve.manometreFondEchelle
             '            Me.manometrePressionTravail = poPulve.manometrePressionTravail 'La Pression reste toujours à 3
             Me.pulverisateurControleEtat = poPulve.controleEtat
+            Me.pulverisateurNumchassis = poPulve.numeroChassis
 
             Dim sDate As String = poPulve.getDateDernierControle()
             If sDate = "" Then

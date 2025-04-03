@@ -351,8 +351,7 @@ Public Class AgentPcManager
         Debug.Assert(pidStructure > 0, "IdStructure doit être initialisé")
         Dim oList As New List(Of AgentPc)
         Try
-            oList = getListe(Of AgentPc)("SELECT* FROM POOL AgentPC uidStructure = " & pidStructure)
-
+            oList = getListe(Of AgentPc)("SELECT * FROM AgentPC where uidStructure = " & pidStructure)
         Catch ex As Exception
             CSDebug.dispError("AgentPCManager.GetListe ERR", ex)
             oList = New List(Of AgentPc)()

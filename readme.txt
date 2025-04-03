@@ -4,6 +4,7 @@ BUILD XXXXXXXXXXXXXX
 	0001784: Contrat Commercial : Ajout du numéro organisme prestataire
 	0001774: Synhcronisation des controles Mano
 	0001653: Reactivation de Refonte de la gestion du matériel (Ajout de nouveaux matériels) + Gestion des pools
+	0001786: Remontée des champs Numchassis, ImatCertif et imatPlaque dans le diag
 
 BUILD 20250210100001  
 	0001781: Affichage des Manometres dans l'ordre des traca (FileVersion 20250214120000)

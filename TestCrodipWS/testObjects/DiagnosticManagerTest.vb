@@ -6139,6 +6139,28 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
+    <TestMethod()>
+    Public Sub testNumChassisEtImmat()
+        Dim oDiag As Diagnostic
+        Dim oDiag2 As Diagnostic
+        Dim idDiag As String
+        Dim idDiag2 As String
+
+        oDiag = createAndSaveDiagnostic()
+        m_oPulve.numeroChassis = "123456"
+        m_oPulve.immatPlaque = "FE750QT"
+        m_oPulve.immatCertificat = "CM240NC"
+        oDiag.setPulverisateur(m_oPulve)
+        DiagnosticManager.save(oDiag)
+        idDiag = oDiag.id
+
+        DiagnosticManager.WSSend(oDiag, oDiag2)
+        Assert.IsNotNull(oDiag2)
+        Assert.AreEqual(m_oPulve.numeroChassis, oDiag2.pulverisateurNumchassis)
+        Assert.AreEqual(m_oPulve.immatPlaque, oDiag2.pulverisateurImmatPlaque)
+        Assert.AreEqual(m_oPulve.immatCertificat, oDiag2.pulverisateurImmatCertificat)
+
+    End Sub
 
 
 

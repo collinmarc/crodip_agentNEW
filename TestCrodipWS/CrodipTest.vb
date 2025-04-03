@@ -87,6 +87,11 @@ Public Class CRODIPTest
         m_oAgent = AgentManager.WSgetByNumeroNational(m_numNatAgent, False)
         m_IdAgent = m_oAgent.id
 
+        'Création du PC
+        Dim oAgentPC As New AgentPc
+        oAgentPC.idCrodip = "999999"
+        oAgentPC.uidstructure = m_oStructure.uid
+        AgentPcManager.Save(oAgentPC)
 
         'Récupération du banc de la structure
         'Si il n'existe pas on le récupère du WS

@@ -654,3 +654,19 @@ Alter Table PoolAgent Add Column isSupprime Bit default 0;
 Alter Table PoolPc Add Column isSupprime Bit default 0;
 Alter Table Pool Add Column aid Text default '';
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','Pool');
+
+Alter Table Diagnostic Add Column pulverisateurNumeroChassis  Text default '';
+Update Diagnostic set pulverisateurNumeroChassis = pulverisateurNumChassis;
+Alter Table Diagnostic drop Column pulverisateurNumChassis;
+Alter Table Diagnostic Add Column pulverisateurImmatCertificat  Text default '';
+Alter Table Diagnostic Add Column pulverisateurImmatPlaque  Text default '';
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-02 16:10:00','Chassis Diag');
+
+Alter Table AgentPC add Column aid text DEFAULT '';
+Update AgentPC set aid = idPc;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-03 16:10:00','agentPC aid');
+
+Alter Table Diagnostic Add Column pulverisateurNumchassis  Text default '';
+Update Diagnostic set pulverisateurNumchassis = pulverisateurNumeroChassis;
+Alter Table Diagnostic drop Column pulverisateurNumeroChassis;
+

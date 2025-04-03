@@ -350,22 +350,14 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM FicheVieManometreEtalon"
             bddCommande.ExecuteNonQuery()
 
-            '            bddCommande.CommandText = "DELETE FROM PoolBuse"
-            '            bddCommande.ExecuteNonQuery()
-            '           bddCommande.CommandText = "DELETE FROM PoolManoC"
-            '          bddCommande.ExecuteNonQuery()
-            '         bddCommande.CommandText = "DELETE FROM PoolManoE"
-            '        bddCommande.ExecuteNonQuery()
-            '            bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
-            '           bddCommande.ExecuteNonQuery()
-            '          bddCommande.CommandText = "DELETE FROM AgentManoControle"
-            '         bddCommande.ExecuteNonQuery()
-            '        bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
-            '       bddCommande.ExecuteNonQuery()
-            '      bddCommande.CommandText = "DELETE FROM BancMesure"
-            '     bddCommande.ExecuteNonQuery()
-            '    bddCommande.CommandText = "DELETE FROM PoolBanc"
-            '   bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM BancMesure"
+            bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Controle_Regulier"
             bddCommande.ExecuteNonQuery()
 
@@ -391,8 +383,8 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Pulverisateur"
             bddCommande.ExecuteNonQuery()
-            'bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
-            'bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
+            bddCommande.ExecuteNonQuery()
 
             bddCommande.CommandText = "DELETE FROM PrestationTarif"
             bddCommande.ExecuteNonQuery()
@@ -408,6 +400,14 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM Pool"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM PoolAgent"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Poolpc"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolBuse"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoEtalon"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Structure"
             bddCommande.ExecuteNonQuery()
