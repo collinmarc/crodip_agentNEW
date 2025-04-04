@@ -12,7 +12,7 @@ set TARGET="CRODIPGPS.exe"
 set OUTPUT="CRODIPGPSFULL.exe"
 
 rem Run ILRepack
-%ILREPACK% /out:%OUTPUT% %TARGET% MaterialSkin.dll System.Diagnostics.DiagnosticSource.dll System.IO.Compression.dll System.Net.Http.dll
+%ILREPACK% /out:%OUTPUT% %TARGET% MaterialSkin.dll System.Diagnostics.DiagnosticSource.dll System.IO.Compression.dll System.Net.Http.dll readme.txt
 
 endlocal
 pause

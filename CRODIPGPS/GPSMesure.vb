@@ -114,6 +114,15 @@
             _NumPulve = value
         End Set
     End Property
+    Private _HeureDepart As DateTime
+    Public Property HeureDepart() As DateTime
+        Get
+            Return _HeureDepart
+        End Get
+        Set(ByVal value As DateTime)
+            _HeureDepart = value
+        End Set
+    End Property
     Private _PositionDepart As String
     Public Property PositionDepart() As String
         Get
@@ -121,6 +130,15 @@
         End Get
         Set(ByVal value As String)
             _PositionDepart = value
+        End Set
+    End Property
+    Private _HeureArrivee As DateTime
+    Public Property HeureArrivee() As DateTime
+        Get
+            Return _HeureArrivee
+        End Get
+        Set(ByVal value As DateTime)
+            _HeureArrivee = value
         End Set
     End Property
     Private _PositionArrivee As String

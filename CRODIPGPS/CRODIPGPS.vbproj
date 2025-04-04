@@ -315,6 +315,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoCRODIP.ico" />
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Icon1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

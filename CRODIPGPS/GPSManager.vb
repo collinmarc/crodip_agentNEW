@@ -1,4 +1,5 @@
-﻿Imports System.IO.Ports
+﻿Imports System.Globalization
+Imports System.IO.Ports
 Imports System.Timers
 
 Public Class GPSManager
@@ -27,6 +28,8 @@ Public Class GPSManager
     '   Private startTime As DateTime
 
     ' Dernières coordonnées GPS
+    Public startTime As DateTime
+    Public EndTime As DateTime
     Public startLatitude As Double
     Public startLongitude As Double
     Public Latitude As Double
@@ -108,6 +111,7 @@ Public Class GPSManager
 
     ' Méthode pour traiter les données GPGGA
     Private Function ProcessGPGGA(fields As String()) As Boolean
+        Dim timeGPG As String = fields(1) 'Date et heure de la trame GPS
         Dim typePositionnement As String = fields(6) '0=invalide,1 = GPS, 2=GPS Différentiel, 4 = PPS
         Dim NbreSatelittes As String = fields(7)
         Dim bReturn As Boolean
@@ -123,7 +127,7 @@ Public Class GPSManager
                 Dim longitude As Double = ConvertToDecimalDegrees(fields(4), fields(5))
 
                 ' Calculer la distance parcourue
-                distance = CalculateDistance(latitude, longitude)
+                distance = CalculateDistance(timeGPG, latitude, longitude)
 
                 TraceMsg("[ProcessGPGGA] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitude & ";" & longitude & ") Distance=" & distance)
                 bReturn = True
@@ -141,7 +145,7 @@ Public Class GPSManager
     ' Méthode pour traiter les données GPRMC
     Private Function ProcessGPRMC(fields As String()) As Boolean
         ' Extraction de l'heure et de la date
-        Dim timeStr As String = fields(1)
+        Dim heureGPS As String = fields(1)
         Dim dateStr As String = fields(9)
         Dim etatDonnees As String = fields(2) 'A=données valides, b=Données invalides
         Dim bReturn As Boolean
@@ -149,7 +153,7 @@ Public Class GPSManager
             TraceMsg("[ProcessGPRMC]etatdonnees=" & etatDonnees)
 
             If etatDonnees = "A" Then
-                Dim dateTimeStr As String = dateStr & " " & timeStr
+                Dim dateTimeStr As String = dateStr & " " & heureGPS
                 'If DateTime.TryParseExact(dateTimeStr, "ddMMyy HHmmss.fff", Nothing, Globalization.DateTimeStyles.None, dateTime) Then
                 'elapsedTime = dateTime - startTime
                 'End If
@@ -159,7 +163,7 @@ Public Class GPSManager
                 Dim longitude As Double = ConvertToDecimalDegrees(fields(5), fields(6))
 
                 ' Calculer la distance parcourue
-                distance = CalculateDistance(latitude, longitude)
+                distance = CalculateDistance(heureGPS, latitude, longitude)
 
                 ' Mettre à jour les dernières coordonnées
                 TraceMsg("[ProcessGPRMC] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitude & ";" & longitude & ") Distance=" & distance)
@@ -189,14 +193,34 @@ Public Class GPSManager
         End If
         Return decimalDegrees
     End Function
+    Function ConvertGPSTimeToDateTime(gpggaTime As String) As DateTime
+        Dim dReturn As DateTime
+        ' Vérifier que la chaîne a le bon format
+        If gpggaTime.Length < 6 Then
 
+            ' Extraire les composants de l'heure
+            Dim hours As Integer = Integer.Parse(gpggaTime.Substring(0, 2))
+            Dim minutes As Integer = Integer.Parse(gpggaTime.Substring(2, 2))
+            Dim seconds As Double = Double.Parse(gpggaTime.Substring(4), CultureInfo.InvariantCulture)
+
+            ' Créer un objet DateTime avec l'heure extraite
+            Dim dateTime As DateTime = New DateTime(1, 1, 1, hours, minutes, 0)
+            dReturn = dateTime.AddSeconds(seconds)
+        Else
+            dReturn = DateTime.Now()
+        End If
+        ' Retourner l'objet DateTime
+        Return dReturn
+    End Function
     ' Calculer la distance entre deux points GPS en mètres
-    Private Function CalculateDistance(lat2 As Double, lon2 As Double) As Double
+    Private Function CalculateDistance(pTimeGPS As String, lat2 As Double, lon2 As Double) As Double
         Dim distanceMeters As Double = 0D
         If startLatitude = 0 And startLongitude = 0 Then
+            startTime = ConvertGPSTimeToDateTime(pTimeGPS)
             startLatitude = lat2
             startLongitude = lon2
         Else
+            EndTime = ConvertGPSTimeToDateTime(pTimeGPS)
             Latitude = lat2
             Longitude = lon2
             Dim R As Double = 6371 ' Rayon de la Terre en kilomètres

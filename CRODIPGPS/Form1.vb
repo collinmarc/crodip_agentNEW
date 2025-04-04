@@ -268,13 +268,16 @@ Public Class Form1
 
                 'Calcul de vitesse
                 If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
-                    _MesureEncours.Distance = distance
-                _MesureEncours.Temps = temps
                 vitesse = _MesureEncours.Vitesse
+                _MesureEncours.HeureDepart = gpsManager.startTime
                 _MesureEncours.PositionDepart = gpsManager.PositionDepart
+                _MesureEncours.HeureArrivee = gpsManager.EndTime
                 _MesureEncours.PositionArrivee = gpsManager.PositionArrivee
-                Else
-                    vitesse = _MesureEncours.calculeVitesse(distance, temps)
+                temps = (_MesureEncours.HeureArrivee - _MesureEncours.HeureDepart).TotalMilliseconds
+                _MesureEncours.Temps = temps
+                _MesureEncours.Distance = distance
+            Else
+                vitesse = _MesureEncours.calculeVitesse(distance, temps)
                     _MesureEncours.Distance = 0
                     _MesureEncours.Temps = 0
                     _MesureEncours.Vitesse = vitesse
