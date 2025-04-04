@@ -4561,9 +4561,6 @@ Public Class accueil
             Statusbar.display("Bienvenu(e) sur le logiciel Crodip Agent v" & GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD, False)
         End If
 
-        If Not GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
-            btn_parametrage_verificationManometres.Enabled = False
-        End If
     End Sub
 
     ''' <summary>

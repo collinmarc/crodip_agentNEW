@@ -79,6 +79,7 @@ Public Class frmcontrole_bancs
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents dtpDateVerif As DateTimePicker
     Friend WithEvents Label3 As Label
+    Friend WithEvents Label8 As Label
     Public CONST_COLOR_CELL_OK As Drawing.Color = System.Drawing.Color.LightGreen
 
 
@@ -300,6 +301,7 @@ Public Class frmcontrole_bancs
         Me.btn_controleBanc_valider = New System.Windows.Forms.Label()
         Me.btn_controleBanc_annuler = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.grp_infoGenerales.SuspendLayout()
         CType(Me.m_bsBuses1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsBuses2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -366,7 +368,7 @@ Public Class frmcontrole_bancs
         Me.grp_infoGenerales.Controls.Add(Me.Label31)
         Me.grp_infoGenerales.Location = New System.Drawing.Point(8, 48)
         Me.grp_infoGenerales.Name = "grp_infoGenerales"
-        Me.grp_infoGenerales.Size = New System.Drawing.Size(992, 104)
+        Me.grp_infoGenerales.Size = New System.Drawing.Size(992, 90)
         Me.grp_infoGenerales.TabIndex = 1
         Me.grp_infoGenerales.TabStop = False
         Me.grp_infoGenerales.Text = "Informations générales"
@@ -575,7 +577,7 @@ Public Class frmcontrole_bancs
         Me.grp_temperatures.Controls.Add(Me.lbl_extTemp)
         Me.grp_temperatures.Controls.Add(Me.controleBanc_eauTemp)
         Me.grp_temperatures.Controls.Add(Me.lbl_eauTemp)
-        Me.grp_temperatures.Location = New System.Drawing.Point(8, 160)
+        Me.grp_temperatures.Location = New System.Drawing.Point(8, 144)
         Me.grp_temperatures.Name = "grp_temperatures"
         Me.grp_temperatures.Size = New System.Drawing.Size(992, 64)
         Me.grp_temperatures.TabIndex = 1
@@ -624,7 +626,7 @@ Public Class frmcontrole_bancs
         '
         Me.grp_verification.Controls.Add(Me.panel_Array)
         Me.grp_verification.Enabled = False
-        Me.grp_verification.Location = New System.Drawing.Point(8, 232)
+        Me.grp_verification.Location = New System.Drawing.Point(8, 214)
         Me.grp_verification.Name = "grp_verification"
         Me.grp_verification.Size = New System.Drawing.Size(992, 336)
         Me.grp_verification.TabIndex = 2
@@ -1699,7 +1701,7 @@ Public Class frmcontrole_bancs
         Me.Label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.Red
-        Me.Label28.Location = New System.Drawing.Point(8, 576)
+        Me.Label28.Location = New System.Drawing.Point(8, 556)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(584, 96)
         Me.Label28.TabIndex = 21
@@ -1709,11 +1711,12 @@ Public Class frmcontrole_bancs
         'controleBanc_resultat
         '
         Me.controleBanc_resultat.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsControleBanc, "resultat", True))
+        Me.controleBanc_resultat.Dock = System.Windows.Forms.DockStyle.Fill
         Me.controleBanc_resultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.controleBanc_resultat.ForeColor = System.Drawing.Color.Red
-        Me.controleBanc_resultat.Location = New System.Drawing.Point(8, 16)
+        Me.controleBanc_resultat.Location = New System.Drawing.Point(3, 16)
         Me.controleBanc_resultat.Name = "controleBanc_resultat"
-        Me.controleBanc_resultat.Size = New System.Drawing.Size(240, 72)
+        Me.controleBanc_resultat.Size = New System.Drawing.Size(250, 77)
         Me.controleBanc_resultat.TabIndex = 22
         Me.controleBanc_resultat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -1723,7 +1726,7 @@ Public Class frmcontrole_bancs
         Me.btn_controleBanc_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_controleBanc_valider.ForeColor = System.Drawing.Color.White
         Me.btn_controleBanc_valider.Image = CType(resources.GetObject("btn_controleBanc_valider.Image"), System.Drawing.Image)
-        Me.btn_controleBanc_valider.Location = New System.Drawing.Point(864, 600)
+        Me.btn_controleBanc_valider.Location = New System.Drawing.Point(862, 596)
         Me.btn_controleBanc_valider.Name = "btn_controleBanc_valider"
         Me.btn_controleBanc_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_controleBanc_valider.TabIndex = 3
@@ -1736,7 +1739,7 @@ Public Class frmcontrole_bancs
         Me.btn_controleBanc_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_controleBanc_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_controleBanc_annuler.Image = CType(resources.GetObject("btn_controleBanc_annuler.Image"), System.Drawing.Image)
-        Me.btn_controleBanc_annuler.Location = New System.Drawing.Point(864, 632)
+        Me.btn_controleBanc_annuler.Location = New System.Drawing.Point(862, 628)
         Me.btn_controleBanc_annuler.Name = "btn_controleBanc_annuler"
         Me.btn_controleBanc_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_controleBanc_annuler.TabIndex = 4
@@ -1746,12 +1749,24 @@ Public Class frmcontrole_bancs
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.controleBanc_resultat)
-        Me.GroupBox1.Location = New System.Drawing.Point(600, 576)
+        Me.GroupBox1.Location = New System.Drawing.Point(600, 556)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(256, 96)
         Me.GroupBox1.TabIndex = 27
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Résultat de la vérification"
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Blue
+        Me.Label8.Location = New System.Drawing.Point(545, 656)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(451, 16)
+        Me.Label8.TabIndex = 63
+        Me.Label8.Text = "Vous devez être connecté à internet pour valider votre controle"
         '
         'frmcontrole_bancs
         '
@@ -1759,6 +1774,7 @@ Public Class frmcontrole_bancs
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1008, 679)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btn_controleBanc_valider)
         Me.Controls.Add(Me.Label28)
@@ -1815,6 +1831,7 @@ Public Class frmcontrole_bancs
         Me.Panel14.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -1880,7 +1897,12 @@ Public Class frmcontrole_bancs
         '###########################################################
         Dim arrBanc As List(Of Banc)
         arrBanc = BancManager.getBancByAgent(agentCourant, True)
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
         For Each tmpBanc As Banc In arrBanc
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                'Lecture du WS si connecté
+                tmpBanc = BancManager.WSgetById(tmpBanc.uid, tmpBanc.aid)
+            End If
             Dim objComboItem As New objComboItem(tmpBanc.id, tmpBanc.marque & " (" & tmpBanc.id & ")")
             controleBanc_numBanc.Items.Add(objComboItem)
         Next
@@ -1897,52 +1919,58 @@ Public Class frmcontrole_bancs
 
     ' Validation du contrôle
     Private Sub btn_controleBanc_valider_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_controleBanc_valider.Click
-        ' Numéro du banc
-        If controleBanc_numBanc.Text <> "" Then
-            ' Températures obligatoires
-            Dim bTemp As Boolean
-            bTemp = Not String.IsNullOrEmpty(controleBanc_extTemp.Text)
-            bTemp = bTemp And (Not String.IsNullOrEmpty(controleBanc_eauTemp.Text))
-            bTemp = bTemp And (IsNumeric(controleBanc_extTemp.Text))
-            bTemp = bTemp And (IsNumeric(controleBanc_eauTemp.Text))
-            If bTemp Then
-                '5 buses Minimum
-                Dim obuse As Buse
-                Dim nBuse As Integer = 0
-                For i As Integer = 1 To 6
-                    Try
-                        ' On récupère les controles
-                        Dim cbxBuseList As ComboBox = CSForm.getControlByName("controleBanc_buse" & i, Me)
-                        If cbxBuseList.SelectedItem IsNot Nothing Then
-                            ' On récupère la buse
-                            obuse = TryCast(cbxBuseList.SelectedItem, Buse)
-                            If obuse IsNot Nothing Then
-                                nBuse = nBuse + 1
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+        If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+            ' Numéro du banc
+            If controleBanc_numBanc.Text <> "" Then
+                ' Températures obligatoires
+                Dim bTemp As Boolean
+                bTemp = Not String.IsNullOrEmpty(controleBanc_extTemp.Text)
+                bTemp = bTemp And (Not String.IsNullOrEmpty(controleBanc_eauTemp.Text))
+                bTemp = bTemp And (IsNumeric(controleBanc_extTemp.Text))
+                bTemp = bTemp And (IsNumeric(controleBanc_eauTemp.Text))
+                If bTemp Then
+                    '5 buses Minimum
+                    Dim obuse As Buse
+                    Dim nBuse As Integer = 0
+                    For i As Integer = 1 To 6
+                        Try
+                            ' On récupère les controles
+                            Dim cbxBuseList As ComboBox = CSForm.getControlByName("controleBanc_buse" & i, Me)
+                            If cbxBuseList.SelectedItem IsNot Nothing Then
+                                ' On récupère la buse
+                                obuse = TryCast(cbxBuseList.SelectedItem, Buse)
+                                If obuse IsNot Nothing Then
+                                    nBuse = nBuse + 1
+                                End If
                             End If
+
+                        Catch ex As Exception
+                            CSDebug.dispError("controle_banc::btn_controleBanc_valider_Click(Flag) : " & ex.Message)
+                        End Try
+                    Next
+
+                    If nBuse >= 5 Then
+                        If m_oControleBanc.isComplet() Then
+                            valider()
+                        Else
+                            MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_MESURES)
                         End If
-
-                    Catch ex As Exception
-                        CSDebug.dispError("controle_banc::btn_controleBanc_valider_Click(Flag) : " & ex.Message)
-                    End Try
-                Next
-
-                If nBuse >= 5 Then
-                    If m_oControleBanc.isComplet() Then
-                        valider()
                     Else
-                        MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_MESURES)
+                        MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_5BUSES)
+
                     End If
+
                 Else
-                    MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_5BUSES)
-
+                    MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOTEMP)
                 End If
-
             Else
-                MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOTEMP)
+                MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOBANCNUM)
             End If
         Else
-            MsgBox(GlobalsCRODIP.CONST_INFO_CTRLBANC_ERR_NOBANCNUM)
+            MsgBox("Vous devez être connecté à internet pour valider votre controle", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
         End If
+
     End Sub
     Private Sub valider()
         Dim oBuse As Buse
@@ -1989,6 +2017,17 @@ Public Class frmcontrole_bancs
                 CSDebug.dispError("controle_banc::btn_controleBanc_valider_Click(Flag) : " & ex.Message)
             End Try
         Next
+        'Synchronisation 
+        If CSEnvironnement.checkNetwork() Then
+            Dim oBancReturn As Banc = Nothing
+            BancManager.WSSend(curBanc, oBancReturn)
+            BancManager.save(oBancReturn, True)
+            Dim oFVReturn As FVBanc = Nothing
+            FVBancManager.WSSend(oFV, oFVReturn)
+            If oFVReturn IsNot Nothing Then
+                FVBancManager.save(oFVReturn, True)
+            End If
+        End If
 
 
         TryCast(MdiParent, parentContener).ReturnToAccueil()

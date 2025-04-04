@@ -137,41 +137,4 @@ Public Class FVManoEtalonManagerTest
 
     End Sub
 
-    '''<summary>
-    '''Test des WS Fiches de vies de Manos de Etalons
-    '''</summary>
-    <TestMethod()> _
-    Public Sub SynhcroDesFichesDeViesBancTest()
-        Dim oMano As ManometreEtalon
-        Dim olstFV As New List(Of FVManometreEtalon)
-        oMano = New ManometreEtalon()
-        oMano.uidstructure = m_oAgent.idStructure
-        oMano.idCrodip = ManometreEtalonManager.FTO_getNewId(m_oAgent)
-        oMano.numeroNational = oMano.idCrodip
-        oMano.JamaisServi = True
-        oMano.isUtilise = False
-        ManometreEtalonManager.save(oMano)
-
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
-        ManometreEtalonManager.save(oMano)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
-
-        ManometreEtalonManager.setUtilise(m_oAgent, oMano)
-
-        'Désactivation du Mano
-        Assert.IsTrue(oMano.etat)
-
-        'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprime)
-        oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprime)
-
-
-        Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
-        Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVManoEtalon()
-        Assert.AreEqual(0, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
-
-    End Sub
 End Class

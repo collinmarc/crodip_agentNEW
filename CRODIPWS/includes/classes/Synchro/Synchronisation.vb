@@ -340,177 +340,27 @@ Public Class Synchronisation
 
             runASCSynchroPresta()
 
-
-            If (m_SynchroBoolean.m_bSynchAscBuse) Then
-                ' Synchro d'un Buse
-                Dim arrUpdatesBuse() As Buse = BuseManager.getUpdates(m_Agent)
-                Dim pBuseReturn As New Buse
-                For Each tmpUpdateBuse As Buse In arrUpdatesBuse
-                    Try
-                        Notice("Buse n°" & tmpUpdateBuse.numeroNational)
-                        Dim response As Integer = BuseManager.WSSend(tmpUpdateBuse, pBuseReturn)
-                        Select Case response
-                            Case -1 ' ERROR
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Erreur Locale" & vbNewLine)
-                            Case 0, 2 ' OK
-                                BuseManager.setSynchro(tmpUpdateBuse)
-                            Case 4 ' CREATE
-                                tmpUpdateBuse.uid = pBuseReturn.uid
-                                BuseManager.save(pBuseReturn, True)
-                            Case 1 ' NOK
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBuse) - Le web service a répondu : Non-Ok")
-                            Case 9 ' BADREQUEST
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Le web service a répondu : BadRequest")
-                        End Select
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Buse) : " & ex.Message.ToString)
-                    End Try
-
-                    'Ajout d'un element déjà Synchroniser
-                    Dim oElement As SynchronisationElmt
-                    oElement = SynchronisationElmt.CreateSynchronisationElmt("GetBuse", m_SynchroBoolean)
-                    oElement.IdentifiantChaine = tmpUpdateBuse.aid
-                    oElement.IdentifiantEntier = tmpUpdateBuse.uid
-                    oElement.Traitee = True
-                    m_ListeElementSynchroASC.Add(oElement)
-                Next
-
-
-            End If
-            If (m_SynchroBoolean.m_bSynchAscMano) Then
-                    ' Synchro d'un ManometreControle
-                    ' On récupère les mises à jours
-                    Dim arrUpdatesManometreControle() As ManometreControle = ManometreControleManager.getUpdates(m_Agent)
-                    Dim oManoReturn As New ManometreControle
-                    For Each tmpUpdateManometreControle As ManometreControle In arrUpdatesManometreControle
-                        Try
-                            Dim UpdatedObject As New Object
-                            Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
-                            Dim response As Integer = ManometreControleManager.WSSend(tmpUpdateManometreControle, oManoReturn)
-                            Select Case response
-                                Case -1 ' ERROR
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
-                                Case 0, 2 ' OK
-                                    ManometreControleManager.setSynchro(tmpUpdateManometreControle)
-                            Case 4 ' CREATE
-                                tmpUpdateManometreControle.uid = oManoReturn.uid
-                                ManometreControleManager.save(oManoReturn, True)
-                            Case 1 ' NOK
-                                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreControle) - Le web service a répondu : Non-Ok")
-                                Case 9 ' BADREQUEST
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Le web service a répondu : BadRequest")
-                            End Select
-                        Catch ex As Exception
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(Mano Contrôle) : " & ex.Message.ToString)
-                        End Try
-                    'Ajout d'un element déjà Synchroniser
-                    Dim oElement As SynchronisationElmt
-                    oElement = SynchronisationElmt.CreateSynchronisationElmt("GetManometreControle", m_SynchroBoolean)
-                    oElement.IdentifiantChaine = tmpUpdateManometreControle.aid
-                    oElement.IdentifiantEntier = tmpUpdateManometreControle.uid
-                    oElement.Traitee = True
-                    m_ListeElementSynchroASC.Add(oElement)
-                Next
-            End If
-                If (m_SynchroBoolean.m_bSynchAscMano) Then
-
-                    ' Synchro d'un ManometreEtalon
-                    ' On récupère les mises à jours
-                    Dim arrUpdatesManometreEtalon() As ManometreEtalon = ManometreEtalonManager.getUpdates(m_Agent)
-                    Dim oManoEReturn As New ManometreEtalon
-                    For Each tmpUpdateManometreEtalon As ManometreEtalon In arrUpdatesManometreEtalon
-                        Try
-                            Dim UpdatedObject As New Object
-                            Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
-                            Dim response As Integer = ManometreEtalonManager.WSSend(tmpUpdateManometreEtalon, oManoEReturn)
-                            Select Case response
-                                Case -1 ' ERROR
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
-                                Case 0, 2 ' OK
-                                    ManometreEtalonManager.setSynchro(tmpUpdateManometreEtalon)
-                            Case 4 ' SENDPROFILAGENT_UPDATE
-                                tmpUpdateManometreEtalon.uid = oManoEReturn.uid
-                                ManometreEtalonManager.save(oManoEReturn, True)
-                            Case 1 ' NOK
-                                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Le web service a répondu : Non-Ok")
-                                Case 9 ' BADREQUEST
-                                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Le web service a répondu : BadRequest")
-                            End Select
-                        Catch ex As Exception
-                            CSDebug.dispFatal("Synchronisation::runAscSynchro(Mano Etalon) : " & ex.Message.ToString)
-                        End Try
-                    Next
-
-                End If
-                If (m_SynchroBoolean.m_bSynchAscBanc) Then
-                    ' Synchro d'un Banc
-                    Dim arrUpdatesBanc() As Banc = BancManager.getUpdates(m_Agent)
-                    Dim pUpdated As New Banc
-                    For Each tmpUpdateBanc As Banc In arrUpdatesBanc
-                    Try
-                        Dim UpdatedObject As Banc = Nothing
-                        Notice("Banc de mesure n°" & tmpUpdateBanc.id)
-                        Dim response As Integer = BancManager.WSSend(tmpUpdateBanc, UpdatedObject)
-                        Select Case response
-                            Case -1 ' ERROR
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")
-                            Case 0, 2 ' OK
-                                BancManager.setSynchro(tmpUpdateBanc)
-                            Case 4 ' Create
-                                tmpUpdateBanc.uid = UpdatedObject.uid
-                                BancManager.save(UpdatedObject, True)
-                            Case 1 ' NOK
-                                CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBanc) - Le web service a répondu : Non-Ok")
-                            Case 9 ' BADREQUEST
-                                CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Le web service a répondu : BadRequest")
-                        End Select
-                    Catch ex As Exception
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(Banc) : " & ex.Message.ToString)
-                    End Try
-
-                    'Ajout d'un element déjà Synchroniser
-                    Dim oElement As SynchronisationElmt
-                    oElement = SynchronisationElmt.CreateSynchronisationElmt("GetBanc", m_SynchroBoolean)
-                    oElement.IdentifiantChaine = tmpUpdateBanc.aid
-                    oElement.IdentifiantEntier = tmpUpdateBanc.uid
-                    oElement.Traitee = True
-                    m_ListeElementSynchroASC.Add(oElement)
-
-                Next
-
-                End If
-                If (m_SynchroBoolean.m_bsynchAscFV) Then
-                    'Synhcronisation des Fiches de vies ManoDe Controle
-                    runascSynchroFVManoControle()
-
-                    ' Synchro d'un FVManometreEtalon
-                    runascSynchroFVManoEtalon()
-
-                    'Synhcro des FVBanc
-                    runascSynchroFVBanc()
-
-                End If
-
+            'runACSSynchroMateriel()
 
             ' Synchro diagnostics
             Dim bsynchro As Boolean
-        If (m_SynchroBoolean.m_bSynchAscDiag) Then
-            Dim arrUpdatesDiagnostic() As Diagnostic = DiagnosticManager.getUpdates(m_Agent)
-            For Each tmpUpdateDiagnostic As Diagnostic In arrUpdatesDiagnostic
-                bsynchro = runascSynchroDiag(m_Agent, tmpUpdateDiagnostic)
-                If (bsynchro) Then
-                    'Ajout du Diag dans la liste des element Synchroniser
-                    Dim oElement As SynchronisationElmt
-                    oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtDiag.getLabelGet(), m_SynchroBoolean)
-                    oElement.IdentifiantChaine = tmpUpdateDiagnostic.id
-                    oElement.IdentifiantEntier = tmpUpdateDiagnostic.uid
-                    m_ListeElementSynchroASC.Add(oElement)
-                End If
+            If (m_SynchroBoolean.m_bSynchAscDiag) Then
+                Dim arrUpdatesDiagnostic() As Diagnostic = DiagnosticManager.getUpdates(m_Agent)
+                For Each tmpUpdateDiagnostic As Diagnostic In arrUpdatesDiagnostic
+                    bsynchro = runascSynchroDiag(m_Agent, tmpUpdateDiagnostic)
+                    If (bsynchro) Then
+                        'Ajout du Diag dans la liste des element Synchroniser
+                        Dim oElement As SynchronisationElmt
+                        oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtDiag.getLabelGet(), m_SynchroBoolean)
+                        oElement.IdentifiantChaine = tmpUpdateDiagnostic.id
+                        oElement.IdentifiantEntier = tmpUpdateDiagnostic.uid
+                        m_ListeElementSynchroASC.Add(oElement)
+                    End If
 
-            Next
-        End If
+                Next
+            End If
 
-        If (m_SynchroBoolean.m_bSynchAscPulve) Then
+            If (m_SynchroBoolean.m_bSynchAscPulve) Then
                 Notice("IdentifiantsPulverisateurs ")
                 Dim bReturn As Boolean = SynchronisationElmtIdentifiantPulverisateur.SynchroAsc(m_Agent)
                 If Not bReturn Then
@@ -541,6 +391,159 @@ Public Class Synchronisation
         End If
 
     End Sub
+
+    'Private Sub runACSSynchroMateriel()
+    '    If (m_SynchroBoolean.m_bSynchAscBuse) Then
+    '        ' Synchro d'un Buse
+    '        Dim arrUpdatesBuse() As Buse = BuseManager.getUpdates(m_Agent)
+    '        Dim pBuseReturn As New Buse
+    '        For Each tmpUpdateBuse As Buse In arrUpdatesBuse
+    '            Try
+    '                Notice("Buse n°" & tmpUpdateBuse.numeroNational)
+    '                Dim response As Integer = BuseManager.WSSend(tmpUpdateBuse, pBuseReturn)
+    '                Select Case response
+    '                    Case -1 ' ERROR
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Erreur Locale" & vbNewLine)
+    '                    Case 0, 2 ' OK
+    '                        BuseManager.setSynchro(tmpUpdateBuse)
+    '                    Case 4 ' CREATE
+    '                        tmpUpdateBuse.uid = pBuseReturn.uid
+    '                        BuseManager.save(pBuseReturn, True)
+    '                    Case 1 ' NOK
+    '                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBuse) - Le web service a répondu : Non-Ok")
+    '                    Case 9 ' BADREQUEST
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBuse) - Le web service a répondu : BadRequest")
+    '                End Select
+    '            Catch ex As Exception
+    '                CSDebug.dispFatal("Synchronisation::runAscSynchro(Buse) : " & ex.Message.ToString)
+    '            End Try
+
+    '            'Ajout d'un element déjà Synchroniser
+    '            Dim oElement As SynchronisationElmt
+    '            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetBuse", m_SynchroBoolean)
+    '            oElement.IdentifiantChaine = tmpUpdateBuse.aid
+    '            oElement.IdentifiantEntier = tmpUpdateBuse.uid
+    '            oElement.Traitee = True
+    '            m_ListeElementSynchroASC.Add(oElement)
+    '        Next
+
+
+    '    End If
+    '    If (m_SynchroBoolean.m_bSynchAscMano) Then
+    '        ' Synchro d'un ManometreControle
+    '        ' On récupère les mises à jours
+    '        Dim arrUpdatesManometreControle() As ManometreControle = ManometreControleManager.getUpdates(m_Agent)
+    '        Dim oManoReturn As New ManometreControle
+    '        For Each tmpUpdateManometreControle As ManometreControle In arrUpdatesManometreControle
+    '            Try
+    '                Dim UpdatedObject As New Object
+    '                Notice("Manometre de Controle n°" & tmpUpdateManometreControle.numeroNational)
+    '                Dim response As Integer = ManometreControleManager.WSSend(tmpUpdateManometreControle, oManoReturn)
+    '                Select Case response
+    '                    Case -1 ' ERROR
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Erreur Locale")
+    '                    Case 0, 2 ' OK
+    '                        ManometreControleManager.setSynchro(tmpUpdateManometreControle)
+    '                    Case 4 ' CREATE
+    '                        tmpUpdateManometreControle.uid = oManoReturn.uid
+    '                        ManometreControleManager.save(oManoReturn, True)
+    '                    Case 1 ' NOK
+    '                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreControle) - Le web service a répondu : Non-Ok")
+    '                    Case 9 ' BADREQUEST
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreControle) - Le web service a répondu : BadRequest")
+    '                End Select
+    '            Catch ex As Exception
+    '                CSDebug.dispFatal("Synchronisation::runAscSynchro(Mano Contrôle) : " & ex.Message.ToString)
+    '            End Try
+    '            'Ajout d'un element déjà Synchroniser
+    '            Dim oElement As SynchronisationElmt
+    '            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetManometreControle", m_SynchroBoolean)
+    '            oElement.IdentifiantChaine = tmpUpdateManometreControle.aid
+    '            oElement.IdentifiantEntier = tmpUpdateManometreControle.uid
+    '            oElement.Traitee = True
+    '            m_ListeElementSynchroASC.Add(oElement)
+    '        Next
+    '    End If
+    '    If (m_SynchroBoolean.m_bSynchAscMano) Then
+
+    '        ' Synchro d'un ManometreEtalon
+    '        ' On récupère les mises à jours
+    '        Dim arrUpdatesManometreEtalon() As ManometreEtalon = ManometreEtalonManager.getUpdates(m_Agent)
+    '        Dim oManoEReturn As New ManometreEtalon
+    '        For Each tmpUpdateManometreEtalon As ManometreEtalon In arrUpdatesManometreEtalon
+    '            Try
+    '                Dim UpdatedObject As New Object
+    '                Notice("Manometre Etalon n°" & tmpUpdateManometreEtalon.numeroNational)
+    '                Dim response As Integer = ManometreEtalonManager.WSSend(tmpUpdateManometreEtalon, oManoEReturn)
+    '                Select Case response
+    '                    Case -1 ' ERROR
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Erreur Locale")
+    '                    Case 0, 2 ' OK
+    '                        ManometreEtalonManager.setSynchro(tmpUpdateManometreEtalon)
+    '                    Case 4 ' SENDPROFILAGENT_UPDATE
+    '                        tmpUpdateManometreEtalon.uid = oManoEReturn.uid
+    '                        ManometreEtalonManager.save(oManoEReturn, True)
+    '                    Case 1 ' NOK
+    '                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Le web service a répondu : Non-Ok")
+    '                    Case 9 ' BADREQUEST
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSManometreEtalon) - Le web service a répondu : BadRequest")
+    '                End Select
+    '            Catch ex As Exception
+    '                CSDebug.dispFatal("Synchronisation::runAscSynchro(Mano Etalon) : " & ex.Message.ToString)
+    '            End Try
+    '        Next
+
+    '    End If
+    '    If (m_SynchroBoolean.m_bSynchAscBanc) Then
+    '        ' Synchro d'un Banc
+    '        Dim arrUpdatesBanc() As Banc = BancManager.getUpdates(m_Agent)
+    '        Dim pUpdated As New Banc
+    '        For Each tmpUpdateBanc As Banc In arrUpdatesBanc
+    '            Try
+    '                Dim UpdatedObject As Banc = Nothing
+    '                Notice("Banc de mesure n°" & tmpUpdateBanc.id)
+    '                Dim response As Integer = BancManager.WSSend(tmpUpdateBanc, UpdatedObject)
+    '                Select Case response
+    '                    Case -1 ' ERROR
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Erreur Locale")
+    '                    Case 0, 2 ' OK
+    '                        BancManager.setSynchro(tmpUpdateBanc)
+    '                    Case 4 ' Create
+    '                        tmpUpdateBanc.uid = UpdatedObject.uid
+    '                        BancManager.save(UpdatedObject, True)
+    '                    Case 1 ' NOK
+    '                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSBanc) - Le web service a répondu : Non-Ok")
+    '                    Case 9 ' BADREQUEST
+    '                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSBanc) - Le web service a répondu : BadRequest")
+    '                End Select
+    '            Catch ex As Exception
+    '                CSDebug.dispFatal("Synchronisation::runAscSynchro(Banc) : " & ex.Message.ToString)
+    '            End Try
+
+    '            'Ajout d'un element déjà Synchroniser
+    '            Dim oElement As SynchronisationElmt
+    '            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetBanc", m_SynchroBoolean)
+    '            oElement.IdentifiantChaine = tmpUpdateBanc.aid
+    '            oElement.IdentifiantEntier = tmpUpdateBanc.uid
+    '            oElement.Traitee = True
+    '            m_ListeElementSynchroASC.Add(oElement)
+
+    '        Next
+
+    '    End If
+    '    If (m_SynchroBoolean.m_bsynchAscFV) Then
+    '        'Synhcronisation des Fiches de vies ManoDe Controle
+    '        runascSynchroFVManoControle()
+
+    '        ' Synchro d'un FVManometreEtalon
+    '        runascSynchroFVManoEtalon()
+
+    '        'Synhcro des FVBanc
+    '        runascSynchroFVBanc()
+
+    '    End If
+    'End Sub
+
     Public Sub RunAscSynchroPulve(pPulverisateur As Pulverisateur)
         Try
             Dim UpdatedObject As Pulverisateur
@@ -704,48 +707,48 @@ Public Class Synchronisation
     '''
     ''' Synchronisation des Fiches de vies Banc vers le Serveur
 
-    Public Function runascSynchroFVBanc() As Boolean
-        Dim bReturn As Boolean
-        bReturn = False
-        ' Synchro d'un FVBanc
-        Dim arrUpdatesFVBanc() As FVBanc = FVBancManager.getUpdates(m_Agent)
-        For Each oFVBanc As FVBanc In arrUpdatesFVBanc
-            Try
-                Dim UpdatedObject As New FVBanc
-                Notice("Fiche de Vie Banc de Mesure n°" & oFVBanc.id)
-                Dim response As Integer = FVBancManager.WSSend(oFVBanc, UpdatedObject)
-                Select Case response
-                    Case -1 ' ERROR
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Erreur Locale")
-                    Case 0, 2
-                        FVBancManager.setSynchro(oFVBanc)
-                        bReturn = FVBancManager.SendEtats(oFVBanc)
+    'Public Function runascSynchroFVBanc() As Boolean
+    '    Dim bReturn As Boolean
+    '    bReturn = False
+    '    ' Synchro d'un FVBanc
+    '    Dim arrUpdatesFVBanc() As FVBanc = FVBancManager.getUpdates(m_Agent)
+    '    For Each oFVBanc As FVBanc In arrUpdatesFVBanc
+    '        Try
+    '            Dim UpdatedObject As New FVBanc
+    '            Notice("Fiche de Vie Banc de Mesure n°" & oFVBanc.id)
+    '            Dim response As Integer = FVBancManager.WSSend(oFVBanc, UpdatedObject)
+    '            Select Case response
+    '                Case -1 ' ERROR
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Erreur Locale")
+    '                Case 0, 2
+    '                    FVBancManager.setSynchro(oFVBanc)
+    '                    bReturn = FVBancManager.SendEtats(oFVBanc)
 
-                    Case 4 ' OK CREATE
-                        oFVBanc.uid = UpdatedObject.uid
-                        FVBancManager.save(oFVBanc, True)
-                        bReturn = FVBancManager.SendEtats(oFVBanc)
-                    Case 1 ' NOK
-                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVBanc) - Le web service a répondu : Non-Ok")
-                    Case 9 ' BADREQUEST
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Le web service a répondu : BadRequest")
-                End Select
-            Catch ex As Exception
-                CSDebug.dispFatal("Synchronisation::runAscSynchro(FVBanc) : " & ex.Message.ToString)
+    '                Case 4 ' OK CREATE
+    '                    oFVBanc.uid = UpdatedObject.uid
+    '                    FVBancManager.save(oFVBanc, True)
+    '                    bReturn = FVBancManager.SendEtats(oFVBanc)
+    '                Case 1 ' NOK
+    '                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVBanc) - Le web service a répondu : Non-Ok")
+    '                Case 9 ' BADREQUEST
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVBanc) - Le web service a répondu : BadRequest")
+    '            End Select
+    '        Catch ex As Exception
+    '            CSDebug.dispFatal("Synchronisation::runAscSynchro(FVBanc) : " & ex.Message.ToString)
 
-            End Try
+    '        End Try
 
-            'Ajout d'un element déjà Synchroniser
-            Dim oElement As SynchronisationElmt
-            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVBanc", m_SynchroBoolean)
-            oElement.IdentifiantChaine = oFVBanc.aid
-            oElement.IdentifiantEntier = oFVBanc.uid
-            oElement.Traitee = True
-            m_ListeElementSynchroASC.Add(oElement)
+    '        'Ajout d'un element déjà Synchroniser
+    '        Dim oElement As SynchronisationElmt
+    '        oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVBanc", m_SynchroBoolean)
+    '        oElement.IdentifiantChaine = oFVBanc.aid
+    '        oElement.IdentifiantEntier = oFVBanc.uid
+    '        oElement.Traitee = True
+    '        m_ListeElementSynchroASC.Add(oElement)
 
-        Next
-        Return bReturn
-    End Function
+    '    Next
+    '    Return bReturn
+    'End Function
     Public Function runascSynchroDiag(ByVal pAgent As Agent, ByVal pDiag As Diagnostic) As Boolean
         Dim bReturn As Boolean
         Try
@@ -1247,83 +1250,83 @@ Public Class Synchronisation
     '''
     ''' Synchronisation des Fiches de vies ManoControle vers le Serveur
 
-    Public Function runascSynchroFVManoControle() As Boolean
-        Dim bReturn As Boolean
-        bReturn = False
+    'Public Function runascSynchroFVManoControle() As Boolean
+    '    Dim bReturn As Boolean
+    '    bReturn = False
 
-        ' On récupère les mises à jours
-        Dim arrUpdatesFVManometreControle() As FVManometreControle = FVManometreControleManager.getUpdates(m_Agent)
-        For Each tmpUpdateFVManometreControle As FVManometreControle In arrUpdatesFVManometreControle
-            Try
-                Dim UpdatedObject As New FVManometreControle
-                Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
-                Dim response As Integer = FVManometreControleManager.WSSend(tmpUpdateFVManometreControle, UpdatedObject)
-                Select Case response
-                    Case -1 ' ERROR
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Erreur Locale")
-                    Case 0, 2
-                        FVManometreControleManager.setSynchro(tmpUpdateFVManometreControle)
-                        bReturn = FVManometreControleManager.SendEtats(tmpUpdateFVManometreControle)
-                    Case 4
-                        tmpUpdateFVManometreControle.uid = UpdatedObject.uid
-                        FVManometreControleManager.save(m_Agent, tmpUpdateFVManometreControle, True)
-                        bReturn = FVManometreControleManager.SendEtats(tmpUpdateFVManometreControle)
+    '    ' On récupère les mises à jours
+    '    Dim arrUpdatesFVManometreControle() As FVManometreControle = FVManometreControleManager.getUpdates(m_Agent)
+    '    For Each tmpUpdateFVManometreControle As FVManometreControle In arrUpdatesFVManometreControle
+    '        Try
+    '            Dim UpdatedObject As New FVManometreControle
+    '            Notice("Fiche de Vie Manometre de Controle n°" & tmpUpdateFVManometreControle.id)
+    '            Dim response As Integer = FVManometreControleManager.WSSend(tmpUpdateFVManometreControle, UpdatedObject)
+    '            Select Case response
+    '                Case -1 ' ERROR
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Erreur Locale")
+    '                Case 0, 2
+    '                    FVManometreControleManager.setSynchro(tmpUpdateFVManometreControle)
+    '                    bReturn = FVManometreControleManager.SendEtats(tmpUpdateFVManometreControle)
+    '                Case 4
+    '                    tmpUpdateFVManometreControle.uid = UpdatedObject.uid
+    '                    FVManometreControleManager.save(m_Agent, tmpUpdateFVManometreControle, True)
+    '                    bReturn = FVManometreControleManager.SendEtats(tmpUpdateFVManometreControle)
 
-                    Case 1 ' NOK
-                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Le web service a répondu : Non-Ok")
-                    Case 9 ' BADREQUEST
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Le web service a répondu : BadRequest")
-                End Select
-            Catch ex As Exception
-                CSDebug.dispFatal("Synchronisation::runAscSynchro(FVManoControle) : " & ex.Message.ToString)
-            End Try
+    '                Case 1 ' NOK
+    '                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Le web service a répondu : Non-Ok")
+    '                Case 9 ' BADREQUEST
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreControle) - Le web service a répondu : BadRequest")
+    '            End Select
+    '        Catch ex As Exception
+    '            CSDebug.dispFatal("Synchronisation::runAscSynchro(FVManoControle) : " & ex.Message.ToString)
+    '        End Try
 
-            'Ajout d'un element déjà Synchroniser
-            Dim oElement As SynchronisationElmt
-            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVMAnometreControle", m_SynchroBoolean)
-            oElement.IdentifiantChaine = tmpUpdateFVManometreControle.aid
-            oElement.IdentifiantEntier = tmpUpdateFVManometreControle.uid
-            oElement.Traitee = True
-            m_ListeElementSynchroASC.Add(oElement)
+    '        'Ajout d'un element déjà Synchroniser
+    '        Dim oElement As SynchronisationElmt
+    '        oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVMAnometreControle", m_SynchroBoolean)
+    '        oElement.IdentifiantChaine = tmpUpdateFVManometreControle.aid
+    '        oElement.IdentifiantEntier = tmpUpdateFVManometreControle.uid
+    '        oElement.Traitee = True
+    '        m_ListeElementSynchroASC.Add(oElement)
 
-        Next
-        Return bReturn
-    End Function
-    Public Sub runascSynchroFVManoEtalon()
+    '    Next
+    '    Return bReturn
+    'End Function
+    'Public Sub runascSynchroFVManoEtalon()
 
-        ' On récupère les mises à jours
-        Dim arrUpdatesFVManometreEtalon() As FVManometreEtalon = FVManometreEtalonManager.getUpdates(m_Agent)
-        Dim UpdatedObject As New FVManometreEtalon
-        For Each tmpUpdateFVManometreEtalon As FVManometreEtalon In arrUpdatesFVManometreEtalon
-            Try
-                Notice("Fiche de Vie Manometre Etalon n°" & tmpUpdateFVManometreEtalon.id)
-                Dim response As Integer = FVManometreEtalonManager.WSSend(tmpUpdateFVManometreEtalon, UpdatedObject)
-                Select Case response
-                    Case -1 ' ERROR
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Erreur Locale")
-                    Case 0, 2 ' OK
-                        FVManometreEtalonManager.setSynchro(tmpUpdateFVManometreEtalon)
-                    Case 4 ' OK_CREATE
-                        tmpUpdateFVManometreEtalon.uid = UpdatedObject.uid
-                        FVManometreEtalonManager.save(tmpUpdateFVManometreEtalon, True)
-                    Case 1 ' NOK
-                        CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Le web service a répondu : Non-Ok")
-                    Case 9 ' BADREQUEST
-                        CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Le web service a répondu : BadRequest")
-                End Select
-            Catch ex As Exception
-                CSDebug.dispFatal("Synchronisation::runAscSynchro(FVManoEtalon) : " & ex.Message.ToString)
-            End Try
+    '    ' On récupère les mises à jours
+    '    Dim arrUpdatesFVManometreEtalon() As FVManometreEtalon = FVManometreEtalonManager.getUpdates(m_Agent)
+    '    Dim UpdatedObject As New FVManometreEtalon
+    '    For Each tmpUpdateFVManometreEtalon As FVManometreEtalon In arrUpdatesFVManometreEtalon
+    '        Try
+    '            Notice("Fiche de Vie Manometre Etalon n°" & tmpUpdateFVManometreEtalon.id)
+    '            Dim response As Integer = FVManometreEtalonManager.WSSend(tmpUpdateFVManometreEtalon, UpdatedObject)
+    '            Select Case response
+    '                Case -1 ' ERROR
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Erreur Locale")
+    '                Case 0, 2 ' OK
+    '                    FVManometreEtalonManager.setSynchro(tmpUpdateFVManometreEtalon)
+    '                Case 4 ' OK_CREATE
+    '                    tmpUpdateFVManometreEtalon.uid = UpdatedObject.uid
+    '                    FVManometreEtalonManager.save(tmpUpdateFVManometreEtalon, True)
+    '                Case 1 ' NOK
+    '                    CSDebug.dispWarn("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Le web service a répondu : Non-Ok")
+    '                Case 9 ' BADREQUEST
+    '                    CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSFVManometreEtalon) - Le web service a répondu : BadRequest")
+    '            End Select
+    '        Catch ex As Exception
+    '            CSDebug.dispFatal("Synchronisation::runAscSynchro(FVManoEtalon) : " & ex.Message.ToString)
+    '        End Try
 
-            'Ajout d'un element déjà Synchroniser
-            Dim oElement As SynchronisationElmt
-            oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVManometreEtalon", m_SynchroBoolean)
-            oElement.IdentifiantChaine = tmpUpdateFVManometreEtalon.aid
-            oElement.IdentifiantEntier = tmpUpdateFVManometreEtalon.uid
-            oElement.Traitee = True
-            m_ListeElementSynchroASC.Add(oElement)
+    '        'Ajout d'un element déjà Synchroniser
+    '        Dim oElement As SynchronisationElmt
+    '        oElement = SynchronisationElmt.CreateSynchronisationElmt("GetFVManometreEtalon", m_SynchroBoolean)
+    '        oElement.IdentifiantChaine = tmpUpdateFVManometreEtalon.aid
+    '        oElement.IdentifiantEntier = tmpUpdateFVManometreEtalon.uid
+    '        oElement.Traitee = True
+    '        m_ListeElementSynchroASC.Add(oElement)
 
-        Next
-    End Sub
+    '    Next
+    'End Sub
 
 End Class
