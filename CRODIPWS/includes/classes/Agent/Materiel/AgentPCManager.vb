@@ -1,6 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
 Imports System.IO
+Imports System.Xml
 Imports System.Xml.Serialization
 
 Public Class AgentPcManager
@@ -53,6 +54,61 @@ Public Class AgentPcManager
 
     End Function
 
+    Public Shared Function WSGetListByPool(pPool As Pool) As List(Of AgentPc)
+        Dim lstReturn As New List(Of AgentPc)
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
+        Try
+            Dim tXmlnodes As Object = Nothing
+            '' déclarations
+            '            Dim typeT As Type = GetType(T)
+            Dim nomMethode As String = "GetPcList"
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            If methode IsNot Nothing Then
+                Dim Params As Object() = {pPool.uidstructure, pPool.uid, tXmlnodes}
+                SynchronisationManager.LogSynchroDebut(nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
+                codeResponse = methode.Invoke(objWSCrodip, Params)
+                tXmlnodes = Params(2)
+                SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
+                SynchronisationManager.LogSynchroFin()
+            End If
+            Select Case codeResponse
+                Case 0 ' OK
+                    Dim ser As New XmlSerializer(GetType(AgentPc))
+                    For Each oNode As XmlNode In tXmlnodes
+
+                        Dim xmlDocument As New XmlDocument()
+                        ' Créer un élément racine
+                        Dim root As XmlElement = xmlDocument.CreateElement("AgentPc")
+                        xmlDocument.AppendChild(root)
+
+                        ' Ajouter chaque XmlNode au document
+                        For Each node As XmlNode In tXmlnodes(0)
+                            Dim importedNode As XmlNode = xmlDocument.ImportNode(node, True)
+                            root.AppendChild(importedNode)
+                        Next
+                        strXml = xmlDocument.OuterXml
+
+                        Dim obj As AgentPc
+                        Using reader As New StringReader(strXml)
+                            obj = ser.Deserialize(reader)
+                        End Using
+                        lstReturn.Add(obj)
+                    Next onode
+                Case 1 ' NOK
+                    CSDebug.dispError("AgentPcManager.WSGetListByPool - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("AgentPcManager.WSGetListByPool - Code 9 : Bad Request")
+            End Select
+
+        Catch ex As Exception
+            lstReturn.Clear()
+        End Try
+        Return lstReturn
+    End Function
+
 
     Public Shared Function WSSend(ByVal pAgentIn As AgentPc, ByRef pReturn As AgentPc) As Integer
         Dim codeResponse As Integer = 99
@@ -72,7 +128,18 @@ Public Class AgentPcManager
     Public Shared Function GetByuid(puid As Integer) As AgentPc
         Dim oReturn As AgentPc
 
-        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where uid = " & puid)
+        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and uid = " & puid)
+        Return oReturn
+    End Function
+    ''' <summary>
+    ''' Renvoie le PC de la structure de ce poste
+    ''' </summary>
+    ''' <param name="puid"></param>
+    ''' <returns></returns>
+    Public Shared Function GetByuidStructure(puid As Integer) As AgentPc
+        Dim oReturn As AgentPc
+
+        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and  uidstructure = " & puid)
         Return oReturn
     End Function
     Public Shared Function Save(ByVal pObj As AgentPc, Optional bSynchro As Boolean = False) As Boolean

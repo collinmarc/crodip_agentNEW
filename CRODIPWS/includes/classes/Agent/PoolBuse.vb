@@ -94,6 +94,20 @@ Public Class PoolBuse
             isSupprime = Value
         End Set
     End Property
+    Private _isPoolCourant As Boolean
+    ''' <summary>
+    ''' indique si cet element pointe sur le pool courant , (non sauvegardé, non synchronisé)
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlIgnore()>
+    Public Property isPoolCourant() As Boolean
+        Get
+            Return _isPoolCourant
+        End Get
+        Set(ByVal value As Boolean)
+            _isPoolCourant = value
+        End Set
+    End Property
     Public Sub New()
     End Sub
 

@@ -342,12 +342,34 @@ Public Class Agent
             _oPool = value
         End Set
     End Property
-    Public Function getPoolList() As List(Of Pool)
+    ''' <summary>
+    ''' Renvoie une liste de pool relatif au PC de réference
+    ''' </summary>
+    ''' <param name="pPCRef"></param>
+    ''' <returns></returns>
+    Public Function getPoolList(pPCRef As AgentPc) As List(Of Pool)
         Dim lstReturn As New List(Of Pool)
+        Dim lstTotal As New List(Of Pool)
         Try
-            lstReturn = PoolAgentManager.getListe(Me)
+            lstTotal = PoolAgentManager.getListe(Me)
+            For Each oPool As Pool In lstTotal
+                Dim lstPoolPc As List(Of PoolPc) = PoolPcManager.WSGetListByPC(Me, pPCRef)
+                For Each oPoolPc As PoolPc In lstPoolPc
+                    PoolPcManager.Save(oPoolPc, True) 'on considère que c'est une synhcro
+                Next
+                Dim lstPc As List(Of AgentPc)
+                lstPc = PoolPcManager.GetLstAgentPcByPool(oPool)
+                For Each oagentPC As AgentPc In lstPc
+                    If oagentPC.idPc = pPCRef.idPc Then
+                        If Not lstReturn.Contains(oPool) Then
+                            lstReturn.Add(oPool)
+                        End If
+                    End If
+                Next oagentPC
+            Next oPool
         Catch ex As Exception
-
+            CSDebug.dispError("Agent.getPoolList ERR", ex)
+            lstReturn.Clear()
         End Try
         Return lstReturn
     End Function

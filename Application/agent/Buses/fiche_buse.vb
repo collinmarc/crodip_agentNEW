@@ -14,10 +14,7 @@ Public Class fiche_buse
     Friend WithEvents btnActiver As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents ficheBuse_dateActivation As System.Windows.Forms.Label
-    Friend WithEvents cbxPool As CheckedListBox
-    Friend WithEvents Label9 As Label
     Friend WithEvents m_bsrcPool As BindingSource
-    Friend WithEvents pnlPool As Panel
     Dim isAjout As Boolean
 
     Public Sub New(ByVal _BuseCourant As Buse)
@@ -28,9 +25,6 @@ Public Class fiche_buse
 
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
-
-        cbxPool.DataSource = m_bsrcPool
-        cbxPool.DisplayMember = "Libelle"
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
 
@@ -91,13 +85,9 @@ Public Class fiche_buse
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ficheBuse_dateActivation = New System.Windows.Forms.Label()
-        Me.cbxPool = New System.Windows.Forms.CheckedListBox()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
-        Me.pnlPool = New System.Windows.Forms.Panel()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlPool.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -297,43 +287,14 @@ Public Class fiche_buse
         Me.ficheBuse_dateActivation.Text = "01/01/2011"
         Me.ficheBuse_dateActivation.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'cbxPool
-        '
-        Me.cbxPool.FormattingEnabled = True
-        Me.cbxPool.Location = New System.Drawing.Point(163, 10)
-        Me.cbxPool.Name = "cbxPool"
-        Me.cbxPool.Size = New System.Drawing.Size(202, 49)
-        Me.cbxPool.TabIndex = 40
-        '
-        'Label9
-        '
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(3, 10)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(128, 16)
-        Me.Label9.TabIndex = 39
-        Me.Label9.Text = "Pool :"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
         'm_bsrcPool
         '
-        Me.m_bsrcPool.DataSource = GetType(CRODIPWS.Pool)
-        '
-        'pnlPool
-        '
-        Me.pnlPool.Controls.Add(Me.Label9)
-        Me.pnlPool.Controls.Add(Me.cbxPool)
-        Me.pnlPool.Location = New System.Drawing.Point(36, 260)
-        Me.pnlPool.Name = "pnlPool"
-        Me.pnlPool.Size = New System.Drawing.Size(384, 76)
-        Me.pnlPool.TabIndex = 41
+        Me.m_bsrcPool.DataSource = GetType(CRODIPWS.PoolBuse)
         '
         'fiche_buse
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(523, 416)
-        Me.Controls.Add(Me.pnlPool)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ficheBuse_dateActivation)
         Me.Controls.Add(Me.btnActiver)
@@ -359,7 +320,6 @@ Public Class fiche_buse
         Me.Text = "Crodip .::. Fiche Buse"
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlPool.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -373,16 +333,6 @@ Public Class fiche_buse
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
         '#################################################################################
-        Dim oLst As List(Of Pool)
-        oLst = PoolManager.GetListe(BuseCourant.uidstructure)
-        m_bsrcPool.Clear()
-        oLst.ForEach(Sub(p)
-                         m_bsrcPool.Add(p)
-                     End Sub)
-        If Not My.Settings.GestionDesPools Then
-            pnlPool.Visible = False
-        End If
-
 
         DisplayBuse()
     End Sub
@@ -414,18 +364,6 @@ Public Class fiche_buse
             ficheBuse_dateActivation.Text = CSDate.ToCRODIPString(BuseCourant.dateActivation)
         End If
 
-        'Parcours de la Liste des Pools pour checker ceux qui sont les Pool du manoCourant
-        Dim index As Integer = 0
-        For index = 0 To cbxPool.Items.Count() - 1
-            Dim obj As Pool = cbxPool.Items(index)
-            If BuseCourant.lstPools.Where(Function(p)
-                                              Return (p.idCrodip.Equals(obj.idCrodip))
-                                          End Function).Count() > 0 Then
-                cbxPool.SetItemChecked(index, True)
-            Else
-                cbxPool.SetItemChecked(index, False)
-            End If
-        Next
 
 
     End Sub

@@ -21,11 +21,11 @@ Public Class DiagnosticItemManager
         Dim oreturn As New DiagnosticItemList
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
-            Dim tXmlnodes As Object()
             Dim objWSCrodip_response() As Object = Nothing
+            Dim info As String = ""
             '' déclarations
             Dim codeResponse As Integer = 99 'Mehode non trouvée
-            codeResponse = objWSCrodip.GetDiagnosticItems(puidDiag, paidDiag, objWSCrodip_response)
+            codeResponse = objWSCrodip.GetDiagnosticItems(puidDiag, paidDiag, info, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
 

@@ -84,7 +84,7 @@ Public Class CRODIPTest
         m_idStructure = m_oStructure.id
 
         'Creation d'un agent
-        m_oAgent = AgentManager.WSgetByNumeroNational(m_numNatAgent, False)
+        m_oAgent = AgentManager.WSgetByNumeroNational(m_numNatAgent, True)
         m_IdAgent = m_oAgent.id
 
         'Création du PC

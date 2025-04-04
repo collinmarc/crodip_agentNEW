@@ -1,6 +1,7 @@
 Imports System.Data.Common
 Imports System.IO
 Imports System.Linq
+Imports System.Xml
 Imports System.Xml.Serialization
 
 Public Class PoolPcManager
@@ -26,27 +27,93 @@ Public Class PoolPcManager
         End Select
         Return codeResponse
     End Function
+
+    Public Shared Function WSGetListByPC(pAgent As Agent, pagentPC As AgentPc) As List(Of PoolPc)
+        Dim lstReturn As New List(Of PoolPc)
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
+        Try
+            Dim tXmlnodes As Object() = Nothing
+            '' déclarations
+            '            Dim typeT As Type = GetType(T)
+            Dim nomMethode As String = "GetPoolPcList"
+            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            If methode IsNot Nothing Then
+                Dim Params As Object() = {pagentPC.uid, pagentPC.aid, pagentPC.uidstructure, tXmlnodes}
+                SynchronisationManager.LogSynchroDebut(nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
+                codeResponse = objWSCrodip.GetPoolPcList(pAgent.uid, pagentPC.uid, pagentPC.aid, pagentPC.uidstructure, tXmlnodes)
+                '                codeResponse = methode.Invoke(objWSCrodip, Params)
+                '                tXmlnodes = Params(2)
+                SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
+                SynchronisationManager.LogSynchroFin()
+            End If
+            Select Case codeResponse
+                Case 0 ' OK
+                    Dim ser As New XmlSerializer(GetType(PoolPc))
+                    For n As Integer = 0 To tXmlnodes.Length - 1
+
+                        Dim xmlDocument As New XmlDocument()
+                        ' Créer un élément racine
+                        Dim root As XmlElement = xmlDocument.CreateElement("PoolPc")
+                        xmlDocument.AppendChild(root)
+
+                        For Each oNode As XmlNode In tXmlnodes(n)
+
+
+                            Dim importedNode As XmlNode = xmlDocument.ImportNode(oNode, True)
+                            root.AppendChild(importedNode)
+                        Next oNode
+
+                        strXml = xmlDocument.OuterXml
+
+                        Dim obj As PoolPc
+                        Using reader As New StringReader(strXml)
+                            obj = ser.Deserialize(reader)
+                        End Using
+                        lstReturn.Add(obj)
+                    Next n
+                Case 1 ' NOK
+                    CSDebug.dispError("PoolPcManager.WSGetListByPc - Code 1 : Non-Trouvée")
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("PoolPcManager.WSGetListByPc - Code 9 : Bad Request")
+            End Select
+
+        Catch ex As Exception
+            lstReturn.Clear()
+        End Try
+        Return lstReturn
+    End Function
+
     Public Shared Function GetByuid(puid As Integer) As PoolPc
         Dim oReturn As PoolPc
 
         oReturn = getByKey(Of PoolPc)("Select * from PoolPc where uid = " & puid)
         Return oReturn
     End Function
-    Friend Overloads Shared Function GetLstAgentPcByPool(pPool As Pool) As List(Of AgentPc)
+    Public Shared Function getListeByStructure(puidStructure As Integer) As List(Of PoolPc)
+        Dim lstReturn As List(Of PoolPc)
+        lstReturn = getListe(Of PoolPc)("SELECT * FRom PoolPC where uidStructure = " & puidStructure)
+        Return lstReturn
+    End Function
+    Friend Shared Function GetLstAgentPcByPool(pPool As Pool) As List(Of AgentPc)
         Dim lstReturn As New List(Of AgentPc)
         Try
             Dim sql As String
             sql = "SELECT * FROM PoolPc where uidPool = " & pPool.uid
-            Dim lstPoolAgent As List(Of PoolPc)
-            lstPoolAgent = getListe(Of PoolPc)(sql)
-            For Each oPoolPc As PoolPc In lstPoolAgent
+            Dim lstPoolPc As List(Of PoolPc)
+            lstPoolPc = getListe(Of PoolPc)(sql)
+            For Each oPoolPc As PoolPc In lstPoolPc
                 Dim oPc As AgentPc
-                oPc = AgentPcManager.GetByuid(oPoolPc.uid)
-                lstReturn.Add(oPc)
+                oPc = AgentPcManager.GetByuid(oPoolPc.uidpc)
+                If oPc IsNot Nothing Then
+                    lstReturn.Add(oPc)
+                End If
             Next
 
         Catch ex As Exception
-            CSDebug.dispError("PoolPcManager.getListe ERR", ex)
+            CSDebug.dispError("PoolPcManager.getListePCByPool ERR", ex)
             lstReturn.Clear()
         End Try
         Return lstReturn

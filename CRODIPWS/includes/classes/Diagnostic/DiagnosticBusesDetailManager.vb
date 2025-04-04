@@ -13,8 +13,9 @@ Public Class DiagnosticBusesDetailManager
             ' déclarations
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
+            Dim info As Object = Nothing
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(puidDiag, paidDiag, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticBusesDetail(puidDiag, paidDiag, info, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

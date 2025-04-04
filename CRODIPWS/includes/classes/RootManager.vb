@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.Data.Common
 Imports System.IO
+Imports System.Reflection
 Imports System.Xml.Serialization
 'Imports System.Text.Json.Serialization
 'Imports System.Threading.Tasks
@@ -16,18 +17,33 @@ Public Class RootManager
             '' déclarations
             Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "Get" & typeT.Name
-            Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
+            Dim methode As MethodInfo = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim info As String = ""
             If methode IsNot Nothing Then
-                Dim Params As Object() = {puid, paid, tXmlnodes}
+                Dim parameters As ParameterInfo() = methode.GetParameters()
+                Debug.Assert(parameters.Count = 3 Or parameters.Count = 4)
+                Dim Params As Object()
+                If parameters.Count = 4 Then
+                    Params = {puid, paid, info, tXmlnodes}
+                Else
+                    If parameters.Count = 3 Then
+                        Params = {puid, paid, tXmlnodes}
+                    End If
+                End If
+
                 SynchronisationManager.LogSynchroDebut(nomMethode)
-                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
+                    SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
-                tXmlnodes = Params(2)
+                If parameters.Count = 3 Then
+                    tXmlnodes = Params(2)
+                Else
+                    tXmlnodes = Params(3)
+                End If
                 SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
-                SynchronisationManager.LogSynchroFin()
-            End If
-            Select Case codeResponse
+                    SynchronisationManager.LogSynchroFin()
+                End If
+                Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(T))
                     If GetType(T) Is GetType(Banc) Or GetType(T) Is GetType(AgentPc) Then

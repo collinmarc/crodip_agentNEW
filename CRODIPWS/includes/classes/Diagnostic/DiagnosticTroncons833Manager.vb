@@ -13,8 +13,9 @@ Public Class DiagnosticTroncons833Manager
             ' déclarations
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim objWSCrodip_response() As Object = Nothing
+            Dim info As String = ""
             ' Appel au WS
-            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(puidDiag, paidDiag, objWSCrodip_response)
+            Dim codeResponse As Integer = objWSCrodip.GetDiagnosticTroncons833(puidDiag, paidDiag, info, objWSCrodip_response)
             Select Case codeResponse
                 Case 0 ' OK
                     ' construction de l'objet

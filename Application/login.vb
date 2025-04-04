@@ -784,50 +784,83 @@ Public Class login
                             AgentManager.save(_selectedAgent)
                         End If
 
-                        'If AgentPCManager.GetListe().Count() = 0 Then
-                        '    Dim oAgentPC As New AgentPC()
-                        '    Dim Str As String = ""
-                        '    While (Str.Length <> 5 Or Not IsNumeric(Str))
-                        '        Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                        '        If Str.Length = 0 Then
-                        '            'On sort si on click sur Annul
-                        '            login_password.Text = ""
-                        '            pnlLoginControls.Enabled = True
-                        '            Exit Sub
-                        '        End If
-                        '    End While
-                        '    oAgentPC.idCrodip = Str
-                        '    oAgentPC.uidstructure = _selectedAgent.uidstructure
-                        '    AgentPCManager.save(oAgentPC)
-
-                        'End If
                         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             Dim lstPool As List(Of Pool)
 
-                            lstPool = _selectedAgent.getPoolList()
-                            If lstPool.Count() = 0 Then
-                                _selectedAgent.oPool = Nothing
-                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
-                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
+                            Dim oPcRef As AgentPc = AgentPcManager.GetByuidStructure(_selectedAgent.uidstructure)
+                            If oPcRef Is Nothing Then
+                                Dim Str As String = ""
+                                'Pas de AgentPC de reference sur le PC = > PC à VIDE !!!!
+                                While (Str.Length <> 5 Or Not IsNumeric(Str))
+                                    Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                                    If Str.Length = 0 Then
+                                        'On sort si on click sur Annul
+                                        login_password.Text = ""
+                                        pnlLoginControls.Enabled = True
+                                        Exit Sub
+                                    Else
+                                        'Récupération du PCRef et des PoolPc sur le WS
+                                        oPcRef = AgentPcManager.WSgetById(-1, Str)
+                                        If oPcRef IsNot Nothing Then
+                                            If oPcRef.uidstructure = _selectedAgent.uidstructure Then
+                                                AgentPcManager.Save(oPcRef, True) 'on considère que c'est une synhcro
+                                                Dim lstPoolPc As List(Of PoolPc) = PoolPcManager.WSGetListByPC(_selectedAgent, oPcRef)
+                                                For Each oPoolPc As PoolPc In lstPoolPc
+                                                    PoolPcManager.Save(oPoolPc, True) 'on considère que c'est une synhcro
+                                                Next
+                                            Else
+                                                Statusbar.display("Numero de PC incorrect")
+                                                Str = ""
+                                            End If
+                                        Else
+                                            Statusbar.display("Numero de PC incorrect")
+                                            Str = ""
+                                        End If
+
+                                    End If
+                                End While
                             End If
-                            If lstPool.Count() = 1 Then
-                                _selectedAgent.oPool = lstPool(0)
-                                SynchroEtSuite(_selectedAgent)
+                            If oPcRef IsNot Nothing Then
+                                'Cas particulier : 1ere connexion , il y a un PC mais pas de poolpc
+                                Dim olstPoolPc As List(Of PoolPc) = PoolPcManager.getListeByStructure(_selectedAgent.uidstructure)
+                                If olstPoolPc.Count = 0 Then
+                                    'On récupère les poolPc depuis les WS
+                                    olstPoolPc = PoolPcManager.WSGetListByPC(_selectedAgent, oPcRef)
+                                    For Each oPoolPc As PoolPc In olstPoolPc
+                                        PoolPcManager.Save(oPoolPc)
+                                    Next
+                                End If
                             End If
 
-                            If lstPool.Count > 1 Then
-                                m_bsrcPools.Clear()
-                                lstPool.ForEach(Sub(p)
-                                                    m_bsrcPools.Add(p)
-                                                End Sub)
-                                'il y a plus d'un pool, on demande à l'inspecteur de choisir
-                                btn_login_seConnecter.Enabled = False
-                                btn_login_seConnecter2.Enabled = True
-                                pnlPools.Visible = True
-                                _selectedAgent.oPool = Nothing
+                            If oPcRef IsNot Nothing Then
+
+                                'Récupération de la liste des pools relatif à ce pc
+                                lstPool = _selectedAgent.getPoolList(oPcRef)
+                                If lstPool.Count() = 0 Then
+                                    _selectedAgent.oPool = Nothing
+                                    Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
+                                    MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
+                                End If
+                                If lstPool.Count() = 1 Then
+                                    _selectedAgent.oPool = lstPool(0)
+                                    SynchroEtSuite(_selectedAgent)
+                                End If
+
+                                If lstPool.Count > 1 Then
+                                    m_bsrcPools.Clear()
+                                    lstPool.ForEach(Sub(p)
+                                                        m_bsrcPools.Add(p)
+                                                    End Sub)
+                                    'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                                    btn_login_seConnecter.Enabled = False
+                                    btn_login_seConnecter2.Enabled = True
+                                    pnlPools.Visible = True
+                                    _selectedAgent.oPool = Nothing
+                                End If
                             End If
                         Else
                             'Sans Gestion des pools
+                            _selectedAgent.oPool = Nothing
                             SynchroEtSuite(_selectedAgent)
                         End If
                     Else

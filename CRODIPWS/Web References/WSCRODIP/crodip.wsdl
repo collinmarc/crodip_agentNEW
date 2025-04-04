@@ -1650,6 +1650,22 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="GetPcListRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uidstructure" type="xsd:int" />
+            <xsd:element name="uidpool" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPcListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element element="tns:Pc" minOccurs="0" maxOccurs="500" name="PcList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="GetPoolAgentListRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -1823,6 +1839,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Buse" name="Buse" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1855,6 +1872,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PrestationCategorie" name="PrestationCategorie" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1887,6 +1905,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PrestationTarif" name="PrestationTarif" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1919,6 +1938,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:ManometreControle" name="ManometreControle" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1951,6 +1971,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:ManometreEtalon" name="ManometreEtalon" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1983,6 +2004,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Banc" name="Banc" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2016,6 +2038,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Diagnostic" name="Diagnostic" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2048,6 +2071,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:DiagnosticItems" minOccurs="0" maxOccurs="500" name="DiagnosticItemsList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2079,6 +2103,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:AutoTest" name="AutoTest" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2111,6 +2136,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:DiagnosticBuses" minOccurs="0" maxOccurs="500" name="DiagnosticBusesList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2142,6 +2168,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:DiagnosticBusesDetail" minOccurs="0" maxOccurs="500" name="DiagnosticBusesDetailList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2173,6 +2200,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:DiagnosticMano542" minOccurs="0" maxOccurs="500" name="DiagnosticMano542List" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2204,6 +2232,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:DiagnosticTroncons833" minOccurs="0" maxOccurs="500" name="DiagnosticTroncons833List" />
           </xsd:sequence>
         </xsd:complexType>
@@ -3068,6 +3097,12 @@
   <wsdl:message name="GetPoolListResponse">
     <wsdl:part name="parameters" element="tns:GetPoolListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetPcListRequest">
+    <wsdl:part name="parameters" element="tns:GetPcListRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetPcListResponse">
+    <wsdl:part name="parameters" element="tns:GetPcListResponse" />
+  </wsdl:message>
   <wsdl:message name="GetPoolAgentListRequest">
     <wsdl:part name="parameters" element="tns:GetPoolAgentListRequest" />
   </wsdl:message>
@@ -3647,6 +3682,10 @@
     <wsdl:operation name="GetPoolList">
       <wsdl:input message="tns:GetPoolListRequest" />
       <wsdl:output message="tns:GetPoolListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPcList">
+      <wsdl:input message="tns:GetPcListRequest" />
+      <wsdl:output message="tns:GetPcListResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetPoolAgentList">
       <wsdl:input message="tns:GetPoolAgentListRequest" />
@@ -4233,6 +4272,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPoolList">
       <soap:operation soapAction="http://www.example.org/crodip/getPoolList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPcList">
+      <soap:operation soapAction="http://www.example.org/crodip/getPcList" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

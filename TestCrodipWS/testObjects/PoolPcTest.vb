@@ -58,6 +58,25 @@ Imports CRODIPWS
         Assert.AreEqual(New Date(2025, 3, 25, 14, 13, 0), oPoolPc.dateAssociation)
 
     End Sub
+    <TestMethod()> Public Sub WSGetPoolPCList()
+        Dim oPoolPc As PoolPc
+
+        Dim agentPc As AgentPc
+        agentPc = AgentPcManager.WSgetById(-1, "99999")
+
+        Dim lst As List(Of PoolPc)
+        lst = PoolPcManager.WSGetListByPC(m_oAgent, agentPc)
+
+        Assert.AreNotEqual(0, lst.Count)
+
+        For Each oPoolPc In lst
+
+            Assert.AreEqual(agentPc.uid, oPoolPc.uidpc)
+            Assert.AreEqual(agentPc.uidstructure, oPoolPc.uidstructure)
+        Next
+
+
+    End Sub
 
 
 

@@ -4,14 +4,15 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
 <TestClass()> Public Class AgentPCTest
+    Inherits CRODIPTest
 
     <TestMethod()> Public Sub CRUD()
 
-        Dim oAgentPC As New AgentPC()
+        Dim oAgentPC As New AgentPc()
         oAgentPC.idRegistre = "AQWZSX"
         oAgentPC.idCrodip = "123465"
 
-        Assert.IsTrue(AgentPCManager.save(oAgentPC))
+        Assert.IsTrue(AgentPcManager.Save(oAgentPC))
         Dim sIdCrodip As String = oAgentPC.idCrodip
 
         oAgentPC = AgentPcManager.GetByuid("123465")
@@ -21,7 +22,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         oAgentPC.idRegistre = "AZERTYUIOP"
 
-        Assert.IsTrue(AgentPCManager.save(oAgentPC))
+        Assert.IsTrue(AgentPcManager.Save(oAgentPC))
 
         oAgentPC = AgentPcManager.GetByuid("123465")
         Assert.AreEqual(sIdCrodip, oAgentPC.idCrodip)
@@ -30,5 +31,19 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 
     End Sub
+    <TestMethod()> Public Sub GetPCListTest()
+        'l'agent contient le pool
+        Assert.IsNotNull(m_oAgent.oPool)
+        Dim lstPc As List(Of AgentPc)
+        lstPc = AgentPcManager.WSGetListByPool(m_oAgent.oPool)
+        Assert.AreNotEqual(0, lstPc)
+        For Each oAgentPc As AgentPc In lstPc
+            Assert.AreEqual(m_oAgent.uidstructure, oAgentPc.uidstructure)
+        Next
+
+
+    End Sub
+
+
 
 End Class

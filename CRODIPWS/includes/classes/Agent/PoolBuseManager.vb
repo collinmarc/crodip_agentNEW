@@ -32,6 +32,13 @@ Public Class PoolBuseManager
         oReturn = getByKey(Of PoolBuse)("Select * from PoolBuse where uid = " & puid)
         Return oReturn
     End Function
+    Public Shared Function getListebyStructure(puidStructure As Integer) As List(Of PoolBuse)
+        Dim lstReturn As List(Of PoolBuse)
+
+        lstReturn = getListe(Of PoolBuse)("SELECT * FROM POOLBUSE WHERE isSupprime=0 and uidStructure=" & puidStructure)
+
+        Return lstReturn
+    End Function
     Public Shared Function Save(ByVal pObj As PoolBuse, Optional bSynchro As Boolean = False) As Boolean
 
         Dim bReturn As Boolean

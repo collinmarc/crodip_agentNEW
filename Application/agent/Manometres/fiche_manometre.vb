@@ -15,8 +15,6 @@ Public Class fiche_manometre
     Dim isAjout As Boolean
     Friend WithEvents ficheMano_type As TextBox
     Friend WithEvents m_bsrcPool As BindingSource
-    Friend WithEvents Label9 As Label
-    Friend WithEvents cbxPool As CheckedListBox
     Friend WithEvents pnlManoControle As Panel
     Friend WithEvents rbTypeRaccordRV As RadioButton
     Friend WithEvents rbTypeRaccordRA As RadioButton
@@ -35,8 +33,6 @@ Public Class fiche_manometre
         'Cet appel est requis par le Concepteur Windows Form.
         InitializeComponent()
 
-        cbxPool.DataSource = m_bsrcPool
-        cbxPool.DisplayMember = "Libelle"
 
         'Ajoutez une initialisation quelconque après l'appel InitializeComponent()
         ' On load le mano
@@ -117,24 +113,22 @@ Public Class fiche_manometre
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.imagesEtatMateriel = New System.Windows.Forms.ImageList(Me.components)
         Me.ficheMano_type = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.cbxPool = New System.Windows.Forms.CheckedListBox()
         Me.pnlManoControle = New System.Windows.Forms.Panel()
-        Me.nupNumTraca = New CRODIP_ControlLibrary.NumericUpDown2()
-        Me.rbTypeTracaH = New System.Windows.Forms.RadioButton()
-        Me.rbTypeTracaB = New System.Windows.Forms.RadioButton()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.rbTypeRaccordRV = New System.Windows.Forms.RadioButton()
         Me.rbTypeRaccordRA = New System.Windows.Forms.RadioButton()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.rbTypeTracaB = New System.Windows.Forms.RadioButton()
+        Me.rbTypeTracaH = New System.Windows.Forms.RadioButton()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.nupNumTraca = New CRODIP_ControlLibrary.NumericUpDown2()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlManoControle.SuspendLayout()
-        CType(Me.nupNumTraca, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.nupNumTraca, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -398,25 +392,6 @@ Public Class fiche_manometre
         Me.ficheMano_type.Size = New System.Drawing.Size(256, 20)
         Me.ficheMano_type.TabIndex = 36
         '
-        'Label9
-        '
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(5, 284)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(128, 16)
-        Me.Label9.TabIndex = 37
-        Me.Label9.Text = "Pool :"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'cbxPool
-        '
-        Me.cbxPool.FormattingEnabled = True
-        Me.cbxPool.Location = New System.Drawing.Point(144, 284)
-        Me.cbxPool.Name = "cbxPool"
-        Me.cbxPool.Size = New System.Drawing.Size(143, 49)
-        Me.cbxPool.TabIndex = 38
-        '
         'pnlManoControle
         '
         Me.pnlManoControle.Controls.Add(Me.Panel2)
@@ -429,46 +404,14 @@ Public Class fiche_manometre
         Me.pnlManoControle.Size = New System.Drawing.Size(497, 85)
         Me.pnlManoControle.TabIndex = 46
         '
-        'nupNumTraca
+        'Panel2
         '
-        Me.nupNumTraca.Location = New System.Drawing.Point(218, 3)
-        Me.nupNumTraca.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.nupNumTraca.Name = "nupNumTraca"
-        Me.nupNumTraca.Size = New System.Drawing.Size(54, 20)
-        Me.nupNumTraca.TabIndex = 47
-        '
-        'rbTypeTracaH
-        '
-        Me.rbTypeTracaH.AutoSize = True
-        Me.rbTypeTracaH.Location = New System.Drawing.Point(42, 5)
-        Me.rbTypeTracaH.Name = "rbTypeTracaH"
-        Me.rbTypeTracaH.Size = New System.Drawing.Size(33, 17)
-        Me.rbTypeTracaH.TabIndex = 46
-        Me.rbTypeTracaH.TabStop = True
-        Me.rbTypeTracaH.Text = "H"
-        Me.rbTypeTracaH.UseVisualStyleBackColor = True
-        '
-        'rbTypeTracaB
-        '
-        Me.rbTypeTracaB.AutoSize = True
-        Me.rbTypeTracaB.Location = New System.Drawing.Point(4, 5)
-        Me.rbTypeTracaB.Name = "rbTypeTracaB"
-        Me.rbTypeTracaB.Size = New System.Drawing.Size(32, 17)
-        Me.rbTypeTracaB.TabIndex = 45
-        Me.rbTypeTracaB.TabStop = True
-        Me.rbTypeTracaB.Text = "B"
-        Me.rbTypeTracaB.UseVisualStyleBackColor = True
-        '
-        'Label10
-        '
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(1, 3)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(128, 16)
-        Me.Label10.TabIndex = 44
-        Me.Label10.Text = "Tracabilité :"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Panel2.Controls.Add(Me.rbTypeRaccordRV)
+        Me.Panel2.Controls.Add(Me.rbTypeRaccordRA)
+        Me.Panel2.Location = New System.Drawing.Point(127, 29)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(85, 22)
+        Me.Panel2.TabIndex = 52
         '
         'rbTypeRaccordRV
         '
@@ -492,6 +435,37 @@ Public Class fiche_manometre
         Me.rbTypeRaccordRA.Text = "RA"
         Me.rbTypeRaccordRA.UseVisualStyleBackColor = True
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.rbTypeTracaB)
+        Me.Panel1.Controls.Add(Me.rbTypeTracaH)
+        Me.Panel1.Location = New System.Drawing.Point(127, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(85, 25)
+        Me.Panel1.TabIndex = 51
+        '
+        'rbTypeTracaB
+        '
+        Me.rbTypeTracaB.AutoSize = True
+        Me.rbTypeTracaB.Location = New System.Drawing.Point(4, 5)
+        Me.rbTypeTracaB.Name = "rbTypeTracaB"
+        Me.rbTypeTracaB.Size = New System.Drawing.Size(32, 17)
+        Me.rbTypeTracaB.TabIndex = 45
+        Me.rbTypeTracaB.TabStop = True
+        Me.rbTypeTracaB.Text = "B"
+        Me.rbTypeTracaB.UseVisualStyleBackColor = True
+        '
+        'rbTypeTracaH
+        '
+        Me.rbTypeTracaH.AutoSize = True
+        Me.rbTypeTracaH.Location = New System.Drawing.Point(42, 5)
+        Me.rbTypeTracaH.Name = "rbTypeTracaH"
+        Me.rbTypeTracaH.Size = New System.Drawing.Size(33, 17)
+        Me.rbTypeTracaH.TabIndex = 46
+        Me.rbTypeTracaH.TabStop = True
+        Me.rbTypeTracaH.Text = "H"
+        Me.rbTypeTracaH.UseVisualStyleBackColor = True
+        '
         'Label11
         '
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -503,35 +477,34 @@ Public Class fiche_manometre
         Me.Label11.Text = "Type de raccord :"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'Panel1
+        'nupNumTraca
         '
-        Me.Panel1.Controls.Add(Me.rbTypeTracaB)
-        Me.Panel1.Controls.Add(Me.rbTypeTracaH)
-        Me.Panel1.Location = New System.Drawing.Point(127, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(85, 25)
-        Me.Panel1.TabIndex = 51
+        Me.nupNumTraca.Location = New System.Drawing.Point(218, 3)
+        Me.nupNumTraca.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.nupNumTraca.Name = "nupNumTraca"
+        Me.nupNumTraca.Size = New System.Drawing.Size(54, 20)
+        Me.nupNumTraca.TabIndex = 47
         '
-        'Panel2
+        'Label10
         '
-        Me.Panel2.Controls.Add(Me.rbTypeRaccordRV)
-        Me.Panel2.Controls.Add(Me.rbTypeRaccordRA)
-        Me.Panel2.Location = New System.Drawing.Point(127, 29)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(85, 22)
-        Me.Panel2.TabIndex = 52
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(1, 3)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(128, 16)
+        Me.Label10.TabIndex = 44
+        Me.Label10.Text = "Tracabilité :"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'm_bsrcPool
         '
-        Me.m_bsrcPool.DataSource = GetType(Pool)
+        Me.m_bsrcPool.DataSource = GetType(CRODIPWS.Pool)
         '
         'fiche_manometre
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(517, 488)
         Me.Controls.Add(Me.pnlManoControle)
-        Me.Controls.Add(Me.cbxPool)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.ficheMano_type)
         Me.Controls.Add(Me.btnActiver)
         Me.Controls.Add(Me.pbEtat)
@@ -563,11 +536,11 @@ Public Class fiche_manometre
         Me.Text = "Crodip .::. Fiche Manomètre Contrôle"
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlManoControle.ResumeLayout(False)
-        CType(Me.nupNumTraca, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.nupNumTraca, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -608,14 +581,6 @@ Public Class fiche_manometre
             lblIncertitude.Location = lblResolution.Location
             Me.Text = "Crodip .::. Fiche Manomètre Etalon"
             Me.pnlManoControle.Visible = False
-        End If
-        Dim oLst As List(Of Pool)
-        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            oLst = PoolManager.GetListe(manometreCourant.uidstructure)
-            m_bsrcPool.Clear()
-            oLst.ForEach(Sub(p)
-                             m_bsrcPool.Add(p)
-                         End Sub)
         End If
         DisplayManoCourant()
         bManoMAJ = False
@@ -659,18 +624,6 @@ Public Class fiche_manometre
             ficheMano_dateControle.Text = CSDate.ToCRODIPString(manometreCourant.dateDernierControleS)
         End If
 
-        'Parcours de la Liste des Pools pour checker ceux qui sont les Pool du manoCourant
-        Dim index As Integer = 0
-        For index = 0 To cbxPool.Items.Count() - 1
-            Dim obj As Pool = cbxPool.Items(index)
-            If manometreCourant.lstPools.Where(Function(p)
-                                                   Return (p.idCrodip.Equals(obj.idCrodip))
-                                               End Function).Count() > 0 Then
-                cbxPool.SetItemChecked(index, True)
-            Else
-                cbxPool.SetItemChecked(index, False)
-            End If
-        Next
         If m_TypeMano = TYPEMANO.MANOCONTROLE Then
             Dim oMano As ManometreControle = CType(manometreCourant, ManometreControle)
             rbTypeTracaB.Checked = oMano.IsTypeTracaB
@@ -701,10 +654,6 @@ Public Class fiche_manometre
                     CType(manometreCourant, ManometreEtalon).incertitudeEtalon = ficheMano_resolution.Text
                 End If
                 manometreCourant.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
-                manometreCourant.lstPools.Clear()
-                For Each oItem As Pool In cbxPool.CheckedItems
-                    manometreCourant.lstPools.Add(oItem)
-                Next
 
                 If m_TypeMano = TYPEMANO.MANOCONTROLE Then
                     Dim oMano As ManometreControle = CType(manometreCourant, ManometreControle)
@@ -791,7 +740,7 @@ Public Class fiche_manometre
 #End If
     End Sub
 
-    Private Sub cbxPool_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles cbxPool.ItemCheck
+    Private Sub cbxPool_ItemCheck(sender As Object, e As ItemCheckEventArgs)
         bManoMAJ = True
     End Sub
 

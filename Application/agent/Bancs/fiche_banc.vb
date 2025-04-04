@@ -13,9 +13,6 @@ Public Class fiche_banc
     Friend WithEvents pbEtat As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As Label
     Friend WithEvents cbxModulesAcquisition As ComboBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents m_bsrcPool As BindingSource
-    Friend WithEvents cbxPool As ComboBox
     Friend WithEvents m_bsrcBanc As BindingSource
     Friend WithEvents btnActiver As System.Windows.Forms.Button
 
@@ -91,12 +88,8 @@ Public Class fiche_banc
         Me.btnActiver = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cbxModulesAcquisition = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
-        Me.cbxPool = New System.Windows.Forms.ComboBox()
         CType(Me.m_bsrcBanc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -123,7 +116,7 @@ Public Class fiche_banc
         '
         'm_bsrcBanc
         '
-        Me.m_bsrcBanc.DataSource = GetType(Banc)
+        Me.m_bsrcBanc.DataSource = GetType(CRODIPWS.Banc)
         '
         'Label6
         '
@@ -327,39 +320,10 @@ Public Class fiche_banc
         Me.cbxModulesAcquisition.Sorted = True
         Me.cbxModulesAcquisition.TabIndex = 19
         '
-        'Label9
-        '
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(-6, 261)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(144, 16)
-        Me.Label9.TabIndex = 20
-        Me.Label9.Text = "Pool :"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'm_bsrcPool
-        '
-        Me.m_bsrcPool.AllowNew = False
-        Me.m_bsrcPool.DataSource = GetType(Pool)
-        '
-        'cbxPool
-        '
-        Me.cbxPool.DataSource = Me.m_bsrcPool
-        Me.cbxPool.DisplayMember = "Libelle"
-        Me.cbxPool.FormattingEnabled = True
-        Me.cbxPool.Location = New System.Drawing.Point(160, 261)
-        Me.cbxPool.Name = "cbxPool"
-        Me.cbxPool.Size = New System.Drawing.Size(256, 21)
-        Me.cbxPool.TabIndex = 21
-        Me.cbxPool.ValueMember = "id"
-        '
         'fiche_banc
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(441, 374)
-        Me.Controls.Add(Me.cbxPool)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.cbxModulesAcquisition)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnActiver)
@@ -387,7 +351,6 @@ Public Class fiche_banc
         Me.Text = "Crodip .::. Fiche Banc"
         CType(Me.m_bsrcBanc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.m_bsrcPool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -396,7 +359,7 @@ Public Class fiche_banc
 #End Region
 
 
-    Private Sub fiche_manometreControle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub fiche_banc_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         '#################################################################################
         '########                   Chargement des marques,etc...                 ########
@@ -410,19 +373,6 @@ Public Class fiche_banc
         For Each oMod As CRODIPAcquisition.ModuleAcq In olstModules
             cbxModulesAcquisition.Items.Add(oMod.Nom)
         Next
-        If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            Dim lstPool As List(Of Pool)
-            lstPool = PoolManager.GetListe(BancCourant.uidstructure)
-            lstPool.ForEach(Sub(p)
-                                m_bsrcPool.Add(p)
-                            End Sub)
-        End If
-        dispBancCourant()
-#If DEBUG Then
-        cbxPool.Enabled = True
-#Else
-        cbxPool.Enabled = false
-#End If
     End Sub
     Private Sub dispBancCourant()
         Try
@@ -477,13 +427,6 @@ Public Class fiche_banc
                 '             BancCourant.dateAchat = CSDate.TOCRODIPString(ficheBanc_dateAchat.Value)
                 '    End If
                 BancManager.save(BancCourant)
-                If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                    'Sauvegarde du Pool
-                    Dim oPool As Pool
-                    oPool = m_bsrcPool.Current
-                    '                oPool.idBanc = BancCourant.id
-                    PoolManager.Save(oPool)
-                End If
                 Me.DialogResult = Windows.Forms.DialogResult.OK
                 Me.Close()
             Catch ex As Exception
