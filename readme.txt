@@ -6,6 +6,7 @@ BUILD XXXXXXXXXXXXXX
 	0001653: Reactivation de Refonte de la gestion du matériel (Ajout de nouveaux matériels) + Gestion des pools
 	0001786: Remontée des champs Numchassis, ImatCertif et imatPlaque dans le diag
 	0001792: Saisie des heures de début au moment de l'initialition du diagnostic
+	0001794: Saisie de la page Pulve en MAJUSCULES
 
 BUILD 20250210100001  
 	0001781: Affichage des Manometres dans l'ordre des traca (FileVersion 20250214120000)
