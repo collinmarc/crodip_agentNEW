@@ -99,7 +99,7 @@ Public Class Pool
         Dim oReturn As AgentPc = Nothing
         Try
             Dim lst As List(Of AgentPc)
-            lst = PoolPcManager.GetLstAgentPcByPool(Me)
+            lst = PoolPcManager.GetLstPcByPool(Me)
             oReturn = lst(0)
         Catch ex As Exception
 
@@ -107,5 +107,32 @@ Public Class Pool
             oReturn = Nothing
         End Try
         Return oReturn
+    End Function
+
+    Public Overrides Function Equals(pObj As Object) As Boolean
+        Dim bReturn As Boolean = False
+
+        If TypeOf pObj Is Pool Then
+            bReturn = (Me.uid = CType(pObj, Pool).uid)
+            bReturn = bReturn And (Me.aid = CType(pObj, Pool).aid)
+            bReturn = bReturn And (Me.libelle = CType(pObj, Pool).libelle)
+            bReturn = bReturn And (Me.agentSuppression = CType(pObj, Pool).agentSuppression)
+            bReturn = bReturn And (Me.aidbanc = CType(pObj, Pool).aidbanc)
+            bReturn = bReturn And (Me.dateActivation = CType(pObj, Pool).dateActivation)
+            bReturn = bReturn And (Me.dateDernierControle = CType(pObj, Pool).dateDernierControle)
+            bReturn = bReturn And (Me.dateMiseEnService = CType(pObj, Pool).dateMiseEnService)
+            bReturn = bReturn And (Me.dateSuppression = CType(pObj, Pool).dateSuppression)
+            bReturn = bReturn And (Me.etat = CType(pObj, Pool).etat)
+            bReturn = bReturn And (Me.idCrodip = CType(pObj, Pool).idCrodip)
+            bReturn = bReturn And (Me.idPool = CType(pObj, Pool).idPool)
+            bReturn = bReturn And (Me.isSupprime = CType(pObj, Pool).isSupprime)
+            bReturn = bReturn And (Me.jamaisServi = CType(pObj, Pool).jamaisServi)
+            bReturn = bReturn And (Me.nbPastillesVertes = CType(pObj, Pool).nbPastillesVertes)
+            bReturn = bReturn And (Me.numeroNational = CType(pObj, Pool).numeroNational)
+            bReturn = bReturn And (Me.raisonSuppression = CType(pObj, Pool).raisonSuppression)
+            bReturn = bReturn And (Me.uidbanc = CType(pObj, Pool).uidbanc)
+            bReturn = bReturn And (Me.uidstructure = CType(pObj, Pool).uidstructure)
+        End If
+        Return bReturn
     End Function
 End Class

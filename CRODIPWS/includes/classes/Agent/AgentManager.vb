@@ -49,11 +49,11 @@ Public Class AgentManager
                                     PoolManager.Save(oPool)
                                     oreturn.oPool = oPool
                                 End If
-                                Dim lst As New List(Of AgentPc)
-                                '                                lst = AgentPcManager.WSgetlstByPoolId(oPool.uid)
-                                For Each oAgentPC In lst
-                                    AgentPcManager.Save(oAgentPC)
-                                Next
+                                'Dim lst As New List(Of AgentPc)
+                                ''                                lst = AgentPcManager.WSgetlstByPoolId(oPool.uid)
+                                'For Each oAgentPC In lst
+                                '    AgentPcManager.Save(oAgentPC)
+                                'Next
                             End Using
                         Next n
                     End If
@@ -556,6 +556,9 @@ Public Class AgentManager
                 paramsQuery = paramsQuery & " , signatureElect=" & agent.isSignElecActive & ""
                 If agent.oPool IsNot Nothing Then
                     paramsQuery = paramsQuery & " , uidpool=" & agent.oPool.uid & ""
+                End If
+                If agent.oPCcourant IsNot Nothing Then
+                    paramsQuery = paramsQuery & " , uidpc=" & agent.oPCcourant.uid & ""
                 End If
 
                 paramsQuery = paramsQuery & agent.getRootQuery()

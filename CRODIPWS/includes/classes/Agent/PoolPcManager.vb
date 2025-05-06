@@ -97,7 +97,7 @@ Public Class PoolPcManager
         lstReturn = getListe(Of PoolPc)("SELECT * FRom PoolPC where uidStructure = " & puidStructure)
         Return lstReturn
     End Function
-    Friend Shared Function GetLstAgentPcByPool(pPool As Pool) As List(Of AgentPc)
+    Friend Shared Function GetLstPcByPool(pPool As Pool) As List(Of AgentPc)
         Dim lstReturn As New List(Of AgentPc)
         Try
             Dim sql As String

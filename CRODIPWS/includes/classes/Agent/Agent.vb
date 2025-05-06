@@ -47,6 +47,7 @@ Public Class Agent
     Private _IsGestionnaire As Boolean
     Private _IsSignElecActive As Boolean
     Private _oPool As Pool
+    Private _oAgentPC As AgentPc
 
 
 
@@ -343,7 +344,20 @@ Public Class Agent
         End Set
     End Property
     ''' <summary>
-    ''' Renvoie une liste de pool relatif au PC de réference
+    ''' contient le PC en cours , uniquement en local, pas de synchro
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlIgnore()>
+    Public Property oPCcourant() As AgentPc
+        Get
+            Return _oAgentPC
+        End Get
+        Set(ByVal value As AgentPc)
+            _oAgentPC = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Renvoie une liste de pool de l'agent relatif au PC de réference
     ''' </summary>
     ''' <param name="pPCRef"></param>
     ''' <returns></returns>
@@ -353,19 +367,15 @@ Public Class Agent
         Try
             lstTotal = PoolAgentManager.getListe(Me)
             For Each oPool As Pool In lstTotal
-                Dim lstPoolPc As List(Of PoolPc) = PoolPcManager.WSGetListByPC(Me, pPCRef)
-                For Each oPoolPc As PoolPc In lstPoolPc
-                    PoolPcManager.Save(oPoolPc, True) 'on considère que c'est une synhcro
-                Next
                 Dim lstPc As List(Of AgentPc)
-                lstPc = PoolPcManager.GetLstAgentPcByPool(oPool)
-                For Each oagentPC As AgentPc In lstPc
-                    If oagentPC.idPc = pPCRef.idPc Then
+                lstPc = PoolPcManager.GetLstPcByPool(oPool)
+                For Each oPC As AgentPc In lstPc
+                    If oPC.idPc = pPCRef.idPc Then
                         If Not lstReturn.Contains(oPool) Then
                             lstReturn.Add(oPool)
                         End If
                     End If
-                Next oagentPC
+                Next oPC
             Next oPool
         Catch ex As Exception
             CSDebug.dispError("Agent.getPoolList ERR", ex)
@@ -452,7 +462,7 @@ Public Class Agent
                     Case "prenom".Trim().ToUpper()
                         Me.prenom = pValue.ToString()
                     Case "idStructure".Trim().ToUpper(), "uidstructure".Trim().ToUpper()
-                        Me.uidStructure = pValue
+                        Me.uidstructure = pValue
                     Case "telephonePortable".Trim().ToUpper()
                         Me.telephonePortable = pValue.ToString()
                     Case "eMail".Trim().ToUpper()
@@ -498,6 +508,16 @@ Public Class Agent
                             End If
                         Catch ex As Exception
                             Me.oPool = Nothing
+                        End Try
+                    Case "uidpc".Trim().ToUpper()
+                        Try
+                            If CInt(pValue) <> 0 Then
+                                Me.oPCcourant = AgentPcManager.GetByuid(pValue)
+                            Else
+                                Me.oPCcourant = Nothing
+                            End If
+                        Catch ex As Exception
+                            Me.oPCcourant = Nothing
                         End Try
                 End Select
             End If
@@ -875,26 +895,18 @@ Public Class Agent
     End Function
 
 
-
+    ''' <summary>
+    ''' Verification du PCcourant et de la base de registre
+    ''' </summary>
+    ''' <returns></returns>
     Public Function checkPC() As Boolean
-        Dim oAgentPC As AgentPC
         Dim bReturn As Boolean
         Dim bCleARegenerer As Boolean = False
         bReturn = False
         If oPool IsNot Nothing And GlobalsCRODIP.GLOB_PARAM_aqw <> "zsx" Then
-            'oAgentPC = AgentPCManager.RESTgetAgentPCByIDCrodip(Me, oPool.idCRODIPPC)
-            'If oAgentPC Is Nothing Then
-            'La réception via le WS ne fonctionne pas, on charge celui qui est en base
-            oAgentPC = oPool.getAgentPC()
-            'End If
             's'il y a un PC , on vérifie la base de registre, sinon on arrête
-            If oAgentPC IsNot Nothing Then
-                bCleARegenerer = String.IsNullOrEmpty(oAgentPC.idRegistre)
-                bReturn = oAgentPC.checkRegistry()
-                If bCleARegenerer Then
-                    AgentPCManager.save(oAgentPC)
-                    'AgentPCManager.RESTsetAgentPC(Me, oAgentPC)
-                End If
+            If oPCcourant IsNot Nothing Then
+                bReturn = oPCcourant.checkRegistry()
             Else
                 bReturn = False
             End If
@@ -919,4 +931,33 @@ Public Class Agent
             _bTest = value
         End Set
     End Property
+    ''' <summary>
+    ''' Vérification si l'agent est autorisé sur le PC enregistré
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function isAgentAutoriseSurCePc() As Boolean
+        'Vérification du PC Enregistré
+        Dim bReturn As Boolean = False
+        Dim oPCRegistry As AgentPc = AgentPcManager.GetAgentPCFromRegistry()
+        If oPCRegistry IsNot Nothing Then
+            Dim lstPool As List(Of Pool) = PoolAgentManager.getListe(Me)
+            For Each oPool As Pool In lstPool
+                Dim lstAgentPC As List(Of AgentPc) = AgentPcManager.WSGetListByPool(oPool)
+                For Each oAgentPC As AgentPc In lstAgentPC
+                    If oAgentPC.idPc = oPCRegistry.idPc Then
+                        bReturn = True
+                    End If
+                    If bReturn Then
+                        Exit For
+                    End If
+                Next
+                If bReturn Then
+                    Exit For
+                End If
+            Next
+        End If
+        Return bReturn
+
+    End Function
+
 End Class

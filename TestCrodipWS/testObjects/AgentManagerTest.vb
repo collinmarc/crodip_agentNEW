@@ -841,4 +841,57 @@ Public Class AgentManagerTest
             AutoTestManager.save(oTest)
         Next
     End Sub
+
+    <TestMethod()> Public Sub CheckPCregistryTest()
+
+        Dim oPool As New Pool()
+        oPool.etat = 1
+        oPool.idCrodip = "POOLTU"
+        oPool.libelle = "Pool de TU"
+        oPool.uidstructure = m_oStructure.uid
+        PoolManager.Save(oPool)
+        PoolManager.WSSend(oPool, oPool)
+        PoolManager.Save(oPool)
+        Dim oPoolAgent As PoolAgent
+        oPoolAgent = New PoolAgent()
+        oPoolAgent.uidpool = oPool.uid
+        oPoolAgent.uidagent = m_oAgent.uid
+        oPoolAgent.uidstructure = m_oStructure.uid
+        PoolAgentManager.WSSend(oPoolAgent, oPoolAgent)
+        PoolAgentManager.Save(oPoolAgent)
+        Dim oAgentPC As New AgentPc()
+        oAgentPC.idPc = "MCOTU"
+        oAgentPC.aid = "MCOTU"
+        oAgentPC.libelle = "PC de TU"
+        oAgentPC.uidstructure = m_oStructure.uid
+        oAgentPC.etat = 1
+        oAgentPC.SaveRegistry()
+        AgentPcManager.WSSend(oAgentPC, oAgentPC)
+        AgentPcManager.Save(oAgentPC)
+        Dim oPoolAgentPC As PoolPc
+        oPoolAgentPC = New PoolPc
+        oPoolAgentPC.uidpool = oPool.uid
+        oPoolAgentPC.uidpc = oAgentPC.uid
+        oPoolAgentPC.uidstructure = m_oStructure.uid
+        PoolPcManager.WSSend(oPoolAgentPC, oPoolAgentPC)
+        PoolPcManager.Save(oPoolAgentPC)
+
+        Assert.IsTrue(m_oAgent.isAgentAutoriseSurCePc())
+
+        'Modification de la registry
+        Dim oAgentPC2 As New AgentPc()
+        oAgentPC2.idPc = "MCOTU2"
+        oAgentPC2.aid = "MCOTU2"
+        oAgentPC2.libelle = "PC de TU"
+        oAgentPC2.uidstructure = m_oStructure.uid
+        oAgentPC2.etat = 1
+        oAgentPC2.SaveRegistry()
+        AgentPcManager.WSSend(oAgentPC2, oAgentPC2)
+        AgentPcManager.Save(oAgentPC2)
+
+        'L'agent n'est plus autorisé sur ce PC
+        Assert.IsFalse(m_oAgent.isAgentAutoriseSurCePc())
+
+    End Sub
+
 End Class

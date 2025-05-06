@@ -3,13 +3,12 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports CRODIPWS
-
-
+Imports Microsoft.Win32
 
 '''<summary>
 '''Classe de de base pour les tests CRODIP
 '''</summary>
-<TestClass()> _
+<TestClass()>
 Public Class CRODIPTest
 
 
@@ -32,6 +31,8 @@ Public Class CRODIPTest
     Protected m_oDiag As Diagnostic
 
     Protected m_oBanc As CRODIPWS.Banc
+    Protected m_RegistryPC As String
+    Protected m_RegistryCLE As String
 
     Public Sub New()
 
@@ -89,7 +90,7 @@ Public Class CRODIPTest
 
         'Création du PC
         Dim oAgentPC As New AgentPc
-        oAgentPC.idCrodip = "999999"
+        oAgentPC.idPc = "999999"
         oAgentPC.uidstructure = m_oStructure.uid
         AgentPcManager.Save(oAgentPC)
 
@@ -101,11 +102,23 @@ Public Class CRODIPTest
         Dim oSynchro As New Synchronisation(m_oAgent)
 
         oSynchro.MAJDateDerniereSynchro()
+
+        Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+        Const subkey1 As String = "CRODIP"
+        Const subkey2 As String = "PC"
+        m_RegistryPC = Registry.GetValue(RegistryPath, subkey2, "VIDE")
+        m_RegistryCLE = Registry.GetValue(RegistryPath, subkey1, "VIDE")
+
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
     <TestCleanup()>
     Public Sub MyTestCleanup()
+        Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+        Const subkey1 As String = "CRODIP"
+        Const subkey2 As String = "PC"
+        Registry.SetValue(RegistryPath, subkey2, m_RegistryPC)
+        Registry.SetValue(RegistryPath, subkey1, m_RegistryCLE)
 
     End Sub
     '
@@ -139,7 +152,7 @@ Public Class CRODIPTest
     Protected Function createPulve(pExploit As Exploitation) As Pulverisateur
         Dim poPulve As New Pulverisateur
         poPulve.numeroNational = "E001123456"
-        poPulve.uidstructure = m_oAgent.uidStructure
+        poPulve.uidstructure = m_oAgent.uidstructure
         poPulve.ancienIdentifiant = "ANCID"
         poPulve.marque = "MARQUEPULVE"
         poPulve.modele = "MODELEPULVE"
@@ -459,7 +472,7 @@ Public Class CRODIPTest
         'Création de 3 Identifiant Pulvé
         obj = New IdentifiantPulverisateur
         obj.id = IdentifiantPulverisateurManager.getNextId()
-        obj.idStructure = m_oAgent.uidStructure
+        obj.idStructure = m_oAgent.uidstructure
         obj.numeroNational = GlobalsCRODIP.GLOB_DIAG_NUMAGR & pNumNat
         obj.SetEtatINUTILISE()
         obj.dateUtilisation = ""

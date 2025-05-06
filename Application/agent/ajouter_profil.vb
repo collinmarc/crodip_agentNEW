@@ -1,3 +1,4 @@
+Imports System.Collections.Generic
 Imports CRODIPWS
 
 Public Class ajouter_profil
@@ -238,7 +239,6 @@ Public Class ajouter_profil
             If addProfil_identifiant.Text <> "" And addProfil_password.Text <> "" Then
                 Try
                     ' on récupère notre agent via WS
-                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LINK_ENCOURS, True)
                     objAgent = AgentManager.WSgetByNumeroNational(addProfil_identifiant.Text, True)
                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_LOAD_ENCOURS, True)
                     If objAgent.numeroNational <> "" Then
@@ -254,22 +254,28 @@ Public Class ajouter_profil
                                 Dim oStructure As [Structure]
                                 oStructure = StructureManager.getStructureById(objAgent.idStructure)
                                 If oStructure.id <> objAgent.idStructure Then
-                                    'La Structure n'existe pas , il faut la Récupéré
+                                    'La Structure n'existe pas , il faut la Récupérer
                                     oStructure = StructureManager.WSgetById(objAgent.uidstructure, objAgent.idStructure)
                                     StructureManager.save(oStructure, True)
                                 End If
-                                'La date de ernière synhcro est la plus petite date de synchro des agents en base.
-                                objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
-                                'Update de cet agent avec l'agent recu pas WS
-                                '                                objAgent.idCRODIPPool = ""
-                                AgentManager.save(objAgent)
-                                MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
-                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
+
+                                'Vérification du PC
+                                Dim bPCOK As Boolean = objAgent.isAgentAutoriseSurCePc()
+
+                                If bPCOK Then
+                                    'La date de ernière synhcro est la plus petite date de synchro des agents en base.
+                                    objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
+                                    AgentManager.save(objAgent)
+
+                                    MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
+                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)
                                     CSEnvironnement.delPid()
                                     Application.Exit()
-
                                 Else
-                                    Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
+                                    MsgBox("Erreur: Cet inspecteur n'est pas autorisé sur ce PC.[" & existsAgent.numeroNational & "]")
+                                End If
+                            Else
+                                Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_ERROR_EXISTS, False)
                                 MsgBox("Erreur: Cet inspecteur est déjà présent en base." & existsAgent.numeroNational)
                             End If
                         Else
@@ -290,6 +296,11 @@ Public Class ajouter_profil
             MsgBox("Erreur: Vous devez être connecté à internet pour ajouter un nouveau profil.")
         End If
     End Sub
+    ''' <summary>
+    ''' Verifie si l'agent à un pool associé au PC Enregistré
+    ''' </summary>
+    ''' <param name="pAgent"></param>
+    ''' <returns></returns>
 
     ' Retours
     Private Sub btn_ajouterProfil_retour_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ajouterProfil_retour.Click

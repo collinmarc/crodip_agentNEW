@@ -40,6 +40,7 @@ Public Class apropos
     Friend WithEvents lblDBVersion As System.Windows.Forms.Label
     Friend WithEvents btn_RAZBase As System.Windows.Forms.Button
     Friend WithEvents lblDB As Label
+    Friend WithEvents btnReinitPool As Button
     Friend WithEvents label_dateVersion As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(apropos))
@@ -49,10 +50,11 @@ Public Class apropos
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.label_description = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblDB = New System.Windows.Forms.Label()
         Me.btn_RAZBase = New System.Windows.Forms.Button()
         Me.lblDBVersion = New System.Windows.Forms.Label()
         Me.label_dateVersion = New System.Windows.Forms.Label()
-        Me.lblDB = New System.Windows.Forms.Label()
+        Me.btnReinitPool = New System.Windows.Forms.Button()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -83,7 +85,7 @@ Public Class apropos
         Me.btn_ficheAddClient_annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheAddClient_annuler.ForeColor = System.Drawing.Color.White
         Me.btn_ficheAddClient_annuler.Image = CType(resources.GetObject("btn_ficheAddClient_annuler.Image"), System.Drawing.Image)
-        Me.btn_ficheAddClient_annuler.Location = New System.Drawing.Point(344, 152)
+        Me.btn_ficheAddClient_annuler.Location = New System.Drawing.Point(342, 168)
         Me.btn_ficheAddClient_annuler.Name = "btn_ficheAddClient_annuler"
         Me.btn_ficheAddClient_annuler.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheAddClient_annuler.TabIndex = 25
@@ -113,6 +115,7 @@ Public Class apropos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.btnReinitPool)
         Me.Panel1.Controls.Add(Me.lblDB)
         Me.Panel1.Controls.Add(Me.btn_RAZBase)
         Me.Panel1.Controls.Add(Me.lblDBVersion)
@@ -127,17 +130,28 @@ Public Class apropos
         Me.Panel1.Size = New System.Drawing.Size(480, 198)
         Me.Panel1.TabIndex = 26
         '
+        'lblDB
+        '
+        Me.lblDB.AutoSize = True
+        Me.lblDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.lblDB.Location = New System.Drawing.Point(8, 99)
+        Me.lblDB.Name = "lblDB"
+        Me.lblDB.Size = New System.Drawing.Size(56, 13)
+        Me.lblDB.TabIndex = 29
+        Me.lblDB.Text = "DBName"
+        '
         'btn_RAZBase
         '
         Me.btn_RAZBase.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
         Me.btn_RAZBase.FlatAppearance.BorderSize = 0
         Me.btn_RAZBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_RAZBase.ForeColor = System.Drawing.Color.White
-        Me.btn_RAZBase.Location = New System.Drawing.Point(344, 114)
+        Me.btn_RAZBase.Location = New System.Drawing.Point(344, 111)
         Me.btn_RAZBase.Name = "btn_RAZBase"
         Me.btn_RAZBase.Size = New System.Drawing.Size(128, 24)
         Me.btn_RAZBase.TabIndex = 28
-        Me.btn_RAZBase.Text = "Réinitialisation"
+        Me.btn_RAZBase.Text = "Réinitialisation BD"
         Me.btn_RAZBase.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btn_RAZBase.UseVisualStyleBackColor = True
         '
@@ -161,22 +175,25 @@ Public Class apropos
         Me.label_dateVersion.TabIndex = 26
         Me.label_dateVersion.Text = "dateVersion"
         '
-        'lblDB
+        'btnReinitPool
         '
-        Me.lblDB.AutoSize = True
-        Me.lblDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lblDB.Location = New System.Drawing.Point(8, 99)
-        Me.lblDB.Name = "lblDB"
-        Me.lblDB.Size = New System.Drawing.Size(56, 13)
-        Me.lblDB.TabIndex = 29
-        Me.lblDB.Text = "DBName"
+        Me.btnReinitPool.BackgroundImage = Global.Crodip_agent.Resources.btn_delete
+        Me.btnReinitPool.FlatAppearance.BorderSize = 0
+        Me.btnReinitPool.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReinitPool.ForeColor = System.Drawing.Color.White
+        Me.btnReinitPool.Location = New System.Drawing.Point(344, 141)
+        Me.btnReinitPool.Name = "btnReinitPool"
+        Me.btnReinitPool.Size = New System.Drawing.Size(128, 24)
+        Me.btnReinitPool.TabIndex = 30
+        Me.btnReinitPool.Text = "Réinitialisation Pool"
+        Me.btnReinitPool.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnReinitPool.UseVisualStyleBackColor = True
         '
         'apropos
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(493, 213)
+        Me.ClientSize = New System.Drawing.Size(490, 209)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "apropos"
@@ -237,5 +254,25 @@ Public Class apropos
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub btnReinitPool_Click(sender As Object, e As EventArgs) Handles btnReinitPool.Click
+
+        If MsgBox("ATTENTION, Cette action supprime toutes les données de pool de votre PC. Voulez-vous continuer ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation des pools") = MsgBoxResult.Yes Then
+                If MsgBox("Etes-vous sur de vouloir supprimer toutes les données des pools ?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Réinitialisation des pools") = MsgBoxResult.Yes Then
+                    Try
+
+                        Dim oCSDB As New CSDb(True)
+                        oCSDB.RAZ_Pool()
+                        oCSDB.free()
+                        MsgBox("Vos données de pool ont été supprimées, veuillez vous reconnecter pour les regénérer", MsgBoxStyle.OkOnly)
+                        CSEnvironnement.delPid()
+                        Application.Exit()
+                    Catch ex As Exception
+                    CSDebug.dispFatal("Apropos.RAZPool ERR" & ex.Message)
+                End Try
+                End If
+            End If
+
     End Sub
 End Class

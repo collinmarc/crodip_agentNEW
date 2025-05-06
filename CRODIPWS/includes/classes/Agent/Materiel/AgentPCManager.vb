@@ -3,12 +3,17 @@ Imports System.Data.Common
 Imports System.IO
 Imports System.Xml
 Imports System.Xml.Serialization
+Imports Microsoft.Win32
 
 Public Class AgentPcManager
     Inherits RootManager
 #Region "Methodes Web Service"
     Public Shared Function WSgetById(ByVal puid As Integer, paid As String) As AgentPc
         Dim oreturn As AgentPc = Nothing
+        oreturn = RootWSGetById(Of AgentPc)(puid, paid, "GetPc")
+        Return oreturn
+
+        '        Dim oreturn As AgentPc = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim strXml As String = ""
         Try
@@ -59,7 +64,7 @@ Public Class AgentPcManager
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim strXml As String = ""
         Try
-            Dim tXmlnodes As Object = Nothing
+            Dim tXmlnodes As Object() = Nothing
             '' déclarations
             '            Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "GetPcList"
@@ -77,26 +82,32 @@ Public Class AgentPcManager
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(AgentPc))
-                    For Each oNode As XmlNode In tXmlnodes
+                    For n As Integer = 0 To tXmlnodes.Length - 1
+                        If TypeOf tXmlnodes(n) Is XmlNode() Then
+                            Dim oNode As XmlNode()
+                            oNode = tXmlnodes(n)
+                            Dim xmlDocument As New XmlDocument()
+                            ' Créer un élément racine
+                            Dim root As XmlElement = xmlDocument.CreateElement("AgentPc")
+                            xmlDocument.AppendChild(root)
 
-                        Dim xmlDocument As New XmlDocument()
-                        ' Créer un élément racine
-                        Dim root As XmlElement = xmlDocument.CreateElement("AgentPc")
-                        xmlDocument.AppendChild(root)
+                            ' Ajouter chaque XmlNode au document
+                            For Each node As XmlNode In oNode
+                                Dim importedNode As XmlNode = xmlDocument.ImportNode(node, True)
+                                root.AppendChild(importedNode)
+                            Next
+                            strXml = xmlDocument.OuterXml
 
-                        ' Ajouter chaque XmlNode au document
-                        For Each node As XmlNode In tXmlnodes(0)
-                            Dim importedNode As XmlNode = xmlDocument.ImportNode(node, True)
-                            root.AppendChild(importedNode)
-                        Next
-                        strXml = xmlDocument.OuterXml
+                            Dim obj As AgentPc
+                            Using reader As New StringReader(strXml)
+                                obj = ser.Deserialize(reader)
+                            End Using
+                            If Not lstReturn.Contains(obj) Then
+                                lstReturn.Add(obj)
+                            End If
 
-                        Dim obj As AgentPc
-                        Using reader As New StringReader(strXml)
-                            obj = ser.Deserialize(reader)
-                        End Using
-                        lstReturn.Add(obj)
-                    Next onode
+                        End If
+                    Next
                 Case 1 ' NOK
                     CSDebug.dispError("AgentPcManager.WSGetListByPool - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
@@ -104,6 +115,7 @@ Public Class AgentPcManager
             End Select
 
         Catch ex As Exception
+            CSDebug.dispError("AgentPCManager.WSGetListByPool ERR", ex)
             lstReturn.Clear()
         End Try
         Return lstReturn
@@ -112,7 +124,7 @@ Public Class AgentPcManager
 
     Public Shared Function WSSend(ByVal pAgentIn As AgentPc, ByRef pReturn As AgentPc) As Integer
         Dim codeResponse As Integer = 99
-        codeResponse = RootWSSend(Of AgentPc)(pAgentIn, pReturn)
+        codeResponse = RootWSSend(Of AgentPc)(pAgentIn, pReturn, "SendPc", "GetPc")
         Select Case codeResponse
             Case 2 ' UPDATE OK
             Case 4 ' CREATE OK
@@ -129,6 +141,12 @@ Public Class AgentPcManager
         Dim oReturn As AgentPc
 
         oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and uid = " & puid)
+        Return oReturn
+    End Function
+    Public Shared Function GetByidCrodip(pidCrodip As String) As AgentPc
+        Dim oReturn As AgentPc
+
+        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and idPc = '" & pidCrodip & "'")
         Return oReturn
     End Function
     ''' <summary>
@@ -427,4 +445,41 @@ Public Class AgentPcManager
 
     End Function
 
+    Public Shared Function IsRegistryVide() As Boolean
+        Dim bReturn As Boolean
+        Try
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
+
+            Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
+            If IDLu.Equals("VIDE") Or String.IsNullOrEmpty(IDLu) Then
+                bReturn = True
+            Else
+                bReturn = False
+            End If
+
+        Catch ex As Exception
+            CSDebug.dispError("AgentPCManager.IsRegistryVide ERR", ex)
+            bReturn = True
+        End Try
+        Return bReturn
+    End Function
+    Public Shared Function GetAgentPCFromRegistry() As AgentPc
+        Dim oReturn As AgentPc = Nothing
+        Try
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
+            If Not IsRegistryVide() Then
+                Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
+                oReturn = AgentPcManager.GetByidCrodip(IDLu)
+            End If
+
+        Catch ex As Exception
+            CSDebug.dispError("AgentPCManager.GetAgentPCFromRegistry ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+    End Function
 End Class

@@ -8,7 +8,7 @@ Imports System.Xml.Serialization
 'Imports RestSharp
 'Imports RestSharp.Authenticators
 Public Class RootManager
-    Protected Shared Function RootWSGetById(Of T As root)(puid As Integer, paid As String) As T
+    Protected Shared Function RootWSGetById(Of T As root)(puid As Integer, paid As String, Optional pMethodeName As String = "") As T
         Dim oreturn As T = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim strXml As String = ""
@@ -16,7 +16,13 @@ Public Class RootManager
             Dim tXmlnodes As Object = Nothing
             '' déclarations
             Dim typeT As Type = GetType(T)
-            Dim nomMethode As String = "Get" & typeT.Name
+            Dim nomMethode As String
+            If pMethodeName = "" Then
+                nomMethode = "Get" & typeT.Name
+            Else
+                nomMethode = pMethodeName
+            End If
+
             Dim methode As MethodInfo = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
             Dim info As String = ""
@@ -33,7 +39,7 @@ Public Class RootManager
                 End If
 
                 SynchronisationManager.LogSynchroDebut(nomMethode)
-                    SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 If parameters.Count = 3 Then
                     tXmlnodes = Params(2)
@@ -41,15 +47,19 @@ Public Class RootManager
                     tXmlnodes = Params(3)
                 End If
                 SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
-                    SynchronisationManager.LogSynchroFin()
-                End If
-                Select Case codeResponse
+                SynchronisationManager.LogSynchroFin()
+            End If
+            Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(T))
                     If GetType(T) Is GetType(Banc) Or GetType(T) Is GetType(AgentPc) Then
                         strXml = Replace(tXmlnodes(0).ParentNode.OuterXml, "<etat>-1</etat>", "<etat>1</etat>")
+                        If GetType(T) Is GetType(AgentPc) Then
+                            strXml = Replace(strXml, "<Pc>", "<AgentPc>")
+                            strXml = Replace(strXml, "</Pc>", "</AgentPc>")
+                        End If
                     Else
-                        strXml = tXmlnodes(0).ParentNode.OuterXml
+                            strXml = tXmlnodes(0).ParentNode.OuterXml
                     End If
                     Using reader As New StringReader(strXml)
                         oreturn = ser.Deserialize(reader)
@@ -70,7 +80,7 @@ Public Class RootManager
 
 
     End Function
-    Protected Shared Function RootWSSend(Of T As root)(pobj As T, ByRef pobjreturn As T) As Integer
+    Protected Shared Function RootWSSend(Of T As root)(pobj As T, ByRef pobjreturn As T, Optional pMethodeSendName As String = "", Optional pMethodeGetName As String = "") As Integer
         Dim oreturn As T = Nothing
         Dim codeResponse As Integer = 99
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
@@ -80,7 +90,12 @@ Public Class RootManager
 
             'Determination du Nom de la méthode : exemple SendManometreControle
             Dim typeT As Type = GetType(T)
-            Dim nomMethode As String = "Send" & typeT.Name
+            Dim nomMethode As String
+            If pMethodeSendName = "" Then
+                nomMethode = "Send" & typeT.Name
+            Else
+                nomMethode = pMethodeSendName
+            End If
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim Params As Object() = {pobj, pInfo, puid}
             If methode IsNot Nothing Then
@@ -104,11 +119,11 @@ Public Class RootManager
             Select Case codeResponse
                 Case 2 ' UPDATE OK
                     puid = DirectCast(Params(2), Integer)
-                    pobjreturn = RootWSGetById(Of T)(puid, CType(pobj, root).aid)
+                    pobjreturn = RootWSGetById(Of T)(puid, CType(pobj, root).aid, pMethodeGetName)
                 Case 4 ' CREATE OK
                     puid = DirectCast(Params(2), Integer)
                     CType(pobj, root).uid = puid
-                    pobjreturn = RootWSGetById(Of T)(puid, "")
+                    pobjreturn = RootWSGetById(Of T)(puid, "", pMethodeGetName)
                 Case 1 ' NOK
                     CSDebug.dispError("SendWS - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST

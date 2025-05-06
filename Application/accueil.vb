@@ -148,6 +148,35 @@ Public Class accueil
     Friend WithEvents Type As DataGridViewTextBoxColumn
     Friend WithEvents OK As DataGridViewCheckBoxColumn
     Friend WithEvents NOK As DataGridViewCheckBoxColumn
+    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdStructureDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidstructureSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidstructureDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NumAgentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AidagentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidagentSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidagentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TypeLibelleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdMaterielDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidmaterielDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents UidmaterielSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateControleSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateControleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EtatDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IsOKDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents IsNOKDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents IsNonEffectueDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents TracaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NumeroNationalDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents UidDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AidDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateModificationAgentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateModificationAgentSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateModificationCrodipDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateModificationCrodipSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents lblPC As Label
+    Friend WithEvents Label14 As Label
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -391,6 +420,38 @@ Public Class accueil
         Me.Label20 = New System.Windows.Forms.Label()
         Me.btn_controleQuotdien_Valider = New System.Windows.Forms.Button()
         Me.dgv_ControleRegulier = New System.Windows.Forms.DataGridView()
+        Me.typeLibelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idMateriel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdStructureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidstructureSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidstructureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumAgentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AidagentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidagentSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidagentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeLibelleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdMaterielDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidmaterielDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidmaterielSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateControleSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateControleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EtatDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsOKDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.IsNOKDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.IsNonEffectueDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.TracaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroNationalDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateModificationAgentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateModificationAgentSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateModificationCrodipDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateModificationCrodipSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bsControleQuotidien = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label15 = New System.Windows.Forms.Label()
         Me.picsRefresh = New System.Windows.Forms.PictureBox()
@@ -400,6 +461,8 @@ Public Class accueil
         Me.Label9 = New System.Windows.Forms.Label()
         Me.title_mesAlertes = New System.Windows.Forms.Label()
         Me.tabAccueil_mesinfos = New System.Windows.Forms.Panel()
+        Me.lblPC = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.lblPool = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -647,11 +710,6 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
-        Me.typeLibelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.idMateriel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NOK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -926,13 +984,213 @@ Public Class accueil
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgv_ControleRegulier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv_ControleRegulier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.typeLibelle, Me.idMateriel, Me.Type, Me.OK, Me.NOK})
+        Me.dgv_ControleRegulier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.typeLibelle, Me.idMateriel, Me.Type, Me.OK, Me.NOK, Me.IdDataGridViewTextBoxColumn, Me.IdStructureDataGridViewTextBoxColumn, Me.UidstructureSDataGridViewTextBoxColumn, Me.UidstructureDataGridViewTextBoxColumn, Me.NumAgentDataGridViewTextBoxColumn, Me.AidagentDataGridViewTextBoxColumn, Me.UidagentSDataGridViewTextBoxColumn, Me.UidagentDataGridViewTextBoxColumn, Me.TypeDataGridViewTextBoxColumn, Me.TypeLibelleDataGridViewTextBoxColumn, Me.IdMaterielDataGridViewTextBoxColumn, Me.UidmaterielDataGridViewTextBoxColumn, Me.UidmaterielSDataGridViewTextBoxColumn, Me.DateControleSDataGridViewTextBoxColumn, Me.DateControleDataGridViewTextBoxColumn, Me.EtatDataGridViewTextBoxColumn, Me.IsOKDataGridViewCheckBoxColumn, Me.IsNOKDataGridViewCheckBoxColumn, Me.IsNonEffectueDataGridViewCheckBoxColumn, Me.TracaDataGridViewTextBoxColumn, Me.NumeroNationalDataGridViewTextBoxColumn1, Me.UidDataGridViewTextBoxColumn, Me.AidDataGridViewTextBoxColumn, Me.DateModificationAgentDataGridViewTextBoxColumn, Me.DateModificationAgentSDataGridViewTextBoxColumn, Me.DateModificationCrodipDataGridViewTextBoxColumn, Me.DateModificationCrodipSDataGridViewTextBoxColumn})
         Me.dgv_ControleRegulier.DataSource = Me.bsControleQuotidien
         Me.dgv_ControleRegulier.Location = New System.Drawing.Point(6, 251)
         Me.dgv_ControleRegulier.Name = "dgv_ControleRegulier"
         Me.dgv_ControleRegulier.RowHeadersWidth = 10
         Me.dgv_ControleRegulier.Size = New System.Drawing.Size(429, 252)
         Me.dgv_ControleRegulier.TabIndex = 10
+        '
+        'typeLibelle
+        '
+        Me.typeLibelle.DataPropertyName = "typeLibelle"
+        Me.typeLibelle.FillWeight = 30.0!
+        Me.typeLibelle.HeaderText = "Type"
+        Me.typeLibelle.Name = "typeLibelle"
+        Me.typeLibelle.ReadOnly = True
+        '
+        'idMateriel
+        '
+        Me.idMateriel.DataPropertyName = "numeroNational"
+        Me.idMateriel.FillWeight = 20.0!
+        Me.idMateriel.HeaderText = "Identifiant"
+        Me.idMateriel.Name = "idMateriel"
+        '
+        'Type
+        '
+        Me.Type.DataPropertyName = "Traca"
+        Me.Type.FillWeight = 20.0!
+        Me.Type.HeaderText = "Traca"
+        Me.Type.Name = "Type"
+        Me.Type.ReadOnly = True
+        '
+        'OK
+        '
+        Me.OK.DataPropertyName = "isOK"
+        Me.OK.FillWeight = 10.0!
+        Me.OK.HeaderText = "OK"
+        Me.OK.Name = "OK"
+        '
+        'NOK
+        '
+        Me.NOK.DataPropertyName = "isNOK"
+        Me.NOK.FillWeight = 10.0!
+        Me.NOK.HeaderText = "NOK"
+        Me.NOK.Name = "NOK"
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "id"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        '
+        'IdStructureDataGridViewTextBoxColumn
+        '
+        Me.IdStructureDataGridViewTextBoxColumn.DataPropertyName = "idStructure"
+        Me.IdStructureDataGridViewTextBoxColumn.HeaderText = "idStructure"
+        Me.IdStructureDataGridViewTextBoxColumn.Name = "IdStructureDataGridViewTextBoxColumn"
+        '
+        'UidstructureSDataGridViewTextBoxColumn
+        '
+        Me.UidstructureSDataGridViewTextBoxColumn.DataPropertyName = "uidstructureS"
+        Me.UidstructureSDataGridViewTextBoxColumn.HeaderText = "uidstructureS"
+        Me.UidstructureSDataGridViewTextBoxColumn.Name = "UidstructureSDataGridViewTextBoxColumn"
+        '
+        'UidstructureDataGridViewTextBoxColumn
+        '
+        Me.UidstructureDataGridViewTextBoxColumn.DataPropertyName = "uidstructure"
+        Me.UidstructureDataGridViewTextBoxColumn.HeaderText = "uidstructure"
+        Me.UidstructureDataGridViewTextBoxColumn.Name = "UidstructureDataGridViewTextBoxColumn"
+        '
+        'NumAgentDataGridViewTextBoxColumn
+        '
+        Me.NumAgentDataGridViewTextBoxColumn.DataPropertyName = "numAgent"
+        Me.NumAgentDataGridViewTextBoxColumn.HeaderText = "numAgent"
+        Me.NumAgentDataGridViewTextBoxColumn.Name = "NumAgentDataGridViewTextBoxColumn"
+        '
+        'AidagentDataGridViewTextBoxColumn
+        '
+        Me.AidagentDataGridViewTextBoxColumn.DataPropertyName = "aidagent"
+        Me.AidagentDataGridViewTextBoxColumn.HeaderText = "aidagent"
+        Me.AidagentDataGridViewTextBoxColumn.Name = "AidagentDataGridViewTextBoxColumn"
+        '
+        'UidagentSDataGridViewTextBoxColumn
+        '
+        Me.UidagentSDataGridViewTextBoxColumn.DataPropertyName = "uidagentS"
+        Me.UidagentSDataGridViewTextBoxColumn.HeaderText = "uidagentS"
+        Me.UidagentSDataGridViewTextBoxColumn.Name = "UidagentSDataGridViewTextBoxColumn"
+        '
+        'UidagentDataGridViewTextBoxColumn
+        '
+        Me.UidagentDataGridViewTextBoxColumn.DataPropertyName = "uidagent"
+        Me.UidagentDataGridViewTextBoxColumn.HeaderText = "uidagent"
+        Me.UidagentDataGridViewTextBoxColumn.Name = "UidagentDataGridViewTextBoxColumn"
+        '
+        'TypeDataGridViewTextBoxColumn
+        '
+        Me.TypeDataGridViewTextBoxColumn.DataPropertyName = "type"
+        Me.TypeDataGridViewTextBoxColumn.HeaderText = "type"
+        Me.TypeDataGridViewTextBoxColumn.Name = "TypeDataGridViewTextBoxColumn"
+        '
+        'TypeLibelleDataGridViewTextBoxColumn
+        '
+        Me.TypeLibelleDataGridViewTextBoxColumn.DataPropertyName = "typeLibelle"
+        Me.TypeLibelleDataGridViewTextBoxColumn.HeaderText = "typeLibelle"
+        Me.TypeLibelleDataGridViewTextBoxColumn.Name = "TypeLibelleDataGridViewTextBoxColumn"
+        Me.TypeLibelleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IdMaterielDataGridViewTextBoxColumn
+        '
+        Me.IdMaterielDataGridViewTextBoxColumn.DataPropertyName = "idMateriel"
+        Me.IdMaterielDataGridViewTextBoxColumn.HeaderText = "idMateriel"
+        Me.IdMaterielDataGridViewTextBoxColumn.Name = "IdMaterielDataGridViewTextBoxColumn"
+        '
+        'UidmaterielDataGridViewTextBoxColumn
+        '
+        Me.UidmaterielDataGridViewTextBoxColumn.DataPropertyName = "uidmateriel"
+        Me.UidmaterielDataGridViewTextBoxColumn.HeaderText = "uidmateriel"
+        Me.UidmaterielDataGridViewTextBoxColumn.Name = "UidmaterielDataGridViewTextBoxColumn"
+        '
+        'UidmaterielSDataGridViewTextBoxColumn
+        '
+        Me.UidmaterielSDataGridViewTextBoxColumn.DataPropertyName = "uidmaterielS"
+        Me.UidmaterielSDataGridViewTextBoxColumn.HeaderText = "uidmaterielS"
+        Me.UidmaterielSDataGridViewTextBoxColumn.Name = "UidmaterielSDataGridViewTextBoxColumn"
+        '
+        'DateControleSDataGridViewTextBoxColumn
+        '
+        Me.DateControleSDataGridViewTextBoxColumn.DataPropertyName = "dateControleS"
+        Me.DateControleSDataGridViewTextBoxColumn.HeaderText = "dateControleS"
+        Me.DateControleSDataGridViewTextBoxColumn.Name = "DateControleSDataGridViewTextBoxColumn"
+        '
+        'DateControleDataGridViewTextBoxColumn
+        '
+        Me.DateControleDataGridViewTextBoxColumn.DataPropertyName = "dateControle"
+        Me.DateControleDataGridViewTextBoxColumn.HeaderText = "dateControle"
+        Me.DateControleDataGridViewTextBoxColumn.Name = "DateControleDataGridViewTextBoxColumn"
+        '
+        'EtatDataGridViewTextBoxColumn
+        '
+        Me.EtatDataGridViewTextBoxColumn.DataPropertyName = "etat"
+        Me.EtatDataGridViewTextBoxColumn.HeaderText = "etat"
+        Me.EtatDataGridViewTextBoxColumn.Name = "EtatDataGridViewTextBoxColumn"
+        '
+        'IsOKDataGridViewCheckBoxColumn
+        '
+        Me.IsOKDataGridViewCheckBoxColumn.DataPropertyName = "isOK"
+        Me.IsOKDataGridViewCheckBoxColumn.HeaderText = "isOK"
+        Me.IsOKDataGridViewCheckBoxColumn.Name = "IsOKDataGridViewCheckBoxColumn"
+        '
+        'IsNOKDataGridViewCheckBoxColumn
+        '
+        Me.IsNOKDataGridViewCheckBoxColumn.DataPropertyName = "isNOK"
+        Me.IsNOKDataGridViewCheckBoxColumn.HeaderText = "isNOK"
+        Me.IsNOKDataGridViewCheckBoxColumn.Name = "IsNOKDataGridViewCheckBoxColumn"
+        '
+        'IsNonEffectueDataGridViewCheckBoxColumn
+        '
+        Me.IsNonEffectueDataGridViewCheckBoxColumn.DataPropertyName = "isNonEffectue"
+        Me.IsNonEffectueDataGridViewCheckBoxColumn.HeaderText = "isNonEffectue"
+        Me.IsNonEffectueDataGridViewCheckBoxColumn.Name = "IsNonEffectueDataGridViewCheckBoxColumn"
+        '
+        'TracaDataGridViewTextBoxColumn
+        '
+        Me.TracaDataGridViewTextBoxColumn.DataPropertyName = "traca"
+        Me.TracaDataGridViewTextBoxColumn.HeaderText = "traca"
+        Me.TracaDataGridViewTextBoxColumn.Name = "TracaDataGridViewTextBoxColumn"
+        '
+        'NumeroNationalDataGridViewTextBoxColumn1
+        '
+        Me.NumeroNationalDataGridViewTextBoxColumn1.DataPropertyName = "numeroNational"
+        Me.NumeroNationalDataGridViewTextBoxColumn1.HeaderText = "numeroNational"
+        Me.NumeroNationalDataGridViewTextBoxColumn1.Name = "NumeroNationalDataGridViewTextBoxColumn1"
+        '
+        'UidDataGridViewTextBoxColumn
+        '
+        Me.UidDataGridViewTextBoxColumn.DataPropertyName = "uid"
+        Me.UidDataGridViewTextBoxColumn.HeaderText = "uid"
+        Me.UidDataGridViewTextBoxColumn.Name = "UidDataGridViewTextBoxColumn"
+        '
+        'AidDataGridViewTextBoxColumn
+        '
+        Me.AidDataGridViewTextBoxColumn.DataPropertyName = "aid"
+        Me.AidDataGridViewTextBoxColumn.HeaderText = "aid"
+        Me.AidDataGridViewTextBoxColumn.Name = "AidDataGridViewTextBoxColumn"
+        '
+        'DateModificationAgentDataGridViewTextBoxColumn
+        '
+        Me.DateModificationAgentDataGridViewTextBoxColumn.DataPropertyName = "dateModificationAgent"
+        Me.DateModificationAgentDataGridViewTextBoxColumn.HeaderText = "dateModificationAgent"
+        Me.DateModificationAgentDataGridViewTextBoxColumn.Name = "DateModificationAgentDataGridViewTextBoxColumn"
+        '
+        'DateModificationAgentSDataGridViewTextBoxColumn
+        '
+        Me.DateModificationAgentSDataGridViewTextBoxColumn.DataPropertyName = "dateModificationAgentS"
+        Me.DateModificationAgentSDataGridViewTextBoxColumn.HeaderText = "dateModificationAgentS"
+        Me.DateModificationAgentSDataGridViewTextBoxColumn.Name = "DateModificationAgentSDataGridViewTextBoxColumn"
+        '
+        'DateModificationCrodipDataGridViewTextBoxColumn
+        '
+        Me.DateModificationCrodipDataGridViewTextBoxColumn.DataPropertyName = "dateModificationCrodip"
+        Me.DateModificationCrodipDataGridViewTextBoxColumn.HeaderText = "dateModificationCrodip"
+        Me.DateModificationCrodipDataGridViewTextBoxColumn.Name = "DateModificationCrodipDataGridViewTextBoxColumn"
+        '
+        'DateModificationCrodipSDataGridViewTextBoxColumn
+        '
+        Me.DateModificationCrodipSDataGridViewTextBoxColumn.DataPropertyName = "dateModificationCrodipS"
+        Me.DateModificationCrodipSDataGridViewTextBoxColumn.HeaderText = "dateModificationCrodipS"
+        Me.DateModificationCrodipSDataGridViewTextBoxColumn.Name = "DateModificationCrodipSDataGridViewTextBoxColumn"
         '
         'bsControleQuotidien
         '
@@ -1027,6 +1285,8 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabAccueil_mesinfos.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.tabAccueil_mesinfos.Controls.Add(Me.lblPC)
+        Me.tabAccueil_mesinfos.Controls.Add(Me.Label14)
         Me.tabAccueil_mesinfos.Controls.Add(Me.lblPool)
         Me.tabAccueil_mesinfos.Controls.Add(Me.Label13)
         Me.tabAccueil_mesinfos.Controls.Add(Me.PictureBox1)
@@ -1048,9 +1308,27 @@ Public Class accueil
         Me.tabAccueil_mesinfos.Size = New System.Drawing.Size(1009, 136)
         Me.tabAccueil_mesinfos.TabIndex = 0
         '
+        'lblPC
+        '
+        Me.lblPC.Location = New System.Drawing.Point(576, 104)
+        Me.lblPC.Name = "lblPC"
+        Me.lblPC.Size = New System.Drawing.Size(151, 16)
+        Me.lblPC.TabIndex = 14
+        Me.lblPC.Text = "Pc_libellé"
+        '
+        'Label14
+        '
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
+        Me.Label14.Location = New System.Drawing.Point(360, 104)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(197, 16)
+        Me.Label14.TabIndex = 13
+        Me.Label14.Text = "PC :"
+        '
         'lblPool
         '
-        Me.lblPool.Location = New System.Drawing.Point(576, 104)
+        Me.lblPool.Location = New System.Drawing.Point(576, 80)
         Me.lblPool.Name = "lblPool"
         Me.lblPool.Size = New System.Drawing.Size(151, 16)
         Me.lblPool.TabIndex = 12
@@ -1060,7 +1338,7 @@ Public Class accueil
         '
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(363, 104)
+        Me.Label13.Location = New System.Drawing.Point(360, 80)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(197, 16)
         Me.Label13.TabIndex = 11
@@ -1079,7 +1357,7 @@ Public Class accueil
         '
         'lbl_infosAgent_dateDernCnx
         '
-        Me.lbl_infosAgent_dateDernCnx.Location = New System.Drawing.Point(576, 56)
+        Me.lbl_infosAgent_dateDernCnx.Location = New System.Drawing.Point(576, 32)
         Me.lbl_infosAgent_dateDernCnx.Name = "lbl_infosAgent_dateDernCnx"
         Me.lbl_infosAgent_dateDernCnx.Size = New System.Drawing.Size(140, 16)
         Me.lbl_infosAgent_dateDernCnx.TabIndex = 8
@@ -1087,10 +1365,11 @@ Public Class accueil
         '
         'lbl_infosAgent_IdCrodip
         '
-        Me.lbl_infosAgent_IdCrodip.Location = New System.Drawing.Point(168, 56)
+        Me.lbl_infosAgent_IdCrodip.Location = New System.Drawing.Point(168, 32)
         Me.lbl_infosAgent_IdCrodip.Name = "lbl_infosAgent_IdCrodip"
         Me.lbl_infosAgent_IdCrodip.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_IdCrodip.TabIndex = 7
+        Me.lbl_infosAgent_IdCrodip.Text = "IdCrodip"
         '
         'pctLogo
         '
@@ -1106,7 +1385,7 @@ Public Class accueil
         '
         Me.lbl_mesInfos_dateDernièreConnexion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_mesInfos_dateDernièreConnexion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_mesInfos_dateDernièreConnexion.Location = New System.Drawing.Point(360, 80)
+        Me.lbl_mesInfos_dateDernièreConnexion.Location = New System.Drawing.Point(360, 56)
         Me.lbl_mesInfos_dateDernièreConnexion.Name = "lbl_mesInfos_dateDernièreConnexion"
         Me.lbl_mesInfos_dateDernièreConnexion.Size = New System.Drawing.Size(216, 16)
         Me.lbl_mesInfos_dateDernièreConnexion.TabIndex = 5
@@ -1116,7 +1395,7 @@ Public Class accueil
         '
         Me.lbl_mesInfos_dateDerniereUtilisation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_mesInfos_dateDerniereUtilisation.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_mesInfos_dateDerniereUtilisation.Location = New System.Drawing.Point(360, 56)
+        Me.lbl_mesInfos_dateDerniereUtilisation.Location = New System.Drawing.Point(360, 32)
         Me.lbl_mesInfos_dateDerniereUtilisation.Name = "lbl_mesInfos_dateDerniereUtilisation"
         Me.lbl_mesInfos_dateDerniereUtilisation.Size = New System.Drawing.Size(216, 16)
         Me.lbl_mesInfos_dateDerniereUtilisation.TabIndex = 4
@@ -1126,7 +1405,7 @@ Public Class accueil
         '
         Me.lbl_mesInfos_prenom.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_mesInfos_prenom.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_mesInfos_prenom.Location = New System.Drawing.Point(48, 104)
+        Me.lbl_mesInfos_prenom.Location = New System.Drawing.Point(48, 80)
         Me.lbl_mesInfos_prenom.Name = "lbl_mesInfos_prenom"
         Me.lbl_mesInfos_prenom.Size = New System.Drawing.Size(120, 16)
         Me.lbl_mesInfos_prenom.TabIndex = 3
@@ -1136,7 +1415,7 @@ Public Class accueil
         '
         Me.lbl_mesInfos_nom.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_mesInfos_nom.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_mesInfos_nom.Location = New System.Drawing.Point(48, 80)
+        Me.lbl_mesInfos_nom.Location = New System.Drawing.Point(48, 56)
         Me.lbl_mesInfos_nom.Name = "lbl_mesInfos_nom"
         Me.lbl_mesInfos_nom.Size = New System.Drawing.Size(120, 16)
         Me.lbl_mesInfos_nom.TabIndex = 2
@@ -1146,7 +1425,7 @@ Public Class accueil
         '
         Me.lbl_mesInfos_idCrodip.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_mesInfos_idCrodip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.lbl_mesInfos_idCrodip.Location = New System.Drawing.Point(48, 56)
+        Me.lbl_mesInfos_idCrodip.Location = New System.Drawing.Point(48, 32)
         Me.lbl_mesInfos_idCrodip.Name = "lbl_mesInfos_idCrodip"
         Me.lbl_mesInfos_idCrodip.Size = New System.Drawing.Size(120, 16)
         Me.lbl_mesInfos_idCrodip.TabIndex = 1
@@ -1158,7 +1437,7 @@ Public Class accueil
         Me.title_mesInfos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.title_mesInfos.Image = CType(resources.GetObject("title_mesInfos.Image"), System.Drawing.Image)
         Me.title_mesInfos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.title_mesInfos.Location = New System.Drawing.Point(16, 16)
+        Me.title_mesInfos.Location = New System.Drawing.Point(16, 5)
         Me.title_mesInfos.Name = "title_mesInfos"
         Me.title_mesInfos.Size = New System.Drawing.Size(128, 24)
         Me.title_mesInfos.TabIndex = 0
@@ -1166,21 +1445,23 @@ Public Class accueil
         '
         'lbl_infosAgent_Nom
         '
-        Me.lbl_infosAgent_Nom.Location = New System.Drawing.Point(168, 80)
+        Me.lbl_infosAgent_Nom.Location = New System.Drawing.Point(168, 56)
         Me.lbl_infosAgent_Nom.Name = "lbl_infosAgent_Nom"
         Me.lbl_infosAgent_Nom.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_Nom.TabIndex = 7
+        Me.lbl_infosAgent_Nom.Text = "nomAgent"
         '
         'lbl_infosAgent_Prenom
         '
-        Me.lbl_infosAgent_Prenom.Location = New System.Drawing.Point(168, 104)
+        Me.lbl_infosAgent_Prenom.Location = New System.Drawing.Point(168, 80)
         Me.lbl_infosAgent_Prenom.Name = "lbl_infosAgent_Prenom"
         Me.lbl_infosAgent_Prenom.Size = New System.Drawing.Size(176, 16)
         Me.lbl_infosAgent_Prenom.TabIndex = 7
+        Me.lbl_infosAgent_Prenom.Text = "Prénom Agent"
         '
         'lbl_infosAgent_dateDernSynchro
         '
-        Me.lbl_infosAgent_dateDernSynchro.Location = New System.Drawing.Point(576, 80)
+        Me.lbl_infosAgent_dateDernSynchro.Location = New System.Drawing.Point(576, 56)
         Me.lbl_infosAgent_dateDernSynchro.Name = "lbl_infosAgent_dateDernSynchro"
         Me.lbl_infosAgent_dateDernSynchro.Size = New System.Drawing.Size(151, 16)
         Me.lbl_infosAgent_dateDernSynchro.TabIndex = 8
@@ -3961,43 +4242,6 @@ Public Class accueil
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
         '
-        'typeLibelle
-        '
-        Me.typeLibelle.DataPropertyName = "typeLibelle"
-        Me.typeLibelle.FillWeight = 30.0!
-        Me.typeLibelle.HeaderText = "Type"
-        Me.typeLibelle.Name = "typeLibelle"
-        Me.typeLibelle.ReadOnly = True
-        '
-        'idMateriel
-        '
-        Me.idMateriel.DataPropertyName = "numeroNational"
-        Me.idMateriel.FillWeight = 20.0!
-        Me.idMateriel.HeaderText = "Identifiant"
-        Me.idMateriel.Name = "idMateriel"
-        '
-        'Type
-        '
-        Me.Type.DataPropertyName = "Traca"
-        Me.Type.FillWeight = 20.0!
-        Me.Type.HeaderText = "Traca"
-        Me.Type.Name = "Type"
-        Me.Type.ReadOnly = True
-        '
-        'OK
-        '
-        Me.OK.DataPropertyName = "isOK"
-        Me.OK.FillWeight = 10.0!
-        Me.OK.HeaderText = "OK"
-        Me.OK.Name = "OK"
-        '
-        'NOK
-        '
-        Me.NOK.DataPropertyName = "isNOK"
-        Me.NOK.FillWeight = 10.0!
-        Me.NOK.HeaderText = "NOK"
-        Me.NOK.Name = "NOK"
-        '
         'accueil
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -4167,6 +4411,9 @@ Public Class accueil
         End If
         If agentCourant.oPool IsNot Nothing Then
             lblPool.Text = agentCourant.oPool.libelle
+        End If
+        If agentCourant.oPCcourant IsNot Nothing Then
+            lblPC.Text = agentCourant.oPCcourant.libelle
         End If
         'Affichage de la Liste des clients avec les alertes
         m_Exploitation_isShowAll = False

@@ -576,7 +576,7 @@ DROP TABLE IF EXISTS PrestationTarif1;
 DROP TABLE IF EXISTS IdentifiantPulverisateur0702;
 
 DROP TABLE IF EXISTS POOL;
-Create Table Pool (uid integer PRIMARY KEY, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
+Create Table Pool (uid integer PRIMARY KEY, aid text, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
 
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-01 12:00:00','pool2');
 
@@ -670,4 +670,9 @@ INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025
 Alter Table Diagnostic Add Column pulverisateurNumchassis  Text default '';
 Update Diagnostic set pulverisateurNumchassis = pulverisateurNumeroChassis;
 Alter Table Diagnostic drop Column pulverisateurNumeroChassis;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','pulverisateurNumchassis');
+
+Alter Table Agent add Column uidpc Bigint(20) DEFAULT 0;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','agentPC uidpc');
+
 

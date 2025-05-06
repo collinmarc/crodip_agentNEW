@@ -1,5 +1,6 @@
 Imports System.Data.Common
 Imports Microsoft.Data.Sqlite
+Imports Microsoft.Win32
 'Imports System.Data.OleDb
 
 Public Class CSDb
@@ -395,6 +396,32 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM Agent"
             bddCommande.ExecuteNonQuery()
 
+            RAZ_Pool()
+            'bddCommande.CommandText = "DELETE FROM VERSION"
+            'bddCommande.ExecuteNonQuery()
+            _dbConnection.Close()
+            nInstance = 0
+            getInstance()
+            bddCommande = getConnection().CreateCommand
+            bddCommande.CommandText = "VACUUM"
+            bddCommande.ExecuteNonQuery()
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispFatal("CSDB.RAZ_BASE_DONNEES ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Function RAZ_Pool() As Boolean
+        Debug.Assert(getConnection().State = ConnectionState.Open, "La connexion doit être ouverte")
+        Dim bReturn As Boolean
+        Try
+            CSDebug.dispError("VIDAGE DES Données de POOL!!!!!")
+            Dim bddCommande As DbCommand
+            bddCommande = getConnection().CreateCommand
+
             bddCommande.CommandText = "DELETE FROM AgentPC"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Pool"
@@ -408,21 +435,18 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM PoolManoControle"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM PoolManoEtalon"
-            bddCommande.ExecuteNonQuery()
-            bddCommande.CommandText = "DELETE FROM Structure"
-            bddCommande.ExecuteNonQuery()
-            'bddCommande.CommandText = "DELETE FROM VERSION"
-            'bddCommande.ExecuteNonQuery()
-            _dbConnection.Close()
-            nInstance = 0
-            getInstance()
-            bddCommande = getConnection().CreateCommand
-            bddCommande.CommandText = "VACUUM"
-            bddCommande.ExecuteNonQuery()
+
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
+
+            Registry.SetValue(RegistryPath, subkey1, "")
+            Registry.SetValue(RegistryPath, subkey2, "")
+
 
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("CSDB.RAZ_BASE_DONNEES ERR : " & ex.Message)
+            CSDebug.dispFatal("CSDB.RAZ_Pool ERR : " & ex.Message)
             bReturn = False
         End Try
         Return bReturn

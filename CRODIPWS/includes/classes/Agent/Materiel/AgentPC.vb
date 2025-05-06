@@ -345,22 +345,13 @@ Public Class AgentPc
     Public Function checkRegistry() As Boolean
         Dim bReturn As Boolean
         Try
-            Const userRoot As String = "HKEY_CURRENT_USER"
-            Const subkey As String = "CRODIP"
-            Const keyName As String = userRoot & "\" & subkey
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
 
-            If String.IsNullOrEmpty(Me.idRegistre) Then
-                Dim g As New Guid()
-                g = Guid.NewGuid()
-                Me.idRegistre = g.ToString()
-                Registry.SetValue(keyName, "POOL", Me.idRegistre)
-                AgentPcManager.Save(Me)
-
-            End If
-
-
-            Dim IDLu As String = Registry.GetValue(keyName, "POOL", "")
-            If IDLu.Equals(Me.idRegistre) Then
+            Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
+            Dim cle As String = Registry.GetValue(RegistryPath, subkey1, "VIDE")
+            If IDLu.Equals(Me.idPc) And cle.Equals(idRegistre) Then
                 bReturn = True
             Else
                 bReturn = False
@@ -373,6 +364,50 @@ Public Class AgentPc
             CSDebug.dispError("AgentPC,CheckRegistry ERR", ex)
             bReturn = False
         End Try
+        Return bReturn
+    End Function
+    Public Function SaveRegistry() As Boolean
+        Dim bReturn As Boolean
+        Try
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
+
+            If String.IsNullOrEmpty(Me.idRegistre) Then
+                Dim g As New Guid()
+                g = Guid.NewGuid()
+                Me.idRegistre = g.ToString()
+            End If
+            Registry.SetValue(RegistryPath, subkey1, Me.idRegistre)
+            Registry.SetValue(RegistryPath, subkey2, Me.idPc)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("AgentPC.SaveRegistry ERR", ex)
+            bReturn = False
+        End Try
+
+        Return bReturn
+    End Function
+    Public Overrides Function Equals(pObj As Object) As Boolean
+        Dim bReturn As Boolean = False
+
+        If TypeOf pObj Is AgentPc Then
+            bReturn = (Me.uid = CType(pObj, AgentPc).uid)
+            bReturn = bReturn And (Me.aid = CType(pObj, AgentPc).aid)
+            bReturn = bReturn And (Me.libelle = CType(pObj, AgentPc).libelle)
+            bReturn = bReturn And (Me.agentSuppression = CType(pObj, AgentPc).agentSuppression)
+            bReturn = bReturn And (Me.dateActivation = CType(pObj, AgentPc).dateActivation)
+            bReturn = bReturn And (Me.dateDernierControle = CType(pObj, AgentPc).dateDernierControle)
+            bReturn = bReturn And (Me.dateMiseEnService = CType(pObj, AgentPc).dateMiseEnService)
+            bReturn = bReturn And (Me.dateSuppression = CType(pObj, AgentPc).dateSuppression)
+            bReturn = bReturn And (Me.etat = CType(pObj, AgentPc).etat)
+            bReturn = bReturn And (Me.idCrodip = CType(pObj, AgentPc).idCrodip)
+            bReturn = bReturn And (Me.isSupprime = CType(pObj, AgentPc).isSupprime)
+            bReturn = bReturn And (Me.jamaisServi = CType(pObj, AgentPc).jamaisServi)
+            bReturn = bReturn And (Me.numeroNational = CType(pObj, AgentPc).numeroNational)
+            bReturn = bReturn And (Me.raisonSuppression = CType(pObj, AgentPc).raisonSuppression)
+            bReturn = bReturn And (Me.uidstructure = CType(pObj, AgentPc).uidstructure)
+        End If
         Return bReturn
     End Function
 

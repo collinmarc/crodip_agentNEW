@@ -122,7 +122,11 @@ Public Class PoolAgentManager
             For Each oPoolAgent As PoolAgent In lstPoolAgent
                 Dim oPool As Pool
                 oPool = PoolManager.getPoolByuid(oPoolAgent.uidpool)
-                lstReturn.Add(oPool)
+                If Not lstReturn.Contains(oPool) Then
+                    lstReturn.Add(oPool)
+                End If
+
+
             Next
         Catch ex As Exception
             CSDebug.dispError("PoolAgentManager.GetListe ERR", ex)

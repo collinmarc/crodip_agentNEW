@@ -12,7 +12,7 @@ Imports System.Linq
 
 Public Class login
     Inherits frmCRODIP
-    Private _selectedAgent As Agent
+    Private _LocalAgent As Agent
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -721,30 +721,30 @@ Public Class login
         Try
             ' On récupère l'agent sélèctionné
 
-            _selectedAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
-            idAgent = _selectedAgent.id
-            If _selectedAgent.numeroNational.ToString <> "" Then
+            _LocalAgent = AgentManager.getAgentByNumeroNational(login_profil.SelectedItem.Id)
+            idAgent = _LocalAgent.id
+            If _LocalAgent.numeroNational.ToString <> "" Then
                 If CSEnvironnement.checkWebService() = True Then
                     'If CSEnvironnement.checkWebService() = True And Not GlobalsCRODIP.GLOB_ENV_DEBUG Then
                     ' On commence par redescendre le pass de l'agent courant
-                    Dim tmpObject As New Agent
+                    Dim oAgentSrv As New Agent
                     Try
-                        tmpObject = AgentManager.WSgetByNumeroNational(_selectedAgent.numeroNational, True)
-                        If tmpObject.id > 0 And tmpObject.isActif And Not tmpObject.isSupprime Then
-                            _selectedAgent.duppliqueInfosAgent(tmpObject, False)
-                            If CSDate.FromCrodipString(_selectedAgent.dateDerniereSynchro).Year = 1970 Then
-                                _selectedAgent.dateDerniereSynchro = tmpObject.dateDerniereSynchro
+                        oAgentSrv = AgentManager.WSgetByNumeroNational(_LocalAgent.numeroNational, True)
+                        If oAgentSrv.id > 0 And oAgentSrv.isActif And Not oAgentSrv.isSupprime Then
+                            _LocalAgent.duppliqueInfosAgent(oAgentSrv, False)
+                            If CSDate.FromCrodipString(_LocalAgent.dateDerniereSynchro).Year = 1970 Then
+                                _LocalAgent.dateDerniereSynchro = oAgentSrv.dateDerniereSynchro
                             End If
-                            AgentManager.save(_selectedAgent, True)
+                            AgentManager.save(_LocalAgent, True)
                             bAgentExistant = True
                         Else
                             bAgentExistant = False
-                            If tmpObject.id > 0 Then
-                                If tmpObject.isSupprime Then
+                            If oAgentSrv.id > 0 Then
+                                If oAgentSrv.isSupprime Then
                                     'Suppression de l'agent en base
-                                    AgentManager.save(tmpObject)
+                                    AgentManager.save(oAgentSrv)
                                 End If
-                                If Not tmpObject.isActif Then
+                                If Not oAgentSrv.isActif Then
                                     Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé par le Crodip.", False)
                                     MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Votre profil a été désactivé , contactez le Crodip")
                                     'On recharge la Liste des profils 
@@ -774,76 +774,50 @@ Public Class login
                     bAgentExistant = True
                 End If
                 If bAgentExistant Then
-                    If CSCrypt.encode(login_password.Text, "sha256") = _selectedAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
+                    If CSCrypt.encode(login_password.Text, "sha256") = _LocalAgent.motDePasse Or GlobalsCRODIP.GLOB_ENV_DEBUG Then
                         ' Mot de passe correct => On le met en "session"
-                        agentCourant = _selectedAgent
+                        agentCourant = _LocalAgent
                         ' On met à jour le numéro de version du logiciel agent
-                        If _selectedAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
-                            _selectedAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
-                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _selectedAgent.dateModificationAgent)
-                            AgentManager.save(_selectedAgent)
+                        If _LocalAgent.versionLogiciel <> GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD Then
+                            _LocalAgent.versionLogiciel = GlobalsCRODIP.GLOB_APPLI_VERSION & "-" & GlobalsCRODIP.GLOB_APPLI_BUILD
+                            CSDebug.dispInfo("Login.doLogin():: Save Agent Version : " & _LocalAgent.dateModificationAgent)
+                            AgentManager.save(_LocalAgent)
                         End If
 
                         If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
                             Dim lstPool As List(Of Pool)
 
-                            Dim oPcRef As AgentPc = AgentPcManager.GetByuidStructure(_selectedAgent.uidstructure)
-                            If oPcRef Is Nothing Then
-                                Dim Str As String = ""
-                                'Pas de AgentPC de reference sur le PC = > PC à VIDE !!!!
-                                While (Str.Length <> 5 Or Not IsNumeric(Str))
-                                    Str = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
-                                    If Str.Length = 0 Then
-                                        'On sort si on click sur Annul
-                                        login_password.Text = ""
-                                        pnlLoginControls.Enabled = True
-                                        Exit Sub
-                                    Else
-                                        'Récupération du PCRef et des PoolPc sur le WS
-                                        oPcRef = AgentPcManager.WSgetById(-1, Str)
-                                        If oPcRef IsNot Nothing Then
-                                            If oPcRef.uidstructure = _selectedAgent.uidstructure Then
-                                                AgentPcManager.Save(oPcRef, True) 'on considère que c'est une synhcro
-                                                Dim lstPoolPc As List(Of PoolPc) = PoolPcManager.WSGetListByPC(_selectedAgent, oPcRef)
-                                                For Each oPoolPc As PoolPc In lstPoolPc
-                                                    PoolPcManager.Save(oPoolPc, True) 'on considère que c'est une synhcro
-                                                Next
-                                            Else
-                                                Statusbar.display("Numero de PC incorrect")
-                                                Str = ""
-                                            End If
-                                        Else
-                                            Statusbar.display("Numero de PC incorrect")
-                                            Str = ""
-                                        End If
-
-                                    End If
-                                End While
-                            End If
+                            Dim oPcRef As AgentPc = AgentPcManager.GetAgentPCFromRegistry()
                             If oPcRef IsNot Nothing Then
                                 'Cas particulier : 1ere connexion , il y a un PC mais pas de poolpc
-                                Dim olstPoolPc As List(Of PoolPc) = PoolPcManager.getListeByStructure(_selectedAgent.uidstructure)
+                                Dim olstPoolPc As List(Of PoolPc) = PoolPcManager.getListeByStructure(_LocalAgent.uidstructure)
                                 If olstPoolPc.Count = 0 Then
                                     'On récupère les poolPc depuis les WS
-                                    olstPoolPc = PoolPcManager.WSGetListByPC(_selectedAgent, oPcRef)
+                                    olstPoolPc = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
                                     For Each oPoolPc As PoolPc In olstPoolPc
+                                        'On récupére les Pool depuis les PoolPc si nécessaire
+                                        Dim oPool As Pool
+                                        oPool = PoolManager.getPoolByuid(oPoolPc.uidpool)
+                                        If oPool Is Nothing Then
+                                            oPool = PoolManager.WSgetById(oPoolPc.uid, oPoolPc.aid)
+                                            PoolManager.Save(oPool)
+                                        End If
                                         PoolPcManager.Save(oPoolPc)
                                     Next
                                 End If
-                            End If
 
-                            If oPcRef IsNot Nothing Then
-
-                                'Récupération de la liste des pools relatif à ce pc
-                                lstPool = _selectedAgent.getPoolList(oPcRef)
+                                _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de regitre
+                                'Récupération de la liste des pools de l'agent relatif à ce pc
+                                lstPool = _LocalAgent.getPoolList(oPcRef)
                                 If lstPool.Count() = 0 Then
-                                    _selectedAgent.oPool = Nothing
+                                    _LocalAgent.oPool = Nothing
                                     Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
                                     MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
                                 End If
-                                If lstPool.Count() = 1 Then
-                                    _selectedAgent.oPool = lstPool(0)
-                                    SynchroEtSuite(_selectedAgent)
+
+                                If lstPool.Count() = 1 Then   'C'est le cas normal
+                                    _LocalAgent.oPool = lstPool(0)
+                                    SynchroEtSuite(_LocalAgent)
                                 End If
 
                                 If lstPool.Count > 1 Then
@@ -855,13 +829,15 @@ Public Class login
                                     btn_login_seConnecter.Enabled = False
                                     btn_login_seConnecter2.Enabled = True
                                     pnlPools.Visible = True
-                                    _selectedAgent.oPool = Nothing
+                                    _LocalAgent.oPool = Nothing
                                 End If
+                            Else
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : PC non reconnu ", False)
                             End If
                         Else
                             'Sans Gestion des pools
-                            _selectedAgent.oPool = Nothing
-                            SynchroEtSuite(_selectedAgent)
+                            _LocalAgent.oPool = Nothing
+                            SynchroEtSuite(_LocalAgent)
                         End If
                     Else
                         ' On met à jour la barre de status
@@ -935,6 +911,7 @@ Public Class login
             dgvPools.Columns.RemoveAt(i)
         Next
 
+        InitRegistry()
 
         ' Chargement de la statusbar
         Statusbardisplay("Chargement de la liste de profils...", True)
@@ -945,7 +922,40 @@ Public Class login
         Statusbarclear()
 
     End Sub
+    ''' <summary>
+    ''' initialisation de la registry si nécessaire
+    ''' </summary>
+    Private Sub InitRegistry()
+        Dim strNumPc As String = ""
+        If AgentPcManager.IsRegistryVide Then
+            'Pas de AgentPC de reference sur le PC = > PC à VIDE !!!!
+            While (strNumPc.Length <> 5 Or Not IsNumeric(strNumPc))
+                strNumPc = InputBox("Veuillez entrer le numéro CRODIP du PC (5 chiffres) ", "Saisie du numéro CRODIP du PC")
+                If strNumPc.Length = 0 Then
+                    'On sort si on click sur Annul
+                    login_password.Text = ""
+                    pnlLoginControls.Enabled = True
+                    Exit Sub
+                Else
+                    'Récupération du PCRef sur le Serveur
+                    Dim oPcRef As AgentPc = AgentPcManager.WSgetById(-1, strNumPc)
+                    If oPcRef IsNot Nothing Then
+                        If Not oPcRef.SaveRegistry() Then
+                            Statusbar.display("ERREUR REGISTRY")
+                            strNumPc = ""
+                        End If
+                        Dim oPCReturn As AgentPc = Nothing
+                        AgentPcManager.WSSend(oPcRef, oPCReturn)
+                        AgentPcManager.Save(oPcRef, True) 'on considère que c'est une synhcro
+                    Else
+                        Statusbar.display("PC non référencé")
+                        strNumPc = ""
+                    End If
 
+                End If
+            End While
+        End If
+    End Sub
     Private Sub Statusbardisplay(pMsg As String, pisLoader As Boolean)
         If Statusbar IsNot Nothing Then
             Statusbar.display(pMsg, pisLoader)
@@ -1373,12 +1383,12 @@ Public Class login
         If My.Settings.GestionDesPools Then
             Debug.Assert(pAgent.oPool IsNot Nothing, "Pool doit être initialisé")
             Dim oPC As AgentPc
-            oPC = pAgent.oPool.getAgentPc()
+            oPC = pAgent.oPCcourant
             If oPC IsNot Nothing Then
                 If My.Settings.aqw = "zsx" Then
                     bContinue = oPC.checkRegistry()
                     If Not bContinue Then
-                        CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPool.uid & "]")
+                        CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPCcourant.uid & "]")
                     End If
                 Else
                     bContinue = True
@@ -1442,15 +1452,15 @@ Public Class login
         Dim oPool As Pool
         dgvPools.Enabled = False
         oPool = m_bsrcPools.Current
-        _selectedAgent.oPool = oPool
-        AgentManager.save(_selectedAgent)
-        If Not _selectedAgent.checkPC() Then
+        _LocalAgent.oPool = oPool
+        AgentManager.save(_LocalAgent)
+        If Not _LocalAgent.checkPC() Then
             CSDebug.dispFatal("Le PC n'est pas reconnu")
             MsgBox("Connexion impossible, matériel non reconnu", MsgBoxStyle.Critical, "Logiciel CrodipAgent")
             Application.Exit()
         Else
             'L'agent à un Pool et est reconnu
-            SynchroEtSuite(_selectedAgent)
+            SynchroEtSuite(_LocalAgent)
         End If
     End Sub
 
