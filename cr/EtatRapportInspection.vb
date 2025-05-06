@@ -241,22 +241,23 @@ Public Class EtatRapportInspection
             If m_oPulve.isPulveAdditionnel Then
                 oPulvePrinc = PulverisateurManager.getPulverisateurByNumNat(m_oPulve.pulvePrincipalNumNat, m_oDiag.proprietaireId)
             End If
-            oMaterielRow = m_ods.Materiel.AddMaterielRow(m_oDiag.pulverisateurNumNational,
-                                                         m_oDiag.pulverisateurMarque.ToUpper(),
-                                                         m_oDiag.pulverisateurModele.ToUpper(),
-                                                         m_oDiag.pulverisateurCapacite.ToUpper(),
-                                                         Trim(m_oDiag.pulverisateurLargeur + m_oDiag.pulverisateurNbRangs).ToUpper(),
-                                                         m_oDiag.pulverisateurAnneeAchat,
-                                                         m_oDiag.pulverisateurType.ToUpper(),
-                                                         m_oDiag.pulverisateurCategorie.ToUpper(),
-                                                         m_oDiag.pulverisateurAttelage,
-                                                         m_oDiag.pulverisateurRegulation.ToUpper() & m_oDiag.pulverisateurRegulationOptions.Replace("|", ",").ToUpper(),
-                                                         m_oDiag.buseType.ToUpper(),
-                                                         m_oDiag.buseFonctionnement.ToUpper(),
-                                                         m_oDiag.pulverisateurPulverisation.ToUpper(),
-                                                         m_oDiag.buseDebit.ToUpper(),
-                                                         m_oDiag.pulverisateurEmplacementIdentification.ToUpper(),
-                                                         m_oDiag.proprietaireNumeroSiren.ToUpper(),
+
+            oMaterielRow = m_ods.Materiel.AddMaterielRow(Identifiant:=m_oDiag.pulverisateurNumNational,
+                                                         Marque:=m_oDiag.pulverisateurMarque.ToUpper(),
+                                                         Modele:=m_oDiag.pulverisateurModele.ToUpper(),
+                                                         Capacite:=m_oDiag.pulverisateurCapacite.ToUpper(),
+                                                         LargeurNbRangs:=Trim(m_oDiag.pulverisateurLargeur + m_oDiag.pulverisateurNbRangs).ToUpper(),
+                                                         Annee:=m_oDiag.pulverisateurAnneeAchat,
+                                                         Type:=m_oDiag.pulverisateurType.ToUpper(),
+                                                         Categorie:=m_oDiag.pulverisateurCategorie.ToUpper(),
+                                                         Attelage:=m_oDiag.pulverisateurAttelage,
+                                                         Regulation:=m_oDiag.pulverisateurRegulation.ToUpper() & m_oDiag.pulverisateurRegulationOptions.Replace("|", ",").ToUpper(),
+                                                         TypeBuse:=m_oDiag.buseType.ToUpper(),
+                                                         Fonctionnement:=m_oDiag.buseFonctionnement.ToUpper(),
+                                                         TypeDeJet:=m_oDiag.pulverisateurPulverisation.ToUpper(),
+                                                         DebitBuse:=m_oDiag.buseDebit.ToUpper(),
+                                                         EmplacementIdentifiant:=m_oDiag.pulverisateurEmplacementIdentification.ToUpper(),
+                                                         SIRENProprietaire:=m_oDiag.proprietaireNumeroSiren.ToUpper(),
                                                          NumeroControle:=m_oDiag.id,
                                                          BuseMarque:=m_oDiag.buseMarque.ToUpper(),
                                                          BuseModele:=m_oDiag.buseModele.ToUpper(),
@@ -273,9 +274,9 @@ Public Class EtatRapportInspection
                                                          PrincModele:=oPulvePrinc.modele,
                                                          PrincType:=oPulvePrinc.type,
                                                          PrincNumNat:=oPulvePrinc.numeroNational,
-                                                         NumSerie:=oPulvePrinc.numeroChassis,
-                                                         ImmatPlaque:=oPulvePrinc.immatPlaque,
-                                                         ImmatCertif:=oPulvePrinc.immatCertificat)
+                                                         NumSerie:=m_oDiag.pulverisateurNumchassis,
+                                                         ImmatPlaque:=m_oDiag.pulverisateurImmatPlaque,
+                                                         ImmatCertif:=m_oDiag.pulverisateurImmatCertificat)
 
             Dim dateLimiteControle As Date
             m_oDiag.CalculDateProchainControle()

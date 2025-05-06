@@ -45,7 +45,7 @@ Public Class cr_RapportInspection
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "Crodip_agent.cr_RapportInspection.rpt"
+            Return "TestCrodipWS.cr_RapportInspection.rpt"
         End Get
         Set
             'Do nothing

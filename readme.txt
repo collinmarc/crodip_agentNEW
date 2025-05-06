@@ -3,10 +3,11 @@ MASTER
 BUILD 20250414140000
 	0001784: Contrat Commercial : Ajout du numéro organisme prestataire
 	0001774: Synhcronisation des controles Mano
-	0001653: Reactivation de Refonte de la gestion du matériel (Ajout de nouveaux matériels) + Gestion des pools
+	0001653: Reactivation de Refonte de la gestion du matériel  + Gestion des pools
 	0001786: Remontée des champs Numchassis, ImatCertif et imatPlaque dans le diag
 	0001792: Saisie des heures de début au moment de l'initialition du diagnostic
 	0001794: Saisie de la page Pulve en MAJUSCULES
+	0001798: Rapport D'inspection V6
 
 BUILD 20250210100001  
 	0001781: Affichage des Manometres dans l'ordre des traca (FileVersion 20250214120000)

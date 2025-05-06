@@ -813,6 +813,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulve.vb">
       <AutoGen>True</AutoGen>
@@ -2105,8 +2106,8 @@
     </EmbeddedResource>
     <Content Include="moduleDocumentaire\_parametres\cr_RapportInspection.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <LastGenOutput>cr_RapportInspection1.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="moduleDocumentaire\_parametres\cr_BL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
