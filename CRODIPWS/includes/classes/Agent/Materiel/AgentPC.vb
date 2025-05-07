@@ -279,6 +279,27 @@ Public Class AgentPc
             _isDownloadIdentifiantPulve = value
         End Set
     End Property
+    Private _dateDerniereSynchro As DateTime
+    <XmlIgnore>
+    Public Property dateDerniereSynchro() As DateTime
+        Get
+            Return _dateDerniereSynchro
+        End Get
+        Set(ByVal value As DateTime)
+            _dateDerniereSynchro = value
+        End Set
+    End Property
+    <XmlElement("dateDerniereSynchro")>
+    Public Property dateDerniereSynchroS() As String
+        Get
+            Return CSDate.GetDateForWS(dateDerniereSynchro)
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" And Value <> "0000-00-00 00:00:00" Then
+                dateDerniereSynchro = Value
+            End If
+        End Set
+    End Property
 
     Public Overrides Function Fill(pColName As String, pValue As Object) As Boolean
         Dim breturn As Boolean = True

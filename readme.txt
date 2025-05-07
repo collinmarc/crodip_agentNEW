@@ -1,5 +1,8 @@
 #TRUNK
 MASTER
+BUILD XXXXXXXXXXXXXX
+	0001801: Gestion de la date de dernière synchro sur le PC
+
 BUILD 20250414140000
 	0001784: Contrat Commercial : Ajout du numéro organisme prestataire
 	0001774: Synhcronisation des controles Mano

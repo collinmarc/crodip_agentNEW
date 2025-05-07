@@ -112,7 +112,7 @@ Public Class SynchronisationManager
         Return bReturn
     End Function
 
-    Public Shared Function getWSlstElementsASynchroniser(ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
+    Public Shared Function getWSlstElementsASynchroniser(pPc As AgentPc, ByVal pAgent As Agent, pSynchroBoolean As SynchroBooleans) As List(Of SynchronisationElmt)
         Dim oLst As New List(Of SynchronisationElmt)()
         Dim objWSUpdates As Object() = Nothing
         Dim availablerPools As Object() = Nothing
@@ -121,25 +121,27 @@ Public Class SynchronisationManager
         'Récupération des infos depuis le SRV
         ' déclarations
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
-        CSDebug.dispInfo("WS URL = " & objWSCrodip.Url)
         ' Appel au WS
         Dim isUpdateAvailable As Integer
         Dim isComplete As Integer
 
         Dim DateDernSynhcro As DateTime
-        CSDebug.dispInfo("Demande de la dernière date de synchro de  " & pAgent.uidstructure)
-        DateDernSynhcro = AgentManager.GetDateDernSynchro(pAgent.uidstructure)
+        DateDernSynhcro = pPc.dateDerniereSynchro
         CSDebug.dispInfo("Dernière date de synchro =   " & DateDernSynhcro.ToShortDateString())
-        'If CSDate.FromCrodipString(pAgent.dateDerniereSynchro) < DateDernSynhcro Then
-        '    DateDernSynhcro = CSDate.FromCrodipString(pAgent.dateDerniereSynchro)
-        'End If
-        logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
-        CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.numeroNational & "," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
         Try
             Dim infod As String
             If pAgent.oPool Is Nothing Then
-                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, "", "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+                'Si l'agent n'a pas de pool (ce n'est pas l'agent courant), on va lire son pool
+                'S'il n'en as pas ou s'il en a plus de 1 , on ne fait pas la synchro
+                Dim lstPoolTemp As List(Of Pool) = pAgent.getPoolList(pPc)
+                If lstPoolTemp.Count = 1 Then
+                    logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+                    CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+                    objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, lstPoolTemp(0).uid, "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+                End If
             Else
+                logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+                CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                 objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.uid, "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
             End If
         Catch ex As Exception

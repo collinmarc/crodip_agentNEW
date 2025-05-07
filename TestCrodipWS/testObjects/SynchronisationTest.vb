@@ -22,7 +22,7 @@ Public Class SynchronisationTest
     Public Sub testGetLstSynchro()
         Dim oSynchro As New Synchronisation(m_oAgent)
         Dim lstSynchro As List(Of SynchronisationElmt)
-        lstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        lstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         For Each oSynchoElmt As SynchronisationElmt In lstSynchro
             If oSynchoElmt.Type = "GetDocument" Then
                 Assert.IsFalse(String.IsNullOrEmpty(oSynchoElmt.ValeurAuxiliaire))
@@ -44,7 +44,7 @@ Public Class SynchronisationTest
     Public Sub testConfDiag()
         Dim lstSynchro As List(Of SynchronisationElmt)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        lstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        lstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         For Each oSynchoElmt As SynchronisationElmt In lstSynchro
             If oSynchoElmt.Type = "GetDocument" Then
                 Assert.IsFalse(String.IsNullOrEmpty(oSynchoElmt.ValeurAuxiliaire))
@@ -209,7 +209,7 @@ Public Class SynchronisationTest
         m_oAgent.dateDerniereSynchro = CSDate.GetDateForWS("1970/01/01")
         Dim oSynchro As New Synchronisation(m_oAgent)
         Dim lstSynchro As List(Of SynchronisationElmt)
-        lstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        lstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         For Each oSynchoElmt As SynchronisationElmt In lstSynchro
             If oSynchoElmt.Type = "GetDocument" Then
                 Assert.IsFalse(String.IsNullOrEmpty(oSynchoElmt.ValeurAuxiliaire))
@@ -439,7 +439,7 @@ Public Class SynchronisationTest
         osync.runAscSynchro()
         'Et descendant
         'on regarde combien on a d'éelements à synchroniser
-        oList = osync.getListeElementsASynchroniserDESC()
+        oList = osync.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         Console.WriteLine("===Agent1 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
         For Each oElmt As SynchronisationElmt In oList
             Console.WriteLine(oElmt.Type & ":" & oElmt.IdentifiantChaine)
@@ -450,7 +450,7 @@ Public Class SynchronisationTest
         'Il n'y a Rien
 
         osync = New Synchronisation(oAgent2)
-        oList = osync.getListeElementsASynchroniserDESC()
+        oList = osync.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
 
         Console.WriteLine("===Agent2 = ELEMT à SynchroniserDESC (" & oList.Count & ")")
         For Each oElmt As SynchronisationElmt In oList
@@ -476,7 +476,7 @@ Public Class SynchronisationTest
         osync = New Synchronisation(oAgent1)
         osync.MAJDateDerniereSynchro()
         'on regarde combien on a d'éelements à synchroniser
-        oList = osync.getListeElementsASynchroniserDESC()
+        oList = osync.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         Assert.AreEqual(0, oList.Count, "La Liste devrait être à ZEro")
 
 
@@ -490,7 +490,7 @@ Public Class SynchronisationTest
         AgentManager.save(oAgent2)
 
         osync = New Synchronisation(oAgent2)
-        oList = osync.getListeElementsASynchroniserDESC()
+        oList = osync.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         Assert.AreEqual(0, oList.Count, "La Liste devrait être à ZEro, même avec le nouvel agent")
 
 

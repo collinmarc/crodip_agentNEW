@@ -297,7 +297,7 @@ Public Class DiagnosticInfosComplementairesTest
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
         Dim oLstSynchro As List(Of SynchronisationElmt)
-        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oPc, m_oAgent)
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt In oLstSynchro

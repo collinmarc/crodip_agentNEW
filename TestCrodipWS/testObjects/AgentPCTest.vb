@@ -10,24 +10,26 @@ Imports Microsoft.Win32
 
         Dim oAgentPC As New AgentPc()
         oAgentPC.idRegistre = "AQWZSX"
-        oAgentPC.idCrodip = "123465"
+        oAgentPC.idPc = "123465"
+        oAgentPC.dateDerniereSynchro = New Date(2025, 6, 7)
 
         Assert.IsTrue(AgentPcManager.Save(oAgentPC))
-        Dim sIdCrodip As String = oAgentPC.idCrodip
+        Dim sIdPc As String = oAgentPC.idPc
 
-        oAgentPC = AgentPcManager.GetByuid("123465")
-        Assert.AreEqual(sIdCrodip, oAgentPC.idCrodip)
+        oAgentPC = AgentPcManager.GetByidPc("123465")
+        Assert.AreEqual(sIdPc, oAgentPC.idPc)
         Assert.AreEqual("AQWZSX", oAgentPC.idRegistre)
-        Assert.AreEqual("123465", oAgentPC.idCrodip)
+        Assert.AreEqual(New Date(2025, 6, 7), oAgentPC.dateDerniereSynchro)
 
         oAgentPC.idRegistre = "AZERTYUIOP"
+        oAgentPC.dateDerniereSynchro = New Date(2025, 6, 8)
 
         Assert.IsTrue(AgentPcManager.Save(oAgentPC))
 
-        oAgentPC = AgentPcManager.GetByuid("123465")
-        Assert.AreEqual(sIdCrodip, oAgentPC.idCrodip)
+        oAgentPC = AgentPcManager.GetByidPc("123465")
+        Assert.AreEqual(sIdPc, oAgentPC.idPc)
         Assert.AreEqual("AZERTYUIOP", oAgentPC.idRegistre)
-        Assert.AreEqual("123465", oAgentPC.idCrodip)
+        Assert.AreEqual(New Date(2025, 6, 8), oAgentPC.dateDerniereSynchro)
 
 
     End Sub
@@ -54,7 +56,7 @@ Imports Microsoft.Win32
         Registry.SetValue(RegistryPath, subkey2, "")
 
         Dim oAgentPc As New AgentPc()
-        oAgentPc.idCrodip = "12345"
+        oAgentPc.idPc = "12345"
         oAgentPc.uidstructure = m_oStructure.uid
         AgentPcManager.Save(oAgentPc)
 
@@ -62,7 +64,7 @@ Imports Microsoft.Win32
         oAgentPc.SaveRegistry()
         Dim PC As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
         Dim CLE As String = Registry.GetValue(RegistryPath, subkey1, "VIDE")
-        Assert.AreEqual(oAgentPc.idCrodip, PC)
+        Assert.AreEqual(oAgentPc.idPc, PC)
         Assert.AreEqual(oAgentPc.idRegistre, CLE)
 
         Assert.IsFalse(AgentPcManager.IsRegistryVide())

@@ -94,8 +94,11 @@ Public Class Pool
     Public Overrides Function creerFichevieActivation(pAgent As Agent) As Boolean
         Return False
     End Function
-
-    Public Function getAgentPc() As AgentPc
+    ''' <summary>
+    ''' Rend le Premier PC du pool (normalement 1)
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function getPc() As AgentPc
         Dim oReturn As AgentPc = Nothing
         Try
             Dim lst As List(Of AgentPc)
@@ -103,7 +106,7 @@ Public Class Pool
             oReturn = lst(0)
         Catch ex As Exception
 
-            CSDebug.dispError("Pool.getagentPC Err", ex)
+            CSDebug.dispError("Pool.getPC Err", ex)
             oReturn = Nothing
         End Try
         Return oReturn

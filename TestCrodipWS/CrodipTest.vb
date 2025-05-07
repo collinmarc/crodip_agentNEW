@@ -13,11 +13,12 @@ Public Class CRODIPTest
 
 
     'Admin-test.crodip.net
-    Private m_IdAgent As Integer = 1293
-    Private m_numNatAgent As String = "MCOTU"
-    Private m_idStructure As Integer = 562
-    Private m_aidBanc As String = "BCTU"
-    Private m_uidBanc As Integer = 96
+    Protected m_IdAgent As Integer = 1293
+    Protected m_numNatAgent As String = "MCOTU"
+    Protected m_idStructure As Integer = 562
+    Protected m_aidBanc As String = "BCTU"
+    Protected m_uidBanc As Integer = 96
+    Protected m_idPC As String = "MCOTU2"
 
 
 
@@ -25,6 +26,7 @@ Public Class CRODIPTest
     Protected m_oAgent As Agent
     Public agentCourant As Agent
     Protected m_oStructure As [Structure]
+    Protected m_oPc As AgentPc
 
     Protected m_oExploitation As Exploitation
     Protected m_oPulve As Pulverisateur
@@ -108,6 +110,11 @@ Public Class CRODIPTest
         Const subkey2 As String = "PC"
         m_RegistryPC = Registry.GetValue(RegistryPath, subkey2, "VIDE")
         m_RegistryCLE = Registry.GetValue(RegistryPath, subkey1, "VIDE")
+
+        m_oPc = AgentPcManager.GetAgentPCFromRegistry()
+        If m_oPc Is Nothing Then
+            m_oPc = AgentPcManager.WSgetById(0, m_idPC)
+        End If
 
     End Sub
     '

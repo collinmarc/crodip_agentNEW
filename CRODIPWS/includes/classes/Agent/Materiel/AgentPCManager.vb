@@ -143,10 +143,10 @@ Public Class AgentPcManager
         oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and uid = " & puid)
         Return oReturn
     End Function
-    Public Shared Function GetByidCrodip(pidCrodip As String) As AgentPc
+    Public Shared Function GetByidPc(pIdPc As String) As AgentPc
         Dim oReturn As AgentPc
 
-        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and idPc = '" & pidCrodip & "'")
+        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and idPc = '" & pIdPc & "'")
         Return oReturn
     End Function
     ''' <summary>
@@ -212,6 +212,7 @@ Public Class AgentPcManager
             paramsQuery = paramsQuery & ",isDownloadTarificationMode='" & pObj.isDownloadTarificationMode & "'"
             paramsQuery = paramsQuery & ",isDownloadPulveExploitationMode='" & pObj.isDownloadPulveExploitationMode & "'"
             paramsQuery = paramsQuery & ",isDownloadIdentifiantPulveMode='" & pObj.isDownloadIdentifiantPulve & "'"
+            paramsQuery = paramsQuery & ",dateDerniereSynchro='" & CSDate.ToCRODIPString(pObj.dateDerniereSynchro) & "'"
 
 
             bReturn = Update("AgentPC", pObj, paramsQuery)
@@ -473,7 +474,7 @@ Public Class AgentPcManager
             Const subkey2 As String = "PC"
             If Not IsRegistryVide() Then
                 Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
-                oReturn = AgentPcManager.GetByidCrodip(IDLu)
+                oReturn = AgentPcManager.GetByidPc(IDLu)
             End If
 
         Catch ex As Exception

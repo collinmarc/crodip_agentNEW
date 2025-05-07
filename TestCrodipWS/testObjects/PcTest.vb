@@ -41,10 +41,8 @@ Imports CRODIPWS
         Dim oPc As AgentPc
         Dim oPC2 As AgentPc = Nothing
         Dim nReturn As Integer
+        oPc = AgentPcManager.WSgetById(0, m_idPC)
 
-        oPc = AgentPcManager.WSgetById(1, "")
-
-        Assert.AreEqual(1, oPc.uid)
 
         oPc.cleUtilisation = "CLE12345"
         Dim g As New Guid()
@@ -85,11 +83,13 @@ Imports CRODIPWS
         oPc.isDownloadTarificationMode = "1"
         oPc.isDownloadPulveExploitationMode = "1"
         oPc.isDownloadIdentifiantPulve = "1"
+        oPc.dateDerniereSynchro = New Date(2025, 6, 5)
 
         '        oPc.uidstructure = m_oAgent.idStructure
 
         nReturn = AgentPcManager.WSSend(oPc, oPC2)
         Assert.AreEqual(2, nReturn, "Code Retour = 2")
+        AgentPcManager.Save(oPC2)
 
         oPC2 = AgentPcManager.WSgetById(oPC2.uid, oPC2.aid)
 
@@ -120,6 +120,7 @@ Imports CRODIPWS
         Assert.AreEqual(oPc.isSignElecActive, oPC2.isSignElecActive, "1")
         Assert.AreEqual(oPc.modeSignature, oPC2.modeSignature, "WACOM")
         Assert.AreEqual(oPc.versionLogiciel, oPC2.versionLogiciel, "V4")
+        Assert.AreEqual(oPc.dateDerniereSynchro, oPC2.dateDerniereSynchro, "DateDernirSynchro")
         'Assert.AreEqual(oPc.isReinitialisationMode, oPC2.isReinitialisationMode, "isReinitialisationMode")
         'Assert.AreEqual(oPc.isMasterMode, oPC2.isMasterMode, "isMasterMode")
         'Assert.AreEqual(oPc.isDownloadMetrologieMode, oPC2.isDownloadMetrologieMode, "isDownloadMetrologieMode")
@@ -127,10 +128,12 @@ Imports CRODIPWS
         'Assert.AreEqual(oPc.isDownloadPulveExploitationMode, oPC2.isDownloadPulveExploitationMode, "isDownloadPulveExploitationMode")
         'Assert.AreEqual(oPc.isDownloadIdentifiantPulve, oPC2.isDownloadIdentifiantPulve, "isDownloadIdentifiantPulve")
 
-        oPc.etat = False
-        nReturn = AgentPcManager.WSSend(oPc, oPC2)
+        oPC2.etat = False
+        oPC2.dateDerniereSynchro = New Date(2025, 5, 7)
+        nReturn = AgentPcManager.WSSend(oPC2, oPc)
         Assert.AreEqual(2, nReturn, "Code Retour = 2")
-        Assert.AreEqual(oPc.etat, oPC2.etat, "Code Etat")
+        Assert.AreEqual(False, oPc.etat, "Code Etat")
+        Assert.AreEqual("2025-05-07 00:00:00", oPc.dateDerniereSynchroS, "Date Derniere Synchro")
 
     End Sub
 

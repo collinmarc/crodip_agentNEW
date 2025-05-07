@@ -163,9 +163,6 @@ Public Class Synchronisation
         End Set
     End Property
 
-    Public Function getListSynchro() As String
-        Return m_listSynchro
-    End Function
 
     Public Function Synchro(psynchroAsc As Boolean, psynchroDesc As Boolean) As Boolean
         Dim bReturn As Boolean
@@ -994,37 +991,37 @@ Public Class Synchronisation
         End Try
         Return bReturn
     End Function
-    Public Function getListeElementsASynchroniserDESC() As List(Of SynchronisationElmt)
-        Dim lstElementsASynchronisertotal As New List(Of SynchronisationElmt)
-        Dim lstElementsASynchroniserAgent As New List(Of SynchronisationElmt)
+    'Public Function getListeElementsASynchroniserDESC() As List(Of SynchronisationElmt)
+    '    Dim lstElementsASynchronisertotal As New List(Of SynchronisationElmt)
+    '    Dim lstElementsASynchroniserAgent As New List(Of SynchronisationElmt)
 
-        lstElementsASynchronisertotal = getListeElementsASynchroniserDESC(m_Agent)
+    '    lstElementsASynchronisertotal = getListeElementsASynchroniserDESC(m_Agent.oPCcourant, m_Agent)
 
-        Dim oList As AgentList
-        oList = AgentManager.getAgentList(m_Agent.uidStructure)
+    '    Dim oList As AgentList
+    '    oList = AgentManager.getAgentList(m_Agent.uidStructure)
 
-        'On récupère les éléments à synchroniser de chaque Agent
-        For Each oAgent As Agent In oList.items
-            If oAgent.id <> m_Agent.id Then
-                lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+    '    'On récupère les éléments à synchroniser de chaque Agent
+    '    For Each oAgent As Agent In oList.items
+    '        If oAgent.id <> m_Agent.id Then
+    '            lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(m_Agent.oPCcourant, oAgent)
 
-                'et on les fusionne dans la liste Globale
-                For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
-                    Dim n As Integer = (From o In lstElementsASynchronisertotal
-                                        Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
-                                        Select o) _
-                                            .Count()
-                    If n = 0 Then
-                        lstElementsASynchronisertotal.Add(oelmt)
-                    End If
-                Next
-            End If
-        Next
-        Return lstElementsASynchronisertotal
-    End Function
-    Public Function getListeElementsASynchroniserDESC(pAgent As Agent) As List(Of SynchronisationElmt)
+    '            'et on les fusionne dans la liste Globale
+    '            For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+    '                Dim n As Integer = (From o In lstElementsASynchronisertotal
+    '                                    Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
+    '                                    Select o) _
+    '                                        .Count()
+    '                If n = 0 Then
+    '                    lstElementsASynchronisertotal.Add(oelmt)
+    '                End If
+    '            Next
+    '        End If
+    '    Next
+    '    Return lstElementsASynchronisertotal
+    'End Function
+    Public Function getListeElementsASynchroniserDESC(pPC As AgentPc, pAgent As Agent) As List(Of SynchronisationElmt)
         Dim lstElementsASynchroniser As List(Of SynchronisationElmt)
-        lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(pAgent, m_SynchroBoolean)
+        lstElementsASynchroniser = SynchronisationManager.getWSlstElementsASynchroniser(pPC, pAgent, m_SynchroBoolean)
         Return lstElementsASynchroniser
     End Function
     ''' <summary>
@@ -1034,39 +1031,41 @@ Public Class Synchronisation
     ''' <remarks></remarks>
     Public Function runDescSynchro() As Boolean
         Dim bReturn As Boolean
+        Dim PCASynchroniser As AgentPc
         Dim lstElementsASynchroniserAgent As List(Of SynchronisationElmt)
         Dim lstElementsASynchroniserTotal As New List(Of SynchronisationElmt)
         Try
+            PCASynchroniser = m_Agent.oPCcourant
             m_listSynchro = ""
             Notice("Debut synchro descendante")
             CSDebug.dispInfo("Debut synchro descendante")
             SynchronisationManager.LogSynchroStart("DESC")
             Dim oList As AgentList
-            oList = AgentManager.getAgentList(m_Agent.uidStructure)
-            lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(m_Agent)
+            oList = AgentManager.getAgentList(m_Agent.uidstructure)
+            lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(PCASynchroniser, m_Agent)
 
-            ''On récupère les éléments à synchroniser de chaque Agent
-            'For Each oAgent As Agent In oList.items
-            '    If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
-            '        CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
+            'On récupère les éléments à synchroniser de chaque Agent
+            For Each oAgent As Agent In oList.items
+                If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
+                    CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
 
-            '        lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(oAgent)
+                    lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(PCASynchroniser, oAgent)
 
-            '        'et on les fusionne dans la liste Globale
-            '        CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")
-            '        For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
-            '            'Elimination des elements déjà traité
-            '            Dim n As Integer = (From o In lstElementsASynchroniserTotal
-            '                                Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
-            '                                Select o) _
-            '                                .Count()
-            '            If n = 0 Then
-            '                oelmt.setAgent(m_Agent)
-            '                lstElementsASynchroniserTotal.Add(oelmt)
-            '            End If
-            '        Next
-            '    End If
-            'Next
+                    'et on les fusionne dans la liste Globale
+                    CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")
+                    For Each oelmt As SynchronisationElmt In lstElementsASynchroniserAgent
+                        'Elimination des elements déjà traité
+                        Dim n As Integer = (From o In lstElementsASynchroniserTotal
+                                            Where o.Type = oelmt.Type And o.IdentifiantChaine = oelmt.IdentifiantChaine And o.IdentifiantEntier = oelmt.IdentifiantEntier
+                                            Select o) _
+                                            .Count()
+                        If n = 0 Then
+                            oelmt.setAgent(m_Agent)
+                            lstElementsASynchroniserTotal.Add(oelmt)
+                        End If
+                    Next
+                End If
+            Next
 
             CSDebug.dispInfo("RunDescSynchro [" & lstElementsASynchroniserTotal.Count & "]")
             bReturn = runDescSynchro(lstElementsASynchroniserTotal)
@@ -1209,6 +1208,12 @@ Public Class Synchronisation
                     objWSCrodip.SetDateSynchroAgent(oAgent.id, oAgent.dateDerniereSynchro)
                 End If
             Next
+            'Maj du PC Courant
+            If m_Agent.oPCcourant IsNot Nothing Then
+                m_Agent.oPCcourant.dateDerniereSynchro = dtSRV
+                AgentPcManager.WSSend(m_Agent.oPCcourant, m_Agent.oPCcourant)
+                AgentPcManager.Save(m_Agent.oPCcourant)
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.MAJDateDerniereSynchro ERR" & ex.Message)

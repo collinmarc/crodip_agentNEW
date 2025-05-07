@@ -554,125 +554,127 @@
 --ALTER TABLE IdentifiantPulverisateur RENAME TO IdentifiantPulverisateur0702;
 --ALTER TABLE IdentifiantPulverisateur2 RENAME TO IdentifiantPulverisateur;
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.02','2025-02-07 12:00:00','IdentPulve');
-
-DROP TABLE IF EXISTS POOLBUSE;
-DROP TABLE IF EXISTS POOLMAnoc;
-DROP TABLE IF EXISTS POOLMAnoE;
-DROP TABLE IF EXISTS POOLMAnoEtalon;
-DROP TABLE IF EXISTS POOLAgent;
-
-DROP TABLE IF EXISTS POOL;
-DROP TABLE IF EXISTS POOLBanc;
-
-DROP TABLE IF EXISTS Agent1;
-DROP TABLE IF EXISTS AgentbuseEtalon2201;
-DROP TABLE IF EXISTS AgentManoControle2201;
-DROP TABLE IF EXISTS AgentManoEtalon2201;
-DROP TABLE IF EXISTS CONTROLE_REGULIER1;
-DROP TABLE IF EXISTS CONTROLE_REGULIER0702;
-DROP TABLE IF EXISTS CONTROLE_REGULIER2;
-DROP TABLE IF EXISTS PrestationCategorie1;
-DROP TABLE IF EXISTS PrestationTarif1;
-DROP TABLE IF EXISTS IdentifiantPulverisateur0702;
-
-DROP TABLE IF EXISTS POOL;
-Create Table Pool (uid integer PRIMARY KEY, aid text, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
-
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-01 12:00:00','pool2');
-
-DROP TABLE IF EXISTS POOLAgent;
-CREATE TABLE PoolAgent (uid BIGINT(20) NOT NULL,aid text  ,uidpool BIGINT(20) default 0,namepool text  DEFAULT '',uidagent BIGINT(20) default 0,aidagent text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datemime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL) ;
-
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 12:00:00','poolAgent');
-
-DROP TABLE IF EXISTS POOLPc;
-CREATE TABLE PoolPc (uid BIGINT(20) NOT NULL,aid text  DEFAULT  '',uidpool BIGINT(20) DEFAULT 0,namepool text  DEFAULT '',uidpc BIGINT(20) DEFAULT 0,idPc text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL)  ;
-
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 14:00:00','poolPc');
-
-DROP TABLE IF EXISTS POOLBuse;
-CREATE TABLE PoolBuse (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) ,namepool Text  DEFAULT '',uidbuse bigint(20),idBuse Text  DEFAULT '',uidstructure bigint(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:00:00','poolBuse');
-
-DROP TABLE IF EXISTS POOLManoControle;
-CREATE TABLE PoolManoControle (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoc bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:10:00','poolManoControle');
-
-DROP TABLE IF EXISTS POOLManoEtalon;
-CREATE TABLE PoolManoEtalon (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoe bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:20:00','poolManoEtalon');
-
-DROP TABLE IF EXISTS AgentPC2;
-CREATE TABLE AgentPC2 (idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle TEXT,etat BIT,numInterne TEXT,AgentSuppression TEXT,RaisonSuppression TEXT,dateSuppression DATETIME,isSupprime BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
-insert into AgentPC2 (idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip ) SELECT idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip  from AgentPC
-
-Drop Table AgentPC;
-ALTER TABLE AgentPC2 RENAME TO AgentPc;
-
-Alter Table AgentPC Add Column uid Bigint(20) Default 0;
-Alter Table AgentPC Add Column idPC text Default '';
-Alter Table AgentPC Add Column uidstructure Bigint(20) Default 0;
-Alter Table AgentPC add Column idRegistre Text Default '';
-Alter Table AgentPC add Column marque Text Default '';
-Alter Table AgentPC add Column modele Text Default '';
-Alter Table AgentPC add Column systeme Text Default '';
-Alter Table AgentPC add Column memoire Text Default '';
-Alter Table AgentPC add Column disque Text Default '';
-Alter Table AgentPC add Column memo Text Default '';
-Alter Table AgentPC add Column owc_etat Text Default '';
-Alter Table AgentPC add Column owc_folder Text Default '';
-Alter Table AgentPC add Column owc_commun Text Default '';
-Alter Table AgentPC add Column owc_parametres Text Default '';
-Alter Table AgentPC add Column owc_organismes Text Default '';
-Alter Table AgentPC add Column owc_user Text Default '';
-Alter Table AgentPC add Column owc_password Text Default '';
-Alter Table AgentPC add Column owc_version Text Default '';
-Alter Table AgentPC add Column isSecours Text Default '';
-Alter Table AgentPC add Column SignatureElect Text Default '0';
-Alter Table AgentPC add Column isSignElecActive Text Default '0';
-Alter Table AgentPC add Column modeSignature Text Default '';
-Alter Table AgentPC add Column versionLogiciel Text Default '';
-Alter Table AgentPC add Column isReinitialisationMode BIT NOT NULL DEFAULT '0';
-Alter Table AgentPC add Column isMasterMode BIT NOT NULL DEFAULT '1';
-Alter Table AgentPC add Column isDownloadMetrologieMode BIT NOT NULL DEFAULT '0';
-Alter Table AgentPC add Column isDownloadTarificationMode BIT NOT NULL DEFAULT '0';
-Alter Table AgentPC add Column isDownloadPulveExploitationMode BIT NOT NULL DEFAULT '0';
-Alter Table AgentPC add Column isDownloadIdentifiantPulveMode BIT NOT NULL DEFAULT '0';
-Update AgentPC set idPC = idCRODIP, uidStructure = idStructure, idRegistre = numinterne;
-Alter Table AgentPC drop Column idCrodip;
-Alter Table AgentPC drop Column idStructure;
-Alter Table AgentPC drop Column numInterne;
-
-Alter Table Agent add Column uidpool Bigint(20) DEFAULT 0;
-Alter Table Agent drop Column idCRODIPPOOL ;
-
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','AgentPC');
-
-Alter Table PoolManoEtalon Add Column isSupprime Bit default 0;
-Alter Table PoolManoControle Add Column isSupprime Bit default 0;
-Alter Table PoolBuse Add Column isSupprime Bit default 0;
-Alter Table PoolAgent Add Column isSupprime Bit default 0;
-Alter Table PoolPc Add Column isSupprime Bit default 0;
--- Alter Table Pool Add Column aid Text default '';
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','Pool');
-
-Alter Table Diagnostic Add Column pulverisateurNumeroChassis  Text default '';
-Update Diagnostic set pulverisateurNumeroChassis = pulverisateurNumChassis;
-Alter Table Diagnostic drop Column pulverisateurNumChassis;
-Alter Table Diagnostic Add Column pulverisateurImmatCertificat  Text default '';
-Alter Table Diagnostic Add Column pulverisateurImmatPlaque  Text default '';
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-02 16:10:00','Chassis Diag');
-
-Alter Table AgentPC add Column aid text DEFAULT '';
-Update AgentPC set aid = idPc;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-03 16:10:00','agentPC aid');
-
-Alter Table Diagnostic Add Column pulverisateurNumchassis  Text default '';
-Update Diagnostic set pulverisateurNumchassis = pulverisateurNumeroChassis;
-Alter Table Diagnostic drop Column pulverisateurNumeroChassis;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','pulverisateurNumchassis');
-
-Alter Table Agent add Column uidpc Bigint(20) DEFAULT 0;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','agentPC uidpc');
-
+-- V20250506180000
+--DROP TABLE IF EXISTS POOLBUSE;
+--DROP TABLE IF EXISTS POOLMAnoc;
+--DROP TABLE IF EXISTS POOLMAnoE;
+--DROP TABLE IF EXISTS POOLMAnoEtalon;
+--DROP TABLE IF EXISTS POOLAgent;
+--
+--DROP TABLE IF EXISTS POOL;
+--DROP TABLE IF EXISTS POOLBanc;
+--
+--DROP TABLE IF EXISTS Agent1;
+--DROP TABLE IF EXISTS AgentbuseEtalon2201;
+--DROP TABLE IF EXISTS AgentManoControle2201;
+--DROP TABLE IF EXISTS AgentManoEtalon2201;
+--DROP TABLE IF EXISTS CONTROLE_REGULIER1;
+--DROP TABLE IF EXISTS CONTROLE_REGULIER0702;
+--DROP TABLE IF EXISTS CONTROLE_REGULIER2;
+--DROP TABLE IF EXISTS PrestationCategorie1;
+--DROP TABLE IF EXISTS PrestationTarif1;
+--DROP TABLE IF EXISTS IdentifiantPulverisateur0702;
+--
+--DROP TABLE IF EXISTS POOL;
+--Create Table Pool (uid integer PRIMARY KEY, aid text, idPool text, uidstructure integer, uidbanc integer, aidbanc text, libelle text, etat bit, agentSuppression text, raisonSuppression text, dateSuppression datetime, isSupprime bit, dateModificationAgent datetime, dateModificationCrodip dateTime, dateActivation datetime, nbPastillesVertes integer);
+--
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-01 12:00:00','pool2');
+--
+--DROP TABLE IF EXISTS POOLAgent;
+--CREATE TABLE PoolAgent (uid BIGINT(20) NOT NULL,aid text  ,uidpool BIGINT(20) default 0,namepool text  DEFAULT '',uidagent BIGINT(20) default 0,aidagent text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation dateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datemime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL) ;
+--
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 12:00:00','poolAgent');
+--
+--DROP TABLE IF EXISTS POOLPc;
+--CREATE TABLE PoolPc (uid BIGINT(20) NOT NULL,aid text  DEFAULT  '',uidpool BIGINT(20) DEFAULT 0,namepool text  DEFAULT '',uidpc BIGINT(20) DEFAULT 0,idPc text  DEFAULT '',uidstructure BIGINT(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL)  ;
+--
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 14:00:00','poolPc');
+--
+--DROP TABLE IF EXISTS POOLBuse;
+--CREATE TABLE PoolBuse (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) ,namepool Text  DEFAULT '',uidbuse bigint(20),idBuse Text  DEFAULT '',uidstructure bigint(20) DEFAULT '0',dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:00:00','poolBuse');
+--
+--DROP TABLE IF EXISTS POOLManoControle;
+--CREATE TABLE PoolManoControle (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoc bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:10:00','poolManoControle');
+--
+--DROP TABLE IF EXISTS POOLManoEtalon;
+--CREATE TABLE PoolManoEtalon (uid bigint(20) NOT NULL,aid Text  DEFAULT '',uidpool bigint(20) Default 0,namepool Text  DEFAULT '',uidmanoe bigint(20) Default 0,idManometre text  DEFAULT '',uidstructure bigint(20) DEFAULT 0,dateAssociation datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,dateModificationAgent datetime NULL DEFAULT NULL,dateModificationCrodip datetime NULL DEFAULT NULL);
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 15:20:00','poolManoEtalon');
+--
+--DROP TABLE IF EXISTS AgentPC2;
+--CREATE TABLE AgentPC2 (idCrodip TEXT,idStructure INTEGER,cleUtilisation TEXT,libelle TEXT,etat BIT,numInterne TEXT,AgentSuppression TEXT,RaisonSuppression TEXT,dateSuppression DATETIME,isSupprime BIT,dateModificationAgent  DATETIME,dateModificationCrodip DATETIME);
+--insert into AgentPC2 (idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip ) SELECT idCrodip ,idStructure ,cleUtilisation ,libelle ,etat ,numInterne ,AgentSuppression ,RaisonSuppression ,dateSuppression ,isSupprime ,dateModificationAgent  ,dateModificationCrodip  from AgentPC
+--
+--Drop Table AgentPC;
+--ALTER TABLE AgentPC2 RENAME TO AgentPc;
+--
+--Alter Table AgentPC Add Column uid Bigint(20) Default 0;
+--Alter Table AgentPC Add Column idPC text Default '';
+--Alter Table AgentPC Add Column uidstructure Bigint(20) Default 0;
+--Alter Table AgentPC add Column idRegistre Text Default '';
+--Alter Table AgentPC add Column marque Text Default '';
+--Alter Table AgentPC add Column modele Text Default '';
+--Alter Table AgentPC add Column systeme Text Default '';
+--Alter Table AgentPC add Column memoire Text Default '';
+--Alter Table AgentPC add Column disque Text Default '';
+--Alter Table AgentPC add Column memo Text Default '';
+--Alter Table AgentPC add Column owc_etat Text Default '';
+--Alter Table AgentPC add Column owc_folder Text Default '';
+--Alter Table AgentPC add Column owc_commun Text Default '';
+--Alter Table AgentPC add Column owc_parametres Text Default '';
+--Alter Table AgentPC add Column owc_organismes Text Default '';
+--Alter Table AgentPC add Column owc_user Text Default '';
+--Alter Table AgentPC add Column owc_password Text Default '';
+--Alter Table AgentPC add Column owc_version Text Default '';
+--Alter Table AgentPC add Column isSecours Text Default '';
+--Alter Table AgentPC add Column SignatureElect Text Default '0';
+--Alter Table AgentPC add Column isSignElecActive Text Default '0';
+--Alter Table AgentPC add Column modeSignature Text Default '';
+--Alter Table AgentPC add Column versionLogiciel Text Default '';
+--Alter Table AgentPC add Column isReinitialisationMode BIT NOT NULL DEFAULT '0';
+--Alter Table AgentPC add Column isMasterMode BIT NOT NULL DEFAULT '1';
+--Alter Table AgentPC add Column isDownloadMetrologieMode BIT NOT NULL DEFAULT '0';
+--Alter Table AgentPC add Column isDownloadTarificationMode BIT NOT NULL DEFAULT '0';
+--Alter Table AgentPC add Column isDownloadPulveExploitationMode BIT NOT NULL DEFAULT '0';
+--Alter Table AgentPC add Column isDownloadIdentifiantPulveMode BIT NOT NULL DEFAULT '0';
+--Update AgentPC set idPC = idCRODIP, uidStructure = idStructure, idRegistre = numinterne;
+--Alter Table AgentPC drop Column idCrodip;
+--Alter Table AgentPC drop Column idStructure;
+--Alter Table AgentPC drop Column numInterne;
+--
+--Alter Table Agent add Column uidpool Bigint(20) DEFAULT 0;
+--Alter Table Agent drop Column idCRODIPPOOL ;
+--
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','AgentPC');
+--
+--Alter Table PoolManoEtalon Add Column isSupprime Bit default 0;
+--Alter Table PoolManoControle Add Column isSupprime Bit default 0;
+--Alter Table PoolBuse Add Column isSupprime Bit default 0;
+--Alter Table PoolAgent Add Column isSupprime Bit default 0;
+--Alter Table PoolPc Add Column isSupprime Bit default 0;
+---- Alter Table Pool Add Column aid Text default '';
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-03-25 16:10:00','Pool');
+--
+--Alter Table Diagnostic Add Column pulverisateurNumeroChassis  Text default '';
+--Update Diagnostic set pulverisateurNumeroChassis = pulverisateurNumChassis;
+--Alter Table Diagnostic drop Column pulverisateurNumChassis;
+--Alter Table Diagnostic Add Column pulverisateurImmatCertificat  Text default '';
+--Alter Table Diagnostic Add Column pulverisateurImmatPlaque  Text default '';
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-02 16:10:00','Chassis Diag');
+--
+--Alter Table AgentPC add Column aid text DEFAULT '';
+--Update AgentPC set aid = idPc;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-04-03 16:10:00','agentPC aid');
+--
+--Alter Table Diagnostic Add Column pulverisateurNumchassis  Text default '';
+--Update Diagnostic set pulverisateurNumchassis = pulverisateurNumeroChassis;
+--Alter Table Diagnostic drop Column pulverisateurNumeroChassis;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','pulverisateurNumchassis');
+--
+--Alter Table Agent add Column uidpc Bigint(20) DEFAULT 0;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','agentPC uidpc');
+--VXXXXXXX
+ALTER TABLE AgentPc ADD dateDerniereSynchro DATETIME NULL DEFAULT NULL ;
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC DateDerniereSynchro');
 
