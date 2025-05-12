@@ -1162,12 +1162,18 @@ Public Class diagnostic_contexte
             My.Settings.DernierControleRecupResidus = ckisRecuperationResidus.Checked
             My.Settings.Save()
 
-            If MdiParent Is Nothing Then
-                TryCast(Owner, parentContener).Action(New ActionFDiagNext())
-            Else
-                TryCast(MdiParent, parentContener).Action(New ActionFDiagNext())
-            End If
+            Dim oDlg As New dlgDHDebutControle(m_diagnostic)
+            oDlg.ShowDialog()
+            If oDlg.DialogResult = DialogResult.OK Then
 
+                If MdiParent Is Nothing Then
+                    TryCast(Owner, parentContener).Action(New ActionFDiagNext())
+                Else
+                    TryCast(MdiParent, parentContener).Action(New ActionFDiagNext())
+                End If
+            Else
+                btn_poursuivre.Enabled = True
+            End If
         Else
             btn_poursuivre.Enabled = True
         End If

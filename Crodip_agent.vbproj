@@ -381,6 +381,12 @@
     <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Application\diagnostic\dlgDHDebutControle.Designer.vb">
+      <DependentUpon>dlgDHDebutControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\dlgDHDebutControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\diagnostic\frmDiagnostique.Designer.vb">
       <DependentUpon>frmDiagnostique.vb</DependentUpon>
     </Compile>
@@ -541,9 +547,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\debug\test.vb" />
-    <Compile Include="Application\diagnostic\controle_preliminaireOLD.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Application\diagnostic\diagnostic_contexte.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -579,9 +582,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diagnostic_satisfaction.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Application\diagnostic\diag_debug.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\diagnostic\diag_test.vb">
@@ -1909,6 +1909,9 @@
     <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
       <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\dlgDHDebutControle.resx">
+      <DependentUpon>dlgDHDebutControle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmDiagnostique.resx">
       <DependentUpon>frmDiagnostique.vb</DependentUpon>
     </EmbeddedResource>
@@ -2014,9 +2017,6 @@
     <EmbeddedResource Include="Application\debug\test.resx">
       <DependentUpon>test.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\controle_preliminaireOLD.resx">
-      <DependentUpon>controle_preliminaireOLD.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diagnostic_contexte.resx">
       <DependentUpon>diagnostic_contexte.vb</DependentUpon>
     </EmbeddedResource>
@@ -2049,9 +2049,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
       <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\diagnostic\diag_debug.resx">
-      <DependentUpon>diag_debug.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\diagnostic\diag_test.resx">
       <DependentUpon>diag_test.vb</DependentUpon>

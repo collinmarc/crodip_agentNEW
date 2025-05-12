@@ -153,10 +153,10 @@ Public Class MarquesManager
                 oCbx.Items.Clear()
             End If
             For Each oNode As Xml.XmlNode In oNodes
-                oCbx.Items.Add(oNode.InnerText)
+                oCbx.Items.Add(oNode.InnerText.ToUpper())
             Next
         Catch ex As Exception
-            CSDebug.dispError("MarquesManager.populateCombobox_1 : " & ex.Message)
+            CSDebug.dispError("MarquesManager.populateCombobox_xpath : ", ex)
         End Try
 
     End Sub
