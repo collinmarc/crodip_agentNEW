@@ -1,6 +1,5 @@
 Imports System.Data.Common
 Imports System.IO
-Imports System.Linq
 Imports System.Xml.Serialization
 
 Public Class AgentManager
@@ -646,7 +645,7 @@ Public Class AgentManager
     ''' on prend 1971 car 1970 est synomime d'erreur et est utilisé dans le doLogin 
     ''' </summary>
     ''' <returns></returns>
-    Public Shared Function GetDateDernSynchro(pIdStructure As String) As DateTime
+    Public Shared Function GetDateDernSynchroAgent(pIdStructure As String) As DateTime
         Dim lst As AgentList = AgentManager.getAgentList(pIdStructure)
         Dim oReturn As DateTime = CSDate.FromCrodipString("1971-01-01")
         If lst.items.Count > 0 Then

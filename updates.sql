@@ -677,4 +677,7 @@
 --VXXXXXXX
 ALTER TABLE AgentPc ADD dateDerniereSynchro DATETIME NULL DEFAULT NULL ;
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC DateDerniereSynchro');
+Update AgentPc Set cleUtilisation = idRegistre;
+Update AgentPc Set idRegistre = '';
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC cleUtilisation');
 

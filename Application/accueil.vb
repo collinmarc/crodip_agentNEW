@@ -1310,9 +1310,9 @@ Public Class accueil
         '
         'lblPC
         '
-        Me.lblPC.Location = New System.Drawing.Point(576, 104)
+        Me.lblPC.Location = New System.Drawing.Point(594, 104)
         Me.lblPC.Name = "lblPC"
-        Me.lblPC.Size = New System.Drawing.Size(151, 16)
+        Me.lblPC.Size = New System.Drawing.Size(122, 16)
         Me.lblPC.TabIndex = 14
         Me.lblPC.Text = "Pc_libellé"
         '
@@ -1328,9 +1328,9 @@ Public Class accueil
         '
         'lblPool
         '
-        Me.lblPool.Location = New System.Drawing.Point(576, 80)
+        Me.lblPool.Location = New System.Drawing.Point(594, 80)
         Me.lblPool.Name = "lblPool"
-        Me.lblPool.Size = New System.Drawing.Size(151, 16)
+        Me.lblPool.Size = New System.Drawing.Size(122, 16)
         Me.lblPool.TabIndex = 12
         Me.lblPool.Text = "Pool_libellé"
         '
@@ -1357,9 +1357,9 @@ Public Class accueil
         '
         'lbl_infosAgent_dateDernCnx
         '
-        Me.lbl_infosAgent_dateDernCnx.Location = New System.Drawing.Point(576, 32)
+        Me.lbl_infosAgent_dateDernCnx.Location = New System.Drawing.Point(594, 32)
         Me.lbl_infosAgent_dateDernCnx.Name = "lbl_infosAgent_dateDernCnx"
-        Me.lbl_infosAgent_dateDernCnx.Size = New System.Drawing.Size(140, 16)
+        Me.lbl_infosAgent_dateDernCnx.Size = New System.Drawing.Size(122, 16)
         Me.lbl_infosAgent_dateDernCnx.TabIndex = 8
         Me.lbl_infosAgent_dateDernCnx.Text = "01/01/1900"
         '
@@ -1387,9 +1387,9 @@ Public Class accueil
         Me.lbl_mesInfos_dateDernièreConnexion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
         Me.lbl_mesInfos_dateDernièreConnexion.Location = New System.Drawing.Point(360, 56)
         Me.lbl_mesInfos_dateDernièreConnexion.Name = "lbl_mesInfos_dateDernièreConnexion"
-        Me.lbl_mesInfos_dateDernièreConnexion.Size = New System.Drawing.Size(216, 16)
+        Me.lbl_mesInfos_dateDernièreConnexion.Size = New System.Drawing.Size(228, 16)
         Me.lbl_mesInfos_dateDernièreConnexion.TabIndex = 5
-        Me.lbl_mesInfos_dateDernièreConnexion.Text = "Date de dernière synchronisation :"
+        Me.lbl_mesInfos_dateDernièreConnexion.Text = "Date de dernière synchronisation PC :"
         '
         'lbl_mesInfos_dateDerniereUtilisation
         '
@@ -1461,9 +1461,9 @@ Public Class accueil
         '
         'lbl_infosAgent_dateDernSynchro
         '
-        Me.lbl_infosAgent_dateDernSynchro.Location = New System.Drawing.Point(576, 56)
+        Me.lbl_infosAgent_dateDernSynchro.Location = New System.Drawing.Point(594, 56)
         Me.lbl_infosAgent_dateDernSynchro.Name = "lbl_infosAgent_dateDernSynchro"
-        Me.lbl_infosAgent_dateDernSynchro.Size = New System.Drawing.Size(151, 16)
+        Me.lbl_infosAgent_dateDernSynchro.Size = New System.Drawing.Size(122, 16)
         Me.lbl_infosAgent_dateDernSynchro.TabIndex = 8
         Me.lbl_infosAgent_dateDernSynchro.Text = "01/01/1900"
         '
@@ -4322,15 +4322,15 @@ Public Class accueil
 #End Region
 
 #Region " *** Loaders *** "
-    Private _idAgent As Integer
-    Public Property IDAgent() As Integer
-        Get
-            Return _idAgent
-        End Get
-        Set(ByVal value As Integer)
-            _idAgent = value
-        End Set
-    End Property
+    'Private _idAgent As Integer
+    'Public Property IDAgent() As Integer
+    '    Get
+    '        Return _idAgent
+    '    End Get
+    '    Set(ByVal value As Integer)
+    '        _idAgent = value
+    '    End Set
+    'End Property
     'Public Sub SetContexte(pidAgent As Integer)
     '    IDAgent = pidAgent
     '    CSDebug.dispInfo("Accueil.SetContexte IdAgent = " & IDAgent)
@@ -4403,7 +4403,12 @@ Public Class accueil
         lbl_infosAgent_Nom.Text = agentCourant.nom
         lbl_infosAgent_Prenom.Text = agentCourant.prenom
         lbl_infosAgent_dateDernCnx.Text = CSDate.ToCRODIPString(agentCourant.dateDerniereConnexion)
-        Dim dateDernSynhcro As String = CSDate.ToCRODIPString(agentCourant.dateDerniereSynchro)
+        Dim dateDernSynhcro As String
+        If agentCourant.oPCcourant Is Nothing Then
+            dateDernSynhcro = CSDate.ToCRODIPString(agentCourant.dateDerniereSynchro)
+        Else
+            dateDernSynhcro = CSDate.ToCRODIPString(agentCourant.oPCcourant.dateDerniereSynchro)
+        End If
         If CSDate.FromCrodipString(dateDernSynhcro) = CSDate.FromCrodipString("01/01/1970 00:00:00") Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
             lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else
@@ -4602,9 +4607,8 @@ Public Class accueil
     ''' Iniitalization de la la fênêtre
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub Init(pIdAgent As Integer)
-        IDAgent = pIdAgent
-        agentCourant = AgentManager.getAgentById(pIdAgent)
+    Public Sub Init(pAgent As Agent)
+        agentCourant = pAgent
         ' Affichage des alertes
         Me.Text = agentCourant.nom & " " & agentCourant.prenom & " / " & agentCourant.NomStructure
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
@@ -5262,9 +5266,13 @@ Public Class accueil
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_SYNCHRO_LOAD, True)
         Dim tmpDateLastSynchro As Date
         Try
-            tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+            If agentCourant.oPCcourant Is Nothing Then
+                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+            Else
+                tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.oPCcourant.dateDerniereSynchro)
+            End If
         Catch ex As Exception
-            tmpDateLastSynchro = CSDate.FromCrodipString(agentCourant.dateDerniereSynchro)
+            tmpDateLastSynchro = DateAdd(DateInterval.DayOfYear, -100, Now)
         End Try
         Dim tmpCompareResponse As Integer = tmpDateLastSynchro.CompareTo(DateAdd(DateInterval.DayOfYear, -10, Now))
         If tmpCompareResponse < 1 Then

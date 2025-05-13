@@ -14,7 +14,7 @@ Imports CRODIPWS
         oPc.cleUtilisation = "CLE12345"
         Dim g As New Guid()
         g = Guid.NewGuid()
-        oPc.idRegistre = g.ToString()
+        oPc.cleUtilisation = g.ToString()
         oPc.uidstructure = m_oAgent.idStructure
 
         Assert.IsTrue(AgentPcManager.Save(oPc))
@@ -24,16 +24,13 @@ Imports CRODIPWS
         Assert.AreEqual(oPc.uid, oPc2.uid)
         Assert.AreEqual(oPc.aid, oPc2.aid)
         Assert.AreEqual(oPc.idPc, oPc2.idPc)
-        Assert.AreEqual(oPc.idRegistre, oPc2.idRegistre)
         Assert.AreEqual(oPc.cleUtilisation, oPc2.cleUtilisation)
         Assert.AreEqual(oPc.uidstructure, oPc2.uidstructure)
 
-        oPc.idRegistre = Guid.NewGuid().ToString()
-        oPc.cleUtilisation = "CLE12345-2"
+        oPc.cleUtilisation = Guid.NewGuid().ToString()
         AgentPcManager.Save(oPc)
         oPc2 = AgentPcManager.GetByuid(12345)
         Assert.IsNotNull(oPc2)
-        Assert.AreEqual(oPc.idRegistre, oPc2.idRegistre)
         Assert.AreEqual(oPc.cleUtilisation, oPc2.cleUtilisation)
 
     End Sub
@@ -47,7 +44,7 @@ Imports CRODIPWS
         oPc.cleUtilisation = "CLE12345"
         Dim g As New Guid()
         g = Guid.NewGuid()
-        oPc.idRegistre = g.ToString()
+        oPc.cleUtilisation = g.ToString()
 
         oPc.libelle = "testLibelle"
         oPc.etat = True
@@ -94,7 +91,6 @@ Imports CRODIPWS
         oPC2 = AgentPcManager.WSgetById(oPC2.uid, oPC2.aid)
 
         Assert.AreEqual(oPc.cleUtilisation, oPC2.cleUtilisation)
-        Assert.AreEqual(oPc.idRegistre, oPC2.idRegistre)
         Assert.AreEqual(oPc.libelle, oPC2.libelle)
         Assert.AreEqual(oPC2.etat, True)
         Assert.AreEqual(oPc.agentSuppression, oPC2.agentSuppression, "AgentSuppression")

@@ -9,7 +9,7 @@ Imports Microsoft.Win32
     <TestMethod()> Public Sub CRUD()
 
         Dim oAgentPC As New AgentPc()
-        oAgentPC.idRegistre = "AQWZSX"
+        oAgentPC.cleUtilisation = "AQWZSX"
         oAgentPC.idPc = "123465"
         oAgentPC.dateDerniereSynchro = New Date(2025, 6, 7)
 
@@ -18,17 +18,17 @@ Imports Microsoft.Win32
 
         oAgentPC = AgentPcManager.GetByidPc("123465")
         Assert.AreEqual(sIdPc, oAgentPC.idPc)
-        Assert.AreEqual("AQWZSX", oAgentPC.idRegistre)
+        Assert.AreEqual("AQWZSX", oAgentPC.cleUtilisation)
         Assert.AreEqual(New Date(2025, 6, 7), oAgentPC.dateDerniereSynchro)
 
-        oAgentPC.idRegistre = "AZERTYUIOP"
+        oAgentPC.cleUtilisation = "AZERTYUIOP"
         oAgentPC.dateDerniereSynchro = New Date(2025, 6, 8)
 
         Assert.IsTrue(AgentPcManager.Save(oAgentPC))
 
         oAgentPC = AgentPcManager.GetByidPc("123465")
         Assert.AreEqual(sIdPc, oAgentPC.idPc)
-        Assert.AreEqual("AZERTYUIOP", oAgentPC.idRegistre)
+        Assert.AreEqual("AZERTYUIOP", oAgentPC.cleUtilisation)
         Assert.AreEqual(New Date(2025, 6, 8), oAgentPC.dateDerniereSynchro)
 
 
@@ -65,13 +65,13 @@ Imports Microsoft.Win32
         Dim PC As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
         Dim CLE As String = Registry.GetValue(RegistryPath, subkey1, "VIDE")
         Assert.AreEqual(oAgentPc.idPc, PC)
-        Assert.AreEqual(oAgentPc.idRegistre, CLE)
+        Assert.AreEqual(oAgentPc.cleUtilisation, CLE)
 
         Assert.IsFalse(AgentPcManager.IsRegistryVide())
         Dim oAgentPC2 As AgentPc
         oAgentPC2 = AgentPcManager.GetAgentPCFromRegistry()
         Assert.AreEqual(oAgentPc.idCrodip, oAgentPc.idCrodip)
-        Assert.AreEqual(oAgentPc.idRegistre, oAgentPc.idRegistre)
+        Assert.AreEqual(oAgentPc.cleUtilisation, oAgentPc.cleUtilisation)
 
 
 

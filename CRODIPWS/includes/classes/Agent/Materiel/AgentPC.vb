@@ -372,12 +372,12 @@ Public Class AgentPc
 
             Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
             Dim cle As String = Registry.GetValue(RegistryPath, subkey1, "VIDE")
-            If IDLu.Equals(Me.idPc) And cle.Equals(idRegistre) Then
+            If IDLu.Equals(Me.idPc) And cle.Equals(cleUtilisation) Then
                 bReturn = True
             Else
                 bReturn = False
 #If DEBUG Then
-                CSDebug.dispError("AgentPC.checkRegistry MauvaiseClé : (" & Me.idRegistre & "/" & IDLu)
+                CSDebug.dispError("AgentPC.checkRegistry MauvaiseClé : (" & Me.cleUtilisation & "/" & IDLu)
 #End If
             End If
 
@@ -394,12 +394,12 @@ Public Class AgentPc
             Const subkey1 As String = "CRODIP"
             Const subkey2 As String = "PC"
 
-            If String.IsNullOrEmpty(Me.idRegistre) Then
+            If String.IsNullOrEmpty(Me.cleUtilisation) Then
                 Dim g As New Guid()
                 g = Guid.NewGuid()
-                Me.idRegistre = g.ToString()
+                Me.cleUtilisation = g.ToString()
             End If
-            Registry.SetValue(RegistryPath, subkey1, Me.idRegistre)
+            Registry.SetValue(RegistryPath, subkey1, Me.cleUtilisation)
             Registry.SetValue(RegistryPath, subkey2, Me.idPc)
             bReturn = True
         Catch ex As Exception

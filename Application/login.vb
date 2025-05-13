@@ -806,7 +806,12 @@ Public Class login
                                     Next
                                 End If
 
-                                _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de regitre
+                                _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de registre
+                                'Intialisation de la base de données
+                                If oPcRef.dateDerniereSynchro = DateTime.MinValue Then
+                                    oPcRef.dateDerniereSynchro = _LocalAgent.dateDerniereSynchro
+                                End If
+
                                 'Récupération de la liste des pools de l'agent relatif à ce pc
                                 lstPool = _LocalAgent.getPoolList(oPcRef)
                                 If lstPool.Count() = 0 Then
@@ -1439,7 +1444,7 @@ Public Class login
         Dim formAccueil As New accueil
         globFormAccueil = formAccueil
         formAccueil.MdiParent = Me.MdiParent
-        formAccueil.Init(pAgent.id) '' initialisation de la fenêtre avant l'affichage
+        formAccueil.Init(pAgent) '' initialisation de la fenêtre avant l'affichage
         TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
         Me.Hide()
     End Sub
