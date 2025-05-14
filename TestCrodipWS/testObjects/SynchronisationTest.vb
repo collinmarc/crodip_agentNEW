@@ -859,4 +859,36 @@ Public Class SynchronisationTest
         oSynchro.runDescSynchro()
 
     End Sub
+    <TestMethod()>
+    Public Sub DateDerniereSynchro()
+        m_oAgent.dateDerniereSynchro = DateAdd(DateInterval.Day, -10, DateTime.Now)
+        AgentManager.save(m_oAgent)
+        m_oPc.dateDerniereSynchro = DateAdd(DateInterval.Day, -10, DateTime.Now)
+        AgentPcManager.Save(m_oPc)
+
+        Dim oSynchro As Synchronisation
+        oSynchro = New Synchronisation(m_oAgent)
+        oSynchro.runAscSynchro()
+        oSynchro.runDescSynchro()
+
+        Dim oAgent As Agent
+        Dim oPC As AgentPc
+
+        oAgent = AgentManager.getAgentById(m_oAgent.uid)
+        Assert.AreNotEqual(0L, DateDiff(DateInterval.Day, m_oAgent.dateDerniereSynchro, oAgent.dateDerniereSynchro))
+
+        oPC = AgentPcManager.GetByuid(m_oPc.uid)
+        Assert.AreNotEqual(m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro, "La date de synchro du PC change")
+        Assert.AreEqual(10L, DateDiff(DateInterval.Day, m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro))
+
+        'Verification sur le Serveur
+        Dim oAgent2 As Agent
+        oAgent2 = AgentManager.WSgetByNumeroNational(m_oAgent.numeroNational, False)
+        Assert.AreNotEqual(0L, DateDiff(DateInterval.Day, oAgent.dateDerniereSynchro, oAgent2.dateDerniereSynchro))
+
+        oPC = AgentPcManager.WSgetById(m_oPc.uid, "")
+        Assert.AreNotEqual(m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro, "La date de synchro du PC change")
+        Assert.AreEqual(10L, DateDiff(DateInterval.Day, m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro), "10 jours d'écart")
+
+    End Sub
 End Class

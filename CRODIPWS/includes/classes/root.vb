@@ -42,7 +42,7 @@ Public Class root
         Set(ByVal Value As String)
             If Value <> "" Then
                 Try
-                    dateModificationAgent = Value
+                    dateModificationAgent = CSDate.FromCrodipString(Value)
                 Catch
                 End Try
             End If
@@ -70,7 +70,7 @@ Public Class root
         Set(ByVal Value As String)
             If Value <> "" Then
                 Try
-                    dateModificationCrodip = Value
+                    dateModificationCrodip = CSDate.FromCrodipString(Value)
                 Catch
                 End Try
             End If

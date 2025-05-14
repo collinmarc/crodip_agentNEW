@@ -41,14 +41,14 @@ Public Class IdentifiantPulverisateurManager
         Dim codeResponse As Integer = 99
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
-            Dim pInfo As String = ""
+            Dim Info As String = ""
             Dim puid As Integer
 
             'Determination du Nom de la méthode : exemple SendManometreControle
             Dim typeT As Type = GetType(IdentifiantPulverisateur)
             Dim nomMethode As String = "Send" & typeT.Name
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
-            Dim Params As Object() = {pObjIn, pInfo, puid}
+            Dim Params As Object() = {pObjIn, Info, puid}
             If methode IsNot Nothing Then
                 'Invocation de la méthode
                 Dim serializer As New XmlSerializer(pObjIn.GetType())
@@ -62,7 +62,7 @@ Public Class IdentifiantPulverisateurManager
                 SynchronisationManager.LogSynchroDebut(nomMethode)
                 SynchronisationManager.LogSynchroREPONSE(pObjIn, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
-                pInfo = DirectCast(Params(1), String)
+                Info = DirectCast(Params(1), String)
                 SynchronisationManager.LogSynchroREPONSE(codeResponse, nomMethode)
 
             End If

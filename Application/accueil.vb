@@ -6914,26 +6914,10 @@ Public Class accueil
 
     End Sub
 
-
-    ''' <summary>
-    ''' Mise à jour de la dernière date de synhcro de l'agent
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub MajDateDernSynhcroagent()
-        If MsgBox("Mise à jour de la date de dernière synhcro de l'agent à " & CSDate.ToCRODIPString(DateTime.Now()), MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            agentCourant.dateDerniereSynchro = CSDate.ToCRODIPString(DateTime.Now())
-            Dim oUpdate As Object = Nothing
-            AgentManager.WSSend(agentCourant, oUpdate)
-        End If
-
-    End Sub
     Public Sub Notice(pMsg As String) Implements IObservateur.Notice
         afficheSynchroCourante(pMsg)
     End Sub
 
-    Private Sub PictureBox4_MouseClick(sender As Object, e As MouseEventArgs) Handles pctLogoSynchro.MouseClick
-        MajDateDernSynhcroagent()
-    End Sub
     Private Sub client_search_query_KeyPress(sender As Object, e As KeyPressEventArgs) Handles client_search_query.KeyPress
         If e.KeyChar = Chr(13) Then
             searchExploitant()

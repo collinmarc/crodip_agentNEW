@@ -152,6 +152,8 @@ Namespace WSCRODIP
 
         Private SetDateSynchroAgentOperationCompleted As System.Threading.SendOrPostCallback
 
+        Private SetDateSynchroPcOperationCompleted As System.Threading.SendOrPostCallback
+
         Private GetPrestationCategorieOperationCompleted As System.Threading.SendOrPostCallback
 
         Private SendPrestationCategorieOperationCompleted As System.Threading.SendOrPostCallback
@@ -239,6 +241,10 @@ Namespace WSCRODIP
         Private GetFVManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
 
         Private SendFVManometreEtalonOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetIdentifiantOTCOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private SendIdentifiantOTCOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetIdentifiantPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
 
@@ -449,6 +455,9 @@ Namespace WSCRODIP
         Public Event SetDateSynchroAgentCompleted As SetDateSynchroAgentCompletedEventHandler
 
         '''<remarks/>
+        Public Event SetDateSynchroPcCompleted As SetDateSynchroPcCompletedEventHandler
+
+        '''<remarks/>
         Public Event GetPrestationCategorieCompleted As GetPrestationCategorieCompletedEventHandler
 
         '''<remarks/>
@@ -581,6 +590,12 @@ Namespace WSCRODIP
         Public Event SendFVManometreEtalonCompleted As SendFVManometreEtalonCompletedEventHandler
 
         '''<remarks/>
+        Public Event GetIdentifiantOTCCompleted As GetIdentifiantOTCCompletedEventHandler
+
+        '''<remarks/>
+        Public Event SendIdentifiantOTCCompleted As SendIdentifiantOTCCompletedEventHandler
+
+        '''<remarks/>
         Public Event GetIdentifiantPulverisateurCompleted As GetIdentifiantPulverisateurCompletedEventHandler
 
         '''<remarks/>
@@ -697,9 +712,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPc", RequestElementName:="GetPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPc", New Object() {uid, aid})
-            Pc = CType(results(1), Object)
+            info = CType(results(1), String)
+            Pc = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -754,9 +770,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getMasse", RequestElementName:="GetMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Masse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Masse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetMasse", New Object() {uid, aid})
-            Masse = CType(results(1), Object)
+            info = CType(results(1), String)
+            Masse = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -811,9 +828,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getBalance", RequestElementName:="GetBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Balance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Balance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetBalance", New Object() {uid, aid})
-            Balance = CType(results(1), Object)
+            info = CType(results(1), String)
+            Balance = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -868,9 +886,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getDistance", RequestElementName:="GetDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Distance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Distance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetDistance", New Object() {uid, aid})
-            Distance = CType(results(1), Object)
+            info = CType(results(1), String)
+            Distance = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -925,9 +944,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getChrono", RequestElementName:="GetChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Chrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Chrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetChrono", New Object() {uid, aid})
-            Chrono = CType(results(1), Object)
+            info = CType(results(1), String)
+            Chrono = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -982,9 +1002,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPool", RequestElementName:="GetPoolRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPool(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pool As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPool(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pool As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPool", New Object() {uid, aid})
-            Pool = CType(results(1), Object)
+            info = CType(results(1), String)
+            Pool = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1039,9 +1060,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgent", RequestElementName:="GetPoolAgentRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolAgent", New Object() {uid, aid})
-            PoolAgent = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolAgent = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1096,9 +1118,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPc", RequestElementName:="GetPoolPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolPc", New Object() {uid, aid})
-            PoolPc = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolPc = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1153,9 +1176,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasse", RequestElementName:="GetPoolMasseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolMasse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolMasse", New Object() {uid, aid})
-            PoolMasse = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolMasse = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1210,9 +1234,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalance", RequestElementName:="GetPoolBalanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolBalance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBalance", New Object() {uid, aid})
-            PoolBalance = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolBalance = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1267,9 +1292,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistance", RequestElementName:="GetPoolDistanceRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolDistance(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistance As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolDistance", New Object() {uid, aid})
-            PoolDistance = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolDistance = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1324,9 +1350,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChrono", RequestElementName:="GetPoolChronoRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolChrono(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChrono As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolChrono", New Object() {uid, aid})
-            PoolChrono = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolChrono = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1381,9 +1408,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControle", RequestElementName:="GetPoolManoControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolManoControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolManoControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoControle", New Object() {uid, aid})
-            PoolManoControle = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolManoControle = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1438,9 +1466,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalon", RequestElementName:="GetPoolManoEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolManoEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolManoEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoEtalon", New Object() {uid, aid})
-            PoolManoEtalon = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolManoEtalon = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1495,9 +1524,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuse", RequestElementName:="GetPoolBuseRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBuse", New Object() {uid, aid})
-            PoolBuse = CType(results(1), Object)
+            info = CType(results(1), String)
+            PoolBuse = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -1552,9 +1582,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolList", RequestElementName:="GetPoolListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolList", New Object() {uidstructure})
-            PoolList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1580,9 +1611,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPcList", RequestElementName:="GetPcListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPcList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpool As Integer, <System.Xml.Serialization.XmlElementAttribute("PcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PcList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPcList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpool As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PcList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPcList", New Object() {uidstructure, uidpool})
-            PcList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PcList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1608,9 +1640,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolAgentList", RequestElementName:="GetPoolAgentListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolAgentList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidagent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolAgentList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgentList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolAgentList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidagent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolAgentList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolAgentList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolAgentList", New Object() {uidagent, aidagent, uidstructure})
-            PoolAgentList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolAgentList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1636,9 +1669,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolPcList", RequestElementName:="GetPoolPcListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolPcList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidpc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolPcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPcList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolPcList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidpc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolPcList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolPcList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolPcList", New Object() {uidagent, uidpc, aidpc, uidstructure})
-            PoolPcList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolPcList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1664,9 +1698,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolMasseList", RequestElementName:="GetPoolMasseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolMasseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmasse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmasse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolMasseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolMasseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmasse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmasse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolMasseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolMasseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolMasseList", New Object() {uidagent, uidmasse, aidmasse, uidstructure})
-            PoolMasseList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolMasseList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1692,9 +1727,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBalanceList", RequestElementName:="GetPoolBalanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolBalanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbalance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbalance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolBalanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolBalanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbalance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbalance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolBalanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBalanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBalanceList", New Object() {uidagent, uidbalance, aidbalance, uidstructure})
-            PoolBalanceList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolBalanceList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1720,9 +1756,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolDistanceList", RequestElementName:="GetPoolDistanceListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolDistanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddistance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddistance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolDistanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolDistanceList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uiddistance As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aiddistance As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolDistanceList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolDistanceList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolDistanceList", New Object() {uidagent, uiddistance, aiddistance, uidstructure})
-            PoolDistanceList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolDistanceList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1748,9 +1785,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolChronoList", RequestElementName:="GetPoolChronoListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolChronoList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidchrono As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidchrono As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolChronoList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChronoList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolChronoList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidchrono As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidchrono As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolChronoList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolChronoList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolChronoList", New Object() {uidagent, uidchrono, aidchrono, uidstructure})
-            PoolChronoList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolChronoList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1776,9 +1814,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoControleList", RequestElementName:="GetPoolManoControleListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolManoControleList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolManoControleList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControleList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolManoControleList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoc As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolManoControleList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoControleList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoControleList", New Object() {uidagent, uidmanoc, aidmanoc, uidstructure})
-            PoolManoControleList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolManoControleList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1804,9 +1843,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolManoEtalonList", RequestElementName:="GetPoolManoEtalonListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolManoEtalonList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoe As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoe As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolManoEtalonList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalonList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolManoEtalonList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidmanoe As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidmanoe As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolManoEtalonList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolManoEtalonList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolManoEtalonList", New Object() {uidagent, uidmanoe, aidmanoe, uidstructure})
-            PoolManoEtalonList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolManoEtalonList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1832,9 +1872,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getPoolBuseList", RequestElementName:="GetPoolBuseListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPoolBuseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbuse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbuse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute("PoolBuseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPoolBuseList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidbuse As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aidbuse As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidstructure As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("PoolBuseList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PoolBuseList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPoolBuseList", New Object() {uidagent, uidbuse, aidbuse, uidstructure})
-            PoolBuseList = CType(results(1), Object())
+            info = CType(results(1), String)
+            PoolBuseList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
@@ -1882,6 +1923,33 @@ Namespace WSCRODIP
             If (Not (Me.SetDateSynchroAgentCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SetDateSynchroAgentCompleted(Me, New SetDateSynchroAgentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SetDateSynchroPc", RequestElementName:="SetDateSynchroPcRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function SetDateSynchroPc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal dateDerniereSynchro As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SetDateSynchroPc", New Object() {uidpc, dateDerniereSynchro})
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub SetDateSynchroPcAsync(ByVal uidpc As Object, ByVal dateDerniereSynchro As Object)
+            Me.SetDateSynchroPcAsync(uidpc, dateDerniereSynchro, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub SetDateSynchroPcAsync(ByVal uidpc As Object, ByVal dateDerniereSynchro As Object, ByVal userState As Object)
+            If (Me.SetDateSynchroPcOperationCompleted Is Nothing) Then
+                Me.SetDateSynchroPcOperationCompleted = AddressOf Me.OnSetDateSynchroPcOperationCompleted
+            End If
+            Me.InvokeAsync("SetDateSynchroPc", New Object() {uidpc, dateDerniereSynchro}, Me.SetDateSynchroPcOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnSetDateSynchroPcOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SetDateSynchroPcCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SetDateSynchroPcCompleted(Me, New SetDateSynchroPcCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -2636,9 +2704,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitation", RequestElementName:="GetExploitationRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetExploitation(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Exploitation As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetExploitation", New Object() {uid, aid})
-            Exploitation = CType(results(1), Object)
+            info = CType(results(1), String)
+            Exploitation = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2693,9 +2762,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getExploitationTOPulverisateur", RequestElementName:="GetExploitationTOPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetExploitationTOPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ExploitationTOPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetExploitationTOPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ExploitationTOPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetExploitationTOPulverisateur", New Object() {uid, aid})
-            ExploitationTOPulverisateur = CType(results(1), Object)
+            info = CType(results(1), String)
+            ExploitationTOPulverisateur = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2750,9 +2820,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getFacture", RequestElementName:="GetFactureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetFacture(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Facture As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetFacture(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Facture As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFacture", New Object() {uid, aid})
-            Facture = CType(results(1), Object)
+            info = CType(results(1), String)
+            Facture = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2807,9 +2878,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getFactureItem", RequestElementName:="GetFactureItemRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetFactureItem(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FactureItem As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetFactureItem(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FactureItem As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFactureItem", New Object() {uid, aid})
-            FactureItem = CType(results(1), Object)
+            info = CType(results(1), String)
+            FactureItem = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2864,9 +2936,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleBancMesure", RequestElementName:="GetControleBancMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetControleBancMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleBancMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetControleBancMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleBancMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetControleBancMesure", New Object() {uid, aid})
-            ControleBancMesure = CType(results(1), Object)
+            info = CType(results(1), String)
+            ControleBancMesure = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2921,9 +2994,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetControleManoMesure", RequestElementName:="GetControleManoMesureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetControleManoMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleManoMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetControleManoMesure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ControleManoMesure As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetControleManoMesure", New Object() {uid, aid})
-            ControleManoMesure = CType(results(1), Object)
+            info = CType(results(1), String)
+            ControleManoMesure = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -2978,9 +3052,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVBanc", RequestElementName:="GetFVBancRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetFVBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVBanc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetFVBanc(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVBanc As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVBanc", New Object() {uid, aid})
-            FVBanc = CType(results(1), Object)
+            info = CType(results(1), String)
+            FVBanc = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3035,9 +3110,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreControle", RequestElementName:="GetFVManometreControleRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetFVManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetFVManometreControle(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreControle As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVManometreControle", New Object() {uid, aid})
-            FVManometreControle = CType(results(1), Object)
+            info = CType(results(1), String)
+            FVManometreControle = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3092,9 +3168,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetFVManometreEtalon", RequestElementName:="GetFVManometreEtalonRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetFVManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetFVManometreEtalon(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef FVManometreEtalon As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetFVManometreEtalon", New Object() {uid, aid})
-            FVManometreEtalon = CType(results(1), Object)
+            info = CType(results(1), String)
+            FVManometreEtalon = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3144,6 +3221,64 @@ Namespace WSCRODIP
             If (Not (Me.SendFVManometreEtalonCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendFVManometreEtalonCompleted(Me, New SendFVManometreEtalonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIdentifiantOTC", RequestElementName:="GetIdentifiantOTCRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetIdentifiantOTC(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTC As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetIdentifiantOTC", New Object() {uid, aid, uidagent})
+            info = CType(results(1), String)
+            IdentifiantOTC = CType(results(2), Object)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer)
+            Me.GetIdentifiantOTCAsync(uid, aid, uidagent, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer, ByVal userState As Object)
+            If (Me.GetIdentifiantOTCOperationCompleted Is Nothing) Then
+                Me.GetIdentifiantOTCOperationCompleted = AddressOf Me.OnGetIdentifiantOTCOperationCompleted
+            End If
+            Me.InvokeAsync("GetIdentifiantOTC", New Object() {uid, aid, uidagent}, Me.GetIdentifiantOTCOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetIdentifiantOTCOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetIdentifiantOTCCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetIdentifiantOTCCompleted(Me, New GetIdentifiantOTCCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/SendIdentifiantOTC", RequestElementName:="SendIdentifiantOTCRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function SendIdentifiantOTC(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal IdentifiantOTC As Object, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef uid As Integer) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("SendIdentifiantOTC", New Object() {IdentifiantOTC})
+            info = CType(results(1), String)
+            uid = CType(results(2), Integer)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub SendIdentifiantOTCAsync(ByVal IdentifiantOTC As Object)
+            Me.SendIdentifiantOTCAsync(IdentifiantOTC, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub SendIdentifiantOTCAsync(ByVal IdentifiantOTC As Object, ByVal userState As Object)
+            If (Me.SendIdentifiantOTCOperationCompleted Is Nothing) Then
+                Me.SendIdentifiantOTCOperationCompleted = AddressOf Me.OnSendIdentifiantOTCOperationCompleted
+            End If
+            Me.InvokeAsync("SendIdentifiantOTC", New Object() {IdentifiantOTC}, Me.SendIdentifiantOTCOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnSendIdentifiantOTCOperationCompleted(ByVal arg As Object)
+            If (Not (Me.SendIdentifiantOTCCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent SendIdentifiantOTCCompleted(Me, New SendIdentifiantOTCCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -3207,9 +3342,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPulverisateur", RequestElementName:="GetPulverisateurRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef Pulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetPulverisateur", New Object() {uid, aid})
-            Pulverisateur = CType(results(1), Object)
+            info = CType(results(1), String)
+            Pulverisateur = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3264,9 +3400,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetStructure", RequestElementName:="GetStructureRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetStructure(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef [Structure] As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetStructure", New Object() {uid, aid})
-            [Structure] = CType(results(1), Object)
+            info = CType(results(1), String)
+            [Structure] = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3375,9 +3512,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIncrementDiagnostic", RequestElementName:="GetIncrementDiagnosticRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetIncrementDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef result As Integer) As <System.Xml.Serialization.XmlElementAttribute("increment", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Object
+        Public Function GetIncrementDiagnostic(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef result As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String) As <System.Xml.Serialization.XmlElementAttribute("increment", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Object
             Dim results() As Object = Me.Invoke("GetIncrementDiagnostic", New Object() {agentId})
             result = CType(results(1), Integer)
+            info = CType(results(2), String)
             Return CType(results(0), Object)
         End Function
 
@@ -3436,10 +3574,11 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurTypesCategories", RequestElementName:="GetReferentielPulverisateurTypesCategoriesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielPulverisateurTypesCategories(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielPulverisateurTypesCategories(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateurTypesCategories", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
+            info = CType(results(1), String)
+            aJour = CType(results(2), Integer)
+            url = CType(results(3), String)
             Return CType(results(0), Integer)
         End Function
 
@@ -3465,10 +3604,11 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielCodesAPE", RequestElementName:="GetReferentielCodesAPERequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielCodesAPE(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielCodesAPE(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielCodesAPE", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
+            info = CType(results(1), String)
+            aJour = CType(results(2), Integer)
+            url = CType(results(3), String)
             Return CType(results(0), Integer)
         End Function
 
@@ -3494,10 +3634,11 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateurMarquesModeles", RequestElementName:="GetReferentielPulverisateurMarquesModelesRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielPulverisateurMarquesModeles(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielPulverisateurMarquesModeles(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal [date] As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef aJour As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef url As String) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateurMarquesModeles", New Object() {[date]})
-            aJour = CType(results(1), Integer)
-            url = CType(results(2), String)
+            info = CType(results(1), String)
+            aJour = CType(results(2), Integer)
+            url = CType(results(3), String)
             Return CType(results(0), Integer)
         End Function
 
@@ -3523,9 +3664,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielBuse", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielBuse(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielBuse As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielBuse", New Object() {agentId})
-            ReferentielBuse = CType(results(1), Object)
+            info = CType(results(1), String)
+            ReferentielBuse = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3551,9 +3693,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielManometre", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielManometre(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielManometre As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielManometre(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielManometre As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielManometre", New Object() {agentId})
-            ReferentielManometre = CType(results(1), Object)
+            info = CType(results(1), String)
+            ReferentielManometre = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3579,9 +3722,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielPulverisateur", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielPulverisateur(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielPulverisateur As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielPulverisateur", New Object() {agentId})
-            ReferentielPulverisateur = CType(results(1), Object)
+            info = CType(results(1), String)
+            ReferentielPulverisateur = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3607,9 +3751,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetReferentielTerritoire", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetReferentielTerritoire(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielTerritoire As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetReferentielTerritoire(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal agentId As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef ReferentielTerritoire As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetReferentielTerritoire", New Object() {agentId})
-            ReferentielTerritoire = CType(results(1), Object)
+            info = CType(results(1), String)
+            ReferentielTerritoire = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3635,9 +3780,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetVersionLogicielAgent", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetVersionLogicielAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef VersionLogicielAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetVersionLogicielAgent(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef VersionLogicielAgent As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetVersionLogicielAgent", New Object(-1) {})
-            VersionLogicielAgent = CType(results(1), Object)
+            info = CType(results(1), String)
+            VersionLogicielAgent = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3663,9 +3809,10 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetSoftwareUpdate", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetSoftwareUpdate(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal version As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef infos As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+        Public Function GetSoftwareUpdate(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal version As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef infos As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
             Dim results() As Object = Me.Invoke("GetSoftwareUpdate", New Object() {version})
-            infos = CType(results(1), Object)
+            info = CType(results(1), String)
+            infos = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
@@ -3718,6 +3865,8 @@ Namespace WSCRODIP
         
         Private resultField As Integer
         
+        Private infoField As String
+        
         Private synchroDateTimeField As Object
         
         '''<remarks/>
@@ -3728,6 +3877,17 @@ Namespace WSCRODIP
             End Get
             Set
                 Me.resultField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Property info() As String
+            Get
+                Return Me.infoField
+            End Get
+            Set
+                Me.infoField = value
             End Set
         End Property
         
@@ -3753,6 +3913,8 @@ Namespace WSCRODIP
         
         Private resultField As Integer
         
+        Private infoField As String
+        
         Private aPIKeyField As Object
         
         '''<remarks/>
@@ -3763,6 +3925,17 @@ Namespace WSCRODIP
             End Get
             Set
                 Me.resultField = value
+            End Set
+        End Property
+        
+        '''<remarks/>
+        <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)>  _
+        Public Property info() As String
+            Get
+                Return Me.infoField
+            End Get
+            Set
+                Me.infoField = value
             End Set
         End Property
         
@@ -3891,10 +4064,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Pc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -3969,10 +4150,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Masse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4047,10 +4236,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Balance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4125,10 +4322,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Distance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4203,10 +4408,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Chrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4281,10 +4494,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Pool() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4359,10 +4580,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolAgent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4437,10 +4666,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolPc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4515,10 +4752,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolMasse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4593,10 +4838,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolBalance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4671,10 +4924,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolDistance() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4749,10 +5010,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolChrono() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4827,10 +5096,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolManoControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4905,10 +5182,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolManoEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -4983,10 +5268,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolBuse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -5061,10 +5354,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5096,10 +5397,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PcList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5131,10 +5440,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolAgentList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5166,10 +5483,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolPcList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5201,10 +5526,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolMasseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5236,10 +5569,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolBalanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5271,10 +5612,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolDistanceList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5306,10 +5655,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolChronoList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5341,10 +5698,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolManoControleList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5376,10 +5741,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolManoEtalonList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5411,10 +5784,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property PoolBuseList() As Object()
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object())
+                Return CType(Me.results(2),Object())
             End Get
         End Property
     End Class
@@ -5428,6 +5809,33 @@ Namespace WSCRODIP
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SetDateSynchroAgentCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub SetDateSynchroPcCompletedEventHandler(ByVal sender As Object, ByVal e As SetDateSynchroPcCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class SetDateSynchroPcCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
         
         Private results() As Object
@@ -6551,10 +6959,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Exploitation() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -6629,10 +7045,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ExploitationTOPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -6707,10 +7131,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Facture() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -6785,10 +7217,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property FactureItem() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -6863,10 +7303,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ControleBancMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -6941,10 +7389,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ControleManoMesure() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7019,10 +7475,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property FVBanc() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7097,10 +7561,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property FVManometreControle() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7175,10 +7647,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property FVManometreEtalon() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7192,6 +7672,92 @@ Namespace WSCRODIP
      System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.ComponentModel.DesignerCategoryAttribute("code")>  _
     Partial Public Class SendFVManometreEtalonCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property uid() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Integer)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetIdentifiantOTCCompletedEventHandler(ByVal sender As Object, ByVal e As GetIdentifiantOTCCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GetIdentifiantOTCCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property IdentifiantOTC() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Object)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub SendIdentifiantOTCCompletedEventHandler(ByVal sender As Object, ByVal e As SendIdentifiantOTCCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class SendIdentifiantOTCCompletedEventArgs
         Inherits System.ComponentModel.AsyncCompletedEventArgs
         
         Private results() As Object
@@ -7339,10 +7905,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property Pulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7417,10 +7991,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property [Structure]() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7540,19 +8122,21 @@ Namespace WSCRODIP
             Me.results = results
         End Sub
 
-        '''<remarks/>
-        'Public Overloads ReadOnly Property Result() As Object
-        '    Get
-        '        Me.RaiseExceptionIfNecessary
-        '        Return CType(Me.results(0),Object)
-        '    End Get
-        'End Property
+
 
         '''<remarks/>
         Public Overloads ReadOnly Property result() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
                 Return CType(Me.results(1),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),String)
             End Get
         End Property
     End Class
@@ -7659,10 +8243,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
         
@@ -7670,7 +8262,7 @@ Namespace WSCRODIP
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(3),String)
             End Get
         End Property
     End Class
@@ -7702,10 +8294,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
         
@@ -7713,7 +8313,7 @@ Namespace WSCRODIP
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(3),String)
             End Get
         End Property
     End Class
@@ -7745,10 +8345,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property aJour() As Integer
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Integer)
+                Return CType(Me.results(2),Integer)
             End Get
         End Property
         
@@ -7756,7 +8364,7 @@ Namespace WSCRODIP
         Public ReadOnly Property url() As String
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(2),String)
+                Return CType(Me.results(3),String)
             End Get
         End Property
     End Class
@@ -7788,10 +8396,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ReferentielBuse() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7823,10 +8439,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ReferentielManometre() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7858,10 +8482,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ReferentielPulverisateur() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7893,10 +8525,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property ReferentielTerritoire() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7928,10 +8568,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property VersionLogicielAgent() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class
@@ -7963,10 +8611,18 @@ Namespace WSCRODIP
         End Property
         
         '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
         Public ReadOnly Property infos() As Object
             Get
                 Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(1),Object)
+                Return CType(Me.results(2),Object)
             End Get
         End Property
     End Class

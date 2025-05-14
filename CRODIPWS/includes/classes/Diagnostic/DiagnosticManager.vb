@@ -13,16 +13,17 @@ Public Class DiagnosticManager
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Dim strXml As String = ""
         Try
-            Dim tXmlnodes As Xml.XmlNode()
+            Dim tXmlnodes As Xml.XmlNode() = Nothing
             '' déclarations
             Dim typeT As Type = GetType(Diagnostic)
             Dim nomMethode As String = "Get" & typeT.Name
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim info As String = ""
             If methode IsNot Nothing Then
-                Dim Params As Object() = {puidagent, p_uid, paid, tXmlnodes}
+                Dim Params As Object() = {puidagent, p_uid, paid, info, tXmlnodes}
                 codeResponse = methode.Invoke(objWSCrodip, Params)
-                tXmlnodes = Params(3)
+                tXmlnodes = Params(4)
             End If
             Select Case codeResponse
                 Case 0 ' OK

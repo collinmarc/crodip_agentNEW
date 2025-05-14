@@ -43,8 +43,9 @@ Public Class CSSoftwareUpdate
                 Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
 
                 Dim wsResponse As New Object
+                Dim infos As String = ""
                 ' Appel au WS
-                Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(GlobalsCRODIP.GLOB_APPLI_BUILD, wsResponse)
+                Dim codeResponse As Integer = objWSCrodip.GetSoftwareUpdate(GlobalsCRODIP.GLOB_APPLI_BUILD, infos, wsResponse)
                 If codeResponse = 2 Then
                     Dim oUpdateInfo As UpdateInfo
                     oUpdateInfo = New UpdateInfo(wsResponse)

@@ -1,6 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
 Imports System.IO
+Imports System.Reflection
 Imports System.Xml
 Imports System.Xml.Serialization
 Imports Microsoft.Win32
@@ -21,10 +22,13 @@ Public Class AgentPcManager
             '' déclarations
             '            Dim typeT As Type = GetType(T)
             Dim nomMethode As String = "GetPc"
+            Dim Info As String = ""
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
             If methode IsNot Nothing Then
-                Dim Params As Object() = {puid, paid, tXmlnodes}
+                Dim Params As Object()
+                Params = {puid, paid, Info, tXmlnodes}
+
                 SynchronisationManager.LogSynchroDebut(nomMethode)
                 SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
@@ -70,12 +74,14 @@ Public Class AgentPcManager
             Dim nomMethode As String = "GetPcList"
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim info As String = ""
             If methode IsNot Nothing Then
-                Dim Params As Object() = {pPool.uidstructure, pPool.uid, tXmlnodes}
+
+                Dim Params As Object() = {pPool.uidstructure, pPool.uid, info, tXmlnodes}
                 SynchronisationManager.LogSynchroDebut(nomMethode)
                 SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
-                tXmlnodes = Params(2)
+                tXmlnodes = Params(3)
                 SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
                 SynchronisationManager.LogSynchroFin()
             End If

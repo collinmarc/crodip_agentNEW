@@ -159,38 +159,41 @@ Public Class SynchronisationManager
         '    CSDebug.dispInfo("</xmlNode>")
         'Next
         'logger.Trace("</FROMWS>")
-        Dim oSynchro As SynchronisationElmt = Nothing
-        'Parcours de la Liste des Objets à synchroniser
-        CSDebug.dispInfo("Parcours des " & objWSUpdates.Count & " objets rendus")
-        For Each objWSUpdates_items As Object In objWSUpdates
-            'création de l'objet de synhcronisation en fonction du type
-            For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
-                If objWSUpdates_item.Name().ToUpper.Trim() = "type".ToUpper.Trim() Then
-                    oSynchro = SynchronisationElmt.CreateSynchronisationElmt(objWSUpdates_item.InnerText(), pSynchroBoolean)
-                End If
-            Next objWSUpdates_item
-            'Initialisation de l'object avec les données issues du WS
-            If oSynchro IsNot Nothing Then
+        If objWSUpdates IsNot Nothing Then
+            Dim oSynchro As SynchronisationElmt = Nothing
+            'Parcours de la Liste des Objets à synchroniser
+            CSDebug.dispInfo("Parcours des " & objWSUpdates.Count & " objets rendus")
+            For Each objWSUpdates_items As Object In objWSUpdates
+                'création de l'objet de synhcronisation en fonction du type
                 For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
-                    oSynchro.Fill(objWSUpdates_item.Name(), objWSUpdates_item.InnerText())
+                    If objWSUpdates_item.Name().ToUpper.Trim() = "type".ToUpper.Trim() Then
+                        oSynchro = SynchronisationElmt.CreateSynchronisationElmt(objWSUpdates_item.InnerText(), pSynchroBoolean)
+                    End If
                 Next objWSUpdates_item
+                'Initialisation de l'object avec les données issues du WS
+                If oSynchro IsNot Nothing Then
+                    For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
+                        oSynchro.Fill(objWSUpdates_item.Name(), objWSUpdates_item.InnerText())
+                    Next objWSUpdates_item
 
-                ' LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
-                If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
-                    'En mode simplifié on ne synchronise pas les Elements communs et Organisme du Module documentaire
-                    If TypeOf oSynchro Is SynchronisationElmtDocument And oSynchro.Update Then
-                        If oSynchro.IdentifiantChaine.Contains("/Commun/") Or oSynchro.IdentifiantChaine.Contains("/Organismes/") Then
-                            oSynchro.Update = False
+                    ' LogSynchroElmt(oSynchro, "WS.UpdateAvailable")
+                    If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Then
+                        'En mode simplifié on ne synchronise pas les Elements communs et Organisme du Module documentaire
+                        If TypeOf oSynchro Is SynchronisationElmtDocument And oSynchro.Update Then
+                            If oSynchro.IdentifiantChaine.Contains("/Commun/") Or oSynchro.IdentifiantChaine.Contains("/Organismes/") Then
+                                oSynchro.Update = False
+                            End If
                         End If
                     End If
+                    If oSynchro.Update Then
+                        oLst.Add(oSynchro)
+                    End If
                 End If
-                If oSynchro.Update Then
-                    oLst.Add(oSynchro)
-                End If
-            End If
-        Next objWSUpdates_items
-        logger.Trace("</SynchroElmt>")
-        CSDebug.dispInfo("Fin du Parcours des elements")
+            Next objWSUpdates_items
+            logger.Trace("</SynchroElmt>")
+            CSDebug.dispInfo("Fin du Parcours des elements")
+        End If
+
 
         Return oLst
     End Function

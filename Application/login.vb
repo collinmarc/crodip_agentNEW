@@ -732,9 +732,9 @@ Public Class login
                         oAgentSrv = AgentManager.WSgetByNumeroNational(_LocalAgent.numeroNational, True)
                         If oAgentSrv.id > 0 And oAgentSrv.isActif And Not oAgentSrv.isSupprime Then
                             _LocalAgent.duppliqueInfosAgent(oAgentSrv, False)
-                            If CSDate.FromCrodipString(_LocalAgent.dateDerniereSynchro).Year = 1970 Then
-                                _LocalAgent.dateDerniereSynchro = oAgentSrv.dateDerniereSynchro
-                            End If
+                            'If CSDate.FromCrodipString(_LocalAgent.dateDerniereSynchro).Year = 1970 Then
+                            '    _LocalAgent.dateDerniereSynchro = oAgentSrv.dateDerniereSynchro
+                            'End If
                             AgentManager.save(_LocalAgent, True)
                             bAgentExistant = True
                         Else
@@ -807,7 +807,7 @@ Public Class login
                                 End If
 
                                 _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de registre
-                                'Intialisation de la base de données
+                                'MAJ de la date de derniere synchro si elle est vide (1ere connexion)
                                 If oPcRef.dateDerniereSynchro = DateTime.MinValue Then
                                     oPcRef.dateDerniereSynchro = _LocalAgent.dateDerniereSynchro
                                 End If

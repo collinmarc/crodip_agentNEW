@@ -7,9 +7,10 @@ Module CSVersion
             If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
                 ' déclarations
                 Dim objWSCrodip As WSCrodip.CrodipServer = WebServiceCRODIP.getWS()
-                Dim objWSCrodip_response As new Object 
+                Dim objWSCrodip_response As New Object
+                Dim infos As String = ""
                 ' Appel au WS
-                Dim codeResponse As Integer = objWSCrodip.GetVersionLogicielAgent(objWSCrodip_response)
+                Dim codeResponse As Integer = objWSCrodip.GetVersionLogicielAgent(infos, objWSCrodip_response)
                 Select Case codeResponse
                     Case 0 ' OK
                         ' construction de l'objet

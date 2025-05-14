@@ -77,6 +77,7 @@ Public Class Agent
         _IsSignElecActive = False
         bTest = False
         oPool = Nothing
+        dateDerniereSynchro = DateTime.MinValue
     End Sub
     Sub New(pId As Integer, pNumeroNational As String, pnom As String, pidStructure As Integer)
         Me.New()
@@ -85,7 +86,7 @@ Public Class Agent
         numeroNational = pNumeroNational
         nom = pnom
         uidStructure = pidStructure
-        dateDerniereSynchro = CSDate.ToCRODIPString(AgentManager.GetDateDernSynchroAgent(pidStructure))
+        dateDerniereSynchro = DateTime.MinValue
     End Sub
     <XmlIgnore>
     Public Property id() As Integer
@@ -214,13 +215,22 @@ Public Class Agent
             _dateDerniereConnexion = Value
         End Set
     End Property
-
-    Public Property dateDerniereSynchro() As String
+    <XmlIgnoreAttribute()>
+    Public Property dateDerniereSynchro() As DateTime
         Get
             Return _dateDerniereSynchro
         End Get
-        Set(ByVal Value As String)
+        Set(ByVal Value As DateTime)
             _dateDerniereSynchro = Value
+        End Set
+    End Property
+    <XmlElement("dateDerniereSynchro")>
+    Public Property dateDerniereSynchroS() As String
+        Get
+            Return CSDate.ToCRODIPString(_dateDerniereSynchro)
+        End Get
+        Set(ByVal Value As String)
+            _dateDerniereSynchro = CSDate.FromCrodipString(Value)
         End Set
     End Property
 
@@ -474,7 +484,7 @@ Public Class Agent
                     Case "dateDerniereConnexion".Trim().ToUpper()
                         Me.dateDerniereConnexion = pValue.ToString()
                     Case "dateDerniereSynchro".Trim().ToUpper()
-                        Me.dateDerniereSynchro = pValue.ToString()
+                        Me.dateDerniereSynchro = CSDate.FromCrodipString(pValue.ToString())
                     Case "dateModificationAgent".Trim().ToUpper()
                         Me.dateModificationAgent = pValue.ToString()
                     Case "dateModificationCrodip".Trim().ToUpper()

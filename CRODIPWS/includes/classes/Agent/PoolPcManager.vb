@@ -39,13 +39,12 @@ Public Class PoolPcManager
             Dim nomMethode As String = "GetPoolPcList"
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim infos As String = ""
             If methode IsNot Nothing Then
                 Dim Params As Object() = {pagentPC.uid, pagentPC.aid, pagentPC.uidstructure, tXmlnodes}
                 SynchronisationManager.LogSynchroDebut(nomMethode)
                 SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
-                codeResponse = objWSCrodip.GetPoolPcList(pAgent.uid, pagentPC.uid, pagentPC.aid, pagentPC.uidstructure, tXmlnodes)
-                '                codeResponse = methode.Invoke(objWSCrodip, Params)
-                '                tXmlnodes = Params(2)
+                codeResponse = objWSCrodip.GetPoolPcList(pAgent.uid, pagentPC.uid, pagentPC.aid, pagentPC.uidstructure, infos, tXmlnodes)
                 SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
                 SynchronisationManager.LogSynchroFin()
             End If

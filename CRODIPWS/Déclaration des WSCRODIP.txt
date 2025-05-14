@@ -58,6 +58,16 @@ Débloquer le debugger en supprimant System.Diagnostics.DebuggerStepThroughAttri
      System.Web.Services.WebServiceBindingAttribute(Name:="CrodipBinding", [Namespace]:="http://www.example.org/crodip/")>
 
 
+
+	 Supprimer si besoin la methode   Result() de la classe GetIncrementDiagnosticCompletedEventArgs
+	         '''<remarks/>
+        Public Overloads ReadOnly Property Result() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Object)
+            End Get
+        End Property
+
 Code à inserrer dans chaque Classe Manager
 ==================================
     Inherits RootManager

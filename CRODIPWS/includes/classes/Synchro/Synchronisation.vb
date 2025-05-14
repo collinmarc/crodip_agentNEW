@@ -1070,7 +1070,7 @@ Public Class Synchronisation
             CSDebug.dispInfo("RunDescSynchro [" & lstElementsASynchroniserTotal.Count & "]")
             bReturn = runDescSynchro(lstElementsASynchroniserTotal)
         Catch Ex As Exception
-            CSDebug.dispError("Synchronisation.runDescSynchro Err : " & Ex.Message)
+            CSDebug.dispError("Synchronisation.runDescSynchro Err : ", Ex)
             bReturn = False
         End Try
         Return bReturn
@@ -1149,7 +1149,7 @@ Public Class Synchronisation
             End If
 
         Catch ex As Exception
-            CSDebug.dispError("Synchronisation.runDescSynchro Err : " & ex.Message)
+            CSDebug.dispError("Synchronisation.runDescSynchro2 Err : ", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -1196,23 +1196,29 @@ Public Class Synchronisation
             End Try
             'Ajout de 1 Secondes 
             dtSRV.AddSeconds(1)
-            'Maj des agents
-            Dim oList As AgentList
-            oList = AgentManager.getAgentList(m_Agent.uidStructure)
-            For Each oAgent As Agent In oList.items
-                If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
-                    oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)
-                    AgentManager.save(oAgent, True)
-                    'Maj de la date de dernière synchro de l'agent sur le SRV
-                    CSDebug.dispInfo("MAJ date dernier Synchro ID=" & oAgent.id & ",DateDernSynchro=" & oAgent.dateDerniereSynchro)
-                    objWSCrodip.SetDateSynchroAgent(oAgent.id, oAgent.dateDerniereSynchro)
-                End If
-            Next
+            ''Maj des agents
+            'Dim oList As AgentList
+            'If m_Agent.oPool Is Nothing Then
+            '    oList = AgentManager.getAgentList(m_Agent.idStructure)
+            'Else
+            '    oList = AgentManager.getAgentListByPool(m_Agent.oPool.uid)
+            'End If
+
+            'For Each oAgent As Agent In oList.items
+            '    If Not oAgent.isGestionnaire And Not oAgent.isSupprime And oAgent.isActif Then
+            '        oAgent.dateDerniereSynchro = CSDate.ToCRODIPString(dtSRV)
+            '        AgentManager.save(oAgent, True)
+            '        'Maj de la date de dernière synchro de l'agent sur le SRV
+            '        CSDebug.dispInfo("MAJ date dernier Synchro ID=" & oAgent.id & ",DateDernSynchro=" & oAgent.dateDerniereSynchro)
+            '        objWSCrodip.SetDateSynchroAgent(oAgent.id, oAgent.dateDerniereSynchro)
+            '    End If
+            'Next
             'Maj du PC Courant
             If m_Agent.oPCcourant IsNot Nothing Then
                 m_Agent.oPCcourant.dateDerniereSynchro = dtSRV
                 AgentPcManager.WSSend(m_Agent.oPCcourant, m_Agent.oPCcourant)
                 AgentPcManager.Save(m_Agent.oPCcourant)
+                objWSCrodip.SetDateSynchroPc(m_Agent.oPCcourant.uid, m_Agent.oPCcourant.dateDerniereSynchroS)
             End If
             bReturn = True
         Catch ex As Exception

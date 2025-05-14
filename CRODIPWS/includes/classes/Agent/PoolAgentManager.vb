@@ -1,6 +1,7 @@
 Imports System.Data.Common
 Imports System.IO
 Imports System.Linq
+Imports System.Xml
 Imports System.Xml.Serialization
 
 Public Class PoolAgentManager
@@ -38,26 +39,48 @@ Public Class PoolAgentManager
             Dim nomMethode As String = "GetPoolAgentList"
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
             Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim info As String = ""
             If methode IsNot Nothing Then
-                Dim Params As Object() = {pAgent.uid, pAgent.aid, pAgent.uidstructure, tXmlnodes}
+                Dim Params As Object() = {pAgent.uid, pAgent.aid, pAgent.uidstructure, info, tXmlnodes}
                 SynchronisationManager.LogSynchroDebut(nomMethode)
                 SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
-                codeResponse = methode.Invoke(objWSCrodip, Params)
-                tXmlnodes = Params(2)
+                codeResponse = objWSCrodip.GetPoolAgentList(pAgent.uid, pAgent.aid, pAgent.uidstructure, info, tXmlnodes)
+                'codeResponse = methode.Invoke(objWSCrodip, Params)
+                'tXmlnodes = Params(2)
                 SynchronisationManager.LogSynchroREPONSE(tXmlnodes, nomMethode)
                 SynchronisationManager.LogSynchroFin()
             End If
             Select Case codeResponse
                 Case 0 ' OK
                     Dim ser As New XmlSerializer(GetType(PoolAgent))
-                    strXml = tXmlnodes(0).ParentNode.OuterXml
-                    Using reader As New StringReader(strXml)
-                        oreturn = ser.Deserialize(reader)
-                    End Using
+                    For n As Integer = 0 To tXmlnodes.Length - 1
+                        If TypeOf tXmlnodes(n) Is XmlNode() Then
+                            Dim xmlDocument As New XmlDocument()
+                            ' Créer un élément racine
+                            Dim root As XmlElement = xmlDocument.CreateElement("PoolAgent")
+                            xmlDocument.AppendChild(root)
+
+                            ' Ajouter chaque XmlNode au document
+                            For Each node As XmlNode In tXmlnodes(n)
+                                Dim importedNode As XmlNode = xmlDocument.ImportNode(node, True)
+                                root.AppendChild(importedNode)
+                            Next
+                            strXml = xmlDocument.OuterXml
+
+                            'strXml = tXmlnodes(0).OuterXml
+                            Dim oPoolAgent As PoolAgent
+                            Using reader As New StringReader(strXml)
+                                oPoolAgent = ser.Deserialize(reader)
+                                oreturn.Add(oPoolAgent)
+                            End Using
+
+                        End If
+                    Next n
+
                 Case 1 ' NOK
-                    CSDebug.dispError("RootWSgetByID - Code 1 : Non-Trouvée")
+                    CSDebug.dispError("PoolAgentManager.WSGetListByAgent - Code 1 : Non-Trouvée")
                 Case 9 ' BADREQUEST
-                    CSDebug.dispError("RootWSgetByID - Code 9 : Bad Request")
+                    CSDebug.dispError("PoolAgentManager.WSGetListByAgent - Code 9 : Bad Request")
             End Select
         Catch ex As Exception
             CSDebug.dispError("PoolAgentManager.WSGestListByAgent ERR: ", ex)

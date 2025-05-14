@@ -2,6 +2,7 @@
 MASTER
 BUILD XXXXXXXXXXXXXX
 	0001801: Gestion de la date de dernière synchro sur le PC
+	0001802: Test1 Version 20250506180000
 
 BUILD 20250414140000
 	0001784: Contrat Commercial : Ajout du numéro organisme prestataire

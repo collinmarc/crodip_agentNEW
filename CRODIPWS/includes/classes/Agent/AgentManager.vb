@@ -237,7 +237,7 @@ Public Class AgentManager
 #Region "Methodes acces Local"
 
     ''' <summary>
-    ''' renvoie une liste d'agent
+    ''' renvoie une liste d'agent pour une structure
     ''' </summary>
     ''' <returns> Une Liste d'agent List(Of Agent) </returns>
     ''' <remarks></remarks>
@@ -276,11 +276,78 @@ Public Class AgentManager
             strSQL = strSQL & "Agent.droitsPulves as droitsPulves, "
             strSQL = strSQL & "Agent.isGestionnaire as isGestionnaire, "
             strSQL = strSQL & "Agent.signatureElect as signatureElect, "
-#If VGESEQP Then
-            strSQL = strSQL & "Agent.idPool as idPool, "
-#End If
             strSQL = strSQL & "Structure.nom as structureNom "
-            strSQL = strSQL & "FROM Agent LEFT JOIN Structure ON ( Agent.idStructure = Structure.id )"
+            strSQL = strSQL & "FROM Agent LEFT JOIN Structure ON ( Agent.idStructure = Structure.id ) "
+            strSQL = strSQL & "WHERE  Agent.idStructure = " & pIdStructure
+            bddCommande.CommandText = strSQL
+            ' On récupère les résultats
+            Dim dataListProfils As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While dataListProfils.Read()
+                ' On rempli notre tableau
+                objAgent = New Agent
+                tmpColId = 0
+                While tmpColId < dataListProfils.FieldCount()
+                    If Not dataListProfils.IsDBNull(tmpColId) Then
+                        objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.Item(tmpColId))
+                    End If
+                    tmpColId = tmpColId + 1
+
+                End While
+                oReturn.items.Add(objAgent)
+            End While
+        Catch ex As Exception ' On intercepte l'erreur
+            CSDebug.dispError("AgentManager - getListAgent() Erreur : " & ex.Message)
+        End Try
+        If Not oCsdb Is Nothing Then
+            oCsdb.free()
+        End If
+        'on retourne l'agent ou un objet vide en cas d'erreur
+        Return oReturn
+    End Function
+    ''' <summary>
+    ''' renvoie une liste d'agent pour un Pool
+    ''' </summary>
+    ''' <returns> Une Liste d'agent List(Of Agent) </returns>
+    ''' <remarks></remarks>
+    Public Shared Function getAgentListByPool(puidPool As Integer) As AgentList
+        ' déclarations
+        Dim tmpAgent As New Agent
+        Dim oCsdb As CSDb = Nothing
+        Dim bddCommande As DbCommand
+        Dim strSQL As String
+        Dim oReturn As New AgentList()
+        Dim objAgent As Agent
+        Dim tmpColId As Integer
+
+        Try
+            oCsdb = New CSDb(True)
+
+            bddCommande = oCsdb.getConnection().CreateCommand()
+            strSQL = "SELECT Agent.id as id,"
+            strSQL = strSQL & "Agent.numeronational as numeroNational, "
+            strSQL = strSQL & "Agent.motDePasse as motDePasse, "
+            strSQL = strSQL & "Agent.nom as nom, "
+            strSQL = strSQL & "Agent.prenom as prenom, "
+            strSQL = strSQL & "Agent.idStructure as idStructure, "
+            strSQL = strSQL & "Agent.telephonePortable as telephonePortable, "
+            strSQL = strSQL & "Agent.eMail as eMail, "
+            strSQL = strSQL & "Agent.statut as statut, "
+            strSQL = strSQL & "Agent.dateCreation as dateCreation, "
+            strSQL = strSQL & "Agent.dateDerniereConnexion as dateDerniereConnexion, "
+            strSQL = strSQL & "Agent.dateDerniereSynchro as dateDerniereSynchro, "
+            strSQL = strSQL & "Agent.dateModificationAgent as dateModificationAgent, "
+            strSQL = strSQL & "Agent.dateModificationCrodip as dateModificationCrodip, "
+            strSQL = strSQL & "Agent.versionLogiciel as versionLogiciel, "
+            strSQL = strSQL & "Agent.commentaire as commentaire, "
+            strSQL = strSQL & "Agent.cleActivation as cleActivation, "
+            strSQL = strSQL & "Agent.isActif as isActif, "
+            strSQL = strSQL & "Agent.droitsPulves as droitsPulves, "
+            strSQL = strSQL & "Agent.isGestionnaire as isGestionnaire, "
+            strSQL = strSQL & "Agent.signatureElect as signatureElect, "
+            strSQL = strSQL & "Structure.nom as structureNom "
+            strSQL = strSQL & "FROM Agent LEFT JOIN PoolAgent ON ( PoolAgent.uidAgent = Agent.uid ) "
+            strSQL = strSQL & "WHERE PoolAgent.uidPool = " & puidPool
             bddCommande.CommandText = strSQL
             ' On récupère les résultats
             Dim dataListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -536,7 +603,7 @@ Public Class AgentManager
                 If Not agent.dateDerniereConnexion Is Nothing And agent.dateDerniereConnexion <> "0000-00-00 00:00:00" Then
                     paramsQuery = paramsQuery & " , dateDerniereConnexion='" & CSDate.ToCRODIPString(agent.dateDerniereConnexion) & "'"
                 End If
-                If Not agent.dateDerniereSynchro Is Nothing And agent.dateDerniereSynchro <> "0000-00-00 00:00:00" Then
+                If Not agent.dateDerniereSynchro <> DateTime.MinValue Then
                     paramsQuery = paramsQuery & " , dateDerniereSynchro='" & CSDate.ToCRODIPString(agent.dateDerniereSynchro) & "'"
                 End If
                 If Not agent.versionLogiciel Is Nothing Then
@@ -640,32 +707,6 @@ Public Class AgentManager
     End Function
 
 #End Region
-    ''' <summary>
-    ''' Rend la Plus petite date de dernière synchro (1971 si la base est vide)
-    ''' on prend 1971 car 1970 est synomime d'erreur et est utilisé dans le doLogin 
-    ''' </summary>
-    ''' <returns></returns>
-    Public Shared Function GetDateDernSynchroAgent(pIdStructure As String) As DateTime
-        Dim lst As AgentList = AgentManager.getAgentList(pIdStructure)
-        Dim oReturn As DateTime = CSDate.FromCrodipString("1971-01-01")
-        If lst.items.Count > 0 Then
-            Try
-                oReturn = lst.items.Where(Function(ag) ag.isActif And Not ag.isSupprime And Not ag.isGestionnaire).Min(Function(a) CDate(a.dateDerniereSynchro))
-            Catch
-                oReturn = CSDate.FromCrodipString("1971-01-01")
-            End Try
 
-        End If
-        If Year(oReturn) = 1970 Then
-            'En cas de cas erronnée (1970), on prend la plus grande date de dernière modif CRODIP des Pulvérisateurs
-            Dim oCSDB As New CSDb(True)
-            Try
-                oReturn = oCSDB.getValue("SELECT Max (dateModificationCrodip) from pulverisateur WHERE idStructure = " & pIdStructure)
-            Catch
-                oReturn = CSDate.FromCrodipString("1971-01-01")
-            End Try
-        End If
-        Return oReturn
-    End Function
 
 End Class

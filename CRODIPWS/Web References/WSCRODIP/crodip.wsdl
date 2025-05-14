@@ -919,6 +919,16 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="IdentifiantOTC">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="identifiant" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="chargement" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="IdentifiantPulverisateur">
         <xsd:complexType>
           <xsd:sequence>
@@ -1155,6 +1165,21 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="SetDateSynchroPcRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="xsd:int" name="uidpc" />
+            <xsd:element element="xsd:string" name="dateDerniereSynchro" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SetDateSynchroPcResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="GetPcRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -1167,6 +1192,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Pc" name="Pc" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1199,6 +1225,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Masse" name="Masse" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1231,6 +1258,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Balance" name="Balance" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1263,6 +1291,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Distance" name="Distance" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1295,6 +1324,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Chrono" name="Chrono" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1327,6 +1357,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Pool" name="Pool" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1359,6 +1390,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolAgent" name="PoolAgent" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1391,6 +1423,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolPc" name="PoolPc" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1423,6 +1456,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolMasse" name="PoolMasse" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1455,6 +1489,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolBalance" name="PoolBalance" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1487,6 +1522,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolDistance" name="PoolDistance" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1519,6 +1555,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolChrono" name="PoolChrono" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1551,6 +1588,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolManoControle" name="PoolManoControle" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1583,6 +1621,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolManoEtalon" name="PoolManoEtalon" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1615,6 +1654,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolBuse" name="PoolBuse" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1646,6 +1686,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Pool" minOccurs="0" maxOccurs="500" name="PoolList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1662,6 +1703,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Pc" minOccurs="0" maxOccurs="500" name="PcList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1679,6 +1721,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolAgent" minOccurs="0" maxOccurs="500" name="PoolAgentList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1697,6 +1740,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolPc" minOccurs="0" maxOccurs="500" name="PoolPcList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1715,6 +1759,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolMasse" minOccurs="0" maxOccurs="500" name="PoolMasseList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1733,6 +1778,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolBalance" minOccurs="0" maxOccurs="500" name="PoolBalanceList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1751,6 +1797,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolDistance" minOccurs="0" maxOccurs="500" name="PoolDistanceList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1769,6 +1816,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolChrono" minOccurs="0" maxOccurs="500" name="PoolChronoList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1787,6 +1835,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolManoControle" minOccurs="0" maxOccurs="500" name="PoolManoControleList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1805,6 +1854,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolManoEtalon" minOccurs="0" maxOccurs="500" name="PoolManoEtalonList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -1823,6 +1873,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:PoolBuse" minOccurs="0" maxOccurs="500" name="PoolBuseList" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2264,6 +2315,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Exploitation" name="Exploitation" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2296,6 +2348,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:ExploitationTOPulverisateur" name="ExploitationTOPulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2328,6 +2381,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Facture" name="Facture" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2360,6 +2414,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:FactureItem" name="FactureItem" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2392,6 +2447,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:ControleBancMesure" name="ControleBancMesure" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2424,6 +2480,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:ControleManoMesure" name="ControleManoMesure" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2456,6 +2513,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:FVBanc" name="FVBanc" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2488,6 +2546,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:FVManometreControle" name="FVManometreControle" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2520,6 +2579,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:FVManometreEtalon" name="FVManometreEtalon" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2532,6 +2592,40 @@
         </xsd:complexType>
       </xsd:element>
       <xsd:element name="SendFVManometreEtalonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIdentifiantOTCRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="aid" type="xsd:string" />
+            <xsd:element name="uidagent" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIdentifiantOTCResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element element="tns:IdentifiantOTC" name="IdentifiantOTC" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendIdentifiantOTCRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element element="tns:IdentifiantOTC" name="IdentifiantOTC" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendIdentifiantOTCResponse">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
@@ -2586,6 +2680,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Pulverisateur" name="Pulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2618,6 +2713,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:Structure" name="Structure" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2649,6 +2745,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="ReferentielBuse" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2664,6 +2761,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="ReferentielManometre" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2679,6 +2777,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="ReferentielPulverisateur" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2694,6 +2793,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="ReferentielTerritoire" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2709,6 +2809,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:VersionLogicielAgent" name="VersionLogicielAgent" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2724,6 +2825,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="tns:SoftwareUpdate" name="infos" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2737,6 +2839,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="SynchroDateTime" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2750,6 +2853,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element element="xsd:string" name="APIKey" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2766,6 +2870,7 @@
           <xsd:sequence>
             <xsd:element element="xsd:int" name="increment" />
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -2804,6 +2909,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element name="aJour" type="xsd:int" />
             <xsd:element name="url" type="xsd:string" />
           </xsd:sequence>
@@ -2820,6 +2926,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element name="aJour" type="xsd:int" />
             <xsd:element name="url" type="xsd:string" />
           </xsd:sequence>
@@ -2836,6 +2943,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
             <xsd:element name="aJour" type="xsd:int" />
             <xsd:element name="url" type="xsd:string" />
           </xsd:sequence>
@@ -2910,6 +3018,12 @@
   </wsdl:message>
   <wsdl:message name="SetDateSynchroAgentResponse">
     <wsdl:part name="parameters" element="tns:SetDateSynchroAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDateSynchroPcRequest">
+    <wsdl:part name="parameters" element="tns:SetDateSynchroPcRequest" />
+  </wsdl:message>
+  <wsdl:message name="SetDateSynchroPcResponse">
+    <wsdl:part name="parameters" element="tns:SetDateSynchroPcResponse" />
   </wsdl:message>
   <wsdl:message name="GetPcRequest">
     <wsdl:part name="parameters" element="tns:GetPcRequest" />
@@ -3421,6 +3535,18 @@
   <wsdl:message name="SendFVManometreEtalonResponse">
     <wsdl:part name="parameters" element="tns:SendFVManometreEtalonResponse" />
   </wsdl:message>
+  <wsdl:message name="GetIdentifiantOTCRequest">
+    <wsdl:part name="parameters" element="tns:GetIdentifiantOTCRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetIdentifiantOTCResponse">
+    <wsdl:part name="parameters" element="tns:GetIdentifiantOTCResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendIdentifiantOTCRequest">
+    <wsdl:part name="parameters" element="tns:SendIdentifiantOTCRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendIdentifiantOTCResponse">
+    <wsdl:part name="parameters" element="tns:SendIdentifiantOTCResponse" />
+  </wsdl:message>
   <wsdl:message name="GetIdentifiantPulverisateurRequest">
     <wsdl:part name="parameters" element="tns:GetIdentifiantPulverisateurRequest" />
   </wsdl:message>
@@ -3727,6 +3853,10 @@
       <wsdl:input message="tns:SetDateSynchroAgentRequest" />
       <wsdl:output message="tns:SetDateSynchroAgentResponse" />
     </wsdl:operation>
+    <wsdl:operation name="SetDateSynchroPc">
+      <wsdl:input message="tns:SetDateSynchroPcRequest" />
+      <wsdl:output message="tns:SetDateSynchroPcResponse" />
+    </wsdl:operation>
     <wsdl:operation name="GetPrestationCategorie">
       <wsdl:input message="tns:GetPrestationCategorieRequest" />
       <wsdl:output message="tns:GetPrestationCategorieResponse" />
@@ -3902,6 +4032,14 @@
     <wsdl:operation name="SendFVManometreEtalon">
       <wsdl:input message="tns:SendFVManometreEtalonRequest" />
       <wsdl:output message="tns:SendFVManometreEtalonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIdentifiantOTC">
+      <wsdl:input message="tns:GetIdentifiantOTCRequest" />
+      <wsdl:output message="tns:GetIdentifiantOTCResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SendIdentifiantOTC">
+      <wsdl:input message="tns:SendIdentifiantOTCRequest" />
+      <wsdl:output message="tns:SendIdentifiantOTCResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetIdentifiantPulverisateur">
       <wsdl:input message="tns:GetIdentifiantPulverisateurRequest" />
@@ -4378,6 +4516,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetDateSynchroPc">
+      <soap:operation soapAction="http://www.example.org/crodip/SetDateSynchroPc" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetPrestationCategorie">
       <soap:operation soapAction="http://www.example.org/crodip/GetPrestationCategorie" />
       <wsdl:input>
@@ -4767,6 +4914,24 @@
     </wsdl:operation>
     <wsdl:operation name="SendFVManometreEtalon">
       <soap:operation soapAction="http://www.example.org/crodip/SendFVManometreEtalon" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdentifiantOTC">
+      <soap:operation soapAction="http://www.example.org/crodip/GetIdentifiantOTC" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendIdentifiantOTC">
+      <soap:operation soapAction="http://www.example.org/crodip/SendIdentifiantOTC" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

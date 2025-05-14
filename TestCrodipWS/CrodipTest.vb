@@ -27,7 +27,7 @@ Public Class CRODIPTest
     Public agentCourant As Agent
     Protected m_oStructure As [Structure]
     Protected m_oPc As AgentPc
-
+    Protected m_oPool As Pool
     Protected m_oExploitation As Exploitation
     Protected m_oPulve As Pulverisateur
     Protected m_oDiag As Diagnostic
@@ -90,32 +90,39 @@ Public Class CRODIPTest
         m_oAgent = AgentManager.WSgetByNumeroNational(m_numNatAgent, True)
         m_IdAgent = m_oAgent.id
 
-        'Création du PC
-        Dim oAgentPC As New AgentPc
-        oAgentPC.idPc = "999999"
-        oAgentPC.uidstructure = m_oStructure.uid
-        AgentPcManager.Save(oAgentPC)
-
         'Récupération du banc de la structure
         'Si il n'existe pas on le récupère du WS
         m_oBanc = BancManager.WSgetById(m_uidBanc, m_aidBanc)
         Assert.IsNotNull(m_oBanc, "erreur en Récupération du banc")
 
-        Dim oSynchro As New Synchronisation(m_oAgent)
 
-        oSynchro.MAJDateDerniereSynchro()
+        'Sauvegarde de la Registry pour restauration à la fin du test
 
         Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
         Const subkey1 As String = "CRODIP"
         Const subkey2 As String = "PC"
+
         m_RegistryPC = Registry.GetValue(RegistryPath, subkey2, "VIDE")
         m_RegistryCLE = Registry.GetValue(RegistryPath, subkey1, "VIDE")
 
-        m_oPc = AgentPcManager.GetAgentPCFromRegistry()
-        If m_oPc Is Nothing Then
-            m_oPc = AgentPcManager.WSgetById(0, m_idPC)
+        'Récupération du pool et du PC de l'agent
+        Dim lstPA As List(Of PoolAgent)
+        lstPA = PoolAgentManager.WSgetListeByAgent(m_oAgent)
+        If lstPA.Count > 0 Then
+            m_oPool = PoolManager.WSgetById(lstPA(0).uidpool, "")
+            m_oAgent.oPool = m_oPool
+            Dim lstPC As List(Of AgentPc)
+            lstPC = AgentPcManager.WSGetListByPool(m_oPool)
+            If lstPC.Count > 0 Then
+                m_oPc = lstPC(0)
+                m_idPC = lstPC(0).uid
+                m_oAgent.oPCcourant = m_oPc
+            End If
         End If
 
+
+        Dim oSynchro As New Synchronisation(m_oAgent)
+        oSynchro.MAJDateDerniereSynchro()
     End Sub
     '
     'Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
