@@ -1,8 +1,10 @@
 #TRUNK
 MASTER
-BUILD XXXXXXXXXXXXXX
+BUILD 20250514170000
 	0001801: Gestion de la date de dernière synchro sur le PC
-	0001802: Test1 Version 20250506180000
+	0001802: Test1 Version 20250506180000 (Except Synchro des pools)
+	0001803: ne pas remonter les FV desactivations sur les matériels
+
 
 BUILD 20250414140000
 	0001784: Contrat Commercial : Ajout du numéro organisme prestataire

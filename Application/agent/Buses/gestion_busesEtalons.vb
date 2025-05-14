@@ -382,7 +382,7 @@ Public Class gestion_busesEtalons
             Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(gestion_busesEtalons))
             ' On récupère les buses étalon de l'agent
             Dim arrBusesEtalon As List(Of Buse) = BuseManager.getLstByAgent(agentCourant, True)
-            arrBusesEtalon.AddRange(BuseManager.getLstByAgentJamaisServi(agentCourant))
+            'arrBusesEtalon.AddRange(BuseManager.getLstByAgentJamaisServi(agentCourant))
 
             '            gestionBanc_panel_showFV.Controls.Clear()
             gestionBusesEtalon_panel_id.Controls.Clear()

@@ -2024,6 +2024,7 @@ Public Class frmcontrole_bancs
             BancManager.save(oBancReturn, True)
             Dim oFVReturn As FVBanc = Nothing
             FVBancManager.WSSend(oFV, oFVReturn)
+            FVBancManager.SendEtats(oFV)
             If oFVReturn IsNot Nothing Then
                 FVBancManager.save(oFVReturn, True)
             End If

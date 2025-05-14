@@ -124,6 +124,7 @@ Public Class frmControleManometresNew
         Me.m_bsManoControle = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label82 = New System.Windows.Forms.Label()
         Me.Panel64 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -181,7 +182,6 @@ Public Class frmControleManometresNew
         Me.tbTemperature = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ImageList_onglets = New System.Windows.Forms.ImageList(Me.components)
-        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.m_bsManoEtalon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsControle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.m_bsManoControle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,6 +300,18 @@ Public Class frmControleManometresNew
         Me.Panel64.Name = "Panel64"
         Me.Panel64.Size = New System.Drawing.Size(1008, 679)
         Me.Panel64.TabIndex = 20
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Blue
+        Me.Label5.Location = New System.Drawing.Point(273, 654)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(441, 16)
+        Me.Label5.TabIndex = 62
+        Me.Label5.Text = "Vous devez être connecté à internet pour valider votre controle"
         '
         'Label46
         '
@@ -737,7 +749,7 @@ Public Class frmControleManometresNew
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104.0!))
+        Me.tlpEntete.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.tlpEntete.Controls.Add(Me.Label6, 4, 0)
         Me.tlpEntete.Controls.Add(Me.Label7, 5, 0)
         Me.tlpEntete.Controls.Add(Me.Label11, 6, 1)
@@ -762,7 +774,7 @@ Public Class frmControleManometresNew
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(374, 1)
+        Me.Label6.Location = New System.Drawing.Point(373, 1)
         Me.Label6.Margin = New System.Windows.Forms.Padding(0)
         Me.Label6.Name = "Label6"
         Me.tlpEntete.SetRowSpan(Me.Label6, 2)
@@ -777,9 +789,9 @@ Public Class frmControleManometresNew
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(454, 1)
+        Me.Label7.Location = New System.Drawing.Point(453, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(159, 28)
+        Me.Label7.Size = New System.Drawing.Size(160, 28)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Erreur"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -789,9 +801,9 @@ Public Class frmControleManometresNew
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(515, 30)
+        Me.Label11.Location = New System.Drawing.Point(514, 30)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(98, 29)
+        Me.Label11.Size = New System.Drawing.Size(99, 29)
         Me.Label11.TabIndex = 17
         Me.Label11.Text = "Fond d'échelle (%)"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -801,7 +813,7 @@ Public Class frmControleManometresNew
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(454, 30)
+        Me.Label10.Location = New System.Drawing.Point(453, 30)
         Me.Label10.Name = "Label10"
         Me.Label10.Padding = New System.Windows.Forms.Padding(1)
         Me.Label10.Size = New System.Drawing.Size(54, 29)
@@ -814,7 +826,7 @@ Public Class frmControleManometresNew
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(276, 30)
+        Me.Label4.Location = New System.Drawing.Point(275, 30)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 29)
         Me.Label4.TabIndex = 22
@@ -826,7 +838,7 @@ Public Class frmControleManometresNew
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(175, 30)
+        Me.Label3.Location = New System.Drawing.Point(174, 30)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(94, 29)
         Me.Label3.TabIndex = 23
@@ -839,7 +851,7 @@ Public Class frmControleManometresNew
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(175, 1)
+        Me.Label2.Location = New System.Drawing.Point(174, 1)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(195, 28)
         Me.Label2.TabIndex = 24
@@ -855,7 +867,7 @@ Public Class frmControleManometresNew
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.tlpEntete.SetRowSpan(Me.Label1, 2)
-        Me.Label1.Size = New System.Drawing.Size(86, 58)
+        Me.Label1.Size = New System.Drawing.Size(85, 58)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Pression d'étalonnage (bar)"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -884,7 +896,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104.0!))
+        Me.tlpPressionCroissant.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.tlpPressionCroissant.Controls.Add(Me.Label19, 0, 0)
         Me.tlpPressionCroissant.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionCroissant.Location = New System.Drawing.Point(3, 66)
@@ -925,7 +937,7 @@ Public Class frmControleManometresNew
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104.0!))
+        Me.tlpPressionDecroissante.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.tlpPressionDecroissante.Controls.Add(Me.Label20, 0, 0)
         Me.tlpPressionDecroissante.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPressionDecroissante.Location = New System.Drawing.Point(3, 290)
@@ -965,7 +977,7 @@ Public Class frmControleManometresNew
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76.0!))
         Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104.0!))
+        Me.tlpRepetition.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.tlpRepetition.Controls.Add(Me.Label26, 0, 0)
         Me.tlpRepetition.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpRepetition.Location = New System.Drawing.Point(3, 477)
@@ -1077,18 +1089,6 @@ Public Class frmControleManometresNew
         Me.ImageList_onglets.ImageStream = CType(resources.GetObject("ImageList_onglets.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList_onglets.TransparentColor = System.Drawing.Color.White
         Me.ImageList_onglets.Images.SetKeyName(0, "")
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Blue
-        Me.Label5.Location = New System.Drawing.Point(273, 654)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(451, 16)
-        Me.Label5.TabIndex = 62
-        Me.Label5.Text = "Vous devez être connecté à internet pour valider votre controle"
         '
         'frmControleManometresNew
         '
@@ -1636,6 +1636,7 @@ Public Class frmControleManometresNew
             ManometreControleManager.save(oReturn, True)
         End If
         FVManometreControleManager.WSSend(oFV, oReturnFV)
+        FVManometreControleManager.SendEtats(oFV)
         If oReturnFV IsNot Nothing Then
             FVManometreControleManager.save(m_oAgent, oReturnFV, True)
         End If
