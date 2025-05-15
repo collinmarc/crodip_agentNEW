@@ -96,7 +96,7 @@ Public Class PoolAgentManager
     Public Shared Function GetByuid(puid As Integer) As PoolAgent
         Dim oReturn As PoolAgent
 
-        oReturn = getByKey(Of PoolAgent)("Select * from PoolAgent where uid = " & puid)
+        oReturn = getBySQL(Of PoolAgent)("Select * from PoolAgent where uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function Save(ByVal pObj As PoolAgent, Optional bSynchro As Boolean = False) As Boolean
@@ -158,5 +158,16 @@ Public Class PoolAgentManager
         Return lstReturn
     End Function
 
+    Public Shared Function DeleteFromPool(pPool As Pool) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Delete("PoolAgent", "uidpool", pPool)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PoolAgent.Delete ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 
 End Class

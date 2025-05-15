@@ -22,6 +22,18 @@ Public Class BuseManager
         End Try
         Return nreturn
     End Function
+
+    Friend Shared Function getByKey(puidbuse As Integer) As Buse
+        Dim oReturn As Buse
+        Try
+            oReturn = getByuid(Of Buse)("AgentBuseEtalon", puidbuse)
+        Catch ex As Exception
+            CSDebug.dispError("BuseManager.GetBuseByKey ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+
+    End Function
     'Public Shared Function getWSBuseById(pAgent As Agent, ByVal buse_id As String) As Buse
     '    Dim objBuse As New Buse
     '    Try

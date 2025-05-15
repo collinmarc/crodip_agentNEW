@@ -29,7 +29,7 @@ Public Class PoolBuseManager
     Public Shared Function GetByuid(puid As Integer) As PoolBuse
         Dim oReturn As PoolBuse
 
-        oReturn = getByKey(Of PoolBuse)("Select * from PoolBuse where uid = " & puid)
+        oReturn = getBySQL(Of PoolBuse)("Select * from PoolBuse where uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function getListebyStructure(puidStructure As Integer) As List(Of PoolBuse)
@@ -67,6 +67,17 @@ Public Class PoolBuseManager
             bReturn = Update("PoolBuse", pObj, paramsQuery)
         Catch ex As Exception
             CSDebug.dispFatal("PoolBuseManager.save ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Shared Function DeleteFromPool(pPool As Pool) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Delete("PoolBuse", "uidpool", pPool)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PoolBuse.Delete ERR", ex)
             bReturn = False
         End Try
         Return bReturn

@@ -88,7 +88,7 @@ Public Class PoolPcManager
     Public Shared Function GetByuid(puid As Integer) As PoolPc
         Dim oReturn As PoolPc
 
-        oReturn = getByKey(Of PoolPc)("Select * from PoolPc where uid = " & puid)
+        oReturn = getBySQL(Of PoolPc)("Select * from PoolPc where uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function getListeByStructure(puidStructure As Integer) As List(Of PoolPc)
@@ -105,7 +105,7 @@ Public Class PoolPcManager
             lstPoolPc = getListe(Of PoolPc)(sql)
             For Each oPoolPc As PoolPc In lstPoolPc
                 Dim oPc As AgentPc
-                oPc = AgentPcManager.GetByuid(oPoolPc.uidpc)
+                oPc = AgentPcManager.getByKey(oPoolPc.uidpc)
                 If oPc IsNot Nothing Then
                     lstReturn.Add(oPc)
                 End If
@@ -147,6 +147,17 @@ Public Class PoolPcManager
             bReturn = Update("PoolPc", pObj, paramsQuery)
         Catch ex As Exception
             CSDebug.dispFatal("PoolPcManager.save ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Shared Function DeleteFromPool(pPool As Pool) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Delete("PoolPc", "uidpool", pPool)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PoolPcManager.Delete ERR", ex)
             bReturn = False
         End Try
         Return bReturn

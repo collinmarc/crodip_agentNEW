@@ -32,7 +32,7 @@ Public Class PoolManager
         Dim oReturn As Pool = Nothing
         Try
 
-            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE uid= " & puid & "")
+            oReturn = getBySQL(Of Pool)("SELECT * FROM Pool WHERE uid= " & puid & "")
 
 
         Catch ex As Exception
@@ -46,7 +46,7 @@ Public Class PoolManager
         Dim oReturn As Pool = Nothing
         Try
 
-            oReturn = getByKey(Of Pool)("SELECT * FROM Pool WHERE idPool= '" & pIdPool & "'")
+            oReturn = getBySQL(Of Pool)("SELECT * FROM Pool WHERE idPool= '" & pIdPool & "'")
 
         Catch ex As Exception
             CSDebug.dispError("PoolManager.getPoolByIdPool ERR", ex)

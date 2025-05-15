@@ -137,7 +137,18 @@ Public Class RootManager
         End Try
         Return codeResponse
     End Function
-    Protected Shared Function getByKey(Of T As {root, New})(pSQL As String) As T
+    Protected Shared Function getByuid(Of T As {root, New})(pTable As String, puid As Long) As T
+        Dim oReturn As T = Nothing
+        Try
+            oReturn = getBySQL(Of T)("SELECT * From " & pTable & " WHERE uid =  " & puid)
+        Catch ex As Exception
+            CSDebug.dispError("RootManager.getByuid ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+
+    End Function
+    Protected Shared Function getBySQL(Of T As {root, New})(pSQL As String) As T
         Dim oReturn As T = Nothing
         Try
 
@@ -159,7 +170,7 @@ Public Class RootManager
 
 
         Catch ex As Exception
-            CSDebug.dispError("RootManager.getByKey ERR", ex)
+            CSDebug.dispError("RootManager.getBySQL ERR", ex)
             oReturn = Nothing
         End Try
         Return oReturn
@@ -212,23 +223,44 @@ Public Class RootManager
         Return breturn
     End Function
 
-    Public Shared Function Update(pTable As String, pobj As root, psql As String) As Boolean
+    Public Shared Function Update(pTable As String, pobj As root, psqlSet As String) As Boolean
         Dim bddCommande As DbCommand
         Dim nResult As Integer
         Dim oCsdb = New CSDb(True)
         Dim bReturn As Boolean
         Try
 
-            psql = psql & pobj.getRootQuery()
+            psqlSet = psqlSet & pobj.getRootQuery()
 
             bddCommande = oCsdb.getConnection.CreateCommand()
 
-            bddCommande.CommandText = "UPDATE " & pTable & " SET " & psql & " WHERE uid=" & pobj.uid & ""
+            bddCommande.CommandText = "UPDATE " & pTable & " SET " & psqlSet & " WHERE uid=" & pobj.uid & ""
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "RootManager.update[" & pTable & "," & pobj.uid & "]: Erreur en update 0 ou  plus d'une ligne concernée")
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("RootManager.update ERR", ex)
+            bReturn = False
+        End Try
+        oCsdb.free()
+        Return bReturn
+    End Function
+
+    Public Shared Function Delete(pTable As String, pChampuid As String, pobj As root) As Boolean
+        Dim bddCommande As DbCommand
+        Dim nResult As Integer
+        Dim oCsdb = New CSDb(True)
+        Dim bReturn As Boolean
+        Try
+
+
+            bddCommande = oCsdb.getConnection.CreateCommand()
+
+            bddCommande.CommandText = "DELETE FROM " & pTable & " WHERE " & pChampuid & "=" & pobj.uid & ""
+            nResult = bddCommande.ExecuteNonQuery()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("RootManager.DELETE ERR", ex)
             bReturn = False
         End Try
         oCsdb.free()

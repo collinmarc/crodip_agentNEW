@@ -35,6 +35,13 @@ Public Class SynchronisationElmtPoolManoControle
                 obj = PoolManoControleManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolManoControleManager.Save(obj, True)
+                    Dim oManoControle As ManometreControle = ManometreControleManager.getByKey(obj.uidmanoc)
+                    If oManoControle Is Nothing Then
+                        oManoControle = ManometreControleManager.WSgetById(obj.uidmanoc, "")
+                        If oManoControle IsNot Nothing Then
+                            ManometreControleManager.save(oManoControle)
+                        End If
+                    End If
                 Else
                     bReturn = False
                 End If

@@ -29,7 +29,7 @@ Public Class PoolManoEtalonManager
     Public Shared Function GetByuid(puid As Integer) As PoolManoEtalon
         Dim oReturn As PoolManoEtalon
 
-        oReturn = getByKey(Of PoolManoEtalon)("Select * from PoolManoEtalon where uid = " & puid)
+        oReturn = getBySQL(Of PoolManoEtalon)("Select * from PoolManoEtalon where uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function Save(ByVal pObj As PoolManoEtalon, Optional bSynchro As Boolean = False) As Boolean
@@ -65,4 +65,15 @@ Public Class PoolManoEtalonManager
         Return bReturn
     End Function
 
+    Public Shared Function DeleteFromPool(pPool As Pool) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Delete("PoolManoEtalon", "uidpool", pPool)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PoolManoEtalonManager.Delete ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
 End Class

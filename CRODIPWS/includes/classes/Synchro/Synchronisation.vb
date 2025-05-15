@@ -1088,7 +1088,15 @@ Public Class Synchronisation
         Try
 
             m_listSynchro = ""
-            'On Traite les synchro Agent D'abord
+            'On Traite les synchro Pool d'abord
+            For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
+                If oSynchroElmt.Type.ToUpper().Trim() = "GetPool".ToUpper().Trim() Then
+                    Notice(" Pool")
+                    oSynchroElmt.SynchroDesc(m_Agent)
+                    oSynchroElmt.Traitee = True
+                End If
+            Next
+            'puis les synchro Agent 
             For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
                 If oSynchroElmt.Type.ToUpper().Trim() = "GetAgent".ToUpper().Trim() Then
                     Notice(" Agent")
@@ -1113,12 +1121,8 @@ Public Class Synchronisation
                 End If
             Next
 
-            'On recharge l'agent courant
-            'm_Agent = AgentManager.getAgentById(m_Agent.id)
-            '            agentCourant = m_Agent
-            'Si l'agent n'est pas supprimé
             If Not String.IsNullOrEmpty(m_Agent.id) Then
-                'On synchronise les élements non traité (<> GetAgent)
+                'On synchronise les élements non traité 
                 For Each oSynchroElmt As SynchronisationElmt In lstElementsASynchroniser
                     If oSynchroElmt.Traitee = False Then
                         If Not IsElementDansSynchroASC(oSynchroElmt) Then

@@ -35,6 +35,13 @@ Public Class SynchronisationElmtPoolManoEtalon
                 obj = PoolManoEtalonManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolManoEtalonManager.Save(obj, True)
+                    Dim oManoEtalon As ManometreEtalon = ManometreEtalonManager.getByKey(obj.uidmanoe)
+                    If oManoEtalon Is Nothing Then
+                        oManoEtalon = ManometreEtalonManager.WSgetById(obj.uidmanoe, "")
+                        If oManoEtalon IsNot Nothing Then
+                            ManometreEtalonManager.save(oManoEtalon)
+                        End If
+                    End If
                 Else
                     bReturn = False
                 End If

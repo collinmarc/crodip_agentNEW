@@ -269,7 +269,7 @@ Public Class BancManager
         Dim oReturn As Banc
         Dim sql As String
         sql = "SELECT * FROM BancMesure WHERE BancMesure.uid=" & puid & ""
-        oReturn = getByKey(Of Banc)(sql)
+        oReturn = getBySQL(Of Banc)(sql)
 
         'on retourne le banc ou un objet vide en cas d'erreur
         Return oReturn

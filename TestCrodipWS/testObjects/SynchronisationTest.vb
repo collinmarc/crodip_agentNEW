@@ -877,7 +877,7 @@ Public Class SynchronisationTest
         oAgent = AgentManager.getAgentById(m_oAgent.uid)
         Assert.AreNotEqual(0L, DateDiff(DateInterval.Day, m_oAgent.dateDerniereSynchro, oAgent.dateDerniereSynchro))
 
-        oPC = AgentPcManager.GetByuid(m_oPc.uid)
+        oPC = AgentPcManager.getByKey(m_oPc.uid)
         Assert.AreNotEqual(m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro, "La date de synchro du PC change")
         Assert.AreEqual(10L, DateDiff(DateInterval.Day, m_oPc.dateDerniereSynchro, oPC.dateDerniereSynchro))
 

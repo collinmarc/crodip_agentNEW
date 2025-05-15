@@ -1,5 +1,7 @@
 #TRUNK
 MASTER
+BUILD 20250515170000
+	0001804: Synchronisation des pools (Recharger toute les associsations)
 BUILD 20250514170000
 	0001801: Gestion de la date de dernière synchro sur le PC
 	0001802: Test1 Version 20250506180000 (Except Synchro des pools)

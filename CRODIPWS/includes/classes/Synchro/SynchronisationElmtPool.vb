@@ -35,6 +35,12 @@ Public Class SynchronisationElmtPool
                 obj = PoolManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolManager.Save(obj, True)
+                    'Suppression de toutes les associations dépendantes car elle seront recrées ensuite par synchro
+                    PoolManoControleManager.DeleteFromPool(obj)
+                    PoolBuseManager.DeleteFromPool(obj)
+                    PoolAgentManager.DeleteFromPool(obj)
+                    PoolManoEtalonManager.DeleteFromPool(obj)
+                    PoolPcManager.DeleteFromPool(obj)
                 Else
                     bReturn = False
                 End If

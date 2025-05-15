@@ -35,6 +35,13 @@ Public Class SynchronisationElmtPoolAgent
                 obj = PoolAgentManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolAgentManager.Save(obj, True)
+                    Dim oAgent As Agent = AgentManager.getByKey(obj.uidagent)
+                    If oAgent Is Nothing Then
+                        oAgent = AgentManager.WSgetByNumeroNational(obj.aidagent, False)
+                        If oAgent IsNot Nothing Then
+                            AgentManager.save(oAgent)
+                        End If
+                    End If
                 Else
                     bReturn = False
                 End If

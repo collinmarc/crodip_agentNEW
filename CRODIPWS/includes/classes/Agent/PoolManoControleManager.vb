@@ -29,7 +29,7 @@ Public Class PoolManoControleManager
     Public Shared Function GetByuid(puid As Integer) As PoolManoControle
         Dim oReturn As PoolManoControle
 
-        oReturn = getByKey(Of PoolManoControle)("Select * from PoolManoControle where uid = " & puid)
+        oReturn = getBySQL(Of PoolManoControle)("Select * from PoolManoControle where uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function Save(ByVal pObj As PoolManoControle, Optional bSynchro As Boolean = False) As Boolean
@@ -60,6 +60,17 @@ Public Class PoolManoControleManager
             bReturn = Update("PoolManoControle", pObj, paramsQuery)
         Catch ex As Exception
             CSDebug.dispFatal("PoolManoControleManager.save ERR : ", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Shared Function DeleteFromPool(pPool As Pool) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Delete("PoolManoControle", "uidpool", pPool)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("PoolManoControleManager.Delete ERR", ex)
             bReturn = False
         End Try
         Return bReturn

@@ -19,7 +19,7 @@ Imports CRODIPWS
 
         Assert.IsTrue(AgentPcManager.Save(oPc))
 
-        oPc2 = AgentPcManager.GetByuid(12345)
+        oPc2 = AgentPcManager.getByKey(12345)
         Assert.IsNotNull(oPc2)
         Assert.AreEqual(oPc.uid, oPc2.uid)
         Assert.AreEqual(oPc.aid, oPc2.aid)
@@ -29,7 +29,7 @@ Imports CRODIPWS
 
         oPc.cleUtilisation = Guid.NewGuid().ToString()
         AgentPcManager.Save(oPc)
-        oPc2 = AgentPcManager.GetByuid(12345)
+        oPc2 = AgentPcManager.getByKey(12345)
         Assert.IsNotNull(oPc2)
         Assert.AreEqual(oPc.cleUtilisation, oPc2.cleUtilisation)
 

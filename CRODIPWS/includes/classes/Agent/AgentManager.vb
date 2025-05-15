@@ -1,6 +1,7 @@
 Imports System.Data.Common
 Imports System.IO
 Imports System.Xml.Serialization
+Imports CRODIPWS
 
 Public Class AgentManager
     Inherits RootManager
@@ -71,6 +72,17 @@ Public Class AgentManager
         Return oreturn
 
 
+    End Function
+
+    Friend Shared Function getByKey(puid As Integer) As Agent
+        Dim oReturn As Agent
+        Try
+            oReturn = getByuid(Of Agent)("Agent", puid)
+        Catch ex As Exception
+            CSDebug.dispError("AgentManager.GetByKey ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
     End Function
 
     Public Shared Function WSSend(ByVal pAgentIn As Agent, ByRef pReturn As Agent) As Integer

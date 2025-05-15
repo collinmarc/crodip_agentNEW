@@ -234,6 +234,18 @@ Public Class ManometreControleManager
         'on retourne le manometrecontrole ou un objet vide en cas d'erreur
         Return tmpManometreControle
     End Function
+    Friend Shared Function getByKey(puid As Integer) As ManometreControle
+        Dim oReturn As ManometreControle
+        Try
+            oReturn = getByuid(Of ManometreControle)("AgentManoControle", puid)
+        Catch ex As Exception
+            CSDebug.dispError("ManometreControleManager.GetByKey ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+
+    End Function
+
     Public Shared Function getManometreControleByidCrodip(ByVal pIdCrodip As String) As ManometreControle
         ' déclarations
         Dim tmpManometreControle As New ManometreControle

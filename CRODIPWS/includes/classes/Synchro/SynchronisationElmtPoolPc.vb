@@ -35,6 +35,13 @@ Public Class SynchronisationElmtPoolPc
                 obj = PoolPcManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolPcManager.Save(obj, True)
+                    Dim oPc As AgentPc = AgentPcManager.getByKey(obj.uidpc)
+                    If oPc Is Nothing Then
+                        oPc = AgentPcManager.WSgetById(obj.uidpc, "")
+                        If oPc IsNot Nothing Then
+                            AgentPcManager.Save(oPc)
+                        End If
+                    End If
                 Else
                     bReturn = False
                 End If

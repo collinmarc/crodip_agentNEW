@@ -1,5 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports CRODIPWS
 
 Public Class ManometreEtalonManager
     Inherits RootManager
@@ -21,6 +22,18 @@ Public Class ManometreEtalonManager
             nreturn = -1
         End Try
         Return nreturn
+    End Function
+
+    Friend Shared Function getByKey(puid As Integer) As ManometreEtalon
+        Dim oReturn As ManometreEtalon
+        Try
+            oReturn = getByuid(Of ManometreEtalon)("AgentManoEtalon", puid)
+        Catch ex As Exception
+            CSDebug.dispError("ManometreEtalonManager.GetByKey ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
+
     End Function
 
     'Public Shared Function getWSManometreEtalonById(pAgent As Agent, ByVal manometreetalon_id As String) As ManometreEtalon

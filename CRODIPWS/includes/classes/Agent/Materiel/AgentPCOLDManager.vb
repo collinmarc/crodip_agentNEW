@@ -94,7 +94,7 @@ Public Class AgentPCOLDManager
         Dim oReturn As AgentPCOLD = Nothing
         Try
 
-            oReturn = getByKey(Of AgentPCOLD)("SELECT * FROM AgentPCOLD WHERE idCRODIP='" & pid & "'")
+            oReturn = getBySQL(Of AgentPCOLD)("SELECT * FROM AgentPCOLD WHERE idCRODIP='" & pid & "'")
 
 
         Catch ex As Exception

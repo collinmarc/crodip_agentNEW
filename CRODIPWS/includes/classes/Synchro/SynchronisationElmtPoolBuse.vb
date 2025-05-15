@@ -35,6 +35,14 @@ Public Class SynchronisationElmtPoolBuse
                 obj = PoolBuseManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
                 If obj.uid <> 0 Then
                     bReturn = PoolBuseManager.Save(obj, True)
+                    Dim oBuse = BuseManager.getByKey(obj.uidbuse)
+                    If oBuse Is Nothing Then
+                        oBuse = BuseManager.WSgetById(obj.uidbuse, "")
+                        If oBuse IsNot Nothing Then
+                            BuseManager.save(oBuse)
+                        End If
+                    End If
+
                 Else
                     bReturn = False
                 End If

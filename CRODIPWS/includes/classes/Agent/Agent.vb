@@ -522,7 +522,7 @@ Public Class Agent
                     Case "uidpc".Trim().ToUpper()
                         Try
                             If CInt(pValue) <> 0 Then
-                                Me.oPCcourant = AgentPcManager.GetByuid(pValue)
+                                Me.oPCcourant = AgentPcManager.GetByuidNonSupprime(pValue)
                             Else
                                 Me.oPCcourant = Nothing
                             End If

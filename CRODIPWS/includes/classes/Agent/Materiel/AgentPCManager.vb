@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Reflection
 Imports System.Xml
 Imports System.Xml.Serialization
+Imports CRODIPWS
 Imports Microsoft.Win32
 
 Public Class AgentPcManager
@@ -61,6 +62,17 @@ Public Class AgentPcManager
         End Try
         Return oreturn
 
+    End Function
+
+    Friend Shared Function getByKey(puid As Integer) As AgentPc
+        Dim oReturn As AgentPc
+        Try
+            oReturn = getByuid(Of AgentPc)("AgentPc", puid)
+        Catch ex As Exception
+            CSDebug.dispError("AgentPcManager.GetByKey ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
     End Function
 
     Public Shared Function WSGetListByPool(pPool As Pool) As List(Of AgentPc)
@@ -143,16 +155,16 @@ Public Class AgentPcManager
         Return codeResponse
     End Function
 #End Region
-    Public Shared Function GetByuid(puid As Integer) As AgentPc
+    Public Shared Function GetByuidNonSupprime(puid As Integer) As AgentPc
         Dim oReturn As AgentPc
 
-        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and uid = " & puid)
+        oReturn = getBySQL(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and uid = " & puid)
         Return oReturn
     End Function
     Public Shared Function GetByidPc(pIdPc As String) As AgentPc
         Dim oReturn As AgentPc
 
-        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and idPc = '" & pIdPc & "'")
+        oReturn = getBySQL(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and idPc = '" & pIdPc & "'")
         Return oReturn
     End Function
     ''' <summary>
@@ -163,7 +175,7 @@ Public Class AgentPcManager
     Public Shared Function GetByuidStructure(puid As Integer) As AgentPc
         Dim oReturn As AgentPc
 
-        oReturn = getByKey(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and  uidstructure = " & puid)
+        oReturn = getBySQL(Of AgentPc)("Select * from AgentPC where isSupprime <> 1 and  uidstructure = " & puid)
         Return oReturn
     End Function
     Public Shared Function Save(ByVal pObj As AgentPc, Optional bSynchro As Boolean = False) As Boolean
