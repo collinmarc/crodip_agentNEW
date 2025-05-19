@@ -30,17 +30,25 @@ Public Class SynchronisationElmtPool
     Public Overrides Function SynchroDesc(pAgent As Agent) As Boolean
         Dim bReturn As Boolean
         Try
-            Dim obj As New Pool
+            Dim oPool As New Pool
             Try
-                obj = PoolManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
-                If obj.uid <> 0 Then
-                    bReturn = PoolManager.Save(obj, True)
+                oPool = PoolManager.WSgetById(Me.IdentifiantEntier, Me.IdentifiantChaine)
+                If oPool.uid <> 0 Then
+                    bReturn = PoolManager.Save(oPool, True)
+                    If bReturn Then
+                        Dim oBanc As Banc
+                        oBanc = BancManager.WSgetById(oPool.uidbanc, oPool.aidbanc)
+                        If oBanc IsNot Nothing Then
+                            BancManager.save(oBanc)
+                        End If
+                    End If
+
                     'Suppression de toutes les associations dépendantes car elle seront recrées ensuite par synchro
-                    PoolManoControleManager.DeleteFromPool(obj)
-                    PoolBuseManager.DeleteFromPool(obj)
-                    PoolAgentManager.DeleteFromPool(obj)
-                    PoolManoEtalonManager.DeleteFromPool(obj)
-                    PoolPcManager.DeleteFromPool(obj)
+                    PoolManoControleManager.DeleteFromPool(oPool)
+                    PoolBuseManager.DeleteFromPool(oPool)
+                    PoolAgentManager.DeleteFromPool(oPool)
+                    PoolManoEtalonManager.DeleteFromPool(oPool)
+                    PoolPcManager.DeleteFromPool(oPool)
                 Else
                     bReturn = False
                 End If

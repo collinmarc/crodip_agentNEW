@@ -1221,7 +1221,7 @@ Public Class Synchronisation
             If m_Agent.oPCcourant IsNot Nothing Then
                 m_Agent.oPCcourant.dateDerniereSynchro = dtSRV
                 AgentPcManager.WSSend(m_Agent.oPCcourant, m_Agent.oPCcourant)
-                AgentPcManager.Save(m_Agent.oPCcourant)
+                AgentPcManager.Save(m_Agent.oPCcourant, True)
                 objWSCrodip.SetDateSynchroPc(m_Agent.oPCcourant.uid, m_Agent.oPCcourant.dateDerniereSynchroS)
             End If
             bReturn = True

@@ -120,8 +120,14 @@
   <metadata name="m_bsManoEtalon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="m_bsManoEtalon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="m_bsControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>600, 17</value>
+  </metadata>
+  <metadata name="m_bsManoControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>311, 17</value>
   </metadata>
   <metadata name="m_bsManoControle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>311, 17</value>
@@ -619,7 +625,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADY
-        BgAAAk1TRnQBSQFMAwEBAAEsAQQBLAEEARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        BgAAAk1TRnQBSQFMAwEBAAE0AQQBNAEEARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
         ARADAAEBAQABIAYAARASAAG/AgAB/wG/AgAB/wHAAgAB/wHAAgAB/wG/AgAB/wG+AgAB/wG+AgAB/wG/
         AgAB/wG9AgAB/wHBAgAB/wG+AgAB/wHAAgAB/wHBAgAB/wHCAgAB/wHAAgAB/wG/AgAB/8AAAb8CAAH/
         Ab4CAAH/AcECAAH/AcECAAH/AcECAAH/AcIBgQEAAf8BwgGBAQAB/wG/AYABAAH/AcACAAH/Ab8CAAH/

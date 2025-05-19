@@ -435,6 +435,15 @@ Public Class CSDb
             bddCommande.CommandText = "DELETE FROM PoolManoControle"
             bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM PoolManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM BancMesure"
+            bddCommande.ExecuteNonQuery()
 
             Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
             Const subkey1 As String = "CRODIP"

@@ -402,7 +402,7 @@ Public Class AgentPcManager
             If agent.oPool Is Nothing Then
                 bddCommande.CommandText = "SELECT * FROM AgentPc WHERE (dateModificationAgent>dateModificationCrodip or dateModificationCrodip is null) AND idStructure=" & agent.uidstructure
             Else
-                bddCommande.CommandText = "SELECT * FROM AgentPc MAT inner join PoolPc PA on MAT.uid = PA.uidpc WHERE PA.uidPool = " & agent.oPool.uid & " and (MAT.dateModificationAgent>MAT.dateModificationCrodip or MAT.dateModificationCrodip is null)"
+                bddCommande.CommandText = "SELECT MAT.* FROM AgentPc MAT inner join PoolPc PA on MAT.uid = PA.uidpc WHERE PA.uidPool = " & agent.oPool.uid & " and (MAT.dateModificationAgent>MAT.dateModificationCrodip or MAT.dateModificationCrodip is null)"
             End If
             ' On récupère les résultats
             Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -445,7 +445,7 @@ Public Class AgentPcManager
             dbLink.Execute()
             dbLink.free()
         Catch ex As Exception
-            CSDebug.dispFatal("BuseManager::setSynchro : " & ex.Message)
+            CSDebug.dispFatal("AgentPCManager::setSynchro : " & ex.Message)
         End Try
     End Sub
 

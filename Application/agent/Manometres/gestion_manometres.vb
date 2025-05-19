@@ -586,7 +586,7 @@ Public Class gestion_manometres
             If ckTousManoC.Checked Then
                 arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True)
             Else
-                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, False)
+                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True)
             End If
             m_bsManoControle.Clear()
             For Each oMano As ManometreControle In arrManoControle

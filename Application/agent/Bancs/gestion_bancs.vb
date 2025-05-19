@@ -45,7 +45,7 @@ Public Class gestion_bancs
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents gestionBanc_panel_dateAchat As System.Windows.Forms.Panel
+    Friend WithEvents gestionBanc_panel_datedernControle As System.Windows.Forms.Panel
     Friend WithEvents gestionBanc_panel_modele As System.Windows.Forms.Panel
     Friend WithEvents gestionBanc_panel_marque As System.Windows.Forms.Panel
     Friend WithEvents gestionBanc_panel_id As System.Windows.Forms.Panel
@@ -74,7 +74,7 @@ Public Class gestion_bancs
         Me.gestionBanc_panel_showFV = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.gestionBanc_panel_dateAchat = New System.Windows.Forms.Panel()
+        Me.gestionBanc_panel_datedernControle = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.gestionBanc_panel_modele = New System.Windows.Forms.Panel()
@@ -133,7 +133,7 @@ Public Class gestion_bancs
         Me.pnlFondBleu.Controls.Add(Me.Panel6)
         Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_showFV)
         Me.pnlFondBleu.Controls.Add(Me.Panel5)
-        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_dateAchat)
+        Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_datedernControle)
         Me.pnlFondBleu.Controls.Add(Me.Panel3)
         Me.pnlFondBleu.Controls.Add(Me.gestionBanc_panel_modele)
         Me.pnlFondBleu.Controls.Add(Me.Panel1)
@@ -206,16 +206,16 @@ Public Class gestion_bancs
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(200, 24)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Date d'achat / Auto-construction"
+        Me.Label3.Text = "Date dernier contrôle"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'gestionBanc_panel_dateAchat
+        'gestionBanc_panel_dateDernCtrl
         '
-        Me.gestionBanc_panel_dateAchat.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
-        Me.gestionBanc_panel_dateAchat.Location = New System.Drawing.Point(505, 41)
-        Me.gestionBanc_panel_dateAchat.Name = "gestionBanc_panel_dateAchat"
-        Me.gestionBanc_panel_dateAchat.Size = New System.Drawing.Size(215, 487)
-        Me.gestionBanc_panel_dateAchat.TabIndex = 26
+        Me.gestionBanc_panel_datedernControle.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.gestionBanc_panel_datedernControle.Location = New System.Drawing.Point(505, 41)
+        Me.gestionBanc_panel_datedernControle.Name = "gestionBanc_panel_dateDernCtrl"
+        Me.gestionBanc_panel_datedernControle.Size = New System.Drawing.Size(215, 487)
+        Me.gestionBanc_panel_datedernControle.TabIndex = 26
         '
         'Panel3
         '
@@ -429,7 +429,7 @@ Public Class gestion_bancs
             gestionBanc_panel_id.Controls.Clear()
             gestionBanc_panel_marque.Controls.Clear()
             gestionBanc_panel_modele.Controls.Clear()
-            gestionBanc_panel_dateAchat.Controls.Clear()
+            gestionBanc_panel_datedernControle.Controls.Clear()
             gestionBanc_panel_etat.Controls.Clear()
 
             ' On récupère les bancs de l'agent
@@ -512,21 +512,21 @@ Public Class gestion_bancs
                 tmpModele.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 
                 '## La date
-                Dim tmpDateAchat As New Label
-                tmpDateAchat.Name = "banc_" & tmpBanc.id & "_dateAchat"
+                Dim tmpDateDernCtrl As New Label
+                tmpDateDernCtrl.Name = "banc_" & tmpBanc.id & "_dateDernCtrl"
                 If Not String.IsNullOrEmpty(tmpBanc.dateAchat) Then
-                    tmpDateAchat.Text = CDate(tmpBanc.dateAchat).ToString("dd/MM/yyyy")
+                    tmpDateDernCtrl.Text = CDate(tmpBanc.dateDernierControle).ToString("dd/MM/yyyy")
                 End If
-                Controls.Add(tmpDateAchat)
+                Controls.Add(tmpDateDernCtrl)
                 ' Position
-                tmpDateAchat.Parent = gestionBanc_panel_dateAchat
-                tmpDateAchat.Left = 8
-                tmpDateAchat.Top = positionTop
+                tmpDateDernCtrl.Parent = gestionBanc_panel_datedernControle
+                tmpDateDernCtrl.Left = 8
+                tmpDateDernCtrl.Top = positionTop
                 ' Taille
-                tmpDateAchat.Width = 200
+                tmpDateDernCtrl.Width = 200
                 ' Apparence
-                tmpDateAchat.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
-                tmpDateAchat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+                tmpDateDernCtrl.ForeColor = System.Drawing.Color.FromArgb(CType(2, Byte), CType(129, Byte), CType(198, Byte))
+                tmpDateDernCtrl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 
                 '## Etat
                 Dim tmpState As New PictureBox

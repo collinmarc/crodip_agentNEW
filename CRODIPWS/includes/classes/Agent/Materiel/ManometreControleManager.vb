@@ -506,29 +506,4 @@ Public Class ManometreControleManager
         Return arrResponse
     End Function
 
-    Public Shared Function getlstByAgentJamaisServi(ByVal pAgent As Agent) As List(Of ManometreControle)
-        Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
-        Dim arrResponse As New List(Of ManometreControle)
-        Dim sql As String
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            sql = "SELECT * FROM AgentManoControle MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " AND MAT.jamaisServi = " & False & " "
-        Else
-            sql = "SELECT MAT.* FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
-        End If
-        'If Not isShowAll Then
-        '    sql = sql & " AND AgentManoControle.etat=" & True & ""
-        'End If
-        Dim sql2 As String
-        'on prend d'abord Ceux qui ont servi
-        'sql2 = sql & " AND AgentManoControle.JamaisServi=" & False & ""
-        'arrResponse = getListe(Of ManometreControle)(sql2)
-
-        'puis ceux qui n'ont jamais servi
-        sql2 = sql & " AND JamaisServi=" & True & ""
-        sql2 = sql2 & " ORDER BY TypeTraca, numTraca"
-        arrResponse.AddRange(getListe(Of ManometreControle)(sql2))
-
-
-        Return arrResponse
-    End Function
 End Class
