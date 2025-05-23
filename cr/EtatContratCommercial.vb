@@ -96,6 +96,9 @@ Public Class EtatContratCommercial
             '    img2.Save(msAG, Imaging.ImageFormat.Bmp)
             'End If
 
+            Dim oStruct As [Structure]
+            oStruct = StructureManager.getStructureById(m_oDiag.uidstructure)
+
             m_ods.ContratCommercial.AddContratCommercialRow(dateControle:=m_oDiag.controleDateDebut,
                                                             adresse1Exploit:=m_oDiag.proprietaireAdresse,
                                                             cpExploit:=m_oDiag.proprietaireCodePostal,
@@ -115,7 +118,7 @@ Public Class EtatContratCommercial
                                                         bSignAgent:=m_oDiag.isSignCCAgent,
                                                         SignAgent:=m_oDiag.SignCCAgent,
                                                         DateSignAgent:=m_oDiag.dateSignCCAgentS,
-                                                        MontantTTC:=m_oDiag.TotalTTC)
+                                                        MontantTTC:=m_oDiag.TotalTTC, nomStructure:=oStruct.nom, Commentaire:=oStruct.commentaire)
 
 
             bReturn = True

@@ -106,7 +106,7 @@ Public Class PulverisateurManager
     ''' <remarks></remarks>
     '''
     Public Shared Function getNewId(pAgent As Agent) As String
-        If AgentPcManager.GetListe(pAgent.uidstructure).Count() > 0 Then
+        If pAgent.oPCcourant IsNot Nothing > 0 Then
             Return getNewIdNew(pAgent)
         Else
             Return getNewIdOLD(pAgent)
@@ -120,7 +120,7 @@ Public Class PulverisateurManager
         ' déclarations
         Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
         Dim idPC As String
-        idPC = AgentPcManager.GetListe(pAgent.uidstructure)(0).idCrodip
+        idPC = pAgent.oPCcourant.numeroNational
         Dim Racine As String = idCrodipStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 

@@ -42,13 +42,13 @@ Public Class IdentifiantPulverisateurManager
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
         Try
             Dim Info As String = ""
-            Dim puid As Integer
+            Dim ruid As Integer
 
             'Determination du Nom de la méthode : exemple SendManometreControle
             Dim typeT As Type = GetType(IdentifiantPulverisateur)
             Dim nomMethode As String = "Send" & typeT.Name
             Dim methode = objWSCrodip.GetType().GetMethod(nomMethode)
-            Dim Params As Object() = {pObjIn, Info, puid}
+            Dim Params As Object() = {pObjIn, Info, ruid}
             If methode IsNot Nothing Then
                 'Invocation de la méthode
                 Dim serializer As New XmlSerializer(pObjIn.GetType())
@@ -68,11 +68,10 @@ Public Class IdentifiantPulverisateurManager
             End If
             Select Case codeResponse
                 Case 2 ' UPDATE OK
-                    puid = pObjIn.uid
-                    pobjOut = WSgetById(puid, "", puidAgent)
+                    pobjOut = WSgetById(ruid, "", puidAgent)
                 Case 4 ' CREATE OK
-                    puid = DirectCast(Params(2), Integer)
-                    pobjOut = WSgetById(puid, "", puidAgent)
+                    ruid = DirectCast(Params(2), Integer)
+                    pobjOut = WSgetById(ruid, "", puidAgent)
                 Case 1 ' NOK
                     CSDebug.dispError("IdentifiantPulveManager.WSSend - Code 1 : Erreur Base de données Serveur")
                 Case 9 ' BADREQUEST
@@ -170,16 +169,10 @@ Public Class IdentifiantPulverisateurManager
             Dim strQuery As String
             strQuery = "insert into identifiantPulverisateur (id,  idStructure ,  numeroNational ,  etat ,  dateUtilisation ,  libelle , dateModificationAgent ,  dateModificationCrodip "
             strQuery = strQuery & ",aid,  uid, uidstructure "
-            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                strQuery = strQuery & ",idCRODIPPOOL"
-            End If
 
             strQuery = strQuery & ") VALUES ("
             strQuery = strQuery & pIdent.id & "," & pIdent.idStructure & ",'" & CSDb.secureString(pIdent.numeroNational) & "','" & CSDb.secureString(pIdent.etat) & "','" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "','" & CSDb.secureString(pIdent.libelle) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationAgent) & "','" & CSDate.ToCRODIPString(pIdent.dateModificationCrodip) & "'"
             strQuery = strQuery & ",'" & pIdent.aid & "'," & pIdent.uid & "," & pIdent.uidstructure
-            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                strQuery = strQuery & "'" & pIdent.idCRODIPPool & "'"
-            End If
             strQuery = strQuery & " )"
 
 
@@ -356,15 +349,11 @@ Public Class IdentifiantPulverisateurManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function getListe(pAgent As Agent) As List(Of IdentifiantPulverisateur)
+    Public Overloads Shared Function getListe(pAgent As Agent) As List(Of IdentifiantPulverisateur)
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            olst = getListeByStructure(pAgent.uidStructure)
-        Else
-            'olst = getListeByPool(pAgent.idCRODIPPool)
-        End If
+        olst = getListeByStructure(pAgent.uidstructure)
 
         Return olst
 
@@ -425,11 +414,7 @@ Public Class IdentifiantPulverisateurManager
         Debug.Assert(pAgent IsNot Nothing, "L'agent doit être renseigné")
         Dim olst As New List(Of IdentifiantPulverisateur)
 
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            olst = getListeInutiliseByStructure(pAgent.uidStructure)
-        Else
-            'olst = getListeInutiliseByPool(pAgent.idCRODIPPool)
-        End If
+        olst = getListeInutiliseByStructure(pAgent.uidstructure)
 
         Return olst
 
@@ -465,7 +450,7 @@ Public Class IdentifiantPulverisateurManager
                 End If
             Next
         Catch ex As Exception
-            CSDebug.dispError("IdentifiantPulveristaeurManager.getListeInitulise ERR" & ex.Message)
+            CSDebug.dispError("IdentifiantPulveristaeurManager.getListeInituliseByPool ERR" & ex.Message)
         End Try
         Return olst
     End Function

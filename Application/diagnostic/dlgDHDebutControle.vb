@@ -3,6 +3,7 @@ Imports CRODIPWS
 
 Public Class dlgDHDebutControle
     Private m_oDiag As Diagnostic
+    Private heurcourante
 
     Public Sub New()
 
@@ -28,8 +29,22 @@ Public Class dlgDHDebutControle
     Private Sub btn_poursuivre_Click(sender As Object, e As EventArgs) Handles btn_poursuivre.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         If m_oDiag IsNot Nothing Then
-            m_oDiag.controleDateDebut = dtpDateDebutControle.Value.ToShortDateString() & " " & dtpHeuredebutcontrole.Value.ToShortTimeString()
+            m_oDiag.controleDateDebut = dtpHeuredebutcontrole.Value
         End If
         Me.Close()
+    End Sub
+
+    Private Sub dlgDHDebutControle_Load(sender As Object, e As EventArgs) Handles Me.Load
+        dtpHeuredebutcontrole.MaxDate = DateTime.Now
+        dtpHeuredebutcontrole.MinDate = DiagnosticManager.getMaxDateFinControle(m_oDiag.uidagent)
+        laDateFinDernControle.Text = DiagnosticManager.getMaxDateFinControle(m_oDiag.uidagent).ToString()
+    End Sub
+
+
+
+    Private Sub pctbx_Docs_refresh_Click(sender As Object, e As EventArgs) Handles pctbx_Docs_refresh.Click
+        dtpHeuredebutcontrole.MaxDate = DateTime.Now.AddSeconds(1)
+        dtpHeuredebutcontrole.Value = DateTime.Now
+
     End Sub
 End Class

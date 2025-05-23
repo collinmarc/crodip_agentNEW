@@ -74,7 +74,7 @@ Public Class AgentManager
 
     End Function
 
-    Friend Shared Function getByKey(puid As Integer) As Agent
+    Public Shared Function getByKey(puid As Integer) As Agent
         Dim oReturn As Agent
         Try
             oReturn = getByuid(Of Agent)("Agent", puid)
@@ -425,6 +425,7 @@ Public Class AgentManager
         'on retourne l'agent ou un objet vide en cas d'erreur
         Return tmpAgent
     End Function
+
     ' Methode OK
     ''' <summary>
     ''' renvoie un agent a partir de son numéro national

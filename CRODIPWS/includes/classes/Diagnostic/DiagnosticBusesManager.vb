@@ -119,49 +119,6 @@ Public Class DiagnosticBusesManager
 
 #Region "Methodes Locales"
 
-    'Public Function getNewId(ByVal structure_id As String)
-    '    ' déclarations
-    '    Dim tmpDiagnosticId As String = structure_id & "-" & agentCourant.id & "-1"
-    '    If structure_id <> "" And structure_id <> "0" Then
-
-    '        Dim bddCommande As New DbCommand
-    '        ' On test si la connexion est déjà ouverte ou non
-    '        If bddConnection.State() = 0 Then
-    '            ' Si non, on la configure et on l'ouvre
-    '            bddConnection.ConnectionString = bddConnectString
-    '            bddConnection.Open()
-    '        End If
-    '        bddCommande.Connection = bddConnection
-    '        bddCommande.CommandText = "SELECT `DiagnosticItem`.`id` FROM `DiagnosticItem` WHERE `DiagnosticItem`.`id` LIKE '" & structure_id & "-" & agentCourant.id & "-%' ORDER BY `DiagnosticItem`.`id` DESC"
-    '        Try
-    '            ' On récupère les résultats
-    '            Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
-    '            ' Puis on les parcours
-    '            Dim newId As Integer = 0
-    '            While tmpListProfils.Read()
-    '                ' On récupère le dernier ID
-    '                Dim tmpId As Integer = 0
-    '                tmpDiagnosticId = tmpListProfils.Item(0).ToString
-    '                tmpId = CInt(tmpDiagnosticId.Replace(structure_id & "-" & agentCourant.id & "-", ""))
-    '                If tmpId > newId Then
-    '                    newId = tmpId
-    '                End If
-    '            End While
-    '            tmpDiagnosticId = structure_id & "-" & agentCourant.id & "-" & (newId + 1)
-    '        Catch ex As Exception ' On intercepte l'erreur
-    '            Console.Write("DiagnosticManager - newId : " & ex.Message)
-    '        End Try
-
-    '        ' Test pour fermeture de connection BDD
-    '        If bddConnection.State() <> 0 Then
-    '            ' On ferme la connexion
-    '            bddConnection.Close()
-    '        End If
-
-    '    End If
-    '    'on retourne le nouvel id
-    '    Return tmpDiagnosticId
-    'End Function
 
     Public Shared Sub save(ByVal poDiagBuses As DiagnosticBuses, pCSDB As CSDb, Optional bSyncro As Boolean = False)
         Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")

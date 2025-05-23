@@ -323,6 +323,10 @@ Partial Public Class dsContratCommercial
         
         Private columnMontantTTC As Global.System.Data.DataColumn
         
+        Private columnnomStructure As Global.System.Data.DataColumn
+        
+        Private columnCommentaire As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -519,6 +523,22 @@ Partial Public Class dsContratCommercial
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property nomStructureColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnomStructure
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CommentaireColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCommentaire
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -575,9 +595,11 @@ Partial Public Class dsContratCommercial
                     ByVal bSignAgent As Boolean,  _
                     ByVal SignAgent() As Byte,  _
                     ByVal DateSignAgent As String,  _
-                    ByVal MontantTTC As Decimal) As ContratCommercialRow
+                    ByVal MontantTTC As Decimal,  _
+                    ByVal nomStructure As String,  _
+                    ByVal Commentaire As String) As ContratCommercialRow
             Dim rowContratCommercialRow As ContratCommercialRow = CType(Me.NewRow,ContratCommercialRow)
-            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, bSignClient, SignClient, DateSignclient, bSignAgent, SignAgent, DateSignAgent, MontantTTC}
+            Dim columnValuesArray() As Object = New Object() {dateControle, RSExploitant, adresse1Exploit, cpExploit, villeExploit, numStruct, NomPrenomInspecteur, NumInspecteur, NomRepresentant, MarquePulve, NumnatPulve, MontantHT, NomPrenomExploit, bSignClient, SignClient, DateSignclient, bSignAgent, SignAgent, DateSignAgent, MontantTTC, nomStructure, Commentaire}
             rowContratCommercialRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowContratCommercialRow)
             Return rowContratCommercialRow
@@ -620,6 +642,8 @@ Partial Public Class dsContratCommercial
             Me.columnSignAgent = MyBase.Columns("SignAgent")
             Me.columnDateSignAgent = MyBase.Columns("DateSignAgent")
             Me.columnMontantTTC = MyBase.Columns("MontantTTC")
+            Me.columnnomStructure = MyBase.Columns("nomStructure")
+            Me.columnCommentaire = MyBase.Columns("Commentaire")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -665,6 +689,10 @@ Partial Public Class dsContratCommercial
             MyBase.Columns.Add(Me.columnDateSignAgent)
             Me.columnMontantTTC = New Global.System.Data.DataColumn("MontantTTC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMontantTTC)
+            Me.columnnomStructure = New Global.System.Data.DataColumn("nomStructure", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnomStructure)
+            Me.columnCommentaire = New Global.System.Data.DataColumn("Commentaire", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCommentaire)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1131,6 +1159,38 @@ Partial Public Class dsContratCommercial
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property nomStructure() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.nomStructureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'nomStructure' dans la table 'ContratCommercial' est DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.nomStructureColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Commentaire() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableContratCommercial.CommentaireColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("La valeur pour la colonne 'Commentaire' dans la table 'ContratCommercial' est DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContratCommercial.CommentaireColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsdateControleNull() As Boolean
             Return Me.IsNull(Me.tableContratCommercial.dateControleColumn)
         End Function
@@ -1367,6 +1427,30 @@ Partial Public Class dsContratCommercial
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetMontantTTCNull()
             Me(Me.tableContratCommercial.MontantTTCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsnomStructureNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.nomStructureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetnomStructureNull()
+            Me(Me.tableContratCommercial.nomStructureColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCommentaireNull() As Boolean
+            Return Me.IsNull(Me.tableContratCommercial.CommentaireColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCommentaireNull()
+            Me(Me.tableContratCommercial.CommentaireColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

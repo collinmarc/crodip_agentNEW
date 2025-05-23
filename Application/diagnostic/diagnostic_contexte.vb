@@ -58,10 +58,6 @@ Public Class diagnostic_contexte
     Friend WithEvents m_bsCommune As BindingSource
     Protected ClientCourant As Exploitation
     Friend WithEvents btn_Lieux As Button
-    Friend WithEvents dtpHeuredebutcontrole As DateTimePicker
-    Friend WithEvents dtpDateDebutControle As DateTimePicker
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label5 As Label
 #End Region
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -186,10 +182,6 @@ Public Class diagnostic_contexte
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.rbPrecontroleOui = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.dtpDateDebutControle = New System.Windows.Forms.DateTimePicker()
-        Me.dtpHeuredebutcontrole = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox1.SuspendLayout()
         CType(Me.m_bsCommune, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -376,7 +368,7 @@ Public Class diagnostic_contexte
         '
         Me.isPremierControle.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.isPremierControle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.isPremierControle.Location = New System.Drawing.Point(196, 68)
+        Me.isPremierControle.Location = New System.Drawing.Point(196, 19)
         Me.isPremierControle.Name = "isPremierControle"
         Me.isPremierControle.Size = New System.Drawing.Size(104, 16)
         Me.isPremierControle.TabIndex = 3
@@ -386,7 +378,7 @@ Public Class diagnostic_contexte
         'labelDateDernierControle
         '
         Me.labelDateDernierControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelDateDernierControle.Location = New System.Drawing.Point(53, 82)
+        Me.labelDateDernierControle.Location = New System.Drawing.Point(53, 33)
         Me.labelDateDernierControle.Name = "labelDateDernierControle"
         Me.labelDateDernierControle.Size = New System.Drawing.Size(161, 20)
         Me.labelDateDernierControle.TabIndex = 1
@@ -395,17 +387,13 @@ Public Class diagnostic_contexte
         '
         'dateDernierControleComplet
         '
-        Me.dateDernierControleComplet.Location = New System.Drawing.Point(220, 84)
+        Me.dateDernierControleComplet.Location = New System.Drawing.Point(220, 35)
         Me.dateDernierControleComplet.Name = "dateDernierControleComplet"
         Me.dateDernierControleComplet.Size = New System.Drawing.Size(196, 20)
         Me.dateDernierControleComplet.TabIndex = 4
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.dtpHeuredebutcontrole)
-        Me.GroupBox2.Controls.Add(Me.dtpDateDebutControle)
-        Me.GroupBox2.Controls.Add(Me.Label15)
-        Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.LabelInspecteurPrecedent)
         Me.GroupBox2.Controls.Add(Me.tbCtrlPart_Inspecteur)
         Me.GroupBox2.Controls.Add(Me.tbCtrlPart_Organisme)
@@ -421,7 +409,7 @@ Public Class diagnostic_contexte
         Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GroupBox2.Location = New System.Drawing.Point(7, 284)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(484, 224)
+        Me.GroupBox2.Size = New System.Drawing.Size(484, 175)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Type de contrôle"
@@ -430,7 +418,7 @@ Public Class diagnostic_contexte
         '
         Me.LabelInspecteurPrecedent.Enabled = False
         Me.LabelInspecteurPrecedent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelInspecteurPrecedent.Location = New System.Drawing.Point(50, 188)
+        Me.LabelInspecteurPrecedent.Location = New System.Drawing.Point(50, 139)
         Me.LabelInspecteurPrecedent.Name = "LabelInspecteurPrecedent"
         Me.LabelInspecteurPrecedent.Size = New System.Drawing.Size(161, 15)
         Me.LabelInspecteurPrecedent.TabIndex = 8
@@ -439,14 +427,14 @@ Public Class diagnostic_contexte
         '
         'tbCtrlPart_Inspecteur
         '
-        Me.tbCtrlPart_Inspecteur.Location = New System.Drawing.Point(220, 186)
+        Me.tbCtrlPart_Inspecteur.Location = New System.Drawing.Point(220, 137)
         Me.tbCtrlPart_Inspecteur.Name = "tbCtrlPart_Inspecteur"
         Me.tbCtrlPart_Inspecteur.Size = New System.Drawing.Size(196, 20)
         Me.tbCtrlPart_Inspecteur.TabIndex = 8
         '
         'tbCtrlPart_Organisme
         '
-        Me.tbCtrlPart_Organisme.Location = New System.Drawing.Point(220, 160)
+        Me.tbCtrlPart_Organisme.Location = New System.Drawing.Point(220, 111)
         Me.tbCtrlPart_Organisme.Name = "tbCtrlPart_Organisme"
         Me.tbCtrlPart_Organisme.Size = New System.Drawing.Size(196, 20)
         Me.tbCtrlPart_Organisme.TabIndex = 7
@@ -455,7 +443,7 @@ Public Class diagnostic_contexte
         '
         Me.LabelOrganismePrecedent.Enabled = False
         Me.LabelOrganismePrecedent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelOrganismePrecedent.Location = New System.Drawing.Point(50, 162)
+        Me.LabelOrganismePrecedent.Location = New System.Drawing.Point(50, 113)
         Me.LabelOrganismePrecedent.Name = "LabelOrganismePrecedent"
         Me.LabelOrganismePrecedent.Size = New System.Drawing.Size(161, 15)
         Me.LabelOrganismePrecedent.TabIndex = 5
@@ -466,7 +454,7 @@ Public Class diagnostic_contexte
         '
         Me.isControleComplet.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.isControleComplet.Checked = True
-        Me.isControleComplet.Location = New System.Drawing.Point(64, 68)
+        Me.isControleComplet.Location = New System.Drawing.Point(64, 19)
         Me.isControleComplet.Name = "isControleComplet"
         Me.isControleComplet.Size = New System.Drawing.Size(124, 16)
         Me.isControleComplet.TabIndex = 2
@@ -477,7 +465,7 @@ Public Class diagnostic_contexte
         'isControlePartiel
         '
         Me.isControlePartiel.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.isControlePartiel.Location = New System.Drawing.Point(73, 116)
+        Me.isControlePartiel.Location = New System.Drawing.Point(73, 67)
         Me.isControlePartiel.Name = "isControlePartiel"
         Me.isControlePartiel.Size = New System.Drawing.Size(112, 16)
         Me.isControlePartiel.TabIndex = 5
@@ -487,7 +475,7 @@ Public Class diagnostic_contexte
         'dateDernierControlePartiel
         '
         Me.dateDernierControlePartiel.Enabled = False
-        Me.dateDernierControlePartiel.Location = New System.Drawing.Point(220, 132)
+        Me.dateDernierControlePartiel.Location = New System.Drawing.Point(220, 83)
         Me.dateDernierControlePartiel.Name = "dateDernierControlePartiel"
         Me.dateDernierControlePartiel.Size = New System.Drawing.Size(196, 20)
         Me.dateDernierControlePartiel.TabIndex = 6
@@ -496,7 +484,7 @@ Public Class diagnostic_contexte
         '
         Me.labelDateDernierControlePartiel.Enabled = False
         Me.labelDateDernierControlePartiel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelDateDernierControlePartiel.Location = New System.Drawing.Point(67, 136)
+        Me.labelDateDernierControlePartiel.Location = New System.Drawing.Point(67, 87)
         Me.labelDateDernierControlePartiel.Name = "labelDateDernierControlePartiel"
         Me.labelDateDernierControlePartiel.Size = New System.Drawing.Size(144, 16)
         Me.labelDateDernierControlePartiel.TabIndex = 1
@@ -510,7 +498,7 @@ Public Class diagnostic_contexte
         Me.btn_poursuivre.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_poursuivre.ForeColor = System.Drawing.Color.White
         Me.btn_poursuivre.Image = CType(resources.GetObject("btn_poursuivre.Image"), System.Drawing.Image)
-        Me.btn_poursuivre.Location = New System.Drawing.Point(351, 672)
+        Me.btn_poursuivre.Location = New System.Drawing.Point(351, 610)
         Me.btn_poursuivre.Name = "btn_poursuivre"
         Me.btn_poursuivre.Size = New System.Drawing.Size(140, 24)
         Me.btn_poursuivre.TabIndex = 0
@@ -524,7 +512,7 @@ Public Class diagnostic_contexte
         Me.btn_retour.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_retour.ForeColor = System.Drawing.Color.White
         Me.btn_retour.Image = CType(resources.GetObject("btn_retour.Image"), System.Drawing.Image)
-        Me.btn_retour.Location = New System.Drawing.Point(12, 672)
+        Me.btn_retour.Location = New System.Drawing.Point(12, 610)
         Me.btn_retour.Name = "btn_retour"
         Me.btn_retour.Size = New System.Drawing.Size(128, 24)
         Me.btn_retour.TabIndex = 5
@@ -590,7 +578,7 @@ Public Class diagnostic_contexte
         Me.GroupBox4.Controls.Add(Me.Label8)
         Me.GroupBox4.Controls.Add(Me.pnlprecontroleOuiNon)
         Me.GroupBox4.Controls.Add(Me.Label6)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 514)
+        Me.GroupBox4.Location = New System.Drawing.Point(8, 465)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(481, 135)
         Me.GroupBox4.TabIndex = 4
@@ -903,47 +891,10 @@ Public Class diagnostic_contexte
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Dans l’optique du contrôle,"
         '
-        'Label5
-        '
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(34, 42)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(183, 20)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Heure de début de contrôle : "
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'Label15
-        '
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(34, 13)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(183, 20)
-        Me.Label15.TabIndex = 10
-        Me.Label15.Text = "Date de début de contrôle : "
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
-        'dtpDateDebutControle
-        '
-        Me.dtpDateDebutControle.Location = New System.Drawing.Point(220, 16)
-        Me.dtpDateDebutControle.Name = "dtpDateDebutControle"
-        Me.dtpDateDebutControle.Size = New System.Drawing.Size(196, 20)
-        Me.dtpDateDebutControle.TabIndex = 0
-        '
-        'dtpHeuredebutcontrole
-        '
-        Me.dtpHeuredebutcontrole.CustomFormat = "HH':'mm"
-        Me.dtpHeuredebutcontrole.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpHeuredebutcontrole.Location = New System.Drawing.Point(220, 42)
-        Me.dtpHeuredebutcontrole.Name = "dtpHeuredebutcontrole"
-        Me.dtpHeuredebutcontrole.ShowUpDown = True
-        Me.dtpHeuredebutcontrole.Size = New System.Drawing.Size(70, 20)
-        Me.dtpHeuredebutcontrole.TabIndex = 1
-        '
         'diagnostic_contexte
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(499, 704)
+        Me.ClientSize = New System.Drawing.Size(499, 642)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.btn_retour)
@@ -1111,7 +1062,6 @@ Public Class diagnostic_contexte
                 bReturn = False
             End If
             If bReturn Then
-                m_diagnostic.controleDateDebut = dtpDateDebutControle.Value.ToShortDateString() & " " & dtpHeuredebutcontrole.Value.ToShortTimeString()
                 m_diagnostic.controleCommune = cbxcommune.Text
                 m_diagnostic.controleCodePostal = tbcodePostal.Text
                 m_diagnostic.controleSite = cbxSite.Text

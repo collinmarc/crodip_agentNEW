@@ -284,20 +284,13 @@ Public Class DiagnosticItemManager
             Dim newId As Integer = 0
             Dim strDiagItemId As String
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT DiagnosticItem.id as N FROM DiagnosticItem WHERE idDiagnostic LIKE '" & tmpDiagnosticId & "%'"
+            bddCommande.CommandText = "SELECT Max(DiagnosticItem.id) as N FROM DiagnosticItem WHERE idDiagnostic LIKE '" & tmpDiagnosticId & "%'"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
-                'On est obligé de les parcourir car c'est une clé alpha num !!!!!
-                While tmpListProfils.Read()
-                    strDiagItemId = tmpListProfils.GetString(0)
-                    strDiagItemId = strDiagItemId.Replace(tmpDiagnosticId, "")
-                    If Not String.IsNullOrEmpty(strDiagItemId) And IsNumeric(strDiagItemId) Then
-                        If CInt(strDiagItemId) > newId Then
-                            newId = CInt(strDiagItemId)
-                        End If
-                    End If
-                End While
+                tmpListProfils.Read()
+                strDiagItemId = tmpListProfils.GetString(0)
+                newId = CInt(strDiagItemId)
                 tmpListProfils.Close()
 
             Catch ex As Exception ' On intercepte l'erreur

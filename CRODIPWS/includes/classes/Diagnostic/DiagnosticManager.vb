@@ -962,45 +962,22 @@ Public Class DiagnosticManager
     Public Shared Function getNewId(pAgent As Agent) As String
         Dim id As String
         id = pAgent.idStructure & "-" & pAgent.id & "-"
-        If pAgent.bTest Then
-            id = id & WSGetNewId(pAgent)
+        If pAgent.oPCcourant IsNot Nothing Then
+            id = getNewIdNew(pAgent)
         Else
-            If AgentPcManager.GetListe(pAgent.uidstructure).Count() > 0 Then
-                id = getNewIdNew(pAgent)
-            Else
-                id = getNewIdOLD(pAgent)
+            id = getNewIdOLD(pAgent)
             End If
-        End If
         Return id
     End Function
-    Public Shared Function WSGetNewId(pAgent As Agent) As String
-        Dim codeResponse As Integer = 99
-        Dim objWSCrodip As WSCRODIP.CrodipServer
-        objWSCrodip = WebServiceCRODIP.getWS()
-        Dim pInfo As String = ""
-        Dim puid As Integer
-        Dim oReponse As Object
-        Dim sreturn As String
-        Try
-
-            ''            oReponse = objWSCrodip.GetIncrementDiagnostic(pAgent.id, puid)
-            ''          sreturn = oReponse(0).innerText()
-        Catch ex As Exception
-            CSDebug.dispError("DiagnosticManager.WSgestNewId Err", ex)
-            sreturn = "99999"
-        End Try
-        Return sreturn
-    End Function
-
-
     Public Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
-        Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.uidstructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.oPCcourant IsNot Nothing, "Le PC Courant doit être renseigné")
         ' déclarations
-        Dim idStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
+        Dim idStructure As String = StructureManager.getStructureById(pAgent.uidstructure).idCrodip
         Dim idPC As String
-        idPC = AgentPcManager.GetListe(pAgent.uidstructure)(0).idCrodip
+        idPC = pAgent.oPCcourant.numeroNational
         Dim Racine As String = idStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 
@@ -1920,6 +1897,22 @@ Public Class DiagnosticManager
         ' Test pour fermeture de connection BDD
         oCSDb.free()
         Return nDiag
+    End Function
+
+    Public Shared Function getMaxDateFinControle(puidAgent As Long) As DateTime
+        Dim dReturn As DateTime = Date.MinValue
+        Dim oCSD As New CSDb(True)
+        Try
+            Dim sql = "SELECT MAX (controleDateFin) From Diagnostic WHERE uidAgent = " & puidAgent
+            Dim strDate As String = oCSD.getValue(sql)
+            dReturn = CSDate.FromCrodipString(strDate)
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.getMaxDateFinControle ERR", ex)
+            dReturn = DateTime.MinValue
+        End Try
+        oCSD.free()
+        Return dReturn
+
     End Function
 
 End Class
