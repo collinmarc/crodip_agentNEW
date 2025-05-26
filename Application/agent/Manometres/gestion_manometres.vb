@@ -584,9 +584,9 @@ Public Class gestion_manometres
         Try
             Dim arrManoControle As List(Of ManometreControle)
             If ckTousManoC.Checked Then
-                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True)
+                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True, pListByStructure:=True)
             Else
-                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True)
+                arrManoControle = ManometreControleManager.getlstByAgent(agentCourant, True, pListByStructure:=False)
             End If
             m_bsManoControle.Clear()
             For Each oMano As ManometreControle In arrManoControle
