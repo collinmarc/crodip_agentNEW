@@ -324,11 +324,7 @@ Public Class ManometreEtalonManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
         Dim sql As String
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            sql = "SELECT * FROM AgentManoEtalon MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
-        Else
-            sql = "SELECT MAT.* FROM AgentManoEtalon MAT inner join PoolManoEtalon PA on MAT.uid = PA.uidmanoe WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
-        End If
+        sql = "SELECT MAT.* FROM AgentManoEtalon MAT inner join PoolManoEtalon PA on MAT.uid = PA.uidmanoe WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         If Not isShowAll Then
             sql = sql & " AND MAT.etat=" & True & ""
         End If
@@ -350,11 +346,7 @@ Public Class ManometreEtalonManager
         Debug.Assert(Not pAgent Is Nothing, "L'agent Doit être renseigné")
         Dim arrResponse As New List(Of ManometreEtalon)
         Dim sql As String
-        If Not GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-            sql = "SELECT * FROM AgentManoEtalon MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " AND MAT.jamaisServi = " & False & " "
-        Else
-            sql = "SELECT MAT.* FROM AgentManoEtalon MAT inner join PoolManoEtalon PA on MAT.uid = PA.uidmanoe WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
-        End If
+        sql = "SELECT MAT.* FROM AgentManoEtalon MAT inner join PoolManoEtalon PA on MAT.uid = PA.uidmanoe WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
         'If Not isShowAll Then
         '    sql = sql & " AND AgentManoControle.etat=" & True & ""
         'End If

@@ -209,11 +209,7 @@ Public Class IdentifiantPulverisateurManager
             strQuery = strQuery & ",  etat = '" & CSDb.secureString(pIdent.etat) & "'"
             strQuery = strQuery & ",  dateUtilisation ='" & CSDate.ToCRODIPString(pIdent.dateUtilisation) & "'"
             strQuery = strQuery & ",  libelle ='" & CSDb.secureString(pIdent.libelle) & "'"
-            If GlobalsCRODIP.GLOB_PARAM_GestiondesPools Then
-                If Not String.IsNullOrEmpty(pIdent.idCRODIPPool) Then
-                    strQuery = strQuery & ",  idCrodipPool ='" & CSDb.secureString(pIdent.idCRODIPPool) & "'"
-                End If
-            End If
+
             strQuery = strQuery & pIdent.getRootQuery()
 
             strQuery = strQuery & "WHERE uid = " & pIdent.uid & " or id = " & pIdent.id

@@ -71,9 +71,6 @@
     <Setting Name="SecurityProtocol" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">4080</Value>
     </Setting>
-    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="SynchroEtatDiagUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/index/envoi-diagnostic-pdf</Value>
     </Setting>
@@ -116,9 +113,6 @@
     <Setting Name="SynchroEtatFVBancpwd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">inutilisé</Value>
     </Setting>
-    <Setting Name="GestionDesPools" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="DBExtension" Type="System.String" Scope="Application">
       <Value Profile="(Default)">.db3</Value>
     </Setting>
@@ -149,11 +143,8 @@
     <Setting Name="urlCRODIP" Type="System.String" Scope="Application">
       <Value Profile="(Default)">admin.crodip.net</Value>
     </Setting>
-    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">V4.1.01</Value>
-    </Setting>
     <Setting Name="aqw" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">zsx</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SynchroEtatFVMAnoUser" Type="System.String" Scope="Application">
       <Value Profile="(Default)">inutilisé</Value>
@@ -164,14 +155,20 @@
     <Setting Name="DernierControleCodePostal" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="epulve" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://epulve.crodip.net</Value>
     </Setting>
+    <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">V4.3</Value>
+    </Setting>
     <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20250117150000</Value>
+      <Value Profile="(Default)">20250515170000</Value>
+    </Setting>
+    <Setting Name="AutoSync" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WSCrodipProduction" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

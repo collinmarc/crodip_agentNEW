@@ -289,15 +289,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property AutoSync() As Boolean
-        Get
-            Return CType(Me("AutoSync"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("/index/envoi-diagnostic-pdf")>  _
     Public ReadOnly Property SynchroEtatDiagUrl() As String
         Get
@@ -427,15 +418,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property GestionDesPools() As Boolean
-        Get
-            Return CType(Me("GestionDesPools"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _
     Public ReadOnly Property DBExtension() As String
         Get
@@ -526,16 +508,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("V4.1.01")>  _
-    Public ReadOnly Property DBVersionExpected() As String
-        Get
-            Return CType(Me("DBVersionExpected"),String)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("zsx")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
     Public ReadOnly Property aqw() As String
         Get
             Return CType(Me("aqw"),String)
@@ -574,15 +547,6 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-    Public ReadOnly Property WSCrodipProduction() As Boolean
-        Get
-            Return CType(Me("WSCrodipProduction"),Boolean)
-        End Get
-    End Property
-    
-    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.DefaultSettingValueAttribute("https://epulve.crodip.net")>  _
     Public ReadOnly Property epulve() As String
         Get
@@ -592,10 +556,37 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("20250117150000")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("V4.3")>  _
+    Public ReadOnly Property DBVersionExpected() As String
+        Get
+            Return CType(Me("DBVersionExpected"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("20250515170000")>  _
     Public ReadOnly Property NumBuild() As String
         Get
             Return CType(Me("NumBuild"),String)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property AutoSync() As Boolean
+        Get
+            Return CType(Me("AutoSync"),Boolean)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public ReadOnly Property WSCrodipProduction() As Boolean
+        Get
+            Return CType(Me("WSCrodipProduction"),Boolean)
         End Get
     End Property
 End Class

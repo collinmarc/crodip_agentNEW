@@ -784,59 +784,12 @@ Public Class login
                             AgentManager.save(_LocalAgent)
                         End If
 
-                        Dim lstPool As List(Of Pool)
-
-                        Dim oPcRef As AgentPc = AgentPcManager.GetAgentPCFromRegistry()
-                        If oPcRef IsNot Nothing Then
-                            'Cas particulier : 1ere connexion , il y a un PC mais pas de poolpc
-                            Dim olstPoolPc As List(Of PoolPc) = PoolPcManager.getListeByStructure(_LocalAgent.uidstructure)
-                            If olstPoolPc.Count = 0 Then
-                                'On récupère les poolPc depuis les WS
-                                olstPoolPc = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
-                                For Each oPoolPc As PoolPc In olstPoolPc
-                                    'On récupére les Pool depuis les PoolPc si nécessaire
-                                    Dim oPool As Pool
-                                    oPool = PoolManager.getPoolByuid(oPoolPc.uidpool)
-                                    If oPool Is Nothing Then
-                                        oPool = PoolManager.WSgetById(oPoolPc.uid, oPoolPc.aid)
-                                        PoolManager.Save(oPool)
-                                    End If
-                                    PoolPcManager.Save(oPoolPc)
-                                Next
-                            End If
-
-                            _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de registre
-                            'MAJ de la date de derniere synchro si elle est vide (1ere connexion)
-                            If oPcRef.dateDerniereSynchro = DateTime.MinValue Then
-                                oPcRef.dateDerniereSynchro = _LocalAgent.dateDerniereSynchro
-                            End If
-
-                            'Récupération de la liste des pools de l'agent relatif à ce pc
-                            If CSEnvironnement.checkWebService Then
-                                Dim olstPC As List(Of PoolPc)
-                                lstPool = New List(Of Pool)()
-                                olstPC = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
-                                For Each oPoolPc As PoolPc In olstPC
-                                    Dim oPool As Pool
-                                    oPool = PoolManager.WSgetById(oPoolPc.uidpool, "")
-                                    If oPool IsNot Nothing Then
-                                        If oPool.CheckPool(_LocalAgent) Then
-                                            lstPool.Add(oPool)
-                                        End If
-                                    End If
-                                Next
-                            Else
-                                lstPool = _LocalAgent.getPoolList(oPcRef)
-                            End If
-
-
-
-                            If lstPool.Count() = 0 Then
-                                _LocalAgent.oPool = Nothing
-                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
-                                MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
-                            End If
-
+                        Dim lstPool As New List(Of Pool)
+                        Dim oPcRef As AgentPc
+                        If My.Settings.aqw = "zsx" Then
+                            oPcRef = AgentPcManager.GetListe(_LocalAgent.idStructure)(0)
+                            lstPool = PoolManager.GetListe(_LocalAgent.idStructure)
+                            _LocalAgent.oPCcourant = oPcRef
                             If lstPool.Count() = 1 Then   'C'est le cas normal
                                 _LocalAgent.oPool = lstPool(0)
                                 SynchroEtSuite(_LocalAgent)
@@ -854,9 +807,77 @@ Public Class login
                                 _LocalAgent.oPool = Nothing
                             End If
                         Else
-                            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : PC non reconnu ", False)
-                        End If
 
+                            oPcRef = AgentPcManager.GetAgentPCFromRegistry()
+                            If oPcRef IsNot Nothing Then
+                                'Cas particulier : 1ere connexion , il y a un PC mais pas de poolpc
+                                Dim olstPoolPc As List(Of PoolPc) = PoolPcManager.getListeByStructure(_LocalAgent.uidstructure)
+                                If olstPoolPc.Count = 0 Then
+                                    'On récupère les poolPc depuis les WS
+                                    olstPoolPc = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
+                                    For Each oPoolPc As PoolPc In olstPoolPc
+                                        'On récupére les Pool depuis les PoolPc si nécessaire
+                                        Dim oPool As Pool
+                                        oPool = PoolManager.getPoolByuid(oPoolPc.uidpool)
+                                        If oPool Is Nothing Then
+                                            oPool = PoolManager.WSgetById(oPoolPc.uid, oPoolPc.aid)
+                                            PoolManager.Save(oPool)
+                                        End If
+                                        PoolPcManager.Save(oPoolPc)
+                                    Next
+                                End If
+
+                                _LocalAgent.oPCcourant = oPcRef 'Le PC Encours est celui en base de registre
+                                'MAJ de la date de derniere synchro si elle est vide (1ere connexion)
+                                If oPcRef.dateDerniereSynchro = DateTime.MinValue Then
+                                    oPcRef.dateDerniereSynchro = _LocalAgent.dateDerniereSynchro
+                                End If
+
+                                'Récupération de la liste des pools de l'agent relatif à ce pc
+                                If CSEnvironnement.checkWebService Then
+                                    Dim olstPC As List(Of PoolPc)
+                                    lstPool = New List(Of Pool)()
+                                    olstPC = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
+                                    For Each oPoolPc As PoolPc In olstPC
+                                        Dim oPool As Pool
+                                        oPool = PoolManager.WSgetById(oPoolPc.uidpool, "")
+                                        If oPool IsNot Nothing Then
+                                            If oPool.CheckPool(_LocalAgent) Then
+                                                lstPool.Add(oPool)
+                                            End If
+                                        End If
+                                    Next
+                                Else
+                                    lstPool = _LocalAgent.getPoolList(oPcRef)
+                                End If
+
+
+                                If lstPool.Count() = 0 Then
+                                    _LocalAgent.oPool = Nothing
+                                    Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé", False)
+                                    MsgBox(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Pool non trouvé, contactez le crodip")
+                                End If
+
+                                If lstPool.Count() = 1 Then   'C'est le cas normal
+                                    _LocalAgent.oPool = lstPool(0)
+                                    SynchroEtSuite(_LocalAgent)
+                                End If
+
+                                If lstPool.Count > 1 Then
+                                    m_bsrcPools.Clear()
+                                    lstPool.ForEach(Sub(p)
+                                                        m_bsrcPools.Add(p)
+                                                    End Sub)
+                                    'il y a plus d'un pool, on demande à l'inspecteur de choisir
+                                    btn_login_seConnecter.Enabled = False
+                                    btn_login_seConnecter2.Enabled = True
+                                    pnlPools.Visible = True
+                                    _LocalAgent.oPool = Nothing
+                                End If
+                            Else
+                                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : PC non reconnu ", False)
+                            End If
+                        End If
                     Else
                         ' On met à jour la barre de status
                         Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : Mauvais mot de passe", False)
@@ -1412,7 +1433,7 @@ Public Class login
             'Vérification du PC (Registre)
             Dim oPC As AgentPc
             oPC = pAgent.oPCcourant
-            If My.Settings.aqw = "zsx" Then
+            If My.Settings.aqw <> "zsx" Then
                 bContinue = oPC.checkRegistry()
                 If Not bContinue Then
                     CSDebug.dispError("Login.SynchroEtSuite Err : PC incorrect [" & pAgent.oPCcourant.uid & "]")

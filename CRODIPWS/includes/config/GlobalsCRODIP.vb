@@ -99,7 +99,6 @@ Public Class GlobalsCRODIP
 #Region "Param Config"
     Public Shared GLOB_PARAM_aqw As String
     Public Shared GLOB_PARAM_RepertoireParametres As String
-    Public Shared GLOB_PARAM_GestiondesPools As Boolean
     Public Shared GLOB_PARAM_SynchroEtatDiagUrl As String
     Public Shared GLOB_PARAM_SynchroEtatDiagUser As String
     Public Shared GLOB_PARAM_SynchroEtatDiagPwd As String

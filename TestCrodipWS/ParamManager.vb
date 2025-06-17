@@ -65,7 +65,6 @@ Public Class ConfigManager
         Pulverisateur.initConstantes()
         GlobalsCRODIP.GLOB_PARAM_aqw = My.Settings.aqw
         GlobalsCRODIP.GLOB_PARAM_RepertoireParametres = My.Settings.RepertoireParametres
-        GlobalsCRODIP.GLOB_PARAM_GestiondesPools = My.Settings.GestiondesPools
         GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagUrl = My.Settings.SynchroEtatDiagUrl
         GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagUser = My.Settings.SynchroEtatDiagUser
         GlobalsCRODIP.GLOB_PARAM_SynchroEtatDiagPwd = My.Settings.SynhcroEtatDiagPwd

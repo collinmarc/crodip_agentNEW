@@ -141,17 +141,21 @@ Public Class Pool
     Public Function CheckPool(pagent As Agent) As Boolean
         Debug.Assert(pagent.oPCcourant IsNot Nothing, "Le PC doit être initialisé")
         Dim bReturn As Boolean = True
-        If CSEnvironnement.checkWebService() Then
-            'on va vérifier que ce pool contient toujours l'Agent et le PC
-            Dim oLstP As List(Of PoolAgent)
-            oLstP = PoolAgentManager.WSgetListeByAgent(pagent)
-            'Y-a-il un PoolAgent pour Ce pool et l'agent Courrant?
-            bReturn = oLstP.Exists(Function(p)
-                                       Return p.uidpool = Me.uid
-                                   End Function)
-            If Not bReturn Then
-                CSDebug.dispError("Pool.CheckPool : Le pool[" & Me.uid & "] ne contient pas l'agent[" & pagent.uid & "]")
+        If Me.etat Then
+            If CSEnvironnement.checkWebService() Then
+                'on va vérifier que ce pool contient toujours l'Agent et le PC
+                Dim oLstP As List(Of PoolAgent)
+                oLstP = PoolAgentManager.WSgetListeByAgent(pagent)
+                'Y-a-il un PoolAgent pour Ce pool et l'agent Courrant?
+                bReturn = oLstP.Exists(Function(p)
+                                           Return p.uidpool = Me.uid
+                                       End Function)
+                If Not bReturn Then
+                    CSDebug.dispError("Pool.CheckPool : Le pool[" & Me.uid & "] ne contient pas l'agent[" & pagent.uid & "]")
+                End If
             End If
+        Else
+            bReturn = False
         End If
 
         Return bReturn
