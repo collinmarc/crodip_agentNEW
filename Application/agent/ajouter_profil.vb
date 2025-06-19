@@ -254,6 +254,21 @@ Public Class ajouter_profil
                                 Dim oStructure As [Structure]
                                 oStructure = StructureManager.getStructureById(objAgent.idStructure)
                                 If oStructure.id <> objAgent.idStructure Then
+                                    'Vérification qu'il n'y a pas dautres structures en base
+                                    Dim lstStructure As List(Of [Structure])
+                                    lstStructure = StructureManager.getList()
+                                    If lstStructure.Count > 0 Then
+                                        If MsgBox("Votre base contient d'autres organismes, voulez-vous les supprimer ?", MsgBoxStyle.YesNo
+                                                      ) = vbYes Then
+                                            For Each oStruct As [Structure] In lstStructure
+                                                StructureManager.delete(oStruct.id)
+                                            Next
+                                        Else
+                                            MsgBox("Contacter le CRODIP pour vérifier votre base de données")
+                                            CSEnvironnement.delPid()
+                                            Application.Exit()
+                                        End If
+                                    End If
                                     'La Structure n'existe pas , il faut la Récupérer
                                     oStructure = StructureManager.WSgetById(objAgent.uidstructure, objAgent.idStructure)
                                     StructureManager.save(oStructure, True)
@@ -265,7 +280,7 @@ Public Class ajouter_profil
                                 If bPCOK Then
                                     'La date de ernière synhcro est la plus petite date de synchro des agents en base.
                                     ' objAgent.dateDerniereSynchro = AgentManager.GetDateDernSynchro(oStructure.id)
-                                    ' AgentManager.save(objAgent)
+                                    AgentManager.save(objAgent)
 
                                     MsgBox("Un nouvel inspecteur vient d'être ajouté. Rendez-vous sur l'écran de connexion pour vous authentifier.")
                                     Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ADDAGENT_OK, False)

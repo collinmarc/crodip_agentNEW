@@ -222,7 +222,7 @@ Public Class AutoTestManager
                     strQuery = strQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
                     strQuery = strQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
                     strQuery = strQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
-                    strQuery = strQuery & " AND CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
+                    strQuery = strQuery & " AND uidmateriel=" & pCtrlRegulier.uidmateriel & "  "
 
                 End If
                 bddCommande.CommandText = strQuery
@@ -251,8 +251,11 @@ Public Class AutoTestManager
             sqlQuery = sqlQuery & " CTRG_date='" & CSDate.ToCRODIPString(pCtrlRegulier.dateControle).Substring(0, 10) & "'"
             sqlQuery = sqlQuery & " AND CTRG_STRUCTUREID=" & pCtrlRegulier.uidstructure & "  "
             sqlQuery = sqlQuery & " AND CTRG_TYPE='" & pCtrlRegulier.type & "'  "
-            sqlQuery = sqlQuery & " AND CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
-
+            If pCtrlRegulier.uidmateriel = 0 Then
+                sqlQuery = sqlQuery & " AND CTRG_MATID='" & pCtrlRegulier.idMateriel & "'  "
+            Else
+                sqlQuery = sqlQuery & " AND uidmateriel=" & pCtrlRegulier.uidmateriel & "  "
+            End If
             cmd.CommandText = sqlQuery
 
             Dim obj

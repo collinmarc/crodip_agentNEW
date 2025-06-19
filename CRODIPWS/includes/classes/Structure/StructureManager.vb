@@ -393,7 +393,7 @@ Public Class StructureManager
 
 #End Region
 
-    Public Shared Function delete(ByVal pStructureID As Integer) As Boolean
+    Public Overloads Shared Function delete(ByVal pStructureID As Integer) As Boolean
         Debug.Assert(pStructureID > 0, " le paramètre StructureID doit être initialisé")
         Dim oCsdb As CSDb = Nothing
         Dim bddCommande As DbCommand
@@ -403,6 +403,8 @@ Public Class StructureManager
             oCsdb = New CSDb(True)
 
             bddCommande = oCsdb.getConnection.CreateCommand()
+            bddCommande.CommandText = "DELETE FROM agent WHERE idStructure=" & pStructureID.ToString() & ""
+            nResult = bddCommande.ExecuteNonQuery()
             bddCommande.CommandText = "DELETE FROM Structure WHERE id=" & pStructureID.ToString() & ""
             nResult = bddCommande.ExecuteNonQuery()
             Debug.Assert(nResult = 1, "Erreur en Delete, plus d'une ligne supprimée")

@@ -1,5 +1,10 @@
 #TRUNK
 MASTER
+BUILD XXXXXXXXXX
+	0001811: interdire l'ajout de plusieurs structures sur un PC
+	0001808: Synchronisation des Controle Reguliers
+	0001806: Mécanisme pour contourner le controle d'identification
+
 BUILD 20250515170000
 	0001804: Synchronisation des pools (Recharger toute les associsations)
 BUILD 20250514170000

@@ -361,7 +361,7 @@ Public Class frmdiagnostic_recap
         '
         'm_bsDiag
         '
-        Me.m_bsDiag.DataSource = GetType(Diagnostic)
+        Me.m_bsDiag.DataSource = GetType(CRODIPWS.Diagnostic)
         '
         'Label4
         '
@@ -614,6 +614,7 @@ Public Class frmdiagnostic_recap
         '
         'btn_Annuler
         '
+        Me.btn_Annuler.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btn_Annuler.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_Annuler.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Annuler.ForeColor = System.Drawing.Color.White
