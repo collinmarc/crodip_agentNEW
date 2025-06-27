@@ -39,8 +39,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCrodipWS", "TestCrodipW
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MAJDB", "R:\crodip_agentNEW\MAJDB\MAJDB.vbproj", "{D0E1861C-B709-4499-9790-13D17FF1B5AB}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupAgent", "R:\crodip_agentNEW\SetupAgent\SetupAgent.vdproj", "{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -341,22 +339,6 @@ Global
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{D0E1861C-B709-4499-9790-13D17FF1B5AB}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Debug|Any CPU.ActiveCfg = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Debug|Any CPU.Build.0 = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Debug|x86.ActiveCfg = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Debug|x86.Build.0 = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.DebugReglagePulve|Any CPU.ActiveCfg = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.DebugReglagePulve|Any CPU.Build.0 = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.DebugReglagePulve|x86.ActiveCfg = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.DebugReglagePulve|x86.Build.0 = Debug
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Release|Any CPU.ActiveCfg = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Release|Any CPU.Build.0 = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Release|x86.ActiveCfg = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.Release|x86.Build.0 = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.ReleaseReglagePulve|Any CPU.Build.0 = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.ReleaseReglagePulve|x86.ActiveCfg = Release
-		{FACA4A7F-89AD-4DD4-A277-BDF04E0C09EB}.ReleaseReglagePulve|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
