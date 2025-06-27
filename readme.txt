@@ -1,6 +1,6 @@
 #TRUNK
 MASTER
-BUILD XXXXXXXXXX
+BUILD 20250627120000
 	0001811: interdire l'ajout de plusieurs structures sur un PC
 	0001808: Synchronisation des Controle Reguliers
 	0001806: Mécanisme pour contourner le controle d'identification
