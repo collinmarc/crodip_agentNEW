@@ -75,7 +75,7 @@ Public Class MarquesManager
             Next
 
         Catch ex As Exception
-            CSDebug.dispError("GetTypeValeur_Pulve : " & ex.Message)
+            CSDebug.dispError("MarquesManager.GetTypeValeur_Pulve ERR : ", ex)
             strReturn = "...."
         End Try
         Return strReturn

@@ -5,6 +5,7 @@ BUILD XXXXXXXXXX
 	0001808: Synchronisation des Controle Reguliers
 	0001806: Mécanisme pour contourner le controle d'identification
 	0001809: Gestion des manos de secours
+	0001812: Affichage Largeur ou Nombre de rangs dans la fiche Puvlé
 
 BUILD 20250515170000
 	0001804: Synchronisation des pools (Recharger toute les associsations)
