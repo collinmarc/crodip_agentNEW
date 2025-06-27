@@ -5089,34 +5089,37 @@ Public Class accueil
 
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
-        'Chargement de tous les manos
-        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, True) _
-                                                                    .Where(Function(M)
-                                                                               Try
-                                                                                   Return M.IsTypeTracaB
-                                                                               Catch ex As Exception
-                                                                                   Return False
-                                                                               End Try
-                                                                           End Function).ToList()
-        loadAccueilAlertsManoControle(lstMano, "[6-10] bar", positionTopAlertes)
+        'Chargement des manos Actifs à l'état OK
+        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, False)
+        'Filtre sur les Manos Traca B
+        Dim lstMano2 As List(Of ManometreControle) = lstMano.Where(Function(M)
+                                                                       Try
+                                                                           Return M.IsTypeTracaB
+                                                                       Catch ex As Exception
+                                                                           Return False
+                                                                       End Try
+                                                                   End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano2, "[6-10] bar", positionTopAlertes)
 
-        lstMano = ManometreControleManager.getlstByAgent(agentCourant, True).Where(Function(M)
-                                                                                       Try
-                                                                                           Return M.IsTypeTracaH
-                                                                                       Catch ex As Exception
-                                                                                           Return False
-                                                                                       End Try
-                                                                                   End Function).ToList()
-        loadAccueilAlertsManoControle(lstMano, "[20-25] bar", positionTopAlertes)
+        'Filtre sur les Manos Traca H
+        lstMano2 = lstMano.Where(Function(M)
+                                     Try
+                                         Return M.IsTypeTracaH
+                                     Catch ex As Exception
+                                         Return False
+                                     End Try
+                                 End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano2, "[20-25] bar", positionTopAlertes)
 
-        lstMano = ManometreControleManager.getlstByAgent(agentCourant, True).Where(Function(M)
-                                                                                       Try
-                                                                                           Return Not (M.IsTypeTracaB Or M.IsTypeTracaH)
-                                                                                       Catch ex As Exception
-                                                                                           Return True
-                                                                                       End Try
-                                                                                   End Function).ToList()
-        loadAccueilAlertsManoControle(lstMano, "", positionTopAlertes)
+        'Filtre sur les Manos Traca ni B ni H
+        lstMano2 = lstMano.Where(Function(M)
+                                     Try
+                                         Return Not (M.IsTypeTracaB Or M.IsTypeTracaH)
+                                     Catch ex As Exception
+                                         Return True
+                                     End Try
+                                 End Function).ToList()
+        loadAccueilAlertsManoControle(lstMano2, "", positionTopAlertes)
 
 
     End Sub
@@ -5131,10 +5134,6 @@ Public Class accueil
 
         Try
 
-
-
-            'Chargement de tous les manos
-            'Dim arrManoControle As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(agentCourant, True)
             Dim njours As Integer
             Dim nbManoOrange(3000) As Integer 'Nombre de manomètres devant être controler njours avant la Date Limite
             'Parcours de manos

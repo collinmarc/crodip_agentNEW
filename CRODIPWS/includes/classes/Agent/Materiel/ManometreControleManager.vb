@@ -491,17 +491,11 @@ Public Class ManometreControleManager
         End If
         If Not isShowAll Then
             sql = sql & " AND MAT.etat=" & True & ""
+            sql = sql & " AND MAT.JamaisServi=" & False & ""
         End If
-        Dim sql2 As String
-        'on prend d'abord Ceux qui ont servi
-        sql2 = sql & " AND JamaisServi=" & False & ""
-        sql2 = sql2 & " ORDER BY TypeTraca, numTraca"
-        arrResponse = getListe(Of ManometreControle)(sql2)
+        sql = sql & " ORDER BY TypeTraca, numTraca"
+        arrResponse = getListe(Of ManometreControle)(sql)
 
-        'puis ceux qui n'ont jamais servi
-        sql2 = sql & " AND JamaisServi=" & True & ""
-        sql2 = sql2 & " ORDER BY TypeTraca, numTraca"
-        arrResponse.AddRange(getListe(Of ManometreControle)(sql2))
 
         Return arrResponse
     End Function
