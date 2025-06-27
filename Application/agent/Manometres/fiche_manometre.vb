@@ -25,6 +25,7 @@ Public Class fiche_manometre
     Friend WithEvents Label10 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblinternet As Label
     Dim bManoMAJ As Boolean
 
     Public Sub New(ByVal _manometreCourant As Manometre)
@@ -124,6 +125,7 @@ Public Class fiche_manometre
         Me.nupNumTraca = New CRODIP_ControlLibrary.NumericUpDown2()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.m_bsrcPool = New System.Windows.Forms.BindingSource(Me.components)
+        Me.lblinternet = New System.Windows.Forms.Label()
         CType(Me.pbEtat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlManoControle.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -212,7 +214,7 @@ Public Class fiche_manometre
         '
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(5, 234)
+        Me.Label7.Location = New System.Drawing.Point(0, 258)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(128, 16)
         Me.Label7.TabIndex = 14
@@ -223,7 +225,7 @@ Public Class fiche_manometre
         '
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(193, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(5, 258)
+        Me.Label8.Location = New System.Drawing.Point(0, 282)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(128, 16)
         Me.Label8.TabIndex = 14
@@ -234,7 +236,7 @@ Public Class fiche_manometre
         '
         Me.ficheMano_dateActivation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheMano_dateActivation.ForeColor = System.Drawing.Color.Black
-        Me.ficheMano_dateActivation.Location = New System.Drawing.Point(141, 234)
+        Me.ficheMano_dateActivation.Location = New System.Drawing.Point(136, 258)
         Me.ficheMano_dateActivation.Name = "ficheMano_dateActivation"
         Me.ficheMano_dateActivation.Size = New System.Drawing.Size(160, 16)
         Me.ficheMano_dateActivation.TabIndex = 14
@@ -244,7 +246,7 @@ Public Class fiche_manometre
         '
         Me.ficheMano_dateControle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ficheMano_dateControle.ForeColor = System.Drawing.Color.Black
-        Me.ficheMano_dateControle.Location = New System.Drawing.Point(141, 258)
+        Me.ficheMano_dateControle.Location = New System.Drawing.Point(136, 282)
         Me.ficheMano_dateControle.Name = "ficheMano_dateControle"
         Me.ficheMano_dateControle.Size = New System.Drawing.Size(160, 16)
         Me.ficheMano_dateControle.TabIndex = 14
@@ -257,7 +259,7 @@ Public Class fiche_manometre
         Me.btn_ficheMano_valider.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_valider.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_valider.Image = CType(resources.GetObject("btn_ficheMano_valider.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(377, 455)
+        Me.btn_ficheMano_valider.Location = New System.Drawing.Point(383, 455)
         Me.btn_ficheMano_valider.Name = "btn_ficheMano_valider"
         Me.btn_ficheMano_valider.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_valider.TabIndex = 0
@@ -271,7 +273,7 @@ Public Class fiche_manometre
         Me.btn_ficheMano_supprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ficheMano_supprimer.ForeColor = System.Drawing.Color.White
         Me.btn_ficheMano_supprimer.Image = CType(resources.GetObject("btn_ficheMano_supprimer.Image"), System.Drawing.Image)
-        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(242, 455)
+        Me.btn_ficheMano_supprimer.Location = New System.Drawing.Point(248, 455)
         Me.btn_ficheMano_supprimer.Name = "btn_ficheMano_supprimer"
         Me.btn_ficheMano_supprimer.Size = New System.Drawing.Size(128, 24)
         Me.btn_ficheMano_supprimer.TabIndex = 8
@@ -371,9 +373,9 @@ Public Class fiche_manometre
         '
         Me.btnActiver.Location = New System.Drawing.Point(156, 207)
         Me.btnActiver.Name = "btnActiver"
-        Me.btnActiver.Size = New System.Drawing.Size(61, 19)
+        Me.btnActiver.Size = New System.Drawing.Size(102, 19)
         Me.btnActiver.TabIndex = 35
-        Me.btnActiver.Text = "Activer"
+        Me.btnActiver.Text = "Mettre en service"
         Me.btnActiver.UseVisualStyleBackColor = True
         '
         'imagesEtatMateriel
@@ -500,10 +502,23 @@ Public Class fiche_manometre
         '
         Me.m_bsrcPool.DataSource = GetType(CRODIPWS.Pool)
         '
+        'lblinternet
+        '
+        Me.lblinternet.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblinternet.AutoSize = True
+        Me.lblinternet.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblinternet.ForeColor = System.Drawing.Color.Blue
+        Me.lblinternet.Location = New System.Drawing.Point(5, 229)
+        Me.lblinternet.Name = "lblinternet"
+        Me.lblinternet.Size = New System.Drawing.Size(512, 16)
+        Me.lblinternet.TabIndex = 63
+        Me.lblinternet.Text = "Vous devez être connecté à internet pour mettre en service votre materiel"
+        '
         'fiche_manometre
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(517, 488)
+        Me.ClientSize = New System.Drawing.Size(523, 488)
+        Me.Controls.Add(Me.lblinternet)
         Me.Controls.Add(Me.pnlManoControle)
         Me.Controls.Add(Me.ficheMano_type)
         Me.Controls.Add(Me.btnActiver)
@@ -585,6 +600,8 @@ Public Class fiche_manometre
         DisplayManoCourant()
         bManoMAJ = False
 
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+        btnActiver.Enabled = GlobalsCRODIP.GLOB_NETWORKAVAILABLE
 
     End Sub
     Private Sub DisplayManoCourant()
@@ -615,6 +632,7 @@ Public Class fiche_manometre
         End If
 
         btnActiver.Visible = manometreCourant.jamaisServi
+        lblinternet.Visible = manometreCourant.jamaisServi
         If Not manometreCourant.jamaisServi Then
             If Not CSDate.isDateNull(manometreCourant.dateActivation) Then
                 ficheMano_dateActivation.Text = CSDate.ToCRODIPString(manometreCourant.dateActivation)
@@ -721,11 +739,16 @@ Public Class fiche_manometre
     End Sub
 
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click
-        If MsgBox("Etes-vous sur de vouloir activer ce matériel ?", MsgBoxStyle.YesNo, "Activation de matériel") = MsgBoxResult.Yes Then
-            manometreCourant.ActiverMateriel(Now, agentCourant)
-            bManoMAJ = True
-            DisplayManoCourant()
+        GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+        If Not GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+            MsgBox("Vous devez être connecté à internet pour valider votre controle", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
+            Exit Sub
         End If
+        If MsgBox("Etes-vous sur de vouloir mettre en service ce matériel ?", MsgBoxStyle.YesNo, "Mise en service de matériel") = MsgBoxResult.Yes Then
+                manometreCourant.ActiverMateriel(Now, agentCourant)
+                bManoMAJ = True
+                DisplayManoCourant()
+            End If
     End Sub
 
 

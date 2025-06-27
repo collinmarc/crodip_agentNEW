@@ -294,9 +294,9 @@ Public Class fiche_banc
         '
         Me.btnActiver.Location = New System.Drawing.Point(196, 184)
         Me.btnActiver.Name = "btnActiver"
-        Me.btnActiver.Size = New System.Drawing.Size(60, 21)
+        Me.btnActiver.Size = New System.Drawing.Size(121, 21)
         Me.btnActiver.TabIndex = 17
-        Me.btnActiver.Text = "Activer"
+        Me.btnActiver.Text = "Mettre en service"
         Me.btnActiver.UseVisualStyleBackColor = True
         '
         'Label4
@@ -373,6 +373,7 @@ Public Class fiche_banc
         For Each oMod As CRODIPAcquisition.ModuleAcq In olstModules
             cbxModulesAcquisition.Items.Add(oMod.Nom)
         Next
+        dispBancCourant()
     End Sub
     Private Sub dispBancCourant()
         Try
@@ -454,7 +455,7 @@ Public Class fiche_banc
     End Sub
 
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click
-        If MsgBox("Etes-vous sur de vouloir activer ce matériel ?", MsgBoxStyle.YesNo, "Activation de matériel") = MsgBoxResult.Yes Then
+        If MsgBox("Etes-vous sur de vouloir mettre en service ce matériel ?", MsgBoxStyle.YesNo, "Mise en service de matériel") = MsgBoxResult.Yes Then
             BancCourant.ActiverMateriel(Now, agentCourant)
             dispBancCourant()
         End If

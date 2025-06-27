@@ -5089,8 +5089,8 @@ Public Class accueil
 
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
-        'Chargement des manos Actifs à l'état OK
-        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, False)
+        'Chargement des manos En service
+        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, True)
         'Filtre sur les Manos Traca B
         Dim lstMano2 As List(Of ManometreControle) = lstMano.Where(Function(M)
                                                                        Try

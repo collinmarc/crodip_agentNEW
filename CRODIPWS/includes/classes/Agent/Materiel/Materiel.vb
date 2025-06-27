@@ -299,12 +299,21 @@ Public MustInherit Class Materiel
         Debug.Assert(pAgent IsNot Nothing, "Agent initialisé")
         Dim bReturn As Boolean
         Try
-            jamaisServi = False
-            etat = True
-            DateActivation = pDateActivation
+            GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
+
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                jamaisServi = False
+                etat = True
+                dateActivation = pDateActivation
+                dateDernierControle = pDateActivation
+                bReturn = creerFichevieActivation(pAgent)
 
 
-            bReturn = creerFichevieActivation(pAgent)
+            Else
+                MsgBox("Vous devez être connecté à internet pour valider votre controle", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
+            End If
+
+
         Catch ex As Exception
             CSDebug.dispError("Materiel.ActiverMateriel ERR: " & ex.Message)
             bReturn = False

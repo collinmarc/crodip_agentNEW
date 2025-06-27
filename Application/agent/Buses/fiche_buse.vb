@@ -260,9 +260,9 @@ Public Class fiche_buse
         '
         Me.btnActiver.Location = New System.Drawing.Point(228, 188)
         Me.btnActiver.Name = "btnActiver"
-        Me.btnActiver.Size = New System.Drawing.Size(52, 22)
+        Me.btnActiver.Size = New System.Drawing.Size(116, 22)
         Me.btnActiver.TabIndex = 34
-        Me.btnActiver.Text = "Activer"
+        Me.btnActiver.Text = "Mettre en service"
         Me.btnActiver.UseVisualStyleBackColor = True
         '
         'Label3
@@ -419,7 +419,7 @@ Public Class fiche_buse
     End Sub
 
     Private Sub btnActiver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActiver.Click
-        If MsgBox("Etes-vous sur de vouloir activer ce matériel ?", MsgBoxStyle.YesNo, "Activation de matériel") = MsgBoxResult.Yes Then
+        If MsgBox("Etes-vous sur de vouloir mettre en service ce matériel ?", MsgBoxStyle.YesNo, "Mise en service de matériel") = MsgBoxResult.Yes Then
             BuseCourant.ActiverMateriel(Now, agentCourant)
             DisplayBuse()
         End If

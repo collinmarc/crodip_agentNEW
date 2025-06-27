@@ -491,7 +491,25 @@ Public Class ManometreControleManager
         End If
         If Not isShowAll Then
             sql = sql & " AND MAT.etat=" & True & ""
-            sql = sql & " AND MAT.JamaisServi=" & False & ""
+        End If
+        sql = sql & " ORDER BY TypeTraca, numTraca"
+        arrResponse = getListe(Of ManometreControle)(sql)
+
+
+        Return arrResponse
+    End Function
+    Public Shared Function getlstEnServiceByAgent(ByVal pAgent As Agent, ByVal isShowAll As Boolean, Optional pListByStructure As Boolean = False) As List(Of ManometreControle)
+        Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
+        Dim arrResponse As New List(Of ManometreControle)
+        Dim sql As String
+        If pListByStructure Then
+            sql = "SELECT * FROM AgentManoControle MAT WHERE MAT.idStructure=" & pAgent.idStructure & " AND MAT.isSupprime=" & False & " "
+        Else
+            sql = "SELECT MAT.* FROM AgentManoControle MAT inner join PoolManoControle PA on MAT.uid = PA.uidmanoc WHERE PA.uidPool = " & pAgent.oPool.uid & " AND MAT.isSupprime=" & False & ""
+        End If
+        sql = sql & " AND MAT.JamaisServi=" & False & ""
+        If Not isShowAll Then
+            sql = sql & " AND MAT.etat=" & True & ""
         End If
         sql = sql & " ORDER BY TypeTraca, numTraca"
         arrResponse = getListe(Of ManometreControle)(sql)

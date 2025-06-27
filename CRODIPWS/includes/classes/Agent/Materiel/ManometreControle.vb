@@ -376,6 +376,10 @@ Public Class ManometreControle
             Me.etat = False
             creerFicheVieDesactivation(pAgent)
             ManometreControleManager.save(Me)
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                Dim oReturn As ManometreControle = Nothing
+                ManometreControleManager.WSSend(Me, oReturn)
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("ManometreControle.desactiver : " & ex.Message)
@@ -432,6 +436,27 @@ Public Class ManometreControle
         n = DateDiff(DateInterval.DayOfYear, DL, tmpDateLCManoControle)
 
         Return Math.Abs(n)
+    End Function
+    Public Function getDernFicheActivation() As FVManometreControle
+        Dim olst As List(Of FVManometreControle) = FVManometreControleManager.getLstFVManometreControleByuid(Me.uid)
+        'Filtre sur le Type de FV
+        olst = olst.Where(Function(oFV)
+                              Try
+                                  Return oFV.type = FVManometreControle.FVTYPE_MISENSERVICE
+                              Catch ex As Exception
+                                  Return False
+                              End Try
+                          End Function).ToList()
+        'Tri sur la date de Modif
+        olst = olst.OrderBy(Function(oFV)
+                                Return oFV.dateModif
+                            End Function).ToList()
+        'Return de la plus grande
+        If olst.Count > 0 Then
+            Return olst.Last
+        Else
+            Return Nothing
+        End If
     End Function
     Public Overrides Function creerFicheVieActivation(ByVal pAgent As Agent) As Boolean
         Return creerFicheVie(FVManometreControle.FVTYPE_MISENSERVICE, pAgent) IsNot Nothing
@@ -498,6 +523,7 @@ Public Class ManometreControle
         End Try
         Return oReturn
     End Function
+
 
     Private Function creerFicheVie(ByVal pType As String, ByVal pAgent As Agent) As FVManometreControle
         Debug.Assert(pAgent IsNot Nothing)
@@ -577,5 +603,54 @@ Public Class ManometreControle
             Return Me.numTraca.CompareTo(obj.numTraca)
         End If
     End Function
+    Public Overrides Function ActiverMateriel(ByVal pDateActivation As Date, ByVal pAgent As Agent) As Boolean
+        Debug.Assert(Not CSDate.isDateNull(pDateActivation), "Date non nulle")
+        Debug.Assert(pAgent IsNot Nothing, "Agent initialisé")
+        Dim bReturn As Boolean
+        Try
+            GlobalsCRODIP.GLOB_NETWORKAVAILABLE = CSEnvironnement.checkNetwork()
 
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                jamaisServi = False
+                etat = True
+                dateActivation = pDateActivation
+                dateDernierControle = pDateActivation
+                bReturn = creerFicheVieActivation(pAgent)
+                Dim oFV As FVManometreControle = getDernFicheActivation()
+                SynchronisationASCManos(pAgent, oFV, Nothing)
+            Else
+                MsgBox("Vous devez être connecté à internet pour valider votre controle", MsgBoxStyle.OkOnly, "Crodip .::. Attention !")
+            End If
+
+
+        Catch ex As Exception
+            CSDebug.dispError("Materiel.ActiverMateriel ERR: " & ex.Message)
+            bReturn = False
+
+        End Try
+        Return bReturn
+    End Function 'ActiverMateriel
+    Public Sub SynchronisationASCManos(pAgent As Agent, oFV As FVManometreControle, Optional tmpManometreEtalon As ManometreEtalon = Nothing)
+        'Remontée des infos vers le serveur
+        Dim oReturn As ManometreControle = Nothing
+        Dim oReturnFV As FVManometreControle = Nothing
+        Dim oReturnME As ManometreEtalon = Nothing
+        ManometreControleManager.WSSend(Me, oReturn)
+        If oReturn IsNot Nothing Then
+            ManometreControleManager.save(oReturn, True)
+        End If
+        If oFV IsNot Nothing Then
+            FVManometreControleManager.WSSend(oFV, oReturnFV)
+            FVManometreControleManager.SendEtats(oFV)
+            If oReturnFV IsNot Nothing Then
+                FVManometreControleManager.save(pAgent, oReturnFV, True)
+            End If
+        End If
+        If tmpManometreEtalon IsNot Nothing Then
+            ManometreEtalonManager.WSSend(tmpManometreEtalon, oReturnME)
+            If oReturnME IsNot Nothing Then
+                ManometreEtalonManager.save(oReturnME, True)
+            End If
+        End If
+    End Sub
 End Class
