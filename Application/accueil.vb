@@ -5090,7 +5090,7 @@ Public Class accueil
     Private Sub loadAccueilAlertsManoControle(ByRef positionTopAlertes As Integer)
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_MANOCONTROLE_LOAD, True)
         'Chargement des manos En service
-        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstByAgent(agentCourant, True)
+        Dim lstMano As List(Of ManometreControle) = ManometreControleManager.getlstEnServiceByAgent(agentCourant, True)
         'Filtre sur les Manos Traca B
         Dim lstMano2 As List(Of ManometreControle) = lstMano.Where(Function(M)
                                                                        Try
@@ -5131,7 +5131,10 @@ Public Class accueil
         Dim nbAlertes_ManometreControle_Rouge As Integer = 0
         Dim nbAlertes_ManometreControle_Noire As Integer = 0
         Dim nbAlertes_Controle As Integer = 0
-
+        Dim sNumMano As String = ""
+        Dim sNumManoNoire As String = ""
+        Dim sNumManoRouge As String = ""
+        Dim sNumManoOrange As String = ""
         Try
 
             Dim njours As Integer
@@ -5143,10 +5146,12 @@ Public Class accueil
 
                 If AlerteMano = GlobalsCRODIP.ALERTE.CONTROLE Then ' Defaillant
                     nbAlertes_Controle = nbAlertes_Controle + 1
+                    sNumMano = IIf(String.IsNullOrEmpty(sNumMano), tmpManoControle.numeroNational, sNumMano & "," & tmpManoControle.numeroNational)
                 End If
 
                 If AlerteMano = GlobalsCRODIP.ALERTE.NOIRE Then ' 1mois7jrs
                     nbAlertes_ManometreControle_Noire = nbAlertes_ManometreControle_Noire + 1
+                    sNumManoNoire = IIf(String.IsNullOrEmpty(sNumManoNoire), tmpManoControle.numeroNational, sNumManoNoire & "," & tmpManoControle.numeroNational)
                     If tmpManoControle.etat = True Then
                         If My.Settings.DesacMat Then
                             tmpManoControle.Desactiver(agentCourant)
@@ -5155,10 +5160,12 @@ Public Class accueil
                 End If
 
                 If AlerteMano = GlobalsCRODIP.ALERTE.ROUGE Then ' 1mois
+                    sNumManoRouge = IIf(String.IsNullOrEmpty(sNumManoRouge), tmpManoControle.numeroNational, sNumManoRouge & "," & tmpManoControle.numeroNational)
                     nbAlertes_ManometreControle_Rouge = nbAlertes_ManometreControle_Rouge + 1
                 End If
                 If AlerteMano = GlobalsCRODIP.ALERTE.ORANGE Then '15 jours
                     nbAlertes_ManometreControle_Orange = nbAlertes_ManometreControle_Orange + 1
+                    sNumManoOrange = IIf(String.IsNullOrEmpty(sNumManoOrange), tmpManoControle.numeroNational, sNumManoOrange & "," & tmpManoControle.numeroNational)
                     njours = tmpManoControle.getNbJoursAvantAlerteRouge()
                     If njours < nbManoOrange.Length Then
                         nbManoOrange(njours) = nbManoOrange(njours) + 1
@@ -5175,9 +5182,9 @@ Public Class accueil
                     If nbManoOrange(n - 1) > 0 Then
                         'Si on a des Manos à controler avant n jours
                         If nbManoOrange(n - 1) > 1 Then
-                            sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres de contrôle " & pClasse & " devant être vérifiés dans " & (n - 1) & " jours !"
+                            sTexte = "Attention, vous avez " & nbManoOrange(n - 1) & " manomètres de contrôle " & pClasse & " devant être vérifiés dans " & (n - 1) & " jours ! [" & sNumManoOrange & "]"
                         Else
-                            sTexte = "Attention, vous avez 1 manomètre de contrôle " & pClasse & " devant être vérifié dans " & n - 1 & " jours !"
+                            sTexte = "Attention, vous avez 1 manomètre de contrôle " & pClasse & " devant être vérifié dans " & n - 1 & " jours ![" & sNumManoOrange & "]"
                         End If
                         AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
                     End If
@@ -5187,9 +5194,9 @@ Public Class accueil
             If nbAlertes_ManometreControle_Rouge > 0 Then
                 sName = "alerteManoControle_1mois"
                 If nbAlertes_ManometreControle_Rouge > 1 Then
-                    sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_Rouge & " manomètres de contrôle " & pClasse & ". Veuillez effectuer vos contrôles immédiatement !"
+                    sTexte = "Attention, vous venez de dépasser la date autorisée pour " & nbAlertes_ManometreControle_Rouge & " manomètres de contrôle " & pClasse & ". Veuillez effectuer vos contrôles immédiatement ![" & sNumManoRouge & "]"
                 Else
-                    sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle " & pClasse & ". Veuillez effectuer votre contrôle immédiatement !"
+                    sTexte = "Attention, vous venez de dépasser la date autorisée pour 1 manomètre de contrôle " & pClasse & ". Veuillez effectuer votre contrôle immédiatement ![" & sNumManoRouge & "]"
                 End If
                 AjouteUneAlerte(GlobalsCRODIP.ALERTE.ROUGE, sName, sTexte, positionTopAlertes)
             End If
@@ -5197,9 +5204,9 @@ Public Class accueil
             If nbAlertes_ManometreControle_Noire > 0 Then
                 sName = "alerteManoControle_1mois7jr"
                 If nbAlertes_ManometreControle_Noire > 1 Then
-                    sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_Noire & " manomètres de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+                    sTexte = "Vous avez trop attendu pour vérifier " & nbAlertes_ManometreControle_Noire & " manomètres de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics.[" & sNumManoNoire & "]"
                 Else
-                    sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics."
+                    sTexte = "Vous avez trop attendu pour vérifier 1 manomètre de contrôle " & pClasse & ". A partir de maintenant, le CRODIP ne prendra plus en compte vos diagnostics.[" & sNumManoNoire & "]"
                 End If
                 AjouteUneAlerte(GlobalsCRODIP.ALERTE.NOIRE, sName, sTexte, positionTopAlertes)
             End If
@@ -5207,9 +5214,9 @@ Public Class accueil
             If nbAlertes_Controle > 0 Then
                 sName = "alerteManoControle_defaillant"
                 If nbAlertes_Controle > 1 Then
-                    sTexte = "Vous avez " & nbAlertes_Controle & " manomètres de contrôle " & pClasse & " défectueux. Contactez le CRODIP."
+                    sTexte = "Vous avez " & nbAlertes_Controle & " manomètres de contrôle " & pClasse & " défectueux. Contactez le CRODIP.[" & sNumMano & "]"
                 Else
-                    sTexte = "Vous avez 1 manomètre de contrôle " & pClasse & " défectueux. Contactez le CRODIP."
+                    sTexte = "Vous avez 1 manomètre de contrôle " & pClasse & " défectueux. Contactez le CRODIP.[" & sNumMano & "]"
                 End If
                 AjouteUneAlerte(GlobalsCRODIP.ALERTE.CONTROLE, sName, sTexte, positionTopAlertes)
             End If
