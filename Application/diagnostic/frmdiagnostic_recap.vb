@@ -738,12 +738,7 @@ Public Class frmdiagnostic_recap
             End If
 
         End If
-        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
-            rbEtatCC.Visible = False
-            btn_ContratCommercial.Visible = False
-            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
-            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
-        End If
+
 
         'le refresh est déjà fait dans le Activated
         'RefreshDiag()
@@ -762,7 +757,15 @@ Public Class frmdiagnostic_recap
 
         btn_finalisationDiag_modifierDiag.Focus()
         btn_finalisationDiag_modifierDiag.Select()
-
+        If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
+            rbEtatCC.Visible = False
+            btn_ContratCommercial.Visible = False
+            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
+            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
+            'Refresh du bouton car il disparait dans certains cas.
+            btn_finalisationDiag_imprimerRapport.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+            btn_finalisationDiag_imprimerRapport.Refresh()
+        End If
         '##################
         'Generation de l'apperçu du rapport
         '###################
