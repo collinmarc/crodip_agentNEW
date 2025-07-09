@@ -1,5 +1,9 @@
 #TRUNK
 MASTER
+BUILD 20250627120000bis
+	0001816: Renvoyer la Numero de version dans la table AgentPC
+	0001813: Le bouton 'Imprimer le rapport' n'est pas affiché en CVI immédiate
+
 BUILD 20250627120000
 	0001811: interdire l'ajout de plusieurs structures sur un PC
 	0001808: Synchronisation des Controle Reguliers

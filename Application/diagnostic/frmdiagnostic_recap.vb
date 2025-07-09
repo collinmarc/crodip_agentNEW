@@ -760,16 +760,17 @@ Public Class frmdiagnostic_recap
         If GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE Or m_diagnostic.CCFileName = "" Then
             rbEtatCC.Visible = False
             btn_ContratCommercial.Visible = False
-            btn_finalisationDiag_imprimerRapport.Top = btn_ContratCommercial.Top
-            btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
-            'Refresh du bouton car il disparait dans certains cas.
-            btn_finalisationDiag_imprimerRapport.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-            btn_finalisationDiag_imprimerRapport.Refresh()
+            'If btn_finalisationDiag_imprimerRapport.Location <> btn_ContratCommercial.Location Then
+            '    btn_finalisationDiag_imprimerRapport.Left = btn_ContratCommercial.Left
+            '    'Refresh du bouton car il disparait dans certains cas.
+            '    btn_finalisationDiag_imprimerRapport.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+            '    btn_finalisationDiag_imprimerRapport.Refresh()
+            'End If
         End If
-        '##################
-        'Generation de l'apperçu du rapport
-        '###################
-        If My.Settings.AppercuRecap Then
+            '##################
+            'Generation de l'apperçu du rapport
+            '###################
+            If My.Settings.AppercuRecap Then
             AppercuDocument()
         End If
     End Sub

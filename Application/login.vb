@@ -1476,6 +1476,9 @@ Public Class login
             ' On met a jour la date de dernière connexion
             pAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
             AgentManager.save(pAgent)
+            pAgent.oPCcourant.versionLogiciel = pAgent.versionLogiciel
+            AgentPcManager.Save(pAgent.oPCcourant)
+
             ' On affiche le formulaire d'accueil de l'application
             Dim formAccueil As New accueil
             globFormAccueil = formAccueil
