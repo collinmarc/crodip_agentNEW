@@ -246,6 +246,8 @@ Namespace WSCRODIP
 
         Private SendIdentifiantOTCOperationCompleted As System.Threading.SendOrPostCallback
 
+        Private GetIdentifiantOTCListOperationCompleted As System.Threading.SendOrPostCallback
+
         Private GetIdentifiantPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
 
         Private SendIdentifiantPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
@@ -253,6 +255,8 @@ Namespace WSCRODIP
         Private GetPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
 
         Private SendPulverisateurOperationCompleted As System.Threading.SendOrPostCallback
+
+        Private GetPulverisateurOTCOperationCompleted As System.Threading.SendOrPostCallback
 
         Private GetStructureOperationCompleted As System.Threading.SendOrPostCallback
 
@@ -596,6 +600,9 @@ Namespace WSCRODIP
         Public Event SendIdentifiantOTCCompleted As SendIdentifiantOTCCompletedEventHandler
 
         '''<remarks/>
+        Public Event GetIdentifiantOTCListCompleted As GetIdentifiantOTCListCompletedEventHandler
+
+        '''<remarks/>
         Public Event GetIdentifiantPulverisateurCompleted As GetIdentifiantPulverisateurCompletedEventHandler
 
         '''<remarks/>
@@ -606,6 +613,9 @@ Namespace WSCRODIP
 
         '''<remarks/>
         Public Event SendPulverisateurCompleted As SendPulverisateurCompletedEventHandler
+
+        '''<remarks/>
+        Public Event GetPulverisateurOTCCompleted As GetPulverisateurOTCCompletedEventHandler
 
         '''<remarks/>
         Public Event GetStructureCompleted As GetStructureCompletedEventHandler
@@ -3226,24 +3236,24 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetIdentifiantOTC", RequestElementName:="GetIdentifiantOTCRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetIdentifiantOTC(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal aid As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTC As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetIdentifiantOTC", New Object() {uid, aid, uidagent})
+        Public Function GetIdentifiantOTC(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal identifiant As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTC As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetIdentifiantOTC", New Object() {uid, identifiant, uidagent})
             info = CType(results(1), String)
             IdentifiantOTC = CType(results(2), Object)
             Return CType(results(0), Integer)
         End Function
 
         '''<remarks/>
-        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer)
-            Me.GetIdentifiantOTCAsync(uid, aid, uidagent, Nothing)
+        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal identifiant As String, ByVal uidagent As Integer)
+            Me.GetIdentifiantOTCAsync(uid, identifiant, uidagent, Nothing)
         End Sub
 
         '''<remarks/>
-        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal aid As String, ByVal uidagent As Integer, ByVal userState As Object)
+        Public Overloads Sub GetIdentifiantOTCAsync(ByVal uid As Integer, ByVal identifiant As String, ByVal uidagent As Integer, ByVal userState As Object)
             If (Me.GetIdentifiantOTCOperationCompleted Is Nothing) Then
                 Me.GetIdentifiantOTCOperationCompleted = AddressOf Me.OnGetIdentifiantOTCOperationCompleted
             End If
-            Me.InvokeAsync("GetIdentifiantOTC", New Object() {uid, aid, uidagent}, Me.GetIdentifiantOTCOperationCompleted, userState)
+            Me.InvokeAsync("GetIdentifiantOTC", New Object() {uid, identifiant, uidagent}, Me.GetIdentifiantOTCOperationCompleted, userState)
         End Sub
 
         Private Sub OnGetIdentifiantOTCOperationCompleted(ByVal arg As Object)
@@ -3279,6 +3289,35 @@ Namespace WSCRODIP
             If (Not (Me.SendIdentifiantOTCCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendIdentifiantOTCCompleted(Me, New SendIdentifiantOTCCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getIdentifiantOTCList", RequestElementName:="GetIdentifiantOTCListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetIdentifiantOTCList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal format As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal type As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("IdentifiantOTCList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTCList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetIdentifiantOTCList", New Object() {format, type, uidpc})
+            info = CType(results(1), String)
+            IdentifiantOTCList = CType(results(2), Object())
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal format As String, ByVal type As String, ByVal uidpc As Integer)
+            Me.GetIdentifiantOTCListAsync(format, type, uidpc, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal format As String, ByVal type As String, ByVal uidpc As Integer, ByVal userState As Object)
+            If (Me.GetIdentifiantOTCListOperationCompleted Is Nothing) Then
+                Me.GetIdentifiantOTCListOperationCompleted = AddressOf Me.OnGetIdentifiantOTCListOperationCompleted
+            End If
+            Me.InvokeAsync("GetIdentifiantOTCList", New Object() {format, type, uidpc}, Me.GetIdentifiantOTCListOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetIdentifiantOTCListOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetIdentifiantOTCListCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetIdentifiantOTCListCompleted(Me, New GetIdentifiantOTCListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -3395,6 +3434,35 @@ Namespace WSCRODIP
             If (Not (Me.SendPulverisateurCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SendPulverisateurCompleted(Me, New SendPulverisateurCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
+            End If
+        End Sub
+
+        '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/GetPulverisateurOTC", RequestElementName:="GetPulverisateurOTCRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
+        Public Function GetPulverisateurOTC(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal format As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uid As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal identifiant As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidagent As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef PulverisateurOTC As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetPulverisateurOTC", New Object() {format, uid, identifiant, uidagent})
+            info = CType(results(1), String)
+            PulverisateurOTC = CType(results(2), Object)
+            Return CType(results(0), Integer)
+        End Function
+
+        '''<remarks/>
+        Public Overloads Sub GetPulverisateurOTCAsync(ByVal format As String, ByVal uid As Integer, ByVal identifiant As String, ByVal uidagent As String)
+            Me.GetPulverisateurOTCAsync(format, uid, identifiant, uidagent, Nothing)
+        End Sub
+
+        '''<remarks/>
+        Public Overloads Sub GetPulverisateurOTCAsync(ByVal format As String, ByVal uid As Integer, ByVal identifiant As String, ByVal uidagent As String, ByVal userState As Object)
+            If (Me.GetPulverisateurOTCOperationCompleted Is Nothing) Then
+                Me.GetPulverisateurOTCOperationCompleted = AddressOf Me.OnGetPulverisateurOTCOperationCompleted
+            End If
+            Me.InvokeAsync("GetPulverisateurOTC", New Object() {format, uid, identifiant, uidagent}, Me.GetPulverisateurOTCOperationCompleted, userState)
+        End Sub
+
+        Private Sub OnGetPulverisateurOTCOperationCompleted(ByVal arg As Object)
+            If (Not (Me.GetPulverisateurOTCCompletedEvent) Is Nothing) Then
+                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg, System.Web.Services.Protocols.InvokeCompletedEventArgs)
+                RaiseEvent GetPulverisateurOTCCompleted(Me, New GetPulverisateurOTCCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
 
@@ -7794,6 +7862,49 @@ Namespace WSCRODIP
     
     '''<remarks/>
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetIdentifiantOTCListCompletedEventHandler(ByVal sender As Object, ByVal e As GetIdentifiantOTCListCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GetIdentifiantOTCListCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property IdentifiantOTCList() As Object()
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Object())
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetIdentifiantPulverisateurCompletedEventHandler(ByVal sender As Object, ByVal e As GetIdentifiantPulverisateurCompletedEventArgs)
     
     '''<remarks/>
@@ -7966,6 +8077,49 @@ Namespace WSCRODIP
     
     '''<remarks/>
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
+    Public Delegate Sub GetPulverisateurOTCCompletedEventHandler(ByVal sender As Object, ByVal e As GetPulverisateurOTCCompletedEventArgs)
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0"),  _
+     System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.ComponentModel.DesignerCategoryAttribute("code")>  _
+    Partial Public Class GetPulverisateurOTCCompletedEventArgs
+        Inherits System.ComponentModel.AsyncCompletedEventArgs
+        
+        Private results() As Object
+        
+        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+            MyBase.New(exception, cancelled, userState)
+            Me.results = results
+        End Sub
+        
+        '''<remarks/>
+        Public ReadOnly Property Result() As Integer
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(0),Integer)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property info() As String
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(1),String)
+            End Get
+        End Property
+        
+        '''<remarks/>
+        Public ReadOnly Property PulverisateurOTC() As Object
+            Get
+                Me.RaiseExceptionIfNecessary
+                Return CType(Me.results(2),Object)
+            End Get
+        End Property
+    End Class
+    
+    '''<remarks/>
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")>  _
     Public Delegate Sub GetStructureCompletedEventHandler(ByVal sender As Object, ByVal e As GetStructureCompletedEventArgs)
     
     '''<remarks/>
@@ -8121,7 +8275,6 @@ Namespace WSCRODIP
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
-
 
 
         '''<remarks/>

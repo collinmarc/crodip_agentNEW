@@ -133,6 +133,8 @@ Public Class Pulverisateur
     Private _isPompesDoseuses As Boolean = False
     Private _nbPompesDoseuses As Integer
     Private _numChassis As String
+
+    Private _lstAnnomalie As List(Of Annomalie)
     Public Shared Sub initConstantes()
         PULVERISATION_JETPORTE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
         PULVERISATION_JETPROJETE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
@@ -155,6 +157,7 @@ Public Class Pulverisateur
         End If
         dateProchainControle = Nothing
         controleEtat = controleEtatOK
+        _lstAnnomalie = New List(Of Annomalie)()
     End Sub
     Public Property id() As String
         Get
@@ -1911,5 +1914,73 @@ Public Class Pulverisateur
         End Try
         Return oReturn
 
+    End Function
+    Private Function AjouteAnnomalieOTC(pCritere As String, pValeurAgent As String, pValeurOTC As String) As Boolean
+        Dim bReturn As Boolean
+        Try
+            Dim oAnnomalie As New Annomalie
+            oAnnomalie.critere = pCritere
+            oAnnomalie.valeurAgent = pValeurAgent
+            oAnnomalie.valeurOTC = pValeurOTC
+            _lstAnnomalie.Add(oAnnomalie)
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.AjouteAnnomalieOTC ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    <XmlIgnore()>
+    Public ReadOnly Property lstAnnomalie() As List(Of Annomalie)
+        Get
+            Return _lstAnnomalie
+        End Get
+    End Property
+    Public Function CompareOTC(puidAgent As Integer) As Boolean
+        Dim bReturn As Boolean = True
+        Try
+            Dim oPulveOTC As PulverisateurOTC
+            lstAnnomalie.Clear()
+            oPulveOTC = PulverisateurManager.WSgetPulverisateurOTC(Me.numeroNational, puidAgent)
+            If oPulveOTC IsNot Nothing Then
+                If Me.anneeAchat <> oPulveOTC.Année Then
+                    AjouteAnnomalieOTC("Année", Me.anneeAchat, oPulveOTC.Année)
+                    bReturn = False
+                End If
+                If Me.attelage <> oPulveOTC.Attelage Then
+                    AjouteAnnomalieOTC("Attelage", Me.attelage, oPulveOTC.Attelage)
+                    bReturn = False
+                End If
+                If Me.categorie <> oPulveOTC.Catégorie Then
+                    AjouteAnnomalieOTC("Categorie", Me.categorie, oPulveOTC.Catégorie)
+                    bReturn = False
+                End If
+                If Me.pulverisation <> oPulveOTC.Fonctionnement Then
+                    AjouteAnnomalieOTC("Pulverisation", Me.pulverisation, oPulveOTC.Fonctionnement)
+                    bReturn = False
+                End If
+                If Me.largeur <> oPulveOTC.Largeur Then
+                    AjouteAnnomalieOTC("Largeur", Me.largeur, oPulveOTC.Largeur)
+                    bReturn = False
+                End If
+                If Me.marque <> oPulveOTC.Marque Then
+                    AjouteAnnomalieOTC("Marque", Me.marque, oPulveOTC.Marque)
+                    bReturn = False
+                End If
+                If Me.type <> oPulveOTC.Type Then
+                    AjouteAnnomalieOTC("Type", Me.type, oPulveOTC.Type)
+                    bReturn = False
+                End If
+                If Me.capacite <> oPulveOTC.Volume Then
+                    AjouteAnnomalieOTC("Volume", Me.capacite, oPulveOTC.Volume)
+                    bReturn = False
+                End If
+            End If
+
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.CompareOTC ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
     End Function
 End Class

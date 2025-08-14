@@ -308,10 +308,12 @@
     <Compile Include="includes\classes\Logs\Logs.vb" />
     <Compile Include="includes\classes\Logs\LogsManager.vb" />
     <Compile Include="includes\classes\Observe.vb" />
+    <Compile Include="includes\classes\Pulverisateur\Annomalie.vb" />
     <Compile Include="includes\classes\Pulverisateur\NiveauBusePulve.vb" />
     <Compile Include="includes\classes\Pulverisateur\NiveauBusePulveManager.vb" />
     <Compile Include="includes\classes\Pulverisateur\Pulverisateur.vb" />
     <Compile Include="includes\classes\Pulverisateur\PulverisateurManager.vb" />
+    <Compile Include="includes\classes\Pulverisateur\PulverisateurOTC.vb" />
     <Compile Include="includes\classes\Pulverisateur\TypeCategoriePulve.vb" />
     <Compile Include="includes\classes\Referentiel\CodeAPE.vb" />
     <Compile Include="includes\classes\Referentiel\Commune.vb" />

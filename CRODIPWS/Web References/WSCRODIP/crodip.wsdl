@@ -2604,7 +2604,7 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="uid" type="xsd:int" />
-            <xsd:element name="aid" type="xsd:string" />
+            <xsd:element name="identifiant" type="xsd:string" />
             <xsd:element name="uidagent" type="xsd:int" />
           </xsd:sequence>
         </xsd:complexType>
@@ -2631,6 +2631,24 @@
             <xsd:element name="result" type="xsd:int" />
             <xsd:element name="info" type="xsd:string" />
             <xsd:element name="uid" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIdentifiantOTCListRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="format" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="uidpc" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIdentifiantOTCListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element element="tns:IdentifiantOTC" minOccurs="0" maxOccurs="500000" name="IdentifiantOTCList" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -2698,6 +2716,25 @@
             <xsd:element name="result" type="xsd:int" />
             <xsd:element name="info" type="xsd:string" />
             <xsd:element name="uid" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPulverisateurOTCRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="format" type="xsd:string" />
+            <xsd:element name="uid" type="xsd:int" />
+            <xsd:element name="identifiant" type="xsd:string" />
+            <xsd:element name="uidagent" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPulverisateurOTCResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element element="tns:PulverisateurOTC" name="PulverisateurOTC" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -3547,6 +3584,12 @@
   <wsdl:message name="SendIdentifiantOTCResponse">
     <wsdl:part name="parameters" element="tns:SendIdentifiantOTCResponse" />
   </wsdl:message>
+  <wsdl:message name="GetIdentifiantOTCListRequest">
+    <wsdl:part name="parameters" element="tns:GetIdentifiantOTCListRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetIdentifiantOTCListResponse">
+    <wsdl:part name="parameters" element="tns:GetIdentifiantOTCListResponse" />
+  </wsdl:message>
   <wsdl:message name="GetIdentifiantPulverisateurRequest">
     <wsdl:part name="parameters" element="tns:GetIdentifiantPulverisateurRequest" />
   </wsdl:message>
@@ -3570,6 +3613,12 @@
   </wsdl:message>
   <wsdl:message name="SendPulverisateurResponse">
     <wsdl:part name="parameters" element="tns:SendPulverisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPulverisateurOTCRequest">
+    <wsdl:part name="parameters" element="tns:GetPulverisateurOTCRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetPulverisateurOTCResponse">
+    <wsdl:part name="parameters" element="tns:GetPulverisateurOTCResponse" />
   </wsdl:message>
   <wsdl:message name="GetStructureRequest">
     <wsdl:part name="parameters" element="tns:GetStructureRequest" />
@@ -4041,6 +4090,10 @@
       <wsdl:input message="tns:SendIdentifiantOTCRequest" />
       <wsdl:output message="tns:SendIdentifiantOTCResponse" />
     </wsdl:operation>
+    <wsdl:operation name="GetIdentifiantOTCList">
+      <wsdl:input message="tns:GetIdentifiantOTCListRequest" />
+      <wsdl:output message="tns:GetIdentifiantOTCListResponse" />
+    </wsdl:operation>
     <wsdl:operation name="GetIdentifiantPulverisateur">
       <wsdl:input message="tns:GetIdentifiantPulverisateurRequest" />
       <wsdl:output message="tns:GetIdentifiantPulverisateurResponse" />
@@ -4056,6 +4109,10 @@
     <wsdl:operation name="SendPulverisateur">
       <wsdl:input message="tns:SendPulverisateurRequest" />
       <wsdl:output message="tns:SendPulverisateurResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPulverisateurOTC">
+      <wsdl:input message="tns:GetPulverisateurOTCRequest" />
+      <wsdl:output message="tns:GetPulverisateurOTCResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetStructure">
       <wsdl:input message="tns:GetStructureRequest" />
@@ -4939,6 +4996,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetIdentifiantOTCList">
+      <soap:operation soapAction="http://www.example.org/crodip/getIdentifiantOTCList" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetIdentifiantPulverisateur">
       <soap:operation soapAction="http://www.example.org/crodip/GetIdentifiantPulverisateur" />
       <wsdl:input>
@@ -4968,6 +5034,15 @@
     </wsdl:operation>
     <wsdl:operation name="SendPulverisateur">
       <soap:operation soapAction="http://www.example.org/crodip/SendPulverisateur" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPulverisateurOTC">
+      <soap:operation soapAction="http://www.example.org/crodip/GetPulverisateurOTC" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

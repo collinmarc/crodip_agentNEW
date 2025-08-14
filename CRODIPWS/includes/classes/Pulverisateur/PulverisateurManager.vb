@@ -1,5 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
+Imports System.IO
+Imports System.Xml.Serialization
 
 Public Class PulverisateurManager
     Inherits RootManager
@@ -21,6 +23,56 @@ Public Class PulverisateurManager
             nreturn = -1
         End Try
         Return nreturn
+    End Function
+
+    Public Shared Function WSgetPulverisateurOTC(pNumNatPulve As String, puidAgent As Integer) As PulverisateurOTC
+        Dim bReturn As Boolean
+        Dim oReturn As PulverisateurOTC = Nothing
+        Try
+            Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+            Dim tXmlnodes As Object = Nothing
+            Dim sInfos As String = ""
+            Dim codeResponse As Integer = 99
+
+            codeResponse = objWSCrodip.GetPulverisateurOTC("xml", 0, pNumNatPulve, puidAgent, sInfos, tXmlnodes)
+            CSDebug.dispInfo("PulverisateurManager.getPulverisateurOTC Code Reponse = " & codeResponse & ",Sinfos=" & sInfos)
+            Select Case codeResponse
+                Case 0 ' PAS DE MAJ
+                    Try
+                        Dim strxml = tXmlnodes(0).innerText
+                        strxml = strxml.replace("<xml>", "<PulverisateurOTC>")
+                        strxml = strxml.replace("</xml>", "</PulverisateurOTC>")
+                        Dim ser As New XmlSerializer(GetType(PulverisateurOTC))
+                        Using reader As New StringReader(strxml)
+                            oReturn = ser.Deserialize(reader)
+                        End Using
+
+                        If oReturn.isEmpty Then
+                            oReturn = Nothing
+                            bReturn = False
+                        Else
+
+                            bReturn = True
+                        End If
+
+                    Catch ex As Exception
+                        bReturn = False
+                    End Try
+                Case 2 ' UPDATE OK
+                    bReturn = True
+                Case 4 ' CREATE OK
+                    bReturn = True
+                Case 1 ' NOK
+                    bReturn = False
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
+                    bReturn = False
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("PulveristaeurManager.getPulverisateurOTC ERR", ex)
+            bReturn = False
+        End Try
+        Return oReturn
     End Function
     Public Shared Function UpdateExploit2Pulve(ByVal pPulve As Pulverisateur) As Boolean
         Dim oCsdb As CSDb = Nothing
@@ -116,15 +168,15 @@ Public Class PulverisateurManager
     Private Shared Function getNewIdNew(pAgent As Agent) As String
         Debug.Assert(Not pAgent Is Nothing, "L'agent doit être renseigné")
         Debug.Assert(pAgent.id <> 0, "L'agent id doit être renseigné")
-        Debug.Assert(pAgent.uidStructure <> 0, "La structure id doit être renseignée")
+        Debug.Assert(pAgent.uidstructure <> 0, "La structure id doit être renseignée")
         ' déclarations
-        Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.uidStructure).idCrodip
+        Dim idCrodipStructure As String = StructureManager.getStructureById(pAgent.uidstructure).idCrodip
         Dim idPC As String
         idPC = pAgent.oPCcourant.numeroNational
         Dim Racine As String = idCrodipStructure & "-" & pAgent.numeroNational & "-" & idPC & "-"
         Dim nIndex As Integer = 1
 
-        If pAgent.uidStructure <> 0 Then
+        If pAgent.uidstructure <> 0 Then
 
             ' On test si la table est vide
 
@@ -148,7 +200,7 @@ Public Class PulverisateurManager
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
-            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.uidStructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
+            bddCommande.CommandText = "SELECT `Pulverisateur`.`id` FROM `Pulverisateur` WHERE `Pulverisateur`.`id` LIKE '" & curAgent.uidstructure & "-" & curAgent.id & "-%' ORDER BY `Pulverisateur`.`id` DESC"
             Try
                 ' On récupère les résultats
                 Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
@@ -158,12 +210,12 @@ Public Class PulverisateurManager
                     ' On récupère le dernier ID
                     Dim tmpId As Integer = 0
                     tmpPulveId = tmpListProfils.Item(0).ToString
-                    tmpId = CInt(tmpPulveId.Replace(curAgent.uidStructure & "-" & curAgent.id & "-", ""))
+                    tmpId = CInt(tmpPulveId.Replace(curAgent.uidstructure & "-" & curAgent.id & "-", ""))
                     If tmpId > newId Then
                         newId = tmpId
                     End If
                 End While
-                tmpPulveId = curAgent.uidStructure & "-" & curAgent.id & "-" & (newId + 1)
+                tmpPulveId = curAgent.uidstructure & "-" & curAgent.id & "-" & (newId + 1)
             Catch ex As Exception ' On intercepte l'erreur
                 CSDebug.dispFatal("PulverisateurManager - getNewId : " & ex.Message)
             End Try
@@ -647,7 +699,7 @@ Public Class PulverisateurManager
 
             strQuery = "SELECT p.*,  e.raisonSociale,e.prenomExploitant,e.nomExploitant,e.codePostal, e.commune"
             strQuery = strQuery & " From Pulverisateur p inner  join ExploitationTOPulverisateur e2p on e2p.idPulverisateur = p.id inner join Exploitation e on e2p.idExploitation = e.id "
-            strQuery = strQuery & " WHERE e2p.isSupprimecoProp=0 and p.idStructure = " & pAgent.uidStructure
+            strQuery = strQuery & " WHERE e2p.isSupprimecoProp=0 and p.idStructure = " & pAgent.uidstructure
             strQuery = strQuery & " ORDER BY  P.dateProchainControle ASC"
 
             Dim oDataReader As DbDataReader = bdd.getResult2s(strQuery)
@@ -698,7 +750,7 @@ Public Class PulverisateurManager
             Dim strQuery As String = "SELECT Pulverisateur.*, Exploitation.raisonsociale, Exploitation.prenomExploitant, Exploitation.nomExploitant, Exploitation.codepostal,Exploitation.commune " _
                                       & " FROM (ExploitationTOPulverisateur INNER JOIN Pulverisateur On ExploitationTOPulverisateur.idPulverisateur = Pulverisateur.id) INNER JOIN Exploitation On ExploitationTOPulverisateur.idExploitation = Exploitation.id "
             '            strQuery = strQuery & " (Diagnostic.controleDateFin = (SELECT Max(controleDateFin) from Diagnostic where Diagnostic.pulverisateurId = Pulverisateur.id) Or Diagnostic.controleDateFin Is NULL) And "
-            strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.uidStructure
+            strQuery = strQuery & " WHERE pulverisateur.idStructure = " & pAgent.uidstructure
             If Not pTous Then
                 strQuery = strQuery & " And  Not ExploitationTOPulverisateur.isSupprimeCoProp"
             End If
@@ -746,7 +798,7 @@ Public Class PulverisateurManager
         Dim oCSdb As New CSDb(True)
         Dim bddCommande As DbCommand = oCSdb.getConnection().CreateCommand()
         bddCommande.CommandText = "SELECT * FROM Pulverisateur WHERE (dateModificationAgent>dateModificationCrodip Or  dateModificationCrodip Is null)"
-        bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.uidStructure
+        bddCommande.CommandText = bddCommande.CommandText & " And idStructure=" & agent.uidstructure
 
         Try
             ' On récupère les résultats

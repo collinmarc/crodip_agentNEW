@@ -4,7 +4,8 @@ le recréer par Ajouter / reference de service
 	Avancé , Décocher la génération des opérations Asyschrones
 	Ajouter une reference Web
 	Charger le wsdl désiré ex : http://admin-pp.crodip.net/new.wsdl
-	Espace de nom = WSCRODIP
+	nom de la référence WEb = WSCRODIP
+	Ajouter la reference
 
 Modifier le reference.vb (Afficher tous les fichiers)
 Vérifier la methode SetdateSynchroagent  agentId => uidagent
