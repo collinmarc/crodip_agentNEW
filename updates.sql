@@ -674,10 +674,41 @@
 --
 --Alter Table Agent add Column uidpc Bigint(20) DEFAULT 0;
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.2','2025-05-06 16:10:00','agentPC uidpc');
---VXXXXXXX
-ALTER TABLE AgentPc ADD dateDerniereSynchro DATETIME NULL DEFAULT NULL ;
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC DateDerniereSynchro');
-Update AgentPc Set cleUtilisation = idRegistre;
-Update AgentPc Set idRegistre = '';
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC cleUtilisation');
+--V20250515170000
+--ALTER TABLE AgentPc ADD dateDerniereSynchro DATETIME NULL DEFAULT NULL ;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC DateDerniereSynchro');
+--Update AgentPc Set cleUtilisation = idRegistre;
+--Update AgentPc Set idRegistre = '';
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC cleUtilisation');
+--VXXXXXX
+ALTER table Pulverisateur Add Column  `isConfirmeIdentifiant` tinyint(1) NOT NULL DEFAULT '0';
+ALTER table Pulverisateur Add Column    `isConfirmeMarque` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeModele` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeAnneeConstruction` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeVolume` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeLargeur` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeCategorie` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeType` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeFonctionnement` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeRegulation` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isConfirmeAttelage` tinyint(1) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `isAnomalies` tinyint(1) DEFAULT NULL;
+  ALTER table Pulverisateur Add Column  `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `nombreMineures` int(11) NOT NULL DEFAULT '0';
+  ALTER table Pulverisateur Add Column  `dateModificationAnomalies` datetime ;
+  ALTER table Pulverisateur Add Column  `isPulveRecordedInOTC` tinyint(1) DEFAULT NULL;
+  ALTER table Pulverisateur Add Column  `isPulveDownloadByExportOTC` tinyint(1) DEFAULT NULL;
+  ALTER table Pulverisateur Add Column  `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT NULL;
+
+ALTER table Diagnostic Add Column `isAnomalies` tinyint(1) DEFAULT NULL;
+  ALTER table Diagnostic Add Column `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
+  ALTER table Diagnostic Add Column `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
+  ALTER table Diagnostic Add Column `nombreMineures` int(11) NOT NULL DEFAULT '0';
+  ALTER table Diagnostic Add Column `dateModificationAnomalies` datetime ;
+  ALTER table Diagnostic Add Column `isPulveRecordedInOTC` tinyint(1) DEFAULT '0';
+  ALTER table Diagnostic Add Column `isPulveDownloadByExportOTC` tinyint(1) DEFAULT '0';
+  ALTER table Diagnostic Add Column `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT '0';
+
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Annomalie SRV');
 

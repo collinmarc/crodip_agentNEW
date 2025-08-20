@@ -37,7 +37,7 @@ Public Class ToleranceBuseTest
     'Public Sub MyTestInitialize()
     '    'Creation d'un agent
     '    m_oAgent = AgentManager.createAgent(1, "AGENT_TEST_01", "Nouveau")
-    '    m_oAgent.idStructure = 99
+    '    m_oAgent.uidStructure = 99
     '    m_oAgent.nom = "Agent de test"
     '    m_oAgent.prenom = "Agent de test"
     '    AgentManager.save(m_oAgent)
@@ -51,18 +51,18 @@ Public Class ToleranceBuseTest
     '    Dim bReturn As Boolean
     '    If Not m_oAgent Is Nothing Then
     '        Dim arrBanc As List(Of Banc)
-    '        arrBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
+    '        arrBanc = BancManager.getBancByStructureId(m_oAgent.uidStructure)
     '        For Each oBanc As Banc In arrBanc
     '            BancManager.delete(oBanc.id)
     '        Next
 
     '        Dim arrManoc As List(Of ManometreControle)
-    '        arrManoc = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+    '        arrManoc = ManometreControleManager.getManoControleByStructureId(m_oAgent.uidStructure)
     '        For Each oManoC As ManometreControle In arrManoc
     '            ManometreControleManager.delete(oManoC.numeroNational)
     '        Next
     '        Dim arrManoE As List(Of ManometreEtalon)
-    '        arrManoE = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.idStructure)
+    '        arrManoE = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.uidStructure)
     '        For Each oManoE As ManometreEtalon In arrManoE
     '            ManometreEtalonManager.delete(oManoE.numeroNational)
     '        Next

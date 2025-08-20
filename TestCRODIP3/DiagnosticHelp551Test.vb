@@ -149,7 +149,7 @@ Public Class DiagnosticHelp551test
         oDiag.controleDateFin = Date.Today.ToShortDateString()
         oDiag.organismeOrigineInspAgrement = "AgrementOrigine"
         oDiag.organismeOrigineInspNom = "NomOrigine"
-        oDiag.organismeOriginePresId = m_oAgent.idStructure
+        oDiag.organismeOriginePresId = m_oAgent.uidStructure
         oDiag.organismeOriginePresNom = "PresNomOrigine"
         oDiag.organismeOriginePresNumero = "PresNumeroOrigine"
         oDiag.inspecteurOrigineId = m_oAgent.id
@@ -220,8 +220,8 @@ Public Class DiagnosticHelp551test
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
         Dim oLstSynchro As List(Of SynchronisationElmt)
-        'oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
-        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        'oLstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oAgent.oPCCourant, m_oAgent)
+        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oAgent.oPCcourant, m_oAgent)
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt As SynchronisationElmt In oLstSynchro

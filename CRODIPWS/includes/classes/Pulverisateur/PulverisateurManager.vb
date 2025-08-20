@@ -39,9 +39,9 @@ Public Class PulverisateurManager
             Select Case codeResponse
                 Case 0 ' PAS DE MAJ
                     Try
-                        Dim strxml = tXmlnodes(0).innerText
-                        strxml = strxml.replace("<xml>", "<PulverisateurOTC>")
-                        strxml = strxml.replace("</xml>", "</PulverisateurOTC>")
+                        Dim strxml = tXmlnodes(0).ParentNode.outerXML
+                        strxml = strxml.replace("&lt;", "<")
+                        strxml = strxml.replace("&gt;", ">")
                         Dim ser As New XmlSerializer(GetType(PulverisateurOTC))
                         Using reader As New StringReader(strxml)
                             oReturn = ser.Deserialize(reader)
@@ -56,21 +56,21 @@ Public Class PulverisateurManager
                         End If
 
                     Catch ex As Exception
+                        CSDebug.dispError("PulverisateurManager.getPulverisateurOTC ERR XML", ex)
                         bReturn = False
                     End Try
-                Case 2 ' UPDATE OK
+                Case 1 ' PAS de Correspondance
+                    oReturn = Nothing
                     bReturn = True
-                Case 4 ' CREATE OK
-                    bReturn = True
-                Case 1 ' NOK
+                Case Else
                     bReturn = False
-                Case 9 ' BADREQUEST
-                    CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
-                    bReturn = False
+                    oReturn = Nothing
+                    CSDebug.dispError("PulverisateurManager.getPulverisateurOTC CodeReponse" & codeResponse & " infos=" & sInfos)
             End Select
         Catch ex As Exception
-            CSDebug.dispError("PulveristaeurManager.getPulverisateurOTC ERR", ex)
+            CSDebug.dispError("PulverisateurManager.getPulverisateurOTC ERR", ex)
             bReturn = False
+            oReturn = Nothing
         End Try
         Return oReturn
     End Function
@@ -430,9 +430,25 @@ Public Class PulverisateurManager
                 paramsQuery = paramsQuery & " , numeroChassis='" & CSDb.secureString(pPulve.numeroChassis) & "'"
                 paramsQuery = paramsQuery & " , immatCertificat='" & CSDb.secureString(pPulve.immatCertificat) & "'"
                 paramsQuery = paramsQuery & " , immatPlaque='" & CSDb.secureString(pPulve.immatPlaque) & "'"
-                If pPulve.uidstructure > 0 Then
-                    paramsQuery = paramsQuery & " , uidstructure=" & pPulve.uidstructure & ""
-                End If
+                paramsQuery = paramsQuery & " , isConfirmeIdentifiant=" & pPulve.isConfirmeIdentifiant & ""
+                paramsQuery = paramsQuery & " , isConfirmeMarque=" & pPulve.isConfirmeMarque & ""
+                paramsQuery = paramsQuery & " , isConfirmeModele=" & pPulve.isConfirmeModele & ""
+                paramsQuery = paramsQuery & " , isConfirmeAnneeConstruction=" & pPulve.isConfirmeAnneeConstruction & ""
+                paramsQuery = paramsQuery & " , isConfirmeVolume=" & pPulve.isConfirmeVolume & ""
+                paramsQuery = paramsQuery & " , isConfirmeLargeur=" & pPulve.isConfirmeLargeur & ""
+                paramsQuery = paramsQuery & " , isConfirmeCategorie=" & pPulve.isConfirmeCategorie & ""
+                paramsQuery = paramsQuery & " , isConfirmeType=" & pPulve.isConfirmeType & ""
+                paramsQuery = paramsQuery & " , isConfirmeFonctionnement=" & pPulve.isConfirmeFonctionnement & ""
+                paramsQuery = paramsQuery & " , isConfirmeRegulation=" & pPulve.isConfirmeRegulation & ""
+                paramsQuery = paramsQuery & " , isConfirmeAttelage=" & pPulve.isConfirmeAttelage & ""
+                paramsQuery = paramsQuery & " , isAnomalies=" & pPulve.isAnomalies & ""
+                paramsQuery = paramsQuery & " , niveauAnomalies=" & pPulve.niveauAnomalies & ""
+                paramsQuery = paramsQuery & " , nombreAnomalies=" & pPulve.nombreAnomalies & ""
+                paramsQuery = paramsQuery & " , nombreMineures=" & pPulve.nombreMineures & ""
+                paramsQuery = paramsQuery & " , dateModificationAnomalies='" & CSDate.ToCRODIPString(pPulve.dateModificationAnomalies) & "'"
+                paramsQuery = paramsQuery & " , isPulveRecordedInOTC=" & pPulve.isPulveRecordedInOTC & ""
+                paramsQuery = paramsQuery & " , isPulveDownloadByExportOTC=" & pPulve.isPulveDownloadByExportOTC & ""
+                paramsQuery = paramsQuery & " , isPulveDownloadByCheckKeyOTC=" & pPulve.isPulveDownloadByCheckKeyOTC & ""
                 paramsQuery = paramsQuery & pPulve.getRootQuery()
 
                 ' On finalise la requete et en l'execute

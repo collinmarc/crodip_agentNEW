@@ -13,12 +13,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oIdent = New IdentifiantPulverisateur()
         oIdent.id = 9999
         oIdent.libelle = "Mon Ident"
-        oIdent.idStructure = m_oStructure.id
+        oIdent.uidStructure = m_oStructure.id
         oIdent.numeroNational = "999-123-123"
 
         Assert.AreEqual(CLng(9999), oIdent.id)
         Assert.AreEqual("Mon Ident", oIdent.libelle)
-        Assert.AreEqual(CLng(m_oStructure.id), oIdent.idStructure)
+        Assert.AreEqual(CLng(m_oStructure.id), oIdent.uidStructure)
         Assert.AreEqual("999-123-123", oIdent.numeroNational)
 
         oIdent.SetEtatINUTILISE()
@@ -48,7 +48,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oIdent = New IdentifiantPulverisateur()
         oIdent.id = 0
         oIdent.libelle = "Mon Ident"
-        oIdent.idStructure = m_oStructure.id
+        oIdent.uidStructure = m_oStructure.id
         oIdent.numeroNational = "999-123-123"
         oIdent.SetEtatINUTILISE()
 
@@ -100,13 +100,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Next
 
         'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
+        oIdent2 = IdentifiantPulverisateurManager.WSgetById(0, nId.ToString(), m_oAgent.uid)
         oIdent2.libelle = "TEST"
         oIdent2.SetEtatINUTILISABLE()
         IdentifiantPulverisateurManager.Save(oIdent2)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent2)
+        IdentifiantPulverisateurManager.WSSend(oIdent2, oIdent, m_oAgent.uid)
 
-        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+        oIdent = IdentifiantPulverisateurManager.WSgetById(0, oIdent2.id.ToString, m_oAgent.uid)
         Assert.AreEqual(oIdent2.id, oIdent.id)
         Assert.AreEqual(oIdent2.libelle, oIdent.libelle)
         Assert.AreEqual(oIdent2.numeroNational, oIdent.numeroNational)
@@ -117,8 +117,8 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
 
         IdentifiantPulverisateurManager.Save(oIdent)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+        IdentifiantPulverisateurManager.WSSend(oIdent, oIdent2, m_oAgent.uid)
+        oIdent2 = IdentifiantPulverisateurManager.WSgetById(0, oIdent2.id.ToString, m_oAgent.uid)
 
         Assert.AreEqual(oIdent.id, oIdent2.id)
         Assert.AreEqual(oIdent.libelle, oIdent2.libelle)

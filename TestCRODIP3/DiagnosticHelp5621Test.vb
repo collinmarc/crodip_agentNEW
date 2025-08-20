@@ -59,7 +59,7 @@ Public Class DiagnosticHelp5621test
         Dim oCSDB As New CSDb(True)
 
         oDiag = createAndSaveDiagnostic()
-        oDiag.organismePresId = m_oAgent.idStructure
+        oDiag.organismePresId = m_oAgent.uidStructure
         oDiag.inspecteurId = m_oAgent.id
 
         oDiagHelp5621 = New DiagnosticHelp5621
@@ -201,7 +201,7 @@ Public Class DiagnosticHelp5621test
         'Suppression du diag par sécurité 
         DiagnosticManager.delete(oDiag.id)
         Dim oLstSynchro As List(Of SynchronisationElmt)
-        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oAgent.oPCCourant, m_oAgent)
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt As SynchronisationElmt In oLstSynchro

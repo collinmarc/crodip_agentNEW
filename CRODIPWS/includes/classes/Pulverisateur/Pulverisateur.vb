@@ -134,7 +134,7 @@ Public Class Pulverisateur
     Private _nbPompesDoseuses As Integer
     Private _numChassis As String
 
-    Private _lstAnnomalie As List(Of Annomalie)
+    Private _lstAnnomalie As List(Of Anomalie)
     Public Shared Sub initConstantes()
         PULVERISATION_JETPORTE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
         PULVERISATION_JETPROJETE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
@@ -157,7 +157,7 @@ Public Class Pulverisateur
         End If
         dateProchainControle = Nothing
         controleEtat = controleEtatOK
-        _lstAnnomalie = New List(Of Annomalie)()
+        _lstAnnomalie = New List(Of Anomalie)()
     End Sub
     Public Property id() As String
         Get
@@ -1086,169 +1086,170 @@ Public Class Pulverisateur
                 Select Case pColName.ToUpper().Trim
                     Case "id".ToUpper().Trim()
                         Me.id = pColValue.ToString()
-                    Case "numeroNational".ToUpper().Trim()
-                        Me.numeroNational = pColValue.ToString()
-                        'Mémorisation du numéro nationnal
-                        Me.numeroNationalBis = pColValue.ToString()
-                    Case "type".ToUpper().Trim()
-                        Me.type = pColValue.ToString()
-                    Case "marque".ToUpper().Trim()
-                        Me.marque = pColValue.ToString()
-                    Case "modele".ToUpper().Trim()
-                        Me.modele = pColValue.ToString()
-                    Case "anneeAchat".ToUpper().Trim()
-                        Me.anneeAchat = pColValue.ToString()
-                    Case "categorie".ToUpper().Trim()
-                        Me.categorie = pColValue.ToString
-                    Case "attelage".ToUpper().Trim()
-                        Me.attelage = pColValue.ToString()
-                    Case "pulverisation".ToUpper().Trim()
-                        Me.pulverisation = pColValue.ToString
-                    Case "capacite".ToUpper().Trim()
-                        Me.capacite = pColValue
-                    Case "largeur".ToUpper().Trim()
-                        Me.largeur = pColValue.ToString()
-                    Case "nombreRangs".ToUpper().Trim()
-                        Me.nombreRangs = pColValue.ToString()
-                    Case "largeurPlantation".ToUpper().Trim()
-                        Me.largeurPlantation = pColValue.ToString()
-                    Case "surfaceParAn".ToUpper().Trim()
-                        Me.surfaceParAn = pColValue.ToString()
-                    Case "nombreUtilisateurs".ToUpper().Trim()
-                        Me.nombreUtilisateurs = pColValue.ToString()
-                    Case "isVentilateur".ToUpper().Trim()
-                        Me.isVentilateur = pColValue
-                    Case "isDebrayage".ToUpper().Trim()
-                        Me.isDebrayage = pColValue
-                    Case "isCuveRincage".ToUpper().Trim()
-                        Me.isCuveRincage = pColValue
-                    Case "capaciteCuveRincage".ToUpper().Trim()
-                        Me.capaciteCuveRincage = pColValue.ToString()
-                    Case "isRotobuse".ToUpper().Trim()
-                        Me.isRotobuse = pColValue
-                    Case "isCuveIncorporation".ToUpper().Trim()
-                        Me.isCuveIncorporation = pColValue
-                    Case "isRinceBidon".ToUpper().Trim()
-                        Me.isRinceBidon = pColValue
-                    Case "isBidonLaveMain".ToUpper().Trim()
-                        Me.isBidonLaveMain = pColValue
-                    Case "isLanceLavage".ToUpper().Trim()
-                        Me.isLanceLavage = pColValue
-                    Case "regulation".ToUpper().Trim()
-                        Me.regulation = pColValue.ToString
-                    Case "regulationOptions".ToUpper().Trim()
-                        Me.regulationOptions = pColValue.ToString
-                    Case "nombreBuses".ToUpper().Trim()
-                        Me.nombreBuses = pColValue
-                    Case "buseIsIso".ToUpper().Trim()
-                        Me.buseIsIso = pColValue
-                    Case "buseMarque".ToUpper().Trim()
-                        Me.buseMarque = pColValue.ToString()
-                    Case "buseType".ToUpper().Trim()
-                        Me.buseType = pColValue.ToString()
-                    Case "buseFonctionnement".ToUpper().Trim()
-                        Me.buseFonctionnement = pColValue.ToString()
-                    Case "buseAge".ToUpper().Trim()
-                        Me.buseAge = pColValue.ToString()
-                    Case "buseAngle".ToUpper().Trim()
-                        Me.buseAngle = pColValue.ToString()
-                    Case "buseCouleur".ToUpper().Trim()
-                        Me.buseCouleur = pColValue.ToString()
-                    Case "manometreMarque".ToUpper().Trim()
-                        Me.manometreMarque = pColValue.ToString()
-                    Case "manometreType".ToUpper().Trim()
-                        Me.manometreType = pColValue.ToString()
-                    Case "manometreFondEchelle".ToUpper().Trim()
-                        Me.manometreFondEchelle = pColValue.ToString()
-                    Case "manometreDiametre".ToUpper().Trim()
-                        Me.manometreDiametre = pColValue.ToString()
-                    Case "manometrePressionTravail".ToUpper().Trim()
-                        Me.manometrePressionTravail = pColValue.ToString()
-                    Case "isSynchro".ToUpper().Trim()
-                        Me.isSynchro = pColValue
-                    Case "isSupprime".ToUpper().Trim()
-                        Me.isSupprime = pColValue
+                    'Case "numeroNational".ToUpper().Trim()
+                    '    Me.numeroNational = pColValue.ToString()
+                    '    'Mémorisation du numéro nationnal
+                    '    Me.numeroNationalBis = pColValue.ToString()
+                    'Case "type".ToUpper().Trim()
+                    '    Me.type = pColValue.ToString()
+                    'Case "marque".ToUpper().Trim()
+                    '    Me.marque = pColValue.ToString()
+                    'Case "modele".ToUpper().Trim()
+                    '    Me.modele = pColValue.ToString()
+                    'Case "anneeAchat".ToUpper().Trim()
+                    '    Me.anneeAchat = pColValue.ToString()
+                    'Case "categorie".ToUpper().Trim()
+                    '    Me.categorie = pColValue.ToString
+                    'Case "attelage".ToUpper().Trim()
+                    '    Me.attelage = pColValue.ToString()
+                    'Case "pulverisation".ToUpper().Trim()
+                    '    Me.pulverisation = pColValue.ToString
+                    'Case "capacite".ToUpper().Trim()
+                    '    Me.capacite = pColValue
+                    'Case "largeur".ToUpper().Trim()
+                    '    Me.largeur = pColValue.ToString()
+                    'Case "nombreRangs".ToUpper().Trim()
+                    '    Me.nombreRangs = pColValue.ToString()
+                    'Case "largeurPlantation".ToUpper().Trim()
+                    '    Me.largeurPlantation = pColValue.ToString()
+                    'Case "surfaceParAn".ToUpper().Trim()
+                    '    Me.surfaceParAn = pColValue.ToString()
+                    'Case "nombreUtilisateurs".ToUpper().Trim()
+                    '    Me.nombreUtilisateurs = pColValue.ToString()
+                    'Case "isVentilateur".ToUpper().Trim()
+                    '    Me.isVentilateur = pColValue
+                    'Case "isDebrayage".ToUpper().Trim()
+                    '    Me.isDebrayage = pColValue
+                    'Case "isCuveRincage".ToUpper().Trim()
+                    '    Me.isCuveRincage = pColValue
+                    'Case "capaciteCuveRincage".ToUpper().Trim()
+                    '    Me.capaciteCuveRincage = pColValue.ToString()
+                    'Case "isRotobuse".ToUpper().Trim()
+                    '    Me.isRotobuse = pColValue
+                    'Case "isCuveIncorporation".ToUpper().Trim()
+                    '    Me.isCuveIncorporation = pColValue
+                    'Case "isRinceBidon".ToUpper().Trim()
+                    '    Me.isRinceBidon = pColValue
+                    'Case "isBidonLaveMain".ToUpper().Trim()
+                    '    Me.isBidonLaveMain = pColValue
+                    'Case "isLanceLavage".ToUpper().Trim()
+                    '    Me.isLanceLavage = pColValue
+                    'Case "regulation".ToUpper().Trim()
+                    '    Me.regulation = pColValue.ToString
+                    'Case "regulationOptions".ToUpper().Trim()
+                    '    Me.regulationOptions = pColValue.ToString
+                    'Case "nombreBuses".ToUpper().Trim()
+                    '    Me.nombreBuses = pColValue
+                    'Case "buseIsIso".ToUpper().Trim()
+                    '    Me.buseIsIso = pColValue
+                    'Case "buseMarque".ToUpper().Trim()
+                    '    Me.buseMarque = pColValue.ToString()
+                    'Case "buseType".ToUpper().Trim()
+                    '    Me.buseType = pColValue.ToString()
+                    'Case "buseFonctionnement".ToUpper().Trim()
+                    '    Me.buseFonctionnement = pColValue.ToString()
+                    'Case "buseAge".ToUpper().Trim()
+                    '    Me.buseAge = pColValue.ToString()
+                    'Case "buseAngle".ToUpper().Trim()
+                    '    Me.buseAngle = pColValue.ToString()
+                    'Case "buseCouleur".ToUpper().Trim()
+                    '    Me.buseCouleur = pColValue.ToString()
+                    'Case "manometreMarque".ToUpper().Trim()
+                    '    Me.manometreMarque = pColValue.ToString()
+                    'Case "manometreType".ToUpper().Trim()
+                    '    Me.manometreType = pColValue.ToString()
+                    'Case "manometreFondEchelle".ToUpper().Trim()
+                    '    Me.manometreFondEchelle = pColValue.ToString()
+                    'Case "manometreDiametre".ToUpper().Trim()
+                    '    Me.manometreDiametre = pColValue.ToString()
+                    'Case "manometrePressionTravail".ToUpper().Trim()
+                    '    Me.manometrePressionTravail = pColValue.ToString()
+                    'Case "isSynchro".ToUpper().Trim()
+                    '    Me.isSynchro = pColValue
+                    'Case "isSupprime".ToUpper().Trim()
+                    '    Me.isSupprime = pColValue
                     Case "dateProchainControle".ToUpper().Trim()
                         If pColValue.ToString() <> "01/01/2001 00:00:00" And pColValue.ToString() <> "0000-00-00 00:00:00" Then
                             Me.dateProchainControle = CSDate.ToCRODIPString(pColValue.ToString())
                         End If
                     Case "idStructure".ToUpper().Trim()
                         Me.uidstructure = pColValue
-                    Case "emplacementIdentification".ToUpper().Trim()
-                        Me.emplacementIdentification = pColValue
-                    Case "ancienIdentifiant".ToUpper().Trim()
-                        Me.ancienIdentifiant = pColValue
-                    'Champs ajouter pour optimiser l'affichage
-                    Case "controleEtat".ToUpper().Trim()
-                        Me.controleEtat = pColValue
+                    'Case "emplacementIdentification".ToUpper().Trim()
+                    '    Me.emplacementIdentification = pColValue
+                    'Case "ancienIdentifiant".ToUpper().Trim()
+                    '    Me.ancienIdentifiant = pColValue
+                    ''Champs ajouter pour optimiser l'affichage
+                    'Case "controleEtat".ToUpper().Trim()
+                    '    Me.controleEtat = pColValue
                     Case "raisonSociale".ToUpper().Trim()
                         Me.RaisonSocialeExploitant = pColValue
-                    Case "nomExploitant".ToUpper().Trim()
-                        Me.NomExploitant = pColValue
-                    Case "prenomExploitant".ToUpper().Trim()
-                        Me.PrenomExploitant = pColValue
-                    Case "codepostal".ToUpper().Trim()
-                        Me.codePostal = pColValue
-                    Case "commune".ToUpper().Trim()
-                        Me.Commune = pColValue
-                    Case "isEclairageRampe".ToUpper().Trim()
-                        Me.isEclairageRampe = pColValue
-                    Case "isBarreGuidage".ToUpper().Trim()
-                        Me.isBarreGuidage = pColValue
-                    Case "isCoupureAutoTroncons".ToUpper().Trim()
-                        Me.isCoupureAutoTroncons = pColValue
-                    Case "isRincageAutoAssiste".ToUpper().Trim()
-                        Me.isRincageAutoAssiste = pColValue
-                    Case "buseModele".ToUpper().Trim()
-                        Me.buseModele = pColValue.ToString()
-                    Case "buseNbniveaux".ToUpper().Trim()
-                        Me.buseNbniveaux = pColValue
-                    Case "manometreNbNiveaux".ToUpper().Trim()
-                        Me.manometreNbniveaux = pColValue
-                    Case "manometreNbTroncons".ToUpper().Trim()
-                        Me.manometreNbtroncons = pColValue
-                    Case "modeUtilisation".ToUpper().Trim()
-                        Me.modeUtilisation = pColValue
-                    Case "nombreExploitants".ToUpper().Trim()
-                        Me.nombreExploitants = pColValue
-                    Case "isAspirationExt".ToUpper().Trim()
-                        Me.isAspirationExt = pColValue
-                    Case "isDispoAntiRetour".ToUpper().Trim()
-                        Me.isDispoAntiRetour = pColValue
-                    Case "isReglageAutoHauteur".ToUpper().Trim()
-                        Me.isReglageAutoHauteur = pColValue
-                    Case "isFiltrationAspiration".ToUpper().Trim()
-                        Me.isFiltrationAspiration = pColValue
-                    Case "isFiltrationRefoulement".ToUpper().Trim()
-                        Me.isFiltrationRefoulement = pColValue
-                    Case "isFiltrationTroncons".ToUpper().Trim()
-                        Me.isFiltrationTroncons = pColValue
-                    Case "isFiltrationBuses".ToUpper().Trim()
-                        Me.isFiltrationBuses = pColValue
-                    Case "isPulveAdditionnel".ToUpper().Trim()
-                        Me.isPulveAdditionnel = pColValue
-                    Case "pulvePrincipalNumNat".ToUpper().Trim()
-                        Me.pulvePrincipalNumNat = pColValue
-                    Case "isrincagecircuit".ToUpper().Trim()
-                        Me.isRincagecircuit = pColValue
-                    Case "isPompesDoseuses".ToUpper().Trim()
-                        Me.isPompesDoseuses = pColValue
-                    Case "nbPompesDoseuses".ToUpper().Trim()
-                        Me.nbPompesDoseuses = pColValue
-                    Case "numeroChassis".ToUpper().Trim()
-                        Me.numeroChassis = pColValue
-                    Case "immatCertificat".ToUpper().Trim()
-                        Me.immatCertificat = pColValue
-                    Case "immatPlaque".ToUpper().Trim()
-                        Me.immatPlaque = pColValue
-                    Case "uid".Trim().ToUpper()
-                        Me.uid = pColValue
-                    Case "uidstructure".Trim().ToUpper()
-                        Me.uidstructure = pColValue
+                        ''Case "nomExploitant".ToUpper().Trim()
+                        ''    Me.NomExploitant = pColValue
+                        ''Case "prenomExploitant".ToUpper().Trim()
+                        ''    Me.PrenomExploitant = pColValue
+                        ''Case "codepostal".ToUpper().Trim()
+                        ''    Me.codePostal = pColValue
+                        ''Case "commune".ToUpper().Trim()
+                        ''    Me.Commune = pColValue
+                        ''Case "isEclairageRampe".ToUpper().Trim()
+                        ''    Me.isEclairageRampe = pColValue
+                        ''Case "isBarreGuidage".ToUpper().Trim()
+                        ''    Me.isBarreGuidage = pColValue
+                        ''Case "isCoupureAutoTroncons".ToUpper().Trim()
+                        ''    Me.isCoupureAutoTroncons = pColValue
+                        ''Case "isRincageAutoAssiste".ToUpper().Trim()
+                        ''    Me.isRincageAutoAssiste = pColValue
+                        ''Case "buseModele".ToUpper().Trim()
+                        ''    Me.buseModele = pColValue.ToString()
+                        ''Case "buseNbniveaux".ToUpper().Trim()
+                        ''    Me.buseNbniveaux = pColValue
+                        ''Case "manometreNbNiveaux".ToUpper().Trim()
+                        ''    Me.manometreNbniveaux = pColValue
+                        ''Case "manometreNbTroncons".ToUpper().Trim()
+                        ''    Me.manometreNbtroncons = pColValue
+                        ''Case "modeUtilisation".ToUpper().Trim()
+                        ''    Me.modeUtilisation = pColValue
+                        ''Case "nombreExploitants".ToUpper().Trim()
+                        ''    Me.nombreExploitants = pColValue
+                        ''Case "isAspirationExt".ToUpper().Trim()
+                        ''    Me.isAspirationExt = pColValue
+                        ''Case "isDispoAntiRetour".ToUpper().Trim()
+                        ''    Me.isDispoAntiRetour = pColValue
+                        ''Case "isReglageAutoHauteur".ToUpper().Trim()
+                        ''    Me.isReglageAutoHauteur = pColValue
+                        ''Case "isFiltrationAspiration".ToUpper().Trim()
+                        ''    Me.isFiltrationAspiration = pColValue
+                        ''Case "isFiltrationRefoulement".ToUpper().Trim()
+                        ''    Me.isFiltrationRefoulement = pColValue
+                        ''Case "isFiltrationTroncons".ToUpper().Trim()
+                        ''    Me.isFiltrationTroncons = pColValue
+                        ''Case "isFiltrationBuses".ToUpper().Trim()
+                        ''    Me.isFiltrationBuses = pColValue
+                        ''Case "isPulveAdditionnel".ToUpper().Trim()
+                        ''    Me.isPulveAdditionnel = pColValue
+                        ''Case "pulvePrincipalNumNat".ToUpper().Trim()
+                        ''    Me.pulvePrincipalNumNat = pColValue
+                        ''Case "isrincagecircuit".ToUpper().Trim()
+                        ''    Me.isRincagecircuit = pColValue
+                        ''Case "isPompesDoseuses".ToUpper().Trim()
+                        ''    Me.isPompesDoseuses = pColValue
+                        ''Case "nbPompesDoseuses".ToUpper().Trim()
+                        ''    Me.nbPompesDoseuses = pColValue
+                        ''Case "numeroChassis".ToUpper().Trim()
+                        ''    Me.numeroChassis = pColValue
+                        ''Case "immatCertificat".ToUpper().Trim()
+                        ''    Me.immatCertificat = pColValue
+                        ''Case "immatPlaque".ToUpper().Trim()
+                        ''    Me.immatPlaque = pColValue
+                        'Case "uid".Trim().ToUpper()
+                        '    Me.uid = pColValue
+                        'Case "uidstructure".Trim().ToUpper()
+                        '    Me.uidstructure = pColValue
                     Case Else
                         bReturn = False
                 End Select
             End If
+            numeroNationalBis = numeroNational
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.Fill(" & pColName & "," & pColValue & ") ERR", ex)
             bReturn = False
@@ -1380,6 +1381,7 @@ Public Class Pulverisateur
         NUMEROPASDANSLALISTE = 3
         NUMEROFORMATINCORRECT = 4
         NUMEROPART1FORMATINCORRECT = 5
+        NUMEROPASDANSLALISTEOTC = 6
     End Enum
     ''' <summary>
     ''' Check numéro national Pulvérisateur
@@ -1400,23 +1402,23 @@ Public Class Pulverisateur
         If pNumNatPart2.Length <> 6 Or Not IsNumeric(pNumNatPart2) Then
             bReturn = CheckResult.NUMEROFORMATINCORRECT
         End If
-        If bReturn = CheckResult.OK And pbAjout Then
-            'En mode ajout , on vérifie toujours l'existence
-            If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
-                bReturn = CheckResult.NUMEROEXISTANT
+        If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
+            If bReturn = CheckResult.OK And pbAjout Then
+                'En mode ajout , on vérifie toujours l'existence
+                If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
+                    bReturn = CheckResult.NUMEROEXISTANT
+                End If
             End If
-        End If
-        Dim bCheck As Boolean
-        bCheck = True
-        If Not pbAjout And Me.numeroNational = pNumNational Then
-            'Si on n'est pas en ajout est qu'il n'y a pas eu de modif sur le numéro 
-            ' => pas de controle par rapport aux Identifiants Pulvés
-            bCheck = False
-        End If
-        If bReturn = CheckResult.OK Then
-            If olst.Count > 0 And bCheck Then
-                'S'il y a des identifiant Pulvés
-                If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
+            Dim bCheck As Boolean
+            bCheck = True
+            If Not pbAjout And Me.numeroNational = pNumNational Then
+                'Si on n'est pas en ajout est qu'il n'y a pas eu de modif sur le numéro 
+                ' => pas de controle par rapport aux Identifiants Pulvés
+                bCheck = False
+            End If
+            If bReturn = CheckResult.OK Then
+                If olst.Count > 0 And bCheck Then
+                    'S'il y a des identifiant Pulvés
                     'Si on  test un numero CRODIP
                     If pNumNational <> olst(0).numeroNational Then
                         bReturn = CheckResult.NUMEROPASLEPREMIER
@@ -1430,6 +1432,15 @@ Public Class Pulverisateur
                     If Not bDansLaListe Then
                         bReturn = CheckResult.NUMEROPASDANSLALISTE
                     End If
+                End If
+            End If
+        Else
+            'Pulve non indigo (E001)
+            'il faut que le numéro existe dans la base OTC
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                Dim oPulverisateurOTC As PulverisateurOTC = PulverisateurManager.WSgetPulverisateurOTC(numeroNational, pAgent.uid)
+                If oPulverisateurOTC Is Nothing Then
+                    bReturn = CheckResult.NUMEROPASDANSLALISTEOTC
                 End If
             End If
         End If
@@ -1915,14 +1926,23 @@ Public Class Pulverisateur
         Return oReturn
 
     End Function
-    Private Function AjouteAnnomalieOTC(pCritere As String, pValeurAgent As String, pValeurOTC As String) As Boolean
+    Private _bisCompareOTC As Boolean
+    Public Property isCompareOTC() As Boolean
+        Get
+            Return _bisCompareOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _bisCompareOTC = value
+        End Set
+    End Property
+    Private Function AjouteAnomalieOTC(pCritere As String, pValeurAgent As String, pValeurOTC As String) As Boolean
         Dim bReturn As Boolean
         Try
-            Dim oAnnomalie As New Annomalie
-            oAnnomalie.critere = pCritere
-            oAnnomalie.valeurAgent = pValeurAgent
-            oAnnomalie.valeurOTC = pValeurOTC
-            _lstAnnomalie.Add(oAnnomalie)
+            Dim oAnomalie As New Anomalie
+            oAnomalie.critere = pCritere
+            oAnomalie.valeurAgent = pValeurAgent
+            oAnomalie.valeurOTC = pValeurOTC
+            _lstAnnomalie.Add(oAnomalie)
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.AjouteAnnomalieOTC ERR", ex)
@@ -1931,7 +1951,7 @@ Public Class Pulverisateur
         Return bReturn
     End Function
     <XmlIgnore()>
-    Public ReadOnly Property lstAnnomalie() As List(Of Annomalie)
+    Public ReadOnly Property lstAnomalie() As List(Of Anomalie)
         Get
             Return _lstAnnomalie
         End Get
@@ -1940,41 +1960,42 @@ Public Class Pulverisateur
         Dim bReturn As Boolean = True
         Try
             Dim oPulveOTC As PulverisateurOTC
-            lstAnnomalie.Clear()
+            lstAnomalie.Clear()
             oPulveOTC = PulverisateurManager.WSgetPulverisateurOTC(Me.numeroNational, puidAgent)
             If oPulveOTC IsNot Nothing Then
                 If Me.anneeAchat <> oPulveOTC.Année Then
-                    AjouteAnnomalieOTC("Année", Me.anneeAchat, oPulveOTC.Année)
+                    AjouteAnomalieOTC("Année", Me.anneeAchat, oPulveOTC.Année)
                     bReturn = False
                 End If
                 If Me.attelage <> oPulveOTC.Attelage Then
-                    AjouteAnnomalieOTC("Attelage", Me.attelage, oPulveOTC.Attelage)
+                    AjouteAnomalieOTC("Attelage", Me.attelage, oPulveOTC.Attelage)
                     bReturn = False
                 End If
                 If Me.categorie <> oPulveOTC.Catégorie Then
-                    AjouteAnnomalieOTC("Categorie", Me.categorie, oPulveOTC.Catégorie)
+                    AjouteAnomalieOTC("Categorie", Me.categorie, oPulveOTC.Catégorie)
                     bReturn = False
                 End If
                 If Me.pulverisation <> oPulveOTC.Fonctionnement Then
-                    AjouteAnnomalieOTC("Pulverisation", Me.pulverisation, oPulveOTC.Fonctionnement)
-                    bReturn = False
-                End If
-                If Me.largeur <> oPulveOTC.Largeur Then
-                    AjouteAnnomalieOTC("Largeur", Me.largeur, oPulveOTC.Largeur)
+                    AjouteAnomalieOTC("Pulverisation", Me.pulverisation, oPulveOTC.Fonctionnement)
                     bReturn = False
                 End If
                 If Me.marque <> oPulveOTC.Marque Then
-                    AjouteAnnomalieOTC("Marque", Me.marque, oPulveOTC.Marque)
+                    AjouteAnomalieOTC("Marque", Me.marque, oPulveOTC.Marque)
                     bReturn = False
                 End If
                 If Me.type <> oPulveOTC.Type Then
-                    AjouteAnnomalieOTC("Type", Me.type, oPulveOTC.Type)
+                    AjouteAnomalieOTC("Type", Me.type, oPulveOTC.Type)
                     bReturn = False
                 End If
                 If Me.capacite <> oPulveOTC.Volume Then
-                    AjouteAnnomalieOTC("Volume", Me.capacite, oPulveOTC.Volume)
+                    AjouteAnomalieOTC("Volume", Me.capacite, oPulveOTC.Volume)
                     bReturn = False
                 End If
+                If Me.largeur <> oPulveOTC.Largeur Then
+                    AjouteAnomalieOTC("Largeur", Me.largeur, oPulveOTC.Largeur)
+                    bReturn = False
+                End If
+
             End If
 
         Catch ex As Exception
@@ -1983,4 +2004,231 @@ Public Class Pulverisateur
         End Try
         Return bReturn
     End Function
+    Public Function setValeursOTC() As Boolean
+        Dim breturn As Boolean
+        Try
+            For Each oAno As Anomalie In lstAnomalie
+                If oAno.bvaleurOTCOK Then
+                    Select Case oAno.critere
+                        Case "Année"
+                            Me.anneeAchat = oAno.valeurOTC
+                        Case "Attelage"
+                            Me.attelage = oAno.valeurOTC
+                        Case "Categorie"
+                            Me.categorie = oAno.valeurOTC
+                        Case "Pulverisation"
+                            Me.pulverisation = oAno.valeurOTC
+                        Case "Marque"
+                            Me.marque = oAno.valeurOTC
+                        Case "Type"
+                            Me.type = oAno.valeurOTC
+                        Case "Volume"
+                            Me.capacite = oAno.valeurOTC
+
+                        Case "Largeur"
+                            Me.largeur = oAno.valeurOTC
+
+                    End Select
+                End If
+            Next
+            isCompareOTC = True
+            breturn = True
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.setValeursOTC ERR", ex)
+            breturn = False
+        End Try
+        Return breturn
+    End Function
+    Private _isConfirmeIdentifiant As Boolean
+    Public Property isConfirmeIdentifiant() As Boolean
+        Get
+            Return _isConfirmeIdentifiant
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeIdentifiant = value
+        End Set
+    End Property
+    Private _isConfirmeMarque As Boolean
+    Public Property isConfirmeMarque() As Boolean
+        Get
+            Return _isConfirmeMarque
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeMarque = value
+        End Set
+    End Property
+    Private _isConfirmeModele As Boolean
+    Public Property isConfirmeModele() As Boolean
+        Get
+            Return _isConfirmeModele
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeModele = value
+        End Set
+    End Property
+    Private _isConfirmeAnneeConstruction As Boolean
+    Public Property isConfirmeAnneeConstruction() As Boolean
+        Get
+            Return _isConfirmeAnneeConstruction
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeAnneeConstruction = value
+        End Set
+    End Property
+    Private _isConfirmeVolume As Boolean
+    Public Property isConfirmeVolume() As Boolean
+        Get
+            Return _isConfirmeVolume
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeVolume = value
+        End Set
+    End Property
+    Private _isConfirmeLargeur As Boolean
+    Public Property isConfirmeLargeur() As Boolean
+        Get
+            Return _isConfirmeLargeur
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeLargeur = value
+        End Set
+    End Property
+    Private _isConfirmeCategorie As Boolean
+    Public Property isConfirmeCategorie() As Boolean
+        Get
+            Return _isConfirmeCategorie
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeCategorie = value
+        End Set
+    End Property
+    Private _isConfirmeType As Boolean
+    Public Property isConfirmeType() As Boolean
+        Get
+            Return _isConfirmeType
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeType = value
+        End Set
+    End Property
+    Private _isConfirmeFonctionnement As Boolean
+    Public Property isConfirmeFonctionnement() As Boolean
+        Get
+            Return _isConfirmeFonctionnement
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeFonctionnement = value
+        End Set
+    End Property
+    Private _isConfirmeRegulation As Boolean
+    Public Property isConfirmeRegulation() As Boolean
+        Get
+            Return _isConfirmeRegulation
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeRegulation = value
+        End Set
+    End Property
+    Private _isConfirmeAttelage As Boolean
+    Public Property isConfirmeAttelage() As Boolean
+        Get
+            Return _isConfirmeAttelage
+        End Get
+        Set(ByVal value As Boolean)
+            _isConfirmeAttelage = value
+        End Set
+    End Property
+    Private _isAnomalies As Boolean
+    Public Property isAnomalies() As Boolean
+        Get
+            Return _isAnomalies
+        End Get
+        Set(ByVal value As Boolean)
+            _isAnomalies = value
+        End Set
+    End Property
+    Private _niveauAnomalies As Integer
+    Public Property niveauAnomalies() As Integer
+        Get
+            Return _niveauAnomalies
+        End Get
+        Set(ByVal value As Integer)
+            _niveauAnomalies = value
+        End Set
+    End Property
+    Private _nombreAnomalies As Integer
+    Public Property nombreAnomalies() As Integer
+        Get
+            Return _nombreAnomalies
+        End Get
+        Set(ByVal value As Integer)
+            _nombreAnomalies = value
+        End Set
+    End Property
+    Private _nombreMineures As Integer
+    Public Property nombreMineures() As Integer
+        Get
+            Return _nombreMineures
+        End Get
+        Set(ByVal value As Integer)
+            _nombreMineures = value
+        End Set
+    End Property
+    Private _dateModificationAnomalies As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationAnomalies() As Date
+        Get
+            Return _dateModificationAnomalies
+        End Get
+        Set(ByVal Value As Date)
+            _dateModificationAnomalies = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationAnomalies")>
+    Private _dateModificationAnomaliesS As String
+    Public Property dateModificationAomaliesS() As String
+        Get
+            If dateModificationAgent <> Date.MinValue Then
+                Return CSDate.GetDateForWS(dateModificationAnomalies)
+            Else
+                Return ""
+            End If
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" Then
+                Try
+                    dateModificationAnomalies = CSDate.FromCrodipString(Value)
+                Catch
+                End Try
+            End If
+        End Set
+    End Property
+    Private _isPulveRecordedInOTC As Boolean
+    Public Property isPulveRecordedInOTC() As Boolean
+        Get
+            Return _isPulveRecordedInOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveRecordedInOTC = value
+        End Set
+    End Property
+    Private _isPulveDownloadByExportOTC As Boolean
+    Public Property isPulveDownloadByExportOTC() As Boolean
+        Get
+            Return _isPulveDownloadByExportOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveDownloadByExportOTC = value
+        End Set
+    End Property
+    Private _isPulveDownloadByCheckKeyOTC As Boolean
+    Public Property isPulveDownloadByCheckKeyOTC() As Boolean
+        Get
+            Return _isPulveDownloadByCheckKeyOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveDownloadByCheckKeyOTC = value
+        End Set
+    End Property
+
 End Class

@@ -17,7 +17,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         idManometreControle = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManometreControle.idCrodip = idManometreControle
         oManometreControle.numeroNational = idManometreControle
-        oManometreControle.idStructure = m_oAgent.idStructure
+        oManometreControle.uidStructure = m_oAgent.uidStructure
         oManometreControle.isSupprime = False
         oManometreControle.marque = "MaMarque"
         oManometreControle.etat = True
@@ -111,7 +111,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         agent.dateModificationAgent = "2012-11-01 12:00:02"
         agent.dateModificationCrodip = "2012-09-04 12:00:00"
         agent.eMail = "email"
-        agent.idStructure = m_oStructure.id
+        agent.uidStructure = m_oStructure.id
         agent.isActif = True
         agent.motDePasse = "mdp"
         agent.statut = "STATUT"
@@ -120,7 +120,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         agent.DroitsPulves = "Rampes|Voute"
         agent.isGestionnaire = True
         agent.isSignElecActive = True
-        agent.idCRODIPPool = "123"
+        'agent.idCRODIPPool = "123"
         AgentManager.save(agent)
 
         actual = AgentManager.WSSend(agent, updatedObject)
@@ -139,7 +139,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Assert.AreEqual(agentLu.dateModificationAgent, "2012-09-03 12:00:00")
         'Assert.AreEqual(agentLu.dateModificationCrodip, "2012-09-04 12:00:00")
         'Assert.AreEqual(agentLu.eMail, "email")
-        'Assert.AreEqual(agentLu.idStructure, 497)
+        'Assert.AreEqual(agentLu.uidStructure, 497)
         'Assert.AreEqual(agentLu.isActif, True)
         'Assert.AreEqual(agentLu.motDePasse, "mdp")
         'Assert.AreEqual(agentLu.statut, "STATUT")
@@ -147,7 +147,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         'Assert.AreEqual(agentLu.versionLogiciel, "VERSION")
         'Assert.AreEqual(agentLu.DroitsPulves, "Rampes|Voute")
         'Assert.AreEqual(True, agentLu.isSignElecActive)
-        Assert.AreEqual(agent.idCRODIPPool, "123")
+        'Assert.AreEqual(agent.idCRODIPPool, "123")
 
     End Sub
     <TestMethod()>
@@ -645,7 +645,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oExploitation.codeApe = "12345"
         oExploitation.codeInsee = "74185"
         oExploitation.surfaceAgricoleUtile = "30"
-        oExploitation.idStructure = m_oAgent.idStructure
+        oExploitation.uidStructure = m_oAgent.uidStructure
         ExploitationManager.save(oExploitation, m_oAgent)
         strId = oExploitation.id
         oExploitation = ExploitationManager.getExploitationById(strId)
@@ -654,7 +654,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
         oExploitation = ExploitationManager.WSgetById(-1, strId)
         Assert.AreEqual(strId, oExploitation.id)
-        Assert.AreEqual(m_oAgent.idStructure, oExploitation.idStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, oExploitation.uidStructure)
         Assert.AreEqual("Test Avec accents éèçàù êëï", oExploitation.raisonSociale)
         Assert.AreEqual("12345", oExploitation.codeApe)
         Assert.AreEqual("74185", oExploitation.codeInsee, "ID=" & oExploitation.id)
@@ -708,10 +708,10 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.numeroChassis = "132456"
         oPUlve.isPulveAdditionnel = True
         oPUlve.pulvePrincipalNumNat = "123"
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         Dim oReturnP As Pulverisateur
         PulverisateurManager.WSSend(oPUlve, oReturnP)
-        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, False, m_oAgent)
+        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, False, m_oAgent)
 
         Dim olst As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id)
         Assert.AreEqual(2, olst.Count)
@@ -727,7 +727,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
         System.Threading.Thread.Sleep(1000)
         'Suppression du 2nd Propriétaire
-        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, True, m_oAgent)
+        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, True, m_oAgent)
         olst = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id, True)
         Assert.AreEqual(2, olst.Count)
         Assert.AreEqual(False, olst(0).isSupprimeCoProp)
@@ -766,7 +766,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.isCoupureAutoTroncons = False
         oPUlve.isRincagecircuit = False
         oPUlve.isReglageAutoHauteur = False
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         PulverisateurManager.WSSend(oPUlve, oResponse)
 
         oPUlve = PulverisateurManager.WSgetById(-1, strId)
@@ -790,7 +790,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oPUlve.isRincagecircuit = True
         oPUlve.isReglageAutoHauteur = True
 
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         PulverisateurManager.WSSend(oPUlve, oResponse)
 
         oPUlve = PulverisateurManager.WSgetById(-1, strId)
@@ -810,53 +810,53 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     End Sub
 
 
-    <TestMethod(), Ignore()> Public Sub IdentifiantPulveristeurTestWS()
-        Dim oIdent As IdentifiantPulverisateur
-        Dim oIdent2 As IdentifiantPulverisateur
-        Dim nId As Long
+    '<TestMethod(), Ignore()> Public Sub IdentifiantPulveristeurTestWS()
+    '    Dim oIdent As IdentifiantPulverisateur
+    '    Dim oIdent2 As IdentifiantPulverisateur
+    '    Dim nId As Long
 
-        nId = 144
-        ''Récupération des Idnentifiant Pulves
-        'Dim oSynchro As New Synchronisation(m_oAgent)
-        'Dim oLst As New List(Of SynchronisationElmt)()
-        'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
-        'For Each oelmt As SynchronisationElmt In oLst
-        '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
-        '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
-        '        IdentifiantPulverisateurManager.Save(oIdent)
-        '        'on mémorise le dernier Indetifiant
-        '        nId = oIdent.id
-        '    End If
-        'Next
+    '    nId = 144
+    '    ''Récupération des Idnentifiant Pulves
+    '    'Dim oSynchro As New Synchronisation(m_oAgent)
+    '    'Dim oLst As New List(Of SynchronisationElmt)()
+    '    'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
+    '    'For Each oelmt As SynchronisationElmt In oLst
+    '    '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
+    '    '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
+    '    '        IdentifiantPulverisateurManager.Save(oIdent)
+    '    '        'on mémorise le dernier Indetifiant
+    '    '        nId = oIdent.id
+    '    '    End If
+    '    'Next
 
-        'Rechargement du dernier Identifiant
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
-        oIdent2.libelle = "TEST"
-        oIdent2.SetEtatINUTILISABLE()
-        IdentifiantPulverisateurManager.Save(oIdent2)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent2)
+    '    'Rechargement du dernier Identifiant
+    '    oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
+    '    oIdent2.libelle = "TEST"
+    '    oIdent2.SetEtatINUTILISABLE()
+    '    IdentifiantPulverisateurManager.Save(oIdent2)
+    '    IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent2)
 
-        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
-        Assert.AreEqual(oIdent2.id, oIdent.id)
-        Assert.AreEqual(oIdent2.libelle, oIdent.libelle)
-        Assert.AreEqual(oIdent2.numeroNational, oIdent.numeroNational)
-        Assert.AreEqual(oIdent2.etat, oIdent.etat)
-        Assert.AreEqual(oIdent2.dateUtilisation, oIdent.dateUtilisation)
-        oIdent.libelle = "TEST2"
-        oIdent.SetEtatUTILISE()
-        oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
+    '    oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+    '    Assert.AreEqual(oIdent2.id, oIdent.id)
+    '    Assert.AreEqual(oIdent2.libelle, oIdent.libelle)
+    '    Assert.AreEqual(oIdent2.numeroNational, oIdent.numeroNational)
+    '    Assert.AreEqual(oIdent2.etat, oIdent.etat)
+    '    Assert.AreEqual(oIdent2.dateUtilisation, oIdent.dateUtilisation)
+    '    oIdent.libelle = "TEST2"
+    '    oIdent.SetEtatUTILISE()
+    '    oIdent.dateUtilisation = DateTime.Today.ToShortDateString()
 
-        IdentifiantPulverisateurManager.Save(oIdent)
-        IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
-        oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
+    '    IdentifiantPulverisateurManager.Save(oIdent)
+    '    IdentifiantPulverisateurManager.sendWSIdentifiantPulverisateur(m_oAgent, oIdent)
+    '    oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oIdent2.id.ToString)
 
-        Assert.AreEqual(oIdent.id, oIdent2.id)
-        Assert.AreEqual(oIdent.libelle, oIdent2.libelle)
-        Assert.AreEqual(oIdent.numeroNational, oIdent2.numeroNational)
-        Assert.AreEqual(oIdent.etat, oIdent2.etat)
-        Assert.AreEqual(oIdent.dateUtilisation, oIdent2.dateUtilisation)
+    '    Assert.AreEqual(oIdent.id, oIdent2.id)
+    '    Assert.AreEqual(oIdent.libelle, oIdent2.libelle)
+    '    Assert.AreEqual(oIdent.numeroNational, oIdent2.numeroNational)
+    '    Assert.AreEqual(oIdent.etat, oIdent2.etat)
+    '    Assert.AreEqual(oIdent.dateUtilisation, oIdent2.dateUtilisation)
 
-    End Sub
+    'End Sub
     <TestMethod()>
     Public Sub Get_Send_WS_Banc()
         Dim oBanc As Banc

@@ -4024,4 +4024,97 @@ Public Class Diagnostic
             _FACTFileNames = value
         End Set
     End Property
+    Private _isAnomalies As Boolean
+    Public Property isAnomalies() As Boolean
+        Get
+            Return _isAnomalies
+        End Get
+        Set(ByVal value As Boolean)
+            _isAnomalies = value
+        End Set
+    End Property
+    Private _niveauAnomalies As Integer
+    Public Property niveauAnomalies() As Integer
+        Get
+            Return _niveauAnomalies
+        End Get
+        Set(ByVal value As Integer)
+            _niveauAnomalies = value
+        End Set
+    End Property
+    Private _nombreAnomalies As Integer
+    Public Property nombreAnomalies() As Integer
+        Get
+            Return _nombreAnomalies
+        End Get
+        Set(ByVal value As Integer)
+            _nombreAnomalies = value
+        End Set
+    End Property
+    Private _nombreMineures As Integer
+    Public Property nombreMineures() As Integer
+        Get
+            Return _nombreMineures
+        End Get
+        Set(ByVal value As Integer)
+            _nombreMineures = value
+        End Set
+    End Property
+
+    Private _dateModificationAnomalies As DateTime
+    <XmlIgnoreAttribute()>
+    Public Property dateModificationAnomalies() As Date
+        Get
+            Return _dateModificationAnomalies
+        End Get
+        Set(ByVal Value As Date)
+            _dateModificationAnomalies = Value
+        End Set
+    End Property
+    <XmlElement("dateModificationAnomalies")>
+    Private _dateModificationAnomaliesS As String
+    Public Property dateModificationAomaliesS() As String
+        Get
+            If dateModificationAgent <> Date.MinValue Then
+                Return CSDate.GetDateForWS(dateModificationAnomalies)
+            Else
+                Return ""
+            End If
+        End Get
+        Set(ByVal Value As String)
+            If Value <> "" Then
+                Try
+                    dateModificationAnomalies = CSDate.FromCrodipString(Value)
+                Catch
+                End Try
+            End If
+        End Set
+    End Property
+    Private _isPulveRecordedInOTC As Boolean
+    Public Property isPulveRecordedInOTC() As Boolean
+        Get
+            Return _isPulveRecordedInOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveRecordedInOTC = value
+        End Set
+    End Property
+    Private _isPulveDownloadByExportOTC As Boolean
+    Public Property isPulveDownloadByExportOTC() As Boolean
+        Get
+            Return _isPulveDownloadByExportOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveDownloadByExportOTC = value
+        End Set
+    End Property
+    Private _isPulveDownloadByCheckKeyOTC As Boolean
+    Public Property isPulveDownloadByCheckKeyOTC() As Boolean
+        Get
+            Return _isPulveDownloadByCheckKeyOTC
+        End Get
+        Set(ByVal value As Boolean)
+            _isPulveDownloadByCheckKeyOTC = value
+        End Set
+    End Property
 End Class

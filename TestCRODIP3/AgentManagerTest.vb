@@ -8,7 +8,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 '''Classe de test pour AgentManagerTest, destinée à contenir tous
 '''les tests unitaires AgentManagerTest
 '''</summary>
-<TestClass()> _
+<TestClass()>
 Public Class AgentManagerTest
     Inherits CRODIPTest
 
@@ -49,7 +49,7 @@ Public Class AgentManagerTest
         oAgent1 = New Agent(99, "CRUDTest01", "CRUDTEST", m_oStructure.id)
         AgentManager.save(oAgent1)
         oAgent1.prenom = "test"
-        oAgent1.idStructure = m_oStructure.id
+        oAgent1.uidstructure = m_oStructure.id
         Assert.IsFalse(oAgent1.isSignElecActive)
         oAgent1.isSignElecActive = True
         Assert.IsTrue(oAgent1.isSignElecActive)
@@ -97,7 +97,7 @@ Public Class AgentManagerTest
         agent.dateModificationAgent = "2012-11-01 12:00:02"
         agent.dateModificationCrodip = "2012-09-04 12:00:00"
         agent.eMail = "email"
-        agent.idStructure = m_oStructure.id
+        agent.uidstructure = m_oStructure.id
         agent.isActif = True
         agent.motDePasse = "mdp"
         agent.statut = "STATUT"
@@ -109,7 +109,7 @@ Public Class AgentManagerTest
 
         actual = AgentManager.WSSend(agent, updatedObject)
 
-        agentLu = AgentManager.WSgetByNumeroNational(agent.numeroNational)
+        agentLu = AgentManager.WSgetByNumeroNational(agent.numeroNational, False)
         'Assert.AreEqual(agent.id, agentLu.id)
         'TODO : Controle de l'objet lu a reactiver !!!
         Assert.AreEqual(agent.numeroNational, agentLu.numeroNational)
@@ -123,7 +123,7 @@ Public Class AgentManagerTest
         'Assert.AreEqual(agentLu.dateModificationAgent, "2012-09-03 12:00:00")
         'Assert.AreEqual(agentLu.dateModificationCrodip, "2012-09-04 12:00:00")
         'Assert.AreEqual(agentLu.eMail, "email")
-        'Assert.AreEqual(agentLu.idStructure, 497)
+        'Assert.AreEqual(agentLu.uidStructure, 497)
         'Assert.AreEqual(agentLu.isActif, True)
         ' Assert.AreEqual(agentLu.motDePasse, "mdp")
         'Assert.AreEqual(agentLu.statut, "STATUT")
@@ -137,7 +137,7 @@ Public Class AgentManagerTest
     '''<summary>
     '''Test pour sendWSAgent
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub createAgentTest()
         Dim oDB As CSDb
         oDB = New CSDb(True)
@@ -162,7 +162,7 @@ Public Class AgentManagerTest
     '''<summary>
     '''Test pour la methode Get Agent List
     '''</summary>
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub GetAgentListTest()
         Dim oAgent As Agent
         Dim oStructure As [Structure]
@@ -177,7 +177,7 @@ Public Class AgentManagerTest
         End If
         oAgent = New Agent(9999, "9999", "AgentTest", m_oStructure.id)
         oAgent.prenom = "Moi"
-        oAgent.idStructure = oStructure.id
+        oAgent.uidstructure = oStructure.id
         AgentManager.save(oAgent)
 
         Dim oList As AgentList = AgentManager.getAgentList(oStructure.id)
@@ -208,7 +208,7 @@ Public Class AgentManagerTest
 
         oAgent = New Agent(999, "9999", "AgentTest", oStructure.id)
         oAgent.prenom = "Moi"
-        oAgent.idStructure = oStructure.id
+        oAgent.uidstructure = oStructure.id
         AgentManager.save(oAgent)
 
         Dim oList As AgentList = AgentManager.getAgentList(oStructure.id)
@@ -231,7 +231,7 @@ Public Class AgentManagerTest
 
         oAgent = New Agent(999, "9999", "AgentTest", m_oStructure.id)
         oAgent.prenom = "Moi"
-        oAgent.idStructure = m_oStructure.id
+        oAgent.uidstructure = m_oStructure.id
         oAgent.isActif = True
         AgentManager.save(oAgent)
 
@@ -247,7 +247,7 @@ Public Class AgentManagerTest
         'Creation d'un nouvel agent
         oAgent = New Agent(888, "NN888", "Second Agent", m_oStructure.id)
         oAgent.prenom = "Moi"
-        oAgent.idStructure = m_oStructure.id
+        oAgent.uidstructure = m_oStructure.id
         AgentManager.save(oAgent)
 
         oList = AgentManager.getAgentList(m_oStructure.id)
@@ -261,14 +261,14 @@ Public Class AgentManagerTest
     End Sub
 
 
-    <TestMethod()> _
+    <TestMethod()>
     Public Sub SupprimeDernierAgentTest()
 
         'Au début il y a un Agent dans la base
         Assert.AreEqual(1, AgentManager.getAgentList(m_oStructure.id).items.Count)
 
         'Materiel
-        createMateriel(m_oAgent)
+        'createMateriel(m_oAgent)
 
         'Pulvérisateur
         createPulve(m_oAgent)
@@ -280,20 +280,18 @@ Public Class AgentManagerTest
 
 
 
-        'CreateAutoTest
-        createAutotests(m_oAgent)
 
         'Prestation
         Dim oPCategorie As PrestationCategorie = New PrestationCategorie()
         oPCategorie.id = 987
-        oPCategorie.idStructure = m_oAgent.idStructure
+        oPCategorie.uidstructure = m_oAgent.uidstructure
         oPCategorie.libelle = "TEST"
         PrestationCategorieManager.save(oPCategorie, m_oAgent)
 
         Dim oPTarif As PrestationTarif = New PrestationTarif()
         oPTarif.id = 9870
         oPTarif.idCategorie = oPCategorie.id
-        oPTarif.idStructure = m_oAgent.idStructure
+        oPTarif.uidstructure = m_oAgent.uidstructure
         oPTarif.description = "Test"
         PrestationTarifManager.save(oPTarif, m_oAgent)
 
@@ -303,7 +301,7 @@ Public Class AgentManagerTest
         Dim idAgent As Integer = 777
         oAgent = New Agent(idAgent, "TST1", "Agent de test", m_oStructure.id)
         oAgent.prenom = "Pr"
-        oAgent.idStructure = m_oAgent.idStructure
+        oAgent.uidstructure = m_oAgent.uidstructure
         AgentManager.save(oAgent)
 
         oAgent = AgentManager.getAgentById(idAgent)
@@ -316,10 +314,8 @@ Public Class AgentManagerTest
         createPulve(oAgent)
 
         'Materiel
-        createMateriel(oAgent)
+        'createMateriel(oAgent)
 
-        'CreateAutoTest
-        createAutotests(oAgent)
 
 
 
@@ -639,11 +635,11 @@ Public Class AgentManagerTest
 
         oExploitation.raisonSociale = "MONEXPLOITATION"
         oExploitation.codeApe = "12345"
-        oExploitation.idStructure = pAgent.idStructure
+        oExploitation.uidstructure = pAgent.uidstructure
         ExploitationManager.save(oExploitation, pAgent)
 
 
-        oPulve.idStructure = pAgent.idStructure
+        oPulve.uidstructure = pAgent.uidstructure
 
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
@@ -653,177 +649,11 @@ Public Class AgentManagerTest
         oPulve.emplacementIdentification = "DERRIERE"
         'Assert.AreEqual("15.5", oPulve.getLargeurNbreRangs)
 
-        PulverisateurManager.save(oPulve, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploitation, m_oAgent)
 
         Return oPulve.id
 
     End Function
-    Private Sub createMateriel(ByVal pAgent As Agent)
-        createBuse(pAgent)
-        createBuse(pAgent)
-        createManoControle(pAgent)
-        createManoControle(pAgent)
-        createManoEtalon(pAgent)
-        createManoEtalon(pAgent)
-        createBancMesure(pAgent)
-        createBancMesure(pAgent)
 
-        'createControleMano(pAgent)
-        ' createControleBanc(pAgent)
 
-        createFVBanc(pAgent)
-        createFVManoControle(pAgent)
-        createFVManoEtalon(pAgent)
-    End Sub
-
-    Private Function createBuse(ByVal pAgent As Agent) As String
-        Dim oBuseEtalon As New Buse()
-        Dim idBuse As String
-        idBuse = BuseManager.getNewNumeroNationalforTestOnly(pAgent)
-        oBuseEtalon.numeroNational = idBuse
-        oBuseEtalon.idCrodip = "idCrodip"
-        oBuseEtalon.idStructure = pAgent.idStructure
-        oBuseEtalon.couleur = "JAUNE"
-
-        BuseManager.save(oBuseEtalon)
-        Return ""
-
-    End Function
-    Private Function createManoControle(ByVal pAgent As Agent) As String
-        Dim oMano As New ManometreControle()
-        Dim numnat As String
-        numnat = ManometreControleManager.FTO_getNewNumeroNational(pAgent)
-        oMano.numeroNational = numnat
-        oMano.idCrodip = "idCrodip"
-        oMano.idStructure = pAgent.idStructure
-        oMano.marque = "JAUNE"
-
-        ManometreControleManager.save(oMano)
-        Return ""
-
-    End Function
-    Private Function createManoEtalon(ByVal pAgent As Agent) As String
-        Dim oMano As New ManometreEtalon()
-        Dim numnat As String
-        numnat = ManometreEtalonManager.getNewNumeroNationalForTestOnly(pAgent)
-        oMano.numeroNational = numnat
-        oMano.idCrodip = "idCrodip"
-        oMano.idStructure = pAgent.idStructure
-        oMano.marque = "JAUNE"
-
-        ManometreEtalonManager.save(oMano)
-        Return ""
-
-    End Function
-    Private Function createBancMesure(ByVal pAgent As Agent) As String
-        Dim oBanc As New Banc()
-        Dim numnat As String
-        numnat = BancManager.FTO_getNewId(pAgent)
-        oBanc.id = numnat
-        oBanc.idStructure = pAgent.idStructure
-        oBanc.marque = "JAUNE"
-        oBanc.JamaisServi = False
-        oBanc.etat = True
-        BancManager.save(oBanc)
-        Return numnat
-
-    End Function
-    'Private Sub createControleMano(ByVal pAgent As Agent)
-    '    Dim oMano As New ControleMano()
-    '    Dim id As String
-    '    Dim oCSdb As New CSDb(True)
-    '    Dim cmd As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand
-    '    Dim oDR As OleDb.OleDbDataReader
-    '    cmd.CommandText = "SELECT numeronational from AgentManoControle where numeronational LIKE" & ControlChars.Quote & "%-" & pAgent.id & "-%" & ControlChars.Quote
-    '    oDR = cmd.ExecuteReader()
-    '    While oDR.Read()
-    '        Dim cmd2 As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand
-    '        Dim oDR2 As OleDb.OleDbDataReader
-    '        cmd2.CommandText = "SELECT numeronational from AgentManoEtalon where numeronational LIKE" & ControlChars.Quote & "%-" & pAgent.id & "-%" & ControlChars.Quote
-    '        oDR2 = cmd2.ExecuteReader()
-    '        While oDR2.Read()
-
-    '            id = ControleManoManager.getNewId(pAgent)
-    '            Dim oCtrl As New ControleMano()
-    '            oCtrl.id = id
-    '            oCtrl.idStructure = pAgent.idStructure
-    '            oCtrl.idMano = oDR.GetString(0)
-    '            oCtrl.manoEtalon = oDR2.GetString(0)
-
-    '            ControleManoManager.save(oCtrl, pAgent)
-    '        End While
-    '        oDR2.Close()
-    '    End While
-    '    oDR.Close()
-
-    'End Sub
-    ''Private Sub createControleBanc(ByVal pAgent As Agent)
-    '    Dim oMano As New ControleMano()
-    '    Dim id As String
-    '    Dim oCSdb As New CSDb(True)
-    '    Dim cmd As OleDb.OleDbCommand = oCSdb.getConnection().CreateCommand
-    '    Dim oDR As OleDb.OleDbDataReader
-    '    cmd.CommandText = "SELECT id from BancMesure where id LIKE" & ControlChars.Quote & "%-" & pAgent.id & "-%" & ControlChars.Quote
-    '    oDR = cmd.ExecuteReader()
-    '    While oDR.Read()
-
-    '        id = ControleBancManager.getNewId(pAgent)
-    '        Dim oCtrl As New ControleBanc()
-    '        oCtrl.id = id
-    '        oCtrl.idStructure = pAgent.idStructure
-    '        oCtrl.idBanc = oDR.GetString(0)
-
-    '        ControleBancManager.save(oCtrl, pAgent)
-    '    End While
-    '    oDR.Close()
-
-    'End Sub
-
-    Private Sub createFVBanc(ByVal pAgent As Agent)
-        Dim lstBanc As New List(Of Banc)
-        lstBanc = BancManager.getBancByAgent(pAgent)
-        For Each oBanc In lstBanc
-            Dim oFV As New FVBanc()
-            oFV.idAgentControleur = m_oAgent.id
-            oFV.idBancMesure = oBanc.id
-
-            FVBancManager.save(oFV)
-        Next
-    End Sub
-    Private Sub createFVManoControle(ByVal pAgent As Agent)
-        Dim idMano As String
-
-        Dim Lst As List(Of ManometreControle) = ManometreControleManager.getManoControleByAgent(pAgent, True)
-        For Each oMano As ManometreControle In Lst
-            idMano = FVManometreControleManager.getNewId(pAgent)
-            Dim oFV As New FVManometreControle()
-            oFV.id = idMano
-            oFV.idManometre = oMano.numeroNational
-
-            FVManometreControleManager.save(oFV)
-
-        Next
-    End Sub
-    Private Sub createFVManoEtalon(ByVal pAgent As Agent)
-        Dim idMano As String
-
-        Dim Lst As List(Of ManometreEtalon) = ManometreEtalonManager.getManometreEtalonByAgent(pAgent, True)
-        For Each oMano As ManometreEtalon In Lst
-            idMano = FVManometreEtalonManager.getNewId(pAgent)
-            Dim oFV As New FVManometreEtalon()
-            oFV.id = idMano
-            oFV.idManometre = oMano.numeroNational
-
-            FVManometreEtalonManager.save(oFV)
-
-        Next
-    End Sub
-    Private Sub createAutotests(ByVal pAgent As Agent)
-        Dim oCol As List(Of AutoTest)
-
-        oCol = AutoTestManager.CreateControlesReguliers(pAgent, Date.Now)
-        For Each oTest As AutoTest In oCol
-            AutoTestManager.save(oTest)
-        Next
-    End Sub
 End Class

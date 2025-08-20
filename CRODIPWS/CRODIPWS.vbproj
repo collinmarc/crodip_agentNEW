@@ -308,7 +308,7 @@
     <Compile Include="includes\classes\Logs\Logs.vb" />
     <Compile Include="includes\classes\Logs\LogsManager.vb" />
     <Compile Include="includes\classes\Observe.vb" />
-    <Compile Include="includes\classes\Pulverisateur\Annomalie.vb" />
+    <Compile Include="includes\classes\Pulverisateur\Anomalie.vb" />
     <Compile Include="includes\classes\Pulverisateur\NiveauBusePulve.vb" />
     <Compile Include="includes\classes\Pulverisateur\NiveauBusePulveManager.vb" />
     <Compile Include="includes\classes\Pulverisateur\Pulverisateur.vb" />

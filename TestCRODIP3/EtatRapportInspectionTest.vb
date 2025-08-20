@@ -53,7 +53,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -162,7 +162,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -354,7 +354,7 @@ Imports Crodip_agent
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
         oPulve.numeroNational = "E001456789"
@@ -380,7 +380,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -442,7 +442,7 @@ Imports Crodip_agent
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
         oPulve.numeroNational = "E001456789"
@@ -468,7 +468,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -688,12 +688,12 @@ Imports Crodip_agent
         oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
@@ -704,16 +704,16 @@ Imports Crodip_agent
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
         'Suppression des etats générés en local
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         'Récupération des fichiers par FTP
         Assert.IsTrue(DiagnosticManager.getFTPEtats(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        CSFile.open(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        CSFile.open(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
 
     End Sub
     <TestMethod()> Public Sub TestSynhcroHTTPEtat()
@@ -749,47 +749,47 @@ Imports Crodip_agent
         oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtatSM.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         Dim oEtatCC As New EtatContratCommercial(oDiag)
         oEtatCC.genereEtat()
         oDiag.CCFileName = oEtatCC.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
 
         Dim oEtatBL As New EtatBL(oDiag)
         oEtatBL.genereEtat()
         oDiag.BLFileName = oEtatBL.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
 
         Dim oEtatES As New EtatEnquete(oDiag)
         oEtatES.genereEtat()
         oDiag.ESFileName = oEtatES.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
 
         Dim oEtatCOPRO As New EtatDocumentCoPropriete(oDiag)
         oEtatCOPRO.AddCoProprietaire("TEST")
         oEtatCOPRO.genereEtat()
         oDiag.COPROFileName = oEtatCOPRO.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
 
         Dim oFact As New Facture(oDiag, m_oStructure)
         oFact.oExploit = oExploit
         Dim oEtatFACT As New EtatFacture2(oFact, m_oAgent, m_oStructure)
         oEtatFACT.genereEtat()
         oDiag.FACTFileNames = oEtatFACT.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
 
         Dim oFact1 As New Facture(oDiag, m_oStructure)
         oFact1.oExploit = oExploit
         oEtatFACT = New EtatFacture2(oFact, m_oAgent, m_oStructure)
         oEtatFACT.genereEtat()
         oDiag.FACTFileNames = oDiag.FACTFileNames & ";" & oEtatFACT.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
 
         DiagnosticManager.save(oDiag)
 
@@ -799,79 +799,79 @@ Imports Crodip_agent
         ''Synchronisation des etats
         Assert.IsTrue(DiagnosticManager.SendEtats(oDiag))
 
-        Dim oFi As New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Dim oFi As New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Dim nLengthRI As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
         Dim nLengthSM As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
         Dim nLengthCC As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
         Dim nLengthBL As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
         Dim nLengthES As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
         Dim nLengthCOPRO As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
         Dim nLengthFact0 As Long = oFi.Length
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
         Dim nLengthFact1 As Long = oFi.Length
 
         'Suppression des etats générés en local
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
-        File.Delete(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
-        Assert.IsFalse(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        File.Delete(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        Assert.IsFalse(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
 
         'Récupération des fichiers par HTTP
         Assert.IsTrue(DiagnosticManager.getWSEtatsRI(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName)
         Assert.AreEqual(nLengthRI, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsSM(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName)
         Assert.AreEqual(nLengthSM, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsCC(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.CCFileName)
         Assert.AreEqual(nLengthCC, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsBL(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.BLFileName)
         Assert.AreEqual(nLengthBL, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsES(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.ESFileName)
         Assert.AreEqual(nLengthES, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsCOPRO(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.COPROFileName)
         Assert.AreEqual(nLengthCOPRO, oFi.Length)
 
         Assert.IsTrue(DiagnosticManager.getWSEtatsFACTs(oDiag))
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0)))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(0))
         Assert.AreEqual(nLengthFact0, oFi.Length)
 
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
-        oFi = New FileInfo(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1)))
+        oFi = New FileInfo(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_FACTURE & "/" & oDiag.FACTFileNames.Split(";")(1))
         Assert.AreEqual(nLengthFact1, oFi.Length)
 
 
@@ -999,9 +999,9 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1095,7 +1095,7 @@ Imports Crodip_agent
         oPulvePrinc = New Pulverisateur()
         oPulvePrinc.isPulveAdditionnel = False
         oPulvePrinc.numeroNational = "E999999999"
-        oPulvePrinc.idStructure = m_oAgent.idStructure
+        oPulvePrinc.uidStructure = m_oAgent.uidStructure
         oPulvePrinc.attelage = "PORTE"
         oPulvePrinc.type = "Cultures basses"
         oPulvePrinc.categorie = "Rampe"
@@ -1103,10 +1103,10 @@ Imports Crodip_agent
         oPulvePrinc.marque = "vicon"
         oPulvePrinc.modele = "VRT520"
         oPulvePrinc.emplacementIdentification = "ARRIERE"
-        PulverisateurManager.save(oPulvePrinc, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulvePrinc, oExploit, m_oAgent)
 
         oPulve = New Pulverisateur()
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.isPulveAdditionnel = True
         oPulve.pulvePrincipalNumNat = oPulvePrinc.numeroNational
 
@@ -1135,9 +1135,9 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1356,7 +1356,7 @@ Imports Crodip_agent
         oPulve.isFiltrationBuses = True
         oPulve.isRincagecircuit = True
 
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1444,7 +1444,7 @@ Imports Crodip_agent
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
         oPulve.numeroNational = "E001456789"
@@ -1470,7 +1470,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1552,7 +1552,7 @@ Imports Crodip_agent
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
         oPulve.numeroNational = "E001456789"
@@ -1578,7 +1578,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1660,7 +1660,7 @@ Imports Crodip_agent
         oExploit.commune = "Chasné sur illet"
         oExploit.codeApe = "987"
         ExploitationManager.save(oExploit, m_oAgent)
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MA MARQUE"
         oPulve.modele = "MON MODELE"
         oPulve.numeroNational = "E001456789"
@@ -1686,7 +1686,7 @@ Imports Crodip_agent
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.dateProchainControle = CSDate.ToCRODIPString("06/02/1964")
         oPulve.controleEtat = Pulverisateur.controleEtatNOKCV ' Défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -1842,7 +1842,7 @@ Imports Crodip_agent
         oPulve.isPompesDoseuses = True
         oPulve.nbPompesDoseuses = 2
         oPulve.categorie = "Rampe"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -1955,7 +1955,7 @@ Imports Crodip_agent
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
         oPulve.buseFonctionnement = "INJECTION D'AIR"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -2046,7 +2046,7 @@ Imports Crodip_agent
         oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         oPulve.categorie = "Traitement des semences"
         oPulve.buseFonctionnement = "CUILLERES"
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, oPulve)
 
@@ -2131,12 +2131,12 @@ Imports Crodip_agent
         oEtat.genereEtat()
         oDiag.RIFileName = oEtat.getFileName()
         'CSFile.open(CONST_PATH_EXP & oEtat.getFileName())
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.RIFileName))
 
         Dim oEtatSM As New EtatSyntheseMesures(oDiag)
         oEtatSM.genereEtat()
         oDiag.SMFileName = oEtat.getFileName()
-        Assert.IsTrue(File.Exists(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
+        Assert.IsTrue(File.Exists(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & "/" & oDiag.SMFileName))
 
         oDiag.SMFileName = oEtatSM.getFileName()
         DiagnosticManager.save(oDiag)
@@ -2194,7 +2194,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -2304,7 +2304,7 @@ Imports Crodip_agent
         oPulve.regulation = "DPM"
         oPulve.regulationOptions = "Opt1|Opt2"
         oPulve.controleEtat = Pulverisateur.controleEtatOK ' pas de défaut sur le pulvé
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiagOrigine = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiagOrigine.controleLieu = "DANS LA COUR"

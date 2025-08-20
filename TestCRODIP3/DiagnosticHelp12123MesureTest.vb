@@ -79,7 +79,7 @@ Public Class DiagnosticHelp12123Mesuretest
         oDiagHelp12123M.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
         Dim oCSDB As New CSDb(True)
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.uidStructure.ToString, m_oAgent.id.ToString, oCSDB))
         oCSDB.free()
         iD = oDiagHelp12123M.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123M.id))
@@ -125,7 +125,7 @@ Public Class DiagnosticHelp12123Mesuretest
 
         Debug.WriteLine("Update")
         oCSDB.getInstance()
-        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.idStructure.ToString, m_oAgent.id.ToString, oCSDB))
+        Assert.IsTrue(oDiagHelp12123M.Save(m_oAgent.uidStructure.ToString, m_oAgent.id.ToString, oCSDB))
         oCSDB.free()
 
         Debug.WriteLine("Lecture")

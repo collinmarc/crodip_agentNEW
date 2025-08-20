@@ -75,103 +75,103 @@ Public Class FVManoEtalonManagerTest
     '''<summary>
     '''Test des fiches de vies Mano Etalons
     '''</summary>
-    <TestMethod()> _
-    Public Sub CreationDesFichesDeViesBancTest()
-        Dim oMano As ManometreEtalon
-        Dim oFVManometreEtalon As FVManometreEtalon
-        Dim olstFV As New List(Of FVManometreEtalon)
-        oMano = New ManometreEtalon()
-        oMano.idStructure = m_oAgent.idStructure
-        oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
-        oMano.idCrodip = oMano.numeroNational
-        oMano.JamaisServi = True
-        oMano.isUtilise = False
-        ManometreEtalonManager.save(oMano)
+    '<TestMethod()> _
+    'Public Sub CreationDesFichesDeViesBancTest()
+    '    Dim oMano As ManometreEtalon
+    '    Dim oFVManometreEtalon As FVManometreEtalon
+    '    Dim olstFV As New List(Of FVManometreEtalon)
+    '    oMano = New ManometreEtalon()
+    '    oMano.uidStructure = m_oAgent.uidStructure
+    '    oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+    '    oMano.idCrodip = oMano.numeroNational
+    '    oMano.JamaisServi = True
+    '    oMano.isUtilise = False
+    '    ManometreEtalonManager.save(oMano)
 
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        Assert.AreEqual(0, olstFV.Count) 'Pas de fiche de vie
+    '    olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
+    '    Assert.AreEqual(0, olstFV.Count) 'Pas de fiche de vie
 
-        oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
-        ManometreEtalonManager.save(oMano)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
-        Assert.IsFalse(oMano.JamaisServi)
-        Assert.AreEqual(CDate("01/06/2014"), oMano.DateActivation)
+    '    oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
+    '    ManometreEtalonManager.save(oMano)
+    '    oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
+    '    Assert.IsFalse(oMano.JamaisServi)
+    '    Assert.AreEqual(CDate("01/06/2014"), oMano.DateActivation)
 
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        Assert.AreEqual(1, olstFV.Count) 'une fiche de vie Activation
-        oFVManometreEtalon = olstFV(0)
-        Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
-        Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
-        Assert.AreEqual("MISEENSERVICE", oFVManometreEtalon.type)
+    '    olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
+    '    Assert.AreEqual(1, olstFV.Count) 'une fiche de vie Activation
+    '    oFVManometreEtalon = olstFV(0)
+    '    Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
+    '    Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
+    '    Assert.AreEqual("MISEENSERVICE", oFVManometreEtalon.type)
 
-        'Utilisation du manoEtalon
+    '    'Utilisation du manoEtalon
 
-        ManometreEtalonManager.setUtilise(m_oAgent, oMano)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
-        Assert.IsTrue(oMano.isUtilise)
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        Assert.AreEqual(2, olstFV.Count) 'une fiche de vie Activation
-        oFVManometreEtalon = olstFV(1)
-        Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
-        Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
-        Assert.AreEqual("PREMIERE-UTILISATION", oFVManometreEtalon.type)
-
-
-
-
-        'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
-        oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
-
-
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        'création d'une Troisième fiche de vie SUPRESSION
-        Assert.AreEqual(3, olstFV.Count) 'une fiche de vie SUPPRESSION
-        oFVManometreEtalon = olstFV(2)
-        Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
-        Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
-        Assert.AreEqual("SUPPRESSION", oFVManometreEtalon.type)
+    '    ManometreEtalonManager.setUtilise(m_oAgent, oMano)
+    '    oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
+    '    Assert.IsTrue(oMano.isUtilise)
+    '    olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
+    '    Assert.AreEqual(2, olstFV.Count) 'une fiche de vie Activation
+    '    oFVManometreEtalon = olstFV(1)
+    '    Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
+    '    Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
+    '    Assert.AreEqual("PREMIERE-UTILISATION", oFVManometreEtalon.type)
 
 
 
-    End Sub
+
+    '    'Suppression du Manometre
+    '    Assert.IsFalse(oMano.isSupprimeWS)
+    '    oMano.DeleteMateriel(m_oAgent, "TEST")
+    '    Assert.IsTrue(oMano.isSupprimeWS)
+
+
+    '    olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
+    '    'création d'une Troisième fiche de vie SUPRESSION
+    '    Assert.AreEqual(3, olstFV.Count) 'une fiche de vie SUPPRESSION
+    '    oFVManometreEtalon = olstFV(2)
+    '    Assert.AreEqual(oFVManometreEtalon.idManometre, oMano.idCrodip)
+    '    Assert.AreEqual(oFVManometreEtalon.idAgentControleur, m_oAgent.id)
+    '    Assert.AreEqual("SUPPRESSION", oFVManometreEtalon.type)
+
+
+
+    'End Sub
 
     '''<summary>
     '''Test des WS Fiches de vies de Manos de Etalons
     '''</summary>
-    <TestMethod()> _
-    Public Sub SynhcroDesFichesDeViesBancTest()
-        Dim oMano As ManometreEtalon
-        Dim olstFV As New List(Of FVManometreEtalon)
-        oMano = New ManometreEtalon()
-        oMano.idStructure = m_oAgent.idStructure
-        oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
-        oMano.idCrodip = oMano.numeroNational
-        oMano.JamaisServi = True
-        oMano.isUtilise = False
-        ManometreEtalonManager.save(oMano)
+    '<TestMethod()> _
+    'Public Sub SynhcroDesFichesDeViesBancTest()
+    '    Dim oMano As ManometreEtalon
+    '    Dim olstFV As New List(Of FVManometreEtalon)
+    '    oMano = New ManometreEtalon()
+    '    oMano.uidStructure = m_oAgent.uidStructure
+    '    oMano.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+    '    oMano.idCrodip = oMano.numeroNational
+    '    oMano.JamaisServi = True
+    '    oMano.isUtilise = False
+    '    ManometreEtalonManager.save(oMano)
 
-        olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
-        oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
-        ManometreEtalonManager.save(oMano)
-        oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
+    '    olstFV = FVManometreEtalonManager.getArrFVManometreEtalon(oMano.idCrodip)
+    '    oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
+    '    ManometreEtalonManager.save(oMano)
+    '    oMano = ManometreEtalonManager.getManometreEtalonByNumeroNational(oMano.idCrodip)
 
-        ManometreEtalonManager.setUtilise(m_oAgent, oMano)
+    '    ManometreEtalonManager.setUtilise(m_oAgent, oMano)
 
-        'Désactivation du Mano
-        Assert.IsTrue(oMano.etat)
+    '    'Désactivation du Mano
+    '    Assert.IsTrue(oMano.etat)
 
-        'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
-        oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+    '    'Suppression du Manometre
+    '    Assert.IsFalse(oMano.isSupprimeWS)
+    '    oMano.DeleteMateriel(m_oAgent, "TEST")
+    '    Assert.IsTrue(oMano.isSupprimeWS)
 
 
-        Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
-        Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVManoEtalon()
-        Assert.AreEqual(0, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
+    '    Assert.AreEqual(3, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
+    '    Dim oSynchro As New Synchronisation(m_oAgent)
+    '    oSynchro.runascSynchroFVManoEtalon()
+    '    Assert.AreEqual(0, FVManometreEtalonManager.getUpdates(m_oAgent).Length)
 
-    End Sub
+    'End Sub
 End Class

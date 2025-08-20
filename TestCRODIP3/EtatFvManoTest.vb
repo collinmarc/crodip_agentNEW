@@ -12,7 +12,7 @@ Imports Crodip_agent
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idstructure = m_oAgent.idStructure
+        oManoRef.uidStructure = m_oAgent.uidStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -24,7 +24,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idstructure = m_oAgent.idStructure
+        oManoCtrl.uidStructure = m_oAgent.uidStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -35,7 +35,7 @@ Imports Crodip_agent
         ManometreControleManager.save(oManoCtrl)
 
         oCtrl = New ControleMano(oManoCtrl, m_oAgent)
-        oCtrl.idStructure = m_oAgent.idStructure.ToString
+        oCtrl.idStructure = m_oAgent.uidstructure.ToString
         oCtrl.manoEtalon = oManoRef.numeroNational
         oCtrl.idMano = oManoCtrl.numeroNational
         oCtrl.DateVerif = CSDate.GetDateForWS("2015/10/19 15:57:45")
@@ -152,7 +152,7 @@ Imports Crodip_agent
         Dim oCtrl As ControleMano
         Dim oManoRef As ManometreEtalon
         oManoRef = New ManometreEtalon
-        oManoRef.idstructure = m_oAgent.idStructure
+        oManoRef.uidStructure = m_oAgent.uidStructure
         oManoRef.idCrodip = "999"
         oManoRef.numeroNational = "00447"
         oManoRef.marque = "BD SENSOR"
@@ -164,7 +164,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl As ManometreControle
         oManoCtrl = New ManometreControle()
-        oManoCtrl.idstructure = m_oAgent.idStructure
+        oManoCtrl.uidStructure = m_oAgent.uidStructure
         oManoCtrl.idCrodip = "888"
         oManoCtrl.numeroNational = "10003"
         oManoCtrl.marque = "BAUMER-BOURDON"
@@ -176,7 +176,7 @@ Imports Crodip_agent
 
         Dim oManoCtrl2 As ManometreControle
         oManoCtrl2 = New ManometreControle()
-        oManoCtrl2.idstructure = m_oAgent.idStructure
+        oManoCtrl2.uidStructure = m_oAgent.uidStructure
         oManoCtrl2.idCrodip = "888"
         oManoCtrl2.numeroNational = "10004"
         oManoCtrl2.marque = "BAUMER-BOURDON"

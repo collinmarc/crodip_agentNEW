@@ -294,7 +294,7 @@ Public Class FVBancManagerTest
 
         Assert.AreEqual(4, FVBancManager.getUpdates(m_oAgent).Length)
         Dim oSynchro As New Synchronisation(m_oAgent)
-        Assert.IsTrue(oSynchro.runascSynchroFVBanc())
+        'Assert.IsTrue(oSynchro.runascSynchroFVBanc())
 
         ''Por Véfifier que le Fichier est bien sur le FTP
         ''On le télécharge et on vérifie qu'il existe

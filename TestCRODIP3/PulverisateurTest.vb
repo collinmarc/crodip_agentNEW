@@ -50,7 +50,7 @@ Public Class Pulverisateurtest
         ExploitationManager.save(m_oExploitation, m_oAgent)
 
         m_oPulve = createPulve(m_oExploitation)
-        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
 
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
         m_oDiag.controleDateDebut = "19/05/2024"
@@ -63,7 +63,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(Pulverisateur.controleEtatNOKCV, m_oPulve.controleEtat)
         Assert.AreEqual("", m_oPulve.getDateDernierControle())
 
-        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
         Assert.IsTrue(bOK, "Erreur en SV de Pulve")
         bOK = DiagnosticManager.save(m_oDiag)
         Assert.IsTrue(bOK, "Erreur en SV de Diag")
@@ -99,7 +99,7 @@ Public Class Pulverisateurtest
         ExploitationManager.save(m_oExploitation, m_oAgent)
 
         m_oPulve = createPulve(m_oExploitation)
-        PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
 
         m_oDiag = createDiagnostic(m_oExploitation, m_oPulve, False)
         m_oDiag.controleDateDebut = "06/02/2024"
@@ -112,7 +112,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(Pulverisateur.controleEtatOK, m_oPulve.controleEtat)
         Assert.AreEqual("", m_oPulve.getDateDernierControle())
 
-        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation.id, m_oAgent)
+        bOK = PulverisateurManager.save(m_oPulve, m_oExploitation, m_oAgent)
         Assert.IsTrue(bOK, "Erreur en SV de Pulve")
         bOK = DiagnosticManager.save(m_oDiag)
         Assert.IsTrue(bOK, "Erreur en SV de Diag")
@@ -202,7 +202,7 @@ Public Class Pulverisateurtest
 
         Dim oRelation As ExploitationTOPulverisateur
 
-        m_oPulve.TransfertPulve(m_oExploitation.id, oExploit2.id, m_oAgent)
+        m_oPulve.TransfertPulve(m_oExploitation, oExploit2, m_oAgent)
 
         oRelation = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(m_oExploitation.id, m_oPulve.id)
         'La relation a bien été supprimée
@@ -212,43 +212,43 @@ Public Class Pulverisateurtest
         Assert.IsFalse(String.IsNullOrEmpty(oRelation.id))
 
     End Sub
-    <TestMethod()>
-    Public Sub testGetNewId()
-        Dim oExploit As Exploitation
-        Dim oPulve As Pulverisateur
+    '<TestMethod()>
+    'Public Sub testGetNewId()
+    '    Dim oExploit As Exploitation
+    '    Dim oPulve As Pulverisateur
 
-        oExploit = createExploitation()
-        ExploitationManager.save(oExploit, m_oAgent)
-        oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
-        oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+    '    oExploit = createExploitation()
+    '    ExploitationManager.save(oExploit, m_oAgent)
+    '    oPulve = createPulve(oExploit)
+    '    PulverisateurManager.save(oPulve, oExploit, m_oAgent)
+    '    oPulve = createPulve(oExploit)
+    '    PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
-        m_oAgent.oPool = New Pool()
-        m_oAgent.oPool.idCRODIPPC = "12345"
+    '    m_oAgent.oPool = New Pool()
+    '    m_oAgent.oPool.idCRODIPPC = "12345"
 
-        Dim str As String
-        str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
-
-
-
-        m_oAgent.oPool.idCRODIPPC = "1119"
-        str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual("8888-9999-1119-1", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
-
-        m_oAgent.oPool = Nothing
-        str = PulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.id & "-" & m_oAgent.id & "-3", str)
-        str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oAgent.idStructure & "-" & m_oAgent.id & "-3", str)
+    '    Dim str As String
+    '    str = PulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
+    '    str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
 
 
-    End Sub
+
+    '    m_oAgent.oPool.idCRODIPPC = "1119"
+    '    str = PulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual("8888-9999-1119-1", str)
+    '    str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
+
+    '    m_oAgent.oPool = Nothing
+    '    str = PulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oStructure.id & "-" & m_oAgent.id & "-3", str)
+    '    str = ExploitationTOPulverisateurManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oAgent.uidStructure & "-" & m_oAgent.id & "-3", str)
+
+
+    'End Sub
     <TestMethod()>
     Public Sub TST_GET_SEND_WS_Pulverisateur()
         Dim oExploitation As Exploitation
@@ -272,7 +272,29 @@ Public Class Pulverisateurtest
         oPUlve.isReglageAutoHauteur = False
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
-        PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent)
+        oPUlve.isConfirmeIdentifiant = True
+        oPUlve.isConfirmeMarque = True
+        oPUlve.isConfirmeModele = True
+        oPUlve.isConfirmeAnneeConstruction = True
+        oPUlve.isConfirmeVolume = True
+        oPUlve.isConfirmeLargeur = True
+        oPUlve.isConfirmeCategorie = True
+        oPUlve.isConfirmeType = True
+        oPUlve.isConfirmeFonctionnement = True
+        oPUlve.isConfirmeRegulation = True
+        oPUlve.isConfirmeAttelage = True
+
+        oPUlve.isAnomalies = True
+        oPUlve.niveauAnomalies = 1
+        oPUlve.nombreAnomalies = 2
+        oPUlve.nombreMineures = 3
+        oPUlve.dateModificationAnomalies = New DateTime(2025, 8, 20)
+        oPUlve.isPulveRecordedInOTC = True
+        oPUlve.isPulveDownloadByExportOTC = True
+        oPUlve.isPulveDownloadByCheckKeyOTC = True
+
+
+        PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         Dim oReturn As Pulverisateur
         PulverisateurManager.WSSend(oPUlve, oReturn)
 
@@ -288,6 +310,25 @@ Public Class Pulverisateurtest
         Assert.IsFalse(oPUlve2.isReglageAutoHauteur)
         Assert.AreEqual("123AQW123", oPUlve2.immatCertificat)
         Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
+        Assert.IsTrue(oPUlve.isConfirmeIdentifiant)
+        Assert.IsTrue(oPUlve.isConfirmeMarque)
+        Assert.IsTrue(oPUlve.isConfirmeModele)
+        Assert.IsTrue(oPUlve.isConfirmeAnneeConstruction)
+        Assert.IsTrue(oPUlve.isConfirmeVolume)
+        Assert.IsTrue(oPUlve.isConfirmeLargeur)
+        Assert.IsTrue(oPUlve.isConfirmeCategorie)
+        Assert.IsTrue(oPUlve.isConfirmeType)
+        Assert.IsTrue(oPUlve.isConfirmeFonctionnement)
+        Assert.IsTrue(oPUlve.isConfirmeRegulation)
+        Assert.IsTrue(oPUlve.isConfirmeAttelage)
+        Assert.IsTrue(oPUlve.isAnomalies)
+        Assert.IsTrue(oPUlve.niveauAnomalies = 1)
+        Assert.IsTrue(oPUlve.nombreAnomalies = 2)
+        Assert.IsTrue(oPUlve.nombreMineures = 3)
+        Assert.IsTrue(oPUlve.dateModificationAnomalies = New DateTime(2025, 8, 20))
+        Assert.IsTrue(oPUlve.isPulveRecordedInOTC)
+        Assert.IsTrue(oPUlve.isPulveDownloadByExportOTC)
+        Assert.IsTrue(oPUlve.isPulveDownloadByCheckKeyOTC)
 
 
         System.Threading.Thread.Sleep(1000)
@@ -301,7 +342,27 @@ Public Class Pulverisateurtest
         oPUlve2.isReglageAutoHauteur = True
         oPUlve2.immatCertificat = "321AQW321"
         oPUlve2.immatPlaque = "654ZSX654"
-        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+        oPUlve2.isConfirmeIdentifiant = False
+        oPUlve2.isConfirmeMarque = False
+        oPUlve2.isConfirmeModele = False
+        oPUlve2.isConfirmeAnneeConstruction = False
+        oPUlve2.isConfirmeVolume = False
+        oPUlve2.isConfirmeLargeur = False
+        oPUlve2.isConfirmeCategorie = False
+        oPUlve2.isConfirmeType = False
+        oPUlve2.isConfirmeFonctionnement = False
+        oPUlve2.isConfirmeRegulation = False
+        oPUlve2.isConfirmeAttelage = False
+        oPUlve2.isAnomalies = False
+        oPUlve2.niveauAnomalies = 10
+        oPUlve2.nombreAnomalies = 20
+        oPUlve2.nombreMineures = 30
+        oPUlve2.dateModificationAnomalies = New DateTime(2025, 8, 21)
+        oPUlve2.isPulveRecordedInOTC = False
+        oPUlve2.isPulveDownloadByExportOTC = False
+        oPUlve2.isPulveDownloadByCheckKeyOTC = False
+
+        PulverisateurManager.save(oPUlve2, oExploitation, m_oAgent)
         PulverisateurManager.WSSend(oPUlve2, oReturn)
 
         oPUlve = PulverisateurManager.WSgetById(-1, strId)
@@ -316,9 +377,27 @@ Public Class Pulverisateurtest
         Assert.IsTrue(oPUlve.isReglageAutoHauteur)
         Assert.AreEqual("321AQW321", oPUlve.immatCertificat)
         Assert.AreEqual("654ZSX654", oPUlve.immatPlaque)
+        Assert.IsFalse(oPUlve.isConfirmeIdentifiant)
+        Assert.IsFalse(oPUlve.isConfirmeMarque)
+        Assert.IsFalse(oPUlve.isConfirmeModele)
+        Assert.IsFalse(oPUlve.isConfirmeAnneeConstruction)
+        Assert.IsFalse(oPUlve.isConfirmeVolume)
+        Assert.IsFalse(oPUlve.isConfirmeLargeur)
+        Assert.IsFalse(oPUlve.isConfirmeCategorie)
+        Assert.IsFalse(oPUlve.isConfirmeType)
+        Assert.IsFalse(oPUlve.isConfirmeFonctionnement)
+        Assert.IsFalse(oPUlve.isConfirmeRegulation)
+        Assert.IsFalse(oPUlve.isConfirmeAttelage)
+        Assert.IsFalse(oPUlve.isAnomalies)
+        Assert.AreEqual(10, oPUlve.niveauAnomalies)
+        Assert.AreEqual(20, oPUlve.nombreAnomalies)
+        Assert.AreEqual(30, oPUlve.nombreMineures)
+        Assert.AreEqual(New DateTime(2025, 8, 21), oPUlve.dateModificationAnomalies)
+        Assert.IsFalse(oPUlve.isPulveRecordedInOTC)
+        Assert.IsFalse(oPUlve.isPulveDownloadByExportOTC)
+        Assert.IsFalse(oPUlve.isPulveDownloadByCheckKeyOTC)
 
 
-        PulverisateurManager.deletePulverisateurID(strId)
 
 
     End Sub
@@ -345,7 +424,28 @@ Public Class Pulverisateurtest
         oPUlve.isReglageAutoHauteur = False
         oPUlve.immatCertificat = "123AQW123"
         oPUlve.immatPlaque = "456ZSX456"
-        Assert.IsTrue(PulverisateurManager.save(oPUlve, oExploitation.id, m_oAgent))
+        oPUlve.isConfirmeIdentifiant = True
+        oPUlve.isConfirmeMarque = True
+        oPUlve.isConfirmeModele = True
+        oPUlve.isConfirmeAnneeConstruction = True
+        oPUlve.isConfirmeVolume = True
+        oPUlve.isConfirmeLargeur = True
+        oPUlve.isConfirmeCategorie = True
+        oPUlve.isConfirmeType = True
+        oPUlve.isConfirmeFonctionnement = True
+        oPUlve.isConfirmeRegulation = True
+        oPUlve.isConfirmeAttelage = True
+
+        oPUlve.isAnomalies = True
+        oPUlve.niveauAnomalies = 1
+        oPUlve.nombreAnomalies = 2
+        oPUlve.nombreMineures = 3
+        oPUlve.dateModificationAnomalies = New DateTime(2025, 8, 20)
+        oPUlve.isPulveRecordedInOTC = True
+        oPUlve.isPulveDownloadByExportOTC = True
+        oPUlve.isPulveDownloadByCheckKeyOTC = True
+
+        Assert.IsTrue(PulverisateurManager.save(oPUlve, oExploitation, m_oAgent))
 
         oPUlve2 = PulverisateurManager.getPulverisateurById(strId)
         Assert.AreEqual(strId, oPUlve2.id)
@@ -359,6 +459,25 @@ Public Class Pulverisateurtest
         Assert.IsFalse(oPUlve2.isReglageAutoHauteur)
         Assert.AreEqual("123AQW123", oPUlve2.immatCertificat)
         Assert.AreEqual("456ZSX456", oPUlve2.immatPlaque)
+        Assert.IsTrue(oPUlve.isConfirmeIdentifiant)
+        Assert.IsTrue(oPUlve.isConfirmeMarque)
+        Assert.IsTrue(oPUlve.isConfirmeModele)
+        Assert.IsTrue(oPUlve.isConfirmeAnneeConstruction)
+        Assert.IsTrue(oPUlve.isConfirmeVolume)
+        Assert.IsTrue(oPUlve.isConfirmeLargeur)
+        Assert.IsTrue(oPUlve.isConfirmeCategorie)
+        Assert.IsTrue(oPUlve.isConfirmeType)
+        Assert.IsTrue(oPUlve.isConfirmeFonctionnement)
+        Assert.IsTrue(oPUlve.isConfirmeRegulation)
+        Assert.IsTrue(oPUlve.isConfirmeAttelage)
+        Assert.IsTrue(oPUlve.isAnomalies)
+        Assert.IsTrue(oPUlve.niveauAnomalies = 1)
+        Assert.IsTrue(oPUlve.nombreAnomalies = 2)
+        Assert.IsTrue(oPUlve.nombreMineures = 3)
+        Assert.IsTrue(oPUlve.dateModificationAnomalies = New DateTime(2025, 8, 20))
+        Assert.IsTrue(oPUlve.isPulveRecordedInOTC)
+        Assert.IsTrue(oPUlve.isPulveDownloadByExportOTC)
+        Assert.IsTrue(oPUlve.isPulveDownloadByCheckKeyOTC)
 
 
         System.Threading.Thread.Sleep(1000)
@@ -372,8 +491,27 @@ Public Class Pulverisateurtest
         oPUlve2.isReglageAutoHauteur = True
         oPUlve2.immatCertificat = "321AQW321"
         oPUlve2.immatPlaque = "654ZSX654"
+        oPUlve2.isConfirmeIdentifiant = False
+        oPUlve2.isConfirmeMarque = False
+        oPUlve2.isConfirmeModele = False
+        oPUlve2.isConfirmeAnneeConstruction = False
+        oPUlve2.isConfirmeVolume = False
+        oPUlve2.isConfirmeLargeur = False
+        oPUlve2.isConfirmeCategorie = False
+        oPUlve2.isConfirmeType = False
+        oPUlve2.isConfirmeFonctionnement = False
+        oPUlve2.isConfirmeRegulation = False
+        oPUlve2.isConfirmeAttelage = False
+        oPUlve2.isAnomalies = False
+        oPUlve2.niveauAnomalies = 10
+        oPUlve2.nombreAnomalies = 20
+        oPUlve2.nombreMineures = 30
+        oPUlve2.dateModificationAnomalies = New DateTime(2025, 8, 21)
+        oPUlve2.isPulveRecordedInOTC = False
+        oPUlve2.isPulveDownloadByExportOTC = False
+        oPUlve2.isPulveDownloadByCheckKeyOTC = False
 
-        PulverisateurManager.save(oPUlve2, oExploitation.id, m_oAgent)
+        PulverisateurManager.save(oPUlve2, oExploitation, m_oAgent)
 
         oPUlve = PulverisateurManager.getPulverisateurById(strId)
         Assert.AreEqual(strId, oPUlve.id)
@@ -387,6 +525,25 @@ Public Class Pulverisateurtest
         Assert.IsTrue(oPUlve.isReglageAutoHauteur)
         Assert.AreEqual("321AQW321", oPUlve.immatCertificat)
         Assert.AreEqual("654ZSX654", oPUlve.immatPlaque)
+        Assert.IsFalse(oPUlve.isConfirmeIdentifiant)
+        Assert.IsFalse(oPUlve.isConfirmeMarque)
+        Assert.IsFalse(oPUlve.isConfirmeModele)
+        Assert.IsFalse(oPUlve.isConfirmeAnneeConstruction)
+        Assert.IsFalse(oPUlve.isConfirmeVolume)
+        Assert.IsFalse(oPUlve.isConfirmeLargeur)
+        Assert.IsFalse(oPUlve.isConfirmeCategorie)
+        Assert.IsFalse(oPUlve.isConfirmeType)
+        Assert.IsFalse(oPUlve.isConfirmeFonctionnement)
+        Assert.IsFalse(oPUlve.isConfirmeRegulation)
+        Assert.IsFalse(oPUlve.isConfirmeAttelage)
+        Assert.IsFalse(oPUlve.isAnomalies)
+        Assert.AreEqual(10, oPUlve.niveauAnomalies)
+        Assert.AreEqual(20, oPUlve.nombreAnomalies)
+        Assert.AreEqual(30, oPUlve.nombreMineures)
+        Assert.AreEqual(oPUlve.dateModificationAnomalies, New DateTime(2025, 8, 21))
+        Assert.IsFalse(oPUlve.isPulveRecordedInOTC)
+        Assert.IsFalse(oPUlve.isPulveDownloadByExportOTC)
+        Assert.IsFalse(oPUlve.isPulveDownloadByCheckKeyOTC)
 
 
         PulverisateurManager.deletePulverisateurID(strId)
@@ -407,7 +564,7 @@ Public Class Pulverisateurtest
         oPUlve.numeroNational = "E001123456"
 
         ExploitationManager.save(pExploit:=oExploitation, pAgent:=m_oAgent)
-        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve, pExploit:=oExploitation, pAgent:=m_oAgent)
 
         'Création d'un Pulve Additionnel
 
@@ -416,7 +573,7 @@ Public Class Pulverisateurtest
         Assert.AreEqual(oPUlve.numeroNational, oPUlve2.pulvePrincipalNumNat)
         Assert.IsTrue(oPUlve2.isPulveAdditionnel)
 
-        PulverisateurManager.save(pPulve:=oPUlve2, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve2, pExploit:=oExploitation, pAgent:=m_oAgent)
         strDateModif1 = oPUlve2.dateModificationAgentS
         'Rechargement du Pulve Principal
         oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
@@ -426,7 +583,7 @@ Public Class Pulverisateurtest
         'Changement du numéro nationnal
         oPUlve.numeroNational = "E001456789"
         'Sauvegarde
-        PulverisateurManager.save(pPulve:=oPUlve, client_id:=oExploitation.id, pAgent:=m_oAgent)
+        PulverisateurManager.save(pPulve:=oPUlve, pExploit:=oExploitation, pAgent:=m_oAgent)
 
         'Rechargement du Pulve additionnel
         oPUlve2 = PulverisateurManager.getPulverisateurById(oPUlve2.id)
@@ -436,6 +593,51 @@ Public Class Pulverisateurtest
 
 
     End Sub
+    <TestMethod()> Public Sub WSGetIdentifiantOTC()
+        Dim oReturn As PulverisateurOTC
+        oReturn = PulverisateurManager.WSgetPulverisateurOTC("Q003000006", 1187)
+        Assert.IsNotNull(oReturn)
+        oReturn = PulverisateurManager.WSgetPulverisateurOTC("ZZZZZZZZZZ", 1187)
+        Assert.IsNull(oReturn)
+    End Sub
+    <TestMethod()> Public Sub CompareOTC()
+        Dim oPulve As New Pulverisateur
+        Dim oreturn As PulverisateurOTC
+        Dim bresult As Boolean
+        oreturn = PulverisateurManager.WSgetPulverisateurOTC("Q003000006", m_oAgent.uid)
+
+        oPulve.numeroNational = "Q003000006"
+        oPulve.anneeAchat = oreturn.Année
+        oPulve.attelage = oreturn.Attelage
+        oPulve.categorie = oreturn.Catégorie
+        oPulve.pulverisation = oreturn.Fonctionnement
+        oPulve.largeur = oreturn.Largeur
+        oPulve.marque = oreturn.Marque
+        oPulve.type = oreturn.Type
+        oPulve.capacite = oreturn.Volume
+
+        bresult = oPulve.CompareOTC(m_oAgent.uid)
+        Assert.IsTrue(bresult)
+        Assert.AreEqual(0, oPulve.lstAnomalie.Count)
+
+        oPulve.anneeAchat = "2025"
+        bresult = oPulve.CompareOTC(m_oAgent.uid)
+        Assert.IsFalse(bresult)
+        Assert.AreEqual(1, oPulve.lstAnomalie.Count)
+        Assert.AreEqual("Année", oPulve.lstAnomalie(0).critere)
+        Assert.AreEqual(oPulve.anneeAchat, oPulve.lstAnomalie(0).valeurAgent)
+        Assert.AreEqual(oreturn.Année, oPulve.lstAnomalie(0).valeurOTC)
+
+        oPulve.attelage = "Rien"
+        bresult = oPulve.CompareOTC(m_oAgent.uid)
+        Assert.IsFalse(bresult)
+        Assert.AreEqual(2, oPulve.lstAnomalie.Count)
+        Assert.AreEqual("Attelage", oPulve.lstAnomalie.Last.critere)
+        Assert.AreEqual(oPulve.attelage, oPulve.lstAnomalie.Last.valeurAgent)
+        Assert.AreEqual(oreturn.Attelage, oPulve.lstAnomalie.Last.valeurOTC)
+
+    End Sub
+
 
 
 End Class

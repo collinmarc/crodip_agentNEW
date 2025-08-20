@@ -68,7 +68,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oDiagHelp12123P.EcartReglageMoyen = 2.3D
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMAJEUR
 
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.uidStructure, m_oAgent.id, oCSDB))
         iD = oDiagHelp12123P.id
         Assert.IsFalse(String.IsNullOrEmpty(oDiagHelp12123P.id))
 
@@ -93,7 +93,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         oDiagHelp12123P.Resultat = DiagnosticItem.EtatDiagItemMINEUR
 
         Debug.WriteLine("Update")
-        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
+        Assert.IsTrue(oDiagHelp12123P.Save(m_oAgent.uidStructure, m_oAgent.id, oCSDB))
 
         Debug.WriteLine("Lecture")
         oDiagHelp12123P = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
@@ -141,7 +141,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         'oMesure.idDiag = oPompe.idDiag
         'oMesure.qteGrains = 1.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
+        Assert.IsTrue(oPompe.Save(m_oAgent.uidStructure, m_oAgent.id, oCSDB))
         iD = oPompe.id
         Assert.IsFalse(String.IsNullOrEmpty(oPompe.id))
 
@@ -178,7 +178,7 @@ Public Class DiagnosticHelp12123TrtSemTest
         'oMesure = oPompe.getMesure(2)
         'oMesure.qteGrains = 2.3D
 
-        Assert.IsTrue(oPompe.Save(m_oAgent.idStructure, m_oAgent.id, oCSDB))
+        Assert.IsTrue(oPompe.Save(m_oAgent.uidStructure, m_oAgent.id, oCSDB))
         Debug.WriteLine("Lecture")
         oPompe = New DiagnosticHelp12123PompeTrtSem(iD, idDiag)
         Assert.IsTrue(oPompe.Load())

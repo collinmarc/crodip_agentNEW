@@ -38,7 +38,7 @@ Public Class AutoTestTest
     'Public Sub MyTestInitialize()
     '    'Creation d'un agent
     '    m_oAgent = AgentManager.createAgent(1, "AGENT_TEST_01", "Nouveau")
-    '    m_oAgent.idStructure = 99
+    '    m_oAgent.uidStructure = 99
     '    m_oAgent.nom = "Agent de test"
     '    m_oAgent.prenom = "Agent de test"
     '    AgentManager.save(m_oAgent)
@@ -52,18 +52,18 @@ Public Class AutoTestTest
     '    Dim bReturn As Boolean
     '    If Not m_oAgent Is Nothing Then
     '        Dim arrBanc As List(Of Banc)
-    '        arrBanc = BancManager.getBancByStructureId(m_oAgent.idStructure)
+    '        arrBanc = BancManager.getBancByStructureId(m_oAgent.uidStructure)
     '        For Each oBanc As Banc In arrBanc
     '            BancManager.delete(oBanc.id)
     '        Next
 
     '        Dim arrManoc As List(Of ManometreControle)
-    '        arrManoc = ManometreControleManager.getManoControleByStructureId(m_oAgent.idStructure)
+    '        arrManoc = ManometreControleManager.getManoControleByStructureId(m_oAgent.uidStructure)
     '        For Each oManoC As ManometreControle In arrManoc
     '            ManometreControleManager.delete(oManoC.numeroNational)
     '        Next
     '        Dim arrManoE As List(Of ManometreEtalon)
-    '        arrManoE = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.idStructure)
+    '        arrManoE = ManometreEtalonManager.getManometreEtalonByStructureId(m_oAgent.uidStructure)
     '        For Each oManoE As ManometreEtalon In arrManoE
     '            ManometreEtalonManager.delete(oManoE.numeroNational)
     '        Next
@@ -95,7 +95,7 @@ Public Class AutoTestTest
         Assert.IsTrue(obj.isNonEffectue)
         Assert.IsTrue(Not obj.isOK)
         Assert.IsTrue(Not obj.isNOK)
-        Assert.AreEqual(m_oAgent.idStructure, obj.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, obj.uidStructure)
         Assert.AreEqual(m_oAgent.id.ToString(), obj.NumAgent)
         Dim str As String
         str = obj.dateModificationAgent.ToString()
@@ -170,7 +170,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidStructure = m_oAgent.uidStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -187,7 +187,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -204,7 +204,7 @@ Public Class AutoTestTest
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
         objManometreEtalon.incertitudeEtalon = "0.562"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.uidStructure = m_oAgent.uidStructure
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -246,7 +246,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidStructure = m_oAgent.uidStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -263,7 +263,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -280,7 +280,7 @@ Public Class AutoTestTest
         objManometreEtalon.type = "MonType"
         objManometreEtalon.fondEchelle = "MonFonEchelle"
         objManometreEtalon.incertitudeEtalon = "0.562"
-        objManometreEtalon.idStructure = m_oAgent.idStructure
+        objManometreEtalon.uidStructure = m_oAgent.uidStructure
         objManometreEtalon.isSupprime = True
         objManometreEtalon.AgentSuppression = m_oAgent.nom
         objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -343,7 +343,7 @@ Public Class AutoTestTest
             Assert.AreEqual(oCtrl.IdMateriel, objManometreControle.idCrodip)
             Assert.AreEqual(oCtrl.Type, "MANOC")
             Assert.AreEqual(objMC1.IdMateriel, objManometreControle.idCrodip)
-            Assert.AreEqual(objMC1.IdStructure, m_oAgent.idStructure)
+            Assert.AreEqual(objMC1.uidStructure, m_oAgent.uidStructure)
         Next
 
         objME1 = New AutoTest(m_oAgent, objManometreEtalon)
@@ -381,7 +381,7 @@ Public Class AutoTestTest
         'Création de 3 bancs (2 OK + 1 Supprimé)
         objBanc = New Banc()
         objBanc.id = "MonBanc1"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidStructure = m_oAgent.uidStructure
         objBanc.isSupprime = False
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
@@ -390,7 +390,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc2"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidStructure = m_oAgent.uidStructure
         objBanc.isSupprime = False
         objBanc.nbControles = 5
         objBanc.nbControlesTotal = 15
@@ -399,7 +399,7 @@ Public Class AutoTestTest
 
         objBanc = New Banc()
         objBanc.id = "MonBanc3"
-        objBanc.idStructure = m_oAgent.idStructure
+        objBanc.uidStructure = m_oAgent.uidStructure
         objBanc.isSupprime = True
         objBanc.AgentSuppression = m_oAgent.nom
         objBanc.RaisonSuppression = "MaRaison"
@@ -416,7 +416,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -428,7 +428,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -440,7 +440,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = False
         objManometreControle.nbControles = 5
         objManometreControle.nbControlesTotal = 15
@@ -452,7 +452,7 @@ Public Class AutoTestTest
         objManometreControle.classe = "MaClasse"
         objManometreControle.type = "MonType"
         objManometreControle.fondEchelle = "MonFonEchelle"
-        objManometreControle.idStructure = m_oAgent.idStructure
+        objManometreControle.uidStructure = m_oAgent.uidStructure
         objManometreControle.isSupprime = True
         objManometreControle.AgentSuppression = m_oAgent.nom
         objManometreControle.RaisonSuppression = "MaRaison"
@@ -469,23 +469,23 @@ Public Class AutoTestTest
         Assert.AreEqual(2, oColCtrl.Count)
         octrl = CType(oColCtrl(0), AutoTest)
         Assert.AreEqual("MonBanc1", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
         octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonBanc2", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 
         'Creation des controles Regulier des Manos
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "MANOC")
         Assert.AreEqual(oColCtrl.Count, 3)
         octrl = CType(oColCtrl(0), AutoTest)
         Assert.AreEqual("MonManometreControle1", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
         octrl = CType(oColCtrl(1), AutoTest)
         Assert.AreEqual("MonManometreControle2", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
         octrl = CType(oColCtrl(2), AutoTest)
         Assert.AreEqual("MonManometreControle3", octrl.IdMateriel)
-        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 
         'Creation des controles Regulier de tous les matériels
         oColCtrl = AutoTestManager.CreateControlesReguliers(m_oAgent, Now(), "TOUS")
@@ -509,7 +509,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
 
         Assert.IsTrue(AutoTestManager.save(obj))
@@ -552,7 +552,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -573,7 +573,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -581,7 +581,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -589,7 +589,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -619,7 +619,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/02/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -627,7 +627,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/03/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 
@@ -635,7 +635,7 @@ Public Class AutoTestTest
         obj.DateControle = CDate("25/04/1964")
         obj.Type = "MANOC"
         obj.IdMateriel = "Mano001"
-        obj.IdStructure = m_oAgent.idStructure
+        obj.uidStructure = m_oAgent.uidStructure
         obj.isNOK = True
         Assert.IsTrue(AutoTestManager.save(obj))
 

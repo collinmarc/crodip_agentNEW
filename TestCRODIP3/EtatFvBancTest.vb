@@ -98,7 +98,7 @@ Imports Crodip_agent
         Dim oEtat As New EtatFVBanc(oCtrl)
         Assert.IsTrue(oEtat.genereEtat)
         Assert.IsNotNull(oEtat.getFileName())
-        CSFile.open(Crodip_agent.GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
+        CSFile.open(CrodipWS.GlobalsCRODIP.CONST_PATH_EXP_BANCMESURE & oEtat.getFileName())
 
     End Sub
 

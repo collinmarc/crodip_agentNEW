@@ -1449,6 +1449,14 @@ Public Class DiagnosticManager
                 paramsQuery2 = paramsQuery2 & " , ESFileName='" & CSDb.secureString(pDiag.ESFileName) & "'"
                 paramsQuery2 = paramsQuery2 & " , COPROFileName='" & CSDb.secureString(pDiag.COPROFileName) & "'"
                 paramsQuery2 = paramsQuery2 & " , FACTFileNames='" & CSDb.secureString(pDiag.FACTFileNames) & "'"
+                paramsQuery2 = paramsQuery2 & " , isAnomalies=" & pDiag.isAnomalies & ""
+                paramsQuery2 = paramsQuery2 & " , niveauAnomalies=" & pDiag.niveauAnomalies & ""
+                paramsQuery2 = paramsQuery2 & " , nombreAnomalies=" & pDiag.nombreAnomalies & ""
+                paramsQuery2 = paramsQuery2 & " , nombreMineures=" & pDiag.nombreMineures & ""
+                paramsQuery2 = paramsQuery2 & " , dateModificationAnomalies='" & CSDate.ToCRODIPString(pDiag.dateModificationAnomalies) & "'"
+                paramsQuery2 = paramsQuery2 & " , isPulveRecordedInOTC=" & pDiag.isPulveRecordedInOTC & ""
+                paramsQuery2 = paramsQuery2 & " , isPulveDownloadByExportOTC=" & pDiag.isPulveDownloadByExportOTC & ""
+                paramsQuery2 = paramsQuery2 & " , isPulveDownloadByCheckKeyOTC=" & pDiag.isPulveDownloadByCheckKeyOTC & ""
                 If pDiag.uidagent <> 0 Then
                     paramsQuery2 = paramsQuery2 & " , uidagent=" & pDiag.uidagent & ""
                 End If

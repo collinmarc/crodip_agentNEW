@@ -1,4 +1,8 @@
-﻿Public Class Annomalie
+﻿Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
+
+Public Class Anomalie
+    Implements INotifyPropertyChanged
     Private _critere As String
     Public Property critere() As String
         Get
@@ -33,15 +37,29 @@
         End Get
         Set(ByVal value As Boolean)
             _bValeurAgentOK = value
+            If bValeurAgentOK Then
+                bvaleurOTCOK = False
+            End If
+            OnPropertyChanged()
         End Set
     End Property
     Private _bValeurOTCOK As Boolean = False
+
     Public Property bvaleurOTCOK() As Boolean
         Get
             Return _bValeurOTCOK
         End Get
         Set(ByVal value As Boolean)
             _bValeurOTCOK = value
+            If bvaleurOTCOK Then
+                bValeurAgentOK = False
+            End If
+            OnPropertyChanged()
         End Set
     End Property
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Protected Overridable Sub OnPropertyChanged(<CallerMemberName> Optional ByVal propertyName As String = Nothing)
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
 End Class

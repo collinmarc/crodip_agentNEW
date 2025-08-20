@@ -40,7 +40,7 @@
 '    Public Sub MyTestInitialize()
 '        'Creation d'un agent
 '        m_oAgent = AgentManager.createAgent(99, "AGENT_TEST_01", "Nouveau")
-'        m_oAgent.idStructure = 99
+'        m_oAgent.uidStructure = 99
 '        m_oAgent.nom = "Agent de test"
 '        m_oAgent.prenom = "Agent de test"
 '        AgentManager.save(m_oAgent)
@@ -54,24 +54,24 @@
 '        Dim bReturn As Boolean
 '        If Not m_oAgent Is Nothing Then
 '            Dim arrBanc As Banc()
-'            arrBanc = AgentManager.getBanc(m_oAgent.idStructure)
+'            arrBanc = AgentManager.getBanc(m_oAgent.uidStructure)
 '            For Each oBanc As Banc In arrBanc
 '                BancManager.deleteBanc(oBanc)
 '            Next
 
 '            Dim arrManoc As ManometreControle()
-'            arrManoc = AgentManager.getManoControle(m_oAgent.idStructure)
+'            arrManoc = AgentManager.getManoControle(m_oAgent.uidStructure)
 '            For Each oManoC As ManometreControle In arrManoc
 '                ManometreControleManager.deleteManometreControle(oManoC)
 '            Next
 '            Dim arrManoE As ManometreEtalon()
-'            arrManoE = AgentManager.getManoEtalon(m_oAgent.idStructure)
+'            arrManoE = AgentManager.getManoEtalon(m_oAgent.uidStructure)
 '            For Each oManoE As ManometreEtalon In arrManoE
 '                ManometreEtalonManager.deleteManometreEtalon(oManoE)
 '            Next
 
 '            Dim col As Collection
-'            col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'            col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '            For Each oCtrl As ControleRegulier In col
 '                ControleRegulierManager.delete(oCtrl)
 '            Next
@@ -137,7 +137,7 @@
 '        obj.DateControle = CDate("06/02/1964")
 '        obj.Type = "Mano"
 '        obj.IdMateriel = "Mano001"
-'        obj.IdStructure = 99
+'        obj.uidStructure = 99
 '        obj.isNOK = True
 
 '        Assert.IsTrue(ControleRegulierManager.save(obj), "SAVE")
@@ -166,7 +166,7 @@
 
 '        objBanc = New Banc()
 '        objBanc.id = "MonBanc"
-'        objBanc.idStructure = m_oAgent.idStructure
+'        objBanc.uidStructure = m_oAgent.uidStructure
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
@@ -183,7 +183,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
@@ -200,7 +200,7 @@
 '        objManometreEtalon.type = "MonType"
 '        objManometreEtalon.fondEchelle = "MonFonEchelle"
 '        objManometreEtalon.incertitudeEtalon = "0.562"
-'        objManometreEtalon.idStructure = m_oAgent.idStructure
+'        objManometreEtalon.uidStructure = m_oAgent.uidStructure
 '        objManometreEtalon.isSupprime = True
 '        objManometreEtalon.AgentSuppression = m_oAgent.nom
 '        objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -242,7 +242,7 @@
 
 '        objBanc = New Banc()
 '        objBanc.id = "MonBanc"
-'        objBanc.idStructure = m_oAgent.idStructure
+'        objBanc.uidStructure = m_oAgent.uidStructure
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
@@ -259,7 +259,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
@@ -276,7 +276,7 @@
 '        objManometreEtalon.type = "MonType"
 '        objManometreEtalon.fondEchelle = "MonFonEchelle"
 '        objManometreEtalon.incertitudeEtalon = "0.562"
-'        objManometreEtalon.idStructure = m_oAgent.idStructure
+'        objManometreEtalon.uidStructure = m_oAgent.uidStructure
 '        objManometreEtalon.isSupprime = True
 '        objManometreEtalon.AgentSuppression = m_oAgent.nom
 '        objManometreEtalon.RaisonSuppression = "MaRaison"
@@ -285,11 +285,11 @@
 '        objManometreEtalon.nbControlesTotal = 15
 '        ManometreEtalonManager.save(objManometreEtalon)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        For Each oCtrl As ControleRegulier In col
 '            ControleRegulierManager.delete(oCtrl)
 '        Next
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        Assert.AreEqual(0, col.Count)
 
 '        'Création des controles Reguliers
@@ -301,7 +301,7 @@
 '        ControleRegulierManager.save(objB1)
 
 '        'Charegement de tous les controles
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        Assert.AreEqual(col.Count, 3)
 
 '        ' Test de chaque controle
@@ -310,10 +310,10 @@
 '            Assert.AreEqual(oCtrl.IdMateriel, objBanc.id)
 '        Next
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "RIEN")
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "RIEN")
 '        Assert.AreEqual(col.Count, 0)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "BANC")
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "BANC")
 '        Assert.AreEqual(col.Count, 3)
 
 '        'Création des controle Reguliers
@@ -327,11 +327,11 @@
 '        ControleRegulierManager.save(objMC1)
 
 '        'Chargement de tous les controle
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        Assert.AreEqual(col.Count, 4 + 3)
 
 '        'Chargement des controle de type Mano de controle
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "MANOC")
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "MANOC")
 '        Assert.AreEqual(col.Count, 4)
 
 '        'Controle de chaque Mano
@@ -339,7 +339,7 @@
 '            Assert.AreEqual(oCtrl.IdMateriel, objManometreControle.idCrodip)
 '            Assert.AreEqual(oCtrl.Type, "MANOC")
 '            Assert.AreEqual(objMC1.IdMateriel, objManometreControle.idCrodip)
-'            Assert.AreEqual(objMC1.IdStructure, m_oAgent.idStructure)
+'            Assert.AreEqual(objMC1.uidStructure, m_oAgent.uidStructure)
 '        Next
 
 '        objME1 = New ControleRegulier(objManometreEtalon)
@@ -354,7 +354,7 @@
 '        ControleRegulierManager.save(objME1)
 
 '        'Suppression de tous les controleRegulier
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        For Each oCtrl As ControleRegulier In col
 '            ControleRegulierManager.delete(oCtrl)
 '        Next
@@ -377,7 +377,7 @@
 '        'Création de 3 bancs (2 OK + 1 Supprimé)
 '        objBanc = New Banc()
 '        objBanc.id = "MonBanc1"
-'        objBanc.idStructure = m_oAgent.idStructure
+'        objBanc.uidStructure = m_oAgent.uidStructure
 '        objBanc.isSupprime = False
 '        objBanc.nbControles = 5
 '        objBanc.nbControlesTotal = 15
@@ -385,7 +385,7 @@
 
 '        objBanc = New Banc()
 '        objBanc.id = "MonBanc2"
-'        objBanc.idStructure = m_oAgent.idStructure
+'        objBanc.uidStructure = m_oAgent.uidStructure
 '        objBanc.isSupprime = False
 '        objBanc.nbControles = 5
 '        objBanc.nbControlesTotal = 15
@@ -393,7 +393,7 @@
 
 '        objBanc = New Banc()
 '        objBanc.id = "MonBanc3"
-'        objBanc.idStructure = m_oAgent.idStructure
+'        objBanc.uidStructure = m_oAgent.uidStructure
 '        objBanc.isSupprime = True
 '        objBanc.AgentSuppression = m_oAgent.nom
 '        objBanc.RaisonSuppression = "MaRaison"
@@ -409,7 +409,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = False
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
@@ -421,7 +421,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = False
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
@@ -433,7 +433,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = False
 '        objManometreControle.nbControles = 5
 '        objManometreControle.nbControlesTotal = 15
@@ -445,7 +445,7 @@
 '        objManometreControle.classe = "MaClasse"
 '        objManometreControle.type = "MonType"
 '        objManometreControle.fondEchelle = "MonFonEchelle"
-'        objManometreControle.idStructure = m_oAgent.idStructure
+'        objManometreControle.uidStructure = m_oAgent.uidStructure
 '        objManometreControle.isSupprime = True
 '        objManometreControle.AgentSuppression = m_oAgent.nom
 '        objManometreControle.RaisonSuppression = "MaRaison"
@@ -458,32 +458,32 @@
 '        Dim octrl As ControleRegulier
 
 '        'Creation des controles Regulier des bancs
-'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.idStructure, "BANC")
+'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.uidStructure, "BANC")
 '        Assert.AreEqual(oColCtrl.Count, 2)
 '        octrl = oColCtrl(1)
 '        Assert.AreEqual("MonBanc1", octrl.IdMateriel)
-'        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+'        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 '        octrl = oColCtrl(2)
 '        Assert.AreEqual("MonBanc2", octrl.IdMateriel)
-'        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+'        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 
 '        'Creation des controles Regulier des Manos
-'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.idStructure, "MANOC")
+'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.uidStructure, "MANOC")
 '        Assert.AreEqual(oColCtrl.Count, 3)
 '        octrl = oColCtrl(1)
 '        Assert.AreEqual("MonManometreControle1", octrl.IdMateriel)
-'        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+'        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 '        octrl = oColCtrl(2)
 '        Assert.AreEqual("MonManometreControle2", octrl.IdMateriel)
-'        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+'        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 '        octrl = oColCtrl(3)
 '        Assert.AreEqual("MonManometreControle3", octrl.IdMateriel)
-'        Assert.AreEqual(m_oAgent.idStructure, octrl.IdStructure)
+'        Assert.AreEqual(m_oAgent.uidStructure, octrl.uidStructure)
 
 '        'Creation des controles Regulier de tous les matériels
-'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.idStructure, "TOUS")
+'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.uidStructure, "TOUS")
 '        Assert.AreEqual(oColCtrl.Count, 2 + 3)
-'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.idStructure)
+'        oColCtrl = ControleRegulierManager.CreateControlesReguliers(m_oAgent.uidStructure)
 '        Assert.AreEqual(oColCtrl.Count, 2 + 3)
 
 
@@ -502,7 +502,7 @@
 '        obj.DateControle = CDate("25/02/1964")
 '        obj.Type = "MANOC"
 '        obj.IdMateriel = "Mano001"
-'        obj.IdStructure = m_oAgent.idStructure
+'        obj.uidStructure = m_oAgent.uidStructure
 '        obj.isNOK = True
 
 '        Assert.IsTrue(ControleRegulierManager.save(obj))
@@ -510,25 +510,25 @@
 '        nId = obj.Id
 
 '        Dim col As Collection
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure)
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure)
 '        Assert.AreEqual(1, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "MANOC")
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "MANOC")
 '        Assert.AreEqual(1, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "TOUS", CDate("1/2/1964"), CDate("28/02/1964"))
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "TOUS", CDate("1/2/1964"), CDate("28/02/1964"))
 '        Assert.AreEqual(1, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, "TOUS", CDate("1/2/1964"))
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, "TOUS", CDate("1/2/1964"))
 '        Assert.AreEqual(1, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, , , CDate("28/02/1964"))
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, , , CDate("28/02/1964"))
 '        Assert.AreEqual(1, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, , CDate("1/3/1964"), CDate("28/03/1964"))
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, , CDate("1/3/1964"), CDate("28/03/1964"))
 '        Assert.AreEqual(0, col.Count)
 
-'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.idStructure, , CDate("1/3/1964"))
+'        col = ControleRegulierManager.getcolControlesReguliers(m_oAgent.uidStructure, , CDate("1/3/1964"))
 '        Assert.AreEqual(0, col.Count)
 '    End Sub
 '    ''' <summary>
@@ -544,7 +544,7 @@
 '        obj.DateControle = CDate("25/02/1964")
 '        obj.Type = "MANOC"
 '        obj.IdMateriel = "Mano001"
-'        obj.IdStructure = m_oAgent.idStructure
+'        obj.uidStructure = m_oAgent.uidStructure
 '        obj.isNOK = True
 '        Assert.IsTrue(ControleRegulierManager.save(obj))
 
@@ -552,7 +552,7 @@
 '        obj.DateControle = CDate("25/03/1964")
 '        obj.Type = "MANOC"
 '        obj.IdMateriel = "Mano001"
-'        obj.IdStructure = m_oAgent.idStructure
+'        obj.uidStructure = m_oAgent.uidStructure
 '        obj.isNOK = True
 '        Assert.IsTrue(ControleRegulierManager.save(obj))
 
@@ -560,20 +560,20 @@
 '        obj.DateControle = CDate("25/04/1964")
 '        obj.Type = "MANOC"
 '        obj.IdMateriel = "Mano001"
-'        obj.IdStructure = m_oAgent.idStructure
+'        obj.uidStructure = m_oAgent.uidStructure
 '        obj.isNOK = True
 '        Assert.IsTrue(ControleRegulierManager.save(obj))
 
 '        Dim bReturn As Boolean
-'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/1964", "31/12/1964", m_oAgent.idStructure, "C:\TEMP\text3L.txt")
+'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/1964", "31/12/1964", m_oAgent.uidStructure, "C:\TEMP\text3L.txt")
 '        Assert.IsTrue(bReturn)
-'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/1964", "31/12/1964", m_oAgent.idStructure, "C:\TEMP\textVide.txt", "BANC")
+'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/1964", "31/12/1964", m_oAgent.uidStructure, "C:\TEMP\textVide.txt", "BANC")
 '        Assert.IsTrue(bReturn)
-'        bReturn = ControleRegulierManager.ExportAsCSV("01/02/1964", "31/03/1964", m_oAgent.idStructure, "C:\TEMP\text2L.txt")
+'        bReturn = ControleRegulierManager.ExportAsCSV("01/02/1964", "31/03/1964", m_oAgent.uidStructure, "C:\TEMP\text2L.txt")
 '        Assert.IsTrue(bReturn)
-'        bReturn = ControleRegulierManager.ExportAsCSV("01/03/1964", "31/03/1964", m_oAgent.idStructure, "C:\TEMP\text1L.txt")
+'        bReturn = ControleRegulierManager.ExportAsCSV("01/03/1964", "31/03/1964", m_oAgent.uidStructure, "C:\TEMP\text1L.txt")
 '        Assert.IsTrue(bReturn)
-'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/2012", "31/12/2012", m_oAgent.idStructure, "C:\TEMP\text0L.txt")
+'        bReturn = ControleRegulierManager.ExportAsCSV("01/01/2012", "31/12/2012", m_oAgent.uidStructure, "C:\TEMP\text0L.txt")
 '        Assert.IsTrue(bReturn)
 
 '    End Sub

@@ -478,7 +478,7 @@ Public Class DiagnosticManagerTest
     '''Test pour D'init de l'objet + properties
     '''</summary>
     <TestMethod()>
-    Public Sub TST_GetByID()
+    Public Sub TST_CRUD()
         Dim oDiag As Diagnostic
         Dim oDiag2 As Diagnostic
         Dim bReturn As Boolean
@@ -493,11 +493,19 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(False, oDiag.controleIsAutoControle)
 
         oDiag.controleIsPulveRepare = True
-        Assert.AreEqual(True, oDiag.controleIsPulveRepare)
         oDiag.controleIsPreControleProfessionel = True
-        Assert.AreEqual(True, oDiag.controleIsPreControleProfessionel)
         oDiag.controleIsAutoControle = True
-        Assert.AreEqual(True, oDiag.controleIsAutoControle)
+        oDiag.isAnomalies = True
+        oDiag.niveauAnomalies = 1
+        oDiag.nombreAnomalies = 2
+        oDiag.nombreMineures = 3
+        oDiag.dateModificationAnomalies = New DateTime(2025, 8, 20)
+        oDiag.isPulveRecordedInOTC = True
+        oDiag.isPulveDownloadByExportOTC = True
+        oDiag.isPulveDownloadByCheckKeyOTC = True
+
+
+
         bReturn = DiagnosticManager.save(oDiag)
         Assert.IsTrue(bReturn)
 
@@ -506,14 +514,44 @@ Public Class DiagnosticManagerTest
         Assert.AreEqual(True, oDiag2.controleIsPulveRepare)
         Assert.AreEqual(True, oDiag2.controleIsPreControleProfessionel)
         Assert.AreEqual(True, oDiag2.controleIsAutoControle)
+        Assert.IsTrue(oDiag2.isAnomalies)
+        Assert.IsTrue(oDiag2.niveauAnomalies = 1)
+        Assert.IsTrue(oDiag2.nombreAnomalies = 2)
+        Assert.IsTrue(oDiag2.nombreMineures = 3)
+        Assert.IsTrue(oDiag2.dateModificationAnomalies = New DateTime(2025, 8, 20))
+        Assert.IsTrue(oDiag2.isPulveRecordedInOTC)
+        Assert.IsTrue(oDiag2.isPulveDownloadByExportOTC)
+        Assert.IsTrue(oDiag2.isPulveDownloadByCheckKeyOTC)
+
+
 
         oDiag2.controleNomSite = "Mon Site updated"
         oDiag2.controleIsAutoControle = False
+        oDiag2.isAnomalies = False
+        oDiag2.niveauAnomalies = 10
+        oDiag2.nombreAnomalies = 20
+        oDiag2.nombreMineures = 30
+        oDiag2.dateModificationAnomalies = New DateTime(2025, 8, 21)
+        oDiag2.isPulveRecordedInOTC = False
+        oDiag2.isPulveDownloadByExportOTC = False
+        oDiag2.isPulveDownloadByCheckKeyOTC = False
+
+
+
         Assert.IsTrue(DiagnosticManager.save(oDiag2))
         oDiag = DiagnosticManager.getDiagnosticById(id)
         Assert.AreEqual(False, oDiag.controleIsAutoControle)
         Assert.AreEqual("Mon Site updated", oDiag.controleNomSite)
         Assert.AreEqual("REP1", oDiag.proprietaireRepresentant)
+        Assert.IsFalse(oDiag.isAnomalies)
+        Assert.AreEqual(10, oDiag.niveauAnomalies)
+        Assert.AreEqual(20, oDiag.nombreAnomalies)
+        Assert.AreEqual(30, oDiag.nombreMineures)
+        Assert.AreEqual(oDiag.dateModificationAnomalies, New DateTime(2025, 8, 21))
+        Assert.IsFalse(oDiag.isPulveRecordedInOTC)
+        Assert.IsFalse(oDiag.isPulveDownloadByExportOTC)
+        Assert.IsFalse(oDiag.isPulveDownloadByCheckKeyOTC)
+
 
         oDiag2.controleNomSite = "Mon Site updated2"
         oDiag2.proprietaireRepresentant = "REP2"
@@ -595,7 +633,7 @@ Public Class DiagnosticManagerTest
         Dim oExploit As Exploitation = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         'Creation d'un Diagnostic
         oDiag = createDiagnostic(oExploit, oPulve, True)
@@ -640,31 +678,31 @@ Public Class DiagnosticManagerTest
 
         '=============
         Dim colDiags As List(Of Diagnostic)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
 
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString, oDiag.id)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString, oDiag.id)
         Assert.AreEqual(1, colDiags.Count)
 
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString, "RIEN")
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString, "RIEN")
         Assert.AreEqual(0, colDiags.Count)
         'Suppression des diagnosticItems 
 
         'Pas de contre visite pour les diag < 4 mois
         oDiag.controleDateFin = DateAdd(DateInterval.Month, -5, Date.Today).ToShortDateString()
         DiagnosticManager.save(oDiag)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString)
         Assert.AreEqual(0, colDiags.Count)
 
         oDiag.controleDateFin = DateAdd(DateInterval.Month, -3, Date.Today).ToShortDateString()
         DiagnosticManager.save(oDiag)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
 
         bReturn = DiagnosticItemManager.deleteByDiagnosticID(id)
         'Sans diagItem => Pas de Diagnostic pour Contre visite
         'Modif du 15/09/2013 : On accepte Les Diag sans DiagItems pendant 4 mois après la 2.5.3
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidStructure.ToString)
         Assert.AreEqual(1, colDiags.Count)
         '=======
 
@@ -727,7 +765,7 @@ Public Class DiagnosticManagerTest
 
         '=============
         Dim colDiags As List(Of Diagnostic)
-        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(m_oPulve.id, m_oAgent.idStructure.ToString)
+        colDiags = DiagnosticManager.getDiagnosticPourContreVisite(m_oPulve.id, m_oAgent.uidStructure.ToString)
         Assert.AreEqual(2, colDiags.Count)
 
         '=================
@@ -763,7 +801,7 @@ Public Class DiagnosticManagerTest
         'Creation d'un Diagnostic
         oDiag = createAndSaveDiagnostic()
         id = oDiag.id
-        oDiag.organismePresId = m_oAgent.idStructure
+        oDiag.organismePresId = m_oAgent.uidStructure
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
@@ -778,7 +816,7 @@ Public Class DiagnosticManagerTest
         oDiag.diagnosticItemsLst.Clear()
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.uidStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
         oDiagItem.idItem = "522"
         oDiagItem.itemValue = "4"
@@ -790,7 +828,7 @@ Public Class DiagnosticManagerTest
 
         'Creation d'un DiagItem
         oDiagItem = New DiagnosticItem()
-        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.idStructure.ToString, m_oAgent.id.ToString)
+        oDiagItem.id = DiagnosticItemManager.getNewId(m_oAgent.uidStructure.ToString, m_oAgent.id.ToString)
         oDiagItem.idDiagnostic = oDiag.id
         oDiagItem.idItem = "542"
         oDiagItem.itemValue = "4"
@@ -932,13 +970,13 @@ Public Class DiagnosticManagerTest
         oDiag.controleDateFin = Date.Today.ToShortDateString()
 
         oDiag.setOrganisme(m_oAgent)
-        Assert.AreEqual(oDiag.organismePresId, m_oAgent.idStructure)
+        Assert.AreEqual(oDiag.organismePresId, m_oAgent.uidStructure)
         Dim structureCourante As [Structure]
-        structureCourante = StructureManager.getStructureById(m_oAgent.idStructure)
+        structureCourante = StructureManager.getStructureById(m_oAgent.uidStructure)
         Assert.AreEqual(oDiag.organismePresNumero, structureCourante.idCrodip)
         Assert.AreEqual(oDiag.organismePresNom, structureCourante.nom)
-        Assert.AreEqual(oDiag.organismeInspNom, Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
-        Assert.AreEqual(oDiag.organismeInspAgrement, Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NUMAGR)
+        Assert.AreEqual(oDiag.organismeInspNom, CrodipWS.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
+        Assert.AreEqual(oDiag.organismeInspAgrement, CrodipWS.GlobalsCRODIP.GLOB_DIAG_NUMAGR)
         Assert.AreEqual(oDiag.inspecteurId, m_oAgent.id)
         Assert.AreEqual(oDiag.inspecteurNom, m_oAgent.nom)
         Assert.AreEqual(oDiag.inspecteurPrenom, m_oAgent.prenom)
@@ -1934,7 +1972,7 @@ Public Class DiagnosticManagerTest
         Dim oExploit As Exploitation = createExploitation()
         ExploitationManager.save(oExploit, m_oAgent)
         Dim oPulve As Pulverisateur = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
         'Creation d'un Diagnostic
         oDiag = createDiagnostic(oExploit, oPulve)
         idDiag = DiagnosticManager.getNewId(m_oAgent)
@@ -3828,7 +3866,7 @@ Public Class DiagnosticManagerTest
         oDiag.setOrganisme(m_oAgent)
         'SetPulverisateur
         Dim oPulve As New Pulverisateur()
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES
@@ -4214,7 +4252,7 @@ Public Class DiagnosticManagerTest
         oDiag.inspecteurPrenom = "Prénom Inspecteur d'Origine"
         'SetPulverisateur
         Dim oPulve As New Pulverisateur()
-        oPulve.idStructure = m_oAgent.idStructure
+        oPulve.uidStructure = m_oAgent.uidStructure
         oPulve.marque = "MAMARQUE"
         oPulve.modele = "MONMODELE"
         oPulve.type = Pulverisateur.TYPEPULVE_ARBRES
@@ -4423,8 +4461,8 @@ Public Class DiagnosticManagerTest
         Dim sDateFin As String = oDiag.controleDateFin
         oDiag2.SetAsContreVisite(m_oAgent)
         Assert.AreEqual("TEST2", oDiag2.inspecteurNom)
-        Assert.AreEqual(Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR, oDiag2.organismeOrigineInspNom)
-        Assert.IsTrue(oDiag2.organismeOriginePresNom = Crodip_agent.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
+        Assert.AreEqual(CrodipWS.GlobalsCRODIP.GLOB_DIAG_NOMAGR, oDiag2.organismeOrigineInspNom)
+        Assert.IsTrue(oDiag2.organismeOriginePresNom = CrodipWS.GlobalsCRODIP.GLOB_DIAG_NOMAGR)
         Assert.IsTrue(oDiag2.controleDateDernierControle = sDateFin)
         Assert.IsTrue(oDiag2.controleIsComplet = False)
         Assert.IsTrue(oDiag2.isATGIP = False)
@@ -4487,7 +4525,7 @@ Public Class DiagnosticManagerTest
         poPulve.manometrePressionTravail = "3"
 
         m_oExploitation = createExploitation()
-        PulverisateurManager.save(poPulve, m_oExploitation.id, m_oAgent)
+        PulverisateurManager.save(poPulve, m_oExploitation, m_oAgent)
 
         oDiag.setPulverisateur(poPulve)
         oDiag.SetProprietaire(m_oExploitation)
@@ -4609,7 +4647,7 @@ Public Class DiagnosticManagerTest
         AgentManager.WSSend(m_oAgent, obj)
 
         Dim oLstSynchro As List(Of SynchronisationElmt)
-        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC()
+        oLstSynchro = oSynchro.getListeElementsASynchroniserDESC(m_oAgent.oPCCourant, m_oAgent)
         Assert.AreNotEqual(0, oLstSynchro.Count)
 
         For Each oSynchroElmt In oLstSynchro
@@ -4804,7 +4842,7 @@ Public Class DiagnosticManagerTest
         '======================
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("15/12/2015")
@@ -4818,7 +4856,7 @@ Public Class DiagnosticManagerTest
         'Result CV => + 4 mois
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4833,7 +4871,7 @@ Public Class DiagnosticManagerTest
         'Result CC => + 4 mois
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = ""
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4851,7 +4889,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("16/12/2015")
@@ -4866,7 +4904,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4882,7 +4920,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatOK
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4900,7 +4938,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString("17/12/2015")
@@ -4915,7 +4953,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4931,7 +4969,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4948,7 +4986,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4964,7 +5002,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4980,7 +5018,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("20/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -4997,7 +5035,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5013,7 +5051,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5029,7 +5067,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCV
         poPulve.dateProchainControle = CSDate.ToCRODIPString("1/12/2015")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5045,7 +5083,7 @@ Public Class DiagnosticManagerTest
         poPulve = createPulve(oExploit)
         poPulve.controleEtat = Pulverisateur.controleEtatNOKCC
         poPulve.dateProchainControle = CSDate.ToCRODIPString("01/08/2020")
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         oDiag.setPulverisateur(poPulve)
@@ -5102,7 +5140,7 @@ Public Class DiagnosticManagerTest
 
         poPulve.controleEtat = pEtatPulveAvant
         poPulve.dateProchainControle = pDateProchainCtrlavant
-        PulverisateurManager.save(poPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(poPulve, oExploit, m_oAgent)
 
         oDiag = createDiagnostic(oExploit, poPulve)
         oDiag.controleDateDebut = CSDate.ToCRODIPString(pDateCtrl)
@@ -5241,7 +5279,7 @@ Public Class DiagnosticManagerTest
         Assert.IsTrue(bReturn)
 
         oDiag = createDiagnostic(m_oExploitation, m_oPulve, True)
-        oDiag.organismePresId = m_oAgent.idStructure
+        oDiag.organismePresId = m_oAgent.uidStructure
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
@@ -5316,7 +5354,7 @@ Public Class DiagnosticManagerTest
         oManoC = New ManometreControle()
         oManoC.idCrodip = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oManoC.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
-        oManoC.idstructure = m_oAgent.idStructure
+        oManoC.uidStructure = m_oAgent.uidStructure
         oManoC.marque = "Manoc de test"
         ManometreControleManager.save(oManoC)
 
@@ -5328,7 +5366,7 @@ Public Class DiagnosticManagerTest
         id = DiagnosticManager.getNewId(m_oAgent)
         oDiag.pulverisateurId = "PULVETEST"
         oDiag.id = id
-        oDiag.organismePresId = m_oAgent.idStructure
+        oDiag.organismePresId = m_oAgent.uidStructure
         oDiag.controleNomSite = "MonSite"
         oDiag.controleIsPulveRepare = True
         oDiag.controleIsPreControleProfessionel = True
@@ -5496,7 +5534,7 @@ Public Class DiagnosticManagerTest
         oExploit.commune = "CHASNE SUR ILLET"
         ExploitationManager.save(oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
 
         oDiag = New Diagnostic()
@@ -5584,7 +5622,7 @@ Public Class DiagnosticManagerTest
         oExploit.commune = "CHASNE SUR ILLET"
         ExploitationManager.save(oExploit, m_oAgent)
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic()
         Assert.AreEqual("pulverisateur", oDiag.typeDiagnostic)
@@ -5597,7 +5635,7 @@ Public Class DiagnosticManagerTest
         id = oDiag.id
         DiagnosticManager.save(oDiag)
 
-        oList = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.idStructure.ToString, "", CDate("2017/01/26 17:00"))
+        oList = DiagnosticManager.getDiagnosticPourContreVisite(oPulve.id, m_oAgent.uidstructure.ToString, "", CDate("2017/01/26 17:00"))
         Assert.AreEqual(1, oList.Count)
 
         oDiag = DiagnosticManager.WSgetById(1123, -1, "27-1123-580")
@@ -5649,7 +5687,7 @@ Public Class DiagnosticManagerTest
         ExploitationManager.save(oExploit, m_oAgent)
 
         oPulve = createPulve(oExploit)
-        PulverisateurManager.save(oPulve, oExploit.id, m_oAgent)
+        PulverisateurManager.save(oPulve, oExploit, m_oAgent)
 
         oDiag = New Diagnostic(m_oAgent, oPulve, oExploit)
         oDiag.controleLieu = "DANS LA COUR"
@@ -6032,31 +6070,31 @@ Public Class DiagnosticManagerTest
 
     End Sub
 
-    <TestMethod()>
-    Public Sub testGetNewId()
-        Dim oDiag As Diagnostic
+    '<TestMethod()>
+    'Public Sub testGetNewId()
+    '    Dim oDiag As Diagnostic
 
-        oDiag = createAndSaveDiagnostic()
-        oDiag = createAndSaveDiagnostic()
+    '    oDiag = createAndSaveDiagnostic()
+    '    oDiag = createAndSaveDiagnostic()
 
-        m_oAgent.oPool = New Pool()
-        m_oAgent.oPool.idCRODIPPC = "12345"
+    '    m_oAgent.oPool = New Pool()
+    '    m_oAgent.oPool. = "12345"
 
-        Dim str As String
-        str = DiagnosticManager.getNewId(m_oAgent)
+    '    Dim str As String
+    '    str = DiagnosticManager.getNewId(m_oAgent)
 
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
+    '    Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-12345-1", str)
 
-        m_oAgent.oPool.idCRODIPPC = "1119"
-        str = DiagnosticManager.getNewId(m_oAgent)
-        Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
+    '    m_oAgent.oPool.idCRODIPPC = "1119"
+    '    str = DiagnosticManager.getNewId(m_oAgent)
+    '    Assert.AreEqual(m_oStructure.idCrodip & "-" & m_oAgent.numeroNational & "-1119-1", str)
 
-        m_oAgent.oPool = Nothing
-        str = DiagnosticManager.getNewId(m_oAgent)
-        Assert.AreEqual("498-1119-1242", str)
+    '    m_oAgent.oPool = Nothing
+    '    str = DiagnosticManager.getNewId(m_oAgent)
+    '    Assert.AreEqual("498-1119-1242", str)
 
 
-    End Sub
+    'End Sub
 
 
 

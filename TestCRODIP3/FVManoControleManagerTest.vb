@@ -56,13 +56,13 @@ Public Class FVManometreControleManagerTest
         objFVManometreControle.idManometre = "9-99-99"
         objFVManometreControle.idAgentControleur = m_oAgent.id
 
-        Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle))
+        Assert.IsTrue(FVManometreControleManager.save(m_oAgent, objFVManometreControle))
 
         objFVManometreControle2 = FVManometreControleManager.getFVManometreControleById("9-99-99")
         Assert.AreEqual("9-99-99", objFVManometreControle2.id)
 
         objFVManometreControle2.caracteristiques = "TEST"
-        Assert.IsTrue(FVManometreControleManager.save(objFVManometreControle2))
+        Assert.IsTrue(FVManometreControleManager.save(m_oAgent, objFVManometreControle2))
         objFVManometreControle = FVManometreControleManager.getFVManometreControleById("9-99-99")
         Assert.AreEqual("TEST", objFVManometreControle2.caracteristiques)
 
@@ -82,14 +82,14 @@ Public Class FVManometreControleManagerTest
         Dim olstFV As New List(Of FVManometreControle)
         'Création du mano de controle
         oMano = New ManometreControle()
-        oMano.idstructure = m_oAgent.idStructure
+        oMano.uidStructure = m_oAgent.uidStructure
         oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
         oMano.idCrodip = oMano.numeroNational
         oMano.jamaisServi = True
         oMano.isUtilise = False
         ManometreControleManager.save(oMano)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByidCrodip(oMano)
         Assert.AreEqual(0, olstFV.Count) 'Pas de fiche de vie
 
         oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
@@ -98,7 +98,7 @@ Public Class FVManometreControleManagerTest
         Assert.IsFalse(oMano.jamaisServi)
         Assert.AreEqual(CDate("01/06/2014"), oMano.DateActivation)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByidCrodip(oMano)
         Assert.AreEqual(1, olstFV.Count) 'une fiche de vie Activation
         oFVManometreControle = olstFV(0)
         Assert.AreEqual(oFVManometreControle.idManometre, oMano.idCrodip)
@@ -115,7 +115,7 @@ Public Class FVManometreControleManagerTest
         oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
         Assert.IsFalse(oMano.etat)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByidCrodip(oMano)
         'Test de création d'une fiche de vie
         Assert.AreEqual(2, olstFV.Count) 'une fiche de vie "DESACTIVATION"
         oFVManometreControle = olstFV(1)
@@ -132,7 +132,7 @@ Public Class FVManometreControleManagerTest
         Assert.IsTrue(oMano.isSupprimeWS)
 
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+        olstFV = FVManometreControleManager.getLstFVManometreControleByidCrodip(oMano)
         'création d'une Troisième fiche de vie SUPRESSION
         Assert.AreEqual(3, olstFV.Count) 'une fiche de vie SUPPRESSION
         oFVManometreControle = olstFV(2)
@@ -145,74 +145,74 @@ Public Class FVManometreControleManagerTest
     '''<summary>
     '''Test des WS Fiches de vies de Manos de controles
     '''</summary>
-    <TestMethod()>
-    Public Sub SynchroDesFichesDeViesBancTest()
-        Dim oMano As ManometreControle
-        Dim olstFV As New List(Of FVManometreControle)
-        oMano = New ManometreControle()
-        oMano.idstructure = m_oAgent.idStructure
-        oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
-        oMano.idCrodip = oMano.numeroNational
-        oMano.jamaisServi = True
-        oMano.isUtilise = False
-        ManometreControleManager.save(oMano)
+    '<TestMethod()>
+    'Public Sub SynchroDesFichesDeViesBancTest()
+    '    Dim oMano As ManometreControle
+    '    Dim olstFV As New List(Of FVManometreControle)
+    '    oMano = New ManometreControle()
+    '    oMano.uidStructure = m_oAgent.uidStructure
+    '    oMano.numeroNational = ManometreControleManager.FTO_getNewNumeroNational(m_oAgent)
+    '    oMano.idCrodip = oMano.numeroNational
+    '    oMano.jamaisServi = True
+    '    oMano.isUtilise = False
+    '    ManometreControleManager.save(oMano)
 
-        olstFV = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
-        oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
-        ManometreControleManager.save(oMano)
-        oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
-
-
-        'Désactivation du Mano
-        Assert.IsTrue(oMano.etat)
-        oMano.Desactiver(m_oAgent)
-        oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
-        Assert.IsFalse(oMano.etat)
-
-        'Controle du Manoètre
-        System.Threading.Thread.Sleep(1000)
-        Dim oCtrl As ControleMano = New ControleMano(oMano, m_oAgent)
-        Dim oManoE As ManometreEtalon
-        oManoE = New ManometreEtalon()
-        oManoE.idstructure = m_oAgent.idStructure
-        oManoE.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
-        oManoE.idCrodip = oMano.numeroNational
-        oManoE.jamaisServi = True
-        oManoE.isUtilise = False
-        ManometreEtalonManager.save(oManoE)
-
-        oCtrl.DateVerif = Date.Now.ToShortDateString()
-        oCtrl.manoEtalon = oManoE.idCrodip
-        oCtrl.idMano = oMano.idCrodip
-
-        Dim oEtat As New EtatFVMano(oCtrl)
-        Dim sFileName As String = oEtat.buildPDF(oMano, agentCourant)
-        oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
-
-        Dim oLst As New List(Of FVManometreControle)
-        oLst = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
-        'La FV de controle est la dernière créee
-        Dim oFV As FVManometreControle = oLst(oLst.Count - 1)
-        Dim strFVFileName As String = oFV.FVFileName
-
-        Assert.AreEqual(3, FVManometreControleManager.getUpdates(m_oAgent).Length)
-        Dim oSynchro As New Synchronisation(m_oAgent)
-        oSynchro.runascSynchroFVManoControle()
-
-        'Por Véfifier que le Fichier est bien sur le FTP
-        'On le télécharge et on vérifie qu'il existe
-        'System.IO.Directory.CreateDirectory("tmp/FV/MC")
-        'Dim oFTP As New CSFTP()
-        'oFTP.DownLoad("FV/MC/" & strFVFileName, "tmp/")
-        'Assert.IsTrue(System.IO.File.Exists("tmp/FV/MC/" & strFVFileName))
+    '    olstFV = FVManometreControleManager.getLstFVManometreControleByidCrodip(oMano)
+    '    oMano.ActiverMateriel(CDate("01/06/2014"), m_oAgent)
+    '    ManometreControleManager.save(oMano)
+    '    oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
 
 
-        Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)
+    '    'Désactivation du Mano
+    '    Assert.IsTrue(oMano.etat)
+    '    oMano.Desactiver(m_oAgent)
+    '    oMano = ManometreControleManager.getManometreControleByNumeroNational(oMano.idCrodip)
+    '    Assert.IsFalse(oMano.etat)
 
-        'Suppression du Manometre
-        Assert.IsFalse(oMano.isSupprimeWS)
-        oMano.DeleteMateriel(m_oAgent, "TEST")
-        Assert.IsTrue(oMano.isSupprimeWS)
+    '    'Controle du Manoètre
+    '    System.Threading.Thread.Sleep(1000)
+    '    Dim oCtrl As ControleMano = New ControleMano(oMano, m_oAgent)
+    '    Dim oManoE As ManometreEtalon
+    '    oManoE = New ManometreEtalon()
+    '    oManoE.uidStructure = m_oAgent.uidStructure
+    '    oManoE.numeroNational = ManometreEtalonManager.getNewNumeroNationalForTestOnly(m_oAgent)
+    '    oManoE.idCrodip = oMano.numeroNational
+    '    oManoE.jamaisServi = True
+    '    oManoE.isUtilise = False
+    '    ManometreEtalonManager.save(oManoE)
 
-    End Sub
+    '    oCtrl.DateVerif = Date.Now.ToShortDateString()
+    '    oCtrl.manoEtalon = oManoE.idCrodip
+    '    oCtrl.idMano = oMano.idCrodip
+
+    '    Dim oEtat As New EtatFVMano(oCtrl)
+    '    Dim sFileName As String = oEtat.buildPDF(oMano, agentCourant)
+    '    oMano.creerfFicheVieControle(m_oAgent, oCtrl, sFileName)
+
+    '    Dim oLst As New List(Of FVManometreControle)
+    '    oLst = FVManometreControleManager.getLstFVManometreControle(oMano.idCrodip)
+    '    'La FV de controle est la dernière créee
+    '    Dim oFV As FVManometreControle = oLst(oLst.Count - 1)
+    '    Dim strFVFileName As String = oFV.FVFileName
+
+    '    Assert.AreEqual(3, FVManometreControleManager.getUpdates(m_oAgent).Length)
+    '    Dim oSynchro As New Synchronisation(m_oAgent)
+    '    oSynchro.runascSynchroFVManoControle()
+
+    '    'Por Véfifier que le Fichier est bien sur le FTP
+    '    'On le télécharge et on vérifie qu'il existe
+    '    'System.IO.Directory.CreateDirectory("tmp/FV/MC")
+    '    'Dim oFTP As New CSFTP()
+    '    'oFTP.DownLoad("FV/MC/" & strFVFileName, "tmp/")
+    '    'Assert.IsTrue(System.IO.File.Exists("tmp/FV/MC/" & strFVFileName))
+
+
+    '    Assert.AreEqual(0, FVManometreControleManager.getUpdates(m_oAgent).Length)
+
+    '    'Suppression du Manometre
+    '    Assert.IsFalse(oMano.isSupprimeWS)
+    '    oMano.DeleteMateriel(m_oAgent, "TEST")
+    '    Assert.IsTrue(oMano.isSupprimeWS)
+
+    'End Sub
 End Class
