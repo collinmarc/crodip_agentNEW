@@ -62,15 +62,6 @@ Namespace My
                 Return CType(Me("RepertoireExport"),String)
             End Get
         End Property
-
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>
-        Public ReadOnly Property intervalGPS() As Integer
-            Get
-                Return CType(Me("intervalGPS"),Integer)
-            End Get
-        End Property
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -141,6 +132,60 @@ Namespace My
         Public ReadOnly Property Test() As Boolean
             Get
                 Return CType(Me("Test"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public ReadOnly Property intervalGPS() As Integer
+            Get
+                Return CType(Me("intervalGPS"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property ProcessGPGGA() As Boolean
+            Get
+                Return CType(Me("ProcessGPGGA"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property ProcessGPRMC() As Boolean
+            Get
+                Return CType(Me("ProcessGPRMC"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4")>  _
+        Public ReadOnly Property NbSatellitesMin() As Integer
+            Get
+                Return CType(Me("NbSatellitesMin"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2.0")>  _
+        Public ReadOnly Property HDOPMax() As Decimal
+            Get
+                Return CType(Me("HDOPMax"),Decimal)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property ActiveSBAS_GPS() As Boolean
+            Get
+                Return CType(Me("ActiveSBAS_GPS"),Boolean)
             End Get
         End Property
     End Class

@@ -133,6 +133,9 @@ Public Class Form1
         ckVitessseStable.Checked = False
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
+
+        gpsManager.init()
+
         _MesureEncours.Distance = 0
         _MesureEncours.Temps = 0
         _MesureEncours.VitesseLue = 0

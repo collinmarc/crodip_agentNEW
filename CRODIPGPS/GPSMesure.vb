@@ -189,7 +189,7 @@
     End Sub
     Public ReadOnly Property Text() As String
         Get
-            Return "S:" & PositionDepart & "E:" & PositionArrivee & "D:" & Distance & "V:" & Vitesse
+            Return "E:" & PositionArrivee & "S:" & PositionDepart & "D:" & Distance & "V:" & Vitesse
         End Get
     End Property
 
