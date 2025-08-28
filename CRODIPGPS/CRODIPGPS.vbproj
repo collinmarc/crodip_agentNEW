@@ -77,7 +77,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logoCRODIP.ico</ApplicationIcon>
@@ -249,7 +249,7 @@
     <Compile Include="GPSManager.vb" />
     <Compile Include="GPSMesure.vb" />
     <Compile Include="Module1.vb" />
-    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>

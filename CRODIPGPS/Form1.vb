@@ -93,6 +93,7 @@ Public Class Form1
         cbMesure.Text = "Démarrer"
         m_bsrcGPSMesure.MoveNext()
         CbMesureSuivante.Enabled = False
+        rbMesure1.Enabled = False
         SetEtat1GPSACTIF()
     End Sub
 
@@ -678,5 +679,15 @@ Public Class Form1
     Private Sub cbReset_Click(sender As Object, e As EventArgs) Handles cbReset.Click
         _MesureEncours.PositionArrivee = gpsManager.Latitude & " "
         SetAction(ACTION.Action_RESET)
+    End Sub
+
+    Private Sub cbVitesseLueMoins1_Click(sender As Object, e As EventArgs) Handles cbVitesseLueMoins1.Click
+        _MesureEncours.VitesseLue = _MesureEncours.VitesseLue - 1D
+        m_bsrcGPSMesure.ResetBindings(False)
+    End Sub
+
+    Private Sub cbVitesseLuePlus1_Click(sender As Object, e As EventArgs) Handles cbVitesseLuePlus1.Click
+        _MesureEncours.VitesseLue = _MesureEncours.VitesseLue + 1D
+        m_bsrcGPSMesure.ResetBindings(False)
     End Sub
 End Class

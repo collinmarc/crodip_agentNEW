@@ -50,9 +50,11 @@ Partial Class Form1
         Me.rbMesure1 = New MaterialSkin.Controls.MaterialRadioButton()
         Me.CkTest = New MaterialSkin.Controls.MaterialCheckbox()
         Me.TableLayoutPanelVitesseLue = New System.Windows.Forms.TableLayoutPanel()
+        Me.cbVitesseLuePlus1 = New MaterialSkin.Controls.MaterialButton()
+        Me.cbVitesseLueMoins1 = New MaterialSkin.Controls.MaterialButton()
         Me.tbVitesseLue = New MaterialSkin.Controls.MaterialTextBox()
-        Me.VitesseLueMoins = New MaterialSkin.Controls.MaterialButton()
         Me.VitesseLuePlus = New MaterialSkin.Controls.MaterialButton()
+        Me.VitesseLueMoins = New MaterialSkin.Controls.MaterialButton()
         Me.cbReset = New MaterialSkin.Controls.MaterialButton()
         Me.laDistance = New MaterialSkin.Controls.MaterialLabel()
         Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
@@ -86,9 +88,9 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel2.ColumnCount = 3
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.laMesure, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.ckVitessseStable, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ckGPSActif, 1, 0)
@@ -125,7 +127,6 @@ Partial Class Form1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(386, 530)
         Me.TableLayoutPanel2.TabIndex = 35
         '
@@ -151,14 +152,14 @@ Partial Class Form1
         Me.ckVitessseStable.Depth = 0
         Me.ckVitessseStable.Enabled = False
         Me.ckVitessseStable.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ckVitessseStable.Location = New System.Drawing.Point(256, 0)
+        Me.ckVitessseStable.Location = New System.Drawing.Point(281, 0)
         Me.ckVitessseStable.Margin = New System.Windows.Forms.Padding(0)
         Me.ckVitessseStable.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckVitessseStable.MouseState = MaterialSkin.MouseState.HOVER
         Me.ckVitessseStable.Name = "ckVitessseStable"
         Me.ckVitessseStable.ReadOnly = False
         Me.ckVitessseStable.Ripple = True
-        Me.ckVitessseStable.Size = New System.Drawing.Size(130, 37)
+        Me.ckVitessseStable.Size = New System.Drawing.Size(105, 37)
         Me.ckVitessseStable.TabIndex = 36
         Me.ckVitessseStable.Text = "&VitesseStable"
         Me.ckVitessseStable.UseVisualStyleBackColor = True
@@ -169,7 +170,7 @@ Partial Class Form1
         Me.ckGPSActif.AutoSize = True
         Me.ckGPSActif.Depth = 0
         Me.ckGPSActif.Enabled = False
-        Me.ckGPSActif.Location = New System.Drawing.Point(128, 0)
+        Me.ckGPSActif.Location = New System.Drawing.Point(104, 0)
         Me.ckGPSActif.Margin = New System.Windows.Forms.Padding(0)
         Me.ckGPSActif.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.ckGPSActif.MouseState = MaterialSkin.MouseState.HOVER
@@ -189,7 +190,7 @@ Partial Class Form1
         Me.lblNumPulvé.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
         Me.lblNumPulvé.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
         Me.lblNumPulvé.ForeColor = System.Drawing.Color.Maroon
-        Me.lblNumPulvé.Location = New System.Drawing.Point(259, 61)
+        Me.lblNumPulvé.Location = New System.Drawing.Point(284, 61)
         Me.lblNumPulvé.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblNumPulvé.Name = "lblNumPulvé"
         Me.lblNumPulvé.Size = New System.Drawing.Size(78, 24)
@@ -226,7 +227,7 @@ Partial Class Form1
         Me.cbMesure.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbMesure.Name = "cbMesure"
         Me.cbMesure.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbMesure.Size = New System.Drawing.Size(248, 77)
+        Me.cbMesure.Size = New System.Drawing.Size(273, 77)
         Me.cbMesure.TabIndex = 28
         Me.cbMesure.Text = "Démarrer"
         Me.cbMesure.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -273,10 +274,10 @@ Partial Class Form1
         Me.MaterialLabel1.AutoSize = True
         Me.MaterialLabel1.Depth = 0
         Me.MaterialLabel1.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel1.Location = New System.Drawing.Point(14, 256)
+        Me.MaterialLabel1.Location = New System.Drawing.Point(3, 256)
         Me.MaterialLabel1.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel1.Name = "MaterialLabel1"
-        Me.MaterialLabel1.Size = New System.Drawing.Size(100, 19)
+        Me.MaterialLabel1.Size = New System.Drawing.Size(98, 19)
         Me.MaterialLabel1.TabIndex = 3
         Me.MaterialLabel1.Text = "Distance (m) :"
         '
@@ -286,7 +287,7 @@ Partial Class Form1
         Me.MaterialLabel2.AutoSize = True
         Me.MaterialLabel2.Depth = 0
         Me.MaterialLabel2.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel2.Location = New System.Drawing.Point(23, 306)
+        Me.MaterialLabel2.Location = New System.Drawing.Point(11, 306)
         Me.MaterialLabel2.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel2.Name = "MaterialLabel2"
         Me.MaterialLabel2.Size = New System.Drawing.Size(81, 19)
@@ -302,7 +303,7 @@ Partial Class Form1
         Me.laVitesseLue.Location = New System.Drawing.Point(3, 356)
         Me.laVitesseLue.MouseState = MaterialSkin.MouseState.HOVER
         Me.laVitesseLue.Name = "laVitesseLue"
-        Me.laVitesseLue.Size = New System.Drawing.Size(122, 19)
+        Me.laVitesseLue.Size = New System.Drawing.Size(98, 19)
         Me.laVitesseLue.TabIndex = 19
         Me.laVitesseLue.Text = "Vitesse lue (km/h) :"
         '
@@ -315,7 +316,7 @@ Partial Class Form1
         Me.laVitesseMesuree.Location = New System.Drawing.Point(3, 406)
         Me.laVitesseMesuree.MouseState = MaterialSkin.MouseState.HOVER
         Me.laVitesseMesuree.Name = "laVitesseMesuree"
-        Me.laVitesseMesuree.Size = New System.Drawing.Size(122, 19)
+        Me.laVitesseMesuree.Size = New System.Drawing.Size(98, 19)
         Me.laVitesseMesuree.TabIndex = 5
         Me.laVitesseMesuree.Text = "Vitesse mesurée (km/h) :"
         Me.laVitesseMesuree.Visible = False
@@ -331,12 +332,12 @@ Partial Class Form1
         Me.tbVitesseMesuree.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbVitesseMesuree.ForeColor = System.Drawing.Color.DodgerBlue
         Me.tbVitesseMesuree.LeadingIcon = Nothing
-        Me.tbVitesseMesuree.Location = New System.Drawing.Point(131, 394)
+        Me.tbVitesseMesuree.Location = New System.Drawing.Point(107, 394)
         Me.tbVitesseMesuree.MaxLength = 50
         Me.tbVitesseMesuree.MouseState = MaterialSkin.MouseState.OUT
         Me.tbVitesseMesuree.Multiline = False
         Me.tbVitesseMesuree.Name = "tbVitesseMesuree"
-        Me.tbVitesseMesuree.Size = New System.Drawing.Size(122, 50)
+        Me.tbVitesseMesuree.Size = New System.Drawing.Size(171, 50)
         Me.tbVitesseMesuree.TabIndex = 8
         Me.tbVitesseMesuree.Text = "16.5"
         Me.tbVitesseMesuree.TrailingIcon = Nothing
@@ -352,12 +353,12 @@ Partial Class Form1
         Me.cbValiderVitesseLue.Depth = 0
         Me.cbValiderVitesseLue.HighEmphasis = True
         Me.cbValiderVitesseLue.Icon = Nothing
-        Me.cbValiderVitesseLue.Location = New System.Drawing.Point(260, 347)
+        Me.cbValiderVitesseLue.Location = New System.Drawing.Point(285, 347)
         Me.cbValiderVitesseLue.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.cbValiderVitesseLue.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbValiderVitesseLue.Name = "cbValiderVitesseLue"
         Me.cbValiderVitesseLue.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbValiderVitesseLue.Size = New System.Drawing.Size(122, 38)
+        Me.cbValiderVitesseLue.Size = New System.Drawing.Size(97, 38)
         Me.cbValiderVitesseLue.TabIndex = 23
         Me.cbValiderVitesseLue.Text = "Valider"
         Me.cbValiderVitesseLue.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -486,26 +487,71 @@ Partial Class Form1
         Me.CkTest.Name = "CkTest"
         Me.CkTest.ReadOnly = False
         Me.CkTest.Ripple = True
-        Me.CkTest.Size = New System.Drawing.Size(128, 41)
+        Me.CkTest.Size = New System.Drawing.Size(104, 41)
         Me.CkTest.TabIndex = 34
         Me.CkTest.Text = "Mode &Test"
         Me.CkTest.UseVisualStyleBackColor = True
         '
         'TableLayoutPanelVitesseLue
         '
-        Me.TableLayoutPanelVitesseLue.ColumnCount = 3
+        Me.TableLayoutPanelVitesseLue.AutoSize = True
+        Me.TableLayoutPanelVitesseLue.ColumnCount = 5
+        Me.TableLayoutPanelVitesseLue.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanelVitesseLue.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanelVitesseLue.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelVitesseLue.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.tbVitesseLue, 1, 0)
-        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.VitesseLueMoins, 0, 0)
-        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.VitesseLuePlus, 2, 0)
-        Me.TableLayoutPanelVitesseLue.Location = New System.Drawing.Point(131, 344)
+        Me.TableLayoutPanelVitesseLue.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.cbVitesseLuePlus1, 4, 0)
+        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.cbVitesseLueMoins1, 0, 0)
+        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.tbVitesseLue, 2, 0)
+        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.VitesseLuePlus, 3, 0)
+        Me.TableLayoutPanelVitesseLue.Controls.Add(Me.VitesseLueMoins, 1, 0)
+        Me.TableLayoutPanelVitesseLue.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelVitesseLue.Location = New System.Drawing.Point(107, 344)
         Me.TableLayoutPanelVitesseLue.Name = "TableLayoutPanelVitesseLue"
         Me.TableLayoutPanelVitesseLue.RowCount = 1
         Me.TableLayoutPanelVitesseLue.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelVitesseLue.Size = New System.Drawing.Size(122, 44)
+        Me.TableLayoutPanelVitesseLue.Size = New System.Drawing.Size(171, 44)
         Me.TableLayoutPanelVitesseLue.TabIndex = 41
+        '
+        'cbVitesseLuePlus1
+        '
+        Me.cbVitesseLuePlus1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.cbVitesseLuePlus1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.cbVitesseLuePlus1.Depth = 0
+        Me.cbVitesseLuePlus1.HighEmphasis = True
+        Me.cbVitesseLuePlus1.Icon = Nothing
+        Me.cbVitesseLuePlus1.Location = New System.Drawing.Point(150, 6)
+        Me.cbVitesseLuePlus1.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.cbVitesseLuePlus1.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbVitesseLuePlus1.Name = "cbVitesseLuePlus1"
+        Me.cbVitesseLuePlus1.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.cbVitesseLuePlus1.Size = New System.Drawing.Size(17, 32)
+        Me.cbVitesseLuePlus1.TabIndex = 4
+        Me.cbVitesseLuePlus1.Text = "++"
+        Me.cbVitesseLuePlus1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.cbVitesseLuePlus1.UseAccentColor = False
+        Me.cbVitesseLuePlus1.UseVisualStyleBackColor = True
+        '
+        'cbVitesseLueMoins1
+        '
+        Me.cbVitesseLueMoins1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.cbVitesseLueMoins1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.cbVitesseLueMoins1.Depth = 0
+        Me.cbVitesseLueMoins1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbVitesseLueMoins1.HighEmphasis = True
+        Me.cbVitesseLueMoins1.Icon = Nothing
+        Me.cbVitesseLueMoins1.Location = New System.Drawing.Point(4, 6)
+        Me.cbVitesseLueMoins1.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.cbVitesseLueMoins1.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbVitesseLueMoins1.Name = "cbVitesseLueMoins1"
+        Me.cbVitesseLueMoins1.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.cbVitesseLueMoins1.Size = New System.Drawing.Size(17, 32)
+        Me.cbVitesseLueMoins1.TabIndex = 3
+        Me.cbVitesseLueMoins1.Text = "--"
+        Me.cbVitesseLueMoins1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.cbVitesseLueMoins1.UseAccentColor = False
+        Me.cbVitesseLueMoins1.UseVisualStyleBackColor = True
         '
         'tbVitesseLue
         '
@@ -516,35 +562,16 @@ Partial Class Form1
         Me.tbVitesseLue.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tbVitesseLue.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.tbVitesseLue.LeadingIcon = Nothing
-        Me.tbVitesseLue.Location = New System.Drawing.Point(28, 3)
+        Me.tbVitesseLue.Location = New System.Drawing.Point(53, 3)
         Me.tbVitesseLue.MaxLength = 50
         Me.tbVitesseLue.MouseState = MaterialSkin.MouseState.OUT
         Me.tbVitesseLue.Multiline = False
         Me.tbVitesseLue.Name = "tbVitesseLue"
-        Me.tbVitesseLue.Size = New System.Drawing.Size(66, 36)
+        Me.tbVitesseLue.Size = New System.Drawing.Size(65, 36)
         Me.tbVitesseLue.TabIndex = 0
         Me.tbVitesseLue.Text = "8.5"
         Me.tbVitesseLue.TrailingIcon = Nothing
         Me.tbVitesseLue.UseTallSize = False
-        '
-        'VitesseLueMoins
-        '
-        Me.VitesseLueMoins.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.VitesseLueMoins.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.VitesseLueMoins.Depth = 0
-        Me.VitesseLueMoins.HighEmphasis = True
-        Me.VitesseLueMoins.Icon = Nothing
-        Me.VitesseLueMoins.Location = New System.Drawing.Point(4, 6)
-        Me.VitesseLueMoins.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.VitesseLueMoins.MouseState = MaterialSkin.MouseState.HOVER
-        Me.VitesseLueMoins.Name = "VitesseLueMoins"
-        Me.VitesseLueMoins.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.VitesseLueMoins.Size = New System.Drawing.Size(17, 32)
-        Me.VitesseLueMoins.TabIndex = 1
-        Me.VitesseLueMoins.Text = "-"
-        Me.VitesseLueMoins.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.VitesseLueMoins.UseAccentColor = False
-        Me.VitesseLueMoins.UseVisualStyleBackColor = True
         '
         'VitesseLuePlus
         '
@@ -553,7 +580,7 @@ Partial Class Form1
         Me.VitesseLuePlus.Depth = 0
         Me.VitesseLuePlus.HighEmphasis = True
         Me.VitesseLuePlus.Icon = Nothing
-        Me.VitesseLuePlus.Location = New System.Drawing.Point(101, 6)
+        Me.VitesseLuePlus.Location = New System.Drawing.Point(125, 6)
         Me.VitesseLuePlus.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.VitesseLuePlus.MouseState = MaterialSkin.MouseState.HOVER
         Me.VitesseLuePlus.Name = "VitesseLuePlus"
@@ -565,6 +592,25 @@ Partial Class Form1
         Me.VitesseLuePlus.UseAccentColor = False
         Me.VitesseLuePlus.UseVisualStyleBackColor = True
         '
+        'VitesseLueMoins
+        '
+        Me.VitesseLueMoins.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.VitesseLueMoins.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.VitesseLueMoins.Depth = 0
+        Me.VitesseLueMoins.HighEmphasis = True
+        Me.VitesseLueMoins.Icon = Nothing
+        Me.VitesseLueMoins.Location = New System.Drawing.Point(29, 6)
+        Me.VitesseLueMoins.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.VitesseLueMoins.MouseState = MaterialSkin.MouseState.HOVER
+        Me.VitesseLueMoins.Name = "VitesseLueMoins"
+        Me.VitesseLueMoins.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.VitesseLueMoins.Size = New System.Drawing.Size(17, 32)
+        Me.VitesseLueMoins.TabIndex = 1
+        Me.VitesseLueMoins.Text = "-"
+        Me.VitesseLueMoins.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.VitesseLueMoins.UseAccentColor = False
+        Me.VitesseLueMoins.UseVisualStyleBackColor = True
+        '
         'cbReset
         '
         Me.cbReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
@@ -574,14 +620,14 @@ Partial Class Form1
         Me.cbReset.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cbReset.HighEmphasis = True
         Me.cbReset.Icon = CType(resources.GetObject("cbReset.Icon"), System.Drawing.Image)
-        Me.cbReset.Location = New System.Drawing.Point(260, 148)
+        Me.cbReset.Location = New System.Drawing.Point(285, 148)
         Me.cbReset.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.cbReset.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbReset.Name = "cbReset"
         Me.cbReset.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.cbReset.Size = New System.Drawing.Size(122, 77)
+        Me.cbReset.Size = New System.Drawing.Size(97, 77)
         Me.cbReset.TabIndex = 42
-        Me.cbReset.Text = "STOP"
+        Me.cbReset.Text = "RESET"
         Me.cbReset.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.cbReset.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbReset.UseAccentColor = False
@@ -596,11 +642,11 @@ Partial Class Form1
         Me.laDistance.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "Distance", True))
         Me.laDistance.Depth = 0
         Me.laDistance.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.laDistance.Location = New System.Drawing.Point(131, 244)
+        Me.laDistance.Location = New System.Drawing.Point(107, 244)
         Me.laDistance.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
         Me.laDistance.MouseState = MaterialSkin.MouseState.HOVER
         Me.laDistance.Name = "laDistance"
-        Me.laDistance.Size = New System.Drawing.Size(122, 47)
+        Me.laDistance.Size = New System.Drawing.Size(171, 47)
         Me.laDistance.TabIndex = 45
         Me.laDistance.Text = "154.80"
         Me.laDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -614,11 +660,11 @@ Partial Class Form1
         Me.laVitesse.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "TempAffichage", True))
         Me.laVitesse.Depth = 0
         Me.laVitesse.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.laVitesse.Location = New System.Drawing.Point(131, 294)
+        Me.laVitesse.Location = New System.Drawing.Point(107, 294)
         Me.laVitesse.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
         Me.laVitesse.MouseState = MaterialSkin.MouseState.HOVER
         Me.laVitesse.Name = "laVitesse"
-        Me.laVitesse.Size = New System.Drawing.Size(122, 47)
+        Me.laVitesse.Size = New System.Drawing.Size(171, 47)
         Me.laVitesse.TabIndex = 46
         Me.laVitesse.Text = "90"
         Me.laVitesse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -676,11 +722,13 @@ Partial Class Form1
     Friend WithEvents rbMesure1 As MaterialSkin.Controls.MaterialRadioButton
     Friend WithEvents CkTest As MaterialSkin.Controls.MaterialCheckbox
     Friend WithEvents TableLayoutPanelVitesseLue As TableLayoutPanel
-    Friend WithEvents tbVitesseLue As MaterialSkin.Controls.MaterialTextBox
-    Friend WithEvents VitesseLueMoins As MaterialSkin.Controls.MaterialButton
-    Friend WithEvents VitesseLuePlus As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbReset As MaterialSkin.Controls.MaterialButton
     Friend WithEvents laMesure As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents laDistance As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents laVitesse As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents tbVitesseLue As MaterialSkin.Controls.MaterialTextBox
+    Friend WithEvents VitesseLuePlus As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents VitesseLueMoins As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents cbVitesseLueMoins1 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents cbVitesseLuePlus1 As MaterialSkin.Controls.MaterialButton
 End Class

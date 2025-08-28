@@ -423,10 +423,10 @@
     <Compile Include="Application\exploitant\dlgListExploitant.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application\exploitant\pulverisateur\dlgAnomaliesPulve.Designer.vb">
-      <DependentUpon>dlgAnomaliesPulve.vb</DependentUpon>
+    <Compile Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.Designer.vb">
+      <DependentUpon>dlgDifferencesOTC.vb</DependentUpon>
     </Compile>
-    <Compile Include="Application\exploitant\pulverisateur\dlgAnomaliesPulve.vb">
+    <Compile Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.Designer.vb">
@@ -1940,8 +1940,8 @@
     <EmbeddedResource Include="Application\exploitant\dlgListExploitant.resx">
       <DependentUpon>dlgListExploitant.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgAnomaliesPulve.resx">
-      <DependentUpon>dlgAnomaliesPulve.vb</DependentUpon>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.resx">
+      <DependentUpon>dlgDifferencesOTC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgGestionCoPro.resx">
       <DependentUpon>dlgGestionCoPro.vb</DependentUpon>
