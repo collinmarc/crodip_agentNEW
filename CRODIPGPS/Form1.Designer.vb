@@ -24,11 +24,11 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.TimerDetectionGPS = New System.Windows.Forms.Timer(Me.components)
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.laMesure = New MaterialSkin.Controls.MaterialLabel()
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.lblNumPulvé = New MaterialSkin.Controls.MaterialLabel()
@@ -57,21 +57,16 @@ Partial Class Form1
         Me.cbReset = New MaterialSkin.Controls.MaterialButton()
         Me.laDistance = New MaterialSkin.Controls.MaterialLabel()
         Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'TimerDetectionGPS
+        'TimerLectureGPS
         '
-        Me.TimerDetectionGPS.Interval = 1000
-        '
-        'BackgroundWorker1
-        '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.TimerLectureGPS.Interval = 1000
         '
         'PnlCacheCkTest
         '
@@ -142,6 +137,10 @@ Partial Class Form1
         Me.laMesure.TabIndex = 44
         Me.laMesure.Text = "Text"
         Me.laMesure.Visible = False
+        '
+        'm_bsrcGPSMesure
+        '
+        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'ckVitessseStable
         '
@@ -662,10 +661,6 @@ Partial Class Form1
         Me.laVitesse.Text = "90"
         Me.laVitesse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'm_bsrcGPSMesure
-        '
-        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
-        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
@@ -681,17 +676,16 @@ Partial Class Form1
         Me.Text = "Acquisition GPS CRODIP"
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanelMesures.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TimerDetectionGPS As Timer
+    Friend WithEvents TimerLectureGPS As Timer
     Friend WithEvents m_bsrcGPSMesure As BindingSource
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PnlCacheCkTest As Panel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents ckVitessseStable As MaterialSkin.Controls.MaterialCheckbox

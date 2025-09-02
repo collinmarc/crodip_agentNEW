@@ -1,8 +1,12 @@
 ﻿Imports System.Globalization
 Imports System.IO.Ports
 
+''' <summary>
+''' Le GPSMAnager Fait l'interface avec l'antenne GPS
+''' Il charge les données GPS à chaque notification et indique qu'il a des nouvelles données
+''' 
+''' </summary>
 Public Class GPSManager
-    Public Event GPSEVT As EventHandler(Of EventArgs)
     ' Attribut GPSActif
     Private _GPSActif As Boolean
     Public Property GPSActif As Boolean
@@ -12,15 +16,10 @@ Public Class GPSManager
         Set(value As Boolean)
             If _GPSActif <> value Then
                 _GPSActif = value
-                '                If _GPSActif Then
-                '               RaiseEvent GPSActifEvent(Me, EventArgs.Empty)
-                '          End If
             End If
         End Set
     End Property
 
-    ' Événement GPSActifEvent
-    '    Public Event GPSActifEvent As EventHandler
 
     ' Distance et temps écoulé
     Public distance As Double
@@ -35,7 +34,7 @@ Public Class GPSManager
     Public Latitude As Double
     Public Longitude As Double
 
-    Private QLatt As New Queue(Of Double)
+    Private QLatt As New Queue(Of Double)  'Utilise rpour faire une Moyenne des Données en entrées
     Private QLong As New Queue(Of Double)
 
     ' Port série pour la lecture des données GPS
@@ -47,8 +46,6 @@ Public Class GPSManager
         GPSActif = False
         distance = 0.0
         bDataUpdated = False
-        '        elapsedTime = TimeSpan.Zero
-
 
         ' Configurer le port série
         serialPort = New SerialPort()
@@ -78,16 +75,6 @@ Public Class GPSManager
         End If
 
     End Sub
-
-
-    ' Méthode pour désactiver le GPS
-    Public Sub DesactiverGPS()
-        GPSActif = False
-        '        timer.Stop()
-        serialPort.Close()
-    End Sub
-
-
     ' Gestionnaire d'événements pour les données série reçues
     Private Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
         Dim serialData As String = serialPort.ReadExisting()
@@ -126,7 +113,6 @@ Public Class GPSManager
                 If breturn Then
                     'on signale une nouvelle donnée
                     bDataUpdated = True
-                    RaiseEvent GPSEVT(Me, EventArgs.Empty)
                 End If
             End If
         Next
