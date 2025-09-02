@@ -24,7 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.TimerLectureGPS = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerDetectionGPS = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
@@ -35,7 +35,6 @@ Partial Class Form1
         Me.MaterialLabel5 = New MaterialSkin.Controls.MaterialLabel()
         Me.cbMesure = New MaterialSkin.Controls.MaterialButton()
         Me.CbMesureSuivante = New MaterialSkin.Controls.MaterialButton()
-        Me.pbMesure = New MaterialSkin.Controls.MaterialProgressBar()
         Me.MaterialLabel1 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel2 = New MaterialSkin.Controls.MaterialLabel()
         Me.laVitesseLue = New MaterialSkin.Controls.MaterialLabel()
@@ -66,9 +65,9 @@ Partial Class Form1
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'TimerLectureGPS
+        'TimerDetectionGPS
         '
-        Me.TimerLectureGPS.Interval = 1000
+        Me.TimerDetectionGPS.Interval = 1000
         '
         'BackgroundWorker1
         '
@@ -98,7 +97,6 @@ Partial Class Form1
         Me.TableLayoutPanel2.Controls.Add(Me.MaterialLabel5, 0, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.cbMesure, 0, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.CbMesureSuivante, 0, 10)
-        Me.TableLayoutPanel2.Controls.Add(Me.pbMesure, 0, 5)
         Me.TableLayoutPanel2.Controls.Add(Me.MaterialLabel1, 0, 6)
         Me.TableLayoutPanel2.Controls.Add(Me.MaterialLabel2, 0, 7)
         Me.TableLayoutPanel2.Controls.Add(Me.laVitesseLue, 0, 8)
@@ -256,18 +254,6 @@ Partial Class Form1
         Me.CbMesureSuivante.UseAccentColor = False
         Me.CbMesureSuivante.UseVisualStyleBackColor = True
         '
-        'pbMesure
-        '
-        Me.TableLayoutPanel2.SetColumnSpan(Me.pbMesure, 3)
-        Me.pbMesure.Depth = 0
-        Me.pbMesure.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbMesure.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.pbMesure.Location = New System.Drawing.Point(3, 234)
-        Me.pbMesure.MouseState = MaterialSkin.MouseState.HOVER
-        Me.pbMesure.Name = "pbMesure"
-        Me.pbMesure.Size = New System.Drawing.Size(380, 5)
-        Me.pbMesure.TabIndex = 24
-        '
         'MaterialLabel1
         '
         Me.MaterialLabel1.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -306,6 +292,7 @@ Partial Class Form1
         Me.laVitesseLue.Size = New System.Drawing.Size(98, 19)
         Me.laVitesseLue.TabIndex = 19
         Me.laVitesseLue.Text = "Vitesse lue (km/h) :"
+        Me.laVitesseLue.Visible = False
         '
         'laVitesseMesuree
         '
@@ -364,6 +351,7 @@ Partial Class Form1
         Me.cbValiderVitesseLue.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbValiderVitesseLue.UseAccentColor = False
         Me.cbValiderVitesseLue.UseVisualStyleBackColor = True
+        Me.cbValiderVitesseLue.Visible = False
         '
         'TableLayoutPanel3
         '
@@ -532,6 +520,7 @@ Partial Class Form1
         Me.cbVitesseLuePlus1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbVitesseLuePlus1.UseAccentColor = False
         Me.cbVitesseLuePlus1.UseVisualStyleBackColor = True
+        Me.cbVitesseLuePlus1.Visible = False
         '
         'cbVitesseLueMoins1
         '
@@ -552,6 +541,7 @@ Partial Class Form1
         Me.cbVitesseLueMoins1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.cbVitesseLueMoins1.UseAccentColor = False
         Me.cbVitesseLueMoins1.UseVisualStyleBackColor = True
+        Me.cbVitesseLueMoins1.Visible = False
         '
         'tbVitesseLue
         '
@@ -572,6 +562,7 @@ Partial Class Form1
         Me.tbVitesseLue.Text = "8.5"
         Me.tbVitesseLue.TrailingIcon = Nothing
         Me.tbVitesseLue.UseTallSize = False
+        Me.tbVitesseLue.Visible = False
         '
         'VitesseLuePlus
         '
@@ -591,6 +582,7 @@ Partial Class Form1
         Me.VitesseLuePlus.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.VitesseLuePlus.UseAccentColor = False
         Me.VitesseLuePlus.UseVisualStyleBackColor = True
+        Me.VitesseLuePlus.Visible = False
         '
         'VitesseLueMoins
         '
@@ -610,6 +602,7 @@ Partial Class Form1
         Me.VitesseLueMoins.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.VitesseLueMoins.UseAccentColor = False
         Me.VitesseLueMoins.UseVisualStyleBackColor = True
+        Me.VitesseLueMoins.Visible = False
         '
         'cbReset
         '
@@ -696,7 +689,7 @@ Partial Class Form1
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TimerLectureGPS As Timer
+    Friend WithEvents TimerDetectionGPS As Timer
     Friend WithEvents m_bsrcGPSMesure As BindingSource
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PnlCacheCkTest As Panel
@@ -707,7 +700,6 @@ Partial Class Form1
     Friend WithEvents MaterialLabel5 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents cbMesure As MaterialSkin.Controls.MaterialButton
     Friend WithEvents CbMesureSuivante As MaterialSkin.Controls.MaterialButton
-    Friend WithEvents pbMesure As MaterialSkin.Controls.MaterialProgressBar
     Friend WithEvents MaterialLabel1 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel2 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents laVitesseLue As MaterialSkin.Controls.MaterialLabel

@@ -1,8 +1,8 @@
 ﻿Imports System.Globalization
 Imports System.IO.Ports
-Imports System.Timers
 
 Public Class GPSManager
+    Public Event GPSEVT As EventHandler(Of EventArgs)
     ' Attribut GPSActif
     Private _GPSActif As Boolean
     Public Property GPSActif As Boolean
@@ -46,11 +46,9 @@ Public Class GPSManager
         ' Initialement, le GPS est inactif
         GPSActif = False
         distance = 0.0
+        bDataUpdated = False
         '        elapsedTime = TimeSpan.Zero
 
-        ' Initialiser le Timer
-        'timer = New Timer(1)
-        'AddHandler timer.Elapsed, AddressOf OnTimedEvent
 
         ' Configurer le port série
         serialPort = New SerialPort()
@@ -64,6 +62,21 @@ Public Class GPSManager
         If Not serialPort.IsOpen Then
             serialPort.Open()
         End If
+        If My.Settings.ActiveSBAS_GPS Then
+            ' UBX-CFG-SBAS : activer SBAS (WAAS/EGNOS)
+            ' Trame binaire UBX (exemple pour u-blox 7/8)
+            'ChatGPT 28/08/2025
+            Dim enableSBAS() As Byte = {
+            &HB5, &H62, &H6, &H16, &H8, &H0,
+            &H1, &H0, &H1, &H0, &H1, &H0, &H1, &H0,
+            &H27, &H1E
+        }
+
+            serialPort.Write(enableSBAS, 0, enableSBAS.Length)
+            serialPort.Close()
+            serialPort.Open()
+        End If
+
     End Sub
 
 
@@ -73,9 +86,7 @@ Public Class GPSManager
         '        timer.Stop()
         serialPort.Close()
     End Sub
-    Public Sub StartMesure()
-        init()
-    End Sub
+
 
     ' Gestionnaire d'événements pour les données série reçues
     Private Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
@@ -88,7 +99,7 @@ Public Class GPSManager
             GPSActif = True
         End If
     End Sub
-
+    Public bDataUpdated As Boolean
     ' Méthode pour traiter les données NMEA
     Private Function ProcessNMEAData(data As String) As Boolean
         ' Processus de traitement des données NMEA
@@ -111,6 +122,11 @@ Public Class GPSManager
                                 breturn = ProcessGPRMC(nmeaFields)
                             End If
                     End Select
+                End If
+                If breturn Then
+                    'on signale une nouvelle donnée
+                    bDataUpdated = True
+                    RaiseEvent GPSEVT(Me, EventArgs.Empty)
                 End If
             End If
         Next
@@ -153,7 +169,7 @@ Public Class GPSManager
                 End If
 
             Else
-                    TraceMsg("Trame incorrecte:" & fields.ToString())
+                TraceMsg("Trame incorrecte:" & fields.ToString())
                 bReturn = False
             End If
         Catch ex As Exception
@@ -163,18 +179,26 @@ Public Class GPSManager
         Return bReturn
     End Function
     Private Function LattMoyenne(pLatt As Double) As Double
-        QLatt.Enqueue(pLatt)
-        If QLatt.Count > 10 Then
-            QLatt.Dequeue()
+        If My.Settings.nbMesuresMoyenne = 0 Then
+            Return pLatt
+        Else
+            QLatt.Enqueue(pLatt)
+            If QLatt.Count > My.Settings.nbMesuresMoyenne Then
+                QLatt.Dequeue()
+            End If
+            Return QLatt.Average()
         End If
-        Return QLatt.Average()
     End Function
     Private Function LongMoyenne(pLong As Double) As Double
-        QLong.Enqueue(pLong)
-        If QLong.Count > 10 Then
-            QLong.Dequeue()
+        If My.Settings.nbMesuresMoyenne = 0 Then
+            Return pLong
+        Else
+            QLong.Enqueue(pLong)
+            If QLong.Count > My.Settings.nbMesuresMoyenne Then
+                QLong.Dequeue()
+            End If
+            Return QLong.Average()
         End If
-        Return QLong.Average()
     End Function
 
     ' Méthode pour traiter les données GPRMC
@@ -194,9 +218,11 @@ Public Class GPSManager
                 ' Conversion en decimal
                 Dim latitude As Double = ConvertToDecimalDegrees(fields(3), fields(4))
                 Dim longitude As Double = ConvertToDecimalDegrees(fields(5), fields(6))
+                Dim latitudeM As Double = LattMoyenne(latitude)
+                Dim longitudeM As Double = LongMoyenne(longitude)
 
                 ' Calculer la distance parcourue
-                distance = CalculateDistance(heureGPS, latitude, longitude)
+                distance = CalculateDistance(heureGPS, latitudeM, longitudeM)
 
                 ' Mettre à jour les dernières coordonnées
                 TraceMsg("[ProcessGPRMC] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitude & ";" & longitude & ") Distance=" & distance)
@@ -216,10 +242,18 @@ Public Class GPSManager
     ' Convertir les coordonnées en degrés décimaux
     Private Function ConvertToDecimalDegrees(degreesMinutes As String, direction As String) As Double
         Dim dotIndex As Integer = degreesMinutes.IndexOf("."c)
-        Dim degrees As Double = Convert.ToDouble(degreesMinutes.Substring(0, dotIndex - 2))
-        Dim minutes As Double = Convert.ToDouble(degreesMinutes.Substring(dotIndex - 2).Replace(".", ","))
-        Dim seconds As Double = Convert.ToDouble(degreesMinutes.Substring(dotIndex + 2).Replace(".", ",")) * 60 / 10000
-        '        Dim decimalDegrees As Double = degrees + (minutes / 60) + (seconds / 3600)
+        Dim degrees As Double
+        Dim minutes As Double
+        If direction = "S" OrElse direction = "N" Then
+            'Latitude (00->90)
+            degrees = Convert.ToDouble(degreesMinutes.Substring(0, 2))
+            minutes = Convert.ToDouble(degreesMinutes.Substring(2).Replace(".", ","))
+        Else
+            'Longitude (000->180)
+            degrees = Convert.ToDouble(degreesMinutes.Substring(0, 3))
+            minutes = Convert.ToDouble(degreesMinutes.Substring(3).Replace(".", ","))
+        End If
+
         Dim decimalDegrees As Double = degrees + (minutes / 60)
         If direction = "S" OrElse direction = "W" Then
             decimalDegrees *= -1
@@ -248,26 +282,27 @@ Public Class GPSManager
     ' Calculer la distance entre deux points GPS en mètres
     Private Function CalculateDistance(pTimeGPS As String, pEndLat As Double, pEndLong As Double) As Double
         Dim distanceMeters As Double = 0D
+        Dim GPSDate As DateTime
+        GPSDate = ConvertGPSTimeToDateTime(pTimeGPS)
         If startLatitude = 0 And startLongitude = 0 Then
-            Me.startTime = ConvertGPSTimeToDateTime(pTimeGPS)
+            Me.startTime = GPSDate
             Me.startLatitude = pEndLat
             Me.startLongitude = pEndLong
-            Me.EndTime = ConvertGPSTimeToDateTime(pTimeGPS)
-            Me.Latitude = pEndLat
-            Me.Longitude = pEndLong
-        Else
-            Me.EndTime = ConvertGPSTimeToDateTime(pTimeGPS)
-            Me.Latitude = pEndLat
-            Me.Longitude = pEndLong
-            Dim R As Double = 6371 ' Rayon de la Terre en kilomètres
-            ' Convertir les degrés en radians
-            Dim lat1 As Double = startLatitude * Math.PI / 180.0
-            Dim lon1 As Double = startLongitude * Math.PI / 180.0
-            Dim lat2 As Double = pEndLat * Math.PI / 180.0
-            Dim lon2 As Double = pEndLong * Math.PI / 180.0
+        End If
 
-            ' Différence de latitude et de longitude
-            Dim dDiffLat As Double = (pEndLat - startLatitude) * Math.PI / 180.0
+        Me.EndTime = GPSDate
+        Me.Latitude = pEndLat
+        Me.Longitude = pEndLong
+
+        Dim R As Double = 6371 ' Rayon de la Terre en kilomètres
+        ' Convertir les degrés en radians
+        Dim lat1 As Double = startLatitude * Math.PI / 180.0
+        Dim lon1 As Double = startLongitude * Math.PI / 180.0
+        Dim lat2 As Double = pEndLat * Math.PI / 180.0
+        Dim lon2 As Double = pEndLong * Math.PI / 180.0
+
+        ' Différence de latitude et de longitude
+        Dim dDiffLat As Double = (pEndLat - startLatitude) * Math.PI / 180.0
             Dim dDiffLon As Double = (pEndLong - startLongitude) * Math.PI / 180.0
 
             ' Formule de Haversine
@@ -279,7 +314,6 @@ Public Class GPSManager
 
             Dim distanceKm As Double = R * c
             distanceMeters = distanceKm * 1000
-        End If
 
         Return distanceMeters
     End Function
@@ -289,21 +323,7 @@ Public Class GPSManager
             Try
                 Using testPort As New SerialPort(portName, 9600)
                     testPort.Open()
-                    If My.Settings.ActiveSBAS_GPS Then
-                        ' UBX-CFG-SBAS : activer SBAS (WAAS/EGNOS)
-                        ' Trame binaire UBX (exemple pour u-blox 7/8)
-                        'ChatGPT 28/08/2025
-                        Dim enableSBAS() As Byte = {
-            &HB5, &H62, &H6, &H16, &H8, &H0,
-            &H1, &H0, &H1, &H0, &H1, &H0, &H1, &H0,
-            &H27, &H1E
-        }
-
-                        testPort.Write(enableSBAS, 0, enableSBAS.Length)
-                        testPort.Close()
-                        testPort.Open()
-                    End If
-                    ' Lire pendant une courte période pour vérifier les trames NMEA
+                    ' Lire pendant une courte période pour vérifier que l'on reçoit  les trames NMEA
                     Dim start As DateTime = DateTime.Now
                     While (DateTime.Now - start).TotalSeconds < 2
                         Dim data As String = testPort.ReadExisting()
@@ -321,8 +341,8 @@ Public Class GPSManager
         Return Nothing
     End Function
     Private Sub TraceMsg(pMessage As String)
-        Console.WriteLine(pMessage)
-        System.IO.File.AppendAllText("./GPS.LOG", pMessage & vbCrLf)
+        Console.WriteLine(DateTime.Now.ToLongTimeString() & ":" & pMessage)
+        System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)
     End Sub
     Public Function IsSerialPortOpen() As Boolean
         Return serialPort.IsOpen
@@ -340,9 +360,38 @@ Public Class GPSManager
         End Get
     End Property
     Public Sub init()
-        Me.startLatitude = 0
-        Me.startLongitude = 0
+        Me.startLatitude = 0.0
+        Me.startLongitude = 0.0
         Me.startTime = DateTime.MinValue
         Me.EndTime = DateTime.MinValue
     End Sub
+    Private _tabVitesse As New Queue(Of Decimal)
+    Public VitesseConstante As Boolean = False
+    Public Sub ajouteVitesse(pVitesse As Decimal)
+        If _tabVitesse.Count >= My.Settings.nbIntervalleVitesseConstante Then
+            _tabVitesse.Dequeue()
+        End If
+        _tabVitesse.Enqueue(pVitesse)
+        If _tabVitesse.Count >= My.Settings.nbIntervalleVitesseConstante Then
+            'Calcule de la vitesse Moyenne
+            Dim moy As Decimal = _tabVitesse.Average
+            Dim bEcart As Boolean = True
+            'Vérification s'il y a un ecart de plus de 5% par rapport à la moyenne
+            If ((pVitesse - moy) / moy) > My.Settings.EcartMAx Then
+                bEcart = False
+            End If
+            Me.VitesseConstante = bEcart
+        Else
+            Me.VitesseConstante = False
+        End If
+    End Sub
+    Public Function calculeVitesse(pdistance As Decimal, pTemps As Double) As Decimal
+        Dim dReturn As Decimal = 0
+        If pTemps <> 0 And pdistance <> 0 Then
+            dReturn = (pdistance / 1000 / (pTemps * 1000)) * 3600
+        End If
+        Return dReturn
+    End Function
+
+
 End Class

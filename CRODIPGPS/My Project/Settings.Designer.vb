@@ -137,7 +137,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
         Public ReadOnly Property intervalGPS() As Integer
             Get
                 Return CType(Me("intervalGPS"),Integer)
@@ -150,15 +150,6 @@ Namespace My
         Public ReadOnly Property ProcessGPGGA() As Boolean
             Get
                 Return CType(Me("ProcessGPGGA"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public ReadOnly Property ProcessGPRMC() As Boolean
-            Get
-                Return CType(Me("ProcessGPRMC"),Boolean)
             End Get
         End Property
         
@@ -186,6 +177,24 @@ Namespace My
         Public ReadOnly Property ActiveSBAS_GPS() As Boolean
             Get
                 Return CType(Me("ActiveSBAS_GPS"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public ReadOnly Property nbMesuresMoyenne() As Integer
+            Get
+                Return CType(Me("nbMesuresMoyenne"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property ProcessGPRMC() As Boolean
+            Get
+                Return CType(Me("ProcessGPRMC"),Boolean)
             End Get
         End Property
     End Class

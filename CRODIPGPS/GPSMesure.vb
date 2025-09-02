@@ -169,19 +169,12 @@
         _tabVitesse.Enqueue(pVitesse)
         If _tabVitesse.Count = My.Settings.nbIntervalleVitesseConstante Then
             'Calcule de la vitesse Moyenne
-            Dim moy As Decimal = 0
-            For Each vitesse As Decimal In _tabVitesse
-                moy = moy + vitesse
-            Next
-            moy = moy / _tabVitesse.Count
+            Dim moy As Decimal = _tabVitesse.Average
             Dim bEcart As Boolean = True
-            'Vérification s'il y a un ecart de plus de 5%
-
-            For Each oV As Decimal In _tabVitesse
-                If ((oV - moy) / moy) > My.Settings.EcartMAx Then
-                    bEcart = False
-                End If
-            Next
+            'Vérification s'il y a un ecart de plus de 5% par rapport à la moyenne
+            If ((pVitesse - moy) / moy) > My.Settings.EcartMAx Then
+                bEcart = False
+            End If
             Me.VitesseConstante = bEcart
         Else
             Me.VitesseConstante = False

@@ -2,6 +2,8 @@
 Imports System.Threading
 Imports System.Timers
 Imports MaterialSkin
+Imports CRODIPGPS
+
 Public Class Form1
     Inherits MaterialSkin.Controls.MaterialForm
 
@@ -10,15 +12,15 @@ Public Class Form1
     Dim m2 As GPSMesure
     Public elapsedTime As TimeSpan
     Private startTime As DateTime
-    Dim TimerDetectionGPS As System.Timers.Timer
 
     Private gpsManager As GPSManager
     Private portName As String
+    Public Event EVTGPSActif As EventHandler(Of EventArgs)
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
         SkinManager.AddFormToManage(Me)
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        MettreAJourThemeLight()
         SkinManager.ColorScheme = New ColorScheme(primary:=Primary.Blue800, darkPrimary:=Primary.Blue900, lightPrimary:=Primary.Blue500,
         accent:=Primary.Green900, textShade:=TextShade.WHITE)
 
@@ -50,11 +52,15 @@ Public Class Form1
         m_bsrcGPSMesure.MoveFirst()
         _EtatForm = ETAT.Etat_0GPSINACTIF
         SetEtat0GPSNONACTIF()
-        TimerLectureGPS.Interval = My.Settings.intervalGPS
 
-        BackgroundWorker1.RunWorkerAsync()
-        'TimerDetectionGPS.Enabled = True
-        'TimerDetectionGPS.Start()
+        gpsManager = New GPSManager()
+        'AddHandler gpsManager.GPSEVT, AddressOf RecupDonneesGPS
+
+        'on lance un premier Timer pour Trouver le Port GPS
+        TimerDetectionGPS.Interval = My.Settings.intervalGPS
+        TimerDetectionGPS.Enabled = True
+        AddHandler TimerDetectionGPS.Tick, AddressOf GPS_Rechercherleportserie
+        TimerDetectionGPS.Start()
 
         CkTest.Checked = My.Settings.Test
 
@@ -65,26 +71,31 @@ Public Class Form1
 
         Select Case _EtatForm
             Case ETAT.Etat_2ENATTENTE
-                SetAction(ACTION.Action_DEMARRER)
                 'SetEtat2MESUREENCOURS()
                 startTime = DateTime.Now()
                 elapsedTime = TimeSpan.MinValue
                 _MesureEncours.Distance = 0
                 _MesureEncours.Temps = 0
                 _MesureEncours.VitesseLue = 0
-                m_bsrcGPSMesure.ResetBindings(True)
-                TimerLectureGPS.Enabled = True
-                TimerLectureGPS.Start()
-                gpsManager.StartMesure()
+                m_bsrcGPSMesure.ResetBindings(False)
+                SetAction(ACTIONFORM.Action_DEMARRER)
+                gpsManager.init()
+
+                'on redemarre le timer pour récupérer les données
+                AddHandler TimerDetectionGPS.Tick, AddressOf GPS_RecupDonnees
+                TimerDetectionGPS.Start()
+
                 '            Case Etat.MESUREENCOURS
             Case ETAT.Etat_4MESUREARRETABLE
-                TimerLectureGPS.Stop()
+                TimerDetectionGPS.Stop()
+                RemoveHandler TimerDetectionGPS.Tick, AddressOf GPS_RecupDonnees
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
                 m_bsrcGPSMesure.ResetCurrentItem()
-                SetAction(ACTION.Action_DEMARRER)
+                SetAction(ACTIONFORM.Action_DEMARRER)
 
             Case Else
-                SetAction(ACTION.Action_DEMARRER)
+                'Recommencer
+                SetAction(ACTIONFORM.Action_DEMARRER)
         End Select
 
     End Sub
@@ -105,7 +116,7 @@ Public Class Form1
     Private Sub SetEtat0GPSNONACTIF()
         TraceMsg("Etat0")
         _EtatForm = ETAT.Etat_0GPSINACTIF
-        SkinManager.Theme = MaterialSkinManager.Themes.DARK
+        MettreAJourThemeDARK()
         cbReset.Visible = False
         cbReset.Enabled = False
         cbMesure.Text = "Démarrer"
@@ -113,13 +124,14 @@ Public Class Form1
         cbMesure.Enabled = False
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         CbMesureSuivante.Enabled = False
-        cbValiderVitesseLue.Visible = False
-        '        tbNumPulve.SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        laVitesseMesuree.Visible = CkTest.Checked
+        tbVitesseMesuree.Visible = CkTest.Checked
+        SetVitesseLueVisible(False)
     End Sub
     Private Sub SetEtat1GPSACTIF()
         TraceMsg("Etat1 GPS ACTIF")
         _EtatForm = ETAT.Etat_1GPSACTIF
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        MettreAJourThemeLight()
         'cbMesure.Text = "Démarrer"
         Dim p As Integer
         p = m_bsrcGPSMesure.Position
@@ -133,7 +145,7 @@ Public Class Form1
         ckVitessseStable.Checked = False
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
-
+        SetVitesseLueVisible(False)
         gpsManager.init()
 
         _MesureEncours.Distance = 0
@@ -141,14 +153,16 @@ Public Class Form1
         _MesureEncours.VitesseLue = 0
         _MesureEncours.VitesseConstante = False
         m_bsrcGPSMesure.ResetBindings(False)
-        cbValiderVitesseLue.Visible = False
-        TimerLectureGPS.Start() 'on le démarre pour attendre la vitesse constante
+
+        'on redemarre le timer pour attendre la vitesse stable
+        gpsManager.VitesseConstante = False
+        AddHandler TimerDetectionGPS.Tick, AddressOf GPS_AttentevitesseStable
+        TimerDetectionGPS.Start()
     End Sub
     Private Sub SetEtat2ENATTENTE()
         TraceMsg("Etat2")
         _EtatForm = ETAT.Etat_2ENATTENTE
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
-
+        MettreAJourThemeLight()
         cbReset.Visible = False
         cbReset.Enabled = False
         cbMesure.Text = "Démarrer"
@@ -156,15 +170,14 @@ Public Class Form1
         cbMesure.Enabled = True
         CbMesureSuivante.Enabled = Not rbMesure2.Checked And _MesureEncours.Distance > 0
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
-        cbValiderVitesseLue.Visible = False
-        laVitesseLue.Visible = False
-        TableLayoutPanelVitesseLue.Visible = False
-        cbValiderVitesseLue.Visible = False
+        SetVitesseLueVisible(False)
+        TimerDetectionGPS.Stop()
+        RemoveHandler TimerDetectionGPS.Tick, AddressOf GPS_AttentevitesseStable
     End Sub
     Private Sub SetEtat3MESUREENCOURS()
         TraceMsg("Etat3 Mesure en cours")
         _EtatForm = ETAT.Etat_3MESUREENCOURS
-        SkinManager.Theme = MaterialSkinManager.Themes.DARK
+        MettreAJourThemeDARK()
         cbMesure.Text = "En cours"
         cbMesure.UseAccentColor = True
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 2)
@@ -173,21 +186,21 @@ Public Class Form1
         cbReset.BackColor = Color.Red
         'cbMesure.Enabled = False
         _n = 0
-        pbMesure.Value = 0
+        'pbMesure.Value = 0
         CbMesureSuivante.Enabled = False
         'La Vitesse mesurée n'est pas affichée encours d'acquiqition
         tbVitesseMesuree.Visible = CkTest.Checked
         laVitesseMesuree.Visible = CkTest.Checked
         rbMesure1.Enabled = False
         rbMesure2.Enabled = False
-        cbValiderVitesseLue.Visible = False
+        SetVitesseLueVisible(False)
 
     End Sub
     Private Sub SetEtat4MESUREARRETABLE()
         TraceMsg("Etat4 Arretable")
 
         _EtatForm = ETAT.Etat_4MESUREARRETABLE
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        MettreAJourThemeLight()
         cbMesure.UseAccentColor = True
         cbMesure.Text = "Arrêter"
         cbMesure.Enabled = True
@@ -196,25 +209,35 @@ Public Class Form1
         cbReset.Enabled = True
         cbReset.BackColor = Color.Red
         CbMesureSuivante.Enabled = False
-        cbValiderVitesseLue.Visible = False
+        SetVitesseLueVisible(False)
     End Sub
     Private Sub SetEtat5MESUREEFFECTUEE()
         TraceMsg("Etat5 effectuée")
 
         _EtatForm = ETAT.Etat_5MESUREEFFECTUEE
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        MettreAJourThemeLight()
         cbReset.Visible = False
         cbReset.Enabled = False
-        cbMesure.UseAccentColor = True
-        cbMesure.Enabled = False
+        'cbMesure.UseAccentColor = True
+        cbMesure.Text = "Recommencer"
+        cbMesure.Enabled = True
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         CbMesureSuivante.Enabled = False
         'Positionnement sur la vitesse Lue
         Me.SelectNextControl(laVitesseLue, True, False, False, True)
-        laVitesseLue.Visible = True
-        TableLayoutPanelVitesseLue.Visible = True
-        cbValiderVitesseLue.Visible = True
-        cbValiderVitesseLue.Enabled = True
+        SetVitesseLueVisible(True)
+
+    End Sub
+    Private Sub SetVitesseLueVisible(pVisible As Boolean)
+        laVitesseLue.Visible = pVisible
+        cbVitesseLueMoins1.Visible = pVisible
+        VitesseLueMoins.Visible = pVisible
+        VitesseLuePlus.Visible = pVisible
+        cbVitesseLuePlus1.Visible = pVisible
+        tbVitesseLue.Visible = pVisible
+        TableLayoutPanelVitesseLue.Visible = pVisible
+        cbValiderVitesseLue.Visible = pVisible
+        cbValiderVitesseLue.Enabled = pVisible
 
     End Sub
     Private Sub SetEtat67MESURESEFFECTUEES()
@@ -231,7 +254,7 @@ Public Class Form1
             _EtatForm = ETAT.Etat_6MESUREOK
             cbSauvegarder.Enabled = False
         End If
-        SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        MettreAJourThemeLight()
         cbMesure.UseAccentColor = False
         cbMesure.Enabled = True
         If m1.Distance > 0 And m2.Distance = 0 Then
@@ -251,70 +274,120 @@ Public Class Form1
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles TimerLectureGPS.Tick
-        Trace.WriteLine("Timer1_Tick Auto")
-        If gpsManager.GPSActif Then
-            Dim distance As Decimal
-            Dim vitesse As Decimal
-            Dim temps As Double
-            'Récupération du temps
+    'Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles TimerLectureGPS.Tick
+    '    If gpsManager.GPSActif Then
+    '    End If
+
+    'End Sub
+    ''' <summary>
+    ''' Ecoute regulière pour trouver le port GPS
+    ''' 'Methode non utilisée une fois que le GPS est Actif
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub GPS_Rechercherleportserie(sender As Object, e As EventArgs)
+        Trace.WriteLine("RechercherleportserieGPS")
+        portName = gpsManager.TrouverPortGPS()
+
+        If portName IsNot Nothing Then
+            TimerDetectionGPS.Stop()
+            RemoveHandler TimerDetectionGPS.Tick, AddressOf GPS_Rechercherleportserie
+            gpsManager.ConfigurerPortSerie(portName, My.Settings.VitessePort)
+            SetAction(ACTIONFORM.Action_GPSACTIF)
+        End If
+
+    End Sub
+    Private Sub GPS_AttentevitesseStable(sender As Object, e As EventArgs)
+        Trace.WriteLine("AttenteVitesseStable")
+        'Vérification de la vitesse Constante
+        Dim distance As Decimal
+        Dim vitesse As Decimal
+        Dim temps As Double
+        'Récupération de la distance
+        If gpsManager.IsSerialPortOpen Then
+            TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
+            distance = gpsManager.distance
+        Else
+            Randomize()
+            TraceMsg("Ecoute generée[" & distance & "]")
+            distance = _MesureEncours.Distance + (Rnd() * 10)
+        End If
+
+        'Calcul de vitesse
+        temps = (gpsManager.EndTime - gpsManager.startTime).TotalMilliseconds
+        vitesse = gpsManager.calculeVitesse(distance, temps)
+
+
+        If Not gpsManager.VitesseConstante Then
+            If vitesse > 0 Then
+                gpsManager.ajouteVitesse(vitesse)
+            End If
+            If gpsManager.VitesseConstante Then
+                TraceMsg("Vitesse stabilisée à " & vitesse)
+                TimerDetectionGPS.Stop() 'on arrête le Timer
+                RemoveHandler TimerDetectionGPS.Tick, AddressOf GPS_AttentevitesseStable
+                SetAction(ACTIONFORM.Action_VITESSESTABLE)
+            End If
+        End If
+
+    End Sub
+
+    Private Sub GPS_RecupDonnees(sender As Object, e As EventArgs)
+        Dim distance As Decimal
+        Dim vitesse As Decimal
+        Dim temps As Double
+
+        If Not gpsManager.bDataUpdated Then
+            'Pas de Data Mise à jour , on sort
+            Exit Sub
+        End If
+        'Récupération de la distance
+        If gpsManager.IsSerialPortOpen Then
+            TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
+            distance = gpsManager.distance
+        Else
+            Randomize()
+            TraceMsg("Ecoute generée[" & distance & "]")
+            distance = _MesureEncours.Distance + (Rnd() * 10)
+        End If
+
+        'Calcul de vitesse
+        If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
+            vitesse = _MesureEncours.Vitesse
+            _MesureEncours.HeureDepart = gpsManager.startTime
+            _MesureEncours.PositionDepart = gpsManager.PositionDepart
+            _MesureEncours.HeureArrivee = gpsManager.EndTime
+            _MesureEncours.PositionArrivee = gpsManager.PositionArrivee
+            gpsManager.bDataUpdated = False 'on a récupéreré les données
+            temps = (_MesureEncours.HeureArrivee - _MesureEncours.HeureDepart).TotalMilliseconds
+            _MesureEncours.Temps = temps
+            _MesureEncours.Distance = distance
+            vitesse = _MesureEncours.calculeVitesse(distance, temps)
+        Else
             elapsedTime = DateTime.Now - startTime
             temps = elapsedTime.TotalMilliseconds
-            'Récupération de la distance
-            If gpsManager.IsSerialPortOpen Then
-                    TraceMsg("Ecoute[" & gpsManager.startLatitude & "," & gpsManager.startLongitude & "=" & gpsManager.distance & "]")
-                    distance = gpsManager.distance
-                Else
-                    Randomize()
-                    TraceMsg("Ecoute generée[" & distance & "]")
-                    distance = _MesureEncours.Distance + (Rnd() * 10)
-                End If
 
-                'Calcul de vitesse
-                If _EtatForm = ETAT.Etat_3MESUREENCOURS Or _EtatForm = ETAT.Etat_4MESUREARRETABLE Then
-                vitesse = _MesureEncours.Vitesse
-                _MesureEncours.HeureDepart = gpsManager.startTime
-                _MesureEncours.PositionDepart = gpsManager.PositionDepart
-                _MesureEncours.HeureArrivee = gpsManager.EndTime
-                _MesureEncours.PositionArrivee = gpsManager.PositionArrivee
-                temps = (_MesureEncours.HeureArrivee - _MesureEncours.HeureDepart).TotalMilliseconds
-                _MesureEncours.Temps = temps
-                _MesureEncours.Distance = distance
+            vitesse = _MesureEncours.calculeVitesse(distance, temps)
+            _MesureEncours.Distance = 0
+            _MesureEncours.Temps = 0
+            _MesureEncours.Vitesse = vitesse
+        End If
+
+
+        'La Mesure est-elle complête ?
+        If _EtatForm = ETAT.Etat_3MESUREENCOURS Then
+            If _MesureEncours.Vitesse < My.Settings.LimiteVitesse Then
+                If _MesureEncours.Distance > My.Settings.Distance1 Then
+                    SetAction(ACTIONFORM.Action_ARRETABLE)
+                End If
             Else
-                vitesse = _MesureEncours.calculeVitesse(distance, temps)
-                    _MesureEncours.Distance = 0
-                    _MesureEncours.Temps = 0
-                    _MesureEncours.Vitesse = vitesse
+                If _MesureEncours.Distance > My.Settings.Distance2 Then
+                    SetAction(ACTIONFORM.Action_ARRETABLE)
                 End If
 
-                'Vérification de la vitesse Constante
-                If Not _MesureEncours.VitesseConstante Then
-                    If vitesse > 0 Then
-                        _MesureEncours.ajouteVitesse(vitesse)
-                    End If
-                    If _MesureEncours.VitesseConstante Then
-                        SetAction(ACTION.Action_VITESSESTABLE)
-                    End If
-                End If
-
-
-                'La Mesure est-elle complête ?
-                If _EtatForm = ETAT.Etat_3MESUREENCOURS Then
-                    If _MesureEncours.Vitesse < My.Settings.LimiteVitesse Then
-                        If _MesureEncours.Distance > My.Settings.Distance1 Then
-                            SetAction(ACTION.Action_ARRETABLE)
-                        End If
-                    Else
-                        If _MesureEncours.Distance > My.Settings.Distance2 Then
-                            SetAction(ACTION.Action_ARRETABLE)
-                        End If
-
-                    End If
-                End If
-
-                m_bsrcGPSMesure.ResetBindings(False)
             End If
-
+        End If
+        m_bsrcGPSMesure.ResetBindings(False)
     End Sub
     Private Function isVitesseStable() As Boolean
         Return ckVitessseStable.Checked
@@ -353,7 +426,7 @@ Public Class Form1
         startTime = DateTime.Now
         elapsedTime = TimeSpan.MinValue
         '       TimerLectureGPS.Enabled = True
-        TimerLectureGPS.Start()
+        '        TimerLectureGPS.Start()
     End Sub
 
     Private Sub TraceMsg(pMessage As String)
@@ -411,44 +484,17 @@ Public Class Form1
     Private Sub ckVitessseStable_CheckedChanged(sender As Object, e As EventArgs) Handles ckVitessseStable.CheckedChanged
         If gpsManager.GPSActif Then
             _MesureEncours.VitesseConstante = ckVitessseStable.Checked
-            SetAction(ACTION.Action_VITESSESTABLE)
+            SetAction(ACTIONFORM.Action_VITESSESTABLE)
         End If
     End Sub
 
 
-    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        gpsManager = New GPSManager()
-        TimerDetectionGPS = New System.Timers.Timer(My.Settings.intervalGPS)
-        AddHandler TimerDetectionGPS.Elapsed, AddressOf RechercherleportserieGPS
-        TimerDetectionGPS.Enabled = True
-        TimerDetectionGPS.Start()
-
-        While Not gpsManager.GPSActif
-            Thread.Sleep(My.Settings.intervalGPS)
-        End While
-    End Sub
-    ''' <summary>
-    ''' Ecoute regulière pour trouver le port GPS
-    ''' 'Methode non utilisée une fois que le GPS est Actif
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub RechercherleportserieGPS(sender As Object, e As EventArgs)
-        Trace.WriteLine("RechercherleportserieGPS")
-        portName = gpsManager.TrouverPortGPS()
-
-        If portName IsNot Nothing Then
-            gpsManager.ConfigurerPortSerie(portName, My.Settings.VitessePort)
-            BackgroundWorker1.ReportProgress(1, portName)
-        End If
-
-    End Sub
 
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
         Select Case e.ProgressPercentage
             Case 1 'Port Serie Trouvé
                 'SetEtat1ENATTENTE()
-                SetAction(ACTION.Action_GPSACTIF)
+                SetAction(ACTIONFORM.Action_GPSACTIF)
                 TraceMsg("Configurer Port " & portName)
         End Select
 
@@ -510,7 +556,7 @@ Public Class Form1
 
 
 
-    Public Enum ACTION As Integer
+    Public Enum ACTIONFORM As Integer
         Action_GPSACTIF
         Action_VITESSESTABLE
         Action_VITESSENONSTABLE
@@ -535,118 +581,120 @@ Public Class Form1
 
     Private _EtatForm As ETAT
 
-    Public Function SetAction(paction As ACTION) As ETAT
+    Public Function SetAction(paction As ACTIONFORM) As ETAT
 
         Select Case _EtatForm
             Case ETAT.Etat_0GPSINACTIF
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
+                    Case ACTIONFORM.Action_GPSACTIF
                         SetEtat1GPSACTIF()
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
             Case ETAT.Etat_1GPSACTIF
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
                         SetEtat2ENATTENTE()
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
             Case ETAT.Etat_2ENATTENTE
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
                         SetEtat1GPSACTIF()
-                    Case ACTION.Action_DEMARRER
+                    Case ACTIONFORM.Action_DEMARRER
                         SetEtat3MESUREENCOURS()
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
             Case ETAT.Etat_3MESUREENCOURS
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
-                    Case ACTION.Action_ARRETABLE
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
+                    Case ACTIONFORM.Action_ARRETABLE
                         SetEtat4MESUREARRETABLE()
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                         SetEtat1GPSACTIF()
                 End Select
             Case ETAT.Etat_4MESUREARRETABLE
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
                         'Arrêter
                         SetEtat5MESUREEFFECTUEE()
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                         SetEtat1GPSACTIF()
                 End Select
             Case ETAT.Etat_5MESUREEFFECTUEE
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
+                        'Recommencer
+                        SetEtat1GPSACTIF()
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
                         SetEtat67MESURESEFFECTUEES()
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
             Case ETAT.Etat_6MESUREOK
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
-                        'Redemarrer
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
+                        'ReCommencer
                         SetEtat1GPSACTIF()
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
             Case ETAT.Etat_7_2MESUREOK
                 Select Case paction
-                    Case ACTION.Action_GPSACTIF
-                    Case ACTION.Action_VITESSESTABLE
-                    Case ACTION.Action_VITESSENONSTABLE
-                    Case ACTION.Action_DEMARRER
+                    Case ACTIONFORM.Action_GPSACTIF
+                    Case ACTIONFORM.Action_VITESSESTABLE
+                    Case ACTIONFORM.Action_VITESSENONSTABLE
+                    Case ACTIONFORM.Action_DEMARRER
                         'Redemarrer
                         SetEtat1GPSACTIF()
-                    Case ACTION.Action_ARRETABLE
-                    Case ACTION.Action_ARRETER
-                    Case ACTION.Action_VITESSELUEOK
-                    Case ACTION.Action_MESURESUIVANTE
-                    Case ACTION.Action_RESET
+                    Case ACTIONFORM.Action_ARRETABLE
+                    Case ACTIONFORM.Action_ARRETER
+                    Case ACTIONFORM.Action_VITESSELUEOK
+                    Case ACTIONFORM.Action_MESURESUIVANTE
+                    Case ACTIONFORM.Action_RESET
                 End Select
 
         End Select
@@ -655,7 +703,7 @@ Public Class Form1
 
     Private Sub cbValiderVitesseLue_Click(sender As Object, e As EventArgs) Handles cbValiderVitesseLue.Click
 
-        SetAction(ACTION.Action_VITESSELUEOK)
+        SetAction(ACTIONFORM.Action_VITESSELUEOK)
     End Sub
 
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -681,7 +729,7 @@ Public Class Form1
 
     Private Sub cbReset_Click(sender As Object, e As EventArgs) Handles cbReset.Click
         _MesureEncours.PositionArrivee = gpsManager.Latitude & " "
-        SetAction(ACTION.Action_RESET)
+        SetAction(ACTIONFORM.Action_RESET)
     End Sub
 
     Private Sub cbVitesseLueMoins1_Click(sender As Object, e As EventArgs) Handles cbVitesseLueMoins1.Click
@@ -692,5 +740,32 @@ Public Class Form1
     Private Sub cbVitesseLuePlus1_Click(sender As Object, e As EventArgs) Handles cbVitesseLuePlus1.Click
         _MesureEncours.VitesseLue = _MesureEncours.VitesseLue + 1D
         m_bsrcGPSMesure.ResetBindings(False)
+    End Sub
+
+    Private Sub Form1_EVTGPSActif(sender As Object, e As EventArgs) Handles Me.EVTGPSActif
+        TimerDetectionGPS.Stop()
+        TimerDetectionGPS.Enabled = False
+
+        SetAction(ACTIONFORM.Action_GPSACTIF)
+    End Sub
+    Private Sub MettreAJourThemeLight()
+        ' Vérifier si nous sommes sur le thread UI
+        If Me.InvokeRequired Then
+            ' Si nous ne sommes pas sur le thread UI, utiliser Invoke
+            Me.Invoke(New Action(AddressOf MettreAJourThemeLight))
+        Else
+            ' Nous sommes sur le thread UI, mettre à jour le thème
+            SkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+        End If
+    End Sub
+    Private Sub MettreAJourThemeDARK()
+        ' Vérifier si nous sommes sur le thread UI
+        If Me.InvokeRequired Then
+            ' Si nous ne sommes pas sur le thread UI, utiliser Invoke
+            Me.Invoke(New Action(AddressOf MettreAJourThemeDARK))
+        Else
+            ' Nous sommes sur le thread UI, mettre à jour le thème
+            SkinManager.Theme = MaterialSkinManager.Themes.DARK
+        End If
     End Sub
 End Class
