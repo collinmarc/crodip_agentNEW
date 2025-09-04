@@ -49,7 +49,22 @@ Public Class GPSManager
 
         ' Configurer le port série
         serialPort = New SerialPort()
-        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
+        StartGPS()
+    End Sub
+    Private bStart As Boolean = False
+    Public Sub StartGPS()
+        If Not bStart Then
+            init()
+            AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
+            bStart = True
+        End If
+    End Sub
+    Public Sub StopGPS()
+        If bStart Then
+            RemoveHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
+            bStart = False
+        End If
+
     End Sub
 
     ' Méthode pour configurer le port série
@@ -270,7 +285,7 @@ Public Class GPSManager
         Dim distanceMeters As Double = 0D
         Dim GPSDate As DateTime
         GPSDate = ConvertGPSTimeToDateTime(pTimeGPS)
-        If startLatitude = 0 And startLongitude = 0 Then
+        If startLatitude = 0D And startLongitude = 0D Then
             Me.startTime = GPSDate
             Me.startLatitude = pEndLat
             Me.startLongitude = pEndLong

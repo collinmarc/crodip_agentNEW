@@ -37,7 +37,7 @@
     Private _distance As Decimal
     Public Property Distance() As Decimal
         Get
-            Return Math.Round(_distance, 1)
+            Return Math.Round(_distance, My.Settings.PrecisionDistance)
         End Get
         Set(ByVal value As Decimal)
             If value <> _distance Then
@@ -51,7 +51,39 @@
             Return Decimal.Round(CDec(_temps / 1000), 3)
         End Get
     End Property
-
+    Private _StartClick As DateTime
+    Public Property startClick() As DateTime
+        Get
+            Return _StartClick
+        End Get
+        Set(ByVal value As DateTime)
+            _StartClick = value
+        End Set
+    End Property
+    Private _EndClick As DateTime
+    Public Property EndClick() As DateTime
+        Get
+            Return _EndClick
+        End Get
+        Set(ByVal value As DateTime)
+            _EndClick = value
+        End Set
+    End Property
+    Public Property tempsClick() As Decimal
+        Get
+            If EndClick <> DateTime.MinValue Then
+                Return (EndClick - startClick).TotalMilliseconds / 1000
+            Else
+                If startClick <> DateTime.MinValue Then
+                    Return (DateTime.Now - startClick).TotalMilliseconds / 1000
+                Else
+                    Return 0
+                End If
+            End If
+        End Get
+        Set(ByVal value As Decimal)
+        End Set
+    End Property
     Private _temps As Double
     ''' <summary>
     ''' Le Temps écoulé en millisecondes
@@ -102,6 +134,8 @@
 
     Public Sub New()
         _tabVitesse.Clear()
+        startClick = DateTime.MinValue
+        EndClick = DateTime.MinValue
 
     End Sub
 

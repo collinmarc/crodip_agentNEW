@@ -62,6 +62,7 @@ Public Class Form1
         TimerLectureGPS.Start()
 
         CkTest.Checked = My.Settings.Test
+        laTempsClick.Visible = My.Settings.AffichageTempsClick
     End Sub
 
     Private Sub cbMesure_Click(sender As Object, e As EventArgs) Handles cbMesure.Click
@@ -75,7 +76,9 @@ Public Class Form1
                 _MesureEncours.Distance = 0
                 _MesureEncours.Temps = 0
                 _MesureEncours.VitesseLue = 0
-                gpsManager.init()
+                _MesureEncours.startClick = DateTime.Now
+                _MesureEncours.EndClick = DateTime.MinValue
+                gpsManager.StartGPS()
                 m_bsrcGPSMesure.ResetBindings(False)
                 SetAction(ACTIONFORM.Action_DEMARRER)
 
@@ -84,9 +87,15 @@ Public Class Form1
                 TimerLectureGPS.Start()
 
             Case ETAT.Etat_4MESUREARRETABLE
+                _MesureEncours.EndClick = DateTime.Now
                 'Arret du Timer
                 TimerLectureGPS.Stop()
                 RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
+                'Arret de l'écoute GPS
+                gpsManager.StopGPS()
+
+                'Lecture de la dernière donnée
+                GPS_RecupDonnees(Me, EventArgs.Empty)
 
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
                 m_bsrcGPSMesure.ResetCurrentItem()
@@ -94,6 +103,7 @@ Public Class Form1
 
             Case Else
                 'Recommencer
+                gpsManager.StartGPS()
                 SetAction(ACTIONFORM.Action_DEMARRER)
         End Select
 
@@ -146,13 +156,15 @@ Public Class Form1
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
         SetVitesseLueVisible(False)
-        gpsManager.init()
+        gpsManager.StartGPS()
         gpsManager.VitesseConstante = False
 
         _MesureEncours.Distance = 0
         _MesureEncours.Temps = 0
         _MesureEncours.VitesseLue = 0
         _MesureEncours.VitesseConstante = False
+        _MesureEncours.startClick = DateTime.MinValue
+        _MesureEncours.EndClick = DateTime.MinValue
         m_bsrcGPSMesure.ResetBindings(False)
 
         'on redemarre le timer pour attendre la vitesse stable
@@ -172,6 +184,7 @@ Public Class Form1
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         SetVitesseLueVisible(False)
 
+        gpsManager.StopGPS()
         TimerLectureGPS.Stop()
         RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_AttentevitesseStable
 

@@ -28,7 +28,6 @@ Partial Class Form1
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.laMesure = New MaterialSkin.Controls.MaterialLabel()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
         Me.lblNumPulvé = New MaterialSkin.Controls.MaterialLabel()
@@ -57,11 +56,13 @@ Partial Class Form1
         Me.cbReset = New MaterialSkin.Controls.MaterialButton()
         Me.laDistance = New MaterialSkin.Controls.MaterialLabel()
         Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
+        Me.laTempsClick = New MaterialSkin.Controls.MaterialLabel()
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TimerLectureGPS
@@ -85,6 +86,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.laTempsClick, 2, 7)
         Me.TableLayoutPanel2.Controls.Add(Me.laMesure, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.ckVitessseStable, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ckGPSActif, 1, 0)
@@ -120,6 +122,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(386, 530)
         Me.TableLayoutPanel2.TabIndex = 35
         '
@@ -137,10 +140,6 @@ Partial Class Form1
         Me.laMesure.TabIndex = 44
         Me.laMesure.Text = "Text"
         Me.laMesure.Visible = False
-        '
-        'm_bsrcGPSMesure
-        '
-        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'ckVitessseStable
         '
@@ -661,6 +660,28 @@ Partial Class Form1
         Me.laVitesse.Text = "90"
         Me.laVitesse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'laTempsClick
+        '
+        Me.laTempsClick.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.laTempsClick.BackColor = System.Drawing.SystemColors.Window
+        Me.laTempsClick.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.m_bsrcGPSMesure, "tempsClick", True))
+        Me.laTempsClick.Depth = 0
+        Me.laTempsClick.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.laTempsClick.Location = New System.Drawing.Point(284, 294)
+        Me.laTempsClick.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
+        Me.laTempsClick.MouseState = MaterialSkin.MouseState.HOVER
+        Me.laTempsClick.Name = "laTempsClick"
+        Me.laTempsClick.Size = New System.Drawing.Size(99, 47)
+        Me.laTempsClick.TabIndex = 47
+        Me.laTempsClick.Text = "90"
+        Me.laTempsClick.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'm_bsrcGPSMesure
+        '
+        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
+        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
@@ -676,11 +697,11 @@ Partial Class Form1
         Me.Text = "Acquisition GPS CRODIP"
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanelMesures.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -717,4 +738,5 @@ Partial Class Form1
     Friend WithEvents VitesseLueMoins As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbVitesseLueMoins1 As MaterialSkin.Controls.MaterialButton
     Friend WithEvents cbVitesseLuePlus1 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents laTempsClick As MaterialSkin.Controls.MaterialLabel
 End Class
