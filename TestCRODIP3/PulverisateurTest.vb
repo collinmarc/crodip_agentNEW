@@ -140,10 +140,10 @@ Public Class Pulverisateurtest
         m_oPulve = createPulve(createExploitation())
         m_oPulve.type = "Pulvérisateurs fixes ou semi mobiles"
         m_oPulve.categorie = "Traitement des semences"
-        Assert.IsTrue(m_oPulve.isTraitementdesSemences)
+        Assert.IsTrue(m_oPulve.isTraitementdesSemences12123)
 
         m_oPulve.categorie = "Traitement post-récolte"
-        Assert.IsFalse(m_oPulve.isTraitementdesSemences)
+        Assert.IsFalse(m_oPulve.isTraitementdesSemences12123)
         Assert.IsTrue(m_oPulve.isTypeFixeouSemisMobile)
 
 
@@ -637,7 +637,92 @@ Public Class Pulverisateurtest
         Assert.AreEqual(oreturn.Attelage, oPulve.lstAnomalie.Last.valeurOTC)
 
     End Sub
+    <TestMethod()> Public Sub creerParamBuse12123()
+        Dim olst As New List(Of ParamBuse12123)
 
+        Dim oParambuse = New ParamBuse12123()
+        oParambuse.Type = "AUTRES"
+        oParambuse.Fonctionnement = "CUILLERES"
+        oParambuse.ModeFonctionnement = "CUILLERE"
+        olst.Add(oParambuse)
+
+        Dim oSer As New System.Xml.Serialization.XmlSerializer(GetType(List(Of ParamBuse12123)))
+        Dim oWr As New System.IO.StreamWriter("./ParamBuse12123.xml")
+
+        oSer.Serialize(oWr, olst)
+
+        oWr.Close()
+
+        Assert.IsTrue(System.IO.File.Exists("./ParamBuse12123.xml"))
+
+
+    End Sub
+
+    <TestMethod()> Public Sub PulveParam12123()
+        Dim olst As New List(Of ParamBuse12123)
+        Crodip_agent.ParamManager.initGlobalsCrodip()
+        'Creer le fichier Param12123
+        Dim oParambuse = New ParamBuse12123()
+        oParambuse.Type = "AUTRES"
+        oParambuse.Fonctionnement = "CUILLERES"
+        oParambuse.ModeFonctionnement = "CUILLERE"
+        olst.Add(oParambuse)
+        oParambuse = New ParamBuse12123()
+        oParambuse.Type = "AUTRES"
+        oParambuse.Fonctionnement = "INJECTEURS"
+        oParambuse.ModeFonctionnement = "INJECTEUR"
+        olst.Add(oParambuse)
+        oParambuse = New ParamBuse12123()
+        oParambuse.Type = "AUTRES"
+        oParambuse.Fonctionnement = "DOSEURS"
+        oParambuse.ModeFonctionnement = "CUILLERE"
+        olst.Add(oParambuse)
+        oParambuse = New ParamBuse12123()
+        oParambuse.Type = "POMPE DOSEUSE"
+        oParambuse.Fonctionnement = "AUGET BASCULANT"
+        oParambuse.ModeFonctionnement = "CUILLERE"
+        olst.Add(oParambuse)
+        oParambuse = New ParamBuse12123()
+        oParambuse.Type = "POMPE DOSEUSE"
+        oParambuse.Fonctionnement = "PERISTALTIQUE"
+        oParambuse.ModeFonctionnement = "INJECTEUR"
+        olst.Add(oParambuse)
+        Dim oSer As New System.Xml.Serialization.XmlSerializer(GetType(List(Of ParamBuse12123)))
+        Dim oWr As New System.IO.StreamWriter(GlobalsCRODIP.GLOB_XML_PARAM12123.Nomfichier)
+        oSer.Serialize(oWr, olst)
+        oWr.Close()
+
+        'Crer le Pulve
+        Dim oPulve As New Pulverisateur
+
+        oPulve.buseType = "AUTRES"
+        oPulve.buseFonctionnement = "DOSEURS"
+        Assert.IsTrue(oPulve.isTraitementdesSemences12123)
+        oParambuse = oPulve.getParamBuses12123()
+        Assert.IsNotNull(oParambuse)
+        Assert.AreEqual(oParambuse.ModeFonctionnement, "CUILLERE")
+
+        oPulve.buseType = "AUTRES"
+        oPulve.buseFonctionnement = "ZZDOSEURS"
+        Assert.IsFalse(oPulve.isTraitementdesSemences12123)
+        oParambuse = oPulve.getParamBuses12123()
+        Assert.IsNull(oParambuse)
+
+        oPulve.buseType = "ZZAUTRES"
+        oPulve.buseFonctionnement = "DOSEURS"
+        Assert.IsFalse(oPulve.isTraitementdesSemences12123)
+        oParambuse = oPulve.getParamBuses12123()
+        Assert.IsNull(oParambuse)
+
+        oPulve.buseType = "ZZAUTRES"
+        oPulve.buseFonctionnement = "ZZDOSEURS"
+        Assert.IsFalse(oPulve.isTraitementdesSemences12123)
+        oParambuse = oPulve.getParamBuses12123()
+        Assert.IsNull(oParambuse)
+
+
+
+    End Sub
 
 
 End Class

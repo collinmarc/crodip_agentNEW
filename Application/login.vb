@@ -1305,7 +1305,7 @@ Public Class login
     Private Sub btnTesttrtSemences_Click(sender As Object, e As EventArgs) Handles btnTesttrtSemences.Click
         Dim oFRM As diagnostic_dlghelp12123newTrtSem
         Dim oDiag12123 As New DiagnosticHelp12123()
-        oDiag12123.fonctionnementBuses = "INJECTEURS"
+        oDiag12123.fonctionnementBuses = "INJECTEUR"
         Dim oP1 As DiagnosticHelp12123PompeTrtSem = oDiag12123.AjoutePompeTrtSem()
         Dim oMesure As DiagnosticHelp12123MesuresTrtSem
         oMesure = oP1.lstMesures(0)

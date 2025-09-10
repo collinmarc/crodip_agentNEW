@@ -125,7 +125,7 @@ Public Class EtatSyntheseMesures
                                   NomOrganisme:=m_oDiag.organismePresNom,
                                   EcartTolereBuses:=EcartTolere,
                                   PulveisPompeDoseuses:=opulve.isPompesDoseuses,
-                                  PulveIsTrtSemences:=opulve.isTraitementdesSemences)
+                                  PulveIsTrtSemences:=opulve.isTraitementdesSemences12123)
 
             'Buses
             Dim pctBusesUsees As Decimal
@@ -347,7 +347,7 @@ Public Class EtatSyntheseMesures
 
                 Next
             End If
-            If opulve.isTraitementdesSemences Then
+            If opulve.isTraitementdesSemences12123 Then
                 Dim ResultatPompe As String
                 Dim ResultatMesure As String
                 Dim ResultatGlobal As String

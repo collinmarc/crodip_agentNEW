@@ -1347,6 +1347,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="img\e-pulve-logo-blanc-bleu-1.png" />
+    <Content Include="moduleDocumentaire\_parametres\12123PompesDoseusesAutres.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamBuse12123.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="wgssSTU.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

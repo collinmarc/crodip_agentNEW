@@ -248,6 +248,9 @@
     <Content Include="moduleDocumentaire\_parametres\ModulesAcquisision.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamBuse12123.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="moduleDocumentaire\_parametres\ParamDiag.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

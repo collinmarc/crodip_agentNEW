@@ -136,7 +136,7 @@ Public Class DiagnosticHelp12123
     <XmlIgnore>
     Public ReadOnly Property isInjection() As Boolean
         Get
-            Return fonctionnementBuses.ToUpper().Contains("INJECT")
+            Return fonctionnementBuses.ToUpper().Contains("INJECTEUR")
         End Get
     End Property
     <XmlIgnore>

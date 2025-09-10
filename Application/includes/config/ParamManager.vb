@@ -49,6 +49,7 @@ Public Class ParamManager
         GlobalsCRODIP.GLOB_XML_REGULATION_PULVE = New CSXml("." & "\" & My.Settings.RepertoireParametres & "\PulverisateurRegulation.xml")
         GlobalsCRODIP.GLOB_XML_EMPLACEMENTIDENTIFICATION = New CSXml(My.Settings.RepertoireParametres & "\EmplacementIdentification.xml")
         GlobalsCRODIP.GLOB_XML_MODEUTILISATION = New CSXml(My.Settings.RepertoireParametres & "\PulverisateurModeUtilisation.xml")
+        GlobalsCRODIP.GLOB_XML_PARAM12123 = New CSXml(My.Settings.RepertoireParametres & "\ParamBuse12123.xml")
 
         GlobalsCRODIP.GLOB_STR_REFERENTIELBUSES_FILENAME = My.Settings.RepertoireParametres & "\referentiel_buse.csv"
         GlobalsCRODIP.GLOB_STR_COMMUNES_FILENAME = My.Settings.RepertoireParametres & "\base_officielle_codes_postaux.csv"

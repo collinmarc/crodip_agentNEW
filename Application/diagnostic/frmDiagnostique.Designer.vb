@@ -1101,6 +1101,7 @@ Partial Class FrmDiagnostique
         Me.listImg_flags.Images.SetKeyName(1, "")
         Me.listImg_flags.Images.SetKeyName(2, "")
         Me.listImg_flags.Images.SetKeyName(3, "")
+        Me.listImg_flags.Images.SetKeyName(4, "rien.png")
         '
         'ToolTip_diagnostic_numRadioButtons
         '
@@ -13033,6 +13034,7 @@ Partial Class FrmDiagnostique
         Me.tabPage_diagnostique_accessoires.Padding = New System.Windows.Forms.Padding(3)
         Me.tabPage_diagnostique_accessoires.Size = New System.Drawing.Size(1008, 680)
         Me.tabPage_diagnostique_accessoires.TabIndex = 8
+        Me.tabPage_diagnostique_accessoires.Tag = "9"
         Me.tabPage_diagnostique_accessoires.Text = "Accessoires"
         '
         'Panel8
@@ -14611,7 +14613,7 @@ Partial Class FrmDiagnostique
         '
         'm_bsrcManoCPression
         '
-        Me.m_bsrcManoCPression.DataSource = GetType(ManometreControle)
+        Me.m_bsrcManoCPression.DataSource = GetType(CRODIPWS.ManometreControle)
         Me.m_bsrcManoCPression.Sort = "Traca"
         '
         'FrmDiagnostique

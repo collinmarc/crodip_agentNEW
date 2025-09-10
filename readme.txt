@@ -1,5 +1,8 @@
 #TRUNK
 MASTER
+BUILD 20250910100000
+	0001661: Modification accès à la clé des pompes doseuse
+
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC
 	0001813: Le bouton 'Imprimer le rapport' n'est pas affiché en CVI immédiate

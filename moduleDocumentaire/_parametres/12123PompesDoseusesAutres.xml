@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Parambuse12123>
+		<Type>AUTRES</Type>
+		<Fonctionnement>CUILLERES</Fonctionnement>
+    <ModeFonctionement>CUILLERE</ModeFonctionement>
+  </Parambuse12123>
+  <Parambuse12123>
+    <Type>AUTRES</Type>
+    <Fonctionnement>INJECTEURS</Fonctionnement>
+    <ModeFonctionement>INJECTEUR</ModeFonctionement>
+  </Parambuse12123>
+  <Parambuse12123>
+    <Type>AUTRES</Type>
+    <Fonctionnement>DOSEURS</Fonctionnement>
+    <ModeFonctionement>INJECTEUR</ModeFonctionement>
+  </Parambuse12123>
+  <Parambuse12123>
+    <Type>POMPE DOSEUSE</Type>
+    <Fonctionnement>AUGET BASCULANT</Fonctionnement>
+    <ModeFonctionement>CUILLERE</ModeFonctionement>
+  </Parambuse12123>
+  <Parambuse12123>
+    <Type>POMPE DOSEUSE</Type>
+    <Fonctionnement>PERISTALTIQUE</Fonctionnement>
+    <ModeFonctionement>INJECTEUR</ModeFonctionement>
+  </Parambuse12123>
+</root>

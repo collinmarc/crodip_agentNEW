@@ -26,24 +26,24 @@ Partial Class diagnostic_dlghelp12123newTrtSem
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 2, 2)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 0, 0)
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 3, 3)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe1", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 0, 0)
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 3, 2)
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 2, 2)
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe2", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7})
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 2, 2)
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 0, 0)
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 3, 3)
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe1", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11})
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure1", 0, 0)
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure2", 3, 2)
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Mesure3", 2, 2)
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Pompe2", New System.Windows.Forms.TreeNode() {TreeNode13, TreeNode14, TreeNode15})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(diagnostic_dlghelp12123newTrtSem))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnl12123 = New System.Windows.Forms.Panel()
         Me.rbFonctionnementCuillère = New System.Windows.Forms.RadioButton()
         Me.m_bsrcH12123 = New System.Windows.Forms.BindingSource(Me.components)
@@ -185,9 +185,9 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(218, 5)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(514, 26)
+        Me.Label1.Size = New System.Drawing.Size(520, 26)
         Me.Label1.TabIndex = 80
-        Me.Label1.Text = "Controle du dispositif de dosage : Traitement des semences"
+        Me.Label1.Text = "Controle du dispositif de dosage : Pompe doseuses et autres"
         '
         'SplitContainer1
         '
@@ -222,37 +222,37 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         Me.TreeView1.ImageList = Me.listImg_flags
         Me.TreeView1.Location = New System.Drawing.Point(0, 3)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode1.ImageIndex = 2
-        TreeNode1.Name = "Nœud1"
-        TreeNode1.SelectedImageIndex = 2
-        TreeNode1.Text = "Mesure1"
-        TreeNode2.ImageIndex = 0
-        TreeNode2.Name = "Nœud2"
-        TreeNode2.SelectedImageIndex = 0
-        TreeNode2.Text = "Mesure2"
-        TreeNode3.ImageIndex = 3
-        TreeNode3.Name = "Nœud3"
-        TreeNode3.SelectedImageIndex = 3
-        TreeNode3.Text = "Mesure3"
-        TreeNode4.ImageIndex = 2
-        TreeNode4.Name = "Nœud0"
-        TreeNode4.SelectedImageIndex = 2
-        TreeNode4.Text = "Pompe1"
-        TreeNode5.ImageIndex = 0
-        TreeNode5.Name = "Nœud5"
-        TreeNode5.SelectedImageIndex = 0
-        TreeNode5.Text = "Mesure1"
-        TreeNode6.ImageIndex = 3
-        TreeNode6.Name = "Nœud6"
-        TreeNode6.SelectedImageIndex = 2
-        TreeNode6.Text = "Mesure2"
-        TreeNode7.ImageIndex = 2
-        TreeNode7.Name = "Nœud7"
-        TreeNode7.SelectedImageIndex = 2
-        TreeNode7.Text = "Mesure3"
-        TreeNode8.Name = "Nœud4"
-        TreeNode8.Text = "Pompe2"
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode8})
+        TreeNode9.ImageIndex = 2
+        TreeNode9.Name = "Nœud1"
+        TreeNode9.SelectedImageIndex = 2
+        TreeNode9.Text = "Mesure1"
+        TreeNode10.ImageIndex = 0
+        TreeNode10.Name = "Nœud2"
+        TreeNode10.SelectedImageIndex = 0
+        TreeNode10.Text = "Mesure2"
+        TreeNode11.ImageIndex = 3
+        TreeNode11.Name = "Nœud3"
+        TreeNode11.SelectedImageIndex = 3
+        TreeNode11.Text = "Mesure3"
+        TreeNode12.ImageIndex = 2
+        TreeNode12.Name = "Nœud0"
+        TreeNode12.SelectedImageIndex = 2
+        TreeNode12.Text = "Pompe1"
+        TreeNode13.ImageIndex = 0
+        TreeNode13.Name = "Nœud5"
+        TreeNode13.SelectedImageIndex = 0
+        TreeNode13.Text = "Mesure1"
+        TreeNode14.ImageIndex = 3
+        TreeNode14.Name = "Nœud6"
+        TreeNode14.SelectedImageIndex = 2
+        TreeNode14.Text = "Mesure2"
+        TreeNode15.ImageIndex = 2
+        TreeNode15.Name = "Nœud7"
+        TreeNode15.SelectedImageIndex = 2
+        TreeNode15.Text = "Mesure3"
+        TreeNode16.Name = "Nœud4"
+        TreeNode16.Text = "Pompe2"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode12, TreeNode16})
         Me.TreeView1.SelectedImageIndex = 0
         Me.TreeView1.ShowPlusMinus = False
         Me.TreeView1.ShowRootLines = False
@@ -366,25 +366,25 @@ Partial Class diagnostic_dlghelp12123newTrtSem
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.IdDiagDataGridViewTextBoxColumn, Me.BCalculeDataGridViewCheckBoxColumn, Me.NumPompeDataGridViewTextBoxColumn, Me.numeroMesurestr, Me.QteGrainsDataGridViewTextBoxColumn, Me.DebitSouhaiteDataGridViewTextBoxColumn, Me.Pesee1DataGridViewTextBoxColumn, Me.Ecart1DataGridViewTextBoxColumn, Me.Pesee2DataGridViewTextBoxColumn, Me.Ecart2DataGridViewTextBoxColumn, Me.Pesee3DataGridViewTextBoxColumn, Me.Ecart3DataGridViewTextBoxColumn, Me.PeseeMoyenneDataGridViewTextBoxColumn, Me.EcartMoyenDataGridViewTextBoxColumn, Me.ResultatDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.m_bsrcMesures
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridView1.Location = New System.Drawing.Point(8, 88)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
@@ -423,10 +423,10 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         Me.numeroMesurestr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
         Me.numeroMesurestr.DataPropertyName = "numeroMesurestr"
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        Me.numeroMesurestr.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black
+        Me.numeroMesurestr.DefaultCellStyle = DataGridViewCellStyle11
         Me.numeroMesurestr.HeaderText = "Mesure"
         Me.numeroMesurestr.Name = "numeroMesurestr"
         Me.numeroMesurestr.ReadOnly = True
@@ -455,11 +455,11 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'Ecart1DataGridViewTextBoxColumn
         '
         Me.Ecart1DataGridViewTextBoxColumn.DataPropertyName = "Ecart1"
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart1DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle12.Format = "N2"
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart1DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle12
         Me.Ecart1DataGridViewTextBoxColumn.HeaderText = "Ecart 1 %"
         Me.Ecart1DataGridViewTextBoxColumn.Name = "Ecart1DataGridViewTextBoxColumn"
         Me.Ecart1DataGridViewTextBoxColumn.ReadOnly = True
@@ -473,11 +473,11 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'Ecart2DataGridViewTextBoxColumn
         '
         Me.Ecart2DataGridViewTextBoxColumn.DataPropertyName = "Ecart2"
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart2DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle13.Format = "N2"
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart2DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle13
         Me.Ecart2DataGridViewTextBoxColumn.HeaderText = "Ecart 2 %"
         Me.Ecart2DataGridViewTextBoxColumn.Name = "Ecart2DataGridViewTextBoxColumn"
         Me.Ecart2DataGridViewTextBoxColumn.ReadOnly = True
@@ -491,12 +491,12 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'Ecart3DataGridViewTextBoxColumn
         '
         Me.Ecart3DataGridViewTextBoxColumn.DataPropertyName = "Ecart3"
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
-        Me.Ecart3DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle14.Format = "N2"
+        DataGridViewCellStyle14.NullValue = Nothing
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black
+        Me.Ecart3DataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle14
         Me.Ecart3DataGridViewTextBoxColumn.HeaderText = "Ecart 3 %"
         Me.Ecart3DataGridViewTextBoxColumn.Name = "Ecart3DataGridViewTextBoxColumn"
         Me.Ecart3DataGridViewTextBoxColumn.ReadOnly = True
@@ -504,10 +504,10 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'PeseeMoyenneDataGridViewTextBoxColumn
         '
         Me.PeseeMoyenneDataGridViewTextBoxColumn.DataPropertyName = "PeseeMoyenne"
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        Me.PeseeMoyenneDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black
+        Me.PeseeMoyenneDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle15
         Me.PeseeMoyenneDataGridViewTextBoxColumn.HeaderText = "Pesée Moy."
         Me.PeseeMoyenneDataGridViewTextBoxColumn.Name = "PeseeMoyenneDataGridViewTextBoxColumn"
         Me.PeseeMoyenneDataGridViewTextBoxColumn.ReadOnly = True
@@ -515,10 +515,10 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         'EcartMoyenDataGridViewTextBoxColumn
         '
         Me.EcartMoyenDataGridViewTextBoxColumn.DataPropertyName = "EcartMoyen"
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        Me.EcartMoyenDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black
+        Me.EcartMoyenDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle16
         Me.EcartMoyenDataGridViewTextBoxColumn.HeaderText = "Ecart Moy."
         Me.EcartMoyenDataGridViewTextBoxColumn.Name = "EcartMoyenDataGridViewTextBoxColumn"
         Me.EcartMoyenDataGridViewTextBoxColumn.ReadOnly = True
@@ -527,11 +527,11 @@ Partial Class diagnostic_dlghelp12123newTrtSem
         '
         Me.ResultatDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.ResultatDataGridViewTextBoxColumn.DataPropertyName = "ResultatLabel"
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
-        Me.ResultatDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black
+        Me.ResultatDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle17
         Me.ResultatDataGridViewTextBoxColumn.HeaderText = "Résultat"
         Me.ResultatDataGridViewTextBoxColumn.Name = "ResultatDataGridViewTextBoxColumn"
         Me.ResultatDataGridViewTextBoxColumn.ReadOnly = True

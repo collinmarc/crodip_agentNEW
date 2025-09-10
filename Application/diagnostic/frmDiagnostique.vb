@@ -71,6 +71,18 @@ Public Class FrmDiagnostique
     Private Const NB_BUSES_MAX As Integer = 200
     Private m_olstManoC As List(Of ManometreControle)
 
+    'Tableau des onglets Actifs (15 Elements)
+    Private _tabOngletsActifs() As Boolean = {True, True, True, True, True, True, True, True, True, True, True, True, True, True, True}
+    Private Const ONGLET_ETATGENERAL As Integer = 1
+    Private Const ONGLET_POMPECUVE As Integer = 2
+    Private Const ONGLET_FLEXIBLEFILTRE As Integer = 3
+    Private Const ONGLET_JETSSOUFFLERIE As Integer = 4
+    Private Const ONGLET_MESURECOMMANDESREGULATION As Integer = 5
+    Private Const ONGLET_RAMPES As Integer = 6
+    Private Const ONGLET_MANOTRONCON As Integer = 7
+    Private Const ONGLET_BUSES As Integer = 8
+    Private Const ONGLET_ACCESSOIRES As Integer = 9
+
     Private Sub Events_Init(pMethode As String)
         Console.WriteLine("Events_Init: " &
                           pMethode)
@@ -907,6 +919,9 @@ Public Class FrmDiagnostique
             '    Me.tabPage_diagnostique_mesureCommandesRegulation.Controls.Add(Me.popup_help_552)
             'End If
 
+            ' ??? NO COMPRENDO : Affectation des popupHelp831 et 811  ???
+            '============================================================
+
             If Not Me.tabPage_diagnostique_rampes.Controls.Contains(Me.popup_help_831) Then
                 Me.popup_help_831.Parent.Controls.Remove(popup_help_831)
                 Me.tabPage_diagnostique_rampes.Controls.Add(Me.popup_help_831)
@@ -915,7 +930,15 @@ Public Class FrmDiagnostique
                 Me.popup_help_811.Parent.Controls.Remove(popup_help_811)
                 Me.tabPage_diagnostique_rampes.Controls.Add(Me.popup_help_811)
             End If
-            checkIsOk(9)
+            checkOngletIsOk(9)
+
+            'DESACTIVATION DES ONGLETS (il faut le faire dans le sens inverse)
+            '=========================
+            For nOnglet As Integer = tab_diagnostique.TabPages.Count - 1 To 0 Step -1
+                If Not _tabOngletsActifs(nOnglet + 1) Then
+                    tab_diagnostique.TabPages.RemoveAt(nOnglet)
+                End If
+            Next
             'Catch ex As Exception
             '    CSDebug.dispError("diagnostique_Load ERR" & ex.Message)
             '    If ex.InnerException IsNot Nothing Then
@@ -966,6 +989,10 @@ Public Class FrmDiagnostique
             'on ne fait l'encodage auto en fonction du Pulve que si on n'est pas en remplacement
             If m_diagnostic.diagRemplacementId = "" Then
                 m_diagnostic.EncodageAuto()
+            End If
+            If m_Pulverisateur.isTraitementdesSemences12123() Then
+                _tabOngletsActifs(ONGLET_MANOTRONCON) = False
+                _tabOngletsActifs(ONGLET_BUSES) = False
             End If
             'AfficheDiagnosticItems()
 
@@ -1814,8 +1841,8 @@ Public Class FrmDiagnostique
             '            manopulveResultat.Text = ""
             '            manopulveResultat.ForeColor = System.Drawing.Color.Gray
             '            End If
-            checkIsOk(5)
-            checkIsOk(7)
+            checkOngletIsOk(5)
+            checkOngletIsOk(7)
 
 
             m_diagnostic.syntheseErreurMoyenneMano = oLstMano542.EcartMoy.ToString
@@ -2274,14 +2301,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         calcBuseIsOk_isOk(pressionId) = False
                         calcBuseIsOk_isDefault(pressionId) = True
                         'arrCheckboxes(7, 3) += 1
-                        checkIsOk(7)
+                        checkOngletIsOk(7)
                     Else
                         resultLabel.Text = "OK"
                         resultLabel.ForeColor = System.Drawing.Color.Green
                         calcBuseIsOk_isOk(pressionId) = True
                         calcBuseIsOk_isDefault(pressionId) = False
                         'arrCheckboxes(7, 1) += 1
-                        checkIsOk(7)
+                        checkOngletIsOk(7)
                     End If
                 Else
                     If maxEcartValue >= 15 Then
@@ -2290,14 +2317,14 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         calcBuseIsOk_isOk(pressionId) = False
                         calcBuseIsOk_isDefault(pressionId) = True
                         'arrCheckboxes(7, 3) += 1
-                        checkIsOk(7)
+                        checkOngletIsOk(7)
                     Else
                         resultLabel.Text = "OK"
                         resultLabel.ForeColor = System.Drawing.Color.Green
                         calcBuseIsOk_isOk(pressionId) = True
                         calcBuseIsOk_isDefault(pressionId) = False
                         'arrCheckboxes(7, 1) += 1
-                        checkIsOk(7)
+                        checkOngletIsOk(7)
                     End If
                 End If
             End If
@@ -2822,7 +2849,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 RadioButton_diagnostic_9220.Checked = True
             End If
         End If
-        checkIsOk(8)
+        checkOngletIsOk(8)
         diagBuses_nbBusesUsees.Text = nbBusesUsees
         m_diagnostic.syntheseNbBusesUsees = nbBusesUsees.ToString
         Return nbBusesUsees
@@ -3971,7 +3998,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Ajout d'une buse dans la Liste
             oListbuses.diagnosticBusesDetailList.Liste.Add(New DiagnosticBusesDetail())
         Next
-        checkIsOk(8)
+        checkOngletIsOk(8)
 
     End Sub
 
@@ -4077,7 +4104,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             tbDebitMoyen3bars.Text = m_diagnostic.calDebitMoyen(debitBuses, pressionMesureBuses, 3)
             AfficheDebitNominalCONSTructeur()
             'help552_pressionMesure.Text = diagBuses_conf_pressionMesure.Text
-            checkIsOk(8)
+            checkOngletIsOk(8)
 
         Catch ex As Exception
             CSDebug.dispError("diagnostique::diagBuses_conf_pressionMesure_TextChanged ERR : " & ex.Message)
@@ -4919,7 +4946,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
         Else
         End If
-        checkIsOk(8)
+        checkOngletIsOk(8)
     End Sub
 #End Region
 
@@ -4949,20 +4976,27 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     ' Onglet suivant
     Private Sub btn_diagnostic_suivant_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        tab_diagnostique.SelectedIndex = tab_diagnostique.SelectedIndex() + 1
+        Dim nOngletActif As Integer = tab_diagnostique.SelectedIndex
+        Dim nOngletsuivant As Integer = nOngletActif + 1 'Le suivant 
+        'While Not _tabOngletsActifs(nOngletsuivant + 1) 'recherche du premier actif 
+        'nOngletsuivant = nOngletsuivant + 1
+        'End While
+        tab_diagnostique.SelectedIndex = nOngletsuivant
     End Sub
 
     ' Vérification du remplissage des onglets
     'Activation / Desactivation du bouton valider
-    Public Function checkIsAllFilled() As Boolean
+    Public Function checkTouslesOnglets() As Boolean
         Dim bReturn As Boolean
         '   forgotField = ""
-        'Vérification des l'image associée aux onglets
+        'Vérification de l'image associée a chaque onglet actif
         bReturn = True
         For nOnglet As Integer = 0 To tab_diagnostique.TabPages.Count - 1
+            '            If _tabOngletsActifs(nOnglet + 1) Then
             If tab_diagnostique.TabPages(nOnglet).ImageIndex = 3 Then
-                bReturn = False
-            End If
+                    bReturn = False
+                End If
+            '           End If
         Next
         btn_Valider.Enabled = bReturn
         Return bReturn
@@ -4979,7 +5013,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             NextForm()
             bReturn = True
         Else
-            If checkIsAllFilled() Then
+            If checkTouslesOnglets() Then
                 'Valider
                 If validerDiagnostique() Then
                     'Passage à la fenêtre suivante
@@ -5317,7 +5351,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 'Vérification de l'onglet
                 'checkIsOk(pOngletId)
             End If
-            checkIsOk(pOngletId)
+            checkOngletIsOk(pOngletId)
         End If
     End Sub
 
@@ -5351,49 +5385,49 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Dim index As Integer = 0
         For Each oPage As TabPage In tab_diagnostique.TabPages
             index = index + 1
-            checkIsOk(index)
+            checkOngletIsOk(oPage.Tag)
         Next
     End Sub
 
-
     ' Mise a jour du flag de l'onglet suivant les checkbox cochées
-    Protected Overridable Function checkIsOk(ByVal ongletId As Integer) As Boolean
+    Protected Overridable Function checkOngletIsOk(ByVal pPageTag As Integer) As Boolean
         Dim bIsOk As Boolean = False
         Try
             If Events_IsActive() Then
-                Select Case ongletId
-                    Case 1
-                        'Pour L'onglet 1 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_etatGeneral").ImageIndex() = checkOnglet1()
-                    Case 2
-                        'Pour L'onglet 2 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_pompeCuve").ImageIndex() = checkOnglet2()
-                    Case 3
-                        'Pour L'onglet 3 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_flexiblesFiltres").ImageIndex() = checkOnglet3()
-                    Case 4
-                        'Pour L'onglet 4 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_jetsSoufflerie").ImageIndex() = checkOnglet4()
-                    Case 5
-                        'Pour L'onglet 5 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_mesureCommandesRegulation").ImageIndex() = checkOnglet5()
-                    Case 6
-                        'Pour L'onglet 6 , on vérifie directement les CheckBox
-                        tab_diagnostique.TabPages("tabPage_diagnostique_rampes").ImageIndex() = checkOnglet6()
-                    Case 7
-                        'Pour L'onglet 7 , on vérifie directement les Labels
-                        tab_diagnostique.TabPages("tabPage_diagnostique_manoTroncon").ImageIndex() = CheckOnglet7()
-
-                    Case 8
-                        'Pour L'onglet 8 
-                        tab_diagnostique.TabPages("tabPage_diagnostique_buses").ImageIndex() = CheckOnglet8()
-                    Case 9
-                        'Pour L'onglet Accessoires
-                        tab_diagnostique.TabPages("tabPage_diagnostique_accessoires").ImageIndex() = checkOnglet9()
-                    Case Else
-                        tab_diagnostique.TabPages(ongletId - 1).ImageIndex() = 2 ' Vert
-                End Select
-                checkIsAllFilled()
+                If _tabOngletsActifs(pPageTag) Then
+                    Select Case pPageTag
+                        Case ONGLET_ETATGENERAL
+                            'Pour L'onglet 1 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_etatGeneral").ImageIndex() = checkOnglet1()
+                        Case ONGLET_POMPECUVE
+                            'Pour L'onglet 2 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_pompeCuve").ImageIndex() = checkOnglet2()
+                        Case ONGLET_FLEXIBLEFILTRE
+                            'Pour L'onglet 3 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_flexiblesFiltres").ImageIndex() = checkOnglet3()
+                        Case ONGLET_JETSSOUFFLERIE
+                            'Pour L'onglet 4 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_jetsSoufflerie").ImageIndex() = checkOnglet4()
+                        Case ONGLET_MESURECOMMANDESREGULATION
+                            'Pour L'onglet 5 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_mesureCommandesRegulation").ImageIndex() = checkOnglet5()
+                        Case ONGLET_RAMPES
+                            'Pour L'onglet 6 , on vérifie directement les CheckBox
+                            tab_diagnostique.TabPages("tabPage_diagnostique_rampes").ImageIndex() = checkOnglet6()
+                        Case ONGLET_MANOTRONCON
+                            'Pour L'onglet 7 , on vérifie directement les Labels
+                            tab_diagnostique.TabPages("tabPage_diagnostique_manoTroncon").ImageIndex() = CheckOnglet7()
+                        Case ONGLET_BUSES
+                            'Pour L'onglet Buses 
+                            tab_diagnostique.TabPages("tabPage_diagnostique_buses").ImageIndex() = CheckOnglet8()
+                        Case ONGLET_ACCESSOIRES
+                            'Pour L'onglet Accessoires
+                            tab_diagnostique.TabPages("tabPage_diagnostique_accessoires").ImageIndex() = checkOnglet9()
+                        Case Else
+                            tab_diagnostique.TabPages(pPageTag - 1).ImageIndex() = 2 ' Vert
+                    End Select
+                    checkTouslesOnglets()
+                End If
             End If
         Catch ex As Exception
             CSDebug.dispError("frmDiagnostique.checkIsOk ERR : " & ex.Message)
@@ -7756,12 +7790,12 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         '        diagBuses_tab_pressionTroncons_rampe.Enabled = False
         manopulveIsUseCalibrateur.Checked = False
         pnl542.Enabled = False
-        checkIsOk(7)
+        checkOngletIsOk(7)
     End Sub
     Public Sub enableTab542()
         '        diagBuses_tab_pressionTroncons_rampe.Enabled = False
         pnl542.Enabled = True
-        checkIsOk(7)
+        checkOngletIsOk(7)
     End Sub
     ' Traitement de l'activation / désactivation du tableau 8.3.3
     Public Sub disableTab833(pTous As Boolean)
@@ -7770,13 +7804,13 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         If pTous Then
             pnl_833.Enabled = False
         End If
-        checkIsOk(7)
+        checkOngletIsOk(7)
     End Sub
     Public Sub enableTab833()
         '       diagBuses_tab_pressionTroncons_rampe.Enabled = True
         tab_833.Enabled = True
         pnl_833.Enabled = True
-        checkIsOk(7)
+        checkOngletIsOk(7)
 
     End Sub
 
@@ -7787,11 +7821,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     ' Traitement de l'activation / désactivation du tableau 9.2.2
     Public Sub disableTab922()
         Panel922.Enabled = False
-        checkIsOk(8)
+        checkOngletIsOk(8)
     End Sub
     Public Sub enableTab922()
         Panel922.Enabled = True
-        checkIsOk(8)
+        checkOngletIsOk(8)
     End Sub
 
     Public Function isTab922Enabled() As Boolean
@@ -7826,23 +7860,21 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     Private Sub Label54_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles diagBuses_resultat.Click
         ' arrCheckboxes(8, 1) += 1
-        checkIsOk(8)
+        checkOngletIsOk(8)
     End Sub
 
     Private Sub pressionTronc_heterogeniteAlimentation_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'arrCheckboxes(7, 1) += 1
-        checkIsOk(7)
+        checkOngletIsOk(7)
     End Sub
 
 #End Region
 
 
-
     Private Sub tab_diagnostique_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tab_diagnostique.SelectedIndexChanged
-        Select Case tab_diagnostique.SelectedIndex
-            Case 6
+        Select Case tab_diagnostique.SelectedTab.Tag
+            Case ONGLET_MANOTRONCON
                 SetCurrentPressionControls(1)
-
         End Select
     End Sub
 
@@ -8724,7 +8756,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     imprecisionTextBox.BackColor = Color.LightGray
                 End If
             End If
-            checkIsOk(7)
+            checkOngletIsOk(7)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::validatemanopulvePressionControle ERR : " & ex.Message)
         End Try
@@ -8791,7 +8823,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             Affiche8332()
             '           End If
             'Vérification de la saisie de l'onglet 7
-            checkIsOk(7)
+            checkOngletIsOk(7)
 
         Catch ex As Exception
             CSDebug.dispError("diagnostique::Creercontrols542_833 ERR : " & ex.Message)
@@ -9413,7 +9445,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             End If
 
             'Vérification de la saisie de l'onglet 7
-            checkIsOk(7)
+            checkOngletIsOk(7)
         Catch ex As Exception
             CSDebug.dispError("diagnostique::dgv_CellValueChangedPression ERR : " & ex.Message)
             Events_Activate("dgv_CellValueChangedPression") 'Libération du traietement des évenments
@@ -9496,7 +9528,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             AfficheDefautHeterogeneiteGeneral()
             '           End If
         End If
-        checkIsOk(7)
+        checkOngletIsOk(7)
         'End If
     End Sub
     Private Sub rbPression4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbPression4.CheckedChanged
@@ -9952,7 +9984,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 Next
             Next
             tab_833.SelectedIndex = 0
-            checkIsOk(7)
+            checkOngletIsOk(7)
 
             '===========================
             'Onglet Buses
@@ -10815,7 +10847,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
     End Sub
 
     Private Sub btn_Poursuivre_Click(sender As Object, e As EventArgs) Handles btn_Poursuivre.Click
-        tab_diagnostique.SelectedIndex = tab_diagnostique.SelectedIndex() + 1
+        btn_diagnostic_suivant_Click(sender, e)
     End Sub
 
     Private Sub btn_Valider_Click(sender As Object, e As EventArgs) Handles btn_Valider.Click
@@ -10961,7 +10993,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
         Try
             Dim ofrm As IdlgHelp12123
             Dim bTrtSemence As Boolean
-            If m_Pulverisateur.isTraitementdesSemences Then
+            If m_Pulverisateur.isTraitementdesSemences12123 Then
                 ofrm = New diagnostic_dlghelp12123newTrtSem()
                 bTrtSemence = True
             Else

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfParamBuse12123 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ParamBuse12123>
+    <Type>AUTRES</Type>
+    <Fonctionnement>CUILLERES</Fonctionnement>
+    <ModeFonctionnement>CUILLERE</ModeFonctionnement>
+  </ParamBuse12123>
+  <ParamBuse12123>
+    <Type>AUTRES</Type>
+    <Fonctionnement>INJECTEURS</Fonctionnement>
+    <ModeFonctionnement>INJECTEUR</ModeFonctionnement>
+  </ParamBuse12123>
+  <ParamBuse12123>
+    <Type>AUTRES</Type>
+    <Fonctionnement>DOSEURS</Fonctionnement>
+    <ModeFonctionnement>CUILLERE</ModeFonctionnement>
+  </ParamBuse12123>
+  <ParamBuse12123>
+    <Type>POMPE DOSEUSE</Type>
+    <Fonctionnement>AUGET BASCULANT</Fonctionnement>
+    <ModeFonctionnement>CUILLERE</ModeFonctionnement>
+  </ParamBuse12123>
+  <ParamBuse12123>
+    <Type>POMPE DOSEUSE</Type>
+    <Fonctionnement>PERISTALTIQUE</Fonctionnement>
+    <ModeFonctionnement>INJECTEUR</ModeFonctionnement>
+  </ParamBuse12123>
+</ArrayOfParamBuse12123>

@@ -22,7 +22,13 @@ Public Class diagnostic_dlghelp12123newTrtSem
         End If
         nupNbPompes.Minimum = 1
         nupNbPompes.Maximum = 10
-        nupMesures.Minimum = 2
+        If pDiagH12123.fonctionnementBuses = "CUILLERE" Then
+            nupMesures.Minimum = 1
+        Else
+            nupMesures.Minimum = 2
+        End If
+
+
         nupMesures.Maximum = 10
         m_bsrcH12123.Clear()
         Dim oH12123 As DiagnosticHelp12123
@@ -338,7 +344,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
         If rbFonctinonementInjection.Checked Then
             Dim oH12123 As DiagnosticHelp12123
             oH12123 = m_bsrcH12123.Current
-            oH12123.fonctionnementBuses = "INJECTION"
+            oH12123.fonctionnementBuses = "INJECTEUR"
             m_bsrcH12123.ResetCurrentItem()
             'Le treevieuw ne se met pas à jour automatiquement...
             DisplayPompes()
@@ -361,4 +367,7 @@ Public Class diagnostic_dlghelp12123newTrtSem
 
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
 End Class

@@ -1656,6 +1656,88 @@ Public Class Pulverisateur
             If Not isPompesDoseuses Then
                 oDiagItem.FillWithParam(olstParam.Find("12.1.3.0"))
             End If
+            'traitementSemence12123 (Param12123)
+            '--------------
+            If isTraitementdesSemences12123() Then
+                oDiagItem = New DiagnosticItemAuto("", "1221", "0")
+                oDiagItem.FillWithParam(olstParam.Find("12.2.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1222", "0")
+                oDiagItem.FillWithParam(olstParam.Find("12.2.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1241", "0")
+                oDiagItem.FillWithParam(olstParam.Find("12.4.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1231", "0")
+                oDiagItem.FillWithParam(olstParam.Find("12.3.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1232", "0")
+                oDiagItem.FillWithParam(olstParam.Find("12.3.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "811", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "812", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "813", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.3.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "815", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.5.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "816", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.6.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "817", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.1.7.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "821", "0")
+                oDiagItem.FillWithParam(olstParam.Find("8.2.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "541", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.4.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "542", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.4.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "551", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.5.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "552", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.5.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "571", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.7.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "921", "0")
+                oDiagItem.FillWithParam(olstParam.Find("9.2.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "922", "0")
+                oDiagItem.FillWithParam(olstParam.Find("9.2.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1011", "0")
+                oDiagItem.FillWithParam(olstParam.Find("10.1.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "1012", "0")
+                oDiagItem.FillWithParam(olstParam.Find("10.1.2.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "211", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.1.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "213", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.1.3.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "241", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.4.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "251", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.5.1.0"))
+                oReturn.Add(oDiagItem)
+                oDiagItem = New DiagnosticItemAuto("", "252", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.5.2.0"))
+                oReturn.Add(oDiagItem)
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("Pulverisateur.EncodageAutomatiqueDefauts ERR : " & ex.Message)
@@ -1816,30 +1898,73 @@ Public Class Pulverisateur
         End Try
         Return bReturn
     End Function
+    'Public Function isTraitementdesSemencesOLD() As Boolean
+    '    Return isTRTSPE("TRTSEM")
+    'End Function
 
-    ''' <summary>
-    ''' Rend Vrai si le pulvé est de categorie 'traitement des semences"
-    ''' </summary>
-    ''' <param name="pTrt"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Function isTRTSPE(pTrt As String) As Boolean
-        'Parcours du fichier config pour remplir une Liste des types-categories
-        Dim bReturn As Boolean
-        Dim xpath As String
-        bReturn = False
-        xpath = MarquesManager.XPATH_VALEURS_TRTSPE.Replace("%type%", type).Replace("%categorie%", categorie)
-        Dim oNodesTrtSpe As Xml.XmlNodeList = GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
-        For Each oAttCategorie As Xml.XmlNode In oNodesTrtSpe
-            If oAttCategorie.InnerText = pTrt Then
-                bReturn = True
-            End If
-        Next
-        Return bReturn
+    '''' <summary>
+    '''' Rend Vrai si le pulvé est de categorie 'traitement des semences"
+    '''' </summary>
+    '''' <param name="pTrt"></param>
+    '''' <returns></returns>
+    '''' <remarks></remarks>
+    'Private Function isTRTSPE(pTrt As String) As Boolean
+    '    'Parcours du fichier config pour remplir une Liste des types-categories
+    '    Dim bReturn As Boolean
+    '    Dim xpath As String
+    '    bReturn = False
+    '    xpath = MarquesManager.XPATH_VALEURS_TRTSPE.Replace("%type%", type).Replace("%categorie%", categorie)
+    '    Dim oNodesTrtSpe As Xml.XmlNodeList = GlobalsCRODIP.GLOB_XML_TYPES_CATEGORIES_PULVE.getXmlNodes(xpath)
+    '    For Each oAttCategorie As Xml.XmlNode In oNodesTrtSpe
+    '        If oAttCategorie.InnerText = pTrt Then
+    '            bReturn = True
+    '        End If
+    '    Next
+    '    Return bReturn
+    'End Function
+    Public Function isTraitementdesSemences12123() As Boolean
+        Dim breturn As Boolean = False
+        Try
+            Dim lstParam12123 As List(Of ParamBuse12123)
+            Dim oSer As New System.Xml.Serialization.XmlSerializer(GetType(List(Of ParamBuse12123)))
+            Using oRd As New System.IO.StreamReader(GlobalsCRODIP.GLOB_XML_PARAM12123.Nomfichier)
+                lstParam12123 = CType(oSer.Deserialize(oRd), List(Of ParamBuse12123))
+                oRd.Close()
+            End Using
+            Dim bParamPresent As Boolean
+
+            bParamPresent = lstParam12123.Any(Function(P) As Boolean
+                                                  Return P.Type = Me.buseType And P.Fonctionnement = Me.buseFonctionnement
+                                              End Function)
+
+            breturn = bParamPresent
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.isTraietementSemence ERR", ex)
+            breturn = False
+        End Try
+        Return breturn
     End Function
-    Public Function isTraitementdesSemences() As Boolean
-        Return isTRTSPE("TRTSEM")
+    Public Function getParamBuses12123() As ParamBuse12123
+        Dim oReturn As ParamBuse12123 = Nothing
+        Try
+            Dim lstParam12123 As List(Of ParamBuse12123)
+            Dim oSer As New System.Xml.Serialization.XmlSerializer(GetType(List(Of ParamBuse12123)))
+            Using oRd As New System.IO.StreamReader(GlobalsCRODIP.GLOB_XML_PARAM12123.Nomfichier)
+                lstParam12123 = CType(oSer.Deserialize(oRd), List(Of ParamBuse12123))
+                oRd.Close()
+            End Using
+
+            oReturn = lstParam12123.FirstOrDefault(Function(P) As Boolean
+                                                       Return P.Type = Me.buseType And P.Fonctionnement = Me.buseFonctionnement
+                                                   End Function)
+
+        Catch ex As Exception
+            CSDebug.dispError("Pulverisateur.isTraietementSemence ERR", ex)
+            oReturn = Nothing
+        End Try
+        Return oReturn
     End Function
+
 
     Public Shared Function getNiveauAlerte(Optional pDate As Date? = Nothing) As NiveauAlerte
         Dim bReturn As GlobalsCRODIP.ALERTE
