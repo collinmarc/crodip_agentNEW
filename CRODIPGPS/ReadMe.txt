@@ -14,6 +14,8 @@ S'il y a eu des modifications (bDataUpdated)
 La classe GPSMAnager fait l'interface avec l'antenne
 pour pallier l'incertitude de l'antenne, on convertit les coordonnées reçues en decimales et on prend la moyenne des x dernières mesures 
 
+BUILD 20250916
+	0001823: [DRODIPGPS] Test avec antenne BU-353N5
 BUILD 20250904
 0001822: CRODIPGPS : Affichage Temps Click
 
