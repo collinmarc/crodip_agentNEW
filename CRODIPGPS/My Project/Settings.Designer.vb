@@ -119,15 +119,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("9600")>  _
-        Public ReadOnly Property VitessePort() As Integer
-            Get
-                Return CType(Me("VitessePort"),Integer)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public ReadOnly Property Test() As Boolean
             Get
@@ -164,15 +155,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property ActiveSBAS_GPS() As Boolean
-            Get
-                Return CType(Me("ActiveSBAS_GPS"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("1000")>  _
         Public ReadOnly Property intervalGPS() As Integer
             Get
@@ -200,7 +182,34 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property AffichageTempsClick() As Boolean
+            Get
+                Return CType(Me("AffichageTempsClick"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4800")>  _
+        Public ReadOnly Property VitessePort() As Integer
+            Get
+                Return CType(Me("VitessePort"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property ActiveSBAS_GPS() As Boolean
+            Get
+                Return CType(Me("ActiveSBAS_GPS"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public ReadOnly Property ProcessGPRMC() As Boolean
             Get
                 Return CType(Me("ProcessGPRMC"),Boolean)
@@ -209,10 +218,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property AffichageTempsClick() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("COM5")>  _
+        Public ReadOnly Property Port() As String
             Get
-                Return CType(Me("AffichageTempsClick"),Boolean)
+                Return CType(Me("Port"),String)
             End Get
         End Property
     End Class

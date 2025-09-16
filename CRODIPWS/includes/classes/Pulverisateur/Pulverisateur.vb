@@ -1394,15 +1394,16 @@ Public Class Pulverisateur
     Public Overridable Function CheckNumeroNational(pNumNatPart1 As String, pNumNatPart2 As String, pAgent As Agent, pbAjout As Boolean) As CheckResult
         Dim bReturn As CheckResult = CheckResult.OK
         Dim pNumNational As String = pNumNatPart1 & pNumNatPart2
+        'Vérification Partie 1
         If Not checkPart1NumNat(pNumNatPart1) Then
             Return CheckResult.NUMEROPART1FORMATINCORRECT
         End If
-        ' Lecture de la liste des identifiant dispo
-        Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent)
+        'Vérification Partie 2
         If pNumNatPart2.Length <> 6 Or Not IsNumeric(pNumNatPart2) Then
             bReturn = CheckResult.NUMEROFORMATINCORRECT
         End If
         If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
+            'Pulve E001 CRODIP
             If bReturn = CheckResult.OK And pbAjout Then
                 'En mode ajout , on vérifie toujours l'existence
                 If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
@@ -1412,11 +1413,13 @@ Public Class Pulverisateur
             Dim bCheck As Boolean
             bCheck = True
             If Not pbAjout And Me.numeroNational = pNumNational Then
-                'Si on n'est pas en ajout est qu'il n'y a pas eu de modif sur le numéro 
+                'Si on n'est pas en ajout et qu'il n'y a pas eu de modif sur le numéro 
                 ' => pas de controle par rapport aux Identifiants Pulvés
                 bCheck = False
             End If
             If bReturn = CheckResult.OK Then
+                ' Lecture de la liste des identifiant dispo
+                Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent)
                 If olst.Count > 0 And bCheck Then
                     'S'il y a des identifiant Pulvés
                     'Si on  test un numero CRODIP
@@ -1437,12 +1440,8 @@ Public Class Pulverisateur
         Else
             'Pulve non indigo (E001)
             'il faut que le numéro existe dans la base OTC
-            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
-                Dim oPulverisateurOTC As PulverisateurOTC = PulverisateurManager.WSgetPulverisateurOTC(numeroNational, pAgent.uid)
-                If oPulverisateurOTC Is Nothing Then
-                    bReturn = CheckResult.NUMEROPASDANSLALISTEOTC
-                End If
-            End If
+            bReturn = CheckResult.NUMEROPASDANSLALISTEOTC
+
         End If
         Return bReturn
     End Function

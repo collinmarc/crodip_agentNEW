@@ -304,6 +304,8 @@
     <Compile Include="includes\classes\FicheVie\FVMateriel.vb" />
     <Compile Include="includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateur.vb" />
     <Compile Include="includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateurManager.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentOTC.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentOTCManager.vb" />
     <Compile Include="includes\classes\IObservateur.vb" />
     <Compile Include="includes\classes\Logs\Logs.vb" />
     <Compile Include="includes\classes\Logs\LogsManager.vb" />

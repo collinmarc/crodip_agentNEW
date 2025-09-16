@@ -55,7 +55,7 @@ Public Class Form1
         gpsManager = New GPSManager()
 
         'on lance un premier Timer pour Trouver le Port GPS
-        TimerLectureGPS.Interval = My.Settings.intervalGPS
+        TimerLectureGPS.Interval = 2000 'Toutes les 2 secondes
         TimerLectureGPS.Enabled = True
 
         AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
@@ -63,6 +63,7 @@ Public Class Form1
 
         CkTest.Checked = My.Settings.Test
         laTempsClick.Visible = My.Settings.AffichageTempsClick
+        lblEtat.Visible = My.Settings.AffichageTempsClick
     End Sub
 
     Private Sub cbMesure_Click(sender As Object, e As EventArgs) Handles cbMesure.Click
@@ -78,7 +79,7 @@ Public Class Form1
                 _MesureEncours.VitesseLue = 0
                 _MesureEncours.startClick = DateTime.Now
                 _MesureEncours.EndClick = DateTime.MinValue
-                gpsManager.StartGPS()
+                gpsManager.init()
                 m_bsrcGPSMesure.ResetBindings(False)
                 SetAction(ACTIONFORM.Action_DEMARRER)
 
@@ -91,11 +92,6 @@ Public Class Form1
                 'Arret du Timer
                 TimerLectureGPS.Stop()
                 RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
-                'Arret de l'écoute GPS
-                gpsManager.StopGPS()
-
-                'Lecture de la dernière donnée
-                GPS_RecupDonnees(Me, EventArgs.Empty)
 
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
                 m_bsrcGPSMesure.ResetCurrentItem()
@@ -103,7 +99,6 @@ Public Class Form1
 
             Case Else
                 'Recommencer
-                gpsManager.StartGPS()
                 SetAction(ACTIONFORM.Action_DEMARRER)
         End Select
 
@@ -125,6 +120,7 @@ Public Class Form1
 
     Private Sub SetEtat0GPSNONACTIF()
         TraceMsg("Etat0")
+        lblEtat.Text = "GPS INACTIF"
         _EtatForm = ETAT.Etat_0GPSINACTIF
         MettreAJourThemeDARK()
         cbReset.Visible = False
@@ -140,6 +136,7 @@ Public Class Form1
     End Sub
     Private Sub SetEtat1GPSACTIF()
         TraceMsg("Etat1 GPS ACTIF")
+        lblEtat.Text = "GPSACTIF(" & portName & "," & My.Settings.VitessePort & ")"
         _EtatForm = ETAT.Etat_1GPSACTIF
         MettreAJourThemeLight()
         'cbMesure.Text = "Démarrer"
@@ -156,7 +153,7 @@ Public Class Form1
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
         SetVitesseLueVisible(False)
-        gpsManager.StartGPS()
+        gpsManager.init()
         gpsManager.VitesseConstante = False
 
         _MesureEncours.Distance = 0
@@ -173,6 +170,7 @@ Public Class Form1
     End Sub
     Private Sub SetEtat2ENATTENTE()
         TraceMsg("Etat2 en attente de demarrage")
+        lblEtat.Text = "VITESSE STABLE"
         _EtatForm = ETAT.Etat_2ENATTENTE
         MettreAJourThemeLight()
         cbReset.Visible = False
@@ -184,13 +182,13 @@ Public Class Form1
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         SetVitesseLueVisible(False)
 
-        gpsManager.StopGPS()
         TimerLectureGPS.Stop()
         RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_AttentevitesseStable
 
     End Sub
     Private Sub SetEtat3MESUREENCOURS()
         TraceMsg("Etat3 Mesure en cours")
+        lblEtat.Text = "MESURE EN COURS"
         _EtatForm = ETAT.Etat_3MESUREENCOURS
         MettreAJourThemeDARK()
         cbMesure.Text = "En cours"
@@ -213,6 +211,7 @@ Public Class Form1
     End Sub
     Private Sub SetEtat4MESUREARRETABLE()
         TraceMsg("Etat4 Arretable")
+        lblEtat.Text = "MESURE ARRETABLE"
 
         _EtatForm = ETAT.Etat_4MESUREARRETABLE
         MettreAJourThemeLight()
@@ -228,6 +227,7 @@ Public Class Form1
     End Sub
     Private Sub SetEtat5MESUREEFFECTUEE()
         TraceMsg("Etat5 effectuée")
+        lblEtat.Text = "MESURE ARRETEE"
 
         _EtatForm = ETAT.Etat_5MESUREEFFECTUEE
         MettreAJourThemeLight()
@@ -284,16 +284,15 @@ Public Class Form1
     End Sub
     Private _n As Integer
 
-    'End Sub
     ''' <summary>
     ''' Ecoute regulière pour trouver le port GPS
     ''' 'Methode non utilisée une fois que le GPS est Actif
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
+    ''' 
     Private Sub GPS_Rechercherleportserie(sender As Object, e As EventArgs)
-        Trace.WriteLine("RechercherleportserieGPS")
-        portName = gpsManager.TrouverPortGPS()
+        portName = gpsManager.TrouverPortGPS(My.Settings.Port)
 
         If portName IsNot Nothing Then
             TimerLectureGPS.Stop()
@@ -310,7 +309,7 @@ Public Class Form1
         Dim vitesse As Decimal
         Dim temps As Double
         'Récupération de la distance
-        If gpsManager.IsSerialPortOpen Then
+        If Not String.IsNullOrEmpty(portName) Then
             TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
             distance = gpsManager.distance
         Else
@@ -343,12 +342,12 @@ Public Class Form1
         Dim vitesse As Decimal
         Dim temps As Double
 
-        If Not gpsManager.bDataUpdated Then
-            'Pas de Data Mise à jour , on sort
-            Exit Sub
-        End If
         'Récupération de la distance
-        If gpsManager.IsSerialPortOpen Then
+        If Not String.IsNullOrEmpty(portName) Then
+            If Not gpsManager.bDataUpdated Then
+                'Pas de Data Mise à jour , on sort
+                Exit Sub
+            End If
             TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
             distance = gpsManager.distance
         Else
@@ -430,9 +429,7 @@ Public Class Form1
 
         If gpsManager.GPSActif <> ckGPSActif.Checked Then
             gpsManager.GPSActif = ckGPSActif.Checked
-            If Not gpsManager.GPSActif Then
-                SetAction(ACTIONFORM.Action_GPSACTIF)
-            End If
+            SetAction(ACTIONFORM.Action_GPSACTIF)
         End If
     End Sub
     Dim _FichierExport As String
@@ -492,6 +489,7 @@ Public Class Form1
         tbVitesseMesuree.ForeColor = tbVitesseMesuree.BackColor
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
+        lblEtat.Visible = CkTest.Checked
     End Sub
 
     '==================================

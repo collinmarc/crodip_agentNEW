@@ -1,5 +1,6 @@
 ﻿Imports System.Globalization
 Imports System.IO.Ports
+Imports System.Text
 
 ''' <summary>
 ''' Le GPSMAnager Fait l'interface avec l'antenne GPS
@@ -49,22 +50,8 @@ Public Class GPSManager
 
         ' Configurer le port série
         serialPort = New SerialPort()
-        StartGPS()
-    End Sub
-    Private bStart As Boolean = False
-    Public Sub StartGPS()
-        If Not bStart Then
-            init()
-            AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
-            bStart = True
-        End If
-    End Sub
-    Public Sub StopGPS()
-        If bStart Then
-            RemoveHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
-            bStart = False
-        End If
-
+        init()
+        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
     End Sub
 
     ' Méthode pour configurer le port série
@@ -92,36 +79,39 @@ Public Class GPSManager
     End Sub
     ' Gestionnaire d'événements pour les données série reçues
     Private Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
-        Dim serialData As String = serialPort.ReadExisting()
-        '        TraceMsg(serialData)
-        Dim breturn As Boolean
-        breturn = ProcessNMEAData(serialData)
-        If breturn And Not GPSActif Then
-            'Déclarer le GPS Actif
-            GPSActif = True
+        If serialPort.IsOpen() Then
+            Dim serialData As String = serialPort.ReadLine() 'Utiliser un ReadLine plutot qu'un readexisting
+            Dim breturn As Boolean
+            breturn = ProcessNMEAData(serialData)
+            If breturn And Not GPSActif Then
+                'Déclarer le GPS Actif
+                GPSActif = True
+            End If
+        Else
+            Console.WriteLine("SerialPort Close")
         End If
     End Sub
     Public bDataUpdated As Boolean
     ' Méthode pour traiter les données NMEA
     Private Function ProcessNMEAData(data As String) As Boolean
         ' Processus de traitement des données NMEA
-        ' Exemple simplifié pour extraire et afficher les données NMEA GPGGA ou GPRMC
+        ' Exemple simplifié pour extraire et afficher les données NMEA GPGGA/GNGGA ou GPRMC/ GNRMC 
         Dim breturn As Boolean = False
         Dim lines As String() = data.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
         For Each line As String In lines
-            If line.StartsWith("$GPGGA") OrElse line.StartsWith("$GPRMC") Then
+            If line.StartsWith("$GPGGA") OrElse line.StartsWith("$GPRMC") OrElse line.StartsWith("$GNGGA") OrElse line.StartsWith("$GNRMC") Then
                 Dim nmeaFields As String() = line.Split(","c)
-                If nmeaFields.Length > 0 Then
+                If nmeaFields.Length > 9 Then
                     Select Case nmeaFields(0)
-                        Case "$GPGGA"
+                        Case "$GPGGA", "$GNGGA"
                             If My.Settings.ProcessGPGGA Then
-                                TraceMsg(data)
-                                breturn = ProcessGPGGA(nmeaFields)
+                                TraceMsg(line)
+                                breturn = ProcessNMEA_GGA(nmeaFields)
                             End If
-                        Case "$GPRMC"
+                        Case "$GPRMC", "$GNRMC"
                             If My.Settings.ProcessGPRMC Then
-                                TraceMsg(data)
-                                breturn = ProcessGPRMC(nmeaFields)
+                                TraceMsg(line)
+                                breturn = ProcessNMEA_RMC(nmeaFields)
                             End If
                     End Select
                 End If
@@ -135,7 +125,7 @@ Public Class GPSManager
     End Function
 
     ' Méthode pour traiter les données GPGGA
-    Private Function ProcessGPGGA(fields As String()) As Boolean
+    Private Function ProcessNMEA_GGA(fields As String()) As Boolean
         Dim heureGPS As String = fields(1) 'Date et heure de la trame GPS
         Dim typePositionnement As String = fields(6) '0=invalide,1 = GPS, 2=GPS Différentiel, 4 = PPS
         Dim NbreSatelites As String = fields(7)
@@ -145,7 +135,7 @@ Public Class GPSManager
             TraceMsg("[ProcessGPGGA]TypePositionnement=" & typePositionnement)
             TraceMsg("[ProcessGPGGA]nbSattelites=" & NbreSatelites)
             TraceMsg("[ProcessGPGGA]HDOP=" & PrecisHorizontale)
-            If typePositionnement = "1" Then
+            If typePositionnement = "1" Or typePositionnement = "2" Then
                 If CInt(NbreSatelites) > My.Settings.NbSatellitesMin Then
                     If CDec(PrecisHorizontale.Replace(".", ",")) < My.Settings.HDOPMax Then
                         ' Extraction de la latitude et de la longitude
@@ -203,7 +193,7 @@ Public Class GPSManager
     End Function
 
     ' Méthode pour traiter les données GPRMC
-    Private Function ProcessGPRMC(fields As String()) As Boolean
+    Private Function ProcessNMEA_RMC(fields As String()) As Boolean
         ' Extraction de l'heure et de la date
         Dim heureGPS As String = fields(1)
         Dim dateStr As String = fields(9)
@@ -304,43 +294,73 @@ Public Class GPSManager
 
         ' Différence de latitude et de longitude
         Dim dDiffLat As Double = (pEndLat - startLatitude) * Math.PI / 180.0
-            Dim dDiffLon As Double = (pEndLong - startLongitude) * Math.PI / 180.0
+        Dim dDiffLon As Double = (pEndLong - startLongitude) * Math.PI / 180.0
 
-            ' Formule de Haversine
-            Dim a As Double = Math.Sin(dDiffLat / 2) * Math.Sin(dDiffLat / 2) +
-                      Math.Cos(lat1) * Math.Cos(lat2) *
-                      Math.Sin(dDiffLon / 2) * Math.Sin(dDiffLon / 2)
+        ' Formule de Haversine
+        Dim a As Double = Math.Sin(dDiffLat / 2) * Math.Sin(dDiffLat / 2) +
+                  Math.Cos(lat1) * Math.Cos(lat2) *
+                  Math.Sin(dDiffLon / 2) * Math.Sin(dDiffLon / 2)
 
-            Dim c As Double = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a))
+        Dim c As Double = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a))
 
-            Dim distanceKm As Double = R * c
-            distanceMeters = distanceKm * 1000
+        Dim distanceKm As Double = R * c
+        distanceMeters = distanceKm * 1000
 
         Return distanceMeters
     End Function
     ' Méthode pour trouver le port série sur lequel est branchée l'antenne GPS
-    Public Function TrouverPortGPS() As String
-        For Each portName As String In SerialPort.GetPortNames()
-            Try
-                Using testPort As New SerialPort(portName, 9600)
-                    testPort.Open()
-                    ' Lire pendant une courte période pour vérifier que l'on reçoit  les trames NMEA
-                    Dim start As DateTime = DateTime.Now
-                    While (DateTime.Now - start).TotalSeconds < 2
-                        Dim data As String = testPort.ReadExisting()
-                        If data.Contains("$GPGGA") OrElse data.Contains("$GPRMC") Then
-                            testPort.Close()
-                            GPSActif = True
-                            Return portName
-                        End If
-                    End While
-                End Using
-            Catch ex As Exception
-                ' Ignorer les exceptions pour les ports non valides
-            End Try
-        Next
-        Return Nothing
+    Public Function TrouverPortGPS(pPortName As String) As String
+
+        If Not String.IsNullOrEmpty(pPortName) Then
+            If TestPort(pPortName) Then
+                Return pPortName
+            Else
+                Return Nothing
+            End If
+        Else
+            For Each portName As String In SerialPort.GetPortNames()
+                If TestPort(portName) Then
+                    GPSActif = True
+                    Return portName
+                End If
+            Next
+            Return Nothing
+        End If
     End Function
+    Private Function TestPort(pPortNAme As String) As Boolean
+        Dim bReturn As Boolean
+        bReturn = False
+        Try
+
+            Using Port As New SerialPort(pPortNAme, My.Settings.VitessePort)
+                Port.Open()
+                ' Lire pendant une courte période (2sec) pour vérifier que l'on reçoit  les trames NMEA
+                Dim start As DateTime = DateTime.Now
+                While (DateTime.Now - start).TotalSeconds < 2 And Not bReturn
+                    Dim Data As String
+                    Try
+                        Port.ReadTimeout = 1000
+                        Data = Port.ReadLine()
+                    Catch ex As Exception
+                        Data = ""
+                    End Try
+                    'Dim data As String = Port.ReadLine() 'utiliser un readLine plutot qu'un readExisting
+                    Console.WriteLine("GpsManager.testPort(" & pPortNAme & ") data=" & Data)
+                    If data.Contains("$GPGGA") OrElse data.Contains("$GPRMC") OrElse data.Contains("$GNGGA") OrElse data.Contains("$GNRMC") Then
+                        Port.Close()
+                        GPSActif = True
+                        bReturn = True
+                    Else
+                        Port.Close()
+                    End If
+                End While
+            End Using
+        Catch ex As Exception
+
+        End Try
+        Return bReturn
+    End Function
+
     Private Sub TraceMsg(pMessage As String)
         Console.WriteLine(DateTime.Now.ToLongTimeString() & ":" & pMessage)
         System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)

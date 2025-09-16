@@ -315,6 +315,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\g.jpg" />
+    <Content Include="img\j.jpg" />
+    <Content Include="img\r.jpg" />
+    <Content Include="img\v.jpg" />
     <Content Include="logoCRODIP.ico" />
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
