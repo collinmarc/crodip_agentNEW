@@ -63,7 +63,7 @@ Public Class Form1
 
         CkTest.Checked = My.Settings.Test
         laTempsClick.Visible = My.Settings.AffichageTempsClick
-        lblEtat.Visible = My.Settings.AffichageTempsClick
+        lblEtat.Visible = CkTest.Checked
     End Sub
 
     Private Sub cbMesure_Click(sender As Object, e As EventArgs) Handles cbMesure.Click
@@ -137,6 +137,9 @@ Public Class Form1
     Private Sub SetEtat1GPSACTIF()
         TraceMsg("Etat1 GPS ACTIF")
         lblEtat.Text = "GPSACTIF(" & portName & "," & My.Settings.VitessePort & ")"
+        If Not ckGPSActif.Checked Then
+            ckGPSActif.Checked = True
+        End If
         _EtatForm = ETAT.Etat_1GPSACTIF
         MettreAJourThemeLight()
         'cbMesure.Text = "Démarrer"
@@ -171,6 +174,10 @@ Public Class Form1
     Private Sub SetEtat2ENATTENTE()
         TraceMsg("Etat2 en attente de demarrage")
         lblEtat.Text = "VITESSE STABLE"
+        If Not ckVitessseStable.Checked Then
+            ckVitessseStable.Checked = True
+        End If
+
         _EtatForm = ETAT.Etat_2ENATTENTE
         MettreAJourThemeLight()
         cbReset.Visible = False

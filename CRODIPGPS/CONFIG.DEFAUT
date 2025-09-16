@@ -18,62 +18,81 @@
   </runtime>
   <applicationSettings>
     <CRODIPGPS.My.MySettings>
+      <!-- Repertoire de dépot des mesures-->
       <setting name="RepertoireExport" serializeAs="String">
         <value>MESURESGPS</value>
       </setting>
+      <!-- Nombre de verif de vitesse constante à atteindre (defaut 5)-->
       <setting name="nbIntervalleVitesseConstante" serializeAs="String">
         <value>5</value>
       </setting>
+      <!-- Ecart de vitesse toléré (en %) (defaut 0.05)-->
       <setting name="EcartMAx" serializeAs="String">
-        <value>0.1</value>
+        <value>0.05</value>
       </setting>
+      <!-- Vitesse lue par defaut (defaut = 8.5)-->
       <setting name="VitesseLue" serializeAs="String">
         <value>8.5</value>
       </setting>
+      <!-- Vitesse Limite pour vérifier la distance 1 (Defaut = 15)-->
       <setting name="LimiteVitesse" serializeAs="String">
         <value>15</value>
       </setting>
+      <!-- Minimnum distance si la vitesse est inférieure à LimiteVitesse (Defaut =50)-->
       <setting name="Distance1" serializeAs="String">
         <value>50</value>
       </setting>
+      <!-- Minimnum distance si la vitesse est Supérieure à LimiteVitesse (Defaut =100)-->
       <setting name="Distance2" serializeAs="String">
         <value>100</value>
       </setting>
+      <!-- Ouverture du GPSManager en Mode Test (Defaut = False)-->
       <setting name="Test" serializeAs="String">
         <value>False</value>
       </setting>
+      <!-- traitement des trames NMEA GGA (Defaut = true)-->
       <setting name="ProcessGPGGA" serializeAs="String">
         <value>True</value>
       </setting>
+      <!-- Nombre mini de satellites pour que la mesure soit fiable (defaut 4)-->
       <setting name="NbSatellitesMin" serializeAs="String">
         <value>4</value>
       </setting>
+      <!-- Degre de précision MAXIMUM (Defaut =2.0)-->
       <setting name="HDOPMax" serializeAs="String">
         <value>2.0</value>
       </setting>
+      <!-- intervalle (en ms) de lecture du port GPS (defaut=100)-->
       <setting name="intervalGPS" serializeAs="String">
         <value>100</value>
       </setting>
+      <!-- nbre de mesures GPS pour obtenir un moyenne 0=Pas de moyenne( Defaut = 0)-->
       <setting name="nbMesuresMoyenne" serializeAs="String">
         <value>0</value>
       </setting>
+      <!-- nbre de Decimales d'affichage de la distance ( Defaut = 2)-->
       <setting name="PrecisionDistance" serializeAs="String">
         <value>2</value>
       </setting>
+      <!-- Affichage du chrono au click (Defaut = False)-->
       <setting name="AffichageTempsClick" serializeAs="String">
         <value>True</value>
       </setting>
+      <!-- Vitesse du Port COM (Defaut ) 4800)-->
       <setting name="VitessePort" serializeAs="String">
         <value>4800</value>
       </setting>
+      <!-- Activation du SBAS (uniquement pour l'antenne G-MOUSE) (defaut = False)-->
       <setting name="ActiveSBAS_GPS" serializeAs="String">
         <value>False</value>
       </setting>
+      <!-- traitement des trames NMEA RMC (Defaut = true)-->
       <setting name="ProcessGPRMC" serializeAs="String">
         <value>True</value>
       </setting>
+      <!-- Port COM de l'antenne (vide = Recherche automatique du port) (Defaut = )-->
       <setting name="Port" serializeAs="String">
-        <value></value>
+        <value>COM6</value>
       </setting>
     </CRODIPGPS.My.MySettings>
   </applicationSettings>
