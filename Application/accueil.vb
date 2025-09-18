@@ -5864,7 +5864,9 @@ Public Class accueil
             pulverisateurCourant = New Pulverisateur()
             formAddPulve.setContexte(ajout_pulve2.MODE.AJOUT, agentCourant, pulverisateurCourant, clientCourant, diagnosticCourant)
             '        formAddPulve.MdiParent = Me.MdiParent
-            formAddPulve.ShowDialog(Me)
+            If (formAddPulve.ShowDialog(Me) = DialogResult.OK) Then
+                AfficheListePulvesExploitation(clientCourant)
+            End If
         End If
     End Sub
     Private Sub AjouterUnPulveAdditionnel()

@@ -709,8 +709,9 @@
   --ALTER table Diagnostic Add Column `isPulveRecordedInOTC` tinyint(1) DEFAULT '0';
   --ALTER table Diagnostic Add Column `isPulveDownloadByExportOTC` tinyint(1) DEFAULT '0';
   --ALTER table Diagnostic Add Column `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT '0';
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Annomalie SRV');
 
   CREATE TABLE IdentifiantOTC (IdentOTC Text); 
 
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Annomalie SRV');
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','IdentOTC');
 

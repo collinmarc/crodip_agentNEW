@@ -4028,12 +4028,24 @@ Public Class Diagnostic
         End Set
     End Property
     Private _isAnomalies As Boolean
+    <XmlIgnoreAttribute>
     Public Property isAnomalies() As Boolean
         Get
             Return _isAnomalies
         End Get
         Set(ByVal value As Boolean)
             _isAnomalies = value
+        End Set
+    End Property
+    <XmlElement("isAnnomalies")>
+    Public Property isAnomalies_str() As String
+        Get
+            Return _isAnomalies
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isAnomalies = CBool(value)
+            End If
         End Set
     End Property
     Private _niveauAnomalies As Integer
@@ -4094,6 +4106,7 @@ Public Class Diagnostic
         End Set
     End Property
     Private _isPulveRecordedInOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveRecordedInOTC() As Boolean
         Get
             Return _isPulveRecordedInOTC
@@ -4102,7 +4115,19 @@ Public Class Diagnostic
             _isPulveRecordedInOTC = value
         End Set
     End Property
+    <XmlElement("isPulveRecordedInOTC")>
+    Public Property isPulveRecordedInOTC_str() As String
+        Get
+            Return _isPulveRecordedInOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveRecordedInOTC = CBool(value)
+            End If
+        End Set
+    End Property
     Private _isPulveDownloadByExportOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveDownloadByExportOTC() As Boolean
         Get
             Return _isPulveDownloadByExportOTC
@@ -4111,13 +4136,36 @@ Public Class Diagnostic
             _isPulveDownloadByExportOTC = value
         End Set
     End Property
+    <XmlElement("isPulveDownloadByExportOTC")>
+    Public Property isPulveDownloadByExportOTC_str() As String
+        Get
+            Return _isPulveDownloadByExportOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveDownloadByExportOTC = CBool(value)
+            End If
+        End Set
+    End Property
     Private _isPulveDownloadByCheckKeyOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveDownloadByCheckKeyOTC() As Boolean
         Get
             Return _isPulveDownloadByCheckKeyOTC
         End Get
         Set(ByVal value As Boolean)
             _isPulveDownloadByCheckKeyOTC = value
+        End Set
+    End Property
+    <XmlElement("isPulveDownloadByCheckKeyOTC")>
+    Public Property isPulveDownloadByCheckKeyOTC_str() As String
+        Get
+            Return _isPulveDownloadByCheckKeyOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveDownloadByCheckKeyOTC = CBool(value)
+            End If
         End Set
     End Property
 End Class

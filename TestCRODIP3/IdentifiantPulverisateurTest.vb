@@ -127,48 +127,18 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.AreEqual(oIdent.dateUtilisation, oIdent2.dateUtilisation)
 
     End Sub
-    '<XmlInclude(GetType(IdentifiantPulverisateur))>
-    '<TestMethod()> Public Sub TESTSOAP()
-    '    Dim oIdent2 As IdentifiantPulverisateur
-    '    Dim nId As Long
+    <TestMethod()> Public Sub IdentOTCTest()
+        Dim oListe As New List(Of IdentifiantOTC)
 
-    '    nId = 144
-    '    ''Récupération des Idnentifiant Pulves
-    '    'Dim oSynchro As New Synchronisation(m_oAgent)
-    '    'Dim oLst As New List(Of SynchronisationElmt)()
-    '    'oLst = oSynchro.getListeElementsASynchroniserDESC(m_oAgent)
-    '    'For Each oelmt As SynchronisationElmt In oLst
-    '    '    If TypeOf oelmt Is SynchronisationElmtIdentifiantPulverisateur Then
-    '    '        oIdent = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, oelmt.IdentifiantEntier)
-    '    '        IdentifiantPulverisateurManager.Save(oIdent)
-    '    '        'on mémorise le dernier Indetifiant
-    '    '        nId = oIdent.id
-    '    '    End If
-    '    'Next
+        oListe.Add(New IdentifiantOTC("E001123546"))
+        oListe.Add(New IdentifiantOTC("E001123547"))
+        oListe.Add(New IdentifiantOTC("E001123548"))
+        oListe.Add(New IdentifiantOTC("E001123549"))
+        oListe.Add(New IdentifiantOTC("E001123540"))
 
-    '    'Rechargement du dernier Identifiant
-    '    oIdent2 = IdentifiantPulverisateurManager.getWSIdentifiantPulverisateurById(m_oAgent, nId.ToString())
-    '    oIdent2.libelle = "TEST"
-    '    oIdent2.SetEtatINUTILISABLE()
+        IdentifiantOTCManager.SaveList(oListe)
 
-    '    Dim bReturn As Boolean
-    '    Dim objStreamWriter As StreamWriter = Nothing
-
-    '    Dim ns As New XmlSerializerNamespaces()
-    '    ns.Add("", "")
-
-    '        objStreamWriter = New StreamWriter("./IP.xml")
-    '    Dim x As New XmlSerializer(oIdent2.GetType)
-    '    x.Serialize(objStreamWriter, oIdent2, ns)
-    '    bReturn = True
-
-    '    Dim obj As Object
-    '    obj = New Object() {m_oAgent.id.ToString(), oIdent2}
-    '    Dim x2 As New XmlSerializer(obj.GetType, New Type() {oIdent2.GetType()})
-    '    x2.Serialize(objStreamWriter, obj, ns)
-    '    objStreamWriter.Close()
-    '    bReturn = True
-
-
-    'End Sub
+        Assert.IsTrue(IdentifiantOTCManager.exists("E001123548"))
+        Assert.IsFalse(IdentifiantOTCManager.exists("Z001123458"))
+    End Sub
 End Class

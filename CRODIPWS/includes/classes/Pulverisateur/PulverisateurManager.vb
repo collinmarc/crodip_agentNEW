@@ -514,9 +514,14 @@ Public Class PulverisateurManager
     ''' <param name="pNumNat">Numéro national</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getPulverisateurByNumNat(ByVal pNumNat As String, pclientId As String) As Pulverisateur
-        Return getPulverisateurSQL("SELECT p.* FROM Pulverisateur p, ExploitationTOPulverisateur p2e WHERE p2e.idPulverisateur= p.id and p.numeroNational='" & pNumNat & "' and p2e.idExploitation = '" & pclientId & "' AND NOT isSupprimeCoProp")
+    Public Shared Function getPulverisateurByNumNat(ByVal pNumNat As String, Optional pclientId As String = "") As Pulverisateur
+        If String.IsNullOrEmpty(pclientId) Then
+            Return getPulverisateurSQL("SELECT p.* FROM Pulverisateur p WHERE p.numeroNational='" & pNumNat & "'")
+        Else
+            Return getPulverisateurSQL("SELECT p.* FROM Pulverisateur p, ExploitationTOPulverisateur p2e WHERE p2e.idPulverisateur= p.id and p.numeroNational='" & pNumNat & "' and p2e.idExploitation = '" & pclientId & "' AND NOT isSupprimeCoProp")
+        End If
     End Function
+
     ''' <summary>
     ''' Execution de la requete et retour udu pulvé associé
     ''' </summary>

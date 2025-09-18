@@ -1,7 +1,8 @@
 #TRUNK
 MASTER
 BUILD 20250910100000
-	0001661: Modification accès à la clé des pompes doseuse
+	0001661: Modification accès à la clé des pompes doseuses
+	0001657: Comparaison des identifiants pulvés sur la base nationale (OTC)
 
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC

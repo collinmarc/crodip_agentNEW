@@ -63,6 +63,7 @@ Public Class IdentifiantPulverisateurManager
                 SynchronisationManager.LogSynchroREPONSE(pObjIn, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 Info = DirectCast(Params(1), String)
+                ruid = DirectCast(Params(2), Integer)
                 SynchronisationManager.LogSynchroREPONSE(codeResponse, nomMethode)
 
             End If
@@ -70,7 +71,6 @@ Public Class IdentifiantPulverisateurManager
                 Case 2 ' UPDATE OK
                     pobjOut = WSgetById(ruid, "", puidAgent)
                 Case 4 ' CREATE OK
-                    ruid = DirectCast(Params(2), Integer)
                     pobjOut = WSgetById(ruid, "", puidAgent)
                 Case 1 ' NOK
                     CSDebug.dispError("IdentifiantPulveManager.WSSend - Code 1 : Erreur Base de données Serveur")

@@ -1382,6 +1382,10 @@ Public Class Pulverisateur
         NUMEROFORMATINCORRECT = 4
         NUMEROPART1FORMATINCORRECT = 5
         NUMEROPASDANSLALISTEOTC = 6
+        NUMEROE001AGENT_NOK_OTC_OK = 7
+        NUMEROE001AGENT_NOK_OTC_NOK = 8
+        NUMEROZZZZAGENT_NOK_OTC_OK = 9
+        NUMEROZZZZAGENT_NOK_OTC_NOK = 10
     End Enum
     ''' <summary>
     ''' Check numéro national Pulvérisateur
@@ -1394,6 +1398,12 @@ Public Class Pulverisateur
     Public Overridable Function CheckNumeroNational(pNumNatPart1 As String, pNumNatPart2 As String, pAgent As Agent, pbAjout As Boolean) As CheckResult
         Dim bReturn As CheckResult = CheckResult.OK
         Dim pNumNational As String = pNumNatPart1 & pNumNatPart2
+        If Not pbAjout And Me.numeroNational = pNumNational Then
+            'Si on n'est pas en ajout et qu'il n'y a pas eu de modif sur le numéro 
+            ' => pas de controle par rapport aux Identifiants Pulvés et OTC
+            Return CheckResult.OK
+        End If
+
         'Vérification Partie 1
         If Not checkPart1NumNat(pNumNatPart1) Then
             Return CheckResult.NUMEROPART1FORMATINCORRECT
@@ -1402,46 +1412,58 @@ Public Class Pulverisateur
         If pNumNatPart2.Length <> 6 Or Not IsNumeric(pNumNatPart2) Then
             bReturn = CheckResult.NUMEROFORMATINCORRECT
         End If
-        If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
-            'Pulve E001 CRODIP
-            If bReturn = CheckResult.OK And pbAjout Then
+        If bReturn = CheckResult.OK Then
+            If pNumNatPart1 = GlobalsCRODIP.GLOB_DIAG_NUMAGR Then
+                'Pulve E001 CRODIP
                 'En mode ajout , on vérifie toujours l'existence
                 If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
-                    bReturn = CheckResult.NUMEROEXISTANT
-                End If
-            End If
-            Dim bCheck As Boolean
-            bCheck = True
-            If Not pbAjout And Me.numeroNational = pNumNational Then
-                'Si on n'est pas en ajout et qu'il n'y a pas eu de modif sur le numéro 
-                ' => pas de controle par rapport aux Identifiants Pulvés
-                bCheck = False
-            End If
-            If bReturn = CheckResult.OK Then
-                ' Lecture de la liste des identifiant dispo
-                Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent)
-                If olst.Count > 0 And bCheck Then
-                    'S'il y a des identifiant Pulvés
-                    'Si on  test un numero CRODIP
-                    If pNumNational <> olst(0).numeroNational Then
-                        bReturn = CheckResult.NUMEROPASLEPREMIER
-                    End If
-                    Dim bDansLaListe As Boolean = False
-                    For Each oIdent As IdentifiantPulverisateur In olst
-                        If oIdent.numeroNational = pNumNational Then
-                            bDansLaListe = True
-                        End If
-                    Next
-                    If Not bDansLaListe Then
-                        bReturn = CheckResult.NUMEROPASDANSLALISTE
-                    End If
-                End If
-            End If
-        Else
-            'Pulve non indigo (E001)
-            'il faut que le numéro existe dans la base OTC
-            bReturn = CheckResult.NUMEROPASDANSLALISTEOTC
 
+                    bReturn = CheckResult.NUMEROEXISTANT
+                Else
+                    'E001 et n'existe pas dans la base Agent
+                    If IdentifiantOTCManager.exists(pNumNational) Then
+                        'L'identifiant Existe dans la base OTC 
+                        bReturn = CheckResult.NUMEROE001AGENT_NOK_OTC_OK
+                    Else
+                        'L'identifiant n'existe pas dans la base OTC 
+                        bReturn = CheckResult.OK
+                    End If
+                End If
+                If bReturn = CheckResult.OK Then
+                    ' Lecture de la liste des identifiant dispo
+                    Dim olst As List(Of IdentifiantPulverisateur) = IdentifiantPulverisateurManager.getListeInutilise(pAgent)
+                    If olst.Count > 0 Then
+                        'S'il y a des identifiant Pulvés
+                        'Si on  test un numero CRODIP
+                        If pNumNational <> olst(0).numeroNational Then
+                            bReturn = CheckResult.NUMEROPASLEPREMIER
+                        End If
+                        Dim bDansLaListe As Boolean = False
+                        For Each oIdent As IdentifiantPulverisateur In olst
+                            If oIdent.numeroNational = pNumNational Then
+                                bDansLaListe = True
+                            End If
+                        Next
+                        If Not bDansLaListe Then
+                            bReturn = CheckResult.NUMEROPASDANSLALISTE
+                        End If
+                    End If
+                End If
+            Else
+                'Pulve non indigo (EZZZZZ)
+                If PulverisateurManager.getNbrePulverisateursParNumeroNational(pNumNational) > 0 Then
+                    bReturn = CheckResult.NUMEROEXISTANT
+                Else
+                    'EZZZZZ et n'existe pas dans la base Agent
+                    If IdentifiantOTCManager.exists(pNumNational) Then
+                        'L'identifiant Existe dans la base OTC 
+                        bReturn = CheckResult.NUMEROZZZZAGENT_NOK_OTC_OK
+                    Else
+                        'L'identifiant n'existe pas dans la base OTC 
+                        bReturn = CheckResult.NUMEROZZZZAGENT_NOK_OTC_NOK
+                    End If
+                End If
+            End If
         End If
         Return bReturn
     End Function
@@ -2263,12 +2285,24 @@ Public Class Pulverisateur
         End Set
     End Property
     Private _isAnomalies As Boolean
+    <XmlIgnoreAttribute>
     Public Property isAnomalies() As Boolean
         Get
             Return _isAnomalies
         End Get
         Set(ByVal value As Boolean)
             _isAnomalies = value
+        End Set
+    End Property
+    <XmlElement("isAnnomalie")>
+    Public Property isAnomalies_str() As String
+        Get
+            Return _isAnomalies
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isAnomalies = value
+            End If
         End Set
     End Property
     Private _niveauAnomalies As Integer
@@ -2328,6 +2362,7 @@ Public Class Pulverisateur
         End Set
     End Property
     Private _isPulveRecordedInOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveRecordedInOTC() As Boolean
         Get
             Return _isPulveRecordedInOTC
@@ -2336,7 +2371,19 @@ Public Class Pulverisateur
             _isPulveRecordedInOTC = value
         End Set
     End Property
+    <XmlElement("isPulveRecordedInOTC")>
+    Public Property isPulveRecordedInOTC_str() As String
+        Get
+            Return _isPulveRecordedInOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveRecordedInOTC = CBool(value)
+            End If
+        End Set
+    End Property
     Private _isPulveDownloadByExportOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveDownloadByExportOTC() As Boolean
         Get
             Return _isPulveDownloadByExportOTC
@@ -2345,7 +2392,19 @@ Public Class Pulverisateur
             _isPulveDownloadByExportOTC = value
         End Set
     End Property
+    <XmlElement("isPulveDownloadByExportOTC")>
+    Public Property isPulveDownloadByExportOTC_str() As String
+        Get
+            Return _isPulveDownloadByExportOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveDownloadByExportOTC = CBool(value)
+            End If
+        End Set
+    End Property
     Private _isPulveDownloadByCheckKeyOTC As Boolean
+    <XmlIgnoreAttribute()>
     Public Property isPulveDownloadByCheckKeyOTC() As Boolean
         Get
             Return _isPulveDownloadByCheckKeyOTC
@@ -2354,5 +2413,15 @@ Public Class Pulverisateur
             _isPulveDownloadByCheckKeyOTC = value
         End Set
     End Property
-
+    <XmlElement("isPulveDownloadByCheckKeyOTC")>
+    Public Property isPulveDownloadByCheckKeyOTC_str() As String
+        Get
+            Return _isPulveDownloadByCheckKeyOTC
+        End Get
+        Set(ByVal value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                _isPulveDownloadByCheckKeyOTC = CBool(value)
+            End If
+        End Set
+    End Property
 End Class
