@@ -51,13 +51,18 @@ Public Class GPSManager
         ' Configurer le port série
         serialPort = New SerialPort()
         init()
-        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
+        'TrtEvtOSR = Traitement de l'Evenement OonSerialRecevied
+        ' Si pas de traietement on n'active pas le Handler, la lecture se fera à la demande
+        If My.Settings.TrtEvtOSR Then
+            AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
+        End If
     End Sub
 
     ' Méthode pour configurer le port série
     Public Sub ConfigurerPortSerie(portName As String, baudRate As Integer)
         serialPort.PortName = portName
         serialPort.BaudRate = baudRate
+        serialPort.ReadTimeout = My.Settings.intervalGPS / 2
         If Not serialPort.IsOpen Then
             serialPort.Open()
         End If
@@ -77,16 +82,36 @@ Public Class GPSManager
         End If
 
     End Sub
-    ' Gestionnaire d'événements pour les données série reçues
-    Private Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
-        If serialPort.IsOpen() Then
-            Dim serialData As String = serialPort.ReadLine() 'Utiliser un ReadLine plutot qu'un readexisting
-            Dim breturn As Boolean
-            breturn = ProcessNMEAData(serialData)
-            If breturn And Not GPSActif Then
-                'Déclarer le GPS Actif
-                GPSActif = True
+    Public Sub Close()
+        If serialPort.IsOpen Then
+            If My.Settings.TrtEvtOSR Then
+                RemoveHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
             End If
+            serialPort.Close()
+        End If
+    End Sub
+    ' Gestionnaire d'événements pour les données série reçues
+    Public Sub OnSerialDataReceived(sender As Object, e As SerialDataReceivedEventArgs)
+        If serialPort.IsOpen() Then
+            Dim serialData As String
+            Dim bContinue = True
+            'Lecture du port Serie tant qu'il y a de la donnée
+            While bContinue
+                Try
+                    serialData = serialPort.ReadLine() 'Utiliser un ReadLine plutot qu'un readexisting
+                    Dim breturn As Boolean
+                    breturn = ProcessNMEAData(serialData)
+                    If breturn And Not GPSActif Then
+                        'Déclarer le GPS Actif
+                        GPSActif = True
+                    End If
+                    If My.Settings.TrtEvtOSR Then
+                        bContinue = False
+                    End If
+                Catch ex As Exception
+                    bContinue = False
+                End Try
+            End While
         Else
             Console.WriteLine("SerialPort Close")
         End If
@@ -338,22 +363,25 @@ Public Class GPSManager
                 Dim start As DateTime = DateTime.Now
                 While (DateTime.Now - start).TotalSeconds < 2 And Not bReturn
                     Dim Data As String
-                    Try
-                        Port.ReadTimeout = 1000
-                        Data = Port.ReadLine()
-                    Catch ex As Exception
-                        Data = ""
-                    End Try
-                    'Dim data As String = Port.ReadLine() 'utiliser un readLine plutot qu'un readExisting
-                    Console.WriteLine("GpsManager.testPort(" & pPortNAme & ") data=" & Data)
-                    If data.Contains("$GPGGA") OrElse data.Contains("$GPRMC") OrElse data.Contains("$GNGGA") OrElse data.Contains("$GNRMC") Then
-                        Port.Close()
-                        GPSActif = True
-                        bReturn = True
-                    Else
-                        Port.Close()
-                    End If
+                    Dim bContinue As Boolean
+                    bContinue = True
+                    While bContinue
+                        Try
+                            Port.ReadTimeout = My.Settings.intervalGPS / 2
+                            Data = Port.ReadLine()
+                        Catch ex As Exception
+                            Data = ""
+                            bContinue = False
+                        End Try
+                        'Dim data As String = Port.ReadLine() 'utiliser un readLine plutot qu'un readExisting
+                        Console.WriteLine("GpsManager.testPort(" & pPortNAme & ") data=" & Data)
+                        If Data.Contains("$GPGGA") OrElse Data.Contains("$GPRMC") OrElse Data.Contains("$GNGGA") OrElse Data.Contains("$GNRMC") Then
+                            GPSActif = True
+                            bReturn = True
+                        End If
+                    End While
                 End While
+                Port.Close()
             End Using
         Catch ex As Exception
 
@@ -363,7 +391,10 @@ Public Class GPSManager
 
     Private Sub TraceMsg(pMessage As String)
         Console.WriteLine(DateTime.Now.ToLongTimeString() & ":" & pMessage)
-        System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)
+        If My.Settings.Log Then
+
+            System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)
+        End If
     End Sub
     Public Function IsSerialPortOpen() As Boolean
         Return serialPort.IsOpen
@@ -385,6 +416,7 @@ Public Class GPSManager
         Me.startLongitude = 0.0
         Me.startTime = DateTime.MinValue
         Me.EndTime = DateTime.MinValue
+        _tabVitesse = New Queue(Of Decimal)
     End Sub
     Private _tabVitesse As New Queue(Of Decimal)
     Public VitesseConstante As Boolean = False
@@ -406,6 +438,15 @@ Public Class GPSManager
             Me.VitesseConstante = False
         End If
     End Sub
+    Public Function getVitesse() As Decimal
+        If _tabVitesse.Count = My.Settings.nbIntervalleVitesseConstante Then
+            Return _tabVitesse.Average()
+        Else
+            Return 0D
+        End If
+    End Function
+
+
     Public Function calculeVitesse(pdistance As Decimal, pTemps As Double) As Decimal
         Dim dReturn As Decimal = 0
         If pTemps <> 0 And pdistance <> 0 Then

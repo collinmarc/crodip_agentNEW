@@ -55,10 +55,11 @@ Public Class Form1
         gpsManager = New GPSManager()
 
         'on lance un premier Timer pour Trouver le Port GPS
-        TimerLectureGPS.Interval = 2000 'Toutes les 2 secondes
+        TimerLectureGPS.Interval = My.Settings.intervalGPS
         TimerLectureGPS.Enabled = True
 
         AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
+
         TimerLectureGPS.Start()
 
         CkTest.Checked = My.Settings.Test
@@ -85,6 +86,7 @@ Public Class Form1
 
                 'on redemarre le timer pour récupérer les données
                 AddHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
+                TimerLectureGPS.Interval = My.Settings.intervalGPS
                 TimerLectureGPS.Start()
 
             Case ETAT.Etat_4MESUREARRETABLE
@@ -114,6 +116,7 @@ Public Class Form1
 
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
         TimerLectureGPS.Stop()
+        gpsManager.Close()
         Me.Close()
     End Sub
 
@@ -169,11 +172,12 @@ Public Class Form1
 
         'on redemarre le timer pour attendre la vitesse stable
         AddHandler TimerLectureGPS.Tick, AddressOf GPS_AttentevitesseStable
+        TimerLectureGPS.Interval = My.Settings.intervalGPS
         TimerLectureGPS.Start()
     End Sub
     Private Sub SetEtat2ENATTENTE()
         TraceMsg("Etat2 en attente de demarrage")
-        lblEtat.Text = "VITESSE STABLE"
+        lblEtat.Text = "VITESSE STABLE[" & gpsManager.getVitesse & "]"
         If Not ckVitessseStable.Checked Then
             ckVitessseStable.Checked = True
         End If
@@ -317,10 +321,14 @@ Public Class Form1
         Dim temps As Double
         'Récupération de la distance
         If Not String.IsNullOrEmpty(portName) Then
+            If Not My.Settings.TrtEvtOSR Then
+                'Pas de traitement de l'event OnSerialReveived => Lecture à la demande
+                gpsManager.OnSerialDataReceived(Nothing, Nothing)
+            End If
             TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
-            distance = gpsManager.distance
-        Else
-            Randomize()
+                distance = gpsManager.distance
+            Else
+                Randomize()
             TraceMsg("Ecoute generée[" & distance & "]")
             distance = _MesureEncours.Distance + (Rnd() * 10)
         End If
@@ -351,14 +359,19 @@ Public Class Form1
 
         'Récupération de la distance
         If Not String.IsNullOrEmpty(portName) Then
-            If Not gpsManager.bDataUpdated Then
-                'Pas de Data Mise à jour , on sort
-                Exit Sub
+            If Not My.Settings.TrtEvtOSR Then
+                'Pas de traitement de l'event OnSerialReveived => Lecture à la demande
+                gpsManager.OnSerialDataReceived(Nothing, Nothing)
             End If
-            TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
-            distance = gpsManager.distance
-        Else
-            Randomize()
+            If Not gpsManager.bDataUpdated Then
+                    'Pas de Data Mise à jour , on sort
+                    Console.WriteLine("Pas de donnée")
+                    Exit Sub
+                End If
+                TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
+                distance = gpsManager.distance
+            Else
+                Randomize()
             TraceMsg("Ecoute generée[" & distance & "]")
             distance = _MesureEncours.Distance + (Rnd() * 10)
         End If
@@ -429,7 +442,9 @@ Public Class Form1
 
     Private Sub TraceMsg(pMessage As String)
         Console.WriteLine(pMessage)
-        System.IO.File.AppendAllText("./CRODIPGPS.LOG", pMessage & vbCrLf)
+        If My.Settings.Log Then
+            System.IO.File.AppendAllText("./CRODIPGPS.LOG", pMessage & vbCrLf)
+        End If
     End Sub
 
     Private Sub ckGPSActif_CheckedChanged(sender As Object, e As EventArgs) Handles ckGPSActif.CheckedChanged

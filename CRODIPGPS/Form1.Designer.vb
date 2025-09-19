@@ -28,7 +28,6 @@ Partial Class Form1
         Me.PnlCacheCkTest = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.laTempsClick = New MaterialSkin.Controls.MaterialLabel()
-        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.laMesure = New MaterialSkin.Controls.MaterialLabel()
         Me.ckVitessseStable = New MaterialSkin.Controls.MaterialCheckbox()
         Me.ckGPSActif = New MaterialSkin.Controls.MaterialCheckbox()
@@ -60,11 +59,12 @@ Partial Class Form1
         Me.laVitesse = New MaterialSkin.Controls.MaterialLabel()
         Me.lblEtat = New MaterialSkin.Controls.MaterialLabel()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.m_bsrcGPSMesure = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TimerLectureGPS
@@ -147,10 +147,6 @@ Partial Class Form1
         Me.laTempsClick.TabIndex = 47
         Me.laTempsClick.Text = "90"
         Me.laTempsClick.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'm_bsrcGPSMesure
-        '
-        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
         '
         'laMesure
         '
@@ -708,6 +704,10 @@ Partial Class Form1
         Me.ImageList1.Images.SetKeyName(2, "r.jpg")
         Me.ImageList1.Images.SetKeyName(3, "v.jpg")
         '
+        'm_bsrcGPSMesure
+        '
+        Me.m_bsrcGPSMesure.DataSource = GetType(CRODIPGPS.GPSMesure)
+        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
@@ -723,11 +723,11 @@ Partial Class Form1
         Me.Text = "Acquisition GPS CRODIP"
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanelMesures.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
+        CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

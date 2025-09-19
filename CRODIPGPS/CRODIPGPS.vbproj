@@ -318,6 +318,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GpsInfo_S-0PC-07-2206221.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\g.jpg" />
     <Content Include="img\j.jpg" />
     <Content Include="img\r.jpg" />

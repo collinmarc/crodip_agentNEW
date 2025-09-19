@@ -119,15 +119,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public ReadOnly Property Test() As Boolean
-            Get
-                Return CType(Me("Test"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public ReadOnly Property ProcessGPGGA() As Boolean
             Get
@@ -150,15 +141,6 @@ Namespace My
         Public ReadOnly Property HDOPMax() As Decimal
             Get
                 Return CType(Me("HDOPMax"),Decimal)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1000")>  _
-        Public ReadOnly Property intervalGPS() As Integer
-            Get
-                Return CType(Me("intervalGPS"),Integer)
             End Get
         End Property
         
@@ -222,6 +204,42 @@ Namespace My
         Public ReadOnly Property Port() As String
             Get
                 Return CType(Me("Port"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public ReadOnly Property intervalGPS() As Integer
+            Get
+                Return CType(Me("intervalGPS"),Integer)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property Log() As Boolean
+            Get
+                Return CType(Me("Log"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property Test() As Boolean
+            Get
+                Return CType(Me("Test"),Boolean)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property TrtEvtOSR() As Boolean
+            Get
+                Return CType(Me("TrtEvtOSR"),Boolean)
             End Get
         End Property
     End Class
