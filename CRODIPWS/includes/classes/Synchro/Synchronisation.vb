@@ -1043,6 +1043,18 @@ Public Class Synchronisation
             Notice("Debut synchro descendante")
             CSDebug.dispInfo("Debut synchro descendante")
             SynchronisationManager.LogSynchroStart("DESC")
+            If IdentifiantOTCManager.Count() = 0 Then
+                Notice("Initialisation de la base des identifants OTC (5mn)")
+                CSDebug.dispInfo("Initialisation de la base des identifants OTC")
+                Try
+                    Dim oListe As New List(Of IdentifiantOTC)
+                    oListe = IdentifiantOTCManager.WSGetList()
+                    IdentifiantOTCManager.SaveList(oListe)
+                Catch ex As Exception
+
+                End Try
+            End If
+
             Dim oList As AgentList
             oList = AgentManager.getAgentList(m_Agent.uidstructure)
             lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(PCASynchroniser, m_Agent)

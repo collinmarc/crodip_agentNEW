@@ -141,4 +141,11 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsTrue(IdentifiantOTCManager.exists("E001123548"))
         Assert.IsFalse(IdentifiantOTCManager.exists("Z001123458"))
     End Sub
+    <TestMethod()> Public Sub IdentOTCWSGetListTest()
+        Dim oListe As New List(Of IdentifiantOTC)
+        oListe = IdentifiantOTCManager.WSGetList()
+        Assert.IsNotNull(oListe)
+        Assert.IsTrue(IdentifiantOTCManager.SaveList(oListe))
+
+    End Sub
 End Class

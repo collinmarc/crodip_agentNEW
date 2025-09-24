@@ -177,6 +177,7 @@ Public Class accueil
     Friend WithEvents DateModificationCrodipSDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents lblPC As Label
     Friend WithEvents Label14 As Label
+    Friend WithEvents btnRAZBaseOTC As Button
 
 
 #Region " Code généré par le Concepteur Windows Form "
@@ -710,6 +711,7 @@ Public Class accueil
         Me.dtpFin = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.rbDatesFacture = New System.Windows.Forms.RadioButton()
+        Me.btnRAZBaseOTC = New System.Windows.Forms.Button()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabControl.SuspendLayout()
         Me.tabControl_accueil.SuspendLayout()
@@ -2439,6 +2441,7 @@ Public Class accueil
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(236, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.btnRAZBaseOTC)
         Me.Panel2.Controls.Add(Me.btnMAJPulveFromDiag)
         Me.Panel2.Controls.Add(Me.btnMAJsynchroAgent)
         Me.Panel2.Controls.Add(Me.Button1)
@@ -4241,6 +4244,21 @@ Public Class accueil
         Me.rbDatesFacture.TabIndex = 0
         Me.rbDatesFacture.Text = "Date de facture : Entre le "
         Me.rbDatesFacture.UseVisualStyleBackColor = True
+        '
+        'btnRAZBaseOTC
+        '
+        Me.btnRAZBaseOTC.BackgroundImage = CType(resources.GetObject("btnRAZBaseOTC.BackgroundImage"), System.Drawing.Image)
+        Me.btnRAZBaseOTC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnRAZBaseOTC.FlatAppearance.BorderSize = 0
+        Me.btnRAZBaseOTC.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btnRAZBaseOTC.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
+        Me.btnRAZBaseOTC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRAZBaseOTC.Location = New System.Drawing.Point(686, 182)
+        Me.btnRAZBaseOTC.Name = "btnRAZBaseOTC"
+        Me.btnRAZBaseOTC.Size = New System.Drawing.Size(194, 36)
+        Me.btnRAZBaseOTC.TabIndex = 41
+        Me.btnRAZBaseOTC.Text = "RAZ Base OTC"
+        Me.btnRAZBaseOTC.UseVisualStyleBackColor = True
         '
         'accueil
         '
@@ -7237,5 +7255,20 @@ Public Class accueil
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Process.Start(My.Settings.epulve)
+    End Sub
+
+    Private Sub btnRAZBaseOTC_Click(sender As Object, e As EventArgs) Handles btnRAZBaseOTC.Click
+        Dim oCSDB As CSDb
+        Cursor = Cursors.WaitCursor
+        Try
+            oCSDB = New CSDb(True)
+            oCSDB.Execute("DELETE FROM IdentifiantOTC")
+            oCSDB.free()
+        Catch ex As Exception
+            CSDebug.dispError("RAZBaseOTC ERR", ex)
+
+        End Try
+        Cursor = Cursors.Default
+
     End Sub
 End Class
