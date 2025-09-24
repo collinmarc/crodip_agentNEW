@@ -4,7 +4,7 @@ Imports CRODIPWS
 
 Public Class FrmAddCoProp
 
-    Private m_lstExploit As List(Of Exploitation)
+    Private m_lstExploit As List(Of ExploitationTOPulverisateur)
     Private m_oAgent As Agent
     Private m_odiag As Diagnostic
     Private m_oPulverisateur As Pulverisateur
@@ -19,7 +19,7 @@ Public Class FrmAddCoProp
 
     Public Sub Setcontext(pDiag As Diagnostic, pAgent As Agent)
         m_odiag = pDiag
-        m_lstExploit = ExploitationManager.GetListExploitationByPulverisateurId(m_odiag.pulverisateurId)
+        m_lstExploit = ExploitationTOPulverisateurManager.getListByPulverisateurId(m_odiag.pulverisateurId)
         m_oAgent = pAgent
         m_oPulverisateur = PulverisateurManager.getPulverisateurById(m_odiag.pulverisateurId)
 
@@ -41,8 +41,9 @@ Public Class FrmAddCoProp
         OExploit.raisonSociale = "Nouveau."
         frm.setContexte(False, OExploit, m_oAgent, Nothing)
         If frm.ShowDialog() = DialogResult.OK Then
-            m_lstExploit.Add(OExploit)
-            m_bsrcExploitant.Add(OExploit)
+            Dim oExploit2Pulve As New ExploitationTOPulverisateur(OExploit, m_oPulverisateur)
+            m_lstExploit.Add(oExploit2Pulve)
+            m_bsrcExploitant.Add(oExploit2Pulve)
         End If
         frm.Close()
     End Sub
@@ -51,11 +52,13 @@ Public Class FrmAddCoProp
         Dim ofrm As New dlgListExploitant()
         ofrm.SetContexte(m_oAgent)
         If ofrm.ShowDialog() = DialogResult.OK Then
+
             If m_lstExploit.Where(Function(oExploit)
                                       Return oExploit.id = ofrm.oExploit.id
                                   End Function).Count() = 0 Then
-                m_lstExploit.Add(ofrm.oExploit)
-                m_bsrcExploitant.Add(ofrm.oExploit)
+                Dim oExploit2Pulve As New ExploitationTOPulverisateur(ofrm.oExploit, m_oPulverisateur)
+                m_lstExploit.Add(oExploit2Pulve)
+                m_bsrcExploitant.Add(oExploit2Pulve)
                 m_bsrcExploitant.MoveLast()
             End If
         End If
@@ -67,10 +70,10 @@ Public Class FrmAddCoProp
     End Sub
 
     Private Sub SuppressionCoProp()
-        Dim m_oExploit As Exploitation
+        Dim oExploit2Pulve As ExploitationTOPulverisateur
         If m_bsrcExploitant.Current IsNot Nothing Then
-            m_oExploit = m_bsrcExploitant.Current
-            m_oExploit.isSuppressionCoprop = True
+            oExploit2Pulve = m_bsrcExploitant.Current
+            oExploit2Pulve.isSupprimeCoProp = True
             If m_dgvCoProp.CurrentRow IsNot Nothing Then
                 m_dgvCoProp.Rows.Remove(m_dgvCoProp.CurrentRow)
             End If
@@ -83,8 +86,7 @@ Public Class FrmAddCoProp
     Private Sub SauvegarderExploitants()
         'Sauvegarde des Exploitants
         m_lstExploit.ForEach(Sub(oExploit)
-                                 ExploitationManager.save(oExploit, m_oAgent)
-                                 ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, m_oPulverisateur.uid, oExploit.uid, oExploit.isSuppressionCoprop, m_oAgent)
+                                 ExploitationTOPulverisateurManager.save(oExploit, m_oAgent, False)
                              End Sub)
     End Sub
 

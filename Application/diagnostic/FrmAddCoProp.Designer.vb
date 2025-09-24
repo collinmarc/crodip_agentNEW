@@ -179,7 +179,7 @@ Partial Class FrmAddCoProp
         '
         'm_bsrcExploitant
         '
-        Me.m_bsrcExploitant.DataSource = GetType(Exploitation)
+        Me.m_bsrcExploitant.DataSource = GetType(ExploitationTOPulverisateur)
         '
         'FrmAddCoProp
         '

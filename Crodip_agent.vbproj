@@ -1027,6 +1027,7 @@
       <SubType>Form</SubType>
     </Compile>
     <None Include="My Project\DataSources\CRODIPWS.Annomalie.datasource" />
+    <None Include="My Project\DataSources\CRODIPWS.ExploitationTOPulverisateur.datasource" />
     <None Include="My Project\DataSources\CRODIPWS.PoolBuse.datasource" />
     <None Include="Service References\WSCRODIP2\configuration91.svcinfo" />
     <None Include="Service References\WSCRODIP2\configuration.svcinfo" />

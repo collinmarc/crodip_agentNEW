@@ -9,6 +9,8 @@ Public Class DiagnosticItemAuto
         Actif
         Inactif
     End Enum
+    Public Sub New()
+    End Sub
 
     Public Sub New(idDiagnostic As String, pItem As String, pValue As String, Optional pCause As String = "", Optional pCodeEtat As String = "")
         MyBase.New(idDiagnostic, pItem, pValue, pCause, pCodeEtat)

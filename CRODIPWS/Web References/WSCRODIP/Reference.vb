@@ -36,6 +36,7 @@ Namespace WSCRODIP
         XmlInclude(GetType(CRODIPWS.ExploitationTOPulverisateur)),
         XmlInclude(GetType(CRODIPWS.Diagnostic)),
         XmlInclude(GetType(CRODIPWS.DiagnosticItem)),
+        XmlInclude(GetType(CRODIPWS.DiagnosticItemAuto)),
         XmlInclude(GetType(CRODIPWS.DiagnosticItem())),
         XmlInclude(GetType(CRODIPWS.DiagnosticBuses)),
         XmlInclude(GetType(CRODIPWS.DiagnosticBuses())),

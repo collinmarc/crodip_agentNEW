@@ -256,7 +256,8 @@ Public Class PulverisateurManager
             'En synchro, le ClientId n'est pas connu, l'exploitToPulve viendra ensuite
             'Création de l'exploitToPulve
             If pExploit IsNot Nothing Then
-                ExploitationTOPulverisateurManager.save(poPulve.id, pExploit.id, poPulve.uid, pExploit.uid, False, pAgent)
+                Dim oExploit2Pulve As New ExploitationTOPulverisateur(pExploit, poPulve)
+                ExploitationTOPulverisateurManager.save(oExploit2Pulve, pAgent)
             End If
             'MAJ de l'exploitation pour forcer la synchro de l'exploitation
             If pExploit IsNot Nothing Then

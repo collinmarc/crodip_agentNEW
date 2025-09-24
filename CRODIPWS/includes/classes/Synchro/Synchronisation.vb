@@ -579,7 +579,10 @@ Public Class Synchronisation
             Case -1 ' ERROR
                 CSDebug.dispFatal("Synchronisation::runAscSynchro(sendWSExploitationTOPulverisateur) - Erreur Locale")
             Case 0, 2, 4 ' OK
-                ExploitationTOPulverisateurManager.save(UpdatedObject, m_Agent, True)
+                ExploitationTOPulverisateurManager.save(UpdatedObject, m_Agent, True) 'pour stocker le uid si besoin
+                If UpdatedObject.isSupprimeCoProp Then
+                    ExploitationTOPulverisateurManager.delete(UpdatedObject)
+                End If
                 Dim oElement As SynchronisationElmt
                 oElement = SynchronisationElmt.CreateSynchronisationElmt(SynchronisationElmtExploitationToPulverisateur.getLabelGet(), m_SynchroBoolean)
                 oElement.IdentifiantChaine = pExploitationTOPulverisateur.id

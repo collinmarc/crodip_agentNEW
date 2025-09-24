@@ -1,3 +1,4 @@
+Imports System.Collections.Generic
 Imports CRODIPWS
 
 Public Class parentContener
@@ -274,6 +275,26 @@ Public Class parentContener
         End If
         oEtatFDiag = oEtatFDiag.Action(pAction)
         If oEtatFDiag Is Nothing Or TypeOf oEtatFDiag Is EtatFDiagDepart Then
+            If GlobalsCRODIP.GLOB_NETWORKAVAILABLE Then
+                If MessageBox.Show("Voulez-vous synchroniser votre controle avec le CRODIP ?", "Synchronisation du controle", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Dim osynchro As New Synchronisation(agentCourant)
+                    Dim oExploit As Exploitation = ExploitationManager.getExploitationById(diagnosticCourant.proprietaireId)
+                    Dim oPulve As Pulverisateur = PulverisateurManager.getPulverisateurById(diagnosticCourant.pulverisateurId)
+                    Dim olstExploit2Pulve As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getListByPulverisateurId(oPulve.id, True)
+                    osynchro.RunASCSynchroExploit(oExploit)
+                    osynchro.RunAscSynchroPulve(oPulve)
+                    For Each oExploit2Pulve As ExploitationTOPulverisateur In olstExploit2Pulve
+                        osynchro.RunAscSynchroExploit2Pulve(oExploit2Pulve)
+                    Next
+                    osynchro.runascSynchroDiag(agentCourant, diagnosticCourant)
+                    diagnosticCourant = DiagnosticManager.getDiagnosticById(diagnosticCourant.id)
+                    If diagnosticCourant.isAnomalies Then
+                        MessageBox.Show("Des annomalies ont été détectées par le CRODIP, Connectez vous à E-pulve pour les vérifier", "Anomalies détectées par le CRODIP", MessageBoxButtons.OK)
+                    End If
+                    Cursor = Cursors.Default
+                End If
+            End If
             CloseDiagnostic()
         Else
             If oEtatFDiag.IsVisible Then

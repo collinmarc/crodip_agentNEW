@@ -711,9 +711,9 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         PulverisateurManager.save(oPUlve, oExploitation, m_oAgent)
         Dim oReturnP As Pulverisateur
         PulverisateurManager.WSSend(oPUlve, oReturnP)
-        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, False, m_oAgent)
+        ExploitationTOPulverisateurManager.save(0, oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, False, m_oAgent)
 
-        Dim olst As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id)
+        Dim olst As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getListByPulverisateurId(oPUlve.id)
         Assert.AreEqual(2, olst.Count)
         Assert.AreEqual(False, olst(0).isSupprimeCoProp)
         Assert.AreEqual(False, olst(1).isSupprimeCoProp)
@@ -727,8 +727,8 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Assert.IsFalse(oExploitToPulve.isSupprimeCoProp)
         System.Threading.Thread.Sleep(1000)
         'Suppression du 2nd Propriétaire
-        ExploitationTOPulverisateurManager.save(oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, True, m_oAgent)
-        olst = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id, True)
+        ExploitationTOPulverisateurManager.save(0, oPUlve.id, oExploitation2.id, oPUlve.uid, oExploitation2.uid, True, m_oAgent)
+        olst = ExploitationTOPulverisateurManager.getListByPulverisateurId(oPUlve.id, True)
         Assert.AreEqual(2, olst.Count)
         Assert.AreEqual(False, olst(0).isSupprimeCoProp)
         Assert.AreEqual(True, olst(1).isSupprimeCoProp)

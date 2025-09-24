@@ -1677,7 +1677,12 @@ Public Class frmdiagnostic_facturationCoProp
         m_olstExploit.ForEach(Sub(oExploit)
                                   ExploitationManager.save(oExploit, m_oAgent)
                                   If m_oPulverisateur IsNot Nothing Then
-                                      ExploitationTOPulverisateurManager.save(m_oPulverisateur.id, oExploit.id, m_oPulverisateur.uid, oExploit.uid, oExploit.isSuppressionCoprop, m_oAgent)
+                                      Dim oE2P As ExploitationTOPulverisateur = ExploitationTOPulverisateurManager.getExploitationTOPulverisateurByExploitIdAndPulverisateurId(oExploit.id, m_oPulverisateur.id)
+                                      If oE2P.id = "" Then
+                                          oE2P = New ExploitationTOPulverisateur(oExploit, m_oPulverisateur)
+                                      End If
+                                      oE2P.isSupprimeCoProp = oExploit.isSuppressionCoprop
+                                      ExploitationTOPulverisateurManager.save(oE2P, m_oAgent)
                                   End If
                               End Sub)
     End Sub

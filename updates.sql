@@ -712,6 +712,8 @@
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Annomalie SRV');
 
   CREATE TABLE IdentifiantOTC (IdentOTC Text); 
-
 INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','IdentOTC');
 
+  DELETE from  ExploitationTOPulverisateur WHERE uid <>0 and isSupprimeCoProp = 1;
+  Update  ExploitationTOPulverisateur set aid = id;
+  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','ExploitToPulve');
