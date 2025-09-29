@@ -12,6 +12,7 @@ Public Class Form1
     Dim m2 As GPSMesure
     Public elapsedTime As TimeSpan
     Private startTime As DateTime
+    Dim TimerDetectionGPS As System.Timers.Timer
 
     Private gpsManager As GPSManager
     Private portName As String
@@ -58,13 +59,13 @@ Public Class Form1
         TimerLectureGPS.Interval = My.Settings.intervalGPS
         TimerLectureGPS.Enabled = True
 
-        AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
-
-        TimerLectureGPS.Start()
-
         CkTest.Checked = My.Settings.Test
+        ModeTest(My.Settings.Test)
+
         laTempsClick.Visible = My.Settings.AffichageTempsClick
-        lblEtat.Visible = CkTest.Checked
+
+        AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
+        TimerLectureGPS.Start()
     End Sub
 
     Private Sub cbMesure_Click(sender As Object, e As EventArgs) Handles cbMesure.Click
@@ -80,11 +81,14 @@ Public Class Form1
                 _MesureEncours.VitesseLue = 0
                 _MesureEncours.startClick = DateTime.Now
                 _MesureEncours.EndClick = DateTime.MinValue
-                gpsManager.init()
+                _MesureEncours.lstTraces.Clear()
+                gpsManager.init(pPrendreEnCompteLADerniereTraceGGA:=True)
                 m_bsrcGPSMesure.ResetBindings(False)
                 SetAction(ACTIONFORM.Action_DEMARRER)
 
                 'on redemarre le timer pour récupérer les données
+                'On recupère la dernière donnée
+                GPS_RecupDonnees(Nothing, Nothing)
                 AddHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
                 TimerLectureGPS.Interval = My.Settings.intervalGPS
                 TimerLectureGPS.Start()
@@ -96,6 +100,7 @@ Public Class Form1
                 RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
 
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
+                _MesureEncours.lstTraces.AddRange(gpsManager.getTraces())
                 m_bsrcGPSMesure.ResetCurrentItem()
                 SetAction(ACTIONFORM.Action_DEMARRER)
 
@@ -117,6 +122,7 @@ Public Class Form1
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
         TimerLectureGPS.Stop()
         gpsManager.Close()
+        Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
 
@@ -140,9 +146,6 @@ Public Class Form1
     Private Sub SetEtat1GPSACTIF()
         TraceMsg("Etat1 GPS ACTIF")
         lblEtat.Text = "GPSACTIF(" & portName & "," & My.Settings.VitessePort & ")"
-        If Not ckGPSActif.Checked Then
-            ckGPSActif.Checked = True
-        End If
         _EtatForm = ETAT.Etat_1GPSACTIF
         MettreAJourThemeLight()
         'cbMesure.Text = "Démarrer"
@@ -155,7 +158,6 @@ Public Class Form1
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
         m_bsrcGPSMesure.Position = p
         CbMesureSuivante.Enabled = False
-        ckVitessseStable.Checked = False
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
         SetVitesseLueVisible(False)
@@ -171,6 +173,7 @@ Public Class Form1
         m_bsrcGPSMesure.ResetBindings(False)
 
         'on redemarre le timer pour attendre la vitesse stable
+        RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
         AddHandler TimerLectureGPS.Tick, AddressOf GPS_AttentevitesseStable
         TimerLectureGPS.Interval = My.Settings.intervalGPS
         TimerLectureGPS.Start()
@@ -178,9 +181,6 @@ Public Class Form1
     Private Sub SetEtat2ENATTENTE()
         TraceMsg("Etat2 en attente de demarrage")
         lblEtat.Text = "VITESSE STABLE[" & gpsManager.getVitesse & "]"
-        If Not ckVitessseStable.Checked Then
-            ckVitessseStable.Checked = True
-        End If
 
         _EtatForm = ETAT.Etat_2ENATTENTE
         MettreAJourThemeLight()
@@ -272,7 +272,6 @@ Public Class Form1
         cbReset.Enabled = False
         cbMesure.Text = "Recommencer"
         Me.TableLayoutPanel2.SetColumnSpan(Me.cbMesure, 3)
-        ckVitessseStable.Checked = False
         If m1.Distance > 0 And m2.Distance > 0 Then
             _EtatForm = ETAT.Etat_7_2MESUREOK
             cbSauvegarder.Enabled = True
@@ -321,12 +320,8 @@ Public Class Form1
         Dim temps As Double
         'Récupération de la distance
         If Not String.IsNullOrEmpty(portName) Then
-            If Not My.Settings.TrtEvtOSR Then
-                'Pas de traitement de l'event OnSerialReveived => Lecture à la demande
-                gpsManager.OnSerialDataReceived(Nothing, Nothing)
-            End If
             TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
-                distance = gpsManager.distance
+            distance = gpsManager.distance
             Else
                 Randomize()
             TraceMsg("Ecoute generée[" & distance & "]")
@@ -359,20 +354,17 @@ Public Class Form1
 
         'Récupération de la distance
         If Not String.IsNullOrEmpty(portName) Then
-            If Not My.Settings.TrtEvtOSR Then
-                'Pas de traitement de l'event OnSerialReveived => Lecture à la demande
-                gpsManager.OnSerialDataReceived(Nothing, Nothing)
-            End If
-            If Not gpsManager.bDataUpdated Then
-                    'Pas de Data Mise à jour , on sort
-                    Console.WriteLine("Pas de donnée")
-                    Exit Sub
-                End If
-                TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
-                distance = gpsManager.distance
+            'If Not gpsManager.bDataUpdated Then
+            '    'Pas de Data Mise à jour , on sort
+            '    Console.WriteLine("Pas de donnée")
+            '    Exit Sub
+            'End If
+            _MesureEncours.lstTraces.AddRange(gpsManager.getTraces())
+            'TraceMsg("Ecoute[Position Depart=(" & gpsManager.startLatitude & "|" & gpsManager.startLongitude & ") distance=" & gpsManager.distance & "]")
+            distance = gpsManager.distance
             Else
                 Randomize()
-            TraceMsg("Ecoute generée[" & distance & "]")
+            'TraceMsg("Ecoute generée[" & distance & "]")
             distance = _MesureEncours.Distance + (Rnd() * 10)
         End If
 
@@ -384,13 +376,13 @@ Public Class Form1
             _MesureEncours.HeureArrivee = gpsManager.EndTime
             _MesureEncours.PositionArrivee = gpsManager.PositionArrivee
             gpsManager.bDataUpdated = False 'on a récupéreré les données
-            temps = (_MesureEncours.HeureArrivee - _MesureEncours.HeureDepart).TotalMilliseconds
+            temps = (_MesureEncours.HeureArrivee - _MesureEncours.HeureDepart).TotalSeconds
             _MesureEncours.Temps = temps
             _MesureEncours.Distance = distance
             vitesse = _MesureEncours.calculeVitesse(distance, temps)
         Else
             elapsedTime = DateTime.Now - startTime
-            temps = elapsedTime.TotalMilliseconds
+            temps = elapsedTime.TotalSeconds
 
             vitesse = _MesureEncours.calculeVitesse(distance, temps)
             _MesureEncours.Distance = 0
@@ -447,13 +439,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub ckGPSActif_CheckedChanged(sender As Object, e As EventArgs) Handles ckGPSActif.CheckedChanged
-
-        If gpsManager.GPSActif <> ckGPSActif.Checked Then
-            gpsManager.GPSActif = ckGPSActif.Checked
-            SetAction(ACTIONFORM.Action_GPSACTIF)
-        End If
-    End Sub
     Dim _FichierExport As String
     Private Sub cbSauvegarder_Click(sender As Object, e As EventArgs) Handles cbSauvegarder.Click
         _FichierExport = _NumPulve + "_" + Now.Date.ToString("yyyyMMdd") + ".csv"
@@ -472,6 +457,7 @@ Public Class Form1
             Process.Start("notepad.exe", _FichierExport)
         Else
             Me.Close()
+            Me.DialogResult = DialogResult.OK
         End If
     End Sub
 
@@ -491,27 +477,29 @@ Public Class Form1
         Return bReturn
     End Function
 
-    Private Sub ckVitessseStable_CheckedChanged(sender As Object, e As EventArgs) Handles ckVitessseStable.CheckedChanged
-        If gpsManager.GPSActif Then
-            _MesureEncours.VitesseConstante = ckVitessseStable.Checked
-            SetAction(ACTIONFORM.Action_VITESSESTABLE)
-        End If
+    Private Sub CkTest_CheckedChanged(sender As Object, e As EventArgs) Handles CkTest.CheckedChanged
+
+        ModeTest(CkTest.Checked)
+
     End Sub
 
-    Private Sub CkTest_CheckedChanged(sender As Object, e As EventArgs) Handles CkTest.CheckedChanged
+    Public Sub ModeTest(pTest As Boolean)
         PnlCacheCkTest.Top = TableLayoutPanel2.Top
         PnlCacheCkTest.Left = TableLayoutPanel2.Left
-        PnlCacheCkTest.Visible = Not CkTest.Checked
-        laMesure.Visible = CkTest.Checked 'Visible en mode test
+        PnlCacheCkTest.Visible = Not pTest
+        laMesure.Visible = pTest 'Visible en mode test
         ' CkTest.Visible = CkTest.Checked
-        ckGPSActif.Visible = CkTest.Checked
-        ckVitessseStable.Visible = CkTest.Checked
-        ckGPSActif.Enabled = CkTest.Checked
-        ckVitessseStable.Enabled = CkTest.Checked
         tbVitesseMesuree.ForeColor = tbVitesseMesuree.BackColor
-        laVitesseMesuree.Visible = CkTest.Checked
-        tbVitesseMesuree.Visible = CkTest.Checked
-        lblEtat.Visible = CkTest.Checked
+        laVitesseMesuree.Visible = pTest
+        tbVitesseMesuree.Visible = pTest
+        lblEtat.Visible = pTest
+        ListBox1.Visible = pTest
+        If pTest Then
+            Me.Width = 741
+        Else
+            Me.Width = 441
+        End If
+
     End Sub
 
     '==================================
@@ -734,5 +722,48 @@ Public Class Form1
             ' Nous sommes sur le thread UI, mettre à jour le thème
             SkinManager.Theme = MaterialSkinManager.Themes.DARK
         End If
+    End Sub
+
+    Private Sub RechercherleportserieGPS(sender As Object, e As EventArgs)
+        Trace.WriteLine("RechercherleportserieGPS")
+        portName = gpsManager.TrouverPortGPS(My.Settings.Port)
+
+        If portName IsNot Nothing Then
+            gpsManager.ConfigurerPortSerie(portName, My.Settings.VitessePort)
+            m_BackgroundWorker.ReportProgress(1, portName)
+        End If
+
+    End Sub
+
+
+    Private Sub m_BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles m_BackgroundWorker.DoWork
+        gpsManager = New GPSManager()
+        While gpsManager.TrouverPortGPS(My.Settings.Port) = ""
+            Thread.Sleep(My.Settings.intervalGPS)
+        End While
+
+        While Not gpsManager.GPSActif
+            Thread.Sleep(My.Settings.intervalGPS)
+        End While
+
+    End Sub
+
+    Private Sub m_BackgroundWorker_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles m_BackgroundWorker.ProgressChanged
+        Select Case e.ProgressPercentage
+            Case 1 'Port Serie Trouvé
+                'SetEtat1ENATTENTE()
+                SetAction(ACTIONFORM.Action_GPSACTIF)
+                TraceMsg("Configurer Port " & portName)
+        End Select
+
+
+    End Sub
+
+    Private Sub m_BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles m_BackgroundWorker.RunWorkerCompleted
+        gpsManager.Close()
+    End Sub
+
+    Private Sub cbMesure_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbMesure.KeyPress
+
     End Sub
 End Class

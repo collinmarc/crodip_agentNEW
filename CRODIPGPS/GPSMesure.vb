@@ -48,7 +48,7 @@
     End Property
     Public ReadOnly Property TempAffichage As Decimal
         Get
-            Return Decimal.Round(CDec(_temps / 1000), 3)
+            Return Decimal.Round(_temps, 0)
         End Get
     End Property
     Private _StartClick As DateTime
@@ -72,10 +72,10 @@
     Public Property tempsClick() As Decimal
         Get
             If EndClick <> DateTime.MinValue Then
-                Return (EndClick - startClick).TotalMilliseconds / 1000
+                Return (EndClick - startClick).TotalSeconds
             Else
                 If startClick <> DateTime.MinValue Then
-                    Return (DateTime.Now - startClick).TotalMilliseconds / 1000
+                    Return (DateTime.Now - startClick).TotalSeconds
                 Else
                     Return 0
                 End If
@@ -84,23 +84,23 @@
         Set(ByVal value As Decimal)
         End Set
     End Property
-    Private _temps As Double
+    Private _temps As Decimal
     ''' <summary>
     ''' Le Temps écoulé en millisecondes
     ''' </summary>
     ''' <returns></returns>
-    Public Property Temps() As Double
+    Public Property Temps() As Decimal
         Get
             Return _temps
         End Get
-        Set(ByVal value As Double)
+        Set(ByVal value As Decimal)
             If value <> _temps Then
                 _temps = value
                 Vitesse = calculeVitesse(Distance, Temps)
             End If
         End Set
     End Property
-    Public Function calculeVitesse(pdistance As Decimal, pTemps As Double) As Decimal
+    Public Function calculeVitesse(pdistance As Decimal, pTemps As Decimal) As Decimal
         Dim dReturn As Decimal = 0
         If pTemps <> 0 And pdistance <> 0 Then
             dReturn = (pdistance / 1000 / (pTemps * 1000)) * 3600
@@ -134,6 +134,7 @@
 
     Public Sub New()
         _tabVitesse.Clear()
+        _lstTraces = New List(Of String)
         startClick = DateTime.MinValue
         EndClick = DateTime.MinValue
 
@@ -189,6 +190,7 @@
         Try
 
             System.IO.File.AppendAllText(pFile, NumPulve & ";" & Num & ";" & Distance & ";" & Temps & ";" & Vitesse & ";" & VitesseLue & ";" & PositionDepart & ";" & PositionArrivee & vbCrLf)
+            System.IO.File.AppendAllLines(pFile, lstTraces)
             bReturn = True
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -220,5 +222,14 @@
         End Get
     End Property
 
+    Private _lstTraces As List(Of String)
+    Public Property lstTraces() As List(Of String)
+        Get
+            Return _lstTraces
+        End Get
+        Set(ByVal value As List(Of String))
+            _lstTraces = value
+        End Set
+    End Property
 
 End Class

@@ -1,4 +1,5 @@
-﻿Imports System.Globalization
+﻿Imports System.Device.Location
+Imports System.Globalization
 Imports System.IO.Ports
 Imports System.Text
 
@@ -10,6 +11,7 @@ Imports System.Text
 Public Class GPSManager
     ' Attribut GPSActif
     Private _GPSActif As Boolean
+    Private _lstTracesGPX As List(Of String)
     Public Property GPSActif As Boolean
         Get
             Return _GPSActif
@@ -21,7 +23,6 @@ Public Class GPSManager
         End Set
     End Property
 
-
     ' Distance et temps écoulé
     Public distance As Double
     '    Public elapsedTime As TimeSpan
@@ -30,13 +31,11 @@ Public Class GPSManager
     ' Dernières coordonnées GPS
     Public startTime As DateTime
     Public EndTime As DateTime
-    Public startLatitude As Double
-    Public startLongitude As Double
-    Public Latitude As Double
-    Public Longitude As Double
+    Public startLatitude As String
+    Public startLongitude As String
+    Public Latitude As String
+    Public Longitude As String
 
-    Private QLatt As New Queue(Of Double)  'Utilise rpour faire une Moyenne des Données en entrées
-    Private QLong As New Queue(Of Double)
 
     ' Port série pour la lecture des données GPS
     Private serialPort As SerialPort
@@ -50,19 +49,17 @@ Public Class GPSManager
 
         ' Configurer le port série
         serialPort = New SerialPort()
+        _lstTracesGPX = New List(Of String)
         init()
-        'TrtEvtOSR = Traitement de l'Evenement OonSerialRecevied
-        ' Si pas de traietement on n'active pas le Handler, la lecture se fera à la demande
-        If My.Settings.TrtEvtOSR Then
-            AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
-        End If
+        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
     End Sub
 
     ' Méthode pour configurer le port série
     Public Sub ConfigurerPortSerie(portName As String, baudRate As Integer)
         serialPort.PortName = portName
         serialPort.BaudRate = baudRate
-        serialPort.ReadTimeout = My.Settings.intervalGPS / 2
+        serialPort.ReadTimeout = My.Settings.intervalGPS * 10
+
         If Not serialPort.IsOpen Then
             serialPort.Open()
         End If
@@ -84,9 +81,7 @@ Public Class GPSManager
     End Sub
     Public Sub Close()
         If serialPort.IsOpen Then
-            If My.Settings.TrtEvtOSR Then
-                RemoveHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
-            End If
+            RemoveHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
             serialPort.Close()
         End If
     End Sub
@@ -105,9 +100,7 @@ Public Class GPSManager
                         'Déclarer le GPS Actif
                         GPSActif = True
                     End If
-                    If My.Settings.TrtEvtOSR Then
-                        bContinue = False
-                    End If
+                    bContinue = False
                 Catch ex As Exception
                     bContinue = False
                 End Try
@@ -132,6 +125,9 @@ Public Class GPSManager
                             If My.Settings.ProcessGPGGA Then
                                 TraceMsg(line)
                                 breturn = ProcessNMEA_GGA(nmeaFields)
+                                If breturn Then
+                                    _lstTracesGPX.Add(line)
+                                End If
                             End If
                         Case "$GPRMC", "$GNRMC"
                             If My.Settings.ProcessGPRMC Then
@@ -157,25 +153,23 @@ Public Class GPSManager
         Dim PrecisHorizontale As String = fields(8)
         Dim bReturn As Boolean
         Try
-            TraceMsg("[ProcessGPGGA]TypePositionnement=" & typePositionnement)
-            TraceMsg("[ProcessGPGGA]nbSattelites=" & NbreSatelites)
-            TraceMsg("[ProcessGPGGA]HDOP=" & PrecisHorizontale)
+            'TraceMsg("[ProcessGPGGA]TypePositionnement=" & typePositionnement)
+            'TraceMsg("[ProcessGPGGA]nbSattelites=" & NbreSatelites)
+            'TraceMsg("[ProcessGPGGA]HDOP=" & PrecisHorizontale)
             If typePositionnement = "1" Or typePositionnement = "2" Then
                 If CInt(NbreSatelites) > My.Settings.NbSatellitesMin Then
                     If CDec(PrecisHorizontale.Replace(".", ",")) < My.Settings.HDOPMax Then
                         ' Extraction de la latitude et de la longitude
-                        TraceMsg("[ProcessGPGGA]Latitude1=" & fields(2) & fields(3))
-                        TraceMsg("[ProcessGPGGA]Longitude1=" & fields(4) & fields(5))
-                        Dim latitude As Double = ConvertToDecimalDegrees(fields(2), fields(3))
-                        Dim longitude As Double = ConvertToDecimalDegrees(fields(4), fields(5))
-                        Dim latitudeM As Double = LattMoyenne(latitude)
-                        Dim longitudeM As Double = LongMoyenne(longitude)
+                        '           TraceMsg("[ProcessGPGGA]Latitude1=" & fields(2) & fields(3))
+                        '          TraceMsg("[ProcessGPGGA]Longitude1=" & fields(4) & fields(5))
+                        Dim slatitude As String = fields(2) & fields(3)
+                        Dim slongitude As String = fields(4) & fields(5)
 
 
                         ' Calculer la distance parcourue
-                        distance = CalculateDistance(heureGPS, latitudeM, longitudeM)
+                        distance = CalculateDistance(heureGPS, slatitude, slongitude)
 
-                        TraceMsg("[ProcessGPGGA] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitudeM & ";" & longitudeM & ") Distance=" & distance)
+                        '         TraceMsg("[ProcessGPGGA] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitudeM & ";" & longitudeM & ") Distance=" & distance)
                         bReturn = True
                     Else
                         TraceMsg("Précision Horizontale Trop faible:" & fields.ToString())
@@ -194,28 +188,6 @@ Public Class GPSManager
         End Try
         Return bReturn
     End Function
-    Private Function LattMoyenne(pLatt As Double) As Double
-        If My.Settings.nbMesuresMoyenne = 0 Then
-            Return pLatt
-        Else
-            QLatt.Enqueue(pLatt)
-            If QLatt.Count > My.Settings.nbMesuresMoyenne Then
-                QLatt.Dequeue()
-            End If
-            Return QLatt.Average()
-        End If
-    End Function
-    Private Function LongMoyenne(pLong As Double) As Double
-        If My.Settings.nbMesuresMoyenne = 0 Then
-            Return pLong
-        Else
-            QLong.Enqueue(pLong)
-            If QLong.Count > My.Settings.nbMesuresMoyenne Then
-                QLong.Dequeue()
-            End If
-            Return QLong.Average()
-        End If
-    End Function
 
     ' Méthode pour traiter les données GPRMC
     Private Function ProcessNMEA_RMC(fields As String()) As Boolean
@@ -232,10 +204,8 @@ Public Class GPSManager
                 TraceMsg("[ProcessGPRMC]Latitude1=" & fields(3) & fields(4))
                 TraceMsg("[ProcessGPRMC]Longitude1=" & fields(5) & fields(6))
                 ' Conversion en decimal
-                Dim latitude As Double = ConvertToDecimalDegrees(fields(3), fields(4))
-                Dim longitude As Double = ConvertToDecimalDegrees(fields(5), fields(6))
-                Dim latitudeM As Double = LattMoyenne(latitude)
-                Dim longitudeM As Double = LongMoyenne(longitude)
+                Dim latitudeM As String = fields(3) & fields(4)
+                Dim longitudeM As String = fields(5) & fields(6)
 
                 ' Calculer la distance parcourue
                 distance = CalculateDistance(heureGPS, latitudeM, longitudeM)
@@ -256,10 +226,14 @@ Public Class GPSManager
     End Function
 
     ' Convertir les coordonnées en degrés décimaux
-    Private Function ConvertToDecimalDegrees(degreesMinutes As String, direction As String) As Double
+    Private Shared Function ConvertToDecimalDegrees(degreesMinutes As String) As Double
         Dim dotIndex As Integer = degreesMinutes.IndexOf("."c)
+        Dim direction As String
+
         Dim degrees As Double
         Dim minutes As Double
+        direction = degreesMinutes.Last()
+        degreesMinutes = degreesMinutes.Substring(0, degreesMinutes.Length - 1)
         If direction = "S" OrElse direction = "N" Then
             'Latitude (00->90)
             degrees = Convert.ToDouble(degreesMinutes.Substring(0, 2))
@@ -296,11 +270,11 @@ Public Class GPSManager
         Return dReturn
     End Function
     ' Calculer la distance entre deux points GPS en mètres
-    Private Function CalculateDistance(pTimeGPS As String, pEndLat As Double, pEndLong As Double) As Double
+    Private Function CalculateDistance(pTimeGPS As String, pEndLat As String, pEndLong As String) As Double
         Dim distanceMeters As Double = 0D
         Dim GPSDate As DateTime
         GPSDate = ConvertGPSTimeToDateTime(pTimeGPS)
-        If startLatitude = 0D And startLongitude = 0D Then
+        If startLatitude = "" And startLongitude = "" Then
             Me.startTime = GPSDate
             Me.startLatitude = pEndLat
             Me.startLongitude = pEndLong
@@ -310,16 +284,40 @@ Public Class GPSManager
         Me.Latitude = pEndLat
         Me.Longitude = pEndLong
 
+        If My.Settings.CalculHaversine Then
+            distanceMeters = CalculateDistanceHaversine(startLatitude, startLongitude, pEndLat, pEndLong)
+        Else
+            distanceMeters = CalculateDistance2(startLatitude, startLongitude, pEndLat, pEndLong)
+        End If
+
+        Return distanceMeters
+    End Function
+    Public Shared Function CalculateDistance2(pstartLatitude As String, pStartLongitude As String, pEndLat As String, pEndLong As String) As Double
+        Dim pStartLatitude2 As Decimal = ConvertToDecimalDegrees(pstartLatitude)
+        Dim pStartLongitude2 As Decimal = ConvertToDecimalDegrees(pStartLongitude)
+        Dim pEndLatitude2 As Decimal = ConvertToDecimalDegrees(pEndLat)
+        Dim pEndLongitude2 As Decimal = ConvertToDecimalDegrees(pEndLong)
+        Dim StartCoord As New GeoCoordinate(pStartLatitude2, pStartLongitude2)
+        Dim endCoord As New GeoCoordinate(pEndLatitude2, pEndLongitude2)
+        Return StartCoord.GetDistanceTo(endCoord)
+    End Function
+    Public Shared Function CalculateDistanceHaversine(pstartLatitude As String, pStartLongitude As String, pEndLat As String, pEndLong As String) As Double
+        Dim distanceMeters As Double
         Dim R As Double = 6371 ' Rayon de la Terre en kilomètres
+        'Convertir Les Coordonnées GPS
+        Dim pStartLatitude2 As Decimal = ConvertToDecimalDegrees(pstartLatitude)
+        Dim pStartLongitude2 As Decimal = ConvertToDecimalDegrees(pStartLongitude)
+        Dim pEndLatitude2 As Decimal = ConvertToDecimalDegrees(pEndLat)
+        Dim pEndLongitude2 As Decimal = ConvertToDecimalDegrees(pEndLong)
         ' Convertir les degrés en radians
-        Dim lat1 As Double = startLatitude * Math.PI / 180.0
-        Dim lon1 As Double = startLongitude * Math.PI / 180.0
-        Dim lat2 As Double = pEndLat * Math.PI / 180.0
-        Dim lon2 As Double = pEndLong * Math.PI / 180.0
+        Dim lat1 As Double = pStartLatitude2 * Math.PI / 180.0
+        Dim lon1 As Double = pStartLongitude2 * Math.PI / 180.0
+        Dim lat2 As Double = pEndLatitude2 * Math.PI / 180.0
+        Dim lon2 As Double = pEndLongitude2 * Math.PI / 180.0
 
         ' Différence de latitude et de longitude
-        Dim dDiffLat As Double = (pEndLat - startLatitude) * Math.PI / 180.0
-        Dim dDiffLon As Double = (pEndLong - startLongitude) * Math.PI / 180.0
+        Dim dDiffLat As Double = (pEndLatitude2 - pStartLatitude2) * Math.PI / 180.0
+        Dim dDiffLon As Double = (pEndLongitude2 - pStartLongitude2) * Math.PI / 180.0
 
         ' Formule de Haversine
         Dim a As Double = Math.Sin(dDiffLat / 2) * Math.Sin(dDiffLat / 2) +
@@ -392,8 +390,12 @@ Public Class GPSManager
     Private Sub TraceMsg(pMessage As String)
         Console.WriteLine(DateTime.Now.ToLongTimeString() & ":" & pMessage)
         If My.Settings.Log Then
+            Try
+                System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)
+            Catch ex As Exception
 
-            System.IO.File.AppendAllText("./GPS.LOG", DateTime.Now.ToLongTimeString() & ":" & pMessage & vbCrLf)
+            End Try
+
         End If
     End Sub
     Public Function IsSerialPortOpen() As Boolean
@@ -411,12 +413,24 @@ Public Class GPSManager
             Return Latitude & "," & Longitude
         End Get
     End Property
-    Public Sub init()
-        Me.startLatitude = 0.0
-        Me.startLongitude = 0.0
+    Public Sub init(Optional pPrendreEnCompteLADerniereTraceGGA As Boolean = False)
+        Me.startLatitude = ""
+        Me.startLongitude = ""
         Me.startTime = DateTime.MinValue
         Me.EndTime = DateTime.MinValue
         _tabVitesse = New Queue(Of Decimal)
+        If pPrendreEnCompteLADerniereTraceGGA Then
+            If _lstTracesGPX.Count > 0 Then
+                Dim traceGGA As String
+                traceGGA = _lstTracesGPX.Last()
+                ProcessNMEAData(traceGGA)
+                _lstTracesGPX.Clear()
+                _lstTracesGPX.Add(traceGGA)
+            End If
+        Else
+            _lstTracesGPX.Clear()
+
+        End If
     End Sub
     Private _tabVitesse As New Queue(Of Decimal)
     Public VitesseConstante As Boolean = False
@@ -455,5 +469,28 @@ Public Class GPSManager
         Return dReturn
     End Function
 
+    Public Function getTraces() As List(Of String)
+        'Pour être certains de ne pas lire les trace pendant l'écriture, on passe par une fonction , Qui extrait les traces, vide la collection
+        Dim lstReturn = New List(Of String)
+        lstReturn.AddRange(_lstTracesGPX)
+        _lstTracesGPX.Clear()
+        Return lstReturn
+    End Function
+
+    Public Function init2() As Boolean
+        Dim bReturn As Boolean
+        Try
+            Dim traceGGA As String
+            traceGGA = _lstTracesGPX.Last()
+            ProcessNMEAData(traceGGA)
+
+            bReturn = True
+        Catch ex As Exception
+            bReturn = False
+        End Try
+
+        Return bReturn
+
+    End Function
 
 End Class

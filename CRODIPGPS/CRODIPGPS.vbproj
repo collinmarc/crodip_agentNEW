@@ -248,7 +248,11 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="Form10404.vb">
+      <SubType>Form</SubType>
+    </None>
     <Compile Include="GPSManager.vb" />
+    <None Include="GPSManager0404.vb" />
     <Compile Include="GPSMesure.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="AssemblyInfo.vb" />

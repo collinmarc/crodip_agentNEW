@@ -319,24 +319,22 @@ Public Class diagnostic_dlghelp551
         Dim Lines As String()
         Dim Line As String
         Lines = System.IO.File.ReadAllLines(My.Settings.GPSRepertoireExport + "/" + FileName)
-        If Lines.Length = 2 Then
-            Line = Lines(0)
+        For Each Line In Lines
             Dim LineDetail As String()
             LineDetail = Line.Split(";")
 
             If LineDetail(0) = m_oDiag.pulverisateurNumNational Then
-                help551_m1_distance.Text = LineDetail(2)
-                help551_m1_temps.Text = LineDetail(3)
-                help551_m1_vitesseLue.Text = LineDetail(5)
+                If LineDetail(1) = "1" Then
+                    help551_m1_distance.Text = LineDetail(2)
+                    help551_m1_temps.Text = LineDetail(3)
+                    help551_m1_vitesseLue.Text = LineDetail(5)
+                Else
+                    help551_m2_distance.Text = LineDetail(2)
+                    help551_m2_temps.Text = LineDetail(3)
+                    help551_m2_vitesseLue.Text = LineDetail(5)
+                End If
             End If
-            Line = Lines(1)
-            LineDetail = Line.Split(";")
-            If LineDetail(0) = m_oDiag.pulverisateurNumNational Then
-                help551_m2_distance.Text = LineDetail(2)
-                help551_m2_temps.Text = LineDetail(3)
-                help551_m2_vitesseLue.Text = LineDetail(5)
-            End If
-        End If
+        Next Line
 
     End Sub
 
