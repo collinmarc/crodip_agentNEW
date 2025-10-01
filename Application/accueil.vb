@@ -5418,6 +5418,32 @@ Public Class accueil
 
     End Sub
 
+    ''' <summary>
+    ''' Vérification du nbre d'anomalies encours sur le Serveur
+    ''' </summary>
+    ''' <param name="positionTopAlertes"></param>
+    ''' <remarks></remarks>
+    Private Sub loadAccueilAlertsAnomalies(ByRef positionTopAlertes As Integer)
+
+        Dim bAlerte As Boolean = False
+        Dim nAnomalies As Integer
+        nAnomalies = DiagnosticManager.WSGetAnomaliesCounterRequest(agentCourant.uid)
+        bAlerte = nAnomalies > 0
+        'Affichage des alertes 
+        Dim sName As String = "ANOMALIES"
+        Dim sTexte As String = ""
+        If bAlerte Then
+            If nAnomalies = 1 Then
+                sTexte = "Attention, vous avez " & nAnomalies & " controle avec des anomalies sur e-Pulve, Veuillez vous connecter sur e-pulve pour les vérifier."
+            Else
+                sTexte = "Attention, vous avez " & nAnomalies & " controles avec des anomalies sur e-Pulve, Veuillez vous connecter sur e-pulve pour les vérifier."
+            End If
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+        End If
+
+
+    End Sub
+
     Private Sub LoadAccueilAlertsBancsMesures(ByRef positionTopAlertes As Integer)
         ' Vérification des alertes sur les banc de mesure
         Dim nbAlertes_Banc_Orange As Integer = 0
@@ -5538,6 +5564,9 @@ Public Class accueil
 
             'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
             loadAccueilAlertsNbControle(positionTopAlertes)
+
+            'Vérification du nombre d'anomalies en cours sur le Serveur
+            loadAccueilAlertsAnomalies(positionTopAlertes)
 
             ' Si aucune alerte à afficher, alors on affiche un message
             If positionTopAlertes = 8 Then

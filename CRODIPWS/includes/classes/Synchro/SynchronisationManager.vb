@@ -137,12 +137,12 @@ Public Class SynchronisationManager
                 If lstPoolTemp.Count = 1 Then
                     logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                     CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
-                    objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, lstPoolTemp(0).uid, "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+                    objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, lstPoolTemp(0).uid, "", GlobalsCRODIP.GLOB_API_KEY, CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
                 End If
             Else
                 logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                 CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
-                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.uid, "", "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J", CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
+                objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.uid, "", GlobalsCRODIP.GLOB_API_KEY, CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
             End If
         Catch ex As Exception
             CSDebug.dispError("SynchronisationManager.getWSlstElementsASynchroniser ERR" & ex.Message)

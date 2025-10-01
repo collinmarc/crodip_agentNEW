@@ -26,6 +26,7 @@ Public Class GlobalsCRODIP
 
     Public Const GLOB_DIAG_NUMAGR As String = "E001"
     Public Const GLOB_DIAG_NOMAGR As String = "CRODIP/Indigo"
+    Public Const GLOB_API_KEY As String = "GT8CT-4WN7D-XJBVT-3CGWK-CDK2J"
 
 
 #Region " Environnement "

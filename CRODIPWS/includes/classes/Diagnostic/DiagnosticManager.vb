@@ -8,6 +8,29 @@ Public Class DiagnosticManager
     Inherits CrodipManager
 
 #Region "Methodes acces Web Service"
+    Public Shared Function WSGetAnomaliesCounterRequest(uidAgent As Integer) As Integer
+        Dim oreturn As Integer = 0
+        Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
+        Dim strXml As String = ""
+        Try
+            Dim codeResponse As Integer = 99 'Mehode non trouvée
+            Dim info As String = ""
+            Dim tXmlnodes As Xml.XmlNode() = Nothing
+            codeResponse = objWSCrodip.GetAnomaliesCounter(uidAgent, GlobalsCRODIP.GLOB_API_KEY, info, tXmlnodes)
+
+            Select Case codeResponse
+                Case 0, 1 ' OK '1 veut dire pas d'anommalies
+                    oreturn = tXmlnodes(0).Value
+                Case 9 ' BADREQUEST
+                    CSDebug.dispError("DiagnosticManager.WSGetAnomaliesCounterRequest - Code 9 : Bad Request")
+            End Select
+        Catch ex As Exception
+            CSDebug.dispError("DiagnosticManager.WSGetAnomaliesCounterRequest : ", ex)
+        Finally
+        End Try
+        Return oreturn
+    End Function
+
     Public Shared Function WSgetById(puidagent As Integer, ByVal p_uid As Integer, paid As String) As Diagnostic
         Dim oreturn As Diagnostic = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
