@@ -2738,6 +2738,23 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="GetAnomaliesCounterRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="uidagent" type="xsd:int" />
+            <xsd:element name="APIKey" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAnomaliesCounterResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int" />
+            <xsd:element name="info" type="xsd:string" />
+            <xsd:element element="tns:AnomaliesCounter" name="AnomaliesCounter" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="GetStructureRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -3620,6 +3637,12 @@
   <wsdl:message name="GetPulverisateurOTCResponse">
     <wsdl:part name="parameters" element="tns:GetPulverisateurOTCResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAnomaliesCounterRequest">
+    <wsdl:part name="parameters" element="tns:GetAnomaliesCounterRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetAnomaliesCounterResponse">
+    <wsdl:part name="parameters" element="tns:GetAnomaliesCounterResponse" />
+  </wsdl:message>
   <wsdl:message name="GetStructureRequest">
     <wsdl:part name="parameters" element="tns:GetStructureRequest" />
   </wsdl:message>
@@ -4113,6 +4136,10 @@
     <wsdl:operation name="GetPulverisateurOTC">
       <wsdl:input message="tns:GetPulverisateurOTCRequest" />
       <wsdl:output message="tns:GetPulverisateurOTCResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnomaliesCounter">
+      <wsdl:input message="tns:GetAnomaliesCounterRequest" />
+      <wsdl:output message="tns:GetAnomaliesCounterResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetStructure">
       <wsdl:input message="tns:GetStructureRequest" />
@@ -5043,6 +5070,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPulverisateurOTC">
       <soap:operation soapAction="http://www.example.org/crodip/GetPulverisateurOTC" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnomaliesCounter">
+      <soap:operation soapAction="http://www.example.org/crodip/GetAnomaliesCounter" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
