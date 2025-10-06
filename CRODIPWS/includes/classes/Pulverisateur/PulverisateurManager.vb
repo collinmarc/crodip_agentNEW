@@ -458,6 +458,15 @@ Public Class PulverisateurManager
 
                 ' Vérificatin du lien entre le pulvérisateur et l'exploitation
                 If pExploit IsNot Nothing Then
+                    If pPulve.bSupprimerCoPro Then
+                        'Suppression de tous les copro
+                        Dim lst As List(Of ExploitationTOPulverisateur)
+                        lst = ExploitationTOPulverisateurManager.getListByPulverisateurId(pPulve.id)
+                        For Each oE2P In lst
+                            oE2P.isSupprimeCoProp = True
+                            ExploitationTOPulverisateurManager.save(oE2P, pAgent)
+                        Next
+                    End If
                     Dim oExploit2Pulve As New ExploitationTOPulverisateur()
                     oExploit2Pulve.idPulverisateur = pPulve.id
                     oExploit2Pulve.idExploitation = pExploit.id

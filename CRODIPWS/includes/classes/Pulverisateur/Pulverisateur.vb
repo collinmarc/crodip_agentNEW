@@ -134,7 +134,7 @@ Public Class Pulverisateur
     Private _nbPompesDoseuses As Integer
     Private _numChassis As String
 
-    Private _lstAnnomalie As List(Of Anomalie)
+    Private _lstAnomalie As List(Of Anomalie)
     Public Shared Sub initConstantes()
         PULVERISATION_JETPORTE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=1]/libelle").InnerText
         PULVERISATION_JETPROJETE = GlobalsCRODIP.GLOB_XML_PULVERISATION_PULVE.getXmlNode("//Pulverisation[id=2]/libelle").InnerText
@@ -157,7 +157,8 @@ Public Class Pulverisateur
         End If
         dateProchainControle = Nothing
         controleEtat = controleEtatOK
-        _lstAnnomalie = New List(Of Anomalie)()
+        _lstAnomalie = New List(Of Anomalie)()
+        bSupprimerCoPro = False
     End Sub
     Public Property id() As String
         Get
@@ -880,7 +881,20 @@ Public Class Pulverisateur
     Public Function isCoPropriete() As Boolean
         Return modeUtilisation = Pulverisateur.CO_PRORIETE
     End Function
-
+    Private _bSupprimeCopro As Boolean
+    ''' <summary>
+    ''' Sert à indiquer qu'il faut supprimer les copropiétaires de la base (pas utilisé dans la synchro)
+    ''' </summary>
+    ''' <returns></returns>
+    <XmlIgnore()>
+    Public Property bSupprimerCoPro() As Boolean
+        Get
+            Return _bSupprimeCopro
+        End Get
+        Set(ByVal value As Boolean)
+            _bSupprimeCopro = value
+        End Set
+    End Property
     Public Property nombreExploitants As String
         Get
             Return _nombreExploitants
@@ -1439,11 +1453,9 @@ Public Class Pulverisateur
                             bReturn = CheckResult.NUMEROPASLEPREMIER
                         End If
                         Dim bDansLaListe As Boolean = False
-                        For Each oIdent As IdentifiantPulverisateur In olst
-                            If oIdent.numeroNational = pNumNational Then
-                                bDansLaListe = True
-                            End If
-                        Next
+                        bDansLaListe = olst.Any(Function(I)
+                                                    Return I.numeroNational = pNumNational
+                                                End Function) Or pNumNational = "E001000000"
                         If Not bDansLaListe Then
                             bReturn = CheckResult.NUMEROPASDANSLALISTE
                         End If
@@ -2095,10 +2107,10 @@ Public Class Pulverisateur
             oAnomalie.critere = pCritere
             oAnomalie.valeurAgent = pValeurAgent
             oAnomalie.valeurOTC = pValeurOTC
-            _lstAnnomalie.Add(oAnomalie)
+            _lstAnomalie.Add(oAnomalie)
             bReturn = True
         Catch ex As Exception
-            CSDebug.dispError("Pulverisateur.AjouteAnnomalieOTC ERR", ex)
+            CSDebug.dispError("Pulverisateur.AjouteAnomalieOTC ERR", ex)
             bReturn = False
         End Try
         Return bReturn
@@ -2106,7 +2118,7 @@ Public Class Pulverisateur
     <XmlIgnore()>
     Public ReadOnly Property lstAnomalie() As List(Of Anomalie)
         Get
-            Return _lstAnnomalie
+            Return _lstAnomalie
         End Get
     End Property
     Public Function CompareOTC(puidAgent As Integer) As Boolean
@@ -2301,7 +2313,7 @@ Public Class Pulverisateur
             _isAnomalies = value
         End Set
     End Property
-    <XmlElement("isAnnomalie")>
+    <XmlElement("isAnomalie")>
     Public Property isAnomalies_str() As String
         Get
             Return _isAnomalies

@@ -4037,7 +4037,7 @@ Public Class Diagnostic
             _isAnomalies = value
         End Set
     End Property
-    <XmlElement("isAnnomalies")>
+    <XmlElement("isAnomalies")>
     Public Property isAnomalies_str() As String
         Get
             Return _isAnomalies

@@ -5,6 +5,8 @@ BUILD 20250910100000
 	0001657: Comparaison des identifiants pulvés sur la base nationale (OTC)
 	0001824: gestion des co-propriétaires
 	0001826: Encodage automatique : DPAE Pression => 5.5.2
+	0001827: controle des identifiants Pulve : interdire la création autre que E001000000
+	0001829: Recherche Exploitation sur numéro de Pulvé : ne fonctionne pas avec Tous
 
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC

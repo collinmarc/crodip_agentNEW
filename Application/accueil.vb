@@ -5760,9 +5760,9 @@ Public Class accueil
         'searchExploitant()
     End Sub
     Private Sub btn_proprietaire_rechercher_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_proprietaire_rechercher.Click
-        searchExploitant()
+        rechercheExploitant()
     End Sub
-    Private Sub searchExploitant()
+    Private Sub rechercheExploitant()
         Dim searchId As Integer
         Dim searchCriteria As String
         Dim ocol As New List(Of Exploitation)
@@ -6975,7 +6975,7 @@ Public Class accueil
 
     Private Sub client_search_query_KeyPress(sender As Object, e As KeyPressEventArgs) Handles client_search_query.KeyPress
         If e.KeyChar = Chr(13) Then
-            searchExploitant()
+            rechercheExploitant()
         End If
     End Sub
 

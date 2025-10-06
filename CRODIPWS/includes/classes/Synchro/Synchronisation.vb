@@ -792,6 +792,18 @@ Public Class Synchronisation
 
                 End If
                 Dim response As Integer = DiagnosticManager.WSSend(pDiag, oreturnDiag)
+                'Recupération des Annmaloe OTC
+                pDiag.isAnomalies = oreturnDiag.isAnomalies
+                pDiag.niveauAnomalies = oreturnDiag.niveauAnomalies
+                pDiag.nombreAnomalies = oreturnDiag.nombreAnomalies
+                pDiag.nombreMineures = oreturnDiag.nombreMineures
+                pDiag.dateModificationAnomalies = oreturnDiag.dateModificationAnomalies
+                pDiag.isPulveRecordedInOTC = oreturnDiag.isPulveRecordedInOTC
+                pDiag.isPulveDownloadByExportOTC = oreturnDiag.isPulveDownloadByExportOTC
+                pDiag.isPulveDownloadByCheckKeyOTC = oreturnDiag.isPulveDownloadByCheckKeyOTC
+
+                pDiag.dateModificationCrodip = oreturnDiag.dateModificationCrodip
+
                 'Après Synchro on replace les propriétés
                 pDiag.diagnosticItemsLst = oDiagItemList
                 pDiag.diagnosticBusesList = oDiagBusesList
