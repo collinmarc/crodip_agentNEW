@@ -4,6 +4,7 @@ BUILD 20250910100000
 	0001661: Modification accès à la clé des pompes doseuses
 	0001657: Comparaison des identifiants pulvés sur la base nationale (OTC)
 	0001824: gestion des co-propriétaires
+	0001826: Encodage automatique : DPAE Pression => 5.5.2
 
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC

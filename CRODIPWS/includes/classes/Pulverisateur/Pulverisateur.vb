@@ -1578,7 +1578,14 @@ Public Class Pulverisateur
                 oReturn.Add(oDiagItem)
             End If
             If pulverisateurRegulationIsDPAE() Then
+                oDiagItem = New DiagnosticItemAuto("", "562", "0")
                 oDiagItem.FillWithParam(olstParam.Find("5.6.2.0"))
+                oReturn.Add(oDiagItem)
+            End If
+            If pulverisateurRegulationIsDPAEPression() Then
+                oDiagItem = New DiagnosticItemAuto("", "552", "0")
+                oDiagItem.FillWithParam(olstParam.Find("5.5.2.0"))
+                oReturn.Add(oDiagItem)
             End If
             'Cuve incorporation
             '-------------------
