@@ -98,7 +98,8 @@ Public Class Form1
                 'Arret du Timer
                 TimerLectureGPS.Stop()
                 RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
-                GPS_RecupDonnees(Nothing, Nothing)
+                'On ne lit pas les dernière mesures 
+                'GPS_RecupDonnees(Nothing, Nothing)
 
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
                 _MesureEncours.lstTraces.AddRange(gpsManager.getTraces())
