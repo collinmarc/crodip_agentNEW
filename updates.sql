@@ -681,40 +681,45 @@
 --Update AgentPc Set idRegistre = '';
 --INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.3','2025-05-07 12:00:00','agentPC cleUtilisation');
 --VXXXXXX
-ALTER table Pulverisateur Add Column  `isConfirmeIdentifiant` tinyint(1) NOT NULL DEFAULT '0';
-ALTER table Pulverisateur Add Column    `isConfirmeMarque` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeModele` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeAnneeConstruction` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeVolume` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeLargeur` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeCategorie` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeType` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeFonctionnement` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeRegulation` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isConfirmeAttelage` tinyint(1) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `isAnomalies` tinyint(1) DEFAULT NULL;
-  ALTER table Pulverisateur Add Column  `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `nombreMineures` int(11) NOT NULL DEFAULT '0';
-  ALTER table Pulverisateur Add Column  `dateModificationAnomalies` datetime ;
-  ALTER table Pulverisateur Add Column  `isPulveRecordedInOTC` tinyint(1) DEFAULT NULL;
-  ALTER table Pulverisateur Add Column  `isPulveDownloadByExportOTC` tinyint(1) DEFAULT NULL;
-  ALTER table Pulverisateur Add Column  `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT NULL;
+--ALTER table Pulverisateur Add Column  `isConfirmeIdentifiant` tinyint(1) NOT NULL DEFAULT '0';
+--ALTER table Pulverisateur Add Column    `isConfirmeMarque` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeModele` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeAnneeConstruction` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeVolume` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeLargeur` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeCategorie` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeType` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeFonctionnement` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeRegulation` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isConfirmeAttelage` tinyint(1) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `isAnomalies` tinyint(1) DEFAULT NULL;
+--  ALTER table Pulverisateur Add Column  `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `nombreMineures` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Pulverisateur Add Column  `dateModificationAnomalies` datetime ;
+--  ALTER table Pulverisateur Add Column  `isPulveRecordedInOTC` tinyint(1) DEFAULT NULL;
+--  ALTER table Pulverisateur Add Column  `isPulveDownloadByExportOTC` tinyint(1) DEFAULT NULL;
+--  ALTER table Pulverisateur Add Column  `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT NULL;
 
-ALTER table Diagnostic Add Column `isAnomalies` tinyint(1) DEFAULT NULL;
-  ALTER table Diagnostic Add Column `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
-  ALTER table Diagnostic Add Column `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
-  ALTER table Diagnostic Add Column `nombreMineures` int(11) NOT NULL DEFAULT '0';
-  ALTER table Diagnostic Add Column `dateModificationAnomalies` datetime ;
-  ALTER table Diagnostic Add Column `isPulveRecordedInOTC` tinyint(1) DEFAULT '0';
-  ALTER table Diagnostic Add Column `isPulveDownloadByExportOTC` tinyint(1) DEFAULT '0';
-  ALTER table Diagnostic Add Column `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT '0';
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Anomalie SRV');
+-- ALTER table Diagnostic Add Column `isAnomalies` tinyint(1) DEFAULT NULL;
+--  ALTER table Diagnostic Add Column `niveauAnomalies` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Diagnostic Add Column `nombreAnomalies` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Diagnostic Add Column `nombreMineures` int(11) NOT NULL DEFAULT '0';
+--  ALTER table Diagnostic Add Column `dateModificationAnomalies` datetime ;
+--  ALTER table Diagnostic Add Column `isPulveRecordedInOTC` tinyint(1) DEFAULT '0';
+--  ALTER table Diagnostic Add Column `isPulveDownloadByExportOTC` tinyint(1) DEFAULT '0';
+--  ALTER table Diagnostic Add Column `isPulveDownloadByCheckKeyOTC` tinyint(1) DEFAULT '0';
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','Anomalie SRV');
 
-  CREATE TABLE IdentifiantOTC (IdentOTC Text); 
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','IdentOTC');
+--  CREATE TABLE IdentifiantOTC (IdentOTC Text); 
+---INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','IdentOTC');
 -- Gestion des co-propriétaires
-  DELETE from  ExploitationTOPulverisateur WHERE uid <>0 and isSupprimeCoProp = 1;
-  Update  ExploitationTOPulverisateur set aid = id;
+--  DELETE from  ExploitationTOPulverisateur WHERE uid <>0 and isSupprimeCoProp = 1;
+--  Update  ExploitationTOPulverisateur set aid = id;
+--  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','ExploitToPulve');
+-- Modif table des identifiantOTC
+ALTER table IdentifiantOTC Add Column chargement Text;
+ALTER table IdentifiantOTC Add Column type Text;
+ALTER table IdentifiantOTC Add Column active Text;
+  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-10-13 12:00:00','IdentOTC2');
 
-  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','ExploitToPulve');

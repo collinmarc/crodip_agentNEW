@@ -98,6 +98,7 @@ Public Class Form1
                 'Arret du Timer
                 TimerLectureGPS.Stop()
                 RemoveHandler TimerLectureGPS.Tick, AddressOf GPS_RecupDonnees
+                GPS_RecupDonnees(Nothing, Nothing)
 
                 _MesureEncours.VitesseLue = My.Settings.VitesseLue
                 _MesureEncours.lstTraces.AddRange(gpsManager.getTraces())
@@ -329,7 +330,7 @@ Public Class Form1
         End If
 
         'Calcul de vitesse
-        temps = (gpsManager.EndTime - gpsManager.startTime).TotalMilliseconds
+        temps = (gpsManager.EndTime - gpsManager.startTime).TotalSeconds
         vitesse = gpsManager.calculeVitesse(distance, temps)
 
 
@@ -493,9 +494,10 @@ Public Class Form1
         laVitesseMesuree.Visible = pTest
         tbVitesseMesuree.Visible = pTest
         lblEtat.Visible = pTest
-        ListBox1.Visible = pTest
+        pnlTest.Visible = pTest
+
         If pTest Then
-            Me.Width = 741
+            Me.Width = 801
         Else
             Me.Width = 441
         End If
@@ -765,5 +767,13 @@ Public Class Form1
 
     Private Sub cbMesure_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbMesure.KeyPress
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Dim TSTgpsManager As New GPSManager
+        TSTgpsManager.ProcessNMEAData(tbCoord1.Text)
+        TSTgpsManager.ProcessNMEAData(tbCoord2.Text)
+        tbDistance.Text = Math.Round(TSTgpsManager.distance, My.Settings.PrecisionDistance)
+        tbTemps.Text = (TSTgpsManager.EndTime - TSTgpsManager.startTime).TotalSeconds
     End Sub
 End Class

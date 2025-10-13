@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AcquisitionTest.vb" />
     <Compile Include="AgentManagerTest.vb" />
+    <Compile Include="IdentifiantOTCTest.vb" />
     <Compile Include="SyncroVTTest.vb" />
     <Compile Include="AutoTestTest.vb" />
     <Compile Include="BancManagerTest.vb" />

@@ -61,12 +61,23 @@ Partial Class Form1
         Me.m_BackgroundWorker = New System.ComponentModel.BackgroundWorker()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.LstTracesBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.pnlTest = New System.Windows.Forms.Panel()
+        Me.laTemps = New System.Windows.Forms.Label()
+        Me.tbTemps = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.tbDistance = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.tbCoord2 = New System.Windows.Forms.TextBox()
+        Me.tbCoord1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.m_bsrcGPSMesure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanelMesures.SuspendLayout()
         Me.TableLayoutPanelVitesseLue.SuspendLayout()
         CType(Me.LstTracesBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlTest.SuspendLayout()
         Me.SuspendLayout()
         '
         'TimerLectureGPS
@@ -78,7 +89,7 @@ Partial Class Form1
         Me.PnlCacheCkTest.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PnlCacheCkTest.Location = New System.Drawing.Point(257, 27)
         Me.PnlCacheCkTest.Name = "PnlCacheCkTest"
-        Me.PnlCacheCkTest.Size = New System.Drawing.Size(742, 37)
+        Me.PnlCacheCkTest.Size = New System.Drawing.Size(760, 37)
         Me.PnlCacheCkTest.TabIndex = 34
         '
         'TableLayoutPanel2
@@ -683,9 +694,9 @@ Partial Class Form1
         Me.ListBox1.DataSource = Me.LstTracesBindingSource1
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.HorizontalScrollbar = True
-        Me.ListBox1.Location = New System.Drawing.Point(441, 70)
+        Me.ListBox1.Location = New System.Drawing.Point(3, 12)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(311, 524)
+        Me.ListBox1.Size = New System.Drawing.Size(326, 316)
         Me.ListBox1.TabIndex = 36
         '
         'LstTracesBindingSource1
@@ -693,14 +704,120 @@ Partial Class Form1
         Me.LstTracesBindingSource1.DataMember = "lstTraces"
         Me.LstTracesBindingSource1.DataSource = Me.m_bsrcGPSMesure
         '
+        'pnlTest
+        '
+        Me.pnlTest.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlTest.Controls.Add(Me.laTemps)
+        Me.pnlTest.Controls.Add(Me.tbTemps)
+        Me.pnlTest.Controls.Add(Me.Label3)
+        Me.pnlTest.Controls.Add(Me.Label2)
+        Me.pnlTest.Controls.Add(Me.tbDistance)
+        Me.pnlTest.Controls.Add(Me.Button1)
+        Me.pnlTest.Controls.Add(Me.tbCoord2)
+        Me.pnlTest.Controls.Add(Me.tbCoord1)
+        Me.pnlTest.Controls.Add(Me.Label1)
+        Me.pnlTest.Controls.Add(Me.ListBox1)
+        Me.pnlTest.Location = New System.Drawing.Point(438, 70)
+        Me.pnlTest.Name = "pnlTest"
+        Me.pnlTest.Size = New System.Drawing.Size(332, 527)
+        Me.pnlTest.TabIndex = 46
+        '
+        'laTemps
+        '
+        Me.laTemps.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.laTemps.AutoSize = True
+        Me.laTemps.Location = New System.Drawing.Point(156, 507)
+        Me.laTemps.Name = "laTemps"
+        Me.laTemps.Size = New System.Drawing.Size(39, 13)
+        Me.laTemps.TabIndex = 54
+        Me.laTemps.Text = "Temps"
+        '
+        'tbTemps
+        '
+        Me.tbTemps.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbTemps.Location = New System.Drawing.Point(217, 504)
+        Me.tbTemps.Name = "tbTemps"
+        Me.tbTemps.Size = New System.Drawing.Size(112, 20)
+        Me.tbTemps.TabIndex = 53
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(156, 481)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(47, 13)
+        Me.Label3.TabIndex = 52
+        Me.Label3.Text = "distance"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(24, 405)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(44, 13)
+        Me.Label2.TabIndex = 51
+        Me.Label2.Text = "NMEA2"
+        '
+        'tbDistance
+        '
+        Me.tbDistance.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbDistance.Location = New System.Drawing.Point(217, 478)
+        Me.tbDistance.Name = "tbDistance"
+        Me.tbDistance.Size = New System.Drawing.Size(112, 20)
+        Me.tbDistance.TabIndex = 50
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(254, 436)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 49
+        Me.Button1.Text = "Calcul"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'tbCoord2
+        '
+        Me.tbCoord2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbCoord2.Location = New System.Drawing.Point(75, 398)
+        Me.tbCoord2.Name = "tbCoord2"
+        Me.tbCoord2.Size = New System.Drawing.Size(254, 20)
+        Me.tbCoord2.TabIndex = 48
+        '
+        'tbCoord1
+        '
+        Me.tbCoord1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbCoord1.Location = New System.Drawing.Point(75, 356)
+        Me.tbCoord1.Name = "tbCoord1"
+        Me.tbCoord1.Size = New System.Drawing.Size(254, 20)
+        Me.tbCoord1.TabIndex = 47
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(24, 358)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.TabIndex = 46
+        Me.Label1.Text = "NMEA1"
+        '
         'Form1
         '
         Me.AcceptButton = Me.cbSauvegarder
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.cbQuitter
-        Me.ClientSize = New System.Drawing.Size(758, 603)
-        Me.Controls.Add(Me.ListBox1)
+        Me.ClientSize = New System.Drawing.Size(776, 603)
+        Me.Controls.Add(Me.pnlTest)
         Me.Controls.Add(Me.PnlCacheCkTest)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -715,6 +832,8 @@ Partial Class Form1
         Me.TableLayoutPanelVitesseLue.ResumeLayout(False)
         Me.TableLayoutPanelVitesseLue.PerformLayout()
         CType(Me.LstTracesBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlTest.ResumeLayout(False)
+        Me.pnlTest.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -755,4 +874,14 @@ Partial Class Form1
     Friend WithEvents m_BackgroundWorker As System.ComponentModel.BackgroundWorker
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents LstTracesBindingSource1 As BindingSource
+    Friend WithEvents pnlTest As Panel
+    Friend WithEvents laTemps As Label
+    Friend WithEvents tbTemps As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents tbDistance As TextBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents tbCoord2 As TextBox
+    Friend WithEvents tbCoord1 As TextBox
+    Friend WithEvents Label1 As Label
 End Class

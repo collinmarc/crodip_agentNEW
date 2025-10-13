@@ -168,6 +168,7 @@ Public Class SynchronisationManager
                 For Each objWSUpdates_item As System.Xml.XmlNode In objWSUpdates_items
                     If objWSUpdates_item.Name().ToUpper.Trim() = "type".ToUpper.Trim() Then
                         oSynchro = SynchronisationElmt.CreateSynchronisationElmt(objWSUpdates_item.InnerText(), pSynchroBoolean)
+
                     End If
                 Next objWSUpdates_item
                 'Initialisation de l'object avec les données issues du WS

@@ -1049,6 +1049,7 @@ Public Class Synchronisation
         Dim PCASynchroniser As AgentPc
         Dim lstElementsASynchroniserAgent As List(Of SynchronisationElmt)
         Dim lstElementsASynchroniserTotal As New List(Of SynchronisationElmt)
+        Dim bTrtIdentifiantOTCIndiv As Boolean = True
         Try
             PCASynchroniser = m_Agent.oPCcourant
             m_listSynchro = ""
@@ -1065,11 +1066,20 @@ Public Class Synchronisation
                 Catch ex As Exception
 
                 End Try
+                'si on a téléchargé la base des Identifiants OTC, on ne prend pas les individuels
+                bTrtIdentifiantOTCIndiv = False
             End If
 
             Dim oList As AgentList
             oList = AgentManager.getAgentList(m_Agent.uidstructure)
             lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(PCASynchroniser, m_Agent)
+            If Not bTrtIdentifiantOTCIndiv Then
+                'Suppression des Elements IdentifiantOTC
+                lstElementsASynchroniserTotal.RemoveAll(Function(E)
+                                                            Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
+                                                        End Function
+                                                         )
+            End If
 
             'On récupère les éléments à synchroniser de chaque Agent
             For Each oAgent As Agent In oList.items
@@ -1077,6 +1087,13 @@ Public Class Synchronisation
                     CSDebug.dispInfo("getListasynchroniser(" & oAgent.id & ")")
 
                     lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(PCASynchroniser, oAgent)
+                    If Not bTrtIdentifiantOTCIndiv Then
+                        'Suppression des Elements IdentifiantOTC
+                        lstElementsASynchroniserTotal.RemoveAll(Function(E)
+                                                                    Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
+                                                                End Function
+                                                         )
+                    End If
 
                     'et on les fusionne dans la liste Globale
                     CSDebug.dispInfo("Fusion [" & lstElementsASynchroniserAgent.Count & "]")

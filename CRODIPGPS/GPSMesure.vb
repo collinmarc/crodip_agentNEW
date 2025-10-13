@@ -190,7 +190,9 @@
         Try
 
             System.IO.File.AppendAllText(pFile, NumPulve & ";" & Num & ";" & Distance & ";" & Temps & ";" & Vitesse & ";" & VitesseLue & ";" & PositionDepart & ";" & PositionArrivee & vbCrLf)
-            System.IO.File.AppendAllLines(pFile, lstTraces)
+            For Each sTrace In lstTraces
+                System.IO.File.AppendAllText(pFile, sTrace)
+            Next
             bReturn = True
         Catch ex As Exception
             Console.WriteLine(ex.Message)

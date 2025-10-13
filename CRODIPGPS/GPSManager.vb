@@ -111,7 +111,7 @@ Public Class GPSManager
     End Sub
     Public bDataUpdated As Boolean
     ' Méthode pour traiter les données NMEA
-    Private Function ProcessNMEAData(data As String) As Boolean
+    Public Function ProcessNMEAData(data As String) As Boolean
         ' Processus de traitement des données NMEA
         ' Exemple simplifié pour extraire et afficher les données NMEA GPGGA/GNGGA ou GPRMC/ GNRMC 
         Dim breturn As Boolean = False
@@ -227,42 +227,53 @@ Public Class GPSManager
 
     ' Convertir les coordonnées en degrés décimaux
     Private Shared Function ConvertToDecimalDegrees(degreesMinutes As String) As Double
-        Dim dotIndex As Integer = degreesMinutes.IndexOf("."c)
+        'Dim dotIndex As Integer = degreesMinutes.IndexOf("."c)
         Dim direction As String
-
+        Dim coordinate As String
         Dim degrees As Double
         Dim minutes As Double
         direction = degreesMinutes.Last()
-        degreesMinutes = degreesMinutes.Substring(0, degreesMinutes.Length - 1)
-        If direction = "S" OrElse direction = "N" Then
-            'Latitude (00->90)
-            degrees = Convert.ToDouble(degreesMinutes.Substring(0, 2))
-            minutes = Convert.ToDouble(degreesMinutes.Substring(2).Replace(".", ","))
-        Else
-            'Longitude (000->180)
-            degrees = Convert.ToDouble(degreesMinutes.Substring(0, 3))
-            minutes = Convert.ToDouble(degreesMinutes.Substring(3).Replace(".", ","))
-        End If
+        coordinate = degreesMinutes.Substring(0, degreesMinutes.Length - 1).Replace(".", ",")
+        'If direction = "S" OrElse direction = "N" Then
+        '    'Latitude (00->90)
+        '    degrees = Convert.ToDouble(degreesMinutes.Substring(0, 2))
+        '    minutes = Convert.ToDouble(degreesMinutes.Substring(2).Replace(".", ","))
+        'Else
+        '    'Longitude (000->180)
+        '    degrees = Convert.ToDouble(degreesMinutes.Substring(0, 3))
+        '    minutes = Convert.ToDouble(degreesMinutes.Substring(3).Replace(".", ","))
+        'End If
 
-        Dim decimalDegrees As Double = degrees + (minutes / 60)
+        'Dim decimalDegrees As Double = degrees + (minutes / 60)
+        'If direction = "S" OrElse direction = "W" Then
+        '    decimalDegrees *= -1
+        'End If
+        'Return decimalDegrees
+        ' Convertir les coordonnées NMEA (DDMM.MMMM) en degrés décimaux
+        degrees = Math.Floor(CDbl(coordinate) / 100)
+        minutes = (CDbl(coordinate) - (degrees * 100)) / 60.0
+        Dim decimalDegrees As Double = degrees + minutes
+
+        ' Ajuster selon l'hémisphère
         If direction = "S" OrElse direction = "W" Then
             decimalDegrees *= -1
         End If
+
         Return decimalDegrees
     End Function
     Function ConvertGPSTimeToDateTime(gpggaTime As String) As DateTime
         Dim dReturn As DateTime
         ' Vérifier que la chaîne a le bon format
-        If gpggaTime.Length < 6 Then
+        If gpggaTime.Length = 9 Then
 
             ' Extraire les composants de l'heure
             Dim hours As Integer = Integer.Parse(gpggaTime.Substring(0, 2))
             Dim minutes As Integer = Integer.Parse(gpggaTime.Substring(2, 2))
-            Dim seconds As Double = Double.Parse(gpggaTime.Substring(4), CultureInfo.InvariantCulture)
+            'Dim seconds As Double = Double.Parse(gpggaTime.Substring(4), CultureInfo.InvariantCulture)
+            Dim seconds As Integer = Integer.Parse(gpggaTime.Substring(4, 2))
 
             ' Créer un objet DateTime avec l'heure extraite
-            Dim dateTime As DateTime = New DateTime(1, 1, 1, hours, minutes, 0)
-            dReturn = dateTime.AddSeconds(seconds)
+            dReturn = New DateTime(1, 1, 1, hours, minutes, seconds)
         Else
             dReturn = DateTime.Now()
         End If
