@@ -1074,6 +1074,7 @@ Public Class Synchronisation
             oList = AgentManager.getAgentList(m_Agent.uidstructure)
             lstElementsASynchroniserTotal = getListeElementsASynchroniserDESC(PCASynchroniser, m_Agent)
             If Not bTrtIdentifiantOTCIndiv Then
+                CSDebug.dispInfo("Suppression des element IdentifiantOTC1")
                 'Suppression des Elements IdentifiantOTC
                 lstElementsASynchroniserTotal.RemoveAll(Function(E)
                                                             Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
@@ -1089,7 +1090,8 @@ Public Class Synchronisation
                     lstElementsASynchroniserAgent = getListeElementsASynchroniserDESC(PCASynchroniser, oAgent)
                     If Not bTrtIdentifiantOTCIndiv Then
                         'Suppression des Elements IdentifiantOTC
-                        lstElementsASynchroniserTotal.RemoveAll(Function(E)
+                        CSDebug.dispInfo("Suppression des element IdentifiantOTC2")
+                        lstElementsASynchroniserAgent.RemoveAll(Function(E)
                                                                     Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
                                                                 End Function
                                                          )

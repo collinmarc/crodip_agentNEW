@@ -7,6 +7,9 @@ BUILD 20250910100000
 	0001826: Encodage automatique : DPAE Pression => 5.5.2
 	0001827: controle des identifiants Pulve : interdire la création autre que E001000000
 	0001829: Recherche Exploitation sur numéro de Pulvé : ne fonctionne pas avec Tous
+	Synchronisation des IdentifiantOTC
+	CRODIPGPS : pas de lecture des dernières mesures
+	0001830: traitement des identifants à faire sur la modif de l'identifiant
 
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC
