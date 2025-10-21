@@ -10,6 +10,7 @@ BUILD 20250910100000
 	Synchronisation des IdentifiantOTC
 	CRODIPGPS : pas de lecture des dernières mesures
 	0001830: traitement des identifants à faire sur la modif de l'identifiant
+	0001831: Maintenance 20/10/25 (Message d'ajout pulve, Edition Synthese Mesures, Clé débit dans accesoire)
 
 BUILD 20250627120000bis
 	0001816: Renvoyer la Numero de version dans la table AgentPC

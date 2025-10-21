@@ -1050,7 +1050,9 @@ Public Class FrmDiagnostique
             pressionTronc_heterogeniteAlimentation2.Text = ""
             pressionTronc_heterogeniteAlimentation3.Text = ""
             pressionTronc_heterogeniteAlimentation4.Text = ""
-
+            If m_Pulverisateur.isTraitementdesSemences12123 Then
+                disableTab833(True)
+            End If
             bReturn = True
         Catch ex As Exception
             CSDebug.dispError("Diagnostique.encodageAutomatique ERR: " & ex.Message)
@@ -4893,7 +4895,9 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
 
     ' On cache / affiche la popup
     Private Sub ico_help_552_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ico_help_552.Click
-        calc552()
+        If Not m_Pulverisateur.isTraitementdesSemences12123 Then
+            calc552()
+        End If
     End Sub
     Private Sub calc552()
         If diagBuses_debitMoyen.Text <> "" And tbPressionMesure.Text <> "" Then
@@ -5186,6 +5190,11 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                 bVerif5622 = False
 
             End If
+        End If
+        If m_Pulverisateur.isTraitementdesSemences12123 Then
+            bVerif552 = True
+            bVerif571 = True
+            bVerif5622 = True
         End If
         If Not bVerif551 Or Not bVerif5621 Or Not bVerif5622 Or Not bVerif571 Or Not bVerif552 Then
             Dim vResult As MsgBoxResult = MsgBox("Vous n'avez pas saisi les valeurs de vitesse, de débit et les valeurs du cumuls des erreurs.Voulez-vous les saisir maintenant ?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo)
@@ -9962,30 +9971,31 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             '====================
             'Onglet Mano
             '====================
-            manopulveIsUseCalibrateur.Checked = True
-            manopulvePressionControle_1.Text = manopulvePressionPulve_1.Text
-            manopulvePressionControle_2.Text = manopulvePressionPulve_2.Text
-            manopulvePressionControle_3.Text = manopulvePressionPulve_3.Text
-            manopulvePressionControle_4.Text = manopulvePressionPulve_4.Text
+            If tab_833.Enabled Then
+                manopulveIsUseCalibrateur.Checked = True
+                manopulvePressionControle_1.Text = manopulvePressionPulve_1.Text
+                manopulvePressionControle_2.Text = manopulvePressionPulve_2.Text
+                manopulvePressionControle_3.Text = manopulvePressionPulve_3.Text
+                manopulvePressionControle_4.Text = manopulvePressionPulve_4.Text
 
-            Dim nPression As Decimal
-            Dim nNiveau As Integer
-            Dim nTroncon As Integer
-            For nPression = 1 To 4
-                tab_833.SelectedIndex = nPression - 1
-                SetCurrentPressionControls(nPression)
-                For nCol As Integer = 1 To m_dgvPressionCurrent.Columns.Count - 1
-                    Dim Pression As Decimal = CDec(m_tbPressionManoCurrent.Text)
-                    nNiveau = m_dgvPressionCurrent(nCol, ROW_NIVEAUX).Value
-                    nTroncon = m_dgvPressionCurrent(nCol, ROW_TRONCONS).Value
-                    m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, Pression)
-                    m_dgvPressionCurrent(nCol, ROW_PRESSION).Value = Pression
-                    AfficheResultat833(nCol)
+                Dim nPression As Decimal
+                Dim nNiveau As Integer
+                Dim nTroncon As Integer
+                For nPression = 1 To 4
+                    tab_833.SelectedIndex = nPression - 1
+                    SetCurrentPressionControls(nPression)
+                    For nCol As Integer = 1 To m_dgvPressionCurrent.Columns.Count - 1
+                        Dim Pression As Decimal = CDec(m_tbPressionManoCurrent.Text)
+                        nNiveau = m_dgvPressionCurrent(nCol, ROW_NIVEAUX).Value
+                        nTroncon = m_dgvPressionCurrent(nCol, ROW_TRONCONS).Value
+                        m_RelevePression833_Current.SetPressionLue(nNiveau, nTroncon, Pression)
+                        m_dgvPressionCurrent(nCol, ROW_PRESSION).Value = Pression
+                        AfficheResultat833(nCol)
+                    Next
                 Next
-            Next
-            tab_833.SelectedIndex = 0
-            checkOngletIsOk(7)
-
+                tab_833.SelectedIndex = 0
+                checkOngletIsOk(7)
+            End If
             '===========================
             'Onglet Buses
             '===========================
@@ -11035,6 +11045,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                         Select Case m_diagnostic.diagnosticHelp12123.Resultat
                             Case DiagnosticItem.EtatDiagItemOK
                                 RadioButton_diagnostic_12123.Checked = False
+                                RadioButton_diagnostic_12120.Checked = True
                             Case DiagnosticItem.EtatDiagItemMINEUR
                                 RadioButton_diagnostic_12123.Checked = False
                             Case DiagnosticItem.EtatDiagItemMAJEUR

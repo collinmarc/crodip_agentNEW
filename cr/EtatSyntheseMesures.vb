@@ -128,27 +128,29 @@ Public Class EtatSyntheseMesures
                                   PulveIsTrtSemences:=opulve.isTraitementdesSemences12123)
 
             'Buses
-            Dim pctBusesUsees As Decimal
-            For Each oLot As DiagnosticBuses In m_oDiag.diagnosticBusesList.Liste
-                If oLot.nombre <> 0 Then
-                    pctBusesUsees = Math.Round((oLot.nombrebusesusees / oLot.nombre) * 100, 2)
-                Else
-                    pctBusesUsees = 100%
-                End If
-                m_ods.debitBuses_infos.AdddebitBuses_infosRow(debitNominal:=oLot.debitNominal, couleur:=oLot.couleur, ecartTolere:=oLot.ecartTolere, debitMoyen:=oLot.debitMoyen, marque:=oLot.marque, nombreBuses:=oLot.nombre, IdLot:=oLot.idLot, DebitMax:=oLot.debitMax, DebitMin:=oLot.debitMin, nombreBusesUsees:=oLot.nombrebusesusees, type:=opulve.buseType, pressionControle:=m_oDiag.manometrePressionTravailD, usuremoyenne:=m_oDiag.syntheseUsureMoyenneBusesD, idDiag:=m_oDiag.id, Fonctionnement:=opulve.buseFonctionnement, modele:=oLot.genre, calibre:=oLot.calibre, PctBusesUsees:=pctBusesUsees, conclusion:=oLot.Resultat)
-                For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetailList.Liste
-                    Dim dDebit As Decimal
-                    Dim dEcart As Decimal
-                    If IsNumeric(oDetail.debit) Then
-                        dDebit = CDec(oDetail.debit)
+            If Not opulve.isTraitementdesSemences12123 Then
+                Dim pctBusesUsees As Decimal
+                For Each oLot As DiagnosticBuses In m_oDiag.diagnosticBusesList.Liste
+                    If oLot.nombre <> 0 And oLot.nombrebusesusees <> "" Then
+                        pctBusesUsees = Math.Round((oLot.nombrebusesusees / oLot.nombre) * 100, 2)
+                    Else
+                        pctBusesUsees = 100%
                     End If
-                    If IsNumeric(oDetail.ecart) Then
-                        dEcart = CDec(oDetail.ecart)
-                    End If
-                    m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.numBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id, EcartTolere:=EcartTolere)
-                Next
+                    m_ods.debitBuses_infos.AdddebitBuses_infosRow(debitNominal:=oLot.debitNominal, couleur:=oLot.couleur, ecartTolere:=oLot.ecartTolere, debitMoyen:=oLot.debitMoyen, marque:=oLot.marque, nombreBuses:=oLot.nombre, IdLot:=oLot.idLot, DebitMax:=oLot.debitMax, DebitMin:=oLot.debitMin, nombreBusesUsees:=oLot.nombrebusesusees, type:=opulve.buseType, pressionControle:=m_oDiag.manometrePressionTravailD, usuremoyenne:=m_oDiag.syntheseUsureMoyenneBusesD, idDiag:=m_oDiag.id, Fonctionnement:=opulve.buseFonctionnement, modele:=oLot.genre, calibre:=oLot.calibre, PctBusesUsees:=pctBusesUsees, conclusion:=oLot.Resultat)
+                    For Each oDetail As DiagnosticBusesDetail In oLot.diagnosticBusesDetailList.Liste
+                        Dim dDebit As Decimal
+                        Dim dEcart As Decimal
+                        If IsNumeric(oDetail.debit) Then
+                            dDebit = CDec(oDetail.debit)
+                        End If
+                        If IsNumeric(oDetail.ecart) Then
+                            dEcart = CDec(oDetail.ecart)
+                        End If
+                        m_ods.debitBuses.AdddebitBusesRow(numBuse:=oDetail.numBuse + 1, IdLot:=oDetail.idLot, debit:=dDebit, ecartPourcentage:=dEcart, ssgroupe:=0, idDiag:=m_oDiag.id, EcartTolere:=EcartTolere)
+                    Next
 
-            Next
+                Next
+            End If
 
             'Controle du Manometre 542
             m_ods.Mano542.AddMano542Row(idDiag:=m_oDiag.id, useCalibrateur:=m_oDiag.controleUseCalibrateur, EcartMaxi:=m_oDiag.syntheseErreurMaxiManoD, EcartMoyen:=m_oDiag.syntheseErreurMoyenneManoD, Resultat:=m_oDiag.syntheseImprecision542)
@@ -161,7 +163,8 @@ Public Class EtatSyntheseMesures
             '============================
             'on utilise les même objets que dans frmDiagnostique
             'on les recrée a cause de l'annule et remplace qui ne passe pas toujours par frmdiagnostic
-            Dim lstRelevePression As New List(Of RelevePression833)
+            If Not opulve.isTraitementdesSemences12123 Then
+                Dim lstRelevePression As New List(Of RelevePression833)
             Dim oReleve As RelevePression833
             For p As Integer = 1 To 4
                 Dim pressionPulve As Decimal = 0
@@ -224,7 +227,7 @@ Public Class EtatSyntheseMesures
                 Next
 
             Next
-
+            End If
 
             'Capteur de vitesse 551
             m_oDiag.diagnosticHelp551.ConvertFromDiagnosticItem(m_oDiag)
