@@ -6837,7 +6837,7 @@ Public Class accueil
         If dgvPulveExploit.SelectedRows.Count = 1 Then
             Dim oRowIndex As Integer = dgvPulveExploit.SelectedRows(0).Index
             pulverisateurCourant = m_BindingListOfPulve(oRowIndex)
-            Dim formtrfPulve As New transfert_pulve(clientCourant, pulverisateurCourant, agentCourant)
+            Dim formtrfPulve As New transfert_pulve(transfert_pulve.Mode.ModeTransfert, clientCourant, pulverisateurCourant, agentCourant)
             formtrfPulve.ShowDialog()
             loadListPulveExploitation(False)
         End If
