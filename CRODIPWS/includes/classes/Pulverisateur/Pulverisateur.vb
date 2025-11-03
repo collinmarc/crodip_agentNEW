@@ -1699,6 +1699,9 @@ Public Class Pulverisateur
             'traitementSemence12123 (Param12123)
             '--------------
             If isTraitementdesSemences12123() Then
+                oDiagItem = New DiagnosticItemAuto("", "212", "0")
+                oDiagItem.FillWithParam(olstParam.Find("2.1.2.0"))
+                oReturn.Add(oDiagItem)
                 oDiagItem = New DiagnosticItemAuto("", "1221", "0")
                 oDiagItem.FillWithParam(olstParam.Find("12.2.1.0"))
                 oReturn.Add(oDiagItem)

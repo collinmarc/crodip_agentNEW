@@ -1303,22 +1303,13 @@ Public Class login
     End Sub
 
     Private Sub btnTesttrtSemences_Click(sender As Object, e As EventArgs) Handles btnTesttrtSemences.Click
-        Dim oFRM As diagnostic_dlghelp12123newTrtSem
-        Dim oDiag12123 As New DiagnosticHelp12123()
-        oDiag12123.fonctionnementBuses = "INJECTEUR"
-        Dim oP1 As DiagnosticHelp12123PompeTrtSem = oDiag12123.AjoutePompeTrtSem()
-        Dim oMesure As DiagnosticHelp12123MesuresTrtSem
-        oMesure = oP1.lstMesures(0)
-        oMesure = oP1.lstMesures(1)
-        'oMesure = oP1.lstMesures(2)
-        'Dim oP2 As DiagnosticHelp12123PompeTrtSem = oDiag12123.AjoutePompeTrtSem()
-        'oDiag12123.calcule()
-
-
-        oFRM = New diagnostic_dlghelp12123newTrtSem
-        oFRM.setContexte(oDiag12123, False)
-        oFRM.ShowDialog()
-
+        Dim oH12123 = New DiagnosticHelp12123
+        Dim oCSDb As New CSDb(True)
+        Dim odiag As Diagnostic
+        odiag = DiagnosticManager.getDiagnosticById("540-MCO540-54003-34")
+        Dim result As String = odiag.diagnosticHelp12123.Resultat
+        Console.WriteLine("->" & odiag.diagnosticHelp12123.Resultat)
+        oCSDb.free()
     End Sub
 
     Private Sub bntGetWSDiag_Click(sender As Object, e As EventArgs) Handles bntGetWSDiag.Click

@@ -239,6 +239,8 @@ Public Class DiagnosticHelp12123PompeTrtSem
                     oMesure.Load(idDiag, numero, nMesure)
                     m_lstHelp12123Mesures.Add(oMesure)
                 Next
+                'Recalcul de l'état de la pompe après chargement des mesures
+                Me.calcule()
                 bCalcule = True
             Catch ex As Exception
                 CSDebug.dispError("DiagnosticHelp12123PompeTrtSem.load ERR conversion (" & pDiagItem.itemValue & ") ERR " & ex.Message)

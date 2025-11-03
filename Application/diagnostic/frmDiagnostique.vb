@@ -897,6 +897,10 @@ Public Class FrmDiagnostique
 
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
+                If m_Pulverisateur.isTraitementdesSemences12123() Then
+                    _tabOngletsActifs(ONGLET_MANOTRONCON) = False
+                    _tabOngletsActifs(ONGLET_BUSES) = False
+                End If
                 If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
                     ' Changement des boutons
                     btn_Poursuivre.Visible = False
