@@ -46,7 +46,10 @@ Public Class AgentManager
                                     oreturn.oPool = oPool
                                 Else
                                     oPool = PoolManager.WSgetById(oPoolAgent.uidpool, "")
-                                    PoolManager.Save(oPool)
+                                    PoolManager.Save(oPool, True)
+                                    Dim oBanc As Banc
+                                    oBanc = BancManager.WSgetById(oPool.uidbanc, "")
+                                    BancManager.save(oBanc, True)
                                     oreturn.oPool = oPool
                                 End If
                                 'Dim lst As New List(Of AgentPc)
