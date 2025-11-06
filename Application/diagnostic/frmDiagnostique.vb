@@ -891,16 +891,16 @@ Public Class FrmDiagnostique
             If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_CV _
                 Or m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU _
                 Or m_diagnostic.diagRemplacementId <> "" Then
+                If m_Pulverisateur.isTraitementdesSemences12123() Then
+                    _tabOngletsActifs(ONGLET_MANOTRONCON) = False
+                    _tabOngletsActifs(ONGLET_BUSES) = False
+                End If
 
                 ' Chargement du diagnostic si on est en mode CV ou VISU OU EN MODE REMPLACEMENT
                 loadExistingDiag()
 
                 RadioButton_diagnostic_5621.Tag = "OK"
                 RadioButton_diagnostic_5622.Tag = "OK"
-                If m_Pulverisateur.isTraitementdesSemences12123() Then
-                    _tabOngletsActifs(ONGLET_MANOTRONCON) = False
-                    _tabOngletsActifs(ONGLET_BUSES) = False
-                End If
                 If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
                     ' Changement des boutons
                     btn_Poursuivre.Visible = False
@@ -1234,71 +1234,73 @@ Public Class FrmDiagnostique
             mutCalcNbBusesUsee()
             '#####################################################################################################
             'Affichage du Nbre de niveaux et nbre Troncons (8.3.3)
-            If m_diagnostic.controleNbreNiveaux = 0 Then
-                'Si nbre de niveaux = 0 => Ancienne Version
-                Dim nbreMesures As Integer
-                nbreMesures = m_diagnostic.calcNbreMesuresAncienneVersion()
+            If _tabOngletsActifs(ONGLET_MANOTRONCON) = True Then
 
-                If typeControle <> Pulverisateur.CATEGORIEPULVE_RAMPE Then
-                    'En ArboViti, nNiveaux sur 2 troncons
-                    m_diagnostic.controleNbreTroncons = 2
-                    m_diagnostic.controleNbreNiveaux = CInt(nbreMesures / 2)
+                If m_diagnostic.controleNbreNiveaux = 0 Then
+                    'Si nbre de niveaux = 0 => Ancienne Version
+                    Dim nbreMesures As Integer
+                    nbreMesures = m_diagnostic.calcNbreMesuresAncienneVersion()
+
+                    If typeControle <> Pulverisateur.CATEGORIEPULVE_RAMPE Then
+                        'En ArboViti, nNiveaux sur 2 troncons
+                        m_diagnostic.controleNbreTroncons = 2
+                        m_diagnostic.controleNbreNiveaux = CInt(nbreMesures / 2)
+                    Else
+                        'En Rampe, 1 Niveaux sur n troncons
+                        m_diagnostic.controleNbreNiveaux = 1
+                        m_diagnostic.controleNbreTroncons = nbreMesures
+
+                    End If
+                End If
+                If m_diagnostic.diagnosticMano542List.Liste(0).pressionPulved > 4D Then
+                    'Nous sommes en forte pression
+                    rb542IsFortePression.Checked = True
                 Else
-                    'En Rampe, 1 Niveaux sur n troncons
-                    m_diagnostic.controleNbreNiveaux = 1
-                    m_diagnostic.controleNbreTroncons = nbreMesures
+                    'Nous sommes en basse pression
+                    rb542IsFaiblePression.Checked = True
+                End If
+
+
+                Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=False)
+
+                createRelevePression(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons)
+
+                If m_diagnostic.controleNbreNiveaux > 0 Then
+                    nup_niveaux.Value = m_diagnostic.controleNbreNiveaux
 
                 End If
+                If m_diagnostic.controleNbreTroncons > 0 Then
+                    nupTroncons.Value = m_diagnostic.controleNbreTroncons
+                End If
+
+
+
+                'If m_RelevePression833_P1.colNiveaux(0).colTroncons(0).PressionMano > 4D Then
+                '    'Nous sommes en forte pression
+                '    rb542IsFortePression.Checked = True
+                'Else
+                '    'Nous sommes en basse pression
+                '    rb542IsFaiblePression.Checked = True
+                'End If
+                '07/12/2023 : Pouquoi changer de tab ?
+                'tab_833.SelectTab(nPression - 1)
+                '            createRelevePression()
+                '########################################################################################################
+                ' Chargement tableau 5.4.2
+                'Affiche542()
+                '########################################################################################################
+                ' Chargement tableau 8.3.3
+                'affichage du tableau des pressions
+                Affiche8332()
+                'Selection de la pression par défaut
+                'SelectTableauMesurePourDefaut()
+
+                'Recalcul de l'onglet Mano
+                RecalculerToutMano()
+                '########################################################################################################
+                'AfficheDiagnosticItems() Les DiagItem sont affichés plus tard 
+                '###############################################
             End If
-            If m_diagnostic.diagnosticMano542List.Liste(0).pressionPulved > 4D Then
-                'Nous sommes en forte pression
-                rb542IsFortePression.Checked = True
-            Else
-                'Nous sommes en basse pression
-                rb542IsFaiblePression.Checked = True
-            End If
-
-
-            Creercontrols542_833(pbReinit542:=True, pbInitTraca833:=False)
-
-            createRelevePression(m_diagnostic.controleNbreNiveaux, m_diagnostic.controleNbreTroncons)
-
-            If m_diagnostic.controleNbreNiveaux > 0 Then
-                nup_niveaux.Value = m_diagnostic.controleNbreNiveaux
-
-            End If
-            If m_diagnostic.controleNbreTroncons > 0 Then
-                nupTroncons.Value = m_diagnostic.controleNbreTroncons
-            End If
-
-
-
-            'If m_RelevePression833_P1.colNiveaux(0).colTroncons(0).PressionMano > 4D Then
-            '    'Nous sommes en forte pression
-            '    rb542IsFortePression.Checked = True
-            'Else
-            '    'Nous sommes en basse pression
-            '    rb542IsFaiblePression.Checked = True
-            'End If
-            '07/12/2023 : Pouquoi changer de tab ?
-            'tab_833.SelectTab(nPression - 1)
-            '            createRelevePression()
-            '########################################################################################################
-            ' Chargement tableau 5.4.2
-            'Affiche542()
-            '########################################################################################################
-            ' Chargement tableau 8.3.3
-            'affichage du tableau des pressions
-            Affiche8332()
-            'Selection de la pression par défaut
-            'SelectTableauMesurePourDefaut()
-
-            'Recalcul de l'onglet Mano
-            RecalculerToutMano()
-            '########################################################################################################
-            'AfficheDiagnosticItems() Les DiagItem sont affichés plus tard 
-            '###############################################
-
 
             If m_modeAffichage = GlobalsCRODIP.DiagMode.CTRL_VISU Then
                 DisableControls()
@@ -5051,7 +5053,7 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Récupération de la Perte de charge Moyenne et Maxi dans le Tab833 (S'il est actif)
             'il faudrait trouver un moyerde déterminer si la saisie a été effectuée sans passer par le test du panel
             '===============================
-            If tab_833.Enabled Then
+            If _tabOngletsActifs(ONGLET_MANOTRONCON) Then
                 nPression = 0
                 For i As Integer = 1 To 4
                     SetCurrentPressionControls(i)
@@ -5091,31 +5093,34 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
             'Mise à jour du pulvérisateurCourant
             'il sera sauvegarde en même temps que le diagnostique
             '====================================================================================
-            m_Pulverisateur.manometreNbniveaux = m_diagnostic.controleNbreNiveaux
-            m_Pulverisateur.manometreNbtroncons = m_diagnostic.controleNbreTroncons
-            'Pour le paramétrage des buses on prend le niveau 1
-            Dim nLot As Integer = 1
-            Dim oControl As Control
-            oControl = CSForm.getControlByName("ComboBox_marque_" & nLot, Me)
-            If oControl IsNot Nothing Then
-                If Not String.IsNullOrEmpty(oControl.Text) Then
-                    m_Pulverisateur.buseMarque = oControl.Text
-                End If
+            If _tabOngletsActifs(ONGLET_MANOTRONCON) Then
+                m_Pulverisateur.manometreNbniveaux = m_diagnostic.controleNbreNiveaux
+                m_Pulverisateur.manometreNbtroncons = m_diagnostic.controleNbreTroncons
             End If
-            oControl = CSForm.getControlByName("ComboBox_modele_" & nLot, Me)
-            If oControl IsNot Nothing Then
-                If Not String.IsNullOrEmpty(oControl.Text) Then
-                    m_Pulverisateur.buseModele = oControl.Text
+            If _tabOngletsActifs(ONGLET_BUSES) Then
+                'Pour le paramétrage des buses on prend le niveau 1
+                Dim nLot As Integer = 1
+                Dim oControl As Control
+                oControl = CSForm.getControlByName("ComboBox_marque_" & nLot, Me)
+                If oControl IsNot Nothing Then
+                    If Not String.IsNullOrEmpty(oControl.Text) Then
+                        m_Pulverisateur.buseMarque = oControl.Text
+                    End If
                 End If
-            End If
-            oControl = CSForm.getControlByName("TextBox_nbBuses_" & nLot, Me)
-            If oControl IsNot Nothing Then
-                If Not String.IsNullOrEmpty(oControl.Text) Then
-                    m_Pulverisateur.nombreBuses = oControl.Text
+                oControl = CSForm.getControlByName("ComboBox_modele_" & nLot, Me)
+                If oControl IsNot Nothing Then
+                    If Not String.IsNullOrEmpty(oControl.Text) Then
+                        m_Pulverisateur.buseModele = oControl.Text
+                    End If
                 End If
+                oControl = CSForm.getControlByName("TextBox_nbBuses_" & nLot, Me)
+                If oControl IsNot Nothing Then
+                    If Not String.IsNullOrEmpty(oControl.Text) Then
+                        m_Pulverisateur.nombreBuses = oControl.Text
+                    End If
+                End If
+                m_Pulverisateur.buseNbniveaux = diagBuses_conf_nbCategories.Text
             End If
-            m_Pulverisateur.buseNbniveaux = diagBuses_conf_nbCategories.Text
-
             'Pompes Doseuses
             If m_diagnostic.diagnosticHelp12123.lstPompes.Count() > 0 Then
                 m_Pulverisateur.isPompesDoseuses = True
