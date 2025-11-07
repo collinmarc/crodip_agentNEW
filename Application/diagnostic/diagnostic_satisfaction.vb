@@ -693,6 +693,10 @@ Public Class diagnostic_satisfaction
 
     Private Sub btn_ContreVisite_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ContreVisite.Click
 
+        Dim oParent As parentContener
+        oParent = TryCast(MdiParent, parentContener)
+        oParent.Action(New ActionFDiagCVImmediate())
+
         'Création d'un nouveau diagnostic à partir du courant
         diagnosticCourant = m_Diagnostic.Clone()
         diagnosticCourant.SetAsContreVisite(m_Agent)
@@ -711,10 +715,7 @@ Public Class diagnostic_satisfaction
         End If
 
         'On Change le Diag de départ
-        Dim oParent As parentContener
-        oParent = TryCast(MdiParent, parentContener)
         oParent.oEtatFDiag.oDiag = diagnosticCourant
-        oParent.Action(New ActionFDiagCVImmediate())
         oParent.Action(New ActionFDiagNext())
 
 

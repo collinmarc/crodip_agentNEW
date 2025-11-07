@@ -3,7 +3,7 @@ Imports System.Xml.Serialization
 Imports System.Collections.Generic
 Imports System.IO
 
-<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem))>
+<Serializable(), XmlInclude(GetType(Diagnostic)), XmlInclude(GetType(DiagnosticItemList)), XmlInclude(GetType(DiagnosticItem)), XmlInclude(GetType(ContratCommercial)), XmlInclude(GetType(Facture)), XmlInclude(GetType(FactureItem)), XmlInclude(GetType(Anomalie))>
 Public Class Diagnostic
     Inherits root
     Implements ICloneable
@@ -3356,43 +3356,45 @@ Public Class Diagnostic
                 typeDiagnostic = "pulverisateur"
             End If
 
-            'Mise à jour du DiahHelp12123
-            If _diagnostichelp12123 IsNot Nothing Then
-                Dim oParam12123 As ParamBuse12123
-                oParam12123 = poPulve.getParamBuses12123()
-                If oParam12123 IsNot Nothing Then
-                    _diagnostichelp12123.fonctionnementBuses = oParam12123.ModeFonctionnement
-                End If
-                If poPulve.isPompesDoseuses Then
-                    Dim nbPompes As Integer
-                    nbPompes = poPulve.nbPompesDoseuses
+            'Mise à jour du DiahHelp12123 si on n'est pas en CV
+            If controleIsComplet Then
+                If _diagnostichelp12123 IsNot Nothing Then
+                    Dim oParam12123 As ParamBuse12123
+                    oParam12123 = poPulve.getParamBuses12123()
+                    If oParam12123 IsNot Nothing Then
+                        _diagnostichelp12123.fonctionnementBuses = oParam12123.ModeFonctionnement
+                    End If
+                    If poPulve.isPompesDoseuses Then
+                        Dim nbPompes As Integer
+                        nbPompes = poPulve.nbPompesDoseuses
 
-                    _diagnostichelp12123.lstPompesTrtSem.Clear()
-                    _diagnostichelp12123.lstPompes.Clear()
-                    If poPulve.isTraitementdesSemences12123() Then
-                        For i As Integer = 1 To nbPompes
-                            _diagnostichelp12123.AjoutePompeTrtSem()
-                        Next
+                        _diagnostichelp12123.lstPompesTrtSem.Clear()
+                        _diagnostichelp12123.lstPompes.Clear()
+                        If poPulve.isTraitementdesSemences12123() Then
+                            For i As Integer = 1 To nbPompes
+                                _diagnostichelp12123.AjoutePompeTrtSem()
+                            Next
 
+                        Else
+                            For i As Integer = 1 To nbPompes
+                                _diagnostichelp12123.AjoutePompe()
+                            Next
+
+
+                        End If
                     Else
-                        For i As Integer = 1 To nbPompes
-                            _diagnostichelp12123.AjoutePompe()
-                        Next
-
-
+                        'Pas de pompes doseuses
+                        _diagnostichelp12123.lstPompes.Clear()
+                        _diagnostichelp12123.lstPompesTrtSem.Clear()
+                        'Pour le traietement des semences CUILLERES
+                        'On ajout une Pompe avec 1 Mesure
+                        If poPulve.isTraitementdesSemences12123() Then
+                            Dim oPompe As DiagnosticHelp12123PompeTrtSem
+                            oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
+                        End If
                     End If
-                Else
-                    'Pas de pompes doseuses
-                    _diagnostichelp12123.lstPompes.Clear()
-                    _diagnostichelp12123.lstPompesTrtSem.Clear()
-                    'Pour le traietement des semences CUILLERES
-                    'On ajout une Pompe avec 1 Mesure
-                    If poPulve.isTraitementdesSemences12123() Then
-                        Dim oPompe As DiagnosticHelp12123PompeTrtSem
-                        oPompe = _diagnostichelp12123.AjoutePompeTrtSem()
-                    End If
+                    _diagnostichelp12123.calcule()
                 End If
-                _diagnostichelp12123.calcule()
             End If
 
             If poPulve.manometreNbniveaux > 0 Then

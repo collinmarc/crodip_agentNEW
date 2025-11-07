@@ -294,7 +294,7 @@ Public Class diagnostic_infosInspecteur
         Me.btn_finalisationDiag_imprimer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_imprimer.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_imprimer.Image = CType(resources.GetObject("btn_finalisationDiag_imprimer.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_imprimer.Location = New System.Drawing.Point(872, 648)
+        Me.btn_finalisationDiag_imprimer.Location = New System.Drawing.Point(738, 648)
         Me.btn_finalisationDiag_imprimer.Name = "btn_finalisationDiag_imprimer"
         Me.btn_finalisationDiag_imprimer.Size = New System.Drawing.Size(128, 24)
         Me.btn_finalisationDiag_imprimer.TabIndex = 34
@@ -729,7 +729,7 @@ Public Class diagnostic_infosInspecteur
         Me.btn_finalisationDiag_quitter.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_finalisationDiag_quitter.ForeColor = System.Drawing.Color.White
         Me.btn_finalisationDiag_quitter.Image = CType(resources.GetObject("btn_finalisationDiag_quitter.Image"), System.Drawing.Image)
-        Me.btn_finalisationDiag_quitter.Location = New System.Drawing.Point(738, 648)
+        Me.btn_finalisationDiag_quitter.Location = New System.Drawing.Point(872, 648)
         Me.btn_finalisationDiag_quitter.Name = "btn_finalisationDiag_quitter"
         Me.btn_finalisationDiag_quitter.Size = New System.Drawing.Size(128, 24)
         Me.btn_finalisationDiag_quitter.TabIndex = 38

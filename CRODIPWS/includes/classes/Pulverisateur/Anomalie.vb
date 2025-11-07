@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.CompilerServices
-
+<Serializable>
 Public Class Anomalie
     Implements INotifyPropertyChanged
     Private _critere As String
