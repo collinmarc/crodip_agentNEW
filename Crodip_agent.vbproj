@@ -484,6 +484,9 @@
       <DependentUpon>SignatureForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Application\Signature\SignatureForm.vb" />
+    <Compile Include="Application\dlgSynchroDiag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Application\tools\tool_importData.Designer.vb">
       <DependentUpon>tool_importData.vb</DependentUpon>
     </Compile>
@@ -1965,6 +1968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Application\Signature\frmSignClientWacom.resx">
       <DependentUpon>frmSignClientWacom.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\dlgSynchroDiag.resx">
+      <DependentUpon>dlgSynchroDiag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Application\tools\tool_importData.resx">
       <DependentUpon>tool_importData.vb</DependentUpon>

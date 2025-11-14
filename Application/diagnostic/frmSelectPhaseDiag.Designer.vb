@@ -74,6 +74,9 @@ Partial Class frmSelectPhaseDiag
         'ckDefaut
         '
         Me.ckDefaut.AutoSize = True
+        Me.ckDefaut.Checked = True
+        Me.ckDefaut.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ckDefaut.Enabled = False
         Me.ckDefaut.Location = New System.Drawing.Point(12, 105)
         Me.ckDefaut.Name = "ckDefaut"
         Me.ckDefaut.Size = New System.Drawing.Size(117, 17)
