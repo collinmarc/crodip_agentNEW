@@ -51,7 +51,6 @@ Public Class GPSManager
         serialPort = New SerialPort()
         _lstTracesGPX = New List(Of String)
         init()
-        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
     End Sub
 
     ' Méthode pour configurer le port série
@@ -440,8 +439,8 @@ Public Class GPSManager
             End If
         Else
             _lstTracesGPX.Clear()
-
         End If
+        AddHandler serialPort.DataReceived, AddressOf OnSerialDataReceived
     End Sub
     Private _tabVitesse As New Queue(Of Decimal)
     Public VitesseConstante As Boolean = False

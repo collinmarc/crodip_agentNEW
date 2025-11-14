@@ -298,8 +298,8 @@ Public Class parentContener
                 End If
             End If
             CloseDiagnostic()
-            Else
-                If oEtatFDiag.IsVisible Then
+        Else
+            If oEtatFDiag.IsVisible Then
                 DisplayFormDiag()
             Else
                 Action(New ActionFDiagNext)

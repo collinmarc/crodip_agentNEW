@@ -64,12 +64,12 @@ Public Class Form1
 
         laTempsClick.Visible = My.Settings.AffichageTempsClick
 
-        AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
-        TimerLectureGPS.Start()
+        ' AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
+        ' TimerLectureGPS.Start()
     End Sub
 
     Private Sub cbMesure_Click(sender As Object, e As EventArgs) Handles cbMesure.Click
-
+        cbMesure.Enabled = False
         Select Case _EtatForm
             Case ETAT.Etat_2ENATTENTE
                 'Demarrage d'une Mesure
@@ -110,6 +110,7 @@ Public Class Form1
                 'Recommencer
                 SetAction(ACTIONFORM.Action_DEMARRER)
         End Select
+        cbMesure.Enabled = True
 
     End Sub
 
@@ -118,7 +119,8 @@ Public Class Form1
         m_bsrcGPSMesure.MoveNext()
         CbMesureSuivante.Enabled = False
         rbMesure1.Enabled = False
-        SetEtat1GPSACTIF()
+        gpsManager.Close()
+        SetEtat0GPSNONACTIF()
     End Sub
 
     Private Sub cbQuitter_Click(sender As Object, e As EventArgs) Handles cbQuitter.Click
@@ -144,6 +146,10 @@ Public Class Form1
         laVitesseMesuree.Visible = CkTest.Checked
         tbVitesseMesuree.Visible = CkTest.Checked
         SetVitesseLueVisible(False)
+
+        AddHandler TimerLectureGPS.Tick, AddressOf GPS_Rechercherleportserie
+        TimerLectureGPS.Start()
+
     End Sub
     Private Sub SetEtat1GPSACTIF()
         TraceMsg("Etat1 GPS ACTIF")
@@ -770,7 +776,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim TSTgpsManager As New GPSManager
         TSTgpsManager.ProcessNMEAData(tbCoord1.Text)
         TSTgpsManager.ProcessNMEAData(tbCoord2.Text)

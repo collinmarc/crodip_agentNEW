@@ -699,14 +699,30 @@ Public Class diagnostic_satisfaction
 
         'Création d'un nouveau diagnostic à partir du courant
         diagnosticCourant = m_Diagnostic.Clone()
+        diagnosticCourant.isSupprime = False
+        diagnosticCourant.uid = -1
+        diagnosticCourant.id = "" 'On supprime l'Id du diag, comme cela il sera considéré comme nouveau
+        '                m_oDiag.controleDateDebut = CSDate.TOCRODIPString(Date.Now)
+        '                m_oDiag.controleDateFin = CSDate.TOCRODIPString(Date.Now)
+        'm_oDiag.setPulverisateur(oPulve)
+
+        'Récupération des Phases de modif
+        diagnosticCourant.bTrtExploitation = False
+        diagnosticCourant.bTrtPulverisateur = False
+        diagnosticCourant.bTrtContexte = False
+        diagnosticCourant.bTrtContrat = True
+        diagnosticCourant.bTrtPreliminaires = True
+        diagnosticCourant.bTrtDefauts = True
+        diagnosticCourant.bTrtRecap = True
+        diagnosticCourant.bTrtFacture = True
+        diagnosticCourant.bTrtEnquete = True
+        diagnosticCourant.bTrtComplement = True
+
         diagnosticCourant.SetAsContreVisite(m_Agent)
         diagnosticCourant.isContrevisiteImmediate = True
         diagnosticCourant.RIFileName = ""
         diagnosticCourant.SMFileName = ""
         diagnosticCourant.CCFileName = ""
-        diagnosticCourant.bTrtExploitation = False
-        diagnosticCourant.bTrtPulverisateur = False
-        diagnosticCourant.bTrtContexte = False
         Dim oStructure As [Structure]
         oStructure = StructureManager.getStructureById(diagnosticCourant.organismePresId)
         If oStructure.isCVImmediateActive Then
