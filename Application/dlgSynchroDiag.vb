@@ -5,8 +5,8 @@ Imports System.Collections.Generic
 Imports System.ComponentModel
 
 Public Class dlgSynchroDiag
-
     Inherits System.Windows.Forms.Form
+    Implements IObservateur
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -76,6 +76,7 @@ Public Class dlgSynchroDiag
         '
         Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ProgressBar1.ForeColor = System.Drawing.Color.White
         Me.ProgressBar1.Location = New System.Drawing.Point(194, 67)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(299, 23)
@@ -138,7 +139,7 @@ Public Class dlgSynchroDiag
         m_Agent = agentCourant
         m_Diag = DiagnosticCourant
 
-
+        Me.Cursor = Cursors.WaitCursor
         m_bgw.RunWorkerAsync()
 
 
@@ -166,12 +167,21 @@ Public Class dlgSynchroDiag
             osynchro.RunAscSynchroExploit2Pulve(oExploit2Pulve)
         Next
         m_bgw.ReportProgress(60, "Synchronisation Contrôle")
+        m_nPourcent = 60
+        osynchro.ajouteObservateur(Me)
         osynchro.runascSynchroDiag(m_Agent, m_Diag)
         m_bgw.ReportProgress(100, "Fin de synchronisation Contrôle")
 
     End Sub
 
     Private Sub m_bgw_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles m_bgw.RunWorkerCompleted
+        Me.Cursor = Cursors.WaitCursor
         Me.Close()
+    End Sub
+    Private m_nPourcent As Integer
+    Public Sub Notice(pMsg As String) Implements IObservateur.Notice
+        m_nPourcent = Math.Min(m_nPourcent + 5, 100)
+
+        m_bgw.ReportProgress(m_nPourcent, pMsg)
     End Sub
 End Class
