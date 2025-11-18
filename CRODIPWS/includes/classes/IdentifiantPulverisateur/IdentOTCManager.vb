@@ -38,7 +38,7 @@ Public Class IdentifiantOTCManager
         Return bReturn
     End Function
 
-    Public Shared Function SaveList(pList As List(Of IdentifiantOTC)) As Boolean
+    Public Shared Function SaveList(pList As List(Of IdentifiantOTC), pRAZBase As Boolean) As Boolean
         Dim bReturn As Boolean
 
         Try
@@ -49,8 +49,10 @@ Public Class IdentifiantOTCManager
                 Dim strSQL As String = "INSERT INTO IdentifiantOTC (IdentOTC) VALUES($value) "
                 Dim oCmd As DbCommand
                 oCmd = dbLink.getConnection().CreateCommand()
-                oCmd.CommandText = "DELETE FROM IdentifiantOTC"
-                oCmd.ExecuteNonQuery()
+                If pRAZBase Then
+                    oCmd.CommandText = "DELETE FROM IdentifiantOTC"
+                    oCmd.ExecuteNonQuery()
+                End If
 
                 oCmd.CommandText = strSQL
                 Dim oParam As DbParameter = oCmd.CreateParameter()
@@ -106,7 +108,7 @@ Public Class IdentifiantOTCManager
         End Try
         Return bReturn
     End Function
-    Public Shared Function WSGetList() As List(Of IdentifiantOTC)
+    Public Shared Function WSGetList(Optional pDateDernSynhcro As String = "") As List(Of IdentifiantOTC)
         Console.WriteLine("IdentifiantORCManager.WSGetList Debut " & DateTime.Now.ToLongTimeString)
         Dim oreturn As List(Of IdentifiantOTC) = Nothing
         Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
@@ -119,7 +121,7 @@ Public Class IdentifiantOTCManager
             Dim codeResponse As Integer = 99 'Mehode non trouvée
             Dim oLst As Object()
             Console.WriteLine("AppelWS P " & DateTime.Now.ToLongTimeString)
-            codeResponse = objWSCrodip.GetIdentifiantOTCList("json", "P", 0, pInfos, oLst)
+            codeResponse = objWSCrodip.GetIdentifiantOTCList(pDateDernSynhcro, "json", "P", 0, pInfos, oLst)
             Console.WriteLine("ReTourWS P" & DateTime.Now.ToLongTimeString)
             '' déclarations
             Dim oNode As System.Xml.XmlNode() = oLst(0)
@@ -142,7 +144,7 @@ Public Class IdentifiantOTCManager
                     CSDebug.dispError("IdentifiantOTCManager.WSGetList : Bad Request")
             End Select
             Console.WriteLine("AppelWS E " & DateTime.Now.ToLongTimeString)
-            codeResponse = objWSCrodip.GetIdentifiantOTCList("json", "E", 0, pInfos, oLst)
+            codeResponse = objWSCrodip.GetIdentifiantOTCList(pDateDernSynhcro, "json", "E", 0, pInfos, oLst)
             Console.WriteLine("ReTourWS P" & DateTime.Now.ToLongTimeString)
             '' déclarations
             oNode = oLst(0)

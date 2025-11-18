@@ -577,8 +577,8 @@ Public Class SynchronisationElmt
                 oReturn = New SynchronisationElmtPoolManoControle(pSynchroBooleans)
             Case SynchronisationElmtPoolManoEtalon.getLabelGet.ToUpper().Trim()
                 oReturn = New SynchronisationElmtPoolManoEtalon(pSynchroBooleans)
-            Case SynchronisationElmtIdentifiantOTC.getLabelGet.ToUpper()
-                oReturn = New SynchronisationElmtIdentifiantOTC(pSynchroBooleans)
+            Case SynchronisationElmtIdentifiantOTCList.getLabelGet.ToUpper()
+                oReturn = New SynchronisationElmtIdentifiantOTCList(pSynchroBooleans)
             Case Else
                 oReturn = New SynchronisationElmt(pType, pSynchroBooleans)
 

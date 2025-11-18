@@ -2637,6 +2637,7 @@
       <xsd:element name="GetIdentifiantOTCListRequest">
         <xsd:complexType>
           <xsd:sequence>
+            <xsd:element name="lastUpdateDateTime" type="xsd:string" />
             <xsd:element name="format" type="xsd:string" />
             <xsd:element name="type" type="xsd:string" />
             <xsd:element name="uidpc" type="xsd:int" />

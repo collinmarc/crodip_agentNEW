@@ -3300,24 +3300,24 @@ Namespace WSCRODIP
 
         '''<remarks/>
         <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.example.org/crodip/getIdentifiantOTCList", RequestElementName:="GetIdentifiantOTCListRequest", RequestNamespace:="http://www.example.org/crodip/", ResponseNamespace:="http://www.example.org/crodip/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>
-        Public Function GetIdentifiantOTCList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal format As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal type As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("IdentifiantOTCList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTCList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
-            Dim results() As Object = Me.Invoke("GetIdentifiantOTCList", New Object() {format, type, uidpc})
+        Public Function GetIdentifiantOTCList(<System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal lastUpdateDateTime As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal format As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal type As String, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByVal uidpc As Integer, <System.Xml.Serialization.XmlElementAttribute(Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef info As String, <System.Xml.Serialization.XmlElementAttribute("IdentifiantOTCList", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> ByRef IdentifiantOTCList() As Object) As <System.Xml.Serialization.XmlElementAttribute("result", Form:=System.Xml.Schema.XmlSchemaForm.Unqualified)> Integer
+            Dim results() As Object = Me.Invoke("GetIdentifiantOTCList", New Object() {lastUpdateDateTime, format, type, uidpc})
             info = CType(results(1), String)
             IdentifiantOTCList = CType(results(2), Object())
             Return CType(results(0), Integer)
         End Function
 
         '''<remarks/>
-        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal format As String, ByVal type As String, ByVal uidpc As Integer)
-            Me.GetIdentifiantOTCListAsync(format, type, uidpc, Nothing)
+        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal lastUpdateDateTime As String, ByVal format As String, ByVal type As String, ByVal uidpc As Integer)
+            Me.GetIdentifiantOTCListAsync(lastUpdateDateTime, format, type, uidpc, Nothing)
         End Sub
 
         '''<remarks/>
-        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal format As String, ByVal type As String, ByVal uidpc As Integer, ByVal userState As Object)
+        Public Overloads Sub GetIdentifiantOTCListAsync(ByVal lastUpdateDateTime As String, ByVal format As String, ByVal type As String, ByVal uidpc As Integer, ByVal userState As Object)
             If (Me.GetIdentifiantOTCListOperationCompleted Is Nothing) Then
                 Me.GetIdentifiantOTCListOperationCompleted = AddressOf Me.OnGetIdentifiantOTCListOperationCompleted
             End If
-            Me.InvokeAsync("GetIdentifiantOTCList", New Object() {format, type, uidpc}, Me.GetIdentifiantOTCListOperationCompleted, userState)
+            Me.InvokeAsync("GetIdentifiantOTCList", New Object() {lastUpdateDateTime, format, type, uidpc}, Me.GetIdentifiantOTCListOperationCompleted, userState)
         End Sub
 
         Private Sub OnGetIdentifiantOTCListOperationCompleted(ByVal arg As Object)
@@ -8353,6 +8353,7 @@ Namespace WSCRODIP
             MyBase.New(exception, cancelled, userState)
             Me.results = results
         End Sub
+
 
         '''<remarks/>
         Public Overloads ReadOnly Property result() As Integer

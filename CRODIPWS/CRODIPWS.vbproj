@@ -369,7 +369,7 @@
     <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtAgentPc.vb" />
-    <Compile Include="includes\classes\Synchro\SynchronisationElmtIdentifiantOTC.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtIdentifiantOTCList.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolBuse.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoEtalon.vb" />
     <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoControle.vb" />

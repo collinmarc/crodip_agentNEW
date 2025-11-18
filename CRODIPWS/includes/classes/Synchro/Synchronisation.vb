@@ -1062,9 +1062,9 @@ Public Class Synchronisation
                 Try
                     Dim oListe As New List(Of IdentifiantOTC)
                     oListe = IdentifiantOTCManager.WSGetList()
-                    IdentifiantOTCManager.SaveList(oListe)
+                    IdentifiantOTCManager.SaveList(oListe, True)
                 Catch ex As Exception
-
+                    CSDebug.dispError("Synhcronisation.RunDescSynchro GetOTCList ERR ", ex)
                 End Try
                 'si on a téléchargé la base des Identifiants OTC, on ne prend pas les individuels
                 bTrtIdentifiantOTCIndiv = False
@@ -1077,7 +1077,7 @@ Public Class Synchronisation
                 CSDebug.dispInfo("Suppression des element IdentifiantOTC1")
                 'Suppression des Elements IdentifiantOTC
                 lstElementsASynchroniserTotal.RemoveAll(Function(E)
-                                                            Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
+                                                            Return E.Type = SynchronisationElmtIdentifiantOTCList.getLabelGet()
                                                         End Function
                                                          )
             End If
@@ -1092,7 +1092,7 @@ Public Class Synchronisation
                         'Suppression des Elements IdentifiantOTC
                         CSDebug.dispInfo("Suppression des element IdentifiantOTC2")
                         lstElementsASynchroniserAgent.RemoveAll(Function(E)
-                                                                    Return E.Type = SynchronisationElmtIdentifiantOTC.getLabelGet()
+                                                                    Return E.Type = SynchronisationElmtIdentifiantOTCList.getLabelGet()
                                                                 End Function
                                                          )
                     End If

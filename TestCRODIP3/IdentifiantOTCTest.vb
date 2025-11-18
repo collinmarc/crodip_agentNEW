@@ -16,7 +16,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         oListe.Add(New IdentifiantOTC("E001123549"))
         oListe.Add(New IdentifiantOTC("E001123540"))
 
-        IdentifiantOTCManager.SaveList(oListe)
+        IdentifiantOTCManager.SaveList(oListe, True)
 
         Assert.IsTrue(IdentifiantOTCManager.exists("E001123548"))
         Assert.IsFalse(IdentifiantOTCManager.exists("Z001123458"))
@@ -25,7 +25,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim oListe As New List(Of IdentifiantOTC)
         oListe = IdentifiantOTCManager.WSGetList()
         Assert.IsNotNull(oListe)
-        Assert.IsTrue(IdentifiantOTCManager.SaveList(oListe))
+        Assert.IsTrue(IdentifiantOTCManager.SaveList(oListe, True))
 
     End Sub
     <TestMethod()> Public Sub WSGetIdentifiantOTCTest()
@@ -40,4 +40,17 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
     End Sub
 
+    <TestMethod()> Public Sub IdentOTCWSGetListUpdateTest()
+        Dim oListe As New List(Of IdentifiantOTC)
+        oListe = IdentifiantOTCManager.WSGetList("2025-11-10 10:00:00")
+        Assert.IsNotNull(oListe)
+        Assert.IsTrue(IdentifiantOTCManager.SaveList(oListe, False))
+
+    End Sub
+    <TestMethod()> Public Sub SynchroIdentOTCListUpdateTest()
+        Dim oSynhcro As New SynchronisationElmtIdentifiantOTCList()
+        oSynhcro.IdentifiantChaine = "2025-11-10 10:00:00"
+        Assert.IsTrue(oSynhcro.SynchroDesc(m_oAgent))
+
+    End Sub
 End Class

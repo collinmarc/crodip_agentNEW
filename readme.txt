@@ -3,6 +3,7 @@ MASTER
 BUILD20251013
 	Message d'avertissment en Ajout de Pulvé
 	0001832: Ajout d'une fenêtre pour la synhcro immédiate des diag
+	0001833: Synchro des Identifiants OTC en Mode json
 
 BUILD 20250910100000
 	0001661: Modification accès à la clé des pompes doseuses
