@@ -55,7 +55,8 @@ Public Class dlgSynchroDiag
         Me.PictureBox1.Image = Global.Crodip_agent.Resources.logo_crodipIndigo
         Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(178, 179)
+        Me.PictureBox1.Size = New System.Drawing.Size(117, 108)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 10
         Me.PictureBox1.TabStop = False
         '
@@ -67,7 +68,7 @@ Public Class dlgSynchroDiag
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(196, 26)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(297, 27)
+        Me.Label1.Size = New System.Drawing.Size(293, 27)
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "Synchronisation d'un contrôle"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -77,16 +78,16 @@ Public Class dlgSynchroDiag
         Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProgressBar1.ForeColor = System.Drawing.Color.White
-        Me.ProgressBar1.Location = New System.Drawing.Point(194, 67)
+        Me.ProgressBar1.Location = New System.Drawing.Point(148, 67)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(299, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(341, 23)
         Me.ProgressBar1.TabIndex = 9
         '
         'laStep
         '
         Me.laStep.AutoSize = True
         Me.laStep.ForeColor = System.Drawing.Color.White
-        Me.laStep.Location = New System.Drawing.Point(200, 107)
+        Me.laStep.Location = New System.Drawing.Point(145, 107)
         Me.laStep.Name = "laStep"
         Me.laStep.Size = New System.Drawing.Size(37, 13)
         Me.laStep.TabIndex = 11
@@ -100,7 +101,7 @@ Public Class dlgSynchroDiag
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(498, 218)
+        Me.ClientSize = New System.Drawing.Size(494, 129)
         Me.ControlBox = False
         Me.Controls.Add(Me.laStep)
         Me.Controls.Add(Me.ProgressBar1)
