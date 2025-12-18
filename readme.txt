@@ -1,5 +1,8 @@
 #TRUNK
 MASTER
+BUILD 20251218
+	0001838: Annule et remplace d'un diag réalisé par un autre inspecteur
+
 BUILD20251013
 	Message d'avertissment en Ajout de Pulvé
 	0001832: Ajout d'une fenêtre pour la synhcro immédiate des diag
