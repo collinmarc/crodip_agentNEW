@@ -3109,7 +3109,7 @@ Public Class liste_diagnosticPulve2
                     '                m_oDiag.controleDateDebut = CSDate.TOCRODIPString(Date.Now)
                     '                m_oDiag.controleDateFin = CSDate.TOCRODIPString(Date.Now)
                     'm_oDiag.setPulverisateur(oPulve)
-
+                    m_oDiag.setOrganisme(oAgent)
                     ' On Modifi le Diag Sélectionné
                     Me.DiagMode = IIf(m_oDiag.controleIsComplet, GlobalsCRODIP.DiagMode.CTRL_COMPLET, GlobalsCRODIP.DiagMode.CTRL_CV)
                     m_oDiag.isSignCCAgent = False

@@ -45,7 +45,7 @@ Public Class EtatContratCommercial
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_CONTRAT_COMMERCIAL) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     If File.Exists(m_Path & m_FileName) Then
                         File.Delete(m_Path & m_FileName)

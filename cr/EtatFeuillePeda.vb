@@ -34,7 +34,7 @@ Public Class EtatFeuillePeda
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oFeuille.oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oFeuille.oDiag.pulverisateurId, m_oFeuille.oDiag.proprietaireId, CSDiagPdf.TYPE_FEUILLE_PEDAGOGIQUE) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions

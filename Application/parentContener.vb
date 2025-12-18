@@ -280,8 +280,8 @@ Public Class parentContener
                     If MessageBox.Show("Voulez-vous synchroniser votre controle avec le CRODIP ?", "Synchronisation du controle", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
                         Dim oDlg As New dlgSynchroDiag()
-                        oDlg.Show()
                         oDlg.setContext(diagnosticCourant, agentCourant)
+                        oDlg.ShowDialog()
                         diagnosticCourant = DiagnosticManager.getDiagnosticById(diagnosticCourant.id)
                         If diagnosticCourant.isAnomalies Then
                             MessageBox.Show("Des anomalies ont été détectées par le CRODIP, Connectez vous à E-pulve pour les vérifier", "Anomalies détectées par le CRODIP", MessageBoxButtons.OK)

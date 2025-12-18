@@ -35,7 +35,7 @@ Public Class EtatFVBanc
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oControle.idBanc, "", CSDiagPdf.TYPE_FV_BANCMESURE) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions

@@ -584,7 +584,70 @@ INSERT INTO AgentManoEtalon (
 
 
     End Sub
-    Public Sub TransfertTable2(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
+    Public Sub TransfertTableFromDiag(pTable As String, pINSERTSQL As String, pExcept As String, pDiagId As String)
+
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
+        Dim oCSDB As New CSDb(False)
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        oCSDBACCESS.Open()
+        CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        oCSDBSQL.Open()
+        Dim nMax As Integer = 100
+        Dim ocmdACCESS As DbCommand
+        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+
+        ocmdACCESS = oCSDBACCESS.CreateCommand
+        ocmdSQL = oCSDBSQL.CreateCommand
+        ocmdACCESS.CommandText = "SELECT Count(*) FROM " & pTable & " WHERE idDiagnostic = '" & pDiagId & "'"
+        nMax = ocmdACCESS.ExecuteScalar()
+
+        Try
+
+            ocmdACCESS.CommandText = "SELECT * FROM " & pTable & " WHERE idDiagnostic = '" & pDiagId & "'"
+            ocmdACCESS.CommandTimeout = 0
+
+            ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+            ocmdSQL.CommandTimeout = 0
+
+            ocmdSQL.Prepare()
+            Dim oDR As DbDataReader
+            oDR = ocmdACCESS.ExecuteReader()
+            Dim n As Integer = 0
+            While oDR.Read()
+                n = n + 1
+                If bgw.CancellationPending Then
+                    Exit Sub
+                End If
+                'bgw.ReportProgress(n * 100 / nMax, pTable & ":" & oDR.GetValue(0))
+                ocmdSQL.Parameters.Clear()
+                For i As Integer = 0 To oDR.FieldCount() - 1
+                    If oDR.GetName(i).ToUpper() <> pExcept.ToUpper() Then
+                        Dim Nom As String
+                        Nom = oDR.GetName(i)
+                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                    End If
+                Next
+                Try
+                    'Modification du DiagId
+                    ocmdSQL.Parameters("@IDDIAGNOSTIC").Value = pDiagId & "-2"
+                    ocmdSQL.ExecuteNonQuery()
+                Catch ex As Exception
+                    CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
+                End Try
+
+            End While
+            oDR.Close()
+        Catch ex As Exception
+            CSDebug.dispError(pTable & " ERR :", ex)
+        End Try
+
+        oCSDBACCESS.Close()
+        oCSDBSQL.Close()
+
+
+    End Sub
+    Public Sub TransfertTableDiagnostic(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
         Try
 
             CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
@@ -621,19 +684,125 @@ INSERT INTO AgentManoEtalon (
                 End If
                 bgw.ReportProgress(n * 100 / nMax, pTable & ":" & oDR.GetValue(0))
                 ocmdSQL.Parameters.Clear()
-                For i As Integer = 0 To oDR.FieldCount() - 1
-                    If Not oDR.GetName(i).ToUpper().StartsWith("SIGN") Then
-                        Dim Nom As String
-                        Nom = oDR.GetName(i)
-                        ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
-                    End If
-                Next
-                Try
 
-                    ocmdSQL.ExecuteNonQuery()
-                Catch ex As Exception
-                    CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
-                End Try
+                'Vérification de l'existence du Diag
+                Dim DiagId As String
+                Dim PulveId As String
+                Dim ExploitantId As String
+                Dim AgentId As String
+                Dim StructureNum As String
+                Dim dateControl As String
+                Dim RSExploitant As String
+
+
+                DiagId = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("Id"))
+                PulveId = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("pulverisateurId"))
+                ExploitantId = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("proprietaireId"))
+                AgentId = oDR.GetFieldValue(Of Integer)(oDR.GetOrdinal("InspecteurId"))
+                StructureNum = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("OrganismePresNumero"))
+                dateControl = oDR.GetFieldValue(Of DateTime)(oDR.GetOrdinal("controleDateDebut"))
+                RSExploitant = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("proprietaireRaisonSociale"))
+
+                dateControl = dateControl.Replace("/", "-")
+
+                ocmdSQL.CommandText = "SELECT COUNT(ID) FROM DIAGNOSTIC WHERE Id = '" & DiagId & "' "
+                Dim nEnr As Integer = ocmdSQL.ExecuteScalar()
+
+                Dim uidPulve As Integer
+                Dim uidExploitant As Integer
+                Dim uidAgent As Integer
+                Dim uidStructure As Integer
+
+
+                If nEnr = 0 Then
+                    Dim obj As Object
+                    ocmdSQL.CommandText = "SELECT uid from Pulverisateur where id ='" & PulveId & "'"
+                    obj = ocmdSQL.ExecuteScalar()
+                    If obj IsNot DBNull.Value Then
+                        uidPulve = obj.ToString()
+                    Else
+                        ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        uidPulve = 0
+                    End If
+                    ocmdSQL.CommandText = "SELECT uid from Exploitation where id ='" & ExploitantId & "'"
+                    obj = ocmdSQL.ExecuteScalar()
+                    If obj IsNot DBNull.Value Then
+                        uidExploitant = obj.ToString()
+                    Else
+                        ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        uidExploitant = 0
+                    End If
+                    ocmdSQL.CommandText = "SELECT uid from Agent where id ='" & AgentId & "'"
+                    obj = ocmdSQL.ExecuteScalar()
+                    If obj IsNot DBNull.Value Then
+                        uidAgent = obj.ToString()
+                    Else
+                        uidAgent = 0
+                    End If
+                    ocmdSQL.CommandText = "SELECT id from Structure where idCrodip ='" & StructureNum & "'"
+                    obj = ocmdSQL.ExecuteScalar()
+                    If obj IsNot DBNull.Value Then
+                        uidStructure = obj.ToString()
+                    Else
+                        uidStructure = 0
+                    End If
+
+                    'Si pas D'enr dans la table SQLITE
+
+                    'Ordre d'insert
+                    ocmdSQL.CommandText = pINSERTSQL.ToUpper()
+                    ocmdSQL.CommandTimeout = 0
+                    'Passage des paramètres
+                    For i As Integer = 0 To oDR.FieldCount() - 1
+                        If Not oDR.GetName(i).ToUpper().StartsWith("SIGN") Then
+                            Dim Nom As String
+                            Nom = oDR.GetName(i)
+                            ocmdSQL.Parameters.AddWithValue("@" & Nom.ToUpper(), oDR.GetValue(i))
+                        End If
+                    Next
+
+                    'Execution du transfert
+                    Try
+                        'Mise à jour de l'ID de diagnostic
+                        ocmdSQL.Parameters("@ID").Value = DiagId & "-2"
+                        ocmdSQL.Parameters("@DATEMODIFICATIONAGENT").Value = Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss")
+                        ocmdSQL.Parameters.AddWithValue("@UID", 0)
+                        ocmdSQL.Parameters.AddWithValue("@AID", DiagId & "-2")
+                        ocmdSQL.Parameters.AddWithValue("@UIDPULVERISATEUR", uidPulve)
+                        ocmdSQL.Parameters.AddWithValue("@UIDEXPLOITATION", uidExploitant)
+                        ocmdSQL.Parameters.AddWithValue("@UIDSTRUCTURE", uidStructure)
+                        ocmdSQL.Parameters.AddWithValue("@UIDAGENT", uidAgent)
+
+                        ocmdSQL.ExecuteNonQuery()
+
+
+
+                    Catch ex As Exception
+                        CSDebug.dispError(pTable & " [" & oDR.GetValue(0) & "] ERR :", ex)
+                    End Try
+                    TransfertDiagnosticItem(DiagId)
+                    TransfertDiagnosticBuses(DiagId)
+                    TransfertDiagnosticBusesDetail(DiagId)
+                    TransfertDiagnosticMano542(DiagId)
+                    TransfertDiagnosticTronçons833(DiagId)
+                Else
+                    ocmdSQL.CommandText = "SELECT UID FROM DIAGNOSTIC WHERE ID = '" & DiagId & "'"
+                    Dim obj As Object
+                    obj = ocmdSQL.ExecuteScalar()
+                    If obj Is DBNull.Value Then
+                        'Le Diag Existe mais n'a pas été synhcronisé
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                    End If
+
+
+                End If
             End While
             oDR.Close()
             oCSDBACCESS.Close()
@@ -1658,7 +1827,8 @@ INSERT INTO Diagnostic (
                            totalTTC,
                            dateRemplacement,
                            isCVImmediate,
-                           isGratuit
+                           isGratuit,
+                           uid,aid,uidstructure,uidexploitation,uidpulverisateur,uidagent
                        )
                        VALUES (
                            @id,
@@ -1813,11 +1983,13 @@ INSERT INTO Diagnostic (
                            @totalTTC,
                            @dateRemplacement,
                            @isCVImmediate,
-                           @isGratuit
+                           @isGratuit,
+                           @uid,@aid,@uidstructure,@uidexploitation,@uidpulverisateur,@uidagent
+
                        )"
 
-        TransfertTable2("Diagnostic", strSQL)
-        UPDATEDATEMODIFAGENTDIAGNOSTIC()
+        TransfertTableDiagnostic("Diagnostic", strSQL)
+        'UPDATEDATEMODIFAGENTDIAGNOSTIC()
     End Sub
 
     Private Sub UPDATEDATEMODIFAGENTDIAGNOSTIC()
@@ -1880,7 +2052,7 @@ INSERT INTO Diagnostic (
         oCSDBSQL.Close()
 
     End Sub
-    Public Sub TransfertDiagnosticItem()
+    Public Sub TransfertDiagnosticItem(pDiagId As String)
 
         Dim strSQL As String = " INSERT INTO DiagnosticItem (
                                idDiagnostic,
@@ -1920,11 +2092,10 @@ INSERT INTO Diagnostic (
 
         ocmdACCESS = oCSDBACCESS.CreateCommand
         ocmdSQL = oCSDBSQL.CreateCommand
-        ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B'"
+        ocmdACCESS.CommandText = "SELECT Count(*) FROM DiagnosticItem Where ItemCodeEtat <> 'B' AND idDiagnostic = '" & pDiagId & "'"
         nMax = ocmdACCESS.ExecuteScalar()
 
-        ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem  Where ItemCodeEtat <> 'B'"
-
+        ocmdACCESS.CommandText = "SELECT * FROM DiagnosticItem  Where ItemCodeEtat <> 'B' AND idDiagnostic = '" & pDiagId & "'"
 
         ocmdSQL.CommandText = strSQL
 
@@ -1934,7 +2105,7 @@ INSERT INTO Diagnostic (
         Dim n As Integer = 0
         While oDR.Read()
             n = n + 1
-            bgw.ReportProgress(n * 100 / nMax, "DiagnosticItem " & oDR.GetValue(0))
+            'bgw.ReportProgress(n * 100 / nMax, "DiagnosticItem " & oDR.GetValue(0))
             ocmdSQL.Parameters.Clear()
             For i As Integer = 0 To oDR.FieldCount() - 1
                 If oDR.GetName(i) <> "Id" Then
@@ -1942,7 +2113,7 @@ INSERT INTO Diagnostic (
                 End If
             Next
             Try
-
+                ocmdSQL.Parameters("@idDiagnostic").Value = pDiagId & "-2"
                 ocmdSQL.ExecuteNonQuery()
             Catch ex As Exception
                 CSDebug.dispError("DiagnosticItem " & oDR.GetValue(0) & "] ERR :", ex)
@@ -1956,7 +2127,7 @@ INSERT INTO Diagnostic (
 
 
     End Sub
-    Public Sub TransfertDiagnosticBuses()
+    Public Sub TransfertDiagnosticBuses(pDiagId As String)
         Dim strSQL As String = "INSERT INTO DiagnosticBuses (
                                 idDiagnostic,
                                 marque,
@@ -1986,9 +2157,9 @@ INSERT INTO Diagnostic (
                                 @ecartTolere
                             );
 "
-        TransfertTable("DiagnosticBuses", strSQL, "Id")
+        TransfertTableFromDiag("DiagnosticBuses", strSQL, "Id", pDiagId)
     End Sub
-    Public Sub TransfertDiagnosticBusesDetail()
+    Public Sub TransfertDiagnosticBusesDetail(pDiagId As String)
 
         Dim strSQL As String = "INSERT INTO DiagnosticBusesDetail (
                                       idDiagnostic,
@@ -2010,9 +2181,9 @@ INSERT INTO Diagnostic (
                                   );
 
 "
-        TransfertTable("DiagnosticBusesDetail", strSQL, "Id")
+        TransfertTableFromDiag("DiagnosticBusesDetail", strSQL, "Id", pDiagId)
     End Sub
-    Public Sub TransfertDiagnosticMano542()
+    Public Sub TransfertDiagnosticMano542(pDiagId As String)
         Dim strSQL As String = "INSERT INTO DiagnosticMano542 (
                                   idDiagnostic,
                                   pressionPulve,
@@ -2030,9 +2201,9 @@ INSERT INTO Diagnostic (
 
 
 "
-        TransfertTable("DiagnosticMano542", strSQL, "Id")
+        TransfertTableFromDiag("DiagnosticMano542", strSQL, "Id", pDiagId)
     End Sub
-    Public Sub TransfertDiagnosticTronçons833()
+    Public Sub TransfertDiagnosticTronçons833(pDiagId As String)
         Dim strSQL As String =
         "INSERT INTO DiagnosticTroncons833 (
                                       idDiagnostic,
@@ -2053,7 +2224,7 @@ INSERT INTO Diagnostic (
 
 
 "
-        TransfertTable("DiagnosticTroncons833", strSQL)
+        TransfertTableFromDiag("DiagnosticTroncons833", strSQL, "", pDiagId)
 
     End Sub
 
@@ -2065,11 +2236,11 @@ INSERT INTO Diagnostic (
         Try
 
             TransfertDiagnostic()
-            TransfertDiagnosticItem()
-            TransfertDiagnosticBuses()
-            TransfertDiagnosticBusesDetail()
-            TransfertDiagnosticMano542()
-            TransfertDiagnosticTronçons833()
+            '            TransfertDiagnosticItem()
+            '           TransfertDiagnosticBuses()
+            '          TransfertDiagnosticBusesDetail()
+            '         TransfertDiagnosticMano542()
+            '        TransfertDiagnosticTronçons833()
         Catch ex As Exception
             CSDebug.dispError("TransfertDiagnostic ERR", ex)
         End Try

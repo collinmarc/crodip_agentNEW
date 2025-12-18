@@ -10,6 +10,7 @@
             End If
         Else
             Me.Cursor = Cursors.WaitCursor
+            Button1.Enabled = False
             BackgroundWorker1.RunWorkerAsync()
         End If
 
@@ -76,10 +77,6 @@
             If e.ProgressPercentage <= 100 Then
                 Me.ProgressBarN2.Value = e.ProgressPercentage
                 lblProgressN2.Text = e.UserState
-            Else
-                Me.ProgressBarN1.Value = e.ProgressPercentage - 100
-                lblProgressN1.Text = e.UserState
-
             End If
         Catch ex As Exception
 
@@ -88,9 +85,9 @@
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
-            Me.ProgressBarN1.Value = Me.ProgressBarN1.Maximum
             Me.ProgressBarN2.Value = Me.ProgressBarN2.Maximum
             lblProgressN2.Text = "Transfert Terminé"
+            Me.Button1.Enabled = True
             Me.Button1.Text = "Quitter"
             Me.Cursor = Cursors.Default
             bFini = True

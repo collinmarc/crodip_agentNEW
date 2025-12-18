@@ -66,7 +66,7 @@ Public Class EtatSyntheseMesures
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_SYNTHESE_MESURES) & "_" & m_oDiag.id & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_SYNTHESE_MESURES) & "_" & m_oDiag.id & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions

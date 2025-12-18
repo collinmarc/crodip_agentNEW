@@ -33,7 +33,7 @@ Public Class EtatEnquete
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FEUILLE_ENQSAT) & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_FEUILLE_ENQSAT) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions

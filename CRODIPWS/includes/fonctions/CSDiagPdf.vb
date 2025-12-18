@@ -14,7 +14,7 @@ Public Class CSDiagPdf
 
     ' Retourne le nom du fichier à générer en fonction du pulve et du type de document
     ' FORMAT : [Ymd]_[idPulve]_[nomProprio]_[CC|RI|BL|FP].pdf
-    Public Shared Function makeFilename(ByVal pulveId As String, ByVal typeDoc As String) As String
+    Public Shared Function makeFilename(ByVal pulveId As String, pExploitid As String, ByVal typeDoc As String) As String
         Dim fileName As String = ""
         '##########################################################
         If typeDoc = TYPE_FV_MANOCTRL Or typeDoc = TYPE_FV_BANCMESURE Or typeDoc = TYPE_FV_RP Then
@@ -39,7 +39,7 @@ Public Class CSDiagPdf
             If Not String.IsNullOrEmpty(pulve.id) Then
                 PulveNumNat = pulve.numeroNational
                 Dim oExploit As Exploitation
-                oExploit = ExploitationManager.GetExploitationByPulverisateurId(pulveId)
+                oExploit = ExploitationManager.getExploitationById(pExploitid)
                 If Not String.IsNullOrEmpty(oExploit.id) Then
                     RSExploit = oExploit.raisonSociale
                 End If

@@ -96,7 +96,7 @@ Public Class EtatFacture
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_FACTURE) & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = objReport.ExportOptions
                     With CrExportOptions

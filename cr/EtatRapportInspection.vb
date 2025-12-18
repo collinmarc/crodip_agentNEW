@@ -39,7 +39,7 @@ Public Class EtatRapportInspection
                     Dim CrExportOptions As ExportOptions
                     Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                     Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
+                    m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
                     CrDiskFileDestinationOptions.DiskFileName = m_Path & m_FileName
                     CrExportOptions = m_oReportDocument.ExportOptions
                     With CrExportOptions
@@ -80,7 +80,7 @@ Public Class EtatRapportInspection
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions
                 Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions
-                m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
+                m_FileName = CSDiagPdf.makeFilename(m_oDiag.pulverisateurId, m_oDiag.proprietaireId, CSDiagPdf.TYPE_RAPPORT_INSPECTION) & "_" & m_oDiag.id & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = GlobalsCRODIP.CONST_PATH_EXP_DIAGNOSTIC & m_FileName
                 CrExportOptions = objReport.ExportOptions
                 With CrExportOptions

@@ -26,7 +26,6 @@ Partial Class FrmMigrationBDD
         Me.ProgressBarN2 = New System.Windows.Forms.ProgressBar()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.lblProgressN2 = New System.Windows.Forms.Label()
-        Me.ProgressBarN1 = New System.Windows.Forms.ProgressBar()
         Me.lblProgressN1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -60,13 +59,6 @@ Partial Class FrmMigrationBDD
         Me.lblProgressN2.Size = New System.Drawing.Size(0, 13)
         Me.lblProgressN2.TabIndex = 2
         '
-        'ProgressBarN1
-        '
-        Me.ProgressBarN1.Location = New System.Drawing.Point(21, 12)
-        Me.ProgressBarN1.Name = "ProgressBarN1"
-        Me.ProgressBarN1.Size = New System.Drawing.Size(764, 23)
-        Me.ProgressBarN1.TabIndex = 3
-        '
         'lblProgressN1
         '
         Me.lblProgressN1.AutoSize = True
@@ -92,7 +84,6 @@ Partial Class FrmMigrationBDD
         Me.ClientSize = New System.Drawing.Size(800, 203)
         Me.Controls.Add(Me.btnAnnuler)
         Me.Controls.Add(Me.lblProgressN1)
-        Me.Controls.Add(Me.ProgressBarN1)
         Me.Controls.Add(Me.lblProgressN2)
         Me.Controls.Add(Me.ProgressBarN2)
         Me.Controls.Add(Me.Button1)
@@ -107,7 +98,6 @@ Partial Class FrmMigrationBDD
     Friend WithEvents ProgressBarN2 As ProgressBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents lblProgressN2 As Label
-    Friend WithEvents ProgressBarN1 As ProgressBar
     Friend WithEvents lblProgressN1 As Label
     Friend WithEvents btnAnnuler As Button
 End Class

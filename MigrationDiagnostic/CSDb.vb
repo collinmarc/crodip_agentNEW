@@ -121,9 +121,9 @@ Public Class CSDb
             Case EnumDBTYPE.MSACCESS
                 If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
                     If DBextension = ".accdb" Then
-                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
+                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
                     Else
-                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
                     End If
 
                 Else

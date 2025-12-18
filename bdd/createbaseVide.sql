@@ -1,5 +1,5 @@
 --
--- Fichier généré par SQLiteStudio v3.2.1 sur lun. févr. 10 12:50:13 2025
+-- Fichier généré par SQLiteStudio v3.2.1 sur jeu. nov. 20 21:39:56 2025
 --
 -- Encodage texte utilisé : System
 --
@@ -31,42 +31,11 @@ CREATE TABLE Agent (
     isGestionnaire         BIT            DEFAULT 0,
     signatureElect         BIT            DEFAULT 0,
     statut                 VARCHAR (50),
-    idCRODIPPOOL           TEXT,
     uid                    INTEGER,
     aid                    TEXT,
-    uidstructure           INTEGER
-);
-
-
--- Table : Agent1
-DROP TABLE IF EXISTS Agent1;
-
-CREATE TABLE Agent1 (
-    Id                     INT            PRIMARY KEY,
-    numeroNational         NVARCHAR (50)  UNIQUE,
-    motdepasse             NVARCHAR (255),
-    nom                    VARCHAR (256),
-    prenom                 VARCHAR (256),
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    telephoneportable      VARCHAR (256),
-    email                  VARCHAR (256),
-    dateCreation           DATETIME2,
-    dateDerniereConnexion  DATETIME2,
-    dateDerniereSynchro    DATETIME2,
-    dateModificationAgent  DATETIME2,
-    dateModificationCrodip DATETIME2,
-    versionLogiciel        VARCHAR (256),
-    commentaire            VARCHAR (256),
-    cleActivation          VARCHAR (256),
-    isActif                BIT            DEFAULT 0,
-    droitsPulves           VARCHAR (2560),
-    isGestionnaire         BIT            DEFAULT 0,
-    signatureElect         BIT            DEFAULT 0,
-    statut                 VARCHAR (50),
-    idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE SET NULL,
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
+    uidstructure           INTEGER,
+    uidpool                BIGINT (20)    DEFAULT 0,
+    uidpc                  BIGINT (20)    DEFAULT 0
 );
 
 
@@ -92,34 +61,6 @@ CREATE TABLE AgentbuseEtalon (
     dateSuppression        DATETIME,
     jamaisServi            BIT,
     dateActivation         DATETIME,
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
-);
-
-
--- Table : AgentbuseEtalon2201
-DROP TABLE IF EXISTS AgentbuseEtalon2201;
-
-CREATE TABLE AgentbuseEtalon2201 (
-    numeroNational         NVARCHAR (255) NOT NULL,
-    idCrodip               NVARCHAR (255),
-    couleur                NVARCHAR (255),
-    pressionEtalonnage     FLOAT,
-    debitEtalonnage        FLOAT,
-    idStructure            INT            REFERENCES Structure (id),
-    isSynchro              BIT,
-    dateAchat              DATETIME2 (0),
-    dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0),
-    etat                   BIT,
-    isSupprime             BIT,
-    isUtilise              BIT,
-    agentSuppression       NVARCHAR (255),
-    raisonSuppression      NVARCHAR (255),
-    dateSuppression        DATETIME2 (0),
-    jamaisServi            BIT,
-    dateActivation         DATETIME2 (0),
     uid                    INTEGER,
     aid                    TEXT,
     uidstructure           INTEGER
@@ -163,44 +104,6 @@ CREATE TABLE AgentManoControle (
 );
 
 
--- Table : AgentManoControle2201
-DROP TABLE IF EXISTS AgentManoControle2201;
-
-CREATE TABLE AgentManoControle2201 (
-    numeroNational         NVARCHAR (255) NOT NULL
-                                          PRIMARY KEY,
-    idCrodip               NVARCHAR (255),
-    marque                 NVARCHAR (255),
-    classe                 NVARCHAR (255),
-    type                   NVARCHAR (255),
-    fondEchelle            NVARCHAR (255),
-    etat                   BIT,
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    isSynchro              BIT,
-    dateDernierControle    DATETIME2 (0),
-    dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0),
-    isUtilise              BIT,
-    isSupprime             BIT,
-    nbControles            INT,
-    nbControlesTotal       INT,
-    resolution             NVARCHAR (255),
-    agentSuppression       NVARCHAR (255),
-    raisonSuppression      NVARCHAR (255),
-    dateSuppression        DATETIME2 (0),
-    jamaisServi            BIT,
-    dateActivation         DATETIME2 (0),
-    bAjusteur              BIT,
-    resolutionLecture      TEXT,
-    typeTraca              TEXT,
-    numTraca               INT,
-    typeRaccord            TEXT,
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
-);
-
-
 -- Table : AgentManoEtalon
 DROP TABLE IF EXISTS AgentManoEtalon;
 
@@ -233,55 +136,57 @@ CREATE TABLE AgentManoEtalon (
 );
 
 
--- Table : AgentManoEtalon2201
-DROP TABLE IF EXISTS AgentManoEtalon2201;
+-- Table : AgentPc
+DROP TABLE IF EXISTS AgentPc;
 
-CREATE TABLE AgentManoEtalon2201 (
-    numeroNational         NVARCHAR (255) NOT NULL
-                                          PRIMARY KEY,
-    idCrodip               NVARCHAR (255) UNIQUE,
-    marque                 NVARCHAR (255),
-    classe                 NVARCHAR (255),
-    type                   NVARCHAR (255),
-    fondEchelle            NVARCHAR (255),
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    isSynchro              BIT            DEFAULT (0),
-    dateDernierControle    DATETIME2 (0),
-    dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0),
-    etat                   BIT,
-    isUtilise              BIT            DEFAULT (0),
-    isSupprime             BIT            DEFAULT (0),
-    nbControles            INT            DEFAULT (0),
-    nbControlesTotal       INT,
-    incertitudeEtalon      NVARCHAR (255),
-    agentSuppression       NVARCHAR (255),
-    raisonSuppression      NVARCHAR (255),
-    dateSuppression        DATETIME2 (0),
-    jamaisServi            BIT,
-    dateActivation         DATETIME2 (0),
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
-);
-
-
--- Table : AgentPC
-DROP TABLE IF EXISTS AgentPC;
-
-CREATE TABLE AgentPC (
-    idCrodip               TEXT     PRIMARY KEY,
-    idStructure            INTEGER  REFERENCES Structure (id) ON DELETE SET NULL,
-    cleUtilisation         TEXT,
-    libelle                TEXT,
-    etat                   BIT,
-    numInterne             TEXT,
-    AgentSuppression       TEXT,
-    RaisonSuppression      TEXT,
-    dateSuppression        DATETIME,
-    isSupprime             BIT,
-    dateModificationAgent  DATETIME,
-    dateModificationCrodip DATETIME
+CREATE TABLE AgentPc (
+    cleUtilisation                  TEXT,
+    libelle                         TEXT,
+    etat                            BIT,
+    AgentSuppression                TEXT,
+    RaisonSuppression               TEXT,
+    dateSuppression                 DATETIME,
+    isSupprime                      BIT,
+    dateModificationAgent           DATETIME,
+    dateModificationCrodip          DATETIME,
+    uid                             BIGINT (20) DEFAULT 0,
+    idPC                            TEXT        DEFAULT '',
+    uidstructure                    BIGINT (20) DEFAULT 0,
+    idRegistre                      TEXT        DEFAULT '',
+    marque                          TEXT        DEFAULT '',
+    modele                          TEXT        DEFAULT '',
+    systeme                         TEXT        DEFAULT '',
+    memoire                         TEXT        DEFAULT '',
+    disque                          TEXT        DEFAULT '',
+    memo                            TEXT        DEFAULT '',
+    owc_etat                        TEXT        DEFAULT '',
+    owc_folder                      TEXT        DEFAULT '',
+    owc_commun                      TEXT        DEFAULT '',
+    owc_parametres                  TEXT        DEFAULT '',
+    owc_organismes                  TEXT        DEFAULT '',
+    owc_user                        TEXT        DEFAULT '',
+    owc_password                    TEXT        DEFAULT '',
+    owc_version                     TEXT        DEFAULT '',
+    isSecours                       TEXT        DEFAULT '',
+    SignatureElect                  TEXT        DEFAULT '0',
+    isSignElecActive                TEXT        DEFAULT '0',
+    modeSignature                   TEXT        DEFAULT '',
+    versionLogiciel                 TEXT        DEFAULT '',
+    isReinitialisationMode          BIT         NOT NULL
+                                                DEFAULT '0',
+    isMasterMode                    BIT         NOT NULL
+                                                DEFAULT '1',
+    isDownloadMetrologieMode        BIT         NOT NULL
+                                                DEFAULT '0',
+    isDownloadTarificationMode      BIT         NOT NULL
+                                                DEFAULT '0',
+    isDownloadPulveExploitationMode BIT         NOT NULL
+                                                DEFAULT '0',
+    isDownloadIdentifiantPulveMode  BIT         NOT NULL
+                                                DEFAULT '0',
+    aid                             TEXT        DEFAULT '',
+    dateDerniereSynchro             DATETIME
+                                                DEFAULT NULL
 );
 
 
@@ -320,29 +225,6 @@ DROP TABLE IF EXISTS CONTROLE_REGULIER;
 
 CREATE TABLE CONTROLE_REGULIER (
     CTRG_ID                INTEGER,
-    CTRG_DATE              DATE,
-    CTRG_STRUCTUREID       INTEGER,
-    CTRG_TYPE              VARCHAR (256),
-    CTRG_MATID             VARCHAR (256),
-    CTRG_NUMAGENT          VARCHAR (256),
-    dateModificationAgent  DATETIME,
-    dateModificationCrodip DATETIME,
-    CTRG_ETAT              VARCHAR (256),
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER,
-    aidagent               INTEGER,
-    uidagent               INTEGER,
-    uidmateriel            INTEGER
-);
-
-
--- Table : CONTROLE_REGULIER1
-DROP TABLE IF EXISTS CONTROLE_REGULIER1;
-
-CREATE TABLE CONTROLE_REGULIER1 (
-    CTRG_ID                INTEGER       PRIMARY KEY AUTOINCREMENT
-                                         UNIQUE,
     CTRG_DATE              DATE,
     CTRG_STRUCTUREID       INTEGER,
     CTRG_TYPE              VARCHAR (256),
@@ -752,7 +634,6 @@ CREATE TABLE Diagnostic (
     codeInsee                              NVARCHAR (20),
     commentaire                            NVARCHAR (255),
     pulverisateurNumNational               NVARCHAR (255),
-    pulverisateurNumchassis                NVARCHAR (255),
     origineDiag                            NVARCHAR (255),
     isSignRIAgent                          BIT,
     isSignRIClient                         BIT,
@@ -782,7 +663,21 @@ CREATE TABLE Diagnostic (
     uidstructure                           INTEGER,
     uidexploitation                        INTEGER,
     uidpulverisateur                       INTEGER,
-    uidagent                               INTEGER
+    uidagent                               INTEGER,
+    pulverisateurImmatCertificat           TEXT           DEFAULT '',
+    pulverisateurNumchassis                TEXT           DEFAULT '',
+    pulverisateurImmatPlaque               TEXT           DEFAULT '',
+    isAnomalies                            TINYINT (1)    DEFAULT NULL,
+    niveauAnomalies                        INT (11)       NOT NULL
+                                                          DEFAULT '0',
+    nombreAnomalies                        INT (11)       NOT NULL
+                                                          DEFAULT '0',
+    nombreMineures                         INT (11)       NOT NULL
+                                                          DEFAULT '0',
+    dateModificationAnomalies              DATETIME,
+    isPulveRecordedInOTC                   TINYINT (1)    DEFAULT '0',
+    isPulveDownloadByExportOTC             TINYINT (1)    DEFAULT '0',
+    isPulveDownloadByCheckKeyOTC           TINYINT (1)    DEFAULT '0'
 );
 
 
@@ -1113,7 +1008,7 @@ CREATE TABLE FichevieManometreControle (
     uidManometre           INTEGER,
     uidagentcontroleur     INTEGER,
     numnatMano             TEXT,
-    idManometre            TEXT
+    IdManometre            TEXT
 );
 
 
@@ -1147,6 +1042,17 @@ CREATE TABLE FichevieManometreEtalon (
 );
 
 
+-- Table : IdentifiantOTC
+DROP TABLE IF EXISTS IdentifiantOTC;
+
+CREATE TABLE IdentifiantOTC (
+    IdentOTC   TEXT,
+    chargement TEXT,
+    type       TEXT,
+    active     TEXT
+);
+
+
 -- Table : IdentifiantPulverisateur
 DROP TABLE IF EXISTS IdentifiantPulverisateur;
 
@@ -1164,86 +1070,132 @@ CREATE TABLE IdentifiantPulverisateur (
     uidstructure           INTEGER
 );
 
-CREATE TABLE IdentifiantPulverisateur0702 (
-    id                     INT            NOT NULL
-                                          PRIMARY KEY,
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    numeroNational         NVARCHAR (30)  NOT NULL,
-    etat                   NVARCHAR (30),
-    dateUtilisation        NVARCHAR (255),
-    libelle                NVARCHAR (255),
-    dateModificationAgent  NVARCHAR (255),
-    dateModificationCrodip NVARCHAR (255),
-    idCRODIPPOOL           TEXT           REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
-);
 
+-- Table : Pool
+DROP TABLE IF EXISTS Pool;
 
-
-
-
--- Table : POOL
-DROP TABLE IF EXISTS POOL;
-
-CREATE TABLE POOL (
-    idCrodip               TEXT     PRIMARY KEY,
+CREATE TABLE Pool (
+    uid                    INTEGER  PRIMARY KEY,
+    idPool                 TEXT,
+    uidstructure           INTEGER,
+    uidbanc                INTEGER,
+    aidbanc                TEXT,
     libelle                TEXT,
-    idCRODIPPC             TEXT     REFERENCES AgentPC (idCrodip) ON DELETE SET NULL,
-    nbPastillesVertes      INTEGER  DEFAULT (0),
+    etat                   BIT,
+    agentSuppression       TEXT,
+    raisonSuppression      TEXT,
+    dateSuppression        DATETIME,
+    isSupprime             BIT,
     dateModificationAgent  DATETIME,
     dateModificationCrodip DATETIME,
-    idStructure            INTEGER  REFERENCES Structure (id) ON DELETE CASCADE,
-    idBanc                 TEXT     REFERENCES BancMesure (id) ON DELETE SET NULL
+    dateActivation         DATETIME,
+    nbPastillesVertes      INTEGER,
+    aid                    TEXT     DEFAULT ''
 );
 
 
--- Table : PoolBanc
-DROP TABLE IF EXISTS PoolBanc;
+-- Table : PoolAgent
+DROP TABLE IF EXISTS PoolAgent;
 
-CREATE TABLE PoolBanc (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
-    idCRODIPPool           TEXT     REFERENCES POOL (idCrodip) ON DELETE NO ACTION,
-    numeroNationalBanc     TEXT     REFERENCES BancMesure (id) ON DELETE CASCADE,
-    dateModificationAgent  DATETIME,
+CREATE TABLE PoolAgent (
+    uid                    BIGINT (20) NOT NULL,
+    aid                    TEXT,
+    uidpool                BIGINT (20) DEFAULT 0,
+    namepool               TEXT        DEFAULT '',
+    uidagent               BIGINT (20) DEFAULT 0,
+    aidagent               TEXT        DEFAULT '',
+    uidstructure           BIGINT (20) DEFAULT '0',
+    dateAssociation        DATETIME    NOT NULL
+                                       DEFAULT CURRENT_TIMESTAMP,
+    dateModificationAgent  DATEMIME
+                                       DEFAULT NULL,
     dateModificationCrodip DATETIME
+                                       DEFAULT NULL,
+    isSupprime             BIT         DEFAULT 0
 );
 
 
--- Table : PoolBUSE
-DROP TABLE IF EXISTS PoolBUSE;
+-- Table : PoolBuse
+DROP TABLE IF EXISTS PoolBuse;
 
-CREATE TABLE PoolBUSE (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
-    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
-    numeroNationalBUSE     TEXT,
-    dateModificationAgent  DATETIME,
+CREATE TABLE PoolBuse (
+    uid                    BIGINT (20) NOT NULL,
+    aid                    TEXT        DEFAULT '',
+    uidpool                BIGINT (20),
+    namepool               TEXT        DEFAULT '',
+    uidbuse                BIGINT (20),
+    idBuse                 TEXT        DEFAULT '',
+    uidstructure           BIGINT (20) DEFAULT '0',
+    dateAssociation        DATETIME    NOT NULL
+                                       DEFAULT CURRENT_TIMESTAMP,
+    dateModificationAgent  DATETIME
+                                       DEFAULT NULL,
     dateModificationCrodip DATETIME
+                                       DEFAULT NULL,
+    isSupprime             BIT         DEFAULT 0
 );
 
 
--- Table : PoolManoC
-DROP TABLE IF EXISTS PoolManoC;
+-- Table : PoolManoControle
+DROP TABLE IF EXISTS PoolManoControle;
 
-CREATE TABLE PoolManoC (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
-    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
-    numeroNationalManoC    TEXT     REFERENCES AgentManoControle2201 (numeroNational) ON DELETE CASCADE,
-    dateModificationAgent  DATETIME,
+CREATE TABLE PoolManoControle (
+    uid                    BIGINT (20) NOT NULL,
+    aid                    TEXT        DEFAULT '',
+    uidpool                BIGINT (20) DEFAULT 0,
+    namepool               TEXT        DEFAULT '',
+    uidmanoc               BIGINT (20) DEFAULT 0,
+    idManometre            TEXT        DEFAULT '',
+    uidstructure           BIGINT (20) DEFAULT 0,
+    dateAssociation        DATETIME    NOT NULL
+                                       DEFAULT CURRENT_TIMESTAMP,
+    dateModificationAgent  DATETIME
+                                       DEFAULT NULL,
     dateModificationCrodip DATETIME
+                                       DEFAULT NULL,
+    isSupprime             BIT         DEFAULT 0
 );
 
 
--- Table : PoolManoE
-DROP TABLE IF EXISTS PoolManoE;
+-- Table : PoolManoEtalon
+DROP TABLE IF EXISTS PoolManoEtalon;
 
-CREATE TABLE PoolManoE (
-    id                     INTEGER  PRIMARY KEY AUTOINCREMENT,
-    idCRODIPPool           TEXT     REFERENCES POOL (idCRODIP) ON DELETE CASCADE,
-    numeroNationalManoE    TEXT     REFERENCES AgentManoEtalon2201 (numeroNational) ON DELETE CASCADE,
-    dateModificationAgent  DATETIME,
+CREATE TABLE PoolManoEtalon (
+    uid                    BIGINT (20) NOT NULL,
+    aid                    TEXT        DEFAULT '',
+    uidpool                BIGINT (20) DEFAULT 0,
+    namepool               TEXT        DEFAULT '',
+    uidmanoe               BIGINT (20) DEFAULT 0,
+    idManometre            TEXT        DEFAULT '',
+    uidstructure           BIGINT (20) DEFAULT 0,
+    dateAssociation        DATETIME    NOT NULL
+                                       DEFAULT CURRENT_TIMESTAMP,
+    dateModificationAgent  DATETIME
+                                       DEFAULT NULL,
     dateModificationCrodip DATETIME
+                                       DEFAULT NULL,
+    isSupprime             BIT         DEFAULT 0
+);
+
+
+-- Table : PoolPc
+DROP TABLE IF EXISTS PoolPc;
+
+CREATE TABLE PoolPc (
+    uid                    BIGINT (20) NOT NULL,
+    aid                    TEXT        DEFAULT '',
+    uidpool                BIGINT (20) DEFAULT 0,
+    namepool               TEXT        DEFAULT '',
+    uidpc                  BIGINT (20) DEFAULT 0,
+    idPc                   TEXT        DEFAULT '',
+    uidstructure           BIGINT (20) DEFAULT '0',
+    dateAssociation        DATETIME    NOT NULL
+                                       DEFAULT CURRENT_TIMESTAMP,
+    dateModificationAgent  DATETIME
+                                       DEFAULT NULL,
+    dateModificationCrodip DATETIME
+                                       DEFAULT NULL,
+    isSupprime             BIT         DEFAULT 0
 );
 
 
@@ -1253,22 +1205,6 @@ DROP TABLE IF EXISTS PrestationCategorie;
 CREATE TABLE PrestationCategorie (
     id                     INT (1, 1)     NOT NULL,
     idStructure            INT,
-    libelle                NVARCHAR (255),
-    dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0),
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER
-);
-
-
--- Table : PrestationCategorie1
-DROP TABLE IF EXISTS PrestationCategorie1;
-
-CREATE TABLE PrestationCategorie1 (
-    id                     INT (1, 1)     NOT NULL
-                                          PRIMARY KEY,
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
     libelle                NVARCHAR (255),
     dateModificationAgent  DATETIME2 (0),
     dateModificationCrodip DATETIME2 (0),
@@ -1298,108 +1234,120 @@ CREATE TABLE PrestationTarif (
 );
 
 
--- Table : PrestationTarif1
-DROP TABLE IF EXISTS PrestationTarif1;
-
-CREATE TABLE PrestationTarif1 (
-    id                     INT (1, 1)     NOT NULL
-                                          PRIMARY KEY,
-    idCategorie            INT            REFERENCES PrestationCategorie1 (id) ON DELETE CASCADE,
-    idStructure            INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    description            NVARCHAR (255),
-    tarifHT                FLOAT,
-    tarifTTC               FLOAT,
-    tva                    FLOAT,
-    dateModificationAgent  DATETIME2 (0),
-    dateModificationCrodip DATETIME2 (0),
-    uid                    INTEGER,
-    aid                    TEXT,
-    uidstructure           INTEGER,
-    uidcategorie           INTEGER
-);
-
-
 -- Table : Pulverisateur
 DROP TABLE IF EXISTS Pulverisateur;
 
 CREATE TABLE Pulverisateur (
-    id                        NVARCHAR (50)  NOT NULL
-                                             PRIMARY KEY,
-    numeroNational            NVARCHAR (255),
-    type                      NVARCHAR (255),
-    marque                    NVARCHAR (255),
-    modele                    NVARCHAR (255),
-    anneeAchat                NVARCHAR (4),
-    attelage                  NVARCHAR (255),
-    capacite                  INT,
-    largeur                   NVARCHAR (255),
-    nombrerangs               NVARCHAR (255),
-    largeurPlantation         NVARCHAR (255),
-    surfaceParAn              NVARCHAR (255),
-    nombreUtilisateurs        NVARCHAR (255),
-    isVentilateur             BIT,
-    isDebrayage               BIT,
-    isCuveRincage             BIT,
-    capaciteCuveRincage       NVARCHAR (255),
-    isRotobuse                BIT,
-    isCuveIncorporation       BIT,
-    isRinceBidon              BIT,
-    isBidonLaveMain           BIT,
-    isLanceLavage             BIT,
-    nombreBuses               INT,
-    buseIsIso                 BIT,
-    buseMarque                NVARCHAR (255),
-    buseType                  NVARCHAR (255),
-    buseFonctionnement        NVARCHAR (255),
-    buseAge                   INT,
-    buseAngle                 NVARCHAR (255),
-    manometreMarque           NVARCHAR (255),
-    manometreType             NVARCHAR (255),
-    manometreFondEchelle      NVARCHAR (255),
-    manometreDiametre         NVARCHAR (255),
-    manometrePressionTravail  NVARCHAR (255),
-    idStructure               INT            REFERENCES Structure (id) ON DELETE CASCADE,
-    isSynchro                 BIT,
-    isSupprime                BIT,
-    dateProchainControle      DATETIME2 (0),
-    dateModificationAgent     DATETIME2 (0),
-    dateModificationCrodip    DATETIME2 (0),
-    emplacementIdentification NVARCHAR (255),
-    ancienIdentifiant         NVARCHAR (255),
-    isEclairageRampe          BIT,
-    isBarreGuidage            BIT,
-    isCoupureAutoTroncons     BIT,
-    isRincageAutoAssiste      BIT,
-    buseModele                NVARCHAR (255),
-    buseNbniveaux             INT,
-    manometreNbniveaux        INT,
-    manometreNbtroncons       INT,
-    buseCouleur               NVARCHAR (255),
-    regulation                NVARCHAR (255),
-    regulationOptions         NVARCHAR (255),
-    modeUtilisation           NVARCHAR (50),
-    nombreExploitants         NVARCHAR (10),
-    controleEtat              NVARCHAR (255),
-    categorie                 NVARCHAR (255),
-    pulverisation             NVARCHAR (255),
-    isAspirationExt           BIT,
-    isDispoAntiRetour         BIT,
-    isReglageAutoHauteur      BIT,
-    isFiltrationAspiration    BIT,
-    isFiltrationRefoulement   BIT,
-    isFiltrationTroncons      BIT,
-    isFiltrationBuses         BIT,
-    isPulveAdditionnel        BIT,
-    pulvePrincipalNumNat      NVARCHAR (50),
-    isRincagecircuit          BIT,
-    isPompesDoseuses          BIT,
-    nbPompesDoseuses          INT,
-    immatCertificat           TEXT,
-    immatPlaque               TEXT,
-    numerochassis             TEXT,
-    uid                       INTEGER,
-    uidstructure              INTEGER,
-    aid                       TEXT
+    id                           NVARCHAR (50)  NOT NULL
+                                                PRIMARY KEY,
+    numeroNational               NVARCHAR (255),
+    type                         NVARCHAR (255),
+    marque                       NVARCHAR (255),
+    modele                       NVARCHAR (255),
+    anneeAchat                   NVARCHAR (4),
+    attelage                     NVARCHAR (255),
+    capacite                     INT,
+    largeur                      NVARCHAR (255),
+    nombrerangs                  NVARCHAR (255),
+    largeurPlantation            NVARCHAR (255),
+    surfaceParAn                 NVARCHAR (255),
+    nombreUtilisateurs           NVARCHAR (255),
+    isVentilateur                BIT,
+    isDebrayage                  BIT,
+    isCuveRincage                BIT,
+    capaciteCuveRincage          NVARCHAR (255),
+    isRotobuse                   BIT,
+    isCuveIncorporation          BIT,
+    isRinceBidon                 BIT,
+    isBidonLaveMain              BIT,
+    isLanceLavage                BIT,
+    nombreBuses                  INT,
+    buseIsIso                    BIT,
+    buseMarque                   NVARCHAR (255),
+    buseType                     NVARCHAR (255),
+    buseFonctionnement           NVARCHAR (255),
+    buseAge                      INT,
+    buseAngle                    NVARCHAR (255),
+    manometreMarque              NVARCHAR (255),
+    manometreType                NVARCHAR (255),
+    manometreFondEchelle         NVARCHAR (255),
+    manometreDiametre            NVARCHAR (255),
+    manometrePressionTravail     NVARCHAR (255),
+    idStructure                  INT            REFERENCES Structure (id) ON DELETE CASCADE,
+    isSynchro                    BIT,
+    isSupprime                   BIT,
+    dateProchainControle         DATETIME2 (0),
+    dateModificationAgent        DATETIME2 (0),
+    dateModificationCrodip       DATETIME2 (0),
+    emplacementIdentification    NVARCHAR (255),
+    ancienIdentifiant            NVARCHAR (255),
+    isEclairageRampe             BIT,
+    isBarreGuidage               BIT,
+    isCoupureAutoTroncons        BIT,
+    isRincageAutoAssiste         BIT,
+    buseModele                   NVARCHAR (255),
+    buseNbniveaux                INT,
+    manometreNbniveaux           INT,
+    manometreNbtroncons          INT,
+    buseCouleur                  NVARCHAR (255),
+    regulation                   NVARCHAR (255),
+    regulationOptions            NVARCHAR (255),
+    modeUtilisation              NVARCHAR (50),
+    nombreExploitants            NVARCHAR (10),
+    controleEtat                 NVARCHAR (255),
+    categorie                    NVARCHAR (255),
+    pulverisation                NVARCHAR (255),
+    isAspirationExt              BIT,
+    isDispoAntiRetour            BIT,
+    isReglageAutoHauteur         BIT,
+    isFiltrationAspiration       BIT,
+    isFiltrationRefoulement      BIT,
+    isFiltrationTroncons         BIT,
+    isFiltrationBuses            BIT,
+    isPulveAdditionnel           BIT,
+    pulvePrincipalNumNat         NVARCHAR (50),
+    isRincagecircuit             BIT,
+    isPompesDoseuses             BIT,
+    nbPompesDoseuses             INT,
+    immatCertificat              TEXT,
+    immatPlaque                  TEXT,
+    numerochassis                TEXT,
+    uid                          INTEGER,
+    uidstructure                 INTEGER,
+    aid                          TEXT,
+    isConfirmeIdentifiant        TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeMarque             TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeModele             TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeAnneeConstruction  TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeVolume             TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeLargeur            TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeCategorie          TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeType               TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeFonctionnement     TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeRegulation         TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isConfirmeAttelage           TINYINT (1)    NOT NULL
+                                                DEFAULT '0',
+    isAnomalies                  TINYINT (1)    DEFAULT NULL,
+    niveauAnomalies              INT (11)       NOT NULL
+                                                DEFAULT '0',
+    nombreAnomalies              INT (11)       NOT NULL
+                                                DEFAULT '0',
+    nombreMineures               INT (11)       NOT NULL
+                                                DEFAULT '0',
+    dateModificationAnomalies    DATETIME,
+    isPulveRecordedInOTC         TINYINT (1)    DEFAULT NULL,
+    isPulveDownloadByExportOTC   TINYINT (1)    DEFAULT NULL,
+    isPulveDownloadByCheckKeyOTC TINYINT (1)    DEFAULT NULL
 );
 
 
@@ -1450,9 +1398,46 @@ CREATE TABLE VERSION (
     VERSION_DATE DATETIME2 (0),
     VERSION_COMM NVARCHAR (255) 
 );
-INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.1.01','2024-11-01 12:00:00','uid');
 
 
+-- Index : 
+DROP INDEX IF EXISTS "";
+
+CREATE INDEX "" ON Pulverisateur (
+    dateProchainControle ASC
+);
+
+
+-- Index : DateDebut
+DROP INDEX IF EXISTS DateDebut;
+
+CREATE INDEX DateDebut ON Diagnostic (
+    controleDateDebut ASC
+);
+
+
+-- Index : DateDernCtrl
+DROP INDEX IF EXISTS DateDernCtrl;
+
+CREATE INDEX DateDernCtrl ON Exploitation (
+    dateDernierControle ASC
+);
+
+
+-- Index : dateFin
+DROP INDEX IF EXISTS dateFin;
+
+CREATE INDEX dateFin ON Diagnostic (
+    controleDateFin ASC
+);
+
+
+-- Index : NumNat
+DROP INDEX IF EXISTS NumNat;
+
+CREATE INDEX NumNat ON Pulverisateur (
+    numeroNational ASC
+);
 
 
 COMMIT TRANSACTION;
