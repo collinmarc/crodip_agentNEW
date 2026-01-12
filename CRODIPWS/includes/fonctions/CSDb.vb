@@ -397,8 +397,10 @@ Public Class CSDb
             bddCommande.ExecuteNonQuery()
 
             RAZ_Pool()
-            'bddCommande.CommandText = "DELETE FROM VERSION"
-            'bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM Structure"
+            bddCommande.ExecuteNonQuery()
+
             _dbConnection.Close()
             nInstance = 0
             getInstance()

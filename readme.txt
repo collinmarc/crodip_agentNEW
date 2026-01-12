@@ -1,13 +1,14 @@
 #TRUNK
 MASTER
-BUILD 20251218
-	0001838: Annule et remplace d'un diag réalisé par un autre inspecteur
 
-BUILD20251013
+BUILD20251013120000
 	Message d'avertissment en Ajout de Pulvé
 	0001832: Ajout d'une fenêtre pour la synhcro immédiate des diag
 	0001833: Synchro des Identifiants OTC en Mode json
 	0001834: Nommage des Documents pour le pulve E00100000
+	0001838: Annule et remplace d'un diag réalisé par un autre inspecteur
+	0001839: La réinitialisation de la base ne supprime pas les organismes
+	0001840: Bloquer la Créatino de pulvé si aucun identifiant attribué
 
 BUILD 20250910100000
 	0001661: Modification accès à la clé des pompes doseuses

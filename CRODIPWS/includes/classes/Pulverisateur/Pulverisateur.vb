@@ -1459,6 +1459,9 @@ Public Class Pulverisateur
                         If Not bDansLaListe Then
                             bReturn = CheckResult.NUMEROPASDANSLALISTE
                         End If
+                    Else
+                        'Sil n'y en a pas => NOK
+                        bReturn = CheckResult.NUMEROPASDANSLALISTE
                     End If
                 End If
             Else
