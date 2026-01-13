@@ -1351,6 +1351,30 @@
     <Content Include="bdd\createbaseVide.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="DLLPOURSQLITE\e_sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.batteries_v2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.provider.dynamic_cdecl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.provider.e_sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\System.Runtime.CompilerServices.Unsafe.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\System.ValueTuple.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="img\e-pulve-logo-blanc-bleu-1.png" />
     <Content Include="moduleDocumentaire\_parametres\ParamBuse12123.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

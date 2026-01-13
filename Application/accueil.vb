@@ -5386,6 +5386,20 @@ Public Class accueil
 
 
     End Sub
+    Private Sub loadAccueilAlertsSynchroControle(ByRef positionTopAlertes As Integer)
+
+        Dim nAlerte As Integer = 0
+        nAlerte = DiagnosticManager.getUpdates(agentCourant).Count
+        'Affichage des alertes 
+        Dim sName As String = ""
+        Dim sTexte As String = ""
+        If nAlerte > 0 Then
+            sTexte = "Attention, vous avez " & nAlerte & " controles à synchroniser avec le CRODIP"
+            AjouteUneAlerte(GlobalsCRODIP.ALERTE.ORANGE, sName, sTexte, positionTopAlertes)
+        End If
+
+
+    End Sub
 
     ''' <summary>
     ''' Vérification du nbre d'anomalies encours sur le Serveur
@@ -5533,36 +5547,38 @@ Public Class accueil
 
             'Vérification du nombre de controles effectuées depuis le dernier controle Regulier
             loadAccueilAlertsNbControle(positionTopAlertes)
+            loadAccueilAlertsSynchroControle(positionTopAlertes)
+
 
             'Vérification du nombre d'anomalies en cours sur le Serveur
             loadAccueilAlertsAnomalies(positionTopAlertes)
 
-            ' Si aucune alerte à afficher, alors on affiche un message
-            If positionTopAlertes = 8 Then
-                Dim tmpAlerte As New Label
-                tmpAlerte.Name = "noAlerte"
-                tmpAlerte.Text = "       Aucune alerte à afficher."
-                Controls.Add(tmpAlerte)
-                ' Position
-                tmpAlerte.Parent = accueil_panelAlertes
-                tmpAlerte.Left = 16
-                tmpAlerte.Top = positionTopAlertes
-                tmpAlerte.TextAlign = ContentAlignment.TopLeft
-                ' Taille
-                tmpAlerte.Width = 960
-                tmpAlerte.Height = 16
-                ' Couleur
-                tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(141, Byte), CType(135, Byte), CType(15, Byte))
-                tmpAlerte.Image = CType(resources.GetObject("Label10.Image"), System.Drawing.Image)
-                tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-                ' Apparence texte
-                Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-                tmpAlerte.Font = tmpFontLabelCategorie
-            End If
+        ' Si aucune alerte à afficher, alors on affiche un message
+        If positionTopAlertes = 8 Then
+            Dim tmpAlerte As New Label
+            tmpAlerte.Name = "noAlerte"
+            tmpAlerte.Text = "       Aucune alerte à afficher."
+            Controls.Add(tmpAlerte)
+            ' Position
+            tmpAlerte.Parent = accueil_panelAlertes
+            tmpAlerte.Left = 16
+            tmpAlerte.Top = positionTopAlertes
+            tmpAlerte.TextAlign = ContentAlignment.TopLeft
+            ' Taille
+            tmpAlerte.Width = 960
+            tmpAlerte.Height = 16
+            ' Couleur
+            tmpAlerte.ForeColor = System.Drawing.Color.FromArgb(CType(141, Byte), CType(135, Byte), CType(15, Byte))
+            tmpAlerte.Image = CType(Resources.GetObject("Label10.Image"), System.Drawing.Image)
+            tmpAlerte.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+            ' Apparence texte
+            Dim tmpFontLabelCategorie As New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            tmpAlerte.Font = tmpFontLabelCategorie
+        End If
 
-            ' Loader OFF
-            Statusbar.display(" ", True)
-            Statusbar.hideLoader()
+        ' Loader OFF
+        Statusbar.display(" ", True)
+        Statusbar.hideLoader()
         End If
     End Sub
 
