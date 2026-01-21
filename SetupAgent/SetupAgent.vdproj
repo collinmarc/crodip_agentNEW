@@ -2794,6 +2794,12 @@
         "Entry"
         {
         "MsmKey" = "8:_675FA1F0BD23D8FFA72FAC48F5D45A21"
+        "OwnerKey" = "8:_E5D01DB52D1D4DD459ABB80FD48B8E3E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_675FA1F0BD23D8FFA72FAC48F5D45A21"
         "OwnerKey" = "8:_770F9AC22F7842CE868135D8505C7457"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3658,12 +3664,6 @@
         "Entry"
         {
         "MsmKey" = "8:_8AECF79AF055CBCF51251604F79F36EC"
-        "OwnerKey" = "8:_D7DF3D18FC78496FB9845F8DB0673413"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8AECF79AF055CBCF51251604F79F36EC"
         "OwnerKey" = "8:_BFCB79E345CF4CD2B161CECF1F9C0784"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3749,6 +3749,18 @@
         {
         "MsmKey" = "8:_913F56A9B9B0FD4B8B7831E757E95F5B"
         "OwnerKey" = "8:_1385E487D7304F2BA8BD950E39F312D6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_913F56A9B9B0FD4B8B7831E757E95F5B"
+        "OwnerKey" = "8:_FDBDDDA44A8D5A44DB461BAF4BAB7A9E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_913F56A9B9B0FD4B8B7831E757E95F5B"
+        "OwnerKey" = "8:_E3BC445C6599B782FE4E26F491BD34FE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5140,12 +5152,6 @@
         "Entry"
         {
         "MsmKey" = "8:_B63F253710F30D3C2E7EAD925FCC0F04"
-        "OwnerKey" = "8:_040D52B1EFBA481588B143CBAF1D99BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B63F253710F30D3C2E7EAD925FCC0F04"
         "OwnerKey" = "8:_ED1791C3E17F5A06D8022890EC17C95E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -5375,6 +5381,18 @@
         {
         "MsmKey" = "8:_BAF40FA77FFBD6786792E09F0F1FC44B"
         "OwnerKey" = "8:_913F56A9B9B0FD4B8B7831E757E95F5B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BAF40FA77FFBD6786792E09F0F1FC44B"
+        "OwnerKey" = "8:_FDBDDDA44A8D5A44DB461BAF4BAB7A9E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BAF40FA77FFBD6786792E09F0F1FC44B"
+        "OwnerKey" = "8:_E3BC445C6599B782FE4E26F491BD34FE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -10311,7 +10329,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -10342,7 +10360,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -10814,7 +10832,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -11468,7 +11486,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -11962,7 +11980,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -13473,7 +13491,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -15630,7 +15648,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CRODIP Agent"
         "ProductCode" = "8:{D43D3BCD-E3B8-4814-B445-396C1F4CF1FB}"
-        "PackageCode" = "8:{E0152129-70AF-4DB8-839E-CDFF35EB03DB}"
+        "PackageCode" = "8:{E9DCA6E9-2EE6-4862-84FC-4CD79AB649CE}"
         "UpgradeCode" = "8:{F997A7CD-7917-4986-AB3E-AC6767424B3A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -15750,6 +15768,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1713B03EB0AF4FA184A27DFEDD6AE0FB"
+            {
+            "Name" = "8:Logiciel agent Crodip"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_7EF09D92DEEE4994ADC4832E6E2C87AA"
+            "Folder" = "8:_5B660F767EB243D9869A3E99E65E19A4"
+            "WorkingFolder" = "8:_C1E962460BB54BE2ACD51A1785F1143E"
+            "Icon" = "8:_8100C0776C5F4986A70140800FA347C9"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_174B09992D544542BA46BA2583362A01"
             {
             "Name" = "8:PDFs CRODIP"
@@ -15776,20 +15808,6 @@
             "Folder" = "8:_6E8A894A8A134E49BBA8C0F733BDB5E6"
             "WorkingFolder" = "8:_C1E962460BB54BE2ACD51A1785F1143E"
             "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7588A629B5CB4E8FBB4DAB95AD686530"
-            {
-            "Name" = "8:Shortcut to Sortie principale from Crodip_agent (Active)"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_7EF09D92DEEE4994ADC4832E6E2C87AA"
-            "Folder" = "8:_5B660F767EB243D9869A3E99E65E19A4"
-            "WorkingFolder" = "8:_C1E962460BB54BE2ACD51A1785F1143E"
-            "Icon" = "8:_8100C0776C5F4986A70140800FA347C9"
             "Feature" = "8:"
             }
         }

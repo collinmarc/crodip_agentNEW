@@ -1,6 +1,9 @@
 #TRUNK
 MASTER
 
+BUILD 20260121120000
+	Désactivation de l'acquisition GPS
+
 BUILD20251013120000
 	Message d'avertissment en Ajout de Pulvé
 	0001832: Ajout d'une fenêtre pour la synhcro immédiate des diag
