@@ -29,35 +29,7 @@ Public Class CSDb
 
     Sub New(Optional ByVal doConnect As Boolean = False, Optional pdbPath As String = "", Optional pdbExtension As String = "")
         If _dbConnection Is Nothing Then
-            _queryString = ""
-            If _DBTYPE = EnumDBTYPE.MSACCESS Then
-                If pdbPath = "" Then
-                    conf_bddPath = My.Settings.DB
-                Else
-                    conf_bddPath = pdbPath
-                End If
-
-                If pdbExtension = "" Then
-                    DBextension = My.Settings.DBExtension
-                Else
-                    DBextension = pdbExtension
-                End If
-                If conf_bddPath = "" Then
-                    conf_bddPath = "cropdip_agent"
-                End If
-                conf_bddPath_dev = conf_bddPath & "_dev"
-
-                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
-                    _dbName = conf_bddPath_dev
-                Else
-                    _dbName = conf_bddPath
-                End If
-            Else
-                _dbName = "crodip_agent"
-                DBextension = ".db3"
-            End If
-
-            _bddConnectString = getConnectString(_dbName, _DBTYPE)
+            _bddConnectString = getConnectString(_DBTYPE)
 
 
             If _dbConnection Is Nothing Then
@@ -68,7 +40,7 @@ Public Class CSDb
                     Case EnumDBTYPE.SQLITE
                         _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
                         Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                        oBuider.DataSource = "bdd/crodip_agent.db3"
+                        oBuider.DataSource = My.Settings.DBSQLITE
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                 End Select
@@ -106,35 +78,15 @@ Public Class CSDb
         End Try
         Return bReturn
     End Function
-    ''' <summary>
-    ''' Rend la Chaine de connextion à la base de donnée en fonction de l'environnement
-    ''' </summary>
-    ''' <param name="pDBName"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Function getbddPathName() As String
-        Return ".\bdd\" & _dbName & DBextension
-    End Function
-    Public Function getConnectString(pDBName As String, pdbType As EnumDBTYPE) As String
+
+    Public Function getConnectString(pdbType As EnumDBTYPE) As String
         Dim bReturn As String = ""
         Select Case pdbType
             Case EnumDBTYPE.MSACCESS
-                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
-                    If DBextension = ".accdb" Then
-                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
-                    Else
-                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
-                    End If
+                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & My.Settings.DBMSACESS & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=" & My.Settings.DBMSACESS2 & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
 
-                Else
-                    If DBextension = ".accdb" Then
-                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
-                    Else
-                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
-                    End If
-                End If
             Case EnumDBTYPE.SQLITE
-                bReturn = "Data Source=.\bdd\" & pDBName & ".db3;Pooling=true"
+                bReturn = "Data Source=" & My.Settings.DBSQLITE & ";Pooling=true"
         End Select
 
         Return bReturn

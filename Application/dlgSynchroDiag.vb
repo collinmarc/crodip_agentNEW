@@ -167,9 +167,17 @@ Public Class dlgSynchroDiag
         For Each oExploit2Pulve As ExploitationTOPulverisateur In olstExploit2Pulve
             osynchro.RunAscSynchroExploit2Pulve(oExploit2Pulve)
         Next
-        m_bgw.ReportProgress(60, "Synchronisation Contrôle")
         m_nPourcent = 60
+        If Not String.IsNullOrEmpty(m_Diag.diagRemplacementId) Then
+            m_bgw.ReportProgress(60, "Synchronisation Contrôle annulé")
+            Dim oDiagR As Diagnostic = DiagnosticManager.getDiagnosticById(m_Diag.diagRemplacementId)
+            If oDiagR IsNot Nothing Then
+                osynchro.runascSynchroDiag(m_Agent, oDiagR)
+            End If
+        End If
         osynchro.ajouteObservateur(Me)
+        m_nPourcent = 70
+        m_bgw.ReportProgress(70, "Synchronisation Contrôle")
         osynchro.runascSynchroDiag(m_Agent, m_Diag)
         m_bgw.ReportProgress(100, "Fin de synchronisation Contrôle")
 

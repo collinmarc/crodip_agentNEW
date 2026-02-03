@@ -28,11 +28,12 @@ Partial Class FrmMigrationBDD
         Me.lblProgressN2 = New System.Windows.Forms.Label()
         Me.lblProgressN1 = New System.Windows.Forms.Label()
         Me.btnAnnuler = New System.Windows.Forms.Button()
+        Me.lbMsg = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(24, 161)
+        Me.Button1.Location = New System.Drawing.Point(11, 337)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(189, 23)
         Me.Button1.TabIndex = 0
@@ -41,7 +42,7 @@ Partial Class FrmMigrationBDD
         '
         'ProgressBarN2
         '
-        Me.ProgressBarN2.Location = New System.Drawing.Point(21, 75)
+        Me.ProgressBarN2.Location = New System.Drawing.Point(12, 28)
         Me.ProgressBarN2.Name = "ProgressBarN2"
         Me.ProgressBarN2.Size = New System.Drawing.Size(764, 23)
         Me.ProgressBarN2.TabIndex = 1
@@ -54,22 +55,23 @@ Partial Class FrmMigrationBDD
         'lblProgressN2
         '
         Me.lblProgressN2.AutoSize = True
-        Me.lblProgressN2.Location = New System.Drawing.Point(377, 101)
+        Me.lblProgressN2.Location = New System.Drawing.Point(387, 54)
         Me.lblProgressN2.Name = "lblProgressN2"
-        Me.lblProgressN2.Size = New System.Drawing.Size(0, 13)
+        Me.lblProgressN2.Size = New System.Drawing.Size(16, 13)
         Me.lblProgressN2.TabIndex = 2
+        Me.lblProgressN2.Text = "..."
         '
         'lblProgressN1
         '
         Me.lblProgressN1.AutoSize = True
-        Me.lblProgressN1.Location = New System.Drawing.Point(377, 38)
+        Me.lblProgressN1.Location = New System.Drawing.Point(377, 12)
         Me.lblProgressN1.Name = "lblProgressN1"
         Me.lblProgressN1.Size = New System.Drawing.Size(0, 13)
         Me.lblProgressN1.TabIndex = 4
         '
         'btnAnnuler
         '
-        Me.btnAnnuler.Location = New System.Drawing.Point(241, 160)
+        Me.btnAnnuler.Location = New System.Drawing.Point(228, 336)
         Me.btnAnnuler.Name = "btnAnnuler"
         Me.btnAnnuler.Size = New System.Drawing.Size(175, 23)
         Me.btnAnnuler.TabIndex = 5
@@ -77,11 +79,20 @@ Partial Class FrmMigrationBDD
         Me.btnAnnuler.UseVisualStyleBackColor = True
         Me.btnAnnuler.Visible = False
         '
+        'lbMsg
+        '
+        Me.lbMsg.FormattingEnabled = True
+        Me.lbMsg.Location = New System.Drawing.Point(13, 71)
+        Me.lbMsg.Name = "lbMsg"
+        Me.lbMsg.Size = New System.Drawing.Size(763, 264)
+        Me.lbMsg.TabIndex = 6
+        '
         'FrmMigrationBDD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 203)
+        Me.ClientSize = New System.Drawing.Size(800, 371)
+        Me.Controls.Add(Me.lbMsg)
         Me.Controls.Add(Me.btnAnnuler)
         Me.Controls.Add(Me.lblProgressN1)
         Me.Controls.Add(Me.lblProgressN2)
@@ -100,4 +111,5 @@ Partial Class FrmMigrationBDD
     Friend WithEvents lblProgressN2 As Label
     Friend WithEvents lblProgressN1 As Label
     Friend WithEvents btnAnnuler As Button
+    Friend WithEvents lbMsg As ListBox
 End Class

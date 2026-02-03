@@ -51,4 +51,16 @@
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
+
+    Private Sub ckDefaut_CheckedChanged(sender As Object, e As EventArgs) Handles ckDefaut.CheckedChanged, ckExploitant.CheckedChanged, ckContrat.CheckedChanged, ckContexte.CheckedChanged, ckPulve.CheckedChanged
+        If ckDefaut.Checked Or ckContrat.Checked Or ckContexte.Checked Or ckExploitant.Checked Or ckPulve.Checked Then
+            btnValider.Enabled = True
+        Else
+            btnValider.Enabled = False
+        End If
+    End Sub
+
+
+
+
 End Class

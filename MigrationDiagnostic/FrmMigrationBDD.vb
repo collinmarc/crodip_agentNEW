@@ -1,5 +1,6 @@
 ﻿Public Class FrmMigrationBDD
     Dim bFini As Boolean = False
+    Dim oBDD As BDDTransfertDiag
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If bFini Then
             If Not BackgroundWorker1.CancellationPending Then
@@ -17,9 +18,9 @@
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        Dim oBDD As New BDDTransfertDIAG() With {.bgw = BackgroundWorker1}
+        oBDD = New BDDTransfertDiag() With {.bgw = BackgroundWorker1}
 
-        CSDebug.dispInfo("BDDTransfert Start")
+        CSDebug.dispInfo("BDDTransfert Start" & My.Settings.DBMSACESS & ";" & My.Settings.DBMSACESS2 & ";" & My.Settings.DBSQLITE)
         'If Not BackgroundWorker1.CancellationPending Then
         '    CSDebug.dispInfo("RAZ")
         '    BackgroundWorker1.ReportProgress(101, "RAZ Base destination")
@@ -77,6 +78,9 @@
             If e.ProgressPercentage <= 100 Then
                 Me.ProgressBarN2.Value = e.ProgressPercentage
                 lblProgressN2.Text = e.UserState
+                oBDD.ListMsg.ForEach(Sub(msg) lbMsg.Items.Add(msg))
+                oBDD.ListMsg.Clear()
+                lbMsg.Refresh()
             End If
         Catch ex As Exception
 
@@ -101,5 +105,15 @@
             BackgroundWorker1.CancelAsync()
         End If
 
+    End Sub
+
+    Private Sub FrmMigrationBDD_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not System.IO.File.Exists(My.Settings.DBMSACESS) Or
+           Not System.IO.File.Exists(My.Settings.DBMSACESS2) Then
+            CSDebug.dispInfo("La base de données ACCESS n'est pas présente")
+            Application.Exit()
+        Else
+            Button1.PerformClick()
+        End If
     End Sub
 End Class

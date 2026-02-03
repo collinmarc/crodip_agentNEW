@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ArrayOfParamDiag>
 
   <ParamDiag>
@@ -12,7 +11,7 @@
 
     <ParamDiagCalc542>
 
-		<!-- REGLE >=MINI AND <=MAXI -->
+      <!-- REGLE >=MINI AND <=MAXI -->
 
       <!-- Ecart Constant >0-->
 
@@ -328,19 +327,19 @@
 
       <limite8333>15</limite8333>
 
-        <!--Tableau des pressions-->
+      <!--Tableau des pressions-->
 
-        <Pression1>5</Pression1>
+      <Pression1>5</Pression1>
 
-        <Pression2>10</Pression2>
+      <Pression2>10</Pression2>
 
-        <Pression3>15</Pression3>
+      <Pression3>15</Pression3>
 
-        <Pression4>20</Pression4>
+      <Pression4>20</Pression4>
 
-        <PressionParDefaut>4</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
 
-      </ParamDiagCalc833>
+    </ParamDiagCalc833>
 
     <ParamDiagCalc922>
 
@@ -700,7 +699,7 @@
 
   </ParamDiag>
 
- <ParamDiag>
+  <ParamDiag>
 
     <id>7</id>
 
@@ -792,19 +791,19 @@
 
       <limite8333>15</limite8333>
 
-        <!--Tableau des pressions-->
+      <!--Tableau des pressions-->
 
-        <Pression1>5</Pression1>
+      <Pression1>5</Pression1>
 
-        <Pression2>10</Pression2>
+      <Pression2>10</Pression2>
 
-        <Pression3>15</Pression3>
+      <Pression3>15</Pression3>
 
-        <Pression4>20</Pression4>
+      <Pression4>20</Pression4>
 
-        <PressionParDefaut>4</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
 
-      </ParamDiagCalc833>
+    </ParamDiagCalc833>
 
     <ParamDiagCalc922>
 
@@ -908,19 +907,19 @@
 
       <limite8333>15</limite8333>
 
-        <!--Tableau des pressions-->
+      <!--Tableau des pressions-->
 
-        <Pression1>5</Pression1>
+      <Pression1>5</Pression1>
 
-        <Pression2>10</Pression2>
+      <Pression2>10</Pression2>
 
-        <Pression3>15</Pression3>
+      <Pression3>15</Pression3>
 
-        <Pression4>20</Pression4>
+      <Pression4>20</Pression4>
 
-        <PressionParDefaut>4</PressionParDefaut>
+      <PressionParDefaut>4</PressionParDefaut>
 
-      </ParamDiagCalc833>
+    </ParamDiagCalc833>
 
     <ParamDiagCalc922>
 
@@ -932,6 +931,6 @@
 
   </ParamDiag>
 
- 
+
 
 </ArrayOfParamDiag>

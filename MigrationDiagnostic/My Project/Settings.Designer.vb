@@ -152,6 +152,33 @@ Namespace My
                 Return CType(Me("StockPDF"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bdd/crodipAgent.mdb")>  _
+        Public ReadOnly Property DBMSACESS() As String
+            Get
+                Return CType(Me("DBMSACESS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bdd/crodip_agent.db3")>  _
+        Public ReadOnly Property DBSQLITE() As String
+            Get
+                Return CType(Me("DBSQLITE"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bdd/crodipAgent.mdb")>  _
+        Public ReadOnly Property DBMSACESS2() As String
+            Get
+                Return CType(Me("DBMSACESS2"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

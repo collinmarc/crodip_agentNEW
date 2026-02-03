@@ -1,5 +1,9 @@
 #TRUNK
 MASTER
+BUILD 20260203200000
+	0001864: Lors d'un annule et remplace => synchronisation du diag annulé
+	0001865: Annule et remplace : Choix des items (1 minimum)
+	0001837: Récupération des anciens diags dans la base ACCESS
 
 BUILD 20260121120000
 	Désactivation de l'acquisition GPS

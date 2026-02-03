@@ -74,9 +74,6 @@ Partial Class frmSelectPhaseDiag
         'ckDefaut
         '
         Me.ckDefaut.AutoSize = True
-        Me.ckDefaut.Checked = True
-        Me.ckDefaut.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ckDefaut.Enabled = False
         Me.ckDefaut.Location = New System.Drawing.Point(12, 105)
         Me.ckDefaut.Name = "ckDefaut"
         Me.ckDefaut.Size = New System.Drawing.Size(117, 17)
@@ -87,6 +84,7 @@ Partial Class frmSelectPhaseDiag
         'btnValider
         '
         Me.btnValider.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnValider.Enabled = False
         Me.btnValider.FlatAppearance.BorderSize = 0
         Me.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnValider.ForeColor = System.Drawing.SystemColors.ButtonHighlight

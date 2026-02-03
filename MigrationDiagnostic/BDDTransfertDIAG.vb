@@ -10,6 +10,15 @@ Imports System.Collections.Generic
 Public Class BDDTransfertDiag
     Private _bgw As System.ComponentModel.BackgroundWorker
     Private dbNameACCESS As String
+    Private _ListMsg As New List(Of String)
+    Public Property ListMsg() As List(Of String)
+        Get
+            Return _ListMsg
+        End Get
+        Set(ByVal value As List(Of String))
+            _ListMsg = value
+        End Set
+    End Property
     Public Property bgw() As System.ComponentModel.BackgroundWorker
         Get
             Return _bgw
@@ -526,10 +535,10 @@ INSERT INTO AgentManoEtalon (
 
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
         Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
@@ -588,10 +597,10 @@ INSERT INTO AgentManoEtalon (
 
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
         Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
@@ -649,13 +658,15 @@ INSERT INTO AgentManoEtalon (
     End Sub
     Public Sub TransfertTableDiagnostic(pTable As String, pINSERTSQL As String, Optional pExcept As String = "")
         Try
+            CSDebug.dispInfo(pTable & " Start")
+
 
             CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
             Dim oCSDB As New CSDb(False)
-            Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+            Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
             oCSDBACCESS.Open()
             CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-            Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+            Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
             oCSDBSQL.Open()
             Dim nMax As Integer = 100
             Dim ocmdACCESS As DbCommand
@@ -718,34 +729,55 @@ INSERT INTO AgentManoEtalon (
                     Dim obj As Object
                     ocmdSQL.CommandText = "SELECT uid from Pulverisateur where id ='" & PulveId & "'"
                     obj = ocmdSQL.ExecuteScalar()
-                    If obj IsNot DBNull.Value Then
-                        uidPulve = obj.ToString()
-                    Else
+                    Dim bNothing As Boolean = True
+                    If obj IsNot Nothing Then
+                        If obj IsNot DBNull.Value Then
+                            uidPulve = obj.ToString()
+                            bNothing = False
+                        End If
+                    End If
+                    If bNothing Then
                         ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
                         ocmdSQL.ExecuteNonQuery()
                         uidPulve = 0
                     End If
                     ocmdSQL.CommandText = "SELECT uid from Exploitation where id ='" & ExploitantId & "'"
                     obj = ocmdSQL.ExecuteScalar()
-                    If obj IsNot DBNull.Value Then
-                        uidExploitant = obj.ToString()
-                    Else
+                    bNothing = True
+                    If obj IsNot Nothing Then
+                        If obj IsNot DBNull.Value Then
+                            uidExploitant = obj.ToString()
+                            bNothing = False
+                        End If
+                    End If
+                    If bNothing Then
                         ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
                         ocmdSQL.ExecuteNonQuery()
                         uidExploitant = 0
                     End If
+
                     ocmdSQL.CommandText = "SELECT uid from Agent where id ='" & AgentId & "'"
                     obj = ocmdSQL.ExecuteScalar()
-                    If obj IsNot DBNull.Value Then
-                        uidAgent = obj.ToString()
-                    Else
+                    bNothing = True
+                    If obj IsNot Nothing Then
+                        If obj IsNot DBNull.Value Then
+                            uidAgent = obj.ToString()
+                            bNothing = False
+                        End If
+                    End If
+                    If bNothing Then
                         uidAgent = 0
                     End If
                     ocmdSQL.CommandText = "SELECT id from Structure where idCrodip ='" & StructureNum & "'"
                     obj = ocmdSQL.ExecuteScalar()
-                    If obj IsNot DBNull.Value Then
-                        uidStructure = obj.ToString()
-                    Else
+                    bNothing = True
+                    If obj IsNot Nothing Then
+                        If obj IsNot DBNull.Value Then
+                            uidStructure = obj.ToString()
+                            bNothing = False
+                        End If
+                    End If
+                    If bNothing Then
                         uidStructure = 0
                     End If
 
@@ -787,18 +819,37 @@ INSERT INTO AgentManoEtalon (
                     TransfertDiagnosticBusesDetail(DiagId)
                     TransfertDiagnosticMano542(DiagId)
                     TransfertDiagnosticTronçons833(DiagId)
+
+                    ListMsg.Add("Controle " & DiagId & "-2 ajouté dans la base")
                 Else
                     ocmdSQL.CommandText = "SELECT UID FROM DIAGNOSTIC WHERE ID = '" & DiagId & "'"
                     Dim obj As Object
                     obj = ocmdSQL.ExecuteScalar()
-                    If obj Is DBNull.Value Then
+                    Dim bnothing As Boolean = True
+                    If obj IsNot Nothing Then
+                        If obj IsNot DBNull.Value Then
+                            bnothing = False
+                        End If
+                    End If
+                    If bnothing Then
                         'Le Diag Existe mais n'a pas été synhcronisé
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & DiagId & "'"
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "', ID = '" & DiagId & "-2' WHERE ID = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICITEM SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICMANO542 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICTRONCONS833 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSES SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                        ocmdSQL.ExecuteNonQuery()
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSESDETAIL SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
                         ocmdSQL.ExecuteNonQuery()
                         ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
                         ocmdSQL.ExecuteNonQuery()
                         ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
                         ocmdSQL.ExecuteNonQuery()
+                        ListMsg.Add("Controle " & DiagId & " mis à synchroniser =>" & DiagId & "-2")
                     End If
 
 
@@ -1995,10 +2046,10 @@ INSERT INTO Diagnostic (
     Private Sub UPDATEDATEMODIFAGENTDIAGNOSTIC()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
         Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
@@ -2078,10 +2129,10 @@ INSERT INTO Diagnostic (
                            );"
         CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS
         Dim oCSDB As New CSDb(False)
-        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(dbNameACCESS, CSDb.EnumDBTYPE.MSACCESS))
+        Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString("crodip_agent", CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
