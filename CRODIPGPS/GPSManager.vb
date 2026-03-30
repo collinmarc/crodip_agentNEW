@@ -171,10 +171,10 @@ Public Class GPSManager
                         '         TraceMsg("[ProcessGPGGA] Start=(" & startLatitude & ";" & startLongitude & ") Lue=(" & latitudeM & ";" & longitudeM & ") Distance=" & distance)
                         bReturn = True
                     Else
-                        TraceMsg("Précision Horizontale Trop faible:" & fields.ToString())
+                        TraceMsg("Précision Horizontale Trop faible:" & PrecisHorizontale)
                     End If
                 Else
-                    TraceMsg("Nbre de satellites incorrect:" & fields.ToString())
+                    TraceMsg("Nbre de satellites incorrect:" & NbreSatelites)
                 End If
 
             Else
@@ -281,6 +281,7 @@ Public Class GPSManager
     End Function
     ' Calculer la distance entre deux points GPS en mètres
     Private Function CalculateDistance(pTimeGPS As String, pEndLat As String, pEndLong As String) As Double
+        Dim dReturn As Double = 0D
         Dim distanceMeters As Double = 0D
         Dim GPSDate As DateTime
         GPSDate = ConvertGPSTimeToDateTime(pTimeGPS)
@@ -289,7 +290,11 @@ Public Class GPSManager
             Me.startLatitude = pEndLat
             Me.startLongitude = pEndLong
         End If
-
+        'Si on calcul point à point à chaque fois on reprend les coordonnées précédentes
+        If My.Settings.CalculDistancePointaPoint Then
+            Me.startLatitude = Latitude
+            Me.startLongitude = Longitude
+        End If
         Me.EndTime = GPSDate
         Me.Latitude = pEndLat
         Me.Longitude = pEndLong
@@ -300,7 +305,14 @@ Public Class GPSManager
             distanceMeters = CalculateDistance2(startLatitude, startLongitude, pEndLat, pEndLong)
         End If
 
-        Return distanceMeters
+        'Si on calcul point à point on ajoute la distance calculée à la distance stockée précédemment
+        If My.Settings.CalculDistancePointaPoint Then
+            dReturn = distance + distanceMeters
+        Else
+            dReturn = distanceMeters
+        End If
+
+        Return dReturn
     End Function
     Public Shared Function CalculateDistance2(pstartLatitude As String, pStartLongitude As String, pEndLat As String, pEndLong As String) As Double
         Dim pStartLatitude2 As Decimal = ConvertToDecimalDegrees(pstartLatitude)
@@ -428,6 +440,7 @@ Public Class GPSManager
         Me.startLongitude = ""
         Me.startTime = DateTime.MinValue
         Me.EndTime = DateTime.MinValue
+        Me.distance = 0
         _tabVitesse = New Queue(Of Decimal)
         If pPrendreEnCompteLADerniereTraceGGA Then
             If _lstTracesGPX.Count > 0 Then
@@ -485,22 +498,6 @@ Public Class GPSManager
         lstReturn.AddRange(_lstTracesGPX)
         _lstTracesGPX.Clear()
         Return lstReturn
-    End Function
-
-    Public Function init2() As Boolean
-        Dim bReturn As Boolean
-        Try
-            Dim traceGGA As String
-            traceGGA = _lstTracesGPX.Last()
-            ProcessNMEAData(traceGGA)
-
-            bReturn = True
-        Catch ex As Exception
-            bReturn = False
-        End Try
-
-        Return bReturn
-
     End Function
 
 End Class

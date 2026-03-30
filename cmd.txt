@@ -1,1 +1,1 @@
-﻿.\MIGRATION\MigrationDiagnostic.exe
+﻿-- .\MIGRATION\MigrationDiagnostic.exe
