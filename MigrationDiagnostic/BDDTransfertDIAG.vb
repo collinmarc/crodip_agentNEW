@@ -833,7 +833,7 @@ INSERT INTO AgentManoEtalon (
                     End If
                     If bnothing Then
                         'Le Diag Existe mais n'a pas été synhcronisé
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "', ID = '" & DiagId & "-2' WHERE ID = '" & DiagId & "'"
+                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "', ID = '" & DiagId & "-2',aid = '" & DiagId & "-2' WHERE ID = '" & DiagId & "'"
                         ocmdSQL.ExecuteNonQuery()
                         ocmdSQL.CommandText = "UPDATE DIAGNOSTICITEM SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
                         ocmdSQL.ExecuteNonQuery()

@@ -1,5 +1,8 @@
 #TRUNK
 MASTER
+BUILD XXXXXXX
+	0001874: Modification des Modèles contrat et Rapport
+
 BUILD 20260203200000
 	0001864: Lors d'un annule et remplace => synchronisation du diag annulé
 	0001865: Annule et remplace : Choix des items (1 minimum)

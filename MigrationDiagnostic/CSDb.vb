@@ -83,7 +83,7 @@ Public Class CSDb
         Dim bReturn As String = ""
         Select Case pdbType
             Case EnumDBTYPE.MSACCESS
-                bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & My.Settings.DBMSACESS & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=" & My.Settings.DBMSACESS2 & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
+                bReturn = "Provider=" & My.Settings.DBOLEDBPROVIDER & ";Data Source=" & My.Settings.DBMSACESS & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=" & My.Settings.DBMSACESS2 & ";Jet OLEDB:Database Password=" & conf_bddPass & ""
 
             Case EnumDBTYPE.SQLITE
                 bReturn = "Data Source=" & My.Settings.DBSQLITE & ";Pooling=true"

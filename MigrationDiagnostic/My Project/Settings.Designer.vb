@@ -173,10 +173,19 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("bdd/crodipAgent.mdb")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("bdd/crodipAgent.mdw")>  _
         Public ReadOnly Property DBMSACESS2() As String
             Get
                 Return CType(Me("DBMSACESS2"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Microsoft.ACE.OLEDB.12.0")>  _
+        Public ReadOnly Property DBOLEDBPROVIDER() As String
+            Get
+                Return CType(Me("DBOLEDBPROVIDER"),String)
             End Get
         End Property
     End Class
