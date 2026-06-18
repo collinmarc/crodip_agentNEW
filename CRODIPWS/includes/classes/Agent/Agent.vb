@@ -969,5 +969,11 @@ Public Class Agent
         Return bReturn
 
     End Function
-
+    Public ReadOnly Property Libelle() As String
+        Get
+            Dim libstr As String = Me.nom & " " & Me.prenom
+            libstr = libstr & "(" & Me.NomStructure & ")"
+            Return libstr
+        End Get
+    End Property
 End Class

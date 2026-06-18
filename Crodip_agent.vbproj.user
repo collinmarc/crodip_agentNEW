@@ -20,4 +20,8 @@
     <StartAction>Program</StartAction>
     <StartProgram>E:\CRODIP\Logiciel Crodip Agent.exe</StartProgram>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>
+    </StartArguments>
+  </PropertyGroup>
 </Project>

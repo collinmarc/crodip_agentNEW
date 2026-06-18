@@ -12,7 +12,6 @@ Imports System.Linq
 
 Public Class login
     Inherits frmCRODIP
-    Private _LocalAgent As Agent
 
 #Region " Code généré par le Concepteur Windows Form "
 
@@ -706,7 +705,24 @@ Public Class login
 
 
 
-
+    Private _LocalAgent As Agent
+    Public Property LocalAgent() As Agent
+        Get
+            Return _LocalAgent
+        End Get
+        Set(ByVal value As Agent)
+            _LocalAgent = value
+        End Set
+    End Property
+    Private _loginAuto As Boolean = False
+    Public Property bLoginAuto() As Boolean
+        Get
+            Return _loginAuto
+        End Get
+        Set(ByVal value As Boolean)
+            _loginAuto = value
+        End Set
+    End Property
 
 
 #Region "Fonction de login"
@@ -834,23 +850,7 @@ Public Class login
                                 End If
 
                                 'Récupération de la liste des pools de l'agent relatif à ce pc
-                                If CSEnvironnement.checkWebService Then
-                                    Dim olstPC As List(Of PoolPc)
-                                    lstPool = New List(Of Pool)()
-                                    olstPC = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
-                                    For Each oPoolPc As PoolPc In olstPC
-                                        Dim oPool As Pool
-                                        oPool = PoolManager.WSgetById(oPoolPc.uidpool, "")
-                                        If oPool IsNot Nothing Then
-                                            If oPool.CheckPool(_LocalAgent) Then
-                                                lstPool.Add(oPool)
-                                            End If
-                                        End If
-                                    Next
-                                Else
-                                    lstPool = _LocalAgent.getPoolList(oPcRef)
-                                End If
-
+                                lstPool = LireLstPool(oPcRef)
 
                                 If lstPool.Count() = 0 Then
                                     _LocalAgent.oPool = Nothing
@@ -864,15 +864,7 @@ Public Class login
                                 End If
 
                                 If lstPool.Count > 1 Then
-                                    m_bsrcPools.Clear()
-                                    lstPool.ForEach(Sub(p)
-                                                        m_bsrcPools.Add(p)
-                                                    End Sub)
-                                    'il y a plus d'un pool, on demande à l'inspecteur de choisir
-                                    btn_login_seConnecter.Enabled = False
-                                    btn_login_seConnecter2.Enabled = True
-                                    pnlPools.Visible = True
-                                    _LocalAgent.oPool = Nothing
+                                    AfficheLstPool(lstPool)
                                 End If
                             Else
                                 Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_FAILED & " : PC non reconnu ", False)
@@ -894,6 +886,41 @@ Public Class login
         'On réactive la fenêtre , si la procédure de Cnx a fonctionner, cette fenêtre est cachée
         pnlLoginControls.Enabled = True
 
+    End Sub
+
+    Private Function LireLstPool(oPcRef As AgentPc) As List(Of Pool)
+        Dim lstPool As List(Of Pool)
+
+        If CSEnvironnement.checkWebService Then
+            Dim olstPC As List(Of PoolPc)
+            lstPool = New List(Of Pool)()
+            olstPC = PoolPcManager.WSGetListByPC(_LocalAgent, oPcRef)
+            For Each oPoolPc As PoolPc In olstPC
+                Dim oPool As Pool
+                oPool = PoolManager.WSgetById(oPoolPc.uidpool, "")
+                If oPool IsNot Nothing Then
+                    If oPool.CheckPool(_LocalAgent) Then
+                        lstPool.Add(oPool)
+                    End If
+                End If
+            Next
+        Else
+            lstPool = _LocalAgent.getPoolList(oPcRef)
+        End If
+
+        Return lstPool
+    End Function
+
+    Private Sub AfficheLstPool(lstPool As List(Of Pool))
+        m_bsrcPools.Clear()
+        lstPool.ForEach(Sub(p)
+                            m_bsrcPools.Add(p)
+                        End Sub)
+        'il y a plus d'un pool, on demande à l'inspecteur de choisir
+        btn_login_seConnecter.Enabled = False
+        btn_login_seConnecter2.Enabled = True
+        pnlPools.Visible = True
+        _LocalAgent.oPool = Nothing
     End Sub
 #End Region
     Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -957,6 +984,15 @@ Public Class login
 
 
         FillCbxAgent()
+        'Si on a un agent de connecté (Connextion automatique avec + d'un pool)
+        If LocalAgent IsNot Nothing Then
+            login_profil.Text = LocalAgent.Libelle
+            login_password.Text = CSCrypt.encode(_LocalAgent.motDePasse, "sha256")
+            pnlLoginControls.Enabled = False
+            Dim lstPool As List(Of Pool)
+            lstPool = LireLstPool(LocalAgent.oPCcourant)
+            AfficheLstPool(lstPool)
+        End If
         'Statusbardisplay("Chargement réussi de " & nbProfils & " profil(s)", False)
         Statusbarclear()
 
@@ -1020,9 +1056,7 @@ Public Class login
             For Each curAgent As Agent In oAgentList.items
                 If Not curAgent.isSupprime Then
                     ' On ajoute le profil à la liste déroulante
-                    Dim libelleAccount As String = curAgent.nom & " " & curAgent.prenom
-                    libelleAccount = libelleAccount & "(" & curAgent.NomStructure & ")"
-                    Dim objComboItem As New objComboItem(curAgent.numeroNational, libelleAccount)
+                    Dim objComboItem As New objComboItem(curAgent.numeroNational, curAgent.libelle)
                     login_profil.Items.Add(objComboItem)
                 End If
             Next
@@ -1405,7 +1439,7 @@ Public Class login
     Private Sub btnConnect2_Click(sender As Object, e As EventArgs)
 
     End Sub
-    Private Sub SynchroEtSuite(pAgent As Agent)
+    Public Sub SynchroEtSuite(pAgent As Agent, Optional pForm As Boolean = True)
         Debug.Assert(pAgent IsNot Nothing, "Agent doit être initialisé")
         Debug.Assert(pAgent.oPool IsNot Nothing, "Pool doit être initialisé")
         Dim bContinue As Boolean = True
@@ -1439,18 +1473,19 @@ Public Class login
             'Synchronisation 
             If GlobalsCRODIP.GLOB_ENV_AUTOSYNC = True And Not pAgent.isGestionnaire Then
                 If CSEnvironnement.checkWebService() = True Then
-
-                    lblSynchro.Visible = True
-                    pctSynchro.Visible = True
-                    panel_splashSynchro.Visible = True
-                    panel_splashSynchro.Refresh()
-                    Threading.Thread.Sleep(500) ' Pause de 500ms
-
-                    ' On vérifie les mises à jour
-                    Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
-                    Me.Cursor = Cursors.WaitCursor
                     Dim oSynchro As New Synchronisation(pAgent)
-                    oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
+                    If pForm Then
+                        lblSynchro.Visible = True
+                        pctSynchro.Visible = True
+                        panel_splashSynchro.Visible = True
+                        panel_splashSynchro.Refresh()
+                        Threading.Thread.Sleep(500) ' Pause de 500ms
+                        Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_SYNCHRO_ENCOURS, True)
+                        Me.Cursor = Cursors.WaitCursor
+
+                        oSynchro.ajouteObservateur(TryCast(Me.MdiParent, parentContener))
+                    End If
+
                     '###### SYNCHRO ######
                     oSynchro.Synchro(True, True)
                     oSynchro.Notice("")
@@ -1458,25 +1493,28 @@ Public Class login
                 End If
             End If
             agentCourant = pAgent
-            lblSynchro.Visible = False
-            pctSynchro.Visible = False
-            panel_splashSynchro.Visible = False
-            ' On met à jour la barre de status
-            Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
+            If pForm Then
+                lblSynchro.Visible = False
+                pctSynchro.Visible = False
+                panel_splashSynchro.Visible = False
+                ' On met à jour la barre de status
+                Statusbardisplay(GlobalsCRODIP.CONST_STATUTMSG_LOGIN_OK, False)
+            End If
             CSDebug.dispInfo("Connexion réussie " & pAgent.nom)
-            ' On met a jour la date de dernière connexion
-            pAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
-            AgentManager.save(pAgent)
-            pAgent.oPCcourant.versionLogiciel = pAgent.versionLogiciel
-            AgentPcManager.Save(pAgent.oPCcourant)
-
-            ' On affiche le formulaire d'accueil de l'application
-            Dim formAccueil As New accueil
-            globFormAccueil = formAccueil
-            formAccueil.MdiParent = Me.MdiParent
-            formAccueil.Init(pAgent) '' initialisation de la fenêtre avant l'affichage
-            TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
-            Me.Hide()
+                ' On met a jour la date de dernière connexion
+                pAgent.dateDerniereConnexion = CSDate.ToCRODIPString(Date.Now)
+                AgentManager.save(pAgent)
+                pAgent.oPCcourant.versionLogiciel = pAgent.versionLogiciel
+                AgentPcManager.Save(pAgent.oPCcourant)
+            If Me.Visible Then
+                ' On affiche le formulaire d'accueil de l'application
+                Dim formAccueil As New accueil
+                globFormAccueil = formAccueil
+                formAccueil.MdiParent = Me.MdiParent
+                formAccueil.Init(pAgent) '' initialisation de la fenêtre avant l'affichage
+                TryCast(MdiParent, parentContener).DisplayForm(formAccueil)
+                Me.Hide()
+            End If
         End If
 
     End Sub

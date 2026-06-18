@@ -458,6 +458,7 @@
     <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
     <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
     <Compile Include="Application\includes\config\ParamManager.vb" />
+    <Compile Include="Application\includes\fonctions\Connect.vb" />
     <Compile Include="Application\includes\fonctions\CSBoot.vb" />
     <Compile Include="Application\includes\fonctions\CSForm.vb" />
     <Compile Include="Application\includes\fonctions\CSListSorter.vb" />

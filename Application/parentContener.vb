@@ -65,7 +65,6 @@ Public Class parentContener
             m_bCloseByUpdate = True
             Me.Close()
         End If
-        CSDebug.dispInfo("ParentContainer.unloadSplash")
         unloadSplash()
 
         If GlobalsCRODIP.GLOB_ENV_MODEFORMATION Then
@@ -87,7 +86,6 @@ Public Class parentContener
                 Exit Sub
             End If
             ' Initialisation du boot
-            CSDebug.dispInfo("ParentContainer.CheckVersion")
         End If
         Try
             CSBoot.init()
@@ -96,16 +94,39 @@ Public Class parentContener
             CSDebug.dispError("parentContener::CSBoot.init()" & ex.Message)
         End Try
 
-        CSDebug.dispInfo("ParentContainer.LoadLogin")
 
-        ' Chargement du formulaire de login
+        ' Chargement du formulaire de login si pas d'argument
         Try
             Dim loginMDIChild As New login
-            loginMDIChild.Text = "Connexion"
-            Statusbar.clear()
-            DisplayForm(loginMDIChild)
+            If My.Application.CommandLineArgs.Count() > 0 Then
+                Dim nReturn As Connect.enumReturn
+                nReturn = Connect.Connect(My.Application.CommandLineArgs(0))
+                If nReturn = Connect.enumReturn.OK Then
+                    loginMDIChild.SynchroEtSuite(agentCourant, False)
+                    Dim formAccueil As New accueil
+                    globFormAccueil = formAccueil
+                    formAccueil.MdiParent = Me
+                    formAccueil.Init(agentCourant) '' initialisation de la fenêtre avant l'affichage
+                    DisplayForm(formAccueil)
+
+                ElseIf nReturn = Connect.enumReturn.PLUSDUNPOOL Then
+                    'Affichage de la fenêtre avec l'agent Affiché et la liste des pools
+                    loginMDIChild.bLoginAuto = True
+                    loginMDIChild.LocalAgent = agentCourant
+                    loginMDIChild.Text = "Connexion automatique"
+                    Statusbar.clear()
+                    DisplayForm(loginMDIChild)
+                Else
+                    CSDebug.dispFatal("ParentContainer LoginError : " & nReturn)
+                    Application.Exit()
+                End If
+            Else
+                loginMDIChild.Text = "Connexion"
+                Statusbar.clear()
+                DisplayForm(loginMDIChild)
+            End If
         Catch ex As Exception
-            CSDebug.dispError("parentContener::load" & ex.Message)
+            CSDebug.dispError("parentContener::load", ex)
         End Try
 
         Me.Cursor = Cursors.Default
