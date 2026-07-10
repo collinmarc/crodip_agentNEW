@@ -616,7 +616,7 @@ Public Class DiagnosticManager
                 oDiag.pulverisateurId = pPulveId
                 oDiag.id = Trim(dataResults.Item(0).ToString)
                 oDiag.controleDateFin = CSDate.ToCRODIPString(Trim(dataResults.Item(1).ToString))
-                oDiag.controleEtat = dataResults.Item(2).ToString
+                oDiag.controleEtatSansCalcul = dataResults.Item(2).ToString
                 colDiag.Add(oDiag)
             End While
             dataResults.Close()

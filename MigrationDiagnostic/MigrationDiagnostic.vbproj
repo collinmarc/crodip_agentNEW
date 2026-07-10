@@ -57,8 +57,8 @@
     <Reference Include="Microsoft.Data.Sqlite, Version=7.0.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\packages\Microsoft.Data.Sqlite.Core.7.0.9\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.7.4\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\packages\NLog.5.2.3\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.1.5.1964, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\packages\SQLitePCLRaw.bundle_e_sqlite3.2.1.5\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
@@ -177,6 +177,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\CRODIPWS\CRODIPWS.vbproj">
+      <Project>{d148fb92-18b1-4fb6-903d-1dc575b7d452}</Project>
+      <Name>CRODIPWS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

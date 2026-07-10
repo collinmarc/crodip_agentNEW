@@ -883,6 +883,19 @@ Public Class Diagnostic
     Public Const controleEtatOK As String = "1"
     Public Const controleEtatNOKCV As String = "0"
     Public Const controleEtatNOKCC As String = "-1"
+    <XmlElement("controleEtat")>
+    Public Property controleEtatSansCalcul() As String
+        Get
+            Return _controleEtat
+        End Get
+        Set(ByVal Value As String)
+            If (Value <> _controleEtat) Then
+                _controleEtat = Value
+                'CalculDateProchainControle()
+            End If
+        End Set
+    End Property
+    <XmlIgnoreAttribute()>
     Public Property controleEtat() As String
         Get
             Return _controleEtat
@@ -2837,10 +2850,8 @@ Public Class Diagnostic
                     Case "inspecteurOriginePrenom".ToUpper().Trim()
                         Me.inspecteurOriginePrenom = pcolValue.ToString()
                     Case "controleEtat".ToUpper().Trim()
-                        'On mémorise la date de prochain controle avant de mettre à jour l'état
                         Dim DateProchainCtrl As String = pulverisateurDateProchainControle
-                        Me.controleEtat = pcolValue
-                        pulverisateurDateProchainControle = DateProchainCtrl
+                        Me.controleEtatSansCalcul = pcolValue
 
                     Case "controleDateDebut".ToUpper().Trim()
                         Me.controleDateDebut = pcolValue.ToString()
@@ -2868,8 +2879,6 @@ Public Class Diagnostic
                         Me.controleIsSiteSecurise = pcolValue
                     Case "controleIsRecupResidus".ToUpper().Trim()
                         Me.controleIsRecupResidus = pcolValue
-                    Case "controleEtat".ToUpper().Trim()
-                        Me.controleEtat = pcolValue.ToString()
                     Case "controleInfosConseils".ToUpper().Trim()
                         Me.controleInfosConseils = pcolValue.ToString()
                     Case "controleTarif".ToUpper().Trim()

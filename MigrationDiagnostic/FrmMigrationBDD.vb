@@ -79,6 +79,7 @@
                 Me.ProgressBarN2.Value = e.ProgressPercentage
                 lblProgressN2.Text = e.UserState
                 oBDD.ListMsg.ForEach(Sub(msg) lbMsg.Items.Add(msg))
+                oBDD.ListMsg.ForEach(Sub(msg) System.IO.File.AppendAllText("./MIGRATION.TXT", msg))
                 oBDD.ListMsg.Clear()
                 lbMsg.Refresh()
             End If

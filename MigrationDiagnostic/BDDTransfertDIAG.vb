@@ -832,24 +832,42 @@ INSERT INTO AgentManoEtalon (
                         End If
                     End If
                     If bnothing Then
-                        'Le Diag Existe mais n'a pas été synhcronisé
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "', ID = '" & DiagId & "-2',aid = '" & DiagId & "-2' WHERE ID = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICITEM SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICMANO542 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICTRONCONS833 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSES SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSESDETAIL SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
-                        ocmdSQL.ExecuteNonQuery()
-                        ListMsg.Add("Controle " & DiagId & " mis à synchroniser =>" & DiagId & "-2")
+                        ocmdSQL.CommandText = "SELECT uid from Agent where id ='" & AgentId & "'"
+                        obj = ocmdSQL.ExecuteScalar()
+                        bnothing = True
+                        If obj IsNot Nothing Then
+                            If obj IsNot DBNull.Value Then
+                                uidAgent = obj.ToString()
+                                bnothing = False
+                            End If
+                        End If
+                        If bnothing Then
+                            uidAgent = 0
+                        End If
+                        Dim oReturn As CRODIPWS.Diagnostic = CRODIPWS.DiagnosticManager.WSgetById(uidAgent, 0, DiagId)
+                        If oReturn Is Nothing Then
+                            'Le Diag Existe mais n'a pas été synhcronisé
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "', ID = '" & DiagId & "-2',aid = '" & DiagId & "-2' WHERE ID = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTICITEM SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTICMANO542 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTICTRONCONS833 SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSES SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTICBUSESDETAIL SET idDiagnostic = '" & DiagId & "-2' WHERE IDdiagnostic = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE PULVERISATEUR SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & PulveId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ocmdSQL.CommandText = "UPDATE EXPLOITATION SET DATEMODIFICATIONAGENT = '" & Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss") & "' WHERE ID = '" & ExploitantId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                            ListMsg.Add("Controle " & DiagId & " mis à synchroniser =>" & DiagId & "-2")
+                        Else
+                            ocmdSQL.CommandText = "UPDATE DIAGNOSTIC SET uid = " & oReturn.uid & " WHERE ID = '" & DiagId & "'"
+                            ocmdSQL.ExecuteNonQuery()
+                        End If
                     End If
 
 

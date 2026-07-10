@@ -1,7 +1,10 @@
 #TRUNK
 MASTER
-BUILD XXXXXXX
+BUILD 20260709100000
 	0001874: Modification des Modèles contrat et Rapport
+	0001875: Connection automatique
+
+
 
 BUILD 20260203200000
 	0001864: Lors d'un annule et remplace => synchronisation du diag annulé
