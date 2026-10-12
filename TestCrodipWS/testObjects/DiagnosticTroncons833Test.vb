@@ -67,7 +67,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.pressionSortie = "1.7"
         oDiagTroncons833.ManocId = 123
 
-        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833)
         iD = oDiagTroncons833.id
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
@@ -83,7 +83,7 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.idColumn = "2"
         oDiagTroncons833.pressionSortie = "2.7"
         oDiagTroncons833.ManocId = 456
-        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833)
         oDiagTroncons833 = DiagnosticTroncons833Manager.getDiagnosticTroncons833ById(oDiagTroncons833.id.ToString, oDiagTroncons833.idDiagnostic)
 
         Assert.AreEqual(oDiagTroncons833.idPression, "2")
@@ -127,7 +127,7 @@ Public Class DiagnosticTroncons833Test
 
         'Rechargement par le diagnostic
         Dim oCSDB As New CSDb(True)
-        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(oCSDB, odiag)
+        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)
         'Vérification que les Troncons833 sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticTroncons833.Liste.Count)
 
@@ -151,10 +151,10 @@ Public Class DiagnosticTroncons833Test
         oDiagTroncons833.pressionSortie = "3.7"
         oDiagTroncons833.ManocId = "789"
 
-        DiagnosticTroncons833Manager.save(oDiagTroncons833, oCSDB)
+        DiagnosticTroncons833Manager.save(oDiagTroncons833)
 
         'Relecture des items
-        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(oCSDB, odiag)
+        DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(odiag)
 
         Assert.AreEqual(2, odiag.diagnosticTroncons833.Liste.Count)
         oDiagTroncons833 = odiag.diagnosticTroncons833.Liste(1)

@@ -98,7 +98,7 @@ Public Class CSXml
             doc = Nothing
         Catch e As Exception
             'en cas d'erreur
-            CSDebug.dispError("CSXml::getXmlNode : " & e.Message)
+            ' CSDebug.dispError("CSXml::getXmlNode : " & e.Message)
         End Try
 
         Return node

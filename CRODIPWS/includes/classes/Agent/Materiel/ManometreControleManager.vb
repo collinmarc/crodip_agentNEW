@@ -212,7 +212,13 @@ Public Class ManometreControleManager
                         Dim tmpColId As Integer = 0
                         While tmpColId < tmpListProfils.FieldCount()
                             If Not tmpListProfils.IsDBNull(tmpColId) Then
-                                tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                                Try
+                                    tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                                Catch ex As Exception
+
+                                    tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                                End Try
                             End If
                             tmpColId = tmpColId + 1
 
@@ -264,7 +270,13 @@ Public Class ManometreControleManager
                         Dim tmpColId As Integer = 0
                         While tmpColId < tmpListProfils.FieldCount()
                             If Not tmpListProfils.IsDBNull(tmpColId) Then
-                                tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                                Try
+                                    tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                                Catch ex As Exception
+
+                                    tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                                End Try
                             End If
                             tmpColId = tmpColId + 1
 
@@ -317,7 +329,13 @@ Public Class ManometreControleManager
                         Dim tmpColId As Integer = 0
                         While tmpColId < oDR.FieldCount()
                             If Not oDR.IsDBNull(tmpColId) Then
-                                tmpManometreControle.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                                Try
+                                    tmpManometreControle.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                                Catch ex As Exception
+
+                                    tmpManometreControle.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                                End Try
                             End If
                             tmpColId = tmpColId + 1
 
@@ -427,7 +445,13 @@ Public Class ManometreControleManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

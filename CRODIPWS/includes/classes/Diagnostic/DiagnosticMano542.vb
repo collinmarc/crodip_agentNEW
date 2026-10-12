@@ -286,43 +286,6 @@ Public Class DiagnosticMano542
             End Try
         End Get
     End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationAgent() As String
-        Get
-            Return _dateModificationAgent
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlIgnoreAttribute()>
-    Public Property dateModificationCrodip() As String
-        Get
-            Return _dateModificationCrodip
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
-
-    <XmlElement("dateModificationAgent")>
-    Public Property dateModificationAgentS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationAgent)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationAgent = Value
-        End Set
-    End Property
-    <XmlElement("dateModificationCrodip")>
-    Public Property dateModificationCrodipS() As String
-        Get
-            Return CSDate.GetDateForWS(_dateModificationCrodip)
-        End Get
-        Set(ByVal Value As String)
-            _dateModificationCrodip = Value
-        End Set
-    End Property
 
     <XmlIgnoreAttribute()>
     Public Property Ecart() As Decimal

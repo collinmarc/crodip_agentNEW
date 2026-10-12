@@ -72,7 +72,7 @@ Public Class DiagnosticBusesTest
         oDiagBuse.ecartTolere = "ecartTolere"
 
         Dim oCSDB As New CSDb(True)
-        DiagnosticBusesManager.save(oDiagBuse, oCSDB)
+        DiagnosticBusesManager.save(oDiagBuse)
         oCSDB.free()
         iD = oDiagBuse.id
         oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(iD, oDiagBuse.idDiagnostic)
@@ -98,7 +98,7 @@ Public Class DiagnosticBusesTest
         oDiagBuse.idLot = "2"
         oDiagBuse.ecartTolere = "ecartTolere2"
         oCSDB.getInstance()
-        DiagnosticBusesManager.save(oDiagBuse, oCSDB)
+        DiagnosticBusesManager.save(oDiagBuse)
         oCSDB.free()
         oDiagBuse = DiagnosticBusesManager.getDiagnosticBusesById(oDiagBuse.id, oDiagBuse.idDiagnostic)
 
@@ -157,10 +157,10 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail.ecart = "0.67"
         oDiagBuse.diagnosticBusesDetailList.Liste.Add(oDiagBuseDetail)
         oCSDb.getInstance()
-        DiagnosticBusesManager.save(oDiagBuse, oCSDb)
+        DiagnosticBusesManager.save(oDiagBuse)
         oCSDb.free()
         'Rechargement par le diagnostic
-        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDb, odiag)
+        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(odiag)
         'Vérification que les Buses Détail sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticBusesList.Liste(0).diagnosticBusesDetailList.Liste.Count)
 
@@ -183,9 +183,9 @@ Public Class DiagnosticBusesTest
         oDiagBuseDetail.ecart = "0.85"
 
         oCSDb.getInstance()
-        DiagnosticBusesManager.save(odiag.diagnosticBusesList.Liste(0), oCSDb)
+        DiagnosticBusesManager.save(odiag.diagnosticBusesList.Liste(0))
         'Relecture des items
-        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDb, odiag)
+        DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(odiag)
         oCSDb.free()
         Assert.AreEqual(1, odiag.diagnosticBusesList.Liste.Count)
         oDiagBuse = odiag.diagnosticBusesList.Liste(0)

@@ -194,7 +194,13 @@ Public Class DiagnosticHelp12123PompeTrtSem
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDr.FieldCount()
                     If Not oDr.IsDBNull(tmpColId) Then
-                        oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+                        Try
+                            oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oDiagItem.Fill(oDr.GetName(tmpColId), oDr.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -278,7 +284,7 @@ Public Class DiagnosticHelp12123PompeTrtSem
                     oDiagItem.id = id
                 End If
             End If
-            bReturn = DiagnosticItemManager.save(pCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(oDiagItem)
             id = oDiagItem.id
             For Each oMEsure As DiagnosticHelp12123MesuresTrtSem In m_lstHelp12123Mesures
                 oMEsure.idDiag = idDiag

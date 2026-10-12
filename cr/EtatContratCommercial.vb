@@ -34,10 +34,10 @@ Public Class EtatContratCommercial
 
                 m_oReportDocument = New ReportDocument()
 
-                If System.IO.File.Exists(MySettings.Default.RepertoireParametres & "/" & m_ReportName) Then
-                    m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                If System.IO.File.Exists(My.Settings.RepertoireParametres & "/" & m_ReportName) Then
+                    m_oReportDocument.Load(My.Settings.RepertoireParametres & "/" & m_ReportName)
                 Else
-                    CSDebug.dispFatal(MySettings.Default.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
+                    CSDebug.dispFatal(My.Settings.RepertoireParametres & "/" & m_ReportName & " n'existe pas")
                 End If
 
                 m_oReportDocument.SetDataSource(m_ods)

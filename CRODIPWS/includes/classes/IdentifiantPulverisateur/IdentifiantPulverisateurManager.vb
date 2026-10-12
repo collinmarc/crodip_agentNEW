@@ -246,7 +246,13 @@ Public Class IdentifiantPulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDataReader.FieldCount()
                     If Not oDataReader.IsDBNull(tmpColId) Then
-                        bReturn.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+                        Try
+                            bReturn.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            bReturn.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -309,7 +315,13 @@ Public Class IdentifiantPulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(tmpColId) Then
-                        oIdentPulve.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                        Try
+                            oIdentPulve.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oIdentPulve.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -371,7 +383,13 @@ Public Class IdentifiantPulverisateurManager
                 Dim nColId As Integer = 0
                 While nColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(nColId) Then
-                        oIdentPulve.Fill(oDR.GetName(nColId), oDR.Item(nColId))
+                        Try
+                            oIdentPulve.Fill(oDR.GetName(nColId), oDR.Item(nColId))
+
+                        Catch ex As Exception
+
+                            oIdentPulve.Fill(oDR.GetName(nColId), oDR.GetString(nColId))
+                        End Try
                     End If
                     nColId = nColId + 1
                 End While
@@ -394,7 +412,13 @@ Public Class IdentifiantPulverisateurManager
                 Dim nColId As Integer = 0
                 While nColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(nColId) Then
-                        oIdentPulve.Fill(oDR.GetName(nColId), oDR.Item(nColId))
+                        Try
+                            oIdentPulve.Fill(oDR.GetName(nColId), oDR.Item(nColId))
+
+                        Catch ex As Exception
+
+                            oIdentPulve.Fill(oDR.GetName(nColId), oDR.GetString(nColId))
+                        End Try
                     End If
                     nColId = nColId + 1
                 End While

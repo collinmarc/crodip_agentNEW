@@ -325,7 +325,7 @@ Public Class Pulverisateurtest
         oPUlve = PulverisateurManager.getPulverisateurById(oPUlve.id)
 
         Dim lstE2P As List(Of ExploitationTOPulverisateur)
-        lstE2P = ExploitationTOPulverisateurManager.getlstExploitationTOPulverisateurByPulverisateurId(oPUlve.id)
+        lstE2P = ExploitationTOPulverisateurManager.getListByPulverisateurId(oPUlve.id)
         Assert.AreEqual(1, lstE2P.Count)
         Assert.AreEqual(lstE2P(0).uidpulverisateur, oPUlve.uid)
 

@@ -903,7 +903,9 @@ Public Class Diagnostic
         Set(ByVal Value As String)
             If (Value <> _controleEtat) Then
                 _controleEtat = Value
-                CalculDateProchainControle()
+                If Not String.IsNullOrEmpty(Me.pulverisateurId) Then
+                    CalculDateProchainControle()
+                End If
             End If
         End Set
     End Property

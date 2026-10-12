@@ -38,7 +38,7 @@ Imports CrodipWS
         'Après Synhcro on a bien 1 diagItem en base
         oDiag.diagnosticItemsLst.Clear()
         Dim oCSDB As New CSDb(True)
-        DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCSDB, oDiag)
+        DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oDiag)
         oCSDB.free()
         Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count())
 
@@ -59,7 +59,7 @@ Imports CrodipWS
         'Après Synhcro on a bien 1 diagItem en base
         oDiag.diagnosticItemsLst.Clear()
         oCSDB = New CSDb(True)
-        DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCSDB, oDiag)
+        DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oDiag)
         oCSDB.free()
         Assert.AreEqual(1, oDiag.diagnosticItemsLst.Count())
 

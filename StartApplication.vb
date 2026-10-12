@@ -3,7 +3,6 @@ Imports CrystalDecisions.Shared
 Imports System.IO
 Imports System.Windows.Forms
 Imports System.IO.Compression
-Imports Ionic.Zip
 Imports CRODIPWS
 
 Module StartApplication
@@ -51,6 +50,7 @@ Module StartApplication
         'Application.UseWaitCursor = True
 
         CSDebug.dispInfo("StartApplication.Main")
+        CSDebugSynchro.dispSynchro("<SESSSION  date ='" & DateTime.Now.ToShortDateString() & " " & DateTime.Now.ToLongTimeString() & "' >")
         ''        CSDebug.dispInfo("StartApplication.TestCrystalReport")
         '        If TestCrystalReport() Then
 

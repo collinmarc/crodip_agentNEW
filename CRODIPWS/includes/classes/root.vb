@@ -112,11 +112,11 @@ Public Class root
                     Case "aid".Trim().ToUpper()
                         Me.aid = pcolValue.ToString
                     Case "dateModificationAgent".Trim().ToUpper()
-                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue <> "0000-00-00 00:00:00" Then
+                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue.ToString() <> "0000-00-00 00:00:00" Then
                             Me.dateModificationAgent = CSDate.ToCRODIPString(pcolValue) 'Public dateModificationAgent As String
                         End If
                     Case "dateModificationCrodip".Trim().ToUpper()
-                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue <> "0000-00-00 00:00:00" Then
+                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue / ToString() <> "0000-00-00 00:00:00" Then
                             Me.dateModificationCrodip = CSDate.ToCRODIPString(pcolValue) 'Public dateModificationCrodip As String
                         End If
                     Case Else
@@ -148,7 +148,7 @@ Public Class root
                         propInfo.SetValue(Me, CInt(pcolValue))
                         bReturn = True
                     Case "DATETIME"
-                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue <> "0000-00-00 00:00:00" Then
+                        If Not String.IsNullOrEmpty(pcolValue) And pcolValue.ToString() <> "0000-00-00 00:00:00" Then
                             propInfo.SetValue(Me, CSDate.FromCrodipString(pcolValue))
                         End If
                         bReturn = True
@@ -169,12 +169,16 @@ Public Class root
 
     Public Function FillDR(oDataReader As Common.DbDataReader) As Boolean
         Dim bReturn As Boolean
+        Dim tmpColId As Integer = 0
         Try
-            Dim tmpColId As Integer = 0
             bReturn = True
             While tmpColId < oDataReader.FieldCount()
                 If Not oDataReader.IsDBNull(tmpColId) Then
-                    bReturn = bReturn And Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+                    If oDataReader.GetDataTypeName(tmpColId).ToUpperInvariant = "DATETIME" Then
+                        bReturn = bReturn And Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                    Else
+                        bReturn = bReturn And Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+                    End If
                 End If
                 tmpColId = tmpColId + 1
             End While

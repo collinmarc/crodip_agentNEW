@@ -12,18 +12,20 @@ Public Class DiagnosticHelp831Manager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticHelp8312ByDiagnosticId(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
-        Return getDiagnosticHelp831ByDiagnosticId(oCSDB, DiagnosticHelp831.ModeHelp831.Mode8312, pDiagnostic)
+    Public Shared Function getDiagnosticHelp8312ByDiagnosticId(ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
+        Return getDiagnosticHelp831ByDiagnosticId(DiagnosticHelp831.ModeHelp831.Mode8312, pDiagnostic)
     End Function
-    Public Shared Function getDiagnosticHelp8314ByDiagnosticId(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
-        Return getDiagnosticHelp831ByDiagnosticId(oCSDB, DiagnosticHelp831.ModeHelp831.Mode8314, pDiagnostic)
+    Public Shared Function getDiagnosticHelp8314ByDiagnosticId(ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
+        Return getDiagnosticHelp831ByDiagnosticId(DiagnosticHelp831.ModeHelp831.Mode8314, pDiagnostic)
     End Function
 
-    Private Shared Function getDiagnosticHelp831ByDiagnosticId(oCSDB As CSDb, pMode As DiagnosticHelp831.ModeHelp831, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
+    Private Shared Function getDiagnosticHelp831ByDiagnosticId(pMode As DiagnosticHelp831.ModeHelp831, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp831
         ' On récupère les items du diagnostic
+        Dim oCSDB As CSDb = Nothing
         Dim oHelp831 As DiagnosticHelp831
-        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
         Try
+            oCSDB = New CSDb(True)
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
             'Lecture de l'id pour le diagitem help831
             Dim strIdItem As String
             If pMode = DiagnosticHelp831.ModeHelp831.Mode8312 Then
@@ -33,20 +35,23 @@ Public Class DiagnosticHelp831Manager
             End If
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = '" & strIdItem & "' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
-            oHelp831 = New DiagnosticHelp831(pMode)
-            oHelp831.id = 0
-            oHelp831.idDiag = pDiagnostic.id
-            While oDRDiagnosticItem.Read()
-                oHelp831.id = oDRDiagnosticItem.GetString(0)
-                oHelp831.Load()
-            End While
-            oDRDiagnosticItem.Close()
+            Using oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
+                oHelp831 = New DiagnosticHelp831(pMode)
+                oHelp831.id = 0
+                oHelp831.idDiag = pDiagnostic.id
+                While oDRDiagnosticItem.Read()
+                    oHelp831.id = oDRDiagnosticItem.GetString(0)
+                    oHelp831.Load()
+                End While
+            End Using
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp831Manager::getDiagnosticHelp831ByDiagnosticId : " & ex.Message)
             oHelp831 = Nothing
         End Try
 
+        If oCSDB IsNot Nothing Then
+            oCSDB.free()
+        End If
         Return oHelp831
     End Function
     '''

@@ -11,18 +11,20 @@ Public Class DiagnosticHelp551Manager
 
 #Region "Methodes acces Local"
 
-    Public Shared Function getDiagnosticHelp551ByDiagnosticId(oCSDB As CSDb, pDiagnostic As Diagnostic) As DiagnosticHelp551
-        Return getDiagnosticHelp551ByDiagnosticId(oCSDB, DiagnosticHelp551.Help551Mode.Mode551, pDiagnostic)
+    Public Shared Function getDiagnosticHelp551ByDiagnosticId(pDiagnostic As Diagnostic) As DiagnosticHelp551
+        Return getDiagnosticHelp551ByDiagnosticId(DiagnosticHelp551.Help551Mode.Mode551, pDiagnostic)
     End Function
-    Public Shared Function getDiagnosticHelp12323ByDiagnosticId(oCSDB As CSDb, pDiagnostic As Diagnostic) As DiagnosticHelp551
-        Return getDiagnosticHelp551ByDiagnosticId(oCSDB, DiagnosticHelp551.Help551Mode.Mode12323, pDiagnostic)
+    Public Shared Function getDiagnosticHelp12323ByDiagnosticId(pDiagnostic As Diagnostic) As DiagnosticHelp551
+        Return getDiagnosticHelp551ByDiagnosticId(DiagnosticHelp551.Help551Mode.Mode12323, pDiagnostic)
     End Function
 
-    Private Shared Function getDiagnosticHelp551ByDiagnosticId(oCSDB As CSDb, pMode As DiagnosticHelp551.Help551Mode, pDiagnostic As Diagnostic) As DiagnosticHelp551
+    Private Shared Function getDiagnosticHelp551ByDiagnosticId(pMode As DiagnosticHelp551.Help551Mode, pDiagnostic As Diagnostic) As DiagnosticHelp551
         ' On récupère les items du diagnostic
         Dim oHelp551 As DiagnosticHelp551
-        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
+        Dim oCSDB2 As CSDb = Nothing
+        Dim bddCommande As DbCommand
         Try
+            oCSDB2 = New CSDb(True)
             Dim strIdItem As String = ""
             Select Case pMode
                 Case DiagnosticHelp551.Help551Mode.Mode551
@@ -32,17 +34,19 @@ Public Class DiagnosticHelp551Manager
                 Case DiagnosticHelp551.Help551Mode.Mode12323
                     strIdItem = "help12323"
             End Select
+            bddCommande = oCSDB2.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = '" & strIdItem & "' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
-            oHelp551 = New DiagnosticHelp551(pMode)
-            oHelp551.id = "0"
-            oHelp551.idDiag = pDiagnostic.id
-            While oDRDiagnosticItem.Read()
-                oHelp551.id = oDRDiagnosticItem.GetString(0)
-                oHelp551.Load()
-            End While
-            oDRDiagnosticItem.Close()
+
+            Using oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
+                oHelp551 = New DiagnosticHelp551(pMode)
+                oHelp551.id = "0"
+                oHelp551.idDiag = pDiagnostic.id
+                While oDRDiagnosticItem.Read()
+                    oHelp551.id = oDRDiagnosticItem.GetValue(0)
+                    oHelp551.Load()
+                End While
+            End Using
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp551Manager::getDiagnosticHelp551ByDiagnosticId : " & ex.Message)
             oHelp551 = Nothing
@@ -54,7 +58,6 @@ Public Class DiagnosticHelp551Manager
     ''' Sauvegarde d'un Help551
     ''' Paramètres :
     Public Shared Function save(ByVal pHelp551 As DiagnosticHelp551, pStructureId As String, pAgentId As String, pCSDb As CSDb) As Boolean
-        Debug.Assert(pCSDb.isOpen(), "La Connection Doit être ouverte")
 
         Dim breturn As Boolean
         Try

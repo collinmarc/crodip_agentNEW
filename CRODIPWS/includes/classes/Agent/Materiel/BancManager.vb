@@ -324,7 +324,13 @@ Public Class BancManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -407,7 +413,13 @@ Public Class BancManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDataReader.FieldCount()
                     If Not oDataReader.IsDBNull(tmpColId) Then
-                        oBanc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+                        Try
+                            oBanc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+
+                        Catch ex As Exception
+
+                            oBanc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

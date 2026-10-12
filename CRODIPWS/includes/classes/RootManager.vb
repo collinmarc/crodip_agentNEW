@@ -156,12 +156,12 @@ Public Class RootManager
             Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand
             bddCommande.CommandText = pSQL
             ' On récupère les résultats
-            Dim oDR As DbDataReader = bddCommande.ExecuteReader
-            If oDR.Read() Then
-                oReturn = New T
-                oReturn.FillDR(oDR)
-            End If
-            oDR.Close()
+            Using oDR As DbDataReader = bddCommande.ExecuteReader
+                If oDR.Read() Then
+                    oReturn = New T
+                    oReturn.FillDR(oDR)
+                End If
+            End Using
 
             If Not oCSDB Is Nothing Then
                 oCSDB.free()

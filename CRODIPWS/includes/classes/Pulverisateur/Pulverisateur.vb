@@ -181,7 +181,6 @@ Public Class Pulverisateur
     ''' ce numéro nationnal sert à mémoriser l'ancien numero en cas de modification
     ''' il est initialisé au moment du chargement de l'objet en mémoire
     ''' </summary>
-    ''' <returns></returns>
     Dim _numeroNationalBis As String
     <XmlIgnore()>
     Public Property numeroNationalBis() As String
@@ -1369,12 +1368,7 @@ Public Class Pulverisateur
         If Not String.IsNullOrEmpty(id) Then
             Try
                 'Lecture des Diagnostic d'un pulve triées par date de debut
-                Dim olst As List(Of Diagnostic)
-                olst = DiagnosticManager.getlstDiagnosticByPulveId(id)
-                If olst.Count > 0 Then
-                    oReturn = olst(0).controleDateFin
-                End If
-
+                oReturn = DiagnosticManager.getDateDernierControleByPulveId(id)
             Catch ex As Exception
                 CSDebug.dispError("Pulverisateur.getdateDernierControle ERR : " & ex.Message)
             End Try

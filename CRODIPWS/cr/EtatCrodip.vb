@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
-Imports Ionic.Zip
 
 ''' <summary>
 ''' Etat Genérique CRODIP

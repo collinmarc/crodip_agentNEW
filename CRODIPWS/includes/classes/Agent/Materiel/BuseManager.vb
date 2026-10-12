@@ -418,7 +418,13 @@ Public Class BuseManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < oDataReader.FieldCount()
                         If Not oDataReader.IsDBNull(tmpColId) Then
-                            oBuse.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+                            Try
+                                oBuse.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+
+                            Catch ex As Exception
+
+                                oBuse.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -462,7 +468,13 @@ Public Class BuseManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpBuse.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpBuse.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpBuse.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -538,7 +550,13 @@ Public Class BuseManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListResults.FieldCount()
                         If Not tmpListResults.IsDBNull(tmpColId) Then
-                            tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.Item(tmpColId))
+                            Try
+                                tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -580,7 +598,13 @@ Public Class BuseManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListResults.FieldCount()
                         If Not tmpListResults.IsDBNull(tmpColId) Then
-                            tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.Item(tmpColId))
+                            Try
+                                tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpItem.Fill(tmpListResults.GetName(tmpColId), tmpListResults.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While

@@ -158,14 +158,14 @@ Public Class gestion_agent
         '
         'cbxModeSignature
         '
-        Me.cbxModeSignature.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.Crodip_agent.MySettings.Default, "ModeSignature", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.cbxModeSignature.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.Crodip_agent.My.Settings, "ModeSignature", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.cbxModeSignature.FormattingEnabled = True
         Me.cbxModeSignature.Items.AddRange(New Object() {"Tablette", "Téléphone", "wacom"})
         Me.cbxModeSignature.Location = New System.Drawing.Point(165, 7)
         Me.cbxModeSignature.Name = "cbxModeSignature"
         Me.cbxModeSignature.Size = New System.Drawing.Size(165, 21)
         Me.cbxModeSignature.TabIndex = 24
-        Me.cbxModeSignature.Text = Global.Crodip_agent.MySettings.Default.ModeSignature
+        Me.cbxModeSignature.Text = Global.Crodip_agent.My.Settings.ModeSignature
         '
         'Label4
         '

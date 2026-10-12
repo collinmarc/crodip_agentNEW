@@ -143,10 +143,11 @@ Public Class DiagnosticItemManager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticItemByDiagnosticId(oCSDB As CSDb, pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticItemByDiagnosticId(pDiagnostic As Diagnostic) As Boolean
         ' On récupère les items du diagnostic
         Dim bReturn As Boolean
-        Dim bddCommande2 As DbCommand = oCSDB.getConnection().CreateCommand()
+        Dim oCSDB2 As CSDb
+        Dim bddCommande2 As DbCommand
         Try
             ' récupération du fichier de config associé au Pulvé
             Dim oPulve As Pulverisateur
@@ -156,6 +157,8 @@ Public Class DiagnosticItemManager
             Dim olst As New CRODIP_ControlLibrary.LstParamCtrlDiag()
             olst.readXML(GlobalsCRODIP.GLOB_PARAM_RepertoireParametres & "/" & sFichierConfig)
 
+            oCSDB2 = New CSDb(True)
+            bddCommande2 = oCSDB2.getConnection().CreateCommand()
             bddCommande2.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' AND  DiagnosticItem.idItem <> '" & DiagnosticInfosComplementaires.DIAGITEM_ID & "' AND DiagnosticItem.idItem not Like 'h%' And ItemCodeEtat <> 'B' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
             Dim oDRDiagnosticItem As DbDataReader = bddCommande2.ExecuteReader
@@ -167,7 +170,13 @@ Public Class DiagnosticItemManager
                 nColId = 0
                 While nColId < oDRDiagnosticItem.FieldCount()
                     If Not oDRDiagnosticItem.IsDBNull(nColId) Then
-                        oDiagnosticItem.Fill(oDRDiagnosticItem.GetName(nColId), oDRDiagnosticItem.Item(nColId))
+                        Try
+                            oDiagnosticItem.Fill(oDRDiagnosticItem.GetName(nColId), oDRDiagnosticItem.Item(nColId))
+
+                        Catch ex As Exception
+
+                            oDiagnosticItem.Fill(oDRDiagnosticItem.GetName(nColId), oDRDiagnosticItem.GetString(nColId))
+                        End Try
                     End If
                     nColId = nColId + 1
                 End While
@@ -221,40 +230,44 @@ Public Class DiagnosticItemManager
     Public Shared Function getDiagnosticItemById(ByVal diagnosticitem_id As String, ByVal pIdDiagnostic As String) As DiagnosticItem
         ' déclarations
         Dim tmpDiagnosticItem As New DiagnosticItem
+        Dim oCsdb As CSDb = Nothing
         If diagnosticitem_id <> "" Then
-            Dim oCsdb As CSDb = Nothing
             oCsdb = New CSDb(True)
             Dim bddCommande As DbCommand
             bddCommande = oCsdb.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT * FROM DiagnosticItem WHERE DiagnosticItem.id='" & diagnosticitem_id & "' AND idDiagnostic = '" & pIdDiagnostic & "'"
             Try
                 ' On récupère les résultats
-                Dim tmpListProfils As DbDataReader = bddCommande.ExecuteReader
-                ' Puis on les parcours
-                While tmpListProfils.Read()
-                    ' On rempli notre tableau
-                    Dim tmpColId As Integer = 0
-                    While tmpColId < tmpListProfils.FieldCount()
-                        If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpDiagnosticItem.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
-                        End If
-                        tmpColId = tmpColId + 1
+                Using tmpListProfils As DbDataReader = bddCommande.ExecuteReader
+                    ' Puis on les parcours
+                    While tmpListProfils.Read()
+                        ' On rempli notre tableau
+                        Dim tmpColId As Integer = 0
+                        While tmpColId < tmpListProfils.FieldCount()
+                            If Not tmpListProfils.IsDBNull(tmpColId) Then
+                                Try
+                                    tmpDiagnosticItem.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
 
+                                Catch ex As Exception
+
+                                    tmpDiagnosticItem.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                                End Try
+                            End If
+                            tmpColId = tmpColId + 1
+
+                        End While
                     End While
-                End While
-                tmpListProfils.Close()
+                End Using
             Catch ex As Exception ' On intercepte l'erreur
-                MsgBox("DiagnosticItemManager Error: " & ex.Message)
+                CSDebug.dispError("DiagnosticItemManager.getDisgnosticItemById ERR: ", ex)
+                tmpDiagnosticItem = Nothing
             End Try
-
-            ' Test pour fermeture de connection BDD
-            If Not oCsdb Is Nothing Then
-                ' On ferme la connexion
-                oCsdb.free()
-            End If
-
         End If
         'on retourne le diagnosticitem ou un objet vide en cas d'erreur
+        If Not oCsdb Is Nothing Then
+            ' On ferme la connexion
+            oCsdb.free()
+        End If
         Return tmpDiagnosticItem
     End Function
     Public Shared Function incId(pOldId As String) As String
@@ -308,10 +321,10 @@ Public Class DiagnosticItemManager
     '''
     ''' Sauvegarde d'un diagnosticItem individuel
     ''' Paramètres :
-    Public Shared Function save(ByVal pCsDb As CSDb, ByVal pDiagIt As DiagnosticItem, Optional bSyncro As Boolean = False) As Boolean
-        Debug.Assert(pCsDb.isOpen(), "La Connection Doit être ouverte")
+    Public Shared Function save(ByVal pDiagIt As DiagnosticItem, Optional bSyncro As Boolean = False) As Boolean
 
         Dim breturn As Boolean
+        Dim pCSDB As New CSDb(True)
         Try
             breturn = False
             '            If pDiagIt.id <> "" Then
@@ -319,7 +332,7 @@ Public Class DiagnosticItemManager
 
             ' On test si le DiagnosticItem existe ou non
             Dim existsDiagnosticItem As Boolean
-            existsDiagnosticItem = DiagnosticItemManager.existsDiagnosticItemById(pCsDb, pDiagIt.id, pDiagIt.idDiagnostic)
+            existsDiagnosticItem = DiagnosticItemManager.existsDiagnosticItemById(pCSDB, pDiagIt.id, pDiagIt.idDiagnostic)
 
             If Not existsDiagnosticItem Then
                 ' Si il n'existe pas, on le crée
@@ -360,10 +373,6 @@ Public Class DiagnosticItemManager
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE DiagnosticItem SET " & paramsQuery & " WHERE id='" & pDiagIt.id & "' and idDiagnostic = '" & pDiagIt.idDiagnostic & "'"
                 bddCommande.ExecuteNonQuery()
-                ' Test pour fermeture de connection BDD
-                'If Not oCSDb Is Nothing Then
-                ' On ferme la connexion
-                ' oCSDb.free()
             End If
             'End If
             breturn = True
@@ -371,6 +380,11 @@ Public Class DiagnosticItemManager
             CSDebug.dispError("Erreur DiagnosticItemManager" & pDiagIt.idDiagnostic & " - save" & ex.Message.ToString)
             breturn = False
         End Try
+        ' Test pour fermeture de connection BDD
+        If Not pCSDB Is Nothing Then
+            ' On ferme la connexion
+            pCSDB.free()
+        End If
         Return breturn
     End Function
 
@@ -447,7 +461,7 @@ Public Class DiagnosticItemManager
 
             End If
             pDiagnosticItem.id = CInt(bddCommande.ExecuteScalar())
-            CSDb.ExecuteSQL("UPDATE DiagnosticTroncons833 Set aid = id where id = " & pDiagnosticItem.id)
+            oCSDb.Execute("UPDATE DiagnosticTroncons833 Set aid = id where id = " & pDiagnosticItem.id)
             sDebugStep = "5"
             ' Test pour fermeture de connection BDD
             If Not oCSDb Is Nothing Then

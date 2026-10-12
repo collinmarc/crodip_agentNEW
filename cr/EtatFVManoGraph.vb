@@ -28,7 +28,7 @@ Public Class EtatFVManoGrpah
                         r1.Close()
                     End Using
 
-                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                    objReport.Load(My.Settings.RepertoireParametres & "/" & strReportName)
 
                     objReport.SetDataSource(m_ods)
                     Dim CrExportOptions As ExportOptions

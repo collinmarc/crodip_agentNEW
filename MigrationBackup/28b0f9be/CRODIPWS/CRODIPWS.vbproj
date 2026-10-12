@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D148FB92-18B1-4FB6-903D-1DC575B7D452}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CRODIPWS</RootNamespace>
+    <AssemblyName>CRODIPWS</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>CRODIPWS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42307,42300,42303,42312</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>CRODIPWS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42307,42300,42303,42312</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.33.1.0\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Linq.Async, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Async.4.0.0\lib\net461\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.vb" />
+    <Compile Include="cr\dsContratCommercial.Designer.vb">
+      <DependentUpon>dsContratCommercial.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\dsContratCommercial.vb">
+      <DependentUpon>dsContratCommercial.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\dsDocCoPropriete.Designer.vb">
+      <DependentUpon>dsDocCoPropriete.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\dsEnquete.Designer.vb">
+      <DependentUpon>dsEnquete.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\dsEnquete.vb">
+      <DependentUpon>dsEnquete.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\dsFvBanc.Designer.vb">
+      <DependentUpon>dsFvBanc.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\dsFvmano.Designer.vb">
+      <DependentUpon>dsFvmano.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\dsFvmano.vb">
+      <DependentUpon>dsFvmano.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\dsTest.Designer.vb">
+      <DependentUpon>dsTest.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\ds_etatBL.Designer.vb">
+      <DependentUpon>ds_etatBL.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\ds_etatBL.vb">
+      <DependentUpon>ds_etatBL.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\ds_EtatFacture.Designer.vb">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\ds_EtatFacture.vb">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\ds_Etat_RI.Designer.vb">
+      <DependentUpon>ds_Etat_RI.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\ds_Etat_RI.vb">
+      <DependentUpon>ds_Etat_RI.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\ds_Etat_SM.Designer.vb">
+      <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="cr\ds_Etat_SM.vb">
+      <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cr\EtatCrodip.vb" />
+    <Compile Include="includes\classes\Acquisition\Acquiring.vb" />
+    <Compile Include="includes\classes\Acquisition\AcquiringManager.vb" />
+    <Compile Include="includes\classes\Agent\Agent.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPc.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPcManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoEtalon.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoControle.vb" />
+    <Compile Include="includes\classes\Agent\PoolBuse.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoEtalonManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolManoControleManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolPc.vb" />
+    <Compile Include="includes\classes\Agent\PoolBuseManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolPcManager.vb" />
+    <Compile Include="includes\classes\Agent\PoolAgentManager.vb" />
+    <Compile Include="includes\classes\Agent\AgentManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPCOLD.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\AgentPCOLDManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\Alertes.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\Banc.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\BancManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\Buse.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\BuseManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\Manometre.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\ManometreControle.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\ManometreControleManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\ManometreEtalon.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\ManometreEtalonManager.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\Materiel.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\NiveauAlerte.vb" />
+    <Compile Include="includes\classes\Agent\Materiel\PressionCtrl.vb" />
+    <Compile Include="includes\classes\Agent\PoolAgent.vb" />
+    <Compile Include="includes\classes\Agent\Pool.vb" />
+    <Compile Include="includes\classes\Agent\PoolManager.vb" />
+    <Compile Include="includes\classes\Controle\AutoTest.vb" />
+    <Compile Include="includes\classes\Controle\AutoTestManager.vb" />
+    <Compile Include="includes\classes\Controle\ControleBanc.vb" />
+    <Compile Include="includes\classes\Controle\ControleBancBuse.vb" />
+    <Compile Include="includes\classes\Controle\ControleMano.vb" />
+    <Compile Include="includes\classes\Controle\ControleManoDetail.vb" />
+    <Compile Include="includes\classes\Controle\ToleranceBuse.vb" />
+    <Compile Include="includes\classes\DBVersion.vb" />
+    <Compile Include="includes\classes\DBVersionManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\ContratCommercial.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\dsFacture.Designer.vb">
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="includes\classes\Diagnostic\ContratFact\Facture.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\FactureExportCSV.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\FactureItem.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\FactureItemManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\ContratFact\FactureManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\Diagnostic.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticObjDependant.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticBuses.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticBusesDetail.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticBusesDetailManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticBusesManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticFacture.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticFactureItem.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticFactureItemManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticFactureManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123Mesure.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123MesuresTrtSem.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123Pompe.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp12123PompeTrtSem.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp551.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp551Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp552.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp552Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp5621.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp5621Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp5622.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp5622Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp571.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp571Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp811.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp811Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp831.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticHelp831Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticInfosComplementaires.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticInfosComplementairesManager - Copier.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticItem.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticItemAuto.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticItemManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticManager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticMano542.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticMano542Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticTroncons833.vb" />
+    <Compile Include="includes\classes\Diagnostic\DiagnosticTroncons833Manager.vb" />
+    <Compile Include="includes\classes\Diagnostic\RelevePression833.vb" />
+    <Compile Include="includes\classes\Diagnostic\RelevePression833Niveau.vb" />
+    <Compile Include="includes\classes\Diagnostic\RelevePression833Troncon.vb" />
+    <Compile Include="includes\classes\Exploitation\Exploitation.vb" />
+    <Compile Include="includes\classes\Exploitation\ExploitationManager.vb" />
+    <Compile Include="includes\classes\Exploitation\ExploitationTOPulverisateur.vb" />
+    <Compile Include="includes\classes\Exploitation\ExploitationTOPulverisateurManager.vb" />
+    <Compile Include="includes\classes\FeuillePeda.vb" />
+    <Compile Include="includes\classes\FicheVie\FVAgentPC.vb" />
+    <Compile Include="includes\classes\FicheVie\FVBanc.vb" />
+    <Compile Include="includes\classes\FicheVie\FVBancManager.vb" />
+    <Compile Include="includes\classes\FicheVie\FVManometreControle.vb" />
+    <Compile Include="includes\classes\FicheVie\FVManometreControleManager.vb" />
+    <Compile Include="includes\classes\FicheVie\FVManometreEtalon.vb" />
+    <Compile Include="includes\classes\FicheVie\FVManometreEtalonManager.vb" />
+    <Compile Include="includes\classes\FicheVie\FVMateriel.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateur.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentifiantPulverisateurManager.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentOTC.vb" />
+    <Compile Include="includes\classes\IdentifiantPulverisateur\IdentOTCManager.vb" />
+    <Compile Include="includes\classes\IObservateur.vb" />
+    <Compile Include="includes\classes\Logs\CrodipTraceListener.vb" />
+    <Compile Include="includes\classes\Logs\Logs.vb" />
+    <Compile Include="includes\classes\Logs\LogsManager.vb" />
+    <Compile Include="includes\classes\Observe.vb" />
+    <Compile Include="includes\classes\Pulverisateur\Anomalie.vb" />
+    <Compile Include="includes\classes\Pulverisateur\NiveauBusePulve.vb" />
+    <Compile Include="includes\classes\Pulverisateur\NiveauBusePulveManager.vb" />
+    <Compile Include="includes\classes\Pulverisateur\ParamBuse12123.vb" />
+    <Compile Include="includes\classes\Pulverisateur\Pulverisateur.vb" />
+    <Compile Include="includes\classes\Pulverisateur\PulverisateurManager.vb" />
+    <Compile Include="includes\classes\Pulverisateur\PulverisateurOTC.vb" />
+    <Compile Include="includes\classes\Pulverisateur\TypeCategoriePulve.vb" />
+    <Compile Include="includes\classes\Referentiel\CodeAPE.vb" />
+    <Compile Include="includes\classes\Referentiel\Commune.vb" />
+    <Compile Include="includes\classes\Referentiel\dsCommunes.Designer.vb">
+      <DependentUpon>dsCommunes.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="includes\classes\Referentiel\dsReferentielBuses.Designer.vb">
+      <DependentUpon>dsReferentielBuses.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="includes\classes\Referentiel\dsReferentielBuses.vb">
+      <DependentUpon>dsReferentielBuses.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="includes\classes\Referentiel\LieuxControle.vb" />
+    <Compile Include="includes\classes\Referentiel\Referentiel.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielBusesCSV.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielCodesAPE.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielCommunesCSV.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielManager.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielManometre.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielManometreManager.vb" />
+    <Compile Include="includes\classes\Referentiel\referentielMetrologie.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielPulverisateur.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielPulverisateurManager.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielpulverisateurMarquesModeles.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielpulverisateurTypesCategories.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielTerritoire.vb" />
+    <Compile Include="includes\classes\Referentiel\ReferentielTerritoireManager.vb" />
+    <Compile Include="includes\classes\root.vb" />
+    <Compile Include="includes\classes\RootManager.vb" />
+    <Compile Include="includes\classes\staticObj\MarquesManager.vb" />
+    <Compile Include="includes\classes\StatsCRODIP.vb" />
+    <Compile Include="includes\classes\Structure\Structure.vb" />
+    <Compile Include="includes\classes\Structure\StructureManager.vb" />
+    <Compile Include="includes\classes\Synchro\Cmd.vb" />
+    <Compile Include="includes\classes\Synchro\CSFTP.vb" />
+    <Compile Include="includes\classes\Synchro\SynchroBooleans.vb" />
+    <Compile Include="includes\classes\Synchro\Synchronisation.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmt.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiag.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiagBuses.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiagBusesDetail.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiagItem.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiagMano542.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDiagMano833.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtDocument.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitation.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtExploitationToPulverisateur.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtAgentPc.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtIdentifiantOTCList.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolBuse.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoEtalon.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolManoControle.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolPc.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPoolAgent.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPool.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtIdentifiantPulve.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationElmtPulverisateur.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationGetSynchroDateTime.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationGetVersionLogicielAgent.vb" />
+    <Compile Include="includes\classes\Synchro\SynchronisationManager.vb" />
+    <Compile Include="includes\classes\Synchro\UpdateInfo.vb" />
+    <Compile Include="includes\classes\Tarifs\PrestationCategorie.vb" />
+    <Compile Include="includes\classes\Tarifs\PrestationCategorieManager.vb" />
+    <Compile Include="includes\classes\Tarifs\PrestationTarif.vb" />
+    <Compile Include="includes\classes\Tarifs\PrestationTarifManager.vb" />
+    <Compile Include="includes\classes\Tarifs\Tarif.vb" />
+    <Compile Include="includes\classes\Tarifs\TarifsManager.vb" />
+    <Compile Include="includes\classes\Tools\AttributesCrodip.vb" />
+    <Compile Include="includes\classes\Tools\FacturationConfig.vb" />
+    <Compile Include="includes\classes\WebServiceCRODIP.vb" />
+    <Compile Include="includes\config\GlobalsCRODIP.vb" />
+    <Compile Include="includes\config\variables_globales.vb" />
+    <Compile Include="includes\fonctions\CSCheck.vb" />
+    <Compile Include="includes\fonctions\CSCommand.vb" />
+    <Compile Include="includes\fonctions\CSCrypt.vb" />
+    <Compile Include="includes\fonctions\CSDate.vb" />
+    <Compile Include="includes\fonctions\CSDb.vb" />
+    <Compile Include="includes\fonctions\CSDebug.vb" />
+    <Compile Include="includes\fonctions\CSDiagPdf.vb" />
+    <Compile Include="includes\fonctions\CSEnvironnement.vb" />
+    <Compile Include="includes\fonctions\CSFile.vb" />
+    <Compile Include="includes\fonctions\CSLogin.vb" />
+    <Compile Include="includes\fonctions\CSMail.vb" />
+    <Compile Include="includes\fonctions\CSMath.vb" />
+    <Compile Include="includes\fonctions\CSSoftwareUpdate.vb" />
+    <Compile Include="includes\fonctions\CSTime.vb" />
+    <Compile Include="includes\fonctions\CSVersion.vb" />
+    <Compile Include="includes\fonctions\CSXml.vb" />
+    <Compile Include="includes\fonctions\oleDBCommandExtensions.vb" />
+    <Compile Include="includes\PropertyComparer.vb" />
+    <Compile Include="includes\SortableBindingList.vb" />
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Web References\WSCRODIP\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PuceVerteT.jpg" />
+    <None Include="app.config" />
+    <None Include="crodipAncien.wsdl" />
+    <None Include="crodipNew.wsdl" />
+    <None Include="cr\dsContratCommercial.xsc">
+      <DependentUpon>dsContratCommercial.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsContratCommercial.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsContratCommercial.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsContratCommercial.xss">
+      <DependentUpon>dsContratCommercial.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsDocCoPropriete.xsc">
+      <DependentUpon>dsDocCoPropriete.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsDocCoPropriete.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsDocCoPropriete.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsDocCoPropriete.xss">
+      <DependentUpon>dsDocCoPropriete.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsEnquete.xsc">
+      <DependentUpon>dsEnquete.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsEnquete.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEnquete.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsEnquete.xss">
+      <DependentUpon>dsEnquete.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsFvBanc.xsc">
+      <DependentUpon>dsFvBanc.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsFvBanc.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFvBanc.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsFvBanc.xss">
+      <DependentUpon>dsFvBanc.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsFvmano.xsc">
+      <DependentUpon>dsFvmano.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsFvmano.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFvmano.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsFvmano.xss">
+      <DependentUpon>dsFvmano.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsTest.xsc">
+      <DependentUpon>dsTest.xsd</DependentUpon>
+    </None>
+    <None Include="cr\dsTest.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTest.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\dsTest.xss">
+      <DependentUpon>dsTest.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_etatBL.xsc">
+      <DependentUpon>ds_etatBL.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_etatBL.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_etatBL.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\ds_etatBL.xss">
+      <DependentUpon>ds_etatBL.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_EtatFacture.xsc">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_EtatFacture.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_EtatFacture.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\ds_EtatFacture.xss">
+      <DependentUpon>ds_EtatFacture.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_Etat_RI.xsc">
+      <DependentUpon>ds_Etat_RI.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_Etat_RI.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_Etat_RI.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cr\ds_Etat_RI.xss">
+      <DependentUpon>ds_Etat_RI.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_Etat_SM.xsc">
+      <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_Etat_SM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_Etat_SM.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="cr\ds_Etat_SM.xss">
+      <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
+    </None>
+    <None Include="cr\ds_Etat_SM.xsx">
+      <DependentUpon>ds_Etat_SM.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Diagnostic\ContratFact\dsFacture.xsc">
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Diagnostic\ContratFact\dsFacture.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFacture.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="includes\classes\Diagnostic\ContratFact\dsFacture.xss">
+      <DependentUpon>dsFacture.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Referentiel\dsCommunes.xsc">
+      <DependentUpon>dsCommunes.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Referentiel\dsCommunes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCommunes.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="includes\classes\Referentiel\dsCommunes.xss">
+      <DependentUpon>dsCommunes.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Referentiel\dsReferentielBuses.xsc">
+      <DependentUpon>dsReferentielBuses.xsd</DependentUpon>
+    </None>
+    <None Include="includes\classes\Referentiel\dsReferentielBuses.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsReferentielBuses.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="includes\classes\Referentiel\dsReferentielBuses.xss">
+      <DependentUpon>dsReferentielBuses.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="img\puces\v.jpg" />
+    <None Include="img\puces\g.jpg" />
+    <None Include="img\puces\r.jpg" />
+    <None Include="img\puces\j.jpg" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Web References\WSCRODIP\crodip.wsdl" />
+    <None Include="Web References\WSCRODIP\GetAPIKeyResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSCRODIP\GetSynchroDateTimeResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSCRODIP\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
+      <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
+      <Name>CRODIP_ControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cr\Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sqlite\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Déclaration des WSCRODIP.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://admin-pp.crodip.net/new.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSCRODIP\</RelPath>
+      <UpdateFromURL>http://admin-pp.crodip.net/new.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CRODIPWS_WSCRODIP_CrodipServer</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+</Project>

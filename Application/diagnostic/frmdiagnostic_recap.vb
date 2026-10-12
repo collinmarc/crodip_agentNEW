@@ -497,6 +497,7 @@ Public Class frmdiagnostic_recap
         Me.diagnosticRecap_organisme_dateControle.Name = "diagnosticRecap_organisme_dateControle"
         Me.diagnosticRecap_organisme_dateControle.Size = New System.Drawing.Size(129, 20)
         Me.diagnosticRecap_organisme_dateControle.TabIndex = 1
+        Me.diagnosticRecap_organisme_dateControle.Value = New Date(2026, 10, 8, 17, 33, 32, 0)
         '
         'Label16
         '
@@ -1005,7 +1006,7 @@ Public Class frmdiagnostic_recap
         Dim bReturn As Boolean
         Try
             Try
-                CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Debut")
+                '                CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic Debut")
                 Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_DIAG_SAVING, True)
                 If m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_COMPLET Or m_DiagMode = GlobalsCRODIP.DiagMode.CTRL_CV Then
                     'Lecture de la fenêtre
@@ -1083,11 +1084,6 @@ Public Class frmdiagnostic_recap
                         'diagnosticCourant.controleTarif = diagnosticCourantTarif.ToString
                         m_diagnostic.dateModificationAgent = CSDate.ToCRODIPString(Date.Now)
                         Statusbar.display("Sauvegarde du diagnostic" & m_diagnostic.id, True)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "]")
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] PulverisateurID = " & m_diagnostic.pulverisateurId)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Pulverisateur.ID = " & m_Pulverisateur.id)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] proprietaireId = " & m_diagnostic.proprietaireId)
-                        CSDebug.dispInfo("frmDiagnosticRecap.sauvegarderDiagnostic [" & m_diagnostic.id & "] m_Exploitation.ID = " & m_Exploit.id)
                         Dim bSave As Boolean
                         bSave = DiagnosticManager.save(m_diagnostic)
                         If Not bSave Then

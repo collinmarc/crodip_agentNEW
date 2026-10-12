@@ -1,5 +1,4 @@
 ﻿Imports CRODIPAcquisition
-Imports NLog
 Imports System.Data.OleDb
 Imports System.Linq
 Imports System.IO
@@ -7,14 +6,13 @@ Imports CsvHelper
 
 Public Class AcquisitionAAMS
     Implements ICRODIPAcquisition
-    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
     Public Sub New()
         m_fichierAAMS = My.Settings.FileName
     End Sub
 
     Private m_fichierAAMS As String
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
-        logger.Info("AcquisitionAAMS.GetValues Start")
+        My.Application.Log.WriteEntry("AcquisitionAAMS.GetValues Start", TraceEventType.Information)
 
         Dim oReturn As New List(Of AcquisitionValue)
 #Region "ConversionFormat"
@@ -99,7 +97,7 @@ Public Class AcquisitionAAMS
 
         Next
 
-        logger.Info("AcquisitionAAMS.GetValues Return " & oReturn.Count & "elements")
+        My.Application.Log.WriteEntry("AcquisitionAAMS.GetValues Return " & oReturn.Count & "elements")
         Return oReturn
 
     End Function
@@ -129,23 +127,23 @@ Public Class AcquisitionAAMS
 
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
-        logger.Info("AcquisitionAAMS.getnbNiveaux Start")
+        My.Application.Log.WriteEntry("AcquisitionAAMS.getnbNiveaux Start")
         Dim lstValues As New List(Of AcquisitionValue)
         Dim nReturn As Integer = 0
         lstValues = GetValues()
         nReturn = lstValues.Max(Function(oVal) _
                           oVal.Niveau)
-        logger.Info("AcquisitionAAMS.getnbNiveaux Return " & nReturn)
+        My.Application.Log.WriteEntry("AcquisitionAAMS.getnbNiveaux Return " & nReturn)
         Return nReturn
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
-        logger.Info("AcquisitionAAMS.getnbBuses Start")
+        My.Application.Log.WriteEntry("AcquisitionAAMS.getnbBuses Start")
         Dim lstValues As New List(Of AcquisitionValue)
         Dim nReturn As Integer = 0
         lstValues = GetValues()
         nReturn = lstValues.Where(Function(oVal) oVal.Niveau = pNiveau).Max(Function(oVal) oVal.NumBuse)
-        logger.Info("AcquisitionAAMS.getnbBuses return " & nReturn)
+        My.Application.Log.WriteEntry("AcquisitionAAMS.getnbBuses return " & nReturn)
         Return nReturn
     End Function
 

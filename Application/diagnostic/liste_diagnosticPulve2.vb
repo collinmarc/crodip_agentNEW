@@ -1,6 +1,7 @@
 Imports System.Collections.Generic
 Imports System.Data.Common
 Imports CRODIPWS
+Imports wgssSTU
 
 Public Class liste_diagnosticPulve2
     Inherits System.Windows.Forms.Form
@@ -2830,7 +2831,11 @@ Public Class liste_diagnosticPulve2
 
                 For i As Int32 = 0 To dataResults.FieldCount - 1
                     If Not dataResults.IsDBNull(i) Then
-                        oDiag.Fill(dataResults.GetName(i), dataResults.GetValue(i))
+                        Try
+                            oDiag.Fill(dataResults.GetName(i), dataResults.GetValue(i))
+                        Catch
+                            oDiag.Fill(dataResults.GetName(i), dataResults.GetString(i))
+                        End Try
                     End If
                 Next
                 m_bsrcDiag.Add(oDiag)

@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports System.Diagnostics.Eventing.Reader
 Imports System.IO
 Imports System.Linq
 Imports CRODIPWS
@@ -135,7 +136,7 @@ Public Class FrmDiagnostique
     End Sub
     Public Sub New(ByVal _modeAffichage As String, pDiag As Diagnostic, pPulverisateur As Pulverisateur, pExploit As Exploitation)
         Me.New()
-        setContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
+        SetContexte(pDiag, _modeAffichage, pPulverisateur, pExploit)
     End Sub
     Public Sub SetContexte(pDiag As Diagnostic, ByVal _modeAffichage As GlobalsCRODIP.DiagMode, pPulve As Pulverisateur, pExploit As Exploitation)
         m_modeAffichage = _modeAffichage
@@ -2686,28 +2687,30 @@ Handles manopulvePressionPulve_1.KeyPress, manopulvePressionPulve_2.KeyPress, ma
                     Dim debitValue As Decimal = CType(debitTextBox.Text, Decimal)
                     Dim debitNominalValue As Decimal = CType(debitNominalTextBox.Text, Decimal)
                     Dim ecartTolereTextBox As ComboBox = CSForm.getControlByName("ComboBox_ecartTolere_" & lotId, diagBuses_tab_categories)
-                    Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
-                    ' On Calcul
-                    Dim oBuse As New DiagnosticBusesDetail()
-                    oBuse.debit = debitValue
-                    oBuse.CalcEcart(debitNominalValue, ecartTolereValue)
-                    If Not oBuse.usee Then
-                        usureTextBox.BackColor = System.Drawing.Color.Green
-                        usureTextBox.Tag = "OK"
-                        bReturn = False
+                    If Not String.IsNullOrEmpty(ecartTolereTextBox.Text) Then
+                        Dim ecartTolereValue As Decimal = CType(ecartTolereTextBox.Text, Decimal)
+                        ' On Calcul
+                        Dim oBuse As New DiagnosticBusesDetail()
+                        oBuse.debit = debitValue
+                        oBuse.CalcEcart(debitNominalValue, ecartTolereValue)
+                        If Not oBuse.usee Then
+                            usureTextBox.BackColor = System.Drawing.Color.Green
+                            usureTextBox.Tag = "OK"
+                            bReturn = False
+                        Else
+                            usureTextBox.BackColor = System.Drawing.Color.Red
+                            usureTextBox.Tag = "NOK"
+                            bReturn = True
+                        End If
                     Else
-                        usureTextBox.BackColor = System.Drawing.Color.Red
-                        usureTextBox.Tag = "NOK"
-                        bReturn = True
+                        'S'il n'y a pas de débit, on se remet en gris
+                        usureTextBox.BackColor = System.Drawing.SystemColors.Control
+                        bReturn = False
                     End If
-                Else
-                    'S'il n'y a pas de débit, on se remet en gris
-                    usureTextBox.BackColor = System.Drawing.SystemColors.Control
-                    bReturn = False
                 End If
             End If
         Catch ex As Exception
-            CSDebug.dispError("diagnostique::mutCalcIsUsed : " & ex.Message)
+            CSDebug.dispError("diagnostique::mutCalcIs1BuseUsee : " & ex.Message)
             bReturn = False
         End Try
         Return bReturn

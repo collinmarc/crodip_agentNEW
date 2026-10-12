@@ -11,27 +11,34 @@ Public Class DiagnosticHelp5621Manager
 #Region "Methodes acces Local"
 
 
-    Public Shared Function getDiagnosticHelp5621ByDiagnosticId(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As DiagnosticHelp5621
+    Public Shared Function getDiagnosticHelp5621ByDiagnosticId(ByVal pDiagnostic As Diagnostic) As DiagnosticHelp5621
         ' On récupère les items du diagnostic
         Dim oHelp5621 As DiagnosticHelp5621
-        Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
+        Dim oCSDB As CSDb = Nothing
         Try
+            oCSDB = New CSDb(True)
+            Dim bddCommande As DbCommand = oCSDB.getConnection().CreateCommand()
             'Lecture de l'id pour le diagitem help5621 
+            bddCommande = oCSDB.getConnection().CreateCommand()
             bddCommande.CommandText = "SELECT id FROM DiagnosticItem WHERE DiagnosticItem.idDiagnostic='" & pDiagnostic.id & "' and DiagnosticItem.idItem = 'help5621' ORDER BY IdItem, ItemValue"
             ' On récupère les résultats
-            Dim oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
-            oHelp5621 = New DiagnosticHelp5621()
-            oHelp5621.id = 0
-            oHelp5621.idDiag = pDiagnostic.id
-            While oDRDiagnosticItem.Read()
-                oHelp5621.id = oDRDiagnosticItem.GetString(0)
-                oHelp5621.Load()
-            End While
-            oDRDiagnosticItem.Close()
+            Using oDRDiagnosticItem As DbDataReader = bddCommande.ExecuteReader
+                oHelp5621 = New DiagnosticHelp5621()
+                oHelp5621.id = 0
+                oHelp5621.idDiag = pDiagnostic.id
+                While oDRDiagnosticItem.Read()
+                    oHelp5621.id = oDRDiagnosticItem.GetString(0)
+                    oHelp5621.Load()
+                End While
+            End Using
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp5621Manager::getDiagnosticHelp5621ByDiagnosticId : " & ex.Message)
             oHelp5621 = Nothing
         End Try
+
+        If oCSDB IsNot Nothing Then
+            oCSDB.free()
+        End If
 
         Return oHelp5621
     End Function
@@ -39,7 +46,6 @@ Public Class DiagnosticHelp5621Manager
     ''' Sauvegarde d'un Help5621
     ''' Paramètres :
     Public Shared Function save(ByVal pHelp5621 As DiagnosticHelp5621, ByVal pStructureId As String, ByVal pAgentId As String, pCSDB As CSDb) As Boolean
-        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim breturn As Boolean
         Try

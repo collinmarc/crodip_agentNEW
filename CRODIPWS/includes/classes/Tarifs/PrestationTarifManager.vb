@@ -395,7 +395,13 @@ Public Class PrestationTarifManager
                     While tmpColId < oDR.FieldCount()
                         While tmpColId < oDR.FieldCount()
                             If Not oDR.IsDBNull(tmpColId) Then
-                                oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+                                Try
+                                    oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+
+                                Catch ex As Exception
+
+                                    oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                                End Try
                             End If
 
                             tmpColId = tmpColId + 1
@@ -440,7 +446,13 @@ Public Class PrestationTarifManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < oDR.FieldCount()
                         If Not oDR.IsDBNull(tmpColId) Then
-                            oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+                            Try
+                                oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+
+                            Catch ex As Exception
+
+                                oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                            End Try
                         End If
 
                         tmpColId = tmpColId + 1
@@ -481,7 +493,13 @@ Public Class PrestationTarifManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < oDR.FieldCount()
                         If Not oDR.IsDBNull(tmpColId) Then
-                            oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+                            Try
+                                oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetValue(tmpColId))
+
+                            Catch ex As Exception
+
+                                oNewTarif.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                            End Try
                         End If
 
                         tmpColId = tmpColId + 1
@@ -520,7 +538,13 @@ Public Class PrestationTarifManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpResults.FieldCount()
                     If Not tmpResults.IsDBNull(tmpColId) Then
-                        tmpObject.Fill(tmpResults.GetName(tmpColId), tmpResults.GetValue(tmpColId))
+                        Try
+                            tmpObject.Fill(tmpResults.GetName(tmpColId), tmpResults.GetValue(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpObject.Fill(tmpResults.GetName(tmpColId), tmpResults.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

@@ -161,8 +161,10 @@ Public Class dlgSynchroDiag
         m_bgw.ReportProgress(20, "Lecture Pulverisateur")
         Dim olstExploit2Pulve As List(Of ExploitationTOPulverisateur) = ExploitationTOPulverisateurManager.getListByPulverisateurId(oPulve.id, True)
         m_bgw.ReportProgress(30, "Synchronisation Exploitation")
+        CSDebug.dispInfo("dlgSynchroDiag.m_bgw_DoWork Synchro Exploit" & oExploit.id)
         osynchro.RunASCSynchroExploit(oExploit)
         m_bgw.ReportProgress(40, "Synchronisation Pulverisateur")
+        CSDebug.dispInfo("dlgSynchroDiag.m_bgw_DoWork Synchro Pulve" & oPulve.id)
         osynchro.RunAscSynchroPulve(oPulve)
         For Each oExploit2Pulve As ExploitationTOPulverisateur In olstExploit2Pulve
             osynchro.RunAscSynchroExploit2Pulve(oExploit2Pulve)
@@ -171,6 +173,7 @@ Public Class dlgSynchroDiag
         If Not String.IsNullOrEmpty(m_Diag.diagRemplacementId) Then
             m_bgw.ReportProgress(60, "Synchronisation Contrôle annulé")
             Dim oDiagR As Diagnostic = DiagnosticManager.getDiagnosticById(m_Diag.diagRemplacementId)
+            CSDebug.dispInfo("dlgSynchroDiag.m_bgw_DoWork Synchro DIAG Annulé" & oDiagR.id)
             If oDiagR IsNot Nothing Then
                 osynchro.runascSynchroDiag(m_Agent, oDiagR)
             End If
@@ -178,6 +181,7 @@ Public Class dlgSynchroDiag
         osynchro.ajouteObservateur(Me)
         m_nPourcent = 70
         m_bgw.ReportProgress(70, "Synchronisation Contrôle")
+        CSDebug.dispInfo("dlgSynchroDiag.m_bgw_DoWork Synchro DIAG " & m_Diag.id)
         osynchro.runascSynchroDiag(m_Agent, m_Diag)
         m_bgw.ReportProgress(100, "Fin de synchronisation Contrôle")
 

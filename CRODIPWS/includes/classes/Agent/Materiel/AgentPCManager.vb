@@ -370,7 +370,13 @@ Public Class AgentPcManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < oDataReader.FieldCount()
                         If Not oDataReader.IsDBNull(tmpColId) Then
-                            oPc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+                            Try
+                                oPc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetValue(tmpColId))
+
+                            Catch ex As Exception
+                                oPc.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -414,7 +420,11 @@ Public Class AgentPcManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpPc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpPc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Catch
+                            tmpPc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -472,10 +482,14 @@ Public Class AgentPcManager
             Const subkey2 As String = "PC"
 
             Dim IDLu As String = Registry.GetValue(RegistryPath, subkey2, "VIDE")
-            If IDLu.Equals("VIDE") Or String.IsNullOrEmpty(IDLu) Then
-                bReturn = True
+            If IDLu IsNot Nothing Then
+                If IDLu.Equals("VIDE") Or String.IsNullOrEmpty(IDLu) Then
+                    bReturn = True
+                Else
+                    bReturn = False
+                End If
             Else
-                bReturn = False
+                bReturn = True
             End If
 
         Catch ex As Exception

@@ -85,6 +85,7 @@ Public Class StructureManager
                         End Select
                         tmpColId = tmpColId + 1
                     End While
+
                     tmpStructure.LireDernierNumFact()
 
                 End While

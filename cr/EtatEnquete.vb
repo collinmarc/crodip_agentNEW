@@ -27,7 +27,7 @@ Public Class EtatEnquete
             bReturn = genereDS()
             If (bReturn) Then
                 Using objReport As New ReportDocument()
-                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & m_ReportName)
+                    objReport.Load(My.Settings.RepertoireParametres & "/" & m_ReportName)
 
                     objReport.SetDataSource(m_ods)
                     Dim CrExportOptions As ExportOptions

@@ -245,7 +245,7 @@
       <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
       <Name>CRODIPAcquisition</Name>
     </ProjectReference>
-    <ProjectReference Include="R:\crodip_agentNEW\AcquisitionITEQ2\AcquisitionITEQ2.vbproj">
+    <ProjectReference Include="..\AcquisitionITEQ2\AcquisitionITEQ2.vbproj">
       <Project>{a050122c-6bde-45e1-9b9c-ed48bccc7a66}</Project>
       <Name>AcquisitionITEQ2</Name>
     </ProjectReference>

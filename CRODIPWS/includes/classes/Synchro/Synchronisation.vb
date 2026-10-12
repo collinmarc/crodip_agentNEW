@@ -197,10 +197,9 @@ Public Class Synchronisation
     ''' Execute la synchro ascendante 
     ''' </summary>
     ''' <param name="pAgent"></param>
-    ''' <returns></returns>
     ''' <remarks></remarks>
     Public Sub runAscSynchro()
-
+        CSDebug.dispInfo("Synhcronisation.RunAscSynchro")
         If CSEnvironnement.checkWebService() = True Then
 
             ' On commence par redescendre l'état actif/inactif de l'agent courant
@@ -631,7 +630,6 @@ Public Class Synchronisation
     ''' <summary>
     ''' Execution de la synhcro Ascendate des prestations
     ''' </summary>
-    ''' <returns></returns>
     ''' <remarks></remarks>
     Private Sub runASCSynchroPresta()
         If (m_SynchroBoolean.m_bSynchAscPrestation) Then

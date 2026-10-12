@@ -27,7 +27,7 @@ Public Class EtatFVBanc
                         r1.Close()
                     End Using
 
-                    objReport.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                    objReport.Load(My.Settings.RepertoireParametres & "/" & strReportName)
 
                     objReport.SetDataSource(m_ods)
                     objReport.SetParameterValue("ModeSimplifie", GlobalsCRODIP.GLOB_ENV_MODESIMPLIFIE)

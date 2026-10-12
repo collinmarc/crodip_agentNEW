@@ -132,7 +132,7 @@ Public Class DiagnosticHelp831
                     oDiagItem.id = id
                 End If
             End If
-            bReturn = DiagnosticItemManager.save(pCSDb, oDiagItem)
+            bReturn = DiagnosticItemManager.save(oDiagItem)
             id = oDiagItem.id
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp552.Save ERR :" & ex.Message)

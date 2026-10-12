@@ -1,7 +1,6 @@
 Imports System.Collections.Generic
 Imports System.Xml.Serialization
 Imports System.IO.File
-Imports NLog
 Imports System.Xml
 Imports System.Linq
 Imports System.Data.Common
@@ -11,7 +10,6 @@ Imports System.Data.Common
 ''' </summary>
 ''' <remarks></remarks>
 Public Class SynchronisationManager
-    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
 
     Public Shared Function DBsaveSynchro(pagent As Agent, ByVal _sens As String, ByVal _log As String) As Boolean
         Dim bReturn As Boolean
@@ -37,11 +35,11 @@ Public Class SynchronisationManager
         Return bReturn
     End Function
     Public Shared Sub LogSynchroStart(ByVal pSens As String)
-        logger.Trace("<synchro Sens = " & ControlChars.Quote & pSens & ControlChars.Quote & " date = " & ControlChars.Quote & System.DateTime.Now() & ControlChars.Quote & ">")
+        CSDebugSynchro.dispSynchro("<synchro Sens = " & ControlChars.Quote & pSens & ControlChars.Quote & " date = " & ControlChars.Quote & System.DateTime.Now() & ControlChars.Quote & ">")
 
     End Sub
     Public Shared Sub LogSynchroEnd()
-        logger.Trace("</synchro>")
+        CSDebugSynchro.dispSynchro("</synchro>")
 
     End Sub
     ''' <summary>
@@ -57,9 +55,9 @@ Public Class SynchronisationManager
             oXS.Serialize(oStreamWriter, obj)
             oStreamWriter.Close()
 
-            logger.Trace("<SynchroElmt type='" & obj.GetType().Name & "' comment ='" & pComm & "'>")
-            logger.Trace(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
-            logger.Trace("</SynchroElmt>")
+            CSDebugSynchro.dispSynchro("<SynchroElmt type='" & obj.GetType().Name & "' comment ='" & pComm & "'>")
+            CSDebugSynchro.dispSynchro(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
+            CSDebugSynchro.dispSynchro("</SynchroElmt>")
         Catch ex As Exception
 
         End Try
@@ -67,10 +65,10 @@ Public Class SynchronisationManager
 
     End Sub
     Public Shared Sub LogSynchroDebut(pContext As String)
-        logger.Trace("<WS Nom='" & pContext & "' date ='" & DateTime.Now.ToShortDateString() & " " & DateTime.Now.ToLongTimeString() & "' >")
+        CSDebugSynchro.dispSynchro("<WS Nom='" & pContext & "' date ='" & DateTime.Now.ToShortDateString() & " " & DateTime.Now.ToLongTimeString() & "' >")
     End Sub
     Public Shared Sub LogSynchroFin()
-        logger.Trace("</WS>")
+        CSDebugSynchro.dispSynchro("</WS>")
     End Sub
     Public Shared Sub LogSynchrodEMANDE(ByVal obj As Object, Optional pContext As String = "")
         LogSynchro("DEMANDE", obj, pContext)
@@ -86,9 +84,9 @@ Public Class SynchronisationManager
             oXS.Serialize(oStreamWriter, obj)
             oStreamWriter.Close()
 
-            logger.Trace("<WS" & pType & " context='" & pContext & "'>")
-            logger.Trace(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
-            logger.Trace("</WS" & pType & ">")
+            CSDebugSynchro.dispSynchro("<WS" & pType & " context='" & pContext & "'>")
+            CSDebugSynchro.dispSynchro(oStreamWriter.ToString().Replace("<?xml version=""1.0"" encoding=""utf-16""?>", ""))
+            CSDebugSynchro.dispSynchro("</WS" & pType & ">")
         Catch ex As Exception
 
         End Try
@@ -135,12 +133,12 @@ Public Class SynchronisationManager
                 'S'il n'en as pas ou s'il en a plus de 1 , on ne fait pas la synchro
                 Dim lstPoolTemp As List(Of Pool) = pAgent.getPoolList(pPc)
                 If lstPoolTemp.Count = 1 Then
-                    logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+                    CSDebugSynchro.dispSynchro("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                     CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & lstPoolTemp(0).uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                     objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, lstPoolTemp(0).uid, "", GlobalsCRODIP.GLOB_API_KEY, CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
                 End If
             Else
-                logger.Trace("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
+                CSDebugSynchro.dispSynchro("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                 CSDebug.dispInfo("<SynchroElmt type='WS.UpdatesAvailable(" & pAgent.idProfilAgent & "," & pAgent.oPool.uid & ",,'GT8...2J," & CSDate.GetDateForWS(DateDernSynhcro) & ")'>")
                 objWSCrodip.UpdatesAvailable(pAgent.idProfilAgent, pAgent.oPool.uid, "", GlobalsCRODIP.GLOB_API_KEY, CSDate.GetDateForWS(DateDernSynhcro), infod, isUpdateAvailable, isComplete, objWSUpdates, availablerPools, availablePcs)
             End If
@@ -150,7 +148,7 @@ Public Class SynchronisationManager
         ''l 'obejt objWSupdates est en fait un tableau de XMLNode
         'Dim oTabXml As List(Of XmlNode())
         'oTabXml = (From obj In objWSUpdates Select CType(obj, XmlNode())).ToList()
-        'logger.Trace("<FROMWS>")
+        'CSDebugSynchro.dispSynhcro("<FROMWS>")
         'For Each otabNode As XmlNode() In oTabXml
         '    CSDebug.dispInfo("<xmlNode>")
         '    For Each oNode As XmlNode In otabNode
@@ -158,7 +156,7 @@ Public Class SynchronisationManager
         '    Next
         '    CSDebug.dispInfo("</xmlNode>")
         'Next
-        'logger.Trace("</FROMWS>")
+        'CSDebugSynchro.dispSynhcro("</FROMWS>")
         If objWSUpdates IsNot Nothing Then
             Dim oSynchro As SynchronisationElmt = Nothing
             'Parcours de la Liste des Objets à synchroniser
@@ -191,7 +189,7 @@ Public Class SynchronisationManager
                     End If
                 End If
             Next objWSUpdates_items
-            logger.Trace("</SynchroElmt>")
+            CSDebugSynchro.dispSynchro("</SynchroElmt>")
             CSDebug.dispInfo("Fin du Parcours des elements")
         End If
 

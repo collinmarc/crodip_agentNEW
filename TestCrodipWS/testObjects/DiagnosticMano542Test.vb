@@ -62,7 +62,7 @@ Public Class DiagnosticMano542Test
 
         Dim oCSDB As New CSDb(True)
         oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & m_oDiag.id & "'")
-        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        DiagnosticMano542Manager.save(oDiagMAno542)
         iD = oDiagMAno542.id
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(iD, oDiagMAno542.idDiagnostic)
 
@@ -75,7 +75,7 @@ Public Class DiagnosticMano542Test
         oDiagMAno542.pressionControle = "1.61"
         oDiagMAno542.pressionPulve = "1.71"
         oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & m_oDiag.id & "'")
-        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        DiagnosticMano542Manager.save(oDiagMAno542)
         oCSDB.free()
         oDiagMAno542 = DiagnosticMano542Manager.getDiagnosticMano542ById(oDiagMAno542.id.ToString, oDiagMAno542.idDiagnostic)
 
@@ -113,7 +113,7 @@ Public Class DiagnosticMano542Test
 
         'Rechargement par le diagnostic
         Dim oCSDB As New CSDb(True)
-        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(oCSDB, odiag)
+        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)
         'Vérification que les Mano542 sopnt bien lus
         Assert.AreEqual(2, odiag.diagnosticMano542List.Liste.Count)
 
@@ -133,10 +133,10 @@ Public Class DiagnosticMano542Test
 
         oCSDB.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & odiag.id & "'")
 
-        DiagnosticMano542Manager.save(oDiagMAno542, oCSDB)
+        DiagnosticMano542Manager.save(oDiagMAno542)
 
         'Relecture des items
-        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(oCSDB, odiag)
+        DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(odiag)
         oCSDB.free()
 
         Assert.AreEqual(2, odiag.diagnosticMano542List.Liste.Count)

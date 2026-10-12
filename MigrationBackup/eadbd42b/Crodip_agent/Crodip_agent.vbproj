@@ -1,0 +1,2399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.30319</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD7C56AA-4A81-4966-94BC-6B9B62054235}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <AssemblyKeyContainerName />
+    <AssemblyName>Logiciel Crodip Agent</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>Crodip_agent</RootNamespace>
+    <StartupObject>Crodip_agent.StartApplication</StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>http://localhost/Logiciel Crodip Agent/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile />
+    <DefineConstants />
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile />
+    <DefineConstants />
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>
+    </DefineConstants>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DefineDebug>false</DefineDebug>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugReglagePulve|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\DebugReglagePulve\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>REGLAGEPULVE=True</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugReglagePulve|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\DebugReglagePulve\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>REGLAGEPULVE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseReglagePulve|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\ReleaseReglagePulve\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>REGLAGEPULVE=True</DefineConstants>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseReglagePulve|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\ReleaseReglagePulve\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>REGLAGEPULVE</DefineConstants>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.33.1.0\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.wgssSTU, Version=2.15.4.171, Culture=neutral, PublicKeyToken=20000022810869de, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>R:\crodip_agentNEW\Interop.wgssSTU.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.12, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.10.0.12\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Async, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Linq.Async.4.0.0\lib\net461\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Application\agent\Bancs\HistoBanc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Manometres\BindingMap.vb" />
+    <Compile Include="Application\agent\Manometres\frmControleManometresNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Manometres\HistoMano.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\controle_preliminaire.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_ContratCommercial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\dlgDHDebutControle.Designer.vb">
+      <DependentUpon>dlgDHDebutControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\dlgDHDebutControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostique.Designer.vb">
+      <DependentUpon>frmDiagnostique.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmDiagnostique.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSelectPhaseDiag.Designer.vb">
+      <DependentUpon>frmSelectPhaseDiag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSelectPhaseDiag.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmContratCommercial.Designer.vb">
+      <DependentUpon>frmContratCommercial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmContratCommercial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmdiagnostic_facturationCoProp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmlstLieuxControle.Designer.vb">
+      <DependentUpon>frmlstLieuxControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmlstLieuxControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\liste_diagnosticPulve2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\dlgListExploitant.Designer.vb">
+      <DependentUpon>dlgListExploitant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\dlgListExploitant.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.Designer.vb">
+      <DependentUpon>dlgDifferencesOTC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.Designer.vb">
+      <DependentUpon>dlgGestionCoPro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\dlgGestionCoPro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\IfrmCRODIP.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\ActionFDiag.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiag.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagContrat.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagContexte.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagDepart.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagPulve.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagInfosComplementaires.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagEnquete.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagFacture.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagExploitation.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagRecap.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagDefautsEtMesures.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\EtatFDiagPreliminaire.vb" />
+    <Compile Include="Application\includes\classes\DPEtat\MoteurFrmDiag.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\ParamReglagePulve.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\RPUser.vb" />
+    <Compile Include="Application\includes\classes\root.vb" />
+    <Compile Include="Application\includes\classes\Tools\DataGridViewDisableButtonCell.vb" />
+    <Compile Include="Application\includes\classes\Tools\FacturationConfig.vb" />
+    <Compile Include="Application\includes\classes\Tools\importCRODIP.vb" />
+    <Compile Include="Application\includes\config\ParamManager.vb" />
+    <Compile Include="Application\includes\fonctions\Connect.vb" />
+    <Compile Include="Application\includes\fonctions\CSBoot.vb" />
+    <Compile Include="Application\includes\fonctions\CSForm.vb" />
+    <Compile Include="Application\includes\fonctions\CSListSorter.vb" />
+    <Compile Include="Application\includes\fonctions\SurroundingClass.vb" />
+    <Compile Include="Application\parametrage\facturation2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\parametrage\frmGestLieuxControle.Designer.vb">
+      <DependentUpon>frmGestLieuxControle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\parametrage\frmGestLieuxControle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTablette.designer.vb">
+      <DependentUpon>frmSignClientTablette.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTablette.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\SignatureForm.Designer.vb">
+      <DependentUpon>SignatureForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\SignatureForm.vb" />
+    <Compile Include="Application\dlgSynchroDiag.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\tools\tool_importData.Designer.vb">
+      <DependentUpon>tool_importData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\tools\tool_importData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\tools\tool_ParamModeSimplifie.Designer.vb">
+      <DependentUpon>tool_ParamModeSimplifie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\tools\tool_ParamModeSimplifie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\accueil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\ajouter_profil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Bancs\frmcontrole_bancs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Manometres\fiche_manometre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\frmGestIdentifiantsPulve.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\materiels_supprimes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\dlgIdentifiantPulverisateur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\suppressionMateriel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Bancs\fiche_banc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Bancs\gestion_bancs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Buses\fiche_buse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Buses\gestion_busesEtalons.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\gestion_agent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Manometres\gestion_manometres.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Tarifs\gestion_tarifs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Tarifs\gestion_tarifs_addCategorie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\Tarifs\gestion_tarifs_addPresta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\apropos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\debug\debug_deletControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\debug\test.vb" />
+    <Compile Include="Application\diagnostic\diagnostic_contexte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\Idlghelp12123.Designer.vb">
+      <DependentUpon>Idlghelp12123.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\Idlghelp12123.vb" />
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123New.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp12123New.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp571.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp571.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\Diagnostic_dlghelp552.Designer.vb">
+      <DependentUpon>Diagnostic_dlghelp552.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\Diagnostic_dlghelp552.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_infosInspecteur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_satisfaction.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diag_test.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp551.Designer.vb">
+      <DependentUpon>diagnostic_dlghelp551.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\diagnostic_dlghelp551.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\FrmAddCoProp.Designer.vb">
+      <DependentUpon>FrmAddCoProp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\FrmAddCoProp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmdiagnostic_recap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSaisieNumFact.Designer.vb">
+      <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\diagnostic\frmSaisieNumFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\dlgToleranceBuses.Designer.vb">
+      <DependentUpon>dlgToleranceBuses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\dlgToleranceBuses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\dlgExportAutoTest.Designer.vb">
+      <DependentUpon>dlgExportAutoTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\dlgExportAutoTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\DlgListPulve.Designer.vb">
+      <DependentUpon>DlgListPulve.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\DlgListPulve.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\FeuillePeda.vb" />
+    <Compile Include="Application\exploitant\transfert_pulve.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\fiche_exploitant.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\exploitant\pulverisateur\ajout_pulve2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\Acquisition\Acquiring.vb" />
+    <Compile Include="Application\includes\classes\Acquisition\AcquiringManager.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\CalcVolumeHa.vb" />
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.Designer.vb">
+      <DependentUpon>MyVerticalLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\includes\classes\ReglagePulve\MyVerticalLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\RootManager.vb" />
+    <Compile Include="Application\includes\classes\StatsCRODIP.vb" />
+    <Compile Include="Application\includes\classes\CSStatusbar.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\DBVersion.vb" />
+    <Compile Include="Application\includes\classes\DBVersionManager.vb" />
+    <Compile Include="Application\includes\classes\Logs\Logs.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\Logs\LogsManager.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\staticObj\MarquesManager.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\includes\classes\WSCrodip.vb" />
+    <Compile Include="Application\includes\CSReglagePulve.vb" />
+    <Compile Include="Application\includes\SortableBindingList.vb" />
+    <Compile Include="Application\includes\PropertyComparer.vb" />
+    <Compile Include="Application\login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\parametrage\facturation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\ParentContener.Designer.vb">
+      <DependentUpon>parentContener.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\parentContener.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTelephone.Designer.vb">
+      <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientTelephone.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\splash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\structure\gestion_structures.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\tools\tool_Calculettelha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\tools\tool_calcVolHa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\tools\tool_diagBuses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cr\EtatCrodipADEL.vb" />
+    <Compile Include="cr\EtatContratCommercial.vb" />
+    <Compile Include="cr\EtatFacture2.vb" />
+    <Compile Include="cr\EtatFeuillePeda.vb" />
+    <Compile Include="cr\EtatEnquete.vb" />
+    <Compile Include="cr\EtatDocumentCoPropriete.vb" />
+    <Compile Include="cr\EtatFVManoGraph.vb" />
+    <Compile Include="cr\EtatFVMano.vb" />
+    <Compile Include="cr\EtatFVBanc.vb" />
+    <Compile Include="cr\EtatSyntheseMesures.vb" />
+    <Compile Include="dlgAquisition.Designer.vb">
+      <DependentUpon>dlgAquisition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAquisition.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application\agent\frmMAJsynchroAgent.Designer.vb">
+      <DependentUpon>frmMAJsynchroAgent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Application\agent\frmMAJsynchroAgent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCrodip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMAJVersion.Designer.vb">
+      <DependentUpon>frmMAJVersion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMAJVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GZipTest.vb" />
+    <Compile Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crRapportInspectionFin2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\crTest1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crTest.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_diagVerifMano.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_diagVerifMano.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Facture2.vb">
+      <DependentUpon>cr_Facture2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_FeuillePedagogique.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_DocCopropiete.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_DocCopropiete.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_FicheVerifMano.vb">
+      <DependentUpon>cr_FicheVerifMano.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_FicheVerifBanc.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_FicheVerifBanc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="cr\EtatBL.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="cr\EtatFacture.vb" />
+    <Compile Include="cr\EtatRapportInspection.vb" />
+    <Compile Include="moduleDocumentaire\_parametres\cr_EnqueteSatisfaction.vb">
+      <DependentUpon>cr_EnqueteSatisfaction.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ContratCommercial.vb">
+      <DependentUpon>cr_ContratCommercial.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_RapportInspection1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_RapportInspection.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulve.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulve.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveCommentaires.vb">
+      <DependentUpon>cr_ReglagePulveCommentaires.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveDefauts.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulveDefauts.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveEntete.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulveEntete.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Facture.vb">
+      <DependentUpon>cr_Facture.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_BL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_BL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_synthese833.vb">
+      <DependentUpon>cr_synthese833.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseBuses15.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulveSyntheseBuses15.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveFeuilleCalcul1.vb">
+      <DependentUpon>cr_ReglagePulveFeuilleCalcul.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseMesures1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_ReglagePulveSyntheseMesures.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulvesynthese833.vb">
+      <DependentUpon>cr_ReglagePulvesynthese833.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulvesynthese542.vb">
+      <DependentUpon>cr_ReglagePulvesynthese542.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Synthese12123TrtSem.vb">
+      <DependentUpon>cr_Synthese12123TrtSem.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_Synthese12123.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_Synthese12123.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_syntheseBusesxx.vb">
+      <DependentUpon>cr_syntheseBusesxx.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_syntheseBuses10.vb">
+      <DependentUpon>cr_syntheseBuses10.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_syntheseBuses15.vb">
+      <DependentUpon>cr_syntheseBuses15.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_synthese542.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_synthese542.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseCapteur.vb">
+      <DependentUpon>cr_ReglagePulveSyntheseCapteur.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_SyntheseCapteur.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_SyntheseCapteur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseDebitMetre.vb">
+      <DependentUpon>cr_ReglagePulveSyntheseDebitMetre.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_syntheseDebitMetre.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_syntheseDebitMetre.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\cr_EtatSynthese.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cr_EtatSynthese.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="moduleDocumentaire\_parametres\TESTSIGN.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TESTSIGN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Observe.vb" />
+    <Compile Include="ReglagePulve.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ReglagePulve.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WSCRODIP2\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.vb" />
+    <Compile Include="StartApplication.vb" />
+    <Compile Include="Web References\WSCrodip_prod\Reference.vb">
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Signature\frmSignClientWacom.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="My Project\DataSources\CRODIPWS.Annomalie.datasource" />
+    <None Include="My Project\DataSources\CRODIPWS.ExploitationTOPulverisateur.datasource" />
+    <None Include="My Project\DataSources\CRODIPWS.PoolBuse.datasource" />
+    <None Include="Service References\WSCRODIP2\configuration91.svcinfo" />
+    <None Include="Service References\WSCRODIP2\configuration.svcinfo" />
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetAutoTestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetControleBancMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetControleManoMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticBusesDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticBusesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticMano542Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDiagnosticTroncons833Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetExploitationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetExploitationTOPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetFVManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetIdentifiantPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetIncrementDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolAgentListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBalanceListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBuseListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolChronoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolDistanceListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoControleListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoEtalonListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolManoEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolMasseListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolPcListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPoolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPrestationCategorieResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPrestationTarifResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielCodesAPEResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielManometreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurMarquesModelesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielPulverisateurTypesCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetReferentielTerritoireResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetSoftwareUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetStructureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetSynchroDateTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetVersionLogicielAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendAutoTestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendControleBancMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendControleManoMesureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticBusesDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticBusesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticMano542Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDiagnosticTroncons833Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendExploitationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendExploitationTOPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVBancResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendFVManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendIdentifiantPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendManometreControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendManometreEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolBuseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolChronoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolManoControleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolManoEtalonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolMasseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolPcResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPoolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPrestationCategorieResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPrestationTarifResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendPulverisateurResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SendStructureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.SetDateSynchroAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.UpdatesAvailableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCRODIP2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="rustdesk-1.3.3-x86_64.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="bdd\baseVide.db3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bdd\createbaseVide.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="DLLPOURSQLITE\e_sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.batteries_v2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.provider.dynamic_cdecl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\SQLitePCLRaw.provider.e_sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\System.Runtime.CompilerServices.Unsafe.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLPOURSQLITE\System.ValueTuple.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="img\e-pulve-logo-blanc-bleu-1.png" />
+    <Content Include="moduleDocumentaire\_parametres\ParamBuse12123.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wgssSTU.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="bdd\crodip_agent.db3" />
+    <None Include="bdd\crodip_agent.mdb" />
+    <None Include="bdd\crodip_agent.sql" />
+    <None Include="bdd\crodip_agentBasePourImport.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="bdd\crodip_dasylab.mdb" />
+    <None Include="bdd\crodip_etats.mdb" />
+    <Content Include="bdd\crodip_md2.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cmd.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Docs\new.wsdl" />
+    <None Include="My Project\DataSources\ContratCommercial.datasource" />
+    <None Include="My Project\DataSources\Facture.datasource" />
+    <None Include="My Project\DataSources\Pool.datasource" />
+    <None Include="My Project\DataSources\PressionCtrl.datasource" />
+    <None Include="My Project\DataSources\Structuree.datasource" />
+    <None Include="Resources\add_to_favorites_96px.png" />
+    <None Include="Resources\icons8_membership_card.ico" />
+    <None Include="Resources\Favorites.png" />
+    <None Include="Resources\btn_search.jpg" />
+    <None Include="Resources\btn_retours.jpg" />
+    <None Include="img\btn\btn_annuler-250.jpg" />
+    <None Include="img\btn\btn_annuler-200.jpg" />
+    <Content Include="e_sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamMetrologie.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\test.png" />
+    <None Include="Resources\Test2.png" />
+    <Content Include="Test WS avec postman.txt" />
+    <Content Include="wgssSTU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="bdd\crodip_agent.mdw" />
+    <None Include="img\Exit.jpg" />
+    <None Include="My Project\DataSources\Agent.datasource" />
+    <None Include="My Project\DataSources\ControleMano.datasource" />
+    <None Include="My Project\DataSources\CRODIPAcquisition.AcquisitionValue.datasource" />
+    <None Include="My Project\DataSources\DiagnosticFactureItem.datasource" />
+    <None Include="My Project\DataSources\FVBanc.datasource" />
+    <None Include="My Project\DataSources\FVManometreControle.datasource" />
+    <None Include="My Project\DataSources\importCRODIP.ImportCrodipResult.datasource" />
+    <None Include="My Project\DataSources\LieuxControle.datasource" />
+    <None Include="My Project\DataSources\UpdateInfo.datasource" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\ClosePreviewHH.bmp" />
+    <None Include="Resources\AddTableHH.bmp" />
+    <None Include="Resources\NavBackHS.bmp" />
+    <Content Include="config\fondEchelle.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\marques.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_suivantGrd.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="img\login_bgReglagePulve.jpg" />
+    <None Include="img\ico\PDF.png" />
+    <Content Include="Interop.wgssSTU.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\Alertes.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\btn_annuler.jpg" />
+    <None Include="Resources\btn_suivantGrd.jpg" />
+    <Content Include="moduleDocumentaire\_parametres\ModulesAcquisision.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\exports\exports.txt" />
+    <None Include="Resources\LogoCRODIPIMG.bmp" />
+    <None Include="Resources\puce_h1.jpg" />
+    <None Include="Resources\btn_Signture.jpg" />
+    <None Include="Service References\WSCRODIP2\crodip.wsdl" />
+    <None Include="SynchroFVMano" />
+    <None Include="Resources\ico_pdf.jpg" />
+    <Content Include="toleranceBuses.xml" />
+    <None Include="readme.md" />
+    <None Include="Resources\PuceVerteT.png" />
+    <None Include="Resources\PuceGriseT.png" />
+    <None Include="Resources\PuceRougeT.png" />
+    <None Include="Resources\PuceJauneT.png" />
+    <None Include="Resources\imageedit_2_9820978127.png" />
+    <None Include="Resources\j.jpg" />
+    <None Include="Resources\g.jpg" />
+    <None Include="Resources\v.jpg" />
+    <None Include="Resources\r.jpg" />
+    <None Include="My Project\DataSources\DiagnosticHelp12123.datasource" />
+    <None Include="My Project\DataSources\DiagnosticHelp571.datasource" />
+    <None Include="Resources\pulveprinc_m1O_icon.ico" />
+    <None Include="Resources\Icon1.ico" />
+    <None Include="Resources\ICOPulvePrinc.ico" />
+    <None Include="Resources\PulvePrinc.PNG" />
+    <None Include="My Project\DataSources\IdentifiantPulverisateur.datasource" />
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagCombine.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagFixeSM.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\logoCRODIP.ico" />
+    <None Include="Resources\calculator.ico" />
+    <None Include="Resources\Button_Play_Icon_256.png" />
+    <None Include="Resources\Button_PREVIous_Icon_256.png" />
+    <None Include="Resources\Start3.png" />
+    <None Include="Resources\btn_suivant.jpg" />
+    <None Include="Resources\btn_valider.jpg" />
+    <None Include="Resources\Transparent.ico" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\btn_empty_big.jpg" />
+    <None Include="Resources\btn_delete.jpg" />
+    <None Include="Resources\btn_fiche_voir.jpg" />
+    <None Include="Resources\btn_divers_add.jpg" />
+    <None Include="Resources\btn_login.jpg" />
+    <None Include="Resources\btn_login.bmp" />
+    <None Include="img\Button_Play_Icon_256.png" />
+    <None Include="img\Button_PREVIous_Icon_256.png" />
+    <None Include="img\Start.png" />
+    <None Include="img\Start2.png" />
+    <None Include="img\Start3.png" />
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagArbre.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagVigne.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\Pulverisation.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\Attelage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\LogoMCII.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\LogoMCII.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo_cognix.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ReferentielCodesAPE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ReferentielPulverisateurMarquesModeles.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\PulverisateurModeUtilisation.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\PulverisateurRegulation.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\EmplacementIdentification.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\facturation.xml" />
+    <Content Include="moduleDocumentaire\_parametres\ParamDiag.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="cr\Notes.txt" />
+    <Content Include="favicon.ico" />
+    <Content Include="img\accept.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ajax-loader%282%29.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ajax-loader%283%29.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ajax-loader.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\arrow_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\arrow_refresh_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\arrow_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_account_add.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_account_add2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_acquiring.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_agent_edit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_annuler.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_client_add.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_delete.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_add.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_add_small.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_calc.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_pageBlank.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_print.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_divers_prochains_controles.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_empty.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_empty_big.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_fiche_voir.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_login.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_make_ctrl.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_make_ctrlpart.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_manometre.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_manometre_edit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_pulve_liste.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_refresh.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_retours.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_retours_blue.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_search.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_see_ctrl.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_structure_edit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_suivant.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_tarifs_edit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\btn\btn_valider.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\CRODIPPDF.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\cross.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\exclamation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\favicon-pdf.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\flag_disabled.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\flag_green.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\flag_orange.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\flag_red.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico\acquiring.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico\arrow_refresh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico\arrow_refresh_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="aqwzsx.crodip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\CalcHelp551.xls" />
+    <None Include="Docs\calcul542.xlsx" />
+    <None Include="Docs\Recette CRODIP.xlsx" />
+    <None Include="Docs\Synchronisation.docx" />
+    <None Include="img\ico\calculator.ico" />
+    <Content Include="img\ico\diag_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico_crodipIndigo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico_crodipUpdater.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\ico_pdf.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\information.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\install.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\install_banner.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\loader\loader_bar_blue.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\loader\loader_bar_darkblue.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\login_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo_76x76.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\Logo_cofrac-phrase1.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo_cognix.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo_cognix_blanc_250.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\nologo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\nologo_tn.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\picto_profil.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\picto_profil_ajouter.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\printer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\g.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\j.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\puce_h1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\puce_h2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\puce_orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\puce_rouge.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\puce_verte.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\r.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puces\v.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puce_h1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puce_h2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puce_orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puce_rouge.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\puce_verte.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\tick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="itextsharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="moduleDocumentaire\_parametres\base_officielle_codes_postaux.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\Paramétrage des défauts.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\REFERENTIEL_BUSE.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="moduleDocumentaire\_parametres\ParamdiagRampe.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\ReferentielPulverisateurTypesCategories.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\CR_logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\CR_logo_tn.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\CR_logo_tn2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\DataSources\Acquiring.datasource" />
+    <None Include="My Project\DataSources\CodeAPE.datasource" />
+    <None Include="My Project\DataSources\Commune.datasource" />
+    <None Include="My Project\DataSources\ControleBanc.datasource" />
+    <None Include="My Project\DataSources\CRODIP_ControlLibrary.ParamCtrlDiag.datasource" />
+    <None Include="My Project\DataSources\Diagnostic.datasource" />
+    <None Include="My Project\DataSources\DiagnosticHelp551.datasource" />
+    <None Include="My Project\DataSources\DiagnosticHelp552.datasource" />
+    <None Include="My Project\DataSources\diagnostic_dlghelp551.datasource" />
+    <None Include="My Project\DataSources\Pulverisateur.datasource" />
+    <None Include="My Project\DataSources\RPDiagItem.datasource" />
+    <None Include="My Project\DataSources\RPDiagnostic.datasource" />
+    <None Include="My Project\DataSources\StatCrodip.datasource" />
+    <None Include="My Project\DataSources\StatsCrodip.datasource" />
+    <None Include="My Project\DataSources\Tarif.datasource" />
+    <None Include="My Project\DataSources\ToleranceBuse.datasource" />
+    <None Include="ReglagePulve.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ReglagePulve.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="SynchroFVBanc" />
+    <None Include="updates.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="My Project\DataSources\Banc.datasource" />
+    <None Include="My Project\DataSources\Buse.datasource" />
+    <None Include="My Project\DataSources\ControleRegulier.datasource" />
+    <None Include="My Project\DataSources\Exploitation.datasource" />
+    <None Include="My Project\DataSources\Manometre.datasource" />
+    <None Include="My Project\DataSources\ManometreControle.datasource" />
+    <None Include="My Project\DataSources\ManometreEtalon.datasource" />
+    <None Include="My Project\DataSources\Materiel.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="public\docs\facture.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\docs\feuille_pedagogique.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\docs\ficheVie_banc.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\docs\ficheVie_mano.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\docs\fiche_terrain_arbo-viti.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="public\docs\fiche_terrain_rampe.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Application\agent\Bancs\HistoBanc.resx">
+      <DependentUpon>HistoBanc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\frmControleManometresNew.resx">
+      <DependentUpon>frmControleManometresNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\HistoMano.resx">
+      <DependentUpon>HistoMano.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\controle_preliminaire.resx">
+      <DependentUpon>controle_preliminaire.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_ContratCommercial.resx">
+      <DependentUpon>diagnostic_ContratCommercial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\dlgDHDebutControle.resx">
+      <DependentUpon>dlgDHDebutControle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmDiagnostique.resx">
+      <DependentUpon>frmDiagnostique.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmSelectPhaseDiag.resx">
+      <DependentUpon>frmSelectPhaseDiag.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmContratCommercial.resx">
+      <DependentUpon>frmContratCommercial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_facturationCoProp.resx">
+      <DependentUpon>frmdiagnostic_facturationCoProp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmlstLieuxControle.resx">
+      <DependentUpon>frmlstLieuxControle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\liste_diagnosticPulve2.resx">
+      <DependentUpon>liste_diagnosticPulve2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\dlgListExploitant.resx">
+      <DependentUpon>dlgListExploitant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgDifferencesOTC.resx">
+      <DependentUpon>dlgDifferencesOTC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\dlgGestionCoPro.resx">
+      <DependentUpon>dlgGestionCoPro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\parametrage\facturation2.resx">
+      <DependentUpon>facturation2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\parametrage\frmGestLieuxControle.resx">
+      <DependentUpon>frmGestLieuxControle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClient.resx">
+      <DependentUpon>frmSignClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClientTablette.resx">
+      <DependentUpon>frmSignClientTablette.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClientWacom.resx">
+      <DependentUpon>frmSignClientWacom.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\dlgSynchroDiag.resx">
+      <DependentUpon>dlgSynchroDiag.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\tools\tool_importData.resx">
+      <DependentUpon>tool_importData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\tools\tool_ParamModeSimplifie.resx">
+      <DependentUpon>tool_ParamModeSimplifie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\accueil.resx">
+      <DependentUpon>accueil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\ajouter_profil.resx">
+      <DependentUpon>ajouter_profil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Bancs\frmcontrole_bancs.resx">
+      <DependentUpon>frmcontrole_bancs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\fiche_manometre.resx">
+      <DependentUpon>fiche_manometre.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\frmGestIdentifiantsPulve.resx">
+      <DependentUpon>frmGestIdentifiantsPulve.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\materiels_supprimes.resx">
+      <DependentUpon>materiels_supprimes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\dlgIdentifiantPulverisateur.resx">
+      <DependentUpon>dlgIdentifiantPulverisateur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\suppressionMateriel.resx">
+      <DependentUpon>suppressionMateriel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Bancs\fiche_banc.resx">
+      <DependentUpon>fiche_banc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Bancs\gestion_bancs.resx">
+      <DependentUpon>gestion_bancs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Buses\fiche_buse.resx">
+      <DependentUpon>fiche_buse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Buses\gestion_busesEtalons.resx">
+      <DependentUpon>gestion_busesEtalons.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\gestion_agent.resx">
+      <DependentUpon>gestion_agent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Manometres\gestion_manometres.resx">
+      <DependentUpon>gestion_manometres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Tarifs\gestion_tarifs.resx">
+      <DependentUpon>gestion_tarifs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Tarifs\gestion_tarifs_addCategorie.resx">
+      <DependentUpon>gestion_tarifs_addCategorie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\agent\Tarifs\gestion_tarifs_addPresta.resx">
+      <DependentUpon>gestion_tarifs_addPresta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\apropos.resx">
+      <DependentUpon>apropos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\debug\debug_deletControl.resx">
+      <DependentUpon>debug_deletControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\debug\test.resx">
+      <DependentUpon>test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_contexte.resx">
+      <DependentUpon>diagnostic_contexte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123NewTrtSem.resx">
+      <DependentUpon>diagnostic_dlghelp12123NewTrtSem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\Idlghelp12123.resx">
+      <DependentUpon>Idlghelp12123.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp12123New.resx">
+      <DependentUpon>diagnostic_dlghelp12123New.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp571.resx">
+      <DependentUpon>diagnostic_dlghelp571.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_dlghelp551.resx">
+      <DependentUpon>diagnostic_dlghelp551.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\Diagnostic_dlghelp552.resx">
+      <DependentUpon>Diagnostic_dlghelp552.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_infosInspecteur.resx">
+      <DependentUpon>diagnostic_infosInspecteur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diagnostic_satisfaction.resx">
+      <DependentUpon>diagnostic_satisfaction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\FrmAddCoProp.resx">
+      <DependentUpon>FrmAddCoProp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmdiagnostic_recap.resx">
+      <DependentUpon>frmdiagnostic_recap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\diag_test.resx">
+      <DependentUpon>diag_test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\diagnostic\frmSaisieNumFact.resx">
+      <DependentUpon>frmSaisieNumFact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\dlgExportAutoTest.resx">
+      <DependentUpon>dlgExportAutoTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\dlgToleranceBuses.resx">
+      <DependentUpon>dlgToleranceBuses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\DlgListPulve.resx">
+      <DependentUpon>DlgListPulve.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\transfert_pulve.resx">
+      <DependentUpon>transfert_pulve.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\fiche_exploitant.resx">
+      <DependentUpon>fiche_exploitant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\exploitant\pulverisateur\ajout_pulve2.resx">
+      <DependentUpon>ajout_pulve2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\login.resx">
+      <DependentUpon>login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\parametrage\facturation.resx">
+      <DependentUpon>facturation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\parentContener.resx">
+      <DependentUpon>parentContener.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\Signature\frmSignClientTelephone.resx">
+      <DependentUpon>frmSignClientTelephone.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\splash.resx">
+      <DependentUpon>splash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\structure\gestion_structures.resx">
+      <DependentUpon>gestion_structures.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\tools\tool_Calculettelha.resx">
+      <DependentUpon>tool_Calculettelha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\tools\tool_calcVolHa.resx">
+      <DependentUpon>tool_calcVolHa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\tools\tool_diagBuses.resx">
+      <DependentUpon>tool_diagBuses.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="moduleDocumentaire\_parametres\cr_RapportInspection.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_RapportInspection1.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_BL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_BL.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="dlgAquisition.resx">
+      <DependentUpon>dlgAquisition.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="moduleDocumentaire\_parametres\cr_FicheVerifMano.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_FicheVerifMano.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_FicheVerifBanc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_FicheVerifBanc.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulve.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulve.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveDefauts.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveDefauts.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveEntete.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveEntete.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseBuses15.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveSyntheseBuses15.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseMesures.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveSyntheseMesures1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulvesynthese833.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulvesynthese833.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulvesynthese542.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulvesynthese542.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_syntheseBuses10.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_syntheseBuses10.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_syntheseBuses15.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_syntheseBuses15.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_synthese542.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_synthese542.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseCapteur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveSyntheseCapteur.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_SyntheseCapteur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_SyntheseCapteur.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveSyntheseDebitMetre.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveSyntheseDebitMetre.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_syntheseDebitMetre.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_syntheseDebitMetre.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_EtatSynthese.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_EtatSynthese.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_Facture.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Facture.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\crRapportInspectionFin2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crRapportInspectionFin2.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\crTest.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crTest1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_DocCopropiete.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_DocCopropiete.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveCommentaires.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveCommentaires.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_EnqueteSatisfaction.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_EnqueteSatisfaction.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ContratCommercial.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ContratCommercial.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_ReglagePulveFeuilleCalcul.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_ReglagePulveFeuilleCalcul1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_Synthese12123TrtSem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Synthese12123TrtSem.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_Synthese12123.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Synthese12123.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_syntheseBusesxx.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_syntheseBusesxx.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_FeuillePedagogique.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_FeuillePedagogique.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Application\agent\frmMAJsynchroAgent.resx">
+      <DependentUpon>frmMAJsynchroAgent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMAJVersion.resx">
+      <DependentUpon>frmMAJVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="moduleDocumentaire\_parametres\TESTSIGN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TESTSIGN.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_Facture2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_Facture2.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_diagVerifMano.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_diagVerifMano.vb</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduleDocumentaire\_parametres\cr_synthese833.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cr_synthese833.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
+    <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSCrodip_prod\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <WebReferences Include="Web References\" />
+    <WebReferenceUrl Include="http://admin-pp.crodip.fr/new.wsdl">
+      <RelPath>Web References\WSCrodip_prod\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://admin-pp.crodip.fr/new.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+    <Service Include="{CF845C55-C321-4742-B673-E6212D061ED9}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Application\exploitant\fichevie\" />
+    <Folder Include="MigrationBDD\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CRODIPAcquisition\CRODIPAcquisition.vbproj">
+      <Project>{6a47aca1-97a9-468d-9c04-9b9cc11f6fe9}</Project>
+      <Name>CRODIPAcquisition</Name>
+    </ProjectReference>
+    <ProjectReference Include="CRODIPWS\CRODIPWS.vbproj">
+      <Project>{d148fb92-18b1-4fb6-903d-1dc575b7d452}</Project>
+      <Name>CRODIPWS</Name>
+    </ProjectReference>
+    <ProjectReference Include="CRODIP_ControlLibrary\CRODIP_ControlLibrary\CRODIP_ControlLibrary.vbproj">
+      <Project>{2e21234e-daef-48b6-aff5-a3655c9420e4}</Project>
+      <Name>CRODIP_ControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WSCRODIP2\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+</Project>

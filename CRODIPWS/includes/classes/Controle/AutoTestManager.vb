@@ -115,7 +115,13 @@ Public Class AutoTestManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpResults.FieldCount()
                         If Not tmpResults.IsDBNull(tmpColId) Then
-                            oReturn.Fill(tmpResults.GetName(tmpColId), tmpResults.Item(tmpColId))
+                            Try
+                                oReturn.Fill(tmpResults.GetName(tmpColId), tmpResults.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                oReturn.Fill(tmpResults.GetName(tmpColId), tmpResults.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While

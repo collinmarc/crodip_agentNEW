@@ -140,7 +140,7 @@ Public Class DiagnosticBusesDetailManager
                     bddCommande.CommandText = "SELECT @@IDENTITY from DiagnosticBusesDEtail"
                 End If
                 objDiagnosticBusesDetail.id = bddCommande.ExecuteScalar()
-                CSDb.ExecuteSQL("UPDATE DiagnosticTroncons833 Set aid = id where id = " & objDiagnosticBusesDetail.id)
+                oCSDb.Execute("UPDATE DiagnosticBusesDetail Set aid = id where id = " & objDiagnosticBusesDetail.id)
                 'If oDR.HasRows() Then
                 '    oDR.Read()
                 '    objDiagnosticBusesDetail.id = oDR.GetValue(0)
@@ -211,7 +211,13 @@ Public Class DiagnosticBusesDetailManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            oReturn.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                            Try
+                                oReturn.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+
+                            Catch ex As Exception
+
+                                oReturn.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While

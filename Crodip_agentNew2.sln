@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.33801.198
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12217.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Crodip_agent", "Crodip_agent.vbproj", "{DD7C56AA-4A81-4966-94BC-6B9B62054235}"
 EndProject
@@ -40,6 +40,10 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MAJDB", "R:\crodip_agentNEW\MAJDB\MAJDB.vbproj", "{D0E1861C-B709-4499-9790-13D17FF1B5AB}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MigrationDiagnostic", "R:\crodip_agentNEW\MigrationDiagnostic\MigrationDiagnostic.vbproj", "{AA5F2318-D936-4C2D-9C4E-42D13756B35F}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "testSQLITE", "..\testSQLITE\testSQLITE.vbproj", "{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "testcrodip4", "..\testcrodip4\testcrodip4.vbproj", "{B19B4C0F-835C-4904-AB01-365BE849D5E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -357,6 +361,38 @@ Global
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
 		{AA5F2318-D936-4C2D-9C4E-42D13756B35F}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Debug|x86.Build.0 = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.DebugReglagePulve|Any CPU.ActiveCfg = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.DebugReglagePulve|Any CPU.Build.0 = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.DebugReglagePulve|x86.ActiveCfg = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.DebugReglagePulve|x86.Build.0 = Debug|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Release|x86.ActiveCfg = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.Release|x86.Build.0 = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
+		{1418D5C6-D008-4BF2-8AE4-835E380AFCA8}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.DebugReglagePulve|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.DebugReglagePulve|Any CPU.Build.0 = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.DebugReglagePulve|x86.ActiveCfg = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.DebugReglagePulve|x86.Build.0 = Debug|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.Release|x86.Build.0 = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.ReleaseReglagePulve|Any CPU.ActiveCfg = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.ReleaseReglagePulve|Any CPU.Build.0 = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.ReleaseReglagePulve|x86.ActiveCfg = Release|Any CPU
+		{B19B4C0F-835C-4904-AB01-365BE849D5E9}.ReleaseReglagePulve|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

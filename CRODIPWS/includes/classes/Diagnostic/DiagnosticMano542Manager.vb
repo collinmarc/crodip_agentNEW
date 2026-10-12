@@ -102,9 +102,9 @@ Public Class DiagnosticMano542Manager
 #Region "Methodes Locales"
 
     ' o
-    Public Shared Function save(ByVal objDiagnosticMano542 As DiagnosticMano542, pCSDB As CSDb, Optional bSyncro As Boolean = False) As Boolean
-        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
+    Public Shared Function save(ByVal objDiagnosticMano542 As DiagnosticMano542, Optional bSyncro As Boolean = False) As Boolean
 
+        Dim pCSDB As New CSDb(True)
         Dim bReturn As Boolean
         Dim bddCommande As DbCommand
         Dim nEnr As Integer
@@ -185,6 +185,10 @@ Public Class DiagnosticMano542Manager
             bReturn = False
         End Try
 
+        If pCSDB IsNot Nothing Then
+            pCSDB.free()
+        End If
+        Return bReturn
     End Function
 
     ' o
@@ -228,29 +232,33 @@ Public Class DiagnosticMano542Manager
     End Function
 
     ' o
-    Public Shared Function getDiagnosticMano542ByDiagnostic(oCSDB As CSDb, ByVal pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticMano542ByDiagnostic(ByVal pDiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean
+        Dim oCSDB As CSDb = Nothing
         Try
+            oCSDB = New CSDb(True)
             'Recupération des infos de MAno542
             pDiagnostic.diagnosticMano542List.Liste.Clear()
             Dim nColId As Integer
-            Dim oDR As DbDataReader
             Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
             bddCommande3.CommandText = "SELECT * FROM DiagnosticMano542 WHERE idDiagnostic='" & pDiagnostic.id & "'"
-            oDR = bddCommande3.ExecuteReader
-            Dim oDiagnosticMano542 As DiagnosticMano542
-            While oDR.Read()
-                oDiagnosticMano542 = New DiagnosticMano542()
-                oDiagnosticMano542.FillDR(oDR)
-                pDiagnostic.diagnosticMano542List.Liste.Add(oDiagnosticMano542)
-            End While
-            oDR.Close()
+            Using oDR = bddCommande3.ExecuteReader
+                Dim oDiagnosticMano542 As DiagnosticMano542
+                While oDR.Read()
+                    oDiagnosticMano542 = New DiagnosticMano542()
+                    oDiagnosticMano542.FillDR(oDR)
+                    pDiagnostic.diagnosticMano542List.Liste.Add(oDiagnosticMano542)
+                End While
+            End Using
 
 
         Catch ex As Exception
             CSDebug.dispError("DiagnosticMAno542Manager.getDiagnosticMano542ByDiagnostic ERR" & ex.Message.ToString())
             bReturn = False
         End Try
+        If oCSDB IsNot Nothing Then
+            oCSDB.free()
+        End If
         Return bReturn
     End Function
 
@@ -314,7 +322,13 @@ Public Class DiagnosticMano542Manager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpDiagnosticMano542.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                        Try
+                            tmpDiagnosticMano542.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpDiagnosticMano542.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

@@ -1,21 +1,20 @@
 ﻿Imports CRODIPAcquisition
-Imports NLog
 Imports System.Data.OleDb
 Imports System.Linq
 Imports System.IO
 Imports CsvHelper
 Imports CsvHelper.Configuration
+Imports Microsoft.VisualBasic.Logging
 
 Public Class AcquisitionERECA
     Implements ICRODIPAcquisition
-    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
     Public Sub New()
         m_fichierERECA = My.Settings.FileName
     End Sub
 
     Private m_fichierERECA As String
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
-        logger.Info("AcquisitionERECA.GetValues Start")
+        My.Application.Log.WriteEntry("AcquisitionERECA.GetValues Start")
 
         Dim oReturn As New List(Of AcquisitionValue)
 #Region "ConversionFormat"
@@ -141,7 +140,7 @@ Public Class AcquisitionERECA
             oReturn.Add(oValueCRODIP)
         Next
 
-        logger.Info("AcquisitionERECA.GetValues Return " & oReturn.Count & "elements")
+        My.Application.Log.WriteEntry("AcquisitionERECA.GetValues Return " & oReturn.Count & "elements")
         Return oReturn
 
     End Function
@@ -171,23 +170,23 @@ Public Class AcquisitionERECA
 
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
-        logger.Info("AcquisitionERECA.getnbNiveaux Start")
+        My.Application.Log.WriteEntry("AcquisitionERECA.getnbNiveaux Start")
         Dim lstValues As New List(Of AcquisitionValue)
         Dim nReturn As Integer = 0
         lstValues = GetValues()
         nReturn = lstValues.Max(Function(oVal) _
                           oVal.Niveau)
-        logger.Info("AcquisitionERECA.getnbNiveaux Return " & nReturn)
+        My.Application.Log.WriteEntry("AcquisitionERECA.getnbNiveaux Return " & nReturn)
         Return nReturn
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
-        logger.Info("AcquisitionERECA.getnbBuses Start")
+        My.Application.Log.WriteEntry("AcquisitionERECA.getnbBuses Start")
         Dim lstValues As New List(Of AcquisitionValue)
         Dim nReturn As Integer = 0
         lstValues = GetValues()
         nReturn = lstValues.Where(Function(oVal) oVal.Niveau = pNiveau).Max(Function(oVal) oVal.NumBuse)
-        logger.Info("AcquisitionERECA.getnbBuses return " & nReturn)
+        My.Application.Log.WriteEntry("AcquisitionERECA.getnbBuses return " & nReturn)
         Return nReturn
     End Function
 

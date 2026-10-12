@@ -405,14 +405,20 @@ Public Class DiagnosticManager
                     Dim nColId As Integer = 0
                     While nColId < oDataReader.FieldCount()
                         If Not oDataReader.IsDBNull(nColId) Then
-                            pdiag.Fill(oDataReader.GetName(nColId), oDataReader.Item(nColId))
+                            Try
+                                pdiag.Fill(oDataReader.GetName(nColId), oDataReader.Item(nColId))
+
+                            Catch ex As Exception
+
+                                pdiag.Fill(oDataReader.GetName(nColId), oDataReader.GetString(nColId))
+                            End Try
                         End If
                         nColId = nColId + 1
                     End While
                     DebugStep = "4"
                     DebugStep = "5"
 
-                    LoadDiagnosticAttributes(oCsdb, pdiag)
+                    LoadDiagnosticAttributes(pdiag)
                     bReturn = True
                 Else
                     bReturn = False
@@ -432,7 +438,7 @@ Public Class DiagnosticManager
         Return bReturn
     End Function
 
-    Protected Shared Function LoadDiagnosticAttributes(oCSDB As CSDb, pDiag As Diagnostic) As Boolean
+    Protected Shared Function LoadDiagnosticAttributes(pDiag As Diagnostic) As Boolean
         Dim DebugStep As String
         Dim bReturn As Boolean = True
         Try
@@ -440,125 +446,73 @@ Public Class DiagnosticManager
             '########################################
             ' On récupère les items du diagnostic
             '########################################
-            DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCSDB, pDiag)
+            DiagnosticItemManager.getDiagnosticItemByDiagnosticId(pDiag)
             DebugStep = "8"
 
             '########################################
             ' On récupère les mesures help551
             '########################################
-            pDiag.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(pDiag)
             DebugStep = "9"
-            pDiag.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(pDiag)
             DebugStep = "9.5621"
-            pDiag.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(pDiag)
             DebugStep = "9.12323"
 
             '########################################
             ' On récupère les mesures help552
             '########################################
-            pDiag.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(pDiag)
             DebugStep = "9.552"
 
             '########################################
             ' On récupère les mesures help5622
             '########################################
-            pDiag.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(pDiag)
             DebugStep = "9.5622"
 
             '########################################
             ' On récupère les mesures help811
             '########################################
-            pDiag.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(pDiag)
             DebugStep = "9.811"
             '########################################
             ' On récupère les mesures help831
             '########################################
-            pDiag.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oCSDB, pDiag)
-            pDiag.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(pDiag)
+            pDiag.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(pDiag)
             DebugStep = "8.831"
             '########################################
             ' On récupère les mesures help571
             '########################################
-            pDiag.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(pDiag)
             DebugStep = "8.831"
             '########################################
             ' On récupère les mesures help12123
             '########################################
-            pDiag.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(pDiag)
             DebugStep = "8.12123"
             '########################################
             ' On récupère les infosComplémentaires
             '########################################
-            pDiag.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oCSDB, pDiag)
+            pDiag.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(pDiag)
             DebugStep = "9."
             '#########################################################
             ' On récupère les diagnosticBuses et DiagnosticBusesDetail
             '#########################################################
-            DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCSDB, pDiag)
+            DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(pDiag)
 
+            DebugStep = "19"
             '#########################################################
             ' On récupère les diagnosticMano542
             '#########################################################
-
-            Dim bddCommande5 As DbCommand
-            bddCommande5 = oCSDB.getConnection().CreateCommand
-            bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & pDiag.id & "' ORDER BY id"
-            ' On récupère les résultats
-            Dim oDataReader As DbDataReader = bddCommande5.ExecuteReader
-            DebugStep = "18"
-            ' Puis on les parcours
-            Dim nColId As Integer
-            Dim tmpDiagnosticMano542List As New DiagnosticMano542List
-            While oDataReader.Read()
-                Dim tmpDiagnosticMano542 As New DiagnosticMano542
-                ' On rempli notre tableau
-                nColId = 0
-                While nColId < oDataReader.FieldCount()
-                    If Not oDataReader.IsDBNull(nColId) Then
-                        tmpDiagnosticMano542.Fill(oDataReader.GetName(nColId), oDataReader.GetValue(nColId))
-                    End If
-                    nColId = nColId + 1
-                End While
-                pDiag.diagnosticMano542List.Liste.Add(tmpDiagnosticMano542)
-            End While
-            DebugStep = "19"
-            ' Test pour fermeture de connection BDD
-            oDataReader.Close()
+            DiagnosticMano542Manager.getDiagnosticMano542ByDiagnostic(pDiag)
             DebugStep = "20"
             '#########################################################
             ' On récupère les diagnosticPressions833
             '#########################################################
             ' On récupère les pressions aux tronçons
-            Dim bddCommande6 As DbCommand
-            bddCommande6 = oCSDB.getConnection().CreateCommand
-            bddCommande6.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE DiagnosticTroncons833.idDiagnostic='" & pDiag.id & "'"
-            ' On récupère les résultats
-            oDataReader = bddCommande6.ExecuteReader
-            ' Puis on les parcours
-            DebugStep = "21"
-            'Dim tmpDiagnosticTroncons833List As New DiagnosticTroncons833List
-            'Dim tmpArrDiagnosticTroncons833(0) As DiagnosticTroncons833
-            Dim l As Integer = 0
-            While oDataReader.Read()
-                Dim tmpDiagnosticTroncons833 As New DiagnosticTroncons833
-                ' On rempli notre tableau
-                nColId = 0
-                While nColId < oDataReader.FieldCount()
-                    If Not oDataReader.IsDBNull(nColId) Then
-                        tmpDiagnosticTroncons833.Fill(oDataReader.GetName(nColId), oDataReader.GetValue(nColId))
-                    End If
-                    nColId = nColId + 1
-                End While
-                'Calcul du numero de niveau et numero de trançon à partir de la col
-                tmpDiagnosticTroncons833.CalcNiveauTroncons(pDiag.controleNbreTroncons)
-                pDiag.diagnosticTroncons833.Liste.Add(tmpDiagnosticTroncons833)
-            End While
-            DebugStep = "22"
-            oDataReader.Close()
-            DebugStep = "23"
-
-
-
+            DiagnosticTroncons833Manager.getDiagnosticTroncons833ByDiagnostic(pDiag)
 
             bReturn = True
 
@@ -651,7 +605,13 @@ Public Class DiagnosticManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(tmpColId) Then
-                        oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                        Try
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -666,6 +626,36 @@ Public Class DiagnosticManager
         oCSDb.free()
         'on retourne la liste des diagnostic
         Return lstDiag
+    End Function
+    Public Shared Function getDateDernierControleByPulveId(ByVal pulverisateur_id As String) As DateTime
+        Debug.Assert(Not String.IsNullOrEmpty(pulverisateur_id))
+        ' déclarations
+        Dim DdateDernierControle As Date = Date.MinValue
+        Dim bddCommande As DbCommand
+        Dim oCSDb As New CSDb(True)
+        bddCommande = oCSDb.getConnection().CreateCommand()
+        bddCommande.CommandText = "SELECT controleDateFin FROM Diagnostic  WHERE Pulverisateurid='" & pulverisateur_id & "' ORDER BY controleDateFin DESC LIMIT 1"
+        Try
+            ' On récupère les résultats
+            Dim oDR As DbDataReader = bddCommande.ExecuteReader
+            ' Puis on les parcours
+            While oDR.Read()
+                If Not oDR.IsDBNull(0) Then
+                    Try
+                        DdateDernierControle = oDR.Item(0)
+                    Catch ex As Exception
+                        DdateDernierControle = CSDate.FromCrodipString(oDR.GetString(0))
+                    End Try
+                End If
+            End While
+            oDR.Close()
+        Catch ex As Exception ' On intercepte l'erreur
+            CSDebug.dispError("DiagnosticManager.getDateDernierControleByPulveId ERR:" & ex.Message)
+        End Try
+        ' Test pour fermeture de connection BDD
+        oCSDb.free()
+        'on retourne la liste des diagnostic
+        Return DdateDernierControle
     End Function
     Public Shared Function getlstDiagnostic(pStructureID As String) As List(Of Diagnostic)
         ' déclarations
@@ -684,7 +674,13 @@ Public Class DiagnosticManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(tmpColId) Then
-                        oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                        Try
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -724,7 +720,13 @@ Public Class DiagnosticManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()
                     If Not oDR.IsDBNull(tmpColId) Then
-                        oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                        Try
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oDiagnostic.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -751,176 +753,202 @@ Public Class DiagnosticManager
         ' On test si la connexion est déjà ouverte ou non
         bddCommande = oCsdb.getConnection().CreateCommand
         '        bddCommande.CommandText = "SELECT * FROM Diagnostic WHERE Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip AND Diagnostic.inspecteurId=" & agent.id
-        bddCommande.CommandText = "Select Diagnostic.* From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.uidStructure
+        bddCommande.CommandText = "Select Diagnostic.id From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.uidstructure
         bddCommande.CommandText = bddCommande.CommandText & " AND (Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip OR Diagnostic.dateModificationCrodip is null)"
         Try
             ' On récupère les résultats
-            Dim oDRDiagnostic As DbDataReader = bddCommande.ExecuteReader
+            Dim lstId As New List(Of String)
+            Using oDRDiagnostic As DbDataReader = bddCommande.ExecuteReader
+                ' Puis on les parcours
+                While oDRDiagnostic.Read()
+                    Dim idDiag As String = oDRDiagnostic.GetString(0)
+                    lstId.Add(idDiag)
+                End While
+            End Using
+            oCsdb.free()
+            Dim oDiag As Diagnostic
             Dim i As Integer = 0
-            ' Puis on les parcours
-            While oDRDiagnostic.Read()
-                ' On remplit notre tableau
-                Dim oDiagnostic As New Diagnostic
-                Dim nColId As Integer = 0
-                While nColId < oDRDiagnostic.FieldCount()
-                    'Chargement des données dans le Diagnostic
-                    If Not oDRDiagnostic.IsDBNull(nColId) Then
-                        oDiagnostic.Fill(oDRDiagnostic.GetName(nColId), oDRDiagnostic.Item(nColId))
+            For Each idDiag As String In lstId
+                Try
+                    oDiag = DiagnosticManager.getDiagnosticById(idDiag)
+                    If oDiag IsNot Nothing Then
+                        arrItems(i) = oDiag
+                        i = i + 1
+                        ReDim Preserve arrItems(i)
                     End If
-                    nColId = nColId + 1
-                End While
+                Catch ex As Exception
 
-                ' If oDiagnostic.controleDateFin >= DateAdd(DateInterval.Month, -4, Date.Today) Then
-                ' On récupère les items du diagnostic
-                DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCsdb, oDiagnostic)
-
-                '########################################
-                ' On récupère les mesures help551
-                '########################################
-                oDiagnostic.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp551.HasValue() Then
-                    'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp551AsDiagItem())
-                End If
-
-                '########################################
-                ' On récupère les mesures help5621
-                '########################################
-                oDiagnostic.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp5621.HasValue() Then
-                    'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5621AsDiagItem())
-                End If
-
-                '########################################
-                ' On récupère les mesures help552
-                '########################################
-                oDiagnostic.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp552.hasValue() Then
-                    'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp552AsDiagItem())
-                End If
-                ' On récupère les buses du diagnostic
-                DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCsdb, oDiagnostic)
-
-                '########################################
-                ' On récupère les mesures help5622
-                '########################################
-                oDiagnostic.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp5622.hasValue() Then
-                    'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5622AsDiagItem())
-                End If
-
-                '########################################
-                ' On récupère les mesures help811
-                '########################################
-                oDiagnostic.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp811.hasValue() Then
-                    'Ajout de l'help dans la liste des diagItems
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp811AsDiagItem())
-                End If
-                '########################################
-                ' On récupère les mesures help831
-                '########################################
-                oDiagnostic.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp8312.hasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8312AsDiagItem())
-                End If
-                oDiagnostic.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp8314.hasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8314AsDiagItem())
-                End If
-                oDiagnostic.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp571.hasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp571.ConvertToDiagnosticItem())
-                End If
-                oDiagnostic.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp12123.hasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12123.ConvertToDiagnosticItem())
-                End If
-                oDiagnostic.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticHelp12323.HasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12323.ConvertToDiagnosticItem())
-                End If
-                '########################################
-                ' On récupère les infos complémentaire
-                '########################################
-                oDiagnostic.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oCsdb, oDiagnostic)
-                If oDiagnostic.diagnosticInfosComplementaires.hasValue() Then
-                    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticInfosComplementairesAsDiagItem())
-                End If
-
-                '##################################################################################################################
-
-                ' On récupère les mesures des mano
-                Dim bddCommande5 As DbCommand
-                bddCommande5 = oCsdb.getConnection().CreateCommand()
-                bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & oDiagnostic.id & "'"
-                ' On récupère les résultats
-                Dim oDRDiagnosticMano542 As DbDataReader = bddCommande5.ExecuteReader
-                ' Puis on les parcours
-                Dim tmpDiagnosticMano542List As New DiagnosticMano542List
-                While oDRDiagnosticMano542.Read()
-                    Dim tmpDiagnosticMano542 As New DiagnosticMano542
-                    ' On rempli notre tableau
-                    nColId = 0
-                    While nColId < oDRDiagnosticMano542.FieldCount()
-                        Select Case oDRDiagnosticMano542.GetName(nColId)
-                            Case "id"
-                                tmpDiagnosticMano542.id = oDRDiagnosticMano542.Item(nColId)
-                            Case "idDiagnostic"
-                                tmpDiagnosticMano542.idDiagnostic = oDRDiagnosticMano542.Item(nColId).ToString()
-                            Case "pressionPulve"
-                                tmpDiagnosticMano542.pressionPulve = oDRDiagnosticMano542.Item(nColId).ToString()
-                            Case "pressionControle"
-                                tmpDiagnosticMano542.pressionControle = oDRDiagnosticMano542.Item(nColId).ToString()
-                            Case "dateModificationCrodip"
-                                tmpDiagnosticMano542.dateModificationCrodip = CSDate.ToCRODIPString(oDRDiagnosticMano542.Item(nColId).ToString())
-                            Case "dateModificationAgent"
-                                tmpDiagnosticMano542.dateModificationAgent = CSDate.ToCRODIPString(oDRDiagnosticMano542.Item(nColId).ToString())
-                        End Select
-                        nColId = nColId + 1
-                    End While
-                    oDiagnostic.diagnosticMano542List.Liste.Add(tmpDiagnosticMano542)
-                End While
-                ' Test pour fermeture de connection BDD
-                oDRDiagnosticMano542.Close()
-
-                '##################################################################################################################
-
-                ' On récupère les pressions aux tronçons
-                Dim bddCommande6 As DbCommand
-                bddCommande6 = oCsdb.getConnection().CreateCommand
-                bddCommande6.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE DiagnosticTroncons833.idDiagnostic='" & oDiagnostic.id & "'"
-                ' On récupère les résultats
-                Dim oDRDiagnosticTroncon833 As DbDataReader = bddCommande6.ExecuteReader
-                ' Puis on les parcours
-                Dim tmpDiagnosticTroncons833List As New DiagnosticTroncons833List
-                While oDRDiagnosticTroncon833.Read()
-                    Dim tmpDiagnosticTroncons833 As New DiagnosticTroncons833
-                    ' On rempli notre tableau
-                    nColId = 0
-                    While nColId < oDRDiagnosticTroncon833.FieldCount()
-                        If Not oDRDiagnosticTroncon833.IsDBNull(nColId) Then
-                            tmpDiagnosticTroncons833.Fill(oDRDiagnosticTroncon833.GetName(nColId), oDRDiagnosticTroncon833.GetValue(nColId))
-                        End If
-                        nColId = nColId + 1
-                    End While
-                    oDiagnostic.diagnosticTroncons833.Liste.Add(tmpDiagnosticTroncons833)
-                End While
-                ' Test pour fermeture de connection BDD
-                oDRDiagnosticTroncon833.Close()
-
-                '##################################################################################################################
-                'End If Test sur Date de Fin controle
-                'On ajoute notre diag aux résultats
-                arrItems(i) = oDiagnostic
-                i = i + 1
-                ReDim Preserve arrItems(i)
-            End While
-            oDRDiagnostic.Close()
+                End Try
+            Next
             ReDim Preserve arrItems(i - 1)
+
+            'Dim nColId As Integer = 0
+            'While nColId < oDRDiagnostic.FieldCount()
+            '    'Chargement des données dans le Diagnostic
+            '    If Not oDRDiagnostic.IsDBNull(nColId) Then
+            '        Try
+            '            oDiagnostic.Fill(oDRDiagnostic.GetName(nColId), oDRDiagnostic.Item(nColId))
+
+            '        Catch ex As Exception
+
+            '            oDiagnostic.Fill(oDRDiagnostic.GetName(nColId), oDRDiagnostic.GetString(nColId))
+            '        End Try
+            '    End If
+            '    nColId = nColId + 1
+            'End While
+
+            '' If oDiagnostic.controleDateFin >= DateAdd(DateInterval.Month, -4, Date.Today) Then
+            '' On récupère les items du diagnostic
+            'DiagnosticItemManager.getDiagnosticItemByDiagnosticId(oCsdb, oDiagnostic)
+
+            '' On récupère les buses du diagnostic
+            'DiagnosticBusesManager.getDiagnosticBusesByDiagnostic(oCsdb, oDiagnostic)
+
+            ''########################################
+            '' On récupère les mesures help551
+            ''########################################
+            'oDiagnostic.diagnosticHelp551 = DiagnosticHelp551Manager.getDiagnosticHelp551ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp551.HasValue() Then
+            '    'Ajout de l'help dans la liste des diagItems
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp551AsDiagItem())
+            'End If
+
+            ''########################################
+            '' On récupère les mesures help5621
+            ''########################################
+            'oDiagnostic.diagnosticHelp5621 = DiagnosticHelp5621Manager.getDiagnosticHelp5621ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp5621.HasValue() Then
+            '    'Ajout de l'help dans la liste des diagItems
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5621AsDiagItem())
+            'End If
+
+            ''########################################
+            '' On récupère les mesures help552
+            ''########################################
+            'oDiagnostic.diagnosticHelp552 = DiagnosticHelp552Manager.getDiagnosticHelp552ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp552.hasValue() Then
+            '    'Ajout de l'help dans la liste des diagItems
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp552AsDiagItem())
+            'End If
+
+            ''########################################
+            '' On récupère les mesures help5622
+            ''########################################
+            'oDiagnostic.diagnosticHelp5622 = DiagnosticHelp5622Manager.getDiagnosticHelp5622ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp5622.hasValue() Then
+            '    'Ajout de l'help dans la liste des diagItems
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp5622AsDiagItem())
+            'End If
+
+            ''########################################
+            '' On récupère les mesures help811
+            ''########################################
+            'oDiagnostic.diagnosticHelp811 = DiagnosticHelp811Manager.getDiagnosticHelp811ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp811.hasValue() Then
+            '    'Ajout de l'help dans la liste des diagItems
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp811AsDiagItem())
+            'End If
+            ''########################################
+            '' On récupère les mesures help831
+            ''########################################
+            'oDiagnostic.diagnosticHelp8312 = DiagnosticHelp831Manager.getDiagnosticHelp8312ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp8312.hasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8312AsDiagItem())
+            'End If
+            'oDiagnostic.diagnosticHelp8314 = DiagnosticHelp831Manager.getDiagnosticHelp8314ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp8314.hasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp8314AsDiagItem())
+            'End If
+            'oDiagnostic.diagnosticHelp571 = DiagnosticHelp571Manager.getDiagnosticHelp571ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp571.hasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp571.ConvertToDiagnosticItem())
+            'End If
+            'oDiagnostic.diagnosticHelp12123 = DiagnosticHelp12123Manager.getDiagnosticHelp12123ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp12123.hasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12123.ConvertToDiagnosticItem())
+            'End If
+            'oDiagnostic.diagnosticHelp12323 = DiagnosticHelp551Manager.getDiagnosticHelp12323ByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticHelp12323.HasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticHelp12323.ConvertToDiagnosticItem())
+            'End If
+            ''########################################
+            '' On récupère les infos complémentaire
+            ''########################################
+            'oDiagnostic.diagnosticInfosComplementaires = DiagnosticInfosComplementaireManager.getDiagnosticInfosComplementairesByDiagnosticId(oDiagnostic)
+            'If oDiagnostic.diagnosticInfosComplementaires.hasValue() Then
+            '    oDiagnostic.AdOrReplaceDiagItem(oDiagnostic.diagnosticInfosComplementairesAsDiagItem())
+            'End If
+
+            ''##################################################################################################################
+
+            '' On récupère les mesures des mano
+            'Dim bddCommande5 As DbCommand
+            'bddCommande5 = oCsdb.getConnection().CreateCommand()
+            'bddCommande5.CommandText = "SELECT * FROM DiagnosticMano542 WHERE DiagnosticMano542.idDiagnostic='" & oDiagnostic.id & "'"
+            '' On récupère les résultats
+            'Dim oDRDiagnosticMano542 As DbDataReader = bddCommande5.ExecuteReader
+            '' Puis on les parcours
+            'Dim tmpDiagnosticMano542List As New DiagnosticMano542List
+            'While oDRDiagnosticMano542.Read()
+            '    Dim tmpDiagnosticMano542 As New DiagnosticMano542
+            '    ' On rempli notre tableau
+            '    nColId = 0
+            '    While nColId < oDRDiagnosticMano542.FieldCount()
+            '        Select Case oDRDiagnosticMano542.GetName(nColId)
+            '            Case "id"
+            '                tmpDiagnosticMano542.id = oDRDiagnosticMano542.Item(nColId)
+            '            Case "idDiagnostic"
+            '                tmpDiagnosticMano542.idDiagnostic = oDRDiagnosticMano542.Item(nColId).ToString()
+            '            Case "pressionPulve"
+            '                tmpDiagnosticMano542.pressionPulve = oDRDiagnosticMano542.Item(nColId).ToString()
+            '            Case "pressionControle"
+            '                tmpDiagnosticMano542.pressionControle = oDRDiagnosticMano542.Item(nColId).ToString()
+            '            Case "dateModificationCrodip"
+            '                tmpDiagnosticMano542.dateModificationCrodip = CSDate.ToCRODIPString(oDRDiagnosticMano542.Item(nColId).ToString())
+            '            Case "dateModificationAgent"
+            '                tmpDiagnosticMano542.dateModificationAgent = CSDate.ToCRODIPString(oDRDiagnosticMano542.Item(nColId).ToString())
+            '        End Select
+            '        nColId = nColId + 1
+            '    End While
+            '    oDiagnostic.diagnosticMano542List.Liste.Add(tmpDiagnosticMano542)
+            'End While
+            '' Test pour fermeture de connection BDD
+            'oDRDiagnosticMano542.Close()
+
+            ''##################################################################################################################
+
+            '' On récupère les pressions aux tronçons
+            'Dim bddCommande6 As DbCommand
+            'bddCommande6 = oCsdb.getConnection().CreateCommand
+            'bddCommande6.CommandText = "SELECT * FROM DiagnosticTroncons833 WHERE DiagnosticTroncons833.idDiagnostic='" & oDiagnostic.id & "'"
+            '' On récupère les résultats
+            'Dim oDRDiagnosticTroncon833 As DbDataReader = bddCommande6.ExecuteReader
+            '' Puis on les parcours
+            'Dim tmpDiagnosticTroncons833List As New DiagnosticTroncons833List
+            'While oDRDiagnosticTroncon833.Read()
+            '    Dim tmpDiagnosticTroncons833 As New DiagnosticTroncons833
+            '    ' On rempli notre tableau
+            '    nColId = 0
+            '    While nColId < oDRDiagnosticTroncon833.FieldCount()
+            '        If Not oDRDiagnosticTroncon833.IsDBNull(nColId) Then
+            '            Try
+            '                tmpDiagnosticTroncons833.Fill(oDRDiagnosticTroncon833.GetName(nColId), oDRDiagnosticTroncon833.GetValue(nColId))
+
+            '            Catch ex As Exception
+
+            '                tmpDiagnosticTroncons833.Fill(oDRDiagnosticTroncon833.GetName(nColId), oDRDiagnosticTroncon833.GetString(nColId))
+            '            End Try
+            '        End If
+            '        nColId = nColId + 1
+            '    End While
+            '    oDiagnostic.diagnosticTroncons833.Liste.Add(tmpDiagnosticTroncons833)
+            'End While
+            '' Test pour fermeture de connection BDD
+            'oDRDiagnosticTroncon833.Close()
+
+            ''##################################################################################################################
+            ''End If Test sur Date de Fin controle
+            'On ajoute notre diag aux résultats
 
         Catch ex As Exception ' On intercepte l'erreur
             CSDebug.dispFatal("Erreur - DiagnosticManager - getUpdates : " & ex.Message)
@@ -1111,12 +1139,10 @@ Public Class DiagnosticManager
         'Debug.Assert(Not String.IsNullOrEmpty(objid))
         Dim bReturn As Boolean = False
         Dim bcreationDiag As Boolean
+        Dim oCSDb As CSDb = Nothing
         Try
             bcreationDiag = False
             If pDiag.id <> "" Then
-
-                Dim oCSDb As New CSDb(True)
-
                 ' On test si le Diagnostic existe ou non
                 Dim existsDiagnostic As Boolean
                 existsDiagnostic = DiagnosticManager.ExistDiagnostic(pDiag.id)
@@ -1126,6 +1152,7 @@ Public Class DiagnosticManager
                     bcreationDiag = True
                 End If
 
+                oCSDb = New CSDb(True)
                 Dim bddCommande As DbCommand
                 ' On test si la connexion est déjà ouverte ou non
                 bddCommande = oCSDb.getConnection().CreateCommand
@@ -1492,52 +1519,54 @@ Public Class DiagnosticManager
                 If pDiag.uidpulverisateur <> 0 Then
                     paramsQuery2 = paramsQuery2 & " , uidpulverisateur=" & pDiag.uidpulverisateur & ""
                 End If
-
+                CSDebug.dispInfo("DiagnosticManager.save [" & pDiag.id & "]")
                 ' On finalise la requete et en l'execute
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery & " WHERE id='" & pDiag.id & "'"
                 bddCommande.ExecuteNonQuery()
 
+                '               CSDebug.dispInfo("DiagnosticManager.save UPDATE2")
                 bddCommande.CommandText = "UPDATE Diagnostic SET " & paramsQuery2 & " WHERE id='" & pDiag.id & "'"
                 AddParameter(bddCommande, "@HT", pDiag.TotalHT, DbType.Currency)
                 AddParameter(bddCommande, "@TTC", pDiag.TotalTTC, DbType.Currency)
                 bddCommande.ExecuteNonQuery()
 
+                '              CSDebug.dispInfo("DiagnosticManager.save SIGN")
                 If pDiag.SignRIAgent IsNot Nothing Then
-                        bddCommande = oCSDb.getConnection().CreateCommand
-                        bddCommande.CommandText = "UPDATE Diagnostic SET  signRIAgent=@sign WHERE id='" & pDiag.id & "'"
-                        AddParameter(bddCommande, "@sign", pDiag.SignRIAgent, DbType.Binary)
-                        bddCommande.ExecuteNonQuery()
-                    End If
+                    bddCommande = oCSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  signRIAgent=@sign WHERE id='" & pDiag.id & "'"
+                    AddParameter(bddCommande, "@sign", pDiag.SignRIAgent, DbType.Binary)
+                    bddCommande.ExecuteNonQuery()
+                End If
 
-                    If pDiag.SignRIClient IsNot Nothing Then
-                        bddCommande = oCSDb.getConnection().CreateCommand
-                        bddCommande.CommandText = "UPDATE Diagnostic SET  signRIClient=@sign WHERE id='" & pDiag.id & "'"
-                        AddParameter(bddCommande, "@sign", pDiag.SignRIClient, DbType.Binary)
-                        bddCommande.ExecuteNonQuery()
-                    End If
+                If pDiag.SignRIClient IsNot Nothing Then
+                    bddCommande = oCSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  signRIClient=@sign WHERE id='" & pDiag.id & "'"
+                    AddParameter(bddCommande, "@sign", pDiag.SignRIClient, DbType.Binary)
+                    bddCommande.ExecuteNonQuery()
+                End If
 
-                    If pDiag.SignCCAgent IsNot Nothing Then
-                        bddCommande = oCSDb.getConnection().CreateCommand
-                        bddCommande.CommandText = "UPDATE Diagnostic SET  signCCAgent=@sign WHERE id='" & pDiag.id & "'"
-                        AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
+                If pDiag.SignCCAgent IsNot Nothing Then
+                    bddCommande = oCSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  signCCAgent=@sign WHERE id='" & pDiag.id & "'"
+                    AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
 
-                        bddCommande.ExecuteNonQuery()
-                    End If
+                    bddCommande.ExecuteNonQuery()
+                End If
 
-                    If pDiag.SignCCClient IsNot Nothing Then
-                        bddCommande = oCSDb.getConnection().CreateCommand
-                        bddCommande.CommandText = "UPDATE Diagnostic SET  signCCClient=@sign WHERE id='" & pDiag.id & "'"
-                        AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
-                        bddCommande.ExecuteNonQuery()
-                    End If
+                If pDiag.SignCCClient IsNot Nothing Then
+                    bddCommande = oCSDb.getConnection().CreateCommand
+                    bddCommande.CommandText = "UPDATE Diagnostic SET  signCCClient=@sign WHERE id='" & pDiag.id & "'"
+                    AddParameter(bddCommande, "@sign", pDiag.SignCCAgent, DbType.Binary)
+                    bddCommande.ExecuteNonQuery()
+                End If
 
 
 
+                If pDiag.diagnosticItemsLst IsNot Nothing Then
                     ' On enregistre les items du diag
-                    '                CSDebug.dispInfo("Sauvegarde des DiagItem")
+                    '                 CSDebug.dispInfo("Sauvegarde des DiagItem")
 
-                    SaveDiagItems(oCSDb, pDiag, bcreationDiag, bsyncro)
-
+                    SaveDiagItems(pDiag, bcreationDiag, bsyncro)
 
                     'Sauvegarde des Help 551 (Si on a des valeurs pertinentes)
                     If pDiag.diagnosticHelp551 IsNot Nothing Then
@@ -1622,7 +1651,7 @@ Public Class DiagnosticManager
                         End If
                     End If
                     ' On enregistre les buses
-                    'CSDebug.dispInfo("Sauvegarde des buses")
+                    '                 CSDebug.dispInfo("Sauvegarde des buses")
                     '                oCSDb.getInstance()
                     oCSDb.Execute("DELETE FROM diagnosticBusesDetail where idDiagnostic = '" & pDiag.id & "'")
                     oCSDb.Execute("DELETE FROM diagnosticBuses where idDiagnostic = '" & pDiag.id & "'")
@@ -1630,31 +1659,31 @@ Public Class DiagnosticManager
                     If Not pDiag.diagnosticBusesList Is Nothing Then
                         If Not pDiag.diagnosticBusesList.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticBuses In pDiag.diagnosticBusesList.Liste
-                            If Not tmpItemCheck Is Nothing Then
-                                tmpItemCheck.idDiagnostic = pDiag.id
-                                DiagnosticBusesManager.save(tmpItemCheck, oCSDb, bsyncro)
-                            End If
-                        Next
-                        End If
-                    End If
-
-                oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
-                ' On enregistre les mano 5.4.2
-                'CSDebug.dispInfo("Sauvegarde des Mano542")
-                If Not pDiag.diagnosticMano542List Is Nothing Then
-                        If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
-                            For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
                                 If Not tmpItemCheck Is Nothing Then
                                     tmpItemCheck.idDiagnostic = pDiag.id
-                                    DiagnosticMano542Manager.save(tmpItemCheck, oCSDb, bsyncro)
+                                    DiagnosticBusesManager.save(tmpItemCheck, bsyncro)
                                 End If
                             Next
                         End If
                     End If
 
+                    ' On enregistre les mano 5.4.2
+                    '                CSDebug.dispInfo("Sauvegarde des Mano542")
+                    oCSDb.Execute("DELETE FROM diagnosticMano542 where idDiagnostic = '" & pDiag.id & "'")
+                    If Not pDiag.diagnosticMano542List Is Nothing Then
+                        If Not pDiag.diagnosticMano542List.Liste Is Nothing Then
+                            For Each tmpItemCheck As DiagnosticMano542 In pDiag.diagnosticMano542List.Liste
+                                If Not tmpItemCheck Is Nothing Then
+                                    tmpItemCheck.idDiagnostic = pDiag.id
+                                    DiagnosticMano542Manager.save(tmpItemCheck, bsyncro)
+                                End If
+                            Next
+                        End If
+                    End If
+
+                    '               CSDebug.dispInfo("Sauvegarde des Tronçons833")
                     oCSDb.Execute("DELETE FROM diagnosticTroncons833 where idDiagnostic = '" & pDiag.id & "'")
                     ' On enregistre les tronçons 8.3.3
-                    'CSDebug.dispInfo("Sauvegarde des Tronçons833")
                     If Not pDiag.diagnosticTroncons833 Is Nothing Then
                         If Not pDiag.diagnosticTroncons833.Liste Is Nothing Then
                             For Each tmpItemCheck As DiagnosticTroncons833 In pDiag.diagnosticTroncons833.Liste
@@ -1667,34 +1696,38 @@ Public Class DiagnosticManager
                                             tmpItemCheck.idPression = 4
                                         End If
                                     End If
-                                    DiagnosticTroncons833Manager.save(tmpItemCheck, oCSDb, bsyncro)
+                                    DiagnosticTroncons833Manager.save(tmpItemCheck, bsyncro)
                                 End If
                             Next
                         End If
                     End If
-
-                    oCSDb.free()
-                End If
-                bReturn = True
+                End If ' pDiag.diagnosticItemsLst IsNot Nothing
+            End If
+            bReturn = True
         Catch ex As Exception
-            CSDebug.dispFatal("DiagnosticManager(" & pDiag.id & "PropriétaireId= [" & pDiag.proprietaireId & "] PulveId=[" & pDiag.pulverisateurId & "])::save : ", ex)
+            CSDebug.dispFatal("DiagnosticManager.save(" & pDiag.id & "PropriétaireId= [" & pDiag.proprietaireId & "] PulveId=[" & pDiag.pulverisateurId & "]) : ", ex)
             bReturn = False
         End Try
+        If oCSDb IsNot Nothing Then
+            oCSDb.free()
+        End If
         Return bReturn
     End Function
 
-    Public Shared Function SaveDiagItems(pCSDB As CSDb, ByVal pDiagnostic As Diagnostic, ByVal bcreationDiag As Boolean, Optional bsynchro As Boolean = False) As Boolean
-        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
+    Public Shared Function SaveDiagItems(ByVal pDiagnostic As Diagnostic, ByVal bcreationDiag As Boolean, Optional bsynchro As Boolean = False) As Boolean
+        Dim pCSDB As CSDb
         Dim bReturn As Boolean
         Dim oCmd As DbCommand
         Try
-            oCmd = pCSDB.getConnection.CreateCommand()
             Dim tmpNewDiagItemId As String = ""
             'Pour accellérer la sauvegarde en création on récupère le nouvel id des diagItem et on l'incrémentera au fur et à mesure
             tmpNewDiagItemId = pDiagnostic.organismePresId & "-" & pDiagnostic.inspecteurId & "-1"
             If CSDb._DBTYPE <> CSDb.EnumDBTYPE.SQLITE Then
                 tmpNewDiagItemId = DiagnosticItemManager.getNewId(pDiagnostic.organismePresId, pDiagnostic.inspecteurId) 'Calcul du nouvel Id
             End If
+
+            pCSDB = New CSDb(True)
+            oCmd = pCSDB.getConnection.CreateCommand()
             oCmd.CommandText = "DELETE FROM diagnosticItem where idDiagnostic = '" & pDiagnostic.id & "'"
             oCmd.ExecuteNonQuery()
 
@@ -1871,6 +1904,9 @@ Public Class DiagnosticManager
             CSDebug.dispError("DiagnosticManager.SaveDiagItems (" & pDiagnostic.id & ") ERR" & ex.Message)
             bReturn = False
         End Try
+        If pCSDB IsNot Nothing Then
+            pCSDB.free()
+        End If
         Return bReturn
     End Function
 

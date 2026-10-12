@@ -120,10 +120,10 @@ Public Class DiagnosticBusesManager
 #Region "Methodes Locales"
 
 
-    Public Shared Sub save(ByVal poDiagBuses As DiagnosticBuses, pCSDB As CSDb, Optional bSyncro As Boolean = False)
-        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
+    Public Shared Sub save(ByVal poDiagBuses As DiagnosticBuses, Optional bSyncro As Boolean = False)
 
         Dim bddCommande As DbCommand
+        Dim pCSDB As New CSDb(True)
         bddCommande = pCSDB.getConnection().CreateCommand()
         Try
             Dim nEnr As Integer
@@ -336,7 +336,9 @@ Public Class DiagnosticBusesManager
         Catch ex As Exception
             CSDebug.dispFatal("DiagBusesManager.save : " & ex.Message.ToString)
         End Try
-
+        If pCSDB IsNot Nothing Then
+            pCSDB.free()
+        End If
     End Sub
 
     Public Shared Sub setSynchro(ByVal objDiagnosticBuses As DiagnosticBuses)
@@ -380,9 +382,11 @@ Public Class DiagnosticBusesManager
 
     End Function
 
-    Public Shared Function getDiagnosticBusesByDiagnostic(oCSDB As CSDb, pDiagnostic As Diagnostic) As Boolean
+    Public Shared Function getDiagnosticBusesByDiagnostic(pDiagnostic As Diagnostic) As Boolean
         Dim bReturn As Boolean
+        Dim ocsdb As CSDb = Nothing
         Try
+            ocsdb = New CSDb(True)
             pDiagnostic.diagnosticBusesList.Liste.Clear()
             'Récupération du nbre de Lots de Buses
             setDiagnosticNbreLotsBuses(pDiagnostic)
@@ -391,40 +395,46 @@ Public Class DiagnosticBusesManager
             For nLot As Integer = 1 To pDiagnostic.NbreLotsBuses
                 'Recupération des infos de Buses
                 Dim nColId As Integer
-                Dim bddCommande3 As DbCommand = oCSDB.getConnection().CreateCommand()
+                Dim bddCommande3 As DbCommand = ocsdb.getConnection().CreateCommand()
                 bddCommande3.CommandText = "SELECT * FROM DiagnosticBuses WHERE DiagnosticBuses.idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = '" & nLot & "'"
-                Dim oDRDiagnosticBuses As DbDataReader = bddCommande3.ExecuteReader
-                'Normalement on en a qu'un type de buse / Lot mais suite à un bug (synchro) il se peut qu'on en ait plusieurs
-                '=> on cumule les infos dans le même objet
                 Dim oDiagnosticBuses As New DiagnosticBuses
-                While oDRDiagnosticBuses.Read()
-                    nColId = 0
-                    While nColId < oDRDiagnosticBuses.FieldCount()
-                        If Not oDRDiagnosticBuses.IsDBNull(nColId) Then
-                            oDiagnosticBuses.Fill(oDRDiagnosticBuses.GetName(nColId), oDRDiagnosticBuses.GetValue(nColId))
-                        End If
-                        nColId = nColId + 1
+                Using oDRDiagnosticBuses As DbDataReader = bddCommande3.ExecuteReader
+                    'Normalement on en a qu'un type de buse / Lot mais suite à un bug (synchro) il se peut qu'on en ait plusieurs
+                    '=> on cumule les infos dans le même objet
+                    While oDRDiagnosticBuses.Read()
+                        nColId = 0
+                        While nColId < oDRDiagnosticBuses.FieldCount()
+                            If Not oDRDiagnosticBuses.IsDBNull(nColId) Then
+                                Try
+                                    oDiagnosticBuses.Fill(oDRDiagnosticBuses.GetName(nColId), oDRDiagnosticBuses.GetValue(nColId))
+
+                                Catch ex As Exception
+
+                                    oDiagnosticBuses.Fill(oDRDiagnosticBuses.GetName(nColId), oDRDiagnosticBuses.GetString(nColId))
+                                End Try
+                            End If
+                            nColId = nColId + 1
+                        End While
                     End While
-                End While
-                oDRDiagnosticBuses.Close()
+                End Using
 
                 'On ajoute la buse dans la liste 
                 pDiagnostic.diagnosticBusesList.Liste.Add(oDiagnosticBuses)
 
                 'On va ensuite chercher les infos de mesure de ce Lot
-                Dim bddCommande4 As DbCommand = oCSDB.getConnection().CreateCommand()
+                Dim bddCommande4 As DbCommand = ocsdb.getConnection().CreateCommand()
                 bddCommande4.CommandText = "SELECT * FROM DiagnosticBusesDetail WHERE idDiagnostic='" & pDiagnostic.id & "' AND IDLOT = " & nLot & " ORDER BY IDBUSE"
-                Dim oDRDiagBusesDetail As DbDataReader = bddCommande4.ExecuteReader
-                Dim tmpBuseDetail As DiagnosticBusesDetail
-                While oDRDiagBusesDetail.Read()
-                    'Creation de l'objet BuseDetail pour recevoir la mesure
-                    tmpBuseDetail = New DiagnosticBusesDetail()
-                    ' On remplit L'object
-                    tmpBuseDetail.FillDR(oDRDiagBusesDetail)
-                    'On l'ajoute à la collection de mesures de la buse
-                    oDiagnosticBuses.diagnosticBusesDetailList.Liste.Add(tmpBuseDetail)
-                End While
-                oDRDiagBusesDetail.Close()
+                Using oDRDiagBusesDetail As DbDataReader = bddCommande4.ExecuteReader
+                    Dim tmpBuseDetail As DiagnosticBusesDetail
+                    While oDRDiagBusesDetail.Read()
+                        'Creation de l'objet BuseDetail pour recevoir la mesure
+                        tmpBuseDetail = New DiagnosticBusesDetail()
+                        ' On remplit L'object
+                        tmpBuseDetail.FillDR(oDRDiagBusesDetail)
+                        'On l'ajoute à la collection de mesures de la buse
+                        oDiagnosticBuses.diagnosticBusesDetailList.Liste.Add(tmpBuseDetail)
+                    End While
+                End Using
 
             Next nLot
 
@@ -433,6 +443,9 @@ Public Class DiagnosticBusesManager
             CSDebug.dispError("DiagnosticBusesManager.getDiagnosticBusesByDiagnosticId ERR" & ex.Message.ToString())
             bReturn = False
         End Try
+        If ocsdb IsNot Nothing Then
+            ocsdb.free()
+        End If
         Return bReturn
     End Function
     Public Shared Function getDiagnosticBusesById(ByVal diagnosticbuses_id As Integer, ByVal pidDiagnostic As String) As DiagnosticBuses

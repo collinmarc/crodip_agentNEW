@@ -9,6 +9,7 @@
     ' NetworkAvailabilityChanged : déclenché lorsque la connexion réseau est connectée ou déconnectée.
     Partial Friend Class MyApplication
 
+
     End Class
 
 

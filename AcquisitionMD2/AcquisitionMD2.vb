@@ -1,13 +1,11 @@
 ﻿Imports CRODIPAcquisition
 Imports CsvHelper
 Imports CsvHelper.Configuration
-Imports NLog
 Imports System.IO
 Imports System.Diagnostics
 
 Public Class AcquisitionMD2
     Implements ICRODIPAcquisition
-    Private Shared logger As Logger = LogManager.GetCurrentClassLogger()
     Private bFichiercsvCree As Boolean = False
 
     Public Sub New()
@@ -25,14 +23,14 @@ Public Class AcquisitionMD2
     End Property
 
     Function GetValues() As List(Of AcquisitionValue) Implements ICRODIPAcquisition.GetValues
-        logger.Info("AcquisitionMD2.GetValues Start")
+        My.Application.Log.WriteEntry("AcquisitionMD2.GetValues Start")
 
         Dim oReturn As New List(Of AcquisitionValue)
 
         'Transfert des donnés depuis la base ACCESS vers le fichier CSV
         If Not bFichiercsvCree Then
             If System.IO.File.Exists(My.Settings.ProgTransfert) Then
-                logger.Info("AcquisitionMD2.GetValues Lancement de " & My.Settings.ProgTransfert)
+                My.Application.Log.WriteEntry("AcquisitionMD2.GetValues Lancement de " & My.Settings.ProgTransfert)
                 Dim pInfo As ProcessStartInfo = New ProcessStartInfo()
                 pInfo.FileName = My.Settings.ProgTransfert
                 Dim p As Process = Process.Start(pInfo)
@@ -80,14 +78,14 @@ Public Class AcquisitionMD2
                 oReturn.Add(tmpResponse)
             Next
         Else
-            logger.Info("AcquisitionMD2.getValues fichier CSV " & My.Settings.CSVMD2 & " introuvable")
+            My.Application.Log.WriteEntry("AcquisitionMD2.getValues fichier CSV " & My.Settings.CSVMD2 & " introuvable")
         End If
         Return oReturn
 
     End Function
 
     Public Function GetNbNiveaux() As Integer Implements ICRODIPAcquisition.GetNbNiveaux
-        logger.Info("AcquisitionMD2.getnbNiveaux Start")
+        My.Application.Log.WriteEntry("AcquisitionMD2.getnbNiveaux Start")
         Dim oValues As List(Of AcquisitionValue)
         Dim prevNiveau As Integer = -1
         Dim nNiveaux As Integer = 0
@@ -99,12 +97,12 @@ Public Class AcquisitionMD2
                 nNiveaux = nNiveaux + 1
             End If
         Next
-        logger.Info("AcquisitionMD2.getnbNiveaux return" & nNiveaux)
+        My.Application.Log.WriteEntry("AcquisitionMD2.getnbNiveaux return" & nNiveaux)
         Return nNiveaux
     End Function
 
     Public Function GetNbBuses(pNiveau As Integer) As Integer Implements ICRODIPAcquisition.GetNbBuses
-        logger.Info("AcquisitionMD2.getnbBuses Start")
+        My.Application.Log.WriteEntry("AcquisitionMD2.getnbBuses Start")
         Dim oValues As List(Of AcquisitionValue)
         Dim nBuses As Integer = 0
 
@@ -114,7 +112,7 @@ Public Class AcquisitionMD2
                 nBuses = nBuses + 1
             End If
         Next
-        logger.Info("AcquisitionMD2.getnbBuses return" & nBuses)
+        My.Application.Log.WriteEntry("AcquisitionMD2.getnbBuses return" & nBuses)
         Return nBuses
     End Function
 

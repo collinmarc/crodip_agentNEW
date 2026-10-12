@@ -68,7 +68,6 @@ Public Class DiagnosticInfosComplementaires
         Debug.Assert(Not String.IsNullOrEmpty(idDiag), "IdDiag must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pStructureId), "pStructureId must be set")
         Debug.Assert(Not String.IsNullOrEmpty(pAgentId), "pAgentId must be set")
-        Debug.Assert(pCSDB.isOpen(), "La Connection Doit être ouverte")
 
         Dim bReturn As Boolean
         Try
@@ -94,7 +93,7 @@ Public Class DiagnosticInfosComplementaires
                     oDiagItem.id = id
                 End If
             End If
-            bReturn = DiagnosticItemManager.save(pCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(oDiagItem)
             id = oDiagItem.id
         Catch ex As Exception
             CSDebug.dispError("DiagnosticInfosComplementaires.Save ERR :" & ex.Message)

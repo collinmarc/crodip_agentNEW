@@ -1,5 +1,6 @@
 Imports System.IO
-Imports Microsoft.Data.Sqlite
+Imports System.Data.Common
+Imports System.Data.SQLite
 
 Public Class UpdateInfo
 
@@ -164,9 +165,9 @@ Public Class UpdateInfo
                 If Not ligne = "" And Not ligne.StartsWith("--") Then
                     Try
                         Dim _dbConnection As SqliteConnection
-                        Dim oCmd As SqliteCommand
-                        _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
-                        Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
+                        Dim oCmd As SQLiteCommand
+                        _dbConnection = New SQLiteConnection()
+                        Dim oBuider As New SQLiteConnectionStringBuilder()
                         oBuider.DataSource = "bdd/" & dbName & dbExtension
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString

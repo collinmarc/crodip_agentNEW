@@ -1,7 +1,6 @@
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
-Imports Ionic.Zip
 Imports CRODIPWS
 
 Public Class accueil
@@ -2817,7 +2816,7 @@ Public Class accueil
         Me.btn_parametrage_tarifs.TabIndex = 23
         Me.btn_parametrage_tarifs.Text = "     Tarifs appliqués"
         Me.btn_parametrage_tarifs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_parametrage_tarifs.Visible = Global.Crodip_agent.MySettings.Default.GestiondeTarifActif
+        Me.btn_parametrage_tarifs.Visible = Global.Crodip_agent.My.Settings.GestiondeTarifActif
         '
         'btn_parametrage_coordonneesOrganisme
         '
@@ -2890,7 +2889,7 @@ Public Class accueil
         Me.btn_parametrage_verificationManometres.TabIndex = 23
         Me.btn_parametrage_verificationManometres.Text = "    Manomètres"
         Me.btn_parametrage_verificationManometres.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_parametrage_verificationManometres.Visible = Global.Crodip_agent.MySettings.Default.GestionMetrologieActif
+        Me.btn_parametrage_verificationManometres.Visible = Global.Crodip_agent.My.Settings.GestionMetrologieActif
         '
         'btn_parametrage_verificationBancs
         '
@@ -2903,7 +2902,7 @@ Public Class accueil
         Me.btn_parametrage_verificationBancs.TabIndex = 23
         Me.btn_parametrage_verificationBancs.Text = "    Bancs"
         Me.btn_parametrage_verificationBancs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btn_parametrage_verificationBancs.Visible = Global.Crodip_agent.MySettings.Default.GestionMetrologieActif
+        Me.btn_parametrage_verificationBancs.Visible = Global.Crodip_agent.My.Settings.GestionMetrologieActif
         '
         'tabControl_Statistiques
         '
@@ -6863,7 +6862,8 @@ Public Class accueil
     Private Sub dgvPulveExploit_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvPulveExploit.RowPrePaint
         Dim index As Integer = e.RowIndex
         Dim opulve As Pulverisateur = m_BindingListOfPulve(index)
-        If opulve.dateProchainControleAsDate < Date.Now Or opulve.controleEtat = Pulverisateur.controleEtatNOKCC Or opulve.controleEtat = Pulverisateur.controleEtatNOKCV Then
+        If opulve IsNot Nothing Then
+            If opulve.dateProchainControleAsDate < Date.Now Or opulve.controleEtat = Pulverisateur.controleEtatNOKCC Or opulve.controleEtat = Pulverisateur.controleEtatNOKCV Then
             '            dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Black
             dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.OrangeRed
             dgvPulveExploit.Rows(index).DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -6877,12 +6877,13 @@ Public Class accueil
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.White
             dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = GLOB_BLUE_CROPDIP
         End If
-        'If opulve.dateProchainControleAsDate.HasValue And opulve.dateProchainControleAsDate < Date.Now Then
-        '    dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Red
-        '    dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = Color.White
-        '    dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.Red
-        '    dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Color.FromArgb(2, 129, 198)
-        'End If
+            'If opulve.dateProchainControleAsDate.HasValue And opulve.dateProchainControleAsDate < Date.Now Then
+            '    dgvPulveExploit.Rows(index).DefaultCellStyle.ForeColor = Color.Red
+            '    dgvPulveExploit.Rows(index).DefaultCellStyle.BackColor = Color.White
+            '    dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionForeColor = Color.Red
+            '    dgvPulveExploit.Rows(index).DefaultCellStyle.SelectionBackColor = Color.FromArgb(2, 129, 198)
+            'End If
+        End If
     End Sub
     Private Sub dgvPulveExploit_CellValueNeeded(sender As Object, e As DataGridViewCellValueEventArgs) Handles dgvPulveExploit.CellValueNeeded
         If e.RowIndex >= 0 And e.ColumnIndex = IconPulveCol.Index Then

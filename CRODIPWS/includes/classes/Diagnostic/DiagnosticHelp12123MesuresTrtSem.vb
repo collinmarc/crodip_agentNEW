@@ -268,7 +268,13 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDr.FieldCount()
                     If Not oDr.IsDBNull(tmpColId) Then
-                        oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+                        Try
+                            oDiagItem.Fill(oDr.GetName(tmpColId), oDr.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            oDiagItem.Fill(oDr.GetName(tmpColId), oDr.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -314,7 +320,7 @@ Public Class DiagnosticHelp12123MesuresTrtSem
                 End If
             End If
             Dim oCSDB As New CSDb(True)
-            bReturn = DiagnosticItemManager.save(oCSDB, oDiagItem)
+            bReturn = DiagnosticItemManager.save(oDiagItem)
             oCSDB.free()
         Catch ex As Exception
             CSDebug.dispError("DiagnosticHelp12123Mesure.Save ERR :" & ex.Message)

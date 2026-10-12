@@ -47,7 +47,11 @@ Public Class DBVersionManagerManager
                 Dim tmpcolID As Integer = 0
                 While tmpcolID < oDBReader.FieldCount()
                     If Not oDBReader.IsDBNull(tmpcolID) Then
-                        oDBVersion.Fill(oDBReader.GetName(tmpcolID), oDBReader.Item(tmpcolID))
+                        Try
+                            oDBVersion.Fill(oDBReader.GetName(tmpcolID), oDBReader.Item(tmpcolID))
+                        Catch
+                            oDBVersion.Fill(oDBReader.GetName(tmpcolID), oDBReader.GetString(tmpcolID))
+                        End Try
                     End If
                     tmpcolID = tmpcolID + 1
                 End While

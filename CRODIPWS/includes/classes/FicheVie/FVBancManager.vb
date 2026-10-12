@@ -471,7 +471,13 @@ Public Class FVBancManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -522,7 +528,13 @@ Public Class FVBancManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+                            Try
+                                tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetValue(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpFVBanc.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -560,7 +572,13 @@ Public Class FVBancManager
                 Dim oFVBanc As New FVBanc(New Agent())
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDR.FieldCount()
-                    oFVBanc.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+                    Try
+                        oFVBanc.Fill(oDR.GetName(tmpColId), oDR.Item(tmpColId))
+
+                    Catch ex As Exception
+
+                        oFVBanc.Fill(oDR.GetName(tmpColId), oDR.GetString(tmpColId))
+                    End Try
                     tmpColId = tmpColId + 1
                 End While
                 lstResponse.Add(oFVBanc)

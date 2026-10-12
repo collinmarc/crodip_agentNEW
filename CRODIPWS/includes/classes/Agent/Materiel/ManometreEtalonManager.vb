@@ -500,7 +500,13 @@ Public Class ManometreEtalonManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpManometreEtalon.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

@@ -5671,7 +5671,7 @@ Public Class DiagnosticManagerTest
         oDiagBusesList = DiagnosticBusesManager.WSGetList(oDiag.uid, oDiag.aid)
         Dim oCSDB As New CSDb(True)
         For Each oDiagBuses As DiagnosticBuses In oDiagBusesList.Liste
-            DiagnosticBusesManager.save(oDiagBuses, oCSDB)
+            DiagnosticBusesManager.save(oDiagBuses)
         Next
         oCSDB.free()
         Dim oDiagBusesDetailList As DiagnosticBusesDetailList

@@ -304,7 +304,12 @@ Public Class AgentManager
                 tmpColId = 0
                 While tmpColId < dataListProfils.FieldCount()
                     If Not dataListProfils.IsDBNull(tmpColId) Then
-                        objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.Item(tmpColId))
+                        Try
+                            objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.Item(tmpColId))
+                        Catch
+                            objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.GetString(tmpColId))
+                        End Try
+
                     End If
                     tmpColId = tmpColId + 1
 
@@ -373,7 +378,13 @@ Public Class AgentManager
                 tmpColId = 0
                 While tmpColId < dataListProfils.FieldCount()
                     If Not dataListProfils.IsDBNull(tmpColId) Then
-                        objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.Item(tmpColId))
+                        Try
+                            objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+                            objAgent.Fill(dataListProfils.GetName(tmpColId), dataListProfils.GetString(tmpColId))
+
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
 
@@ -414,7 +425,13 @@ Public Class AgentManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+                            tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -456,7 +473,13 @@ Public Class AgentManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            Try
+                                tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                            Catch ex As Exception
+                                tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -479,7 +502,6 @@ Public Class AgentManager
     ''' <param name="pNumeronational"></param>
     ''' <param name="pNom"></param>
     ''' <param name="pIdStructure"></param>
-    ''' <returns></returns>
     Private Shared Sub createAgent(ByVal id As Integer, ByVal pNumeronational As String, ByVal pNom As String, pIdStructure As Integer, puidStructure As Integer)
         Debug.Assert(Not String.IsNullOrEmpty(pNumeronational), " le paramètre NumeroNational doit être initialisé")
         Dim oCsdb As CSDb = Nothing
@@ -699,7 +721,13 @@ Public Class AgentManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+                            tmpAgent.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

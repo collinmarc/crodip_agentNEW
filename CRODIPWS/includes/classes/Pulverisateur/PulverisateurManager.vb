@@ -555,7 +555,13 @@ Public Class PulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDataReader.FieldCount()
                     If Not oDataReader.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+                        Try
+                            tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -675,7 +681,13 @@ Public Class PulverisateurManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            Try
+                                tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -744,7 +756,13 @@ Public Class PulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < oDataReader.FieldCount()
                     If Not oDataReader.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+                        Try
+                            tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpPulverisateur.Fill(oDataReader.GetName(tmpColId), oDataReader.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -797,7 +815,13 @@ Public Class PulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -842,7 +866,13 @@ Public Class PulverisateurManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpPulverisateur.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While

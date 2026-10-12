@@ -350,9 +350,11 @@ Public Class [Structure]
     End Property
     Public Sub LireDernierNumFact()
         Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-        Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/derniernumero")
-        If x IsNot Nothing Then
-            DernierNumFact = x.InnerText
+        If FACTURATION_XML_CONFIG.Nomfichier <> "" Then
+            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/derniernumero")
+            If x IsNot Nothing Then
+                DernierNumFact = x.InnerText
+            End If
         End If
     End Sub
     Public Sub SauverDernierNumFact()
@@ -363,9 +365,11 @@ Public Class [Structure]
         Get
             Dim sReturn As Boolean = False
             Dim FACTURATION_XML_CONFIG As CSXml = New CSXml(GlobalsCRODIP.GLOB_STR_FACTURATIONCONFIG_FILENAME)
-            Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/isActive")
-            If x IsNot Nothing Then
-                sReturn = CBool(x.InnerText)
+            If FACTURATION_XML_CONFIG.Nomfichier <> "" Then
+                Dim x As Xml.XmlNode = FACTURATION_XML_CONFIG.getXmlNode("/root/isActive")
+                If x IsNot Nothing Then
+                    sReturn = CBool(x.InnerText)
+                End If
             End If
             Return sReturn
         End Get

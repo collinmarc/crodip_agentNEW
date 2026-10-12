@@ -349,5 +349,7 @@ Public Class parentContener
 
     End Sub
 
-
+    Private Sub parentContener_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        CSDebugSynchro.dispSynchro("</SESSSION >")
+    End Sub
 End Class

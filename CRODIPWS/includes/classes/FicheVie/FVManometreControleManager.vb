@@ -433,7 +433,13 @@ Public Class FVManometreControleManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -477,7 +483,13 @@ Public Class FVManometreControleManager
                 Dim tmpColId As Integer = 0
                 While tmpColId < tmpListProfils.FieldCount()
                     If Not tmpListProfils.IsDBNull(tmpColId) Then
-                        tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                        Try
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                        Catch ex As Exception
+
+                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                        End Try
                     End If
                     tmpColId = tmpColId + 1
                 End While
@@ -559,7 +571,13 @@ Public Class FVManometreControleManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            Try
+                                tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While
@@ -599,7 +617,13 @@ Public Class FVManometreControleManager
                     Dim tmpColId As Integer = 0
                     While tmpColId < tmpListProfils.FieldCount()
                         If Not tmpListProfils.IsDBNull(tmpColId) Then
-                            tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+                            Try
+                                tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.Item(tmpColId))
+
+                            Catch ex As Exception
+
+                                tmpFVManometreControle.Fill(tmpListProfils.GetName(tmpColId), tmpListProfils.GetString(tmpColId))
+                            End Try
                         End If
                         tmpColId = tmpColId + 1
                     End While

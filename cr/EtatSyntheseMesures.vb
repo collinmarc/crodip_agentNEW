@@ -37,7 +37,7 @@ Public Class EtatSyntheseMesures
                     r1.Close()
                 End Using
                 m_oReportDocument = New ReportDocument
-                m_oReportDocument.Load(MySettings.Default.RepertoireParametres & "/" & strReportName)
+                m_oReportDocument.Load(My.Settings.RepertoireParametres & "/" & strReportName)
                 'Dim olst As ReportObjects
                 'For Each oSubReport As ReportDocument In m_oReportDocument.Subreports
                 '    If oSubReport.Name = "cr_syntheseBuses10.rpt" Then
