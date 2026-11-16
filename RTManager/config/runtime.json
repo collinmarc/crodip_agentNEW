@@ -1,0 +1,372 @@
+{
+  "version": "2.3.0-RC42",
+  "status": "Release Candidate - RC42 - Runtime Hardening & Version Consistency",
+  "build": "2026.09.29.041",
+  "paths": {
+    "homeDefault": "C:\\Program Files\\CRODIP",
+    "dataDefault": "C:\\ProgramData\\CRODIP",
+    "userDefault": "%LOCALAPPDATA%\\CRODIP"
+  },
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "maxFileSizeMB": 5,
+    "keepRotatedFiles": 10
+  },
+  "startup": {
+    "startDockerDesktopAutomatically": true,
+    "dockerStartupTimeoutSeconds": 120,
+    "openBrowserAutomatically": true,
+    "frontendUrl": "http://localhost:9110",
+    "backendHealthUrl": "http://localhost:8110/health"
+  },
+  "update": {
+    "backupBeforeUpdate": true,
+    "rollbackOnFailure": true
+  },
+  "backup": {
+    "modes": [
+      "quick",
+      "full"
+    ],
+    "defaultMode": "quick",
+    "explicitEmptyDirectoryEntries": true,
+    "validateRequiredEntries": true
+  },
+  "quality": {
+    "strictMode": true,
+    "explicitModuleExports": true,
+    "nestedModuleImports": false,
+    "bootstrapCommandGuard": true
+  },
+  "health": {
+    "reportsRoot": "logs/reports",
+    "historyEnabled": true,
+    "quietMode": true,
+    "scoreEnabled": true
+  },
+  "docker": {
+    "projectName": "crodip-runtime-local",
+    "mode": "compose",
+    "containers": {
+      "backend": {
+        "displayName": "API Backend",
+        "containerName": "crodip-runtime-local-backend-1"
+      },
+      "frontend": {
+        "displayName": "Frontend",
+        "containerName": "crodip-runtime-local-frontend-1"
+      }
+    },
+    "reportsRoot": "logs/reports",
+    "deploymentMode": "auto",
+    "registry": "ghcr.io",
+    "registryOwner": "idwebconcept",
+    "offlineImagesRoot": "images",
+    "imagesManifest": "images/images-manifest.json",
+    "provider": "desktop",
+    "supportedProviders": [
+      "desktop",
+      "ubuntu"
+    ],
+    "wslDistribution": "Ubuntu",
+    "runtimeTarget": "local",
+    "topology": {
+      "local": {
+        "composeProject": "crodip-runtime-local",
+        "frontendPort": 9110,
+        "backendPort": 8110,
+        "database": "sqlite",
+        "installedByDefault": true
+      },
+      "central": {
+        "composeProject": "crodip-runtime-central",
+        "frontendPort": 9120,
+        "backendPort": 8120,
+        "database": "postgresql",
+        "postgresImage": "postgres:17",
+        "managedByRuntime": true,
+        "installedByDefault": false,
+        "simulation": true
+      }
+    },
+    "imageTag": "2.3.0-dev.4",
+    "imageRepositories": {
+      "local": {
+        "backend": "ghcr.io/idwebconcept/crodip-local-backend",
+        "frontend": "ghcr.io/idwebconcept/crodip-local-frontend"
+      },
+      "central": {
+        "backend": "ghcr.io/idwebconcept/crodip-central-backend",
+        "frontend": "ghcr.io/idwebconcept/crodip-central-frontend"
+      }
+    },
+    "imageReferenceMode": "digest",
+    "activeLifecycle": "TEST",
+    "lifecyclePorts": {
+      "DEV": {
+        "local": {
+          "frontend": 9010,
+          "backend": 8010
+        },
+        "central": {
+          "frontend": 9020,
+          "backend": 8020
+        }
+      },
+      "TEST": {
+        "local": {
+          "frontend": 9110,
+          "backend": 8110
+        },
+        "central": {
+          "frontend": 9120,
+          "backend": 8120
+        }
+      },
+      "PREPROD": {
+        "local": {
+          "frontend": 9210,
+          "backend": 8210
+        },
+        "central": {
+          "frontend": 9220,
+          "backend": 8220
+        }
+      },
+      "PROD": {
+        "local": {
+          "frontend": 9310,
+          "backend": 8310
+        },
+        "central": {
+          "frontend": 9320,
+          "backend": 8320
+        }
+      }
+    },
+    "officialImages": {
+      "local": {
+        "backend": {
+          "repository": "ghcr.io/idwebconcept/crodip-local-backend",
+          "digest": "sha256:bbacd7a66e4fe808ec95ad872c5c0c324c127da4c74903a999c0dc5cb8449020",
+          "reference": "ghcr.io/idwebconcept/crodip-local-backend@sha256:bbacd7a66e4fe808ec95ad872c5c0c324c127da4c74903a999c0dc5cb8449020"
+        },
+        "frontend": {
+          "repository": "ghcr.io/idwebconcept/crodip-local-frontend",
+          "digest": "sha256:887cfc88d9fd308345774785aa76ff9fac32ab5b9769a16da71badaaa9507eaf",
+          "reference": "ghcr.io/idwebconcept/crodip-local-frontend@sha256:887cfc88d9fd308345774785aa76ff9fac32ab5b9769a16da71badaaa9507eaf"
+        }
+      },
+      "central": {
+        "backend": {
+          "repository": "ghcr.io/idwebconcept/crodip-central-backend",
+          "digest": "sha256:5d50f4d1f13b6e2f7d9e891b60d6fa5a1f77b05108a1fbbd12a8ed6e0565534e",
+          "reference": "ghcr.io/idwebconcept/crodip-central-backend@sha256:5d50f4d1f13b6e2f7d9e891b60d6fa5a1f77b05108a1fbbd12a8ed6e0565534e"
+        },
+        "frontend": {
+          "repository": "ghcr.io/idwebconcept/crodip-central-frontend",
+          "digest": "sha256:c456dc206384ac729837e6336cc548be65c1797fe7225b685c533c521f28ce99",
+          "reference": "ghcr.io/idwebconcept/crodip-central-frontend@sha256:c456dc206384ac729837e6336cc548be65c1797fe7225b685c533c521f28ce99"
+        }
+      }
+    }
+  },
+  "application": {
+    "version": "2.3.0-dev.4",
+    "qualification": "TECHNICAL_TEST_DATA_FOUNDATION",
+    "businessQualification": "NOT_APPLICABLE",
+    "releaseChannel": "TEST"
+  },
+  "release": {
+    "mode": "official-digest-pin",
+    "buildPolicy": "build-once-promote-same-digest",
+    "runNumber": 15,
+    "runId": "36452467983",
+    "commit": "53928c1f30a8a90cc6a1cf467d5c332f10494a80",
+    "officialStatus": "TEST TECHNICALLY QUALIFIED",
+    "promotionToPreprodOrProdAllowed": false
+  },
+  "qualification": {
+    "enabled": true,
+    "lifecycle": "TEST",
+    "statusOnSuccess": "RUNTIME TEST TECHNICALLY QUALIFIED",
+    "artifact": "C:\\ProgramData\\CRODIP\\qualification\\runtime-qualification.json",
+    "httpTimeoutSeconds": 10,
+    "functionalQualification": "NOT_APPLICABLE"
+  },
+  "releaseUpdate": {
+    "enabled": true,
+    "sourceMode": "github-cli-first",
+    "githubRepository": "IDWEBCONCEPT/crodip-saas",
+    "githubBranch": "main",
+    "githubPinPath": "config/official-release-pin.json",
+    "incomingPinPath": "C:\\ProgramData\\CRODIP\\release\\incoming\\official-release-pin.json",
+    "cachedPinPath": "C:\\ProgramData\\CRODIP\\release\\current\\official-release-pin.json",
+    "historyRoot": "C:\\ProgramData\\CRODIP\\release-history",
+    "installGitHubCliWithWinget": true,
+    "pullBeforeSwitch": true,
+    "preserveCentralPostgresVolume": true,
+    "qualificationAfterDeployment": true,
+    "officialPinSchemaVersion": 1
+  },
+  "technicalComponents": {
+    "githubCli": {
+      "managed": true,
+      "wingetId": "GitHub.cli",
+      "freshInstall": true,
+      "uninstallSupported": true,
+      "installIfMissing": true
+    },
+    "dockerDesktop": {
+      "managed": true,
+      "wingetId": "Docker.DockerDesktop",
+      "uninstallSupported": true,
+      "freshInstall": true,
+      "installIfMissing": true,
+      "engineStartupTimeoutSeconds": 120,
+      "wingetProgressIntervalSeconds": 15,
+      "wingetLogsRoot": "C:\\ProgramData\\CRODIP\\logs",
+      "preventConcurrentWinget": true,
+      "wingetInactivityTimeoutSeconds": 900,
+      "wingetMaximumDurationSeconds": 0,
+      "wingetSupervisionMode": "observable-activity",
+      "slowDownloadSupported": true,
+      "dockerCliDetection": {
+        "strategy": [
+          "session-path",
+          "program-files-standard-path"
+        ],
+        "standardPath": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+        "refreshSessionPath": true,
+        "centralizedResolver": "Get-CrodipDockerCliExecutable"
+      }
+    },
+    "wsl2": {
+      "managed": true,
+      "uninstallSupported": true,
+      "destructiveWarning": true
+    },
+    "ubuntuWsl": {
+      "managed": true,
+      "uninstallSupported": true,
+      "destructiveWarning": true
+    }
+  },
+  "testOverride": {
+    "active": false,
+    "source": "OFFICIAL",
+    "note": "RC34: bidirectional TEST release selection. Previous and later successful built runs are supported without changing the official pin."
+  },
+  "releaseSelection": {
+    "enabled": true,
+    "lifecycle": "TEST",
+    "allowPreviousSuccessfulBuild": true,
+    "allowLaterSuccessfulBuild": true,
+    "requireSuccessfulOfficialBuildWorkflow": true,
+    "requireReleaseManifest": true,
+    "requireDigestReferences": true,
+    "modifyOfficialPin": false,
+    "preserveCentralPostgresVolume": true,
+    "qualificationAfterDeployment": true,
+    "warning": "Changing application release may require a database schema compatible with the selected build."
+  },
+  "compatibility": {
+    "devKitVersion": "6.3.3",
+    "qualifiedRevision": "Migration Compatibility Foundation + Port Guard",
+    "officialBuild": 15,
+    "applicationVersion": "2.3.0-dev.4"
+  },
+  "databaseVerification": {
+    "enabled": true,
+    "local": {
+      "engine": "SQLite",
+      "project": "crodip-runtime-local",
+      "backendService": "backend",
+      "healthDbUrl": "http://localhost:8110/health/db",
+      "expectedOfficialAlembicHead": "ecd67252fd57"
+    },
+    "central": {
+      "engine": "PostgreSQL",
+      "project": "crodip-runtime-central",
+      "backendService": "backend",
+      "postgresService": "postgres",
+      "healthDbUrl": "http://localhost:8120/health/db",
+      "expectedOfficialAlembicHead": "7544a84c3691"
+    },
+    "policy": {
+      "readOnlyChecks": true,
+      "verifyAfterReleaseSwitch": true,
+      "detectDatabaseUrlFromContainer": true,
+      "detectInstalledTopologies": true,
+      "notDeployedIsFailure": false,
+      "fixedAlembicHeadOnlyForOfficialBuild14": false,
+      "alternateBuildHeadMode": "detect-and-report",
+      "releaseExpectedHeadRequired": true
+    }
+  },
+  "databaseMigration": {
+    "enabled": true,
+    "mode": "upgrade-head-only",
+    "dynamicHeadFromActiveImage": true,
+    "automaticDowngrade": false,
+    "local": {
+      "project": "crodip-runtime-local",
+      "service": "backend",
+      "alembicIni": "/app/local/alembic.ini"
+    },
+    "central": {
+      "project": "crodip-runtime-central",
+      "service": "backend",
+      "postgresService": "postgres",
+      "alembicIni": "/app/central/alembic.ini"
+    },
+    "releaseCompatibilityRequired": true,
+    "mandatoryPreMigrationBackup": true,
+    "migrationReportRoot": "C:\\ProgramData\\CRODIP\\migration-history",
+    "restoreOnFailure": "explicit-operator-action-only",
+    "validateReleaseHeadAgainstImageHead": true,
+    "validateDatabaseCurrentAfterMigration": true
+  },
+  "databaseBackup": {
+    "enabled": true,
+    "includeAlembicMetadata": true,
+    "postgresFormat": "custom",
+    "local": {
+      "project": "crodip-runtime-local",
+      "backendService": "backend",
+      "engine": "SQLite",
+      "windowsAcl": "BUILTIN\\Users:Modify"
+    },
+    "central": {
+      "project": "crodip-runtime-central",
+      "backendService": "backend",
+      "postgresService": "postgres",
+      "engine": "PostgreSQL"
+    },
+    "restorePolicy": {
+      "requireManifest": true,
+      "requireExplicitConfirmation": true,
+      "stopApplicationBackendDuringRestore": true,
+      "verifyAlembicAfterRestore": true,
+      "interactiveBackupSelection": true,
+      "manualArchivePathFallback": true
+    }
+  },
+  "releaseRollback": {
+    "enabled": true,
+    "mode": "snapshot-restore-on-down",
+    "automaticAlembicDowngrade": false,
+    "snapshotRoot": "C:\\ProgramData\\CRODIP\\release-snapshots",
+    "historyRoot": "C:\\ProgramData\\CRODIP\\rollback-history",
+    "mandatorySnapshotBeforeReleaseChange": true,
+    "requireTargetSnapshotForDown": true,
+    "createSafetySnapshotBeforeRollback": true,
+    "restoreLocalSqlite": true,
+    "restoreCentralPostgresql": true,
+    "verifyAlembicAfterRestore": true,
+    "qualificationAfterRollback": true,
+    "phase": "DOWN_PREFLIGHT",
+    "note": "RC41 step 2: release transaction direction, mandatory current snapshot, target snapshot lookup and Alembic compatibility preflight. DOWN restore remains intentionally disabled."
+  }
+}

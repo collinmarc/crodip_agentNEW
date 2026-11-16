@@ -5441,7 +5441,7 @@ Public Class accueil
 
         Statusbar.display(GlobalsCRODIP.CONST_STATUTMSG_ALERTES_BANC_LOAD, True)
         Dim arrBanc As List(Of Banc)
-        arrBanc = BancManager.getBancByAgent(agentCourant)
+        arrBanc = BancManager.getBancByAgent(agentCourant, True) 'on prend tous les bancs
 
         'BancCourant = arrBanc(0)
 
@@ -5935,7 +5935,7 @@ Public Class accueil
         Dim bBancOK As Boolean = True
         If dgvPulveExploit.SelectedRows.Count() > 0 Then
             Try
-                If BancManager.getBancByAgent(agentCourant).Count = 0 Then
+                If BancManager.getBancByAgent(agentCourant, False).Count = 0 Then
                     MessageBox.Show("Vous n'avez pas de banc de mesure actif affecté à votre compte, merci de faire un controle ou contactez le CRODIP", "Controle Pulverisateur")
                     bBancOK = False
                 End If

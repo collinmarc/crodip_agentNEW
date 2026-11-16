@@ -167,14 +167,14 @@
     <Setting Name="DBVersionExpected" Type="System.String" Scope="Application">
       <Value Profile="(Default)">V4.4</Value>
     </Setting>
-    <Setting Name="NumBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20260709100000</Value>
-    </Setting>
     <Setting Name="GestiondeTarifActif" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="GestionMetrologieActif" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NumBuild" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20260709100000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

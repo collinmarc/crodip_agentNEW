@@ -32,7 +32,16 @@ Public Class UpdateInfo
                             Me._files(i) = wsFilesItem.InnerText
                             i += 1
                             If wsFilesItem.InnerText = Me._baseUrl & My.Settings.update_sql_filename Then
-                                Me._hasSql = True
+                                Me.hasSql = True
+                            End If
+                            If wsFilesItem.InnerText = Me._baseUrl & My.Settings.update_bat_filename Then
+                                Me.hasBAT = True
+                            End If
+                            If wsFilesItem.InnerText = Me._baseUrl & My.Settings.update_ps1_filename Then
+                                Me.hasPS1 = True
+                            End If
+                            If wsFilesItem.InnerText = Me._baseUrl & My.Settings.update_ps7_filename Then
+                                Me.hasPS7 = True
                             End If
                         Next
                     End If
@@ -100,7 +109,33 @@ Public Class UpdateInfo
             _hasSql = Value
         End Set
     End Property
-
+    Private _hasbat As Boolean
+    Public Property hasBAT() As Boolean
+        Get
+            Return _hasBat
+        End Get
+        Set(ByVal Value As Boolean)
+            _hasbat = Value
+        End Set
+    End Property
+    Private _hasPS1 As Boolean
+    Public Property hasPS1() As Boolean
+        Get
+            Return _hasPS1
+        End Get
+        Set(ByVal Value As Boolean)
+            _hasPS1 = Value
+        End Set
+    End Property
+    Private _hasPS7 As Boolean
+    Public Property hasPS7() As Boolean
+        Get
+            Return _hasPS7
+        End Get
+        Set(ByVal Value As Boolean)
+            _hasPS7 = Value
+        End Set
+    End Property
     ''###########################################
     ''Appellée par le DBUpdate.exe
     ''===========================================

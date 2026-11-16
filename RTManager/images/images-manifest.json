@@ -1,0 +1,23 @@
+{
+  "version": "2.3.0-RC1",
+  "applicationVersion": "2.3.0-dev.1",
+  "sourceOfTruth": "config/runtime.json#docker.officialImages",
+  "referenceMode": "digest",
+  "target": "local",
+  "images": [
+    {
+      "service": "backend",
+      "repositoryKey": "backend",
+      "officialReference": "ghcr.io/idwebconcept/crodip-local-backend@sha256:52111a6951ea622983b12bb805ba3b7dc07696946a55e4bef4f7bdce0c6dd1c5",
+      "archivePattern": "crodip-local-backend-{tag}.tar",
+      "required": true
+    },
+    {
+      "service": "frontend",
+      "repositoryKey": "frontend",
+      "officialReference": "ghcr.io/idwebconcept/crodip-local-frontend@sha256:d83440641471054870e2eb3b956ce02045a5de59a1b075aa5a920b44f046bdad",
+      "archivePattern": "crodip-local-frontend-{tag}.tar",
+      "required": true
+    }
+  ]
+}

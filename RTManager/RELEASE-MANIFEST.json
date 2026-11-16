@@ -1,0 +1,72 @@
+{
+  "version": "2.3.0-RC41",
+  "status": "Release Candidate - RC41 - Transactional Release Rollback & Database Snapshots - Qualified",
+  "source": "RC41 STEP3E FIX11.4 qualified package",
+  "applicationVersion": "2.3.0-dev.4",
+  "officialRelease": {
+    "runNumber": 15,
+    "runId": "36452467983",
+    "commit": "53928c1f30a8a90cc6a1cf467d5c332f10494a80",
+    "status": "TEST TECHNICALLY QUALIFIED",
+    "imageReferenceMode": "digest"
+  },
+  "activeLifecycle": "TEST",
+  "buildPolicy": "build-once-promote-same-digest",
+  "envIsolation": {
+    "local": {
+      "env": "C:\\Program Files\\CRODIP\\.env",
+      "backendPort": 8110,
+      "frontendPort": 9110
+    },
+    "central": {
+      "env": "C:\\Program Files\\CRODIP\\templates\\central\\.env",
+      "backendPort": 8120,
+      "frontendPort": 9120
+    },
+    "automaticCreation": true,
+    "automaticSynchronization": true,
+    "targetSpecificComposeEnvironment": true
+  },
+  "preserveCentralPostgresVolume": true,
+  "traceability": [
+    "application-version",
+    "official-run",
+    "commit",
+    "expected-image-digests",
+    "OCI-labels",
+    "published-ports"
+  ],
+  "build": "2026.09.30.041",
+  "changes": [
+    "Transactional TEST release change with mandatory source safety snapshot",
+    "Explicit TEST-only activation of qualified RECONSTRUCTED/EMPTY historical snapshots",
+    "Staged database restore before compatible target image redeployment",
+    "Atomic rollback to source state after post-database-change failure",
+    "Target Alembic context scoped to Process and restored before source rollback",
+    "Invariant releaseExpectedHead = imageHead = databaseCurrent",
+    "LOCAL/CENTRAL TEST port isolation: 8110/9110 vs 8120/9120",
+    "CENTRAL update port reconciliation and robust Alembic current detection",
+    "Preserve official pin and CENTRAL PostgreSQL volume during TEST overrides",
+    "Qualified real cycle #15 -> #14 RECONSTRUCTED/EMPTY -> #15 with GLOBAL PASS",
+    "Final regression battery FIX7-FIX11 plus final qualification: 6/6 OK"
+  ],
+  "name": "CRODIP Runtime Manager RC41 - Transactional Release Rollback & Database Snapshots",
+  "devKitCompatibility": {
+    "version": "6.3.3",
+    "qualifiedRevision": "Migration Compatibility Foundation + Port Guard"
+  },
+  "qualification": {
+    "date": "2026-09-30",
+    "scope": "RC41 transactional release rollback E2E on TEST",
+    "result": "PASS",
+    "scenario": "#15 OFFICIAL -> #14 RECONSTRUCTED/EMPTY -> #15 OFFICIAL",
+    "sourceApplication": "2.3.0-dev.4",
+    "historicalApplication": "2.3.0-dev.3",
+    "officialLocalAlembic": "ecd67252fd57",
+    "officialCentralAlembic": "7544a84c3691",
+    "historicalLocalAlembic": "d24d83ea9494",
+    "historicalCentralAlembic": "3452c4fc44ba",
+    "databaseVerification": "LOCAL PASS; CENTRAL PASS; GLOBAL PASS",
+    "finalRegression": "FIX7-FIX11 + Final Qualification = 6/6 OK"
+  }
+}

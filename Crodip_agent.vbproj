@@ -932,9 +932,711 @@
     <Compile Include="Application\Signature\frmSignClientWacom.vb">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="crodip.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="crodip.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\DataSources\CRODIPWS.Annomalie.datasource" />
     <None Include="My Project\DataSources\CRODIPWS.ExploitationTOPulverisateur.datasource" />
     <None Include="My Project\DataSources\CRODIPWS.PoolBuse.datasource" />
+    <None Include="RTManager\bootstrap-runtime.ps1" />
+    <None Include="RTManager\CHANGELOG.md" />
+    <None Include="RTManager\Commands\01-check-install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\01-install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\01-normalize-compose.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\01-reinstall.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\01-repair.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\02-check.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\03-start.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\04-stop.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\05-status.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\06-backup.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\07-restore.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\08-update.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\09-logs.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\10-uninstall.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\11-docker-admin.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\12-central-runtime.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\12-system-info.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\13-qualify-runtime.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\14-update-test-release.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\15-github-cli.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\16-technical-components.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\17-historical-test-run.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\18-active-run-info.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\19-verify-databases.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\20-bootstrap-historical-release-snapshot.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\Commands\21-reconstruct-historical-release-snapshot.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\config\runtime.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\crodip.ps1" />
+    <None Include="RTManager\docs\ARCHITECTURE.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\AUTO-WSL2-INSTALL.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\BACKUP-RESTORE-DATABASES.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\DOCKER-INSTALL.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\DOCKER-PROVIDER.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\DOCKER-WSL-UNINSTALL.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\GHCR-AUTHENTICATION.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\HARDWARE-WINDOWS-PREFLIGHT.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\INSTALL.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\NOMENCLATURE-LOCAL-CENTRAL.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\QUALIFICATION-RC39.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\QUALIFICATION-RC40.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\QUALIFICATION-RC41.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\RC41-STEP3D-FIX1.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\VIRTUALIZATION-DETECTION.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\docs\WSL2-DOCKER-DESKTOP-READINESS.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\images\images-manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\images\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Common.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Compose.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.DatabaseMigration.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Docker.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.DockerProvider.Loader.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.DockerProvider.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.GitHub.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Health.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Logging.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Performance.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Preflight.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.ReleaseRollback.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.SystemInfo.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\modules\Crodip.Runtime.Windows.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\README.md" />
+    <None Include="RTManager\RELEASE-DATE" />
+    <None Include="RTManager\RELEASE-MANIFEST.json" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.0.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.3.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.4.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.5.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.1.6.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.0.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT2-CLEAN.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT3-CORRECTED.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT3-CORRECTED2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT3.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT4-AUTO-GHCR.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT4-CORRECTED.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.1-LOT4.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.10-WSL-DOCKER-READINESS.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.11-DOCKER-PROVIDER-STATE-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.12-DASHBOARD-WSL-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.13-AUTO-WSL2-INSTALL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.14-HARDWARE-WINDOWS-PREFLIGHT.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.15-HEALTH-PREFLIGHT-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.16-VIRTUALIZATION-DETECTION-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.17-DOCKER-UPDATE-FALLBACK.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.18-PER-SERVICE-PULL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.19-DYNAMIC-COMPOSE-SERVICES.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.2-LOT5-DOCKER-PROVIDER.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.20-UPDATE-CLEANUP.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.21-DOCKER-WSL-UNINSTALL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.22-DOCKER-PROVIDER-MENU.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.23-DOCKER-MENU-PARSER-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.24-DOCKER-MENU-COMMAND-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.25-GHCR-AUTH-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.26-VMP-DETECTION-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.27-VMP-SCRIPT-HEADER-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.28-VMP-HEALTH-NORMALIZATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.29-SYSTEM-INVENTORY.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.3-LOT5-DOCKER-PROVIDER-CORRECTED.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.30-START-PULL-DIAGNOSTICS.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.31-GHCR-LOGIN-ON-START.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.32-LEGACY-IMAGE-MIGRATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.33-PERFORMANCE-INSTRUMENTATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.34-CONTAINER-RECOVERY-DETAILED-METRICS.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.35-COMPOSE-PROJECT-ISOLATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.36-INSTALLED-COMPOSE-NORMALIZATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.37-OPTIONAL-CONTAINERNAME-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.38-FAST-PREFLIGHT-SUBMETRICS.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.39-COMPOSE-SERVICE-HEALTH-DETECTION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.4-LOT5-DOCKER-INSTALL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.40-PORT-OWNERSHIP-DETECTION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.41-STATUS-COMPOSE-OBJECT-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.42-LOGS-COMPOSE-RESOLVER-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.43-LOCAL-CENTRAL-NOMENCLATURE-ALIGNMENT.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.44-COMPOSE-MODULE-EXPORT-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.45-DEV-RUNTIME-COHERENCE-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.46-CENTRALIZED-DOCKER-IMAGE-TAG-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.47-COMMON-MODULE-EXPORT-PARSER-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.48-DUAL-LOCAL-CENTRAL-RUNTIME-MANAGER.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.49-HARMONIZED-RUNTIME-PORT-PLAN.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.5-LOT5-DOCKER-INSTALL-CORRECTED.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.6-LOT5-DOCKER-SCOPE-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.7-LOT5-PARSER-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.8-LOT5-DOCKER-MENU-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.2.9-LOT5-PROVIDER-LOAD-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC1-OFFICIAL-RELEASE-PIN.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC10.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC11.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC12.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC13.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC14.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC15.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC16.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC17.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC18.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC19.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC2-TECHNICAL-QUALIFICATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC20.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC21.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC22.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC23.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC24.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC25.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC26.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC27.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC28.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC29.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC3-DIGEST-INSPECT-FIX.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC30.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC31.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC32.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC33.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC34.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC35.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC36.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC37-AUTOMATIC-DATABASE-MIGRATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC38-DATABASE-BACKUP-RESTORE-ALEMBIC.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC39-INTERACTIVE-BACKUP-SELECTION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC4-MENU-QUALIFICATION-CENTRAL-STATUS.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC40-CONNECTIVITY-LOCAL-CENTRAL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC40-MENU-LOCAL-CENTRAL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC40-SAFE-DATABASE-MIGRATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-QUALIFICATION-FIX1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-QUALIFICATION.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP2-GUARD.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3A.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3C-FIX2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3C-FIX3.1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3C-FIX3.2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3C-FIX3.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3D.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX10.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX11.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX3.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX4.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX5.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX6.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX7.1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX7.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX8.1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX8.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX9.1.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX9.2.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX9.3.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E-FIX9.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41-STEP3E.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC41.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC5-TEST-RELEASE-UPDATE.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC6-REMOTE-OFFICIAL-PIN.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC7-GITHUB-CLI.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC8-GITHUB-PIN-SCHEMA-FRESH-INSTALL.md" />
+    <None Include="RTManager\RELEASE-NOTES-2.3.0-RC9.md" />
+    <None Include="RTManager\STATUS" />
+    <None Include="RTManager\templates\.env.example">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\templates\central\.env.example">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\templates\central\compose.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\templates\compose.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Backup.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-CentralizedDockerImageTag-2246.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-CommonModuleExportParser-2247.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-DevRuntimeCoherence-2245.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-DigestInspectFix-230RC3.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-GitHubCliOfficialPin-230RC7.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot1-Infrastructure.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot2-Clean.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot3-CorrectionDisplay.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot3-Formatting.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot3-Health.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot4-Auto-GHCR.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot4-Docker.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot4-Update.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-AutoWsl2Install-2213.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-ComposeModuleExports-2244.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-ComposeProjectIsolation-2235.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-ComposeServiceHealthDetection-2239.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-ContainerRecoveryDetailedMetrics-2234.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DashboardWsl-2212.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerInstall.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerMenu-228.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerMenuCommands-2224.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerMenuParser-2223.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProvider-Exports.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProvider-Imports.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProvider-Scope-226.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProvider-State-2211.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProvider.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProviderLoad-229.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerProviderMenu-2222.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerUpdateFallback-2217.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DockerWslUninstall-2221.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-DynamicComposeServices-2219.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-GhcrAuth-2225.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-GhcrLoginOnStart-2231.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-HardwareWindowsPreflight-2214.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-HealthPreflight-2215.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-InstalledComposeNormalization-2236.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-LegacyImageMigration-2232.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-LocalCentralNomenclature-2243.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-LogsComposeResolverFix-2242.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-OptionalContainerName-2237.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-PerServicePull-2218.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-PortOwnershipDetection-2240.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-PowerShellParser-227.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-StartPullDiagnostics-2230.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-StatusComposeObjectFix-2241.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-SystemInventory-2229.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-UpdateCleanup-2220.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-VirtualizationDetection-2216.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-VmpHealthNormalization-2228.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-VmpScriptHeader-2227.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-Lot5-WslDockerReadiness-2210.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-MenuQualification-CentralStatus-230RC4.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-ModuleExports.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-OfficialPinSchema-FreshInstall-230RC8.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-OfficialReleasePin-230RC1.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC10-Technical-Uninstall-Signatures.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC11-GitHubCli-Detection.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC12-GitHub-Module-Contract.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC13-Fresh-Install-Technical-Components.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC14-Winget-Docker-Supervision.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC15-Winget-Inactivity-Supervision.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC16-Docker-Cli-Detection.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC17-Runtime-Test-Port-Synchronization.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC18-Test-Port-Process-And-Recreate.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC19-Runtime-Port-Binding-Reconciliation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC20-Compose-Port-Functions-Export.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC21-Central-Port-Isolation-Traceability.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC22-StrictMode-Ports-And-Build11.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC24-Historical-Run-Test-Override.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC25-Historical-Run-And-Active-Info.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC26-PowerShell-Parse-All.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC27-Selective-Historical-Artifact.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC28-Reserved-Automatic-Variables.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC30-Persistent-Override-Docker-Truth.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC31-Docker-Run-Reconciliation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC34-Bidirectional-Runtime-Release-Selection.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC35-Database-Verification.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC36-Dynamic-Database-Verification.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC37-Automatic-Database-Migration.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC38-Database-Backup-Restore-Alembic.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC39-Interactive-Backup-Selection.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Auto-Online-Offline-Local-Central.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Connectivity-Cleanup.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Local-Offline-Display-Cleanup.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Menu-Local-Central.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Qualification-DatabaseCompatibility.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC40-Safe-Database-Migration.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Final-Qualification.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Change-Guard-Fix2.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Change-Guard-Fix3.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Change-Guard-Fix4.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Change-Guard.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Change-Transaction-Preflight.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Release-Rollback-Foundation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3A-Bootstrap-Scope-Fix1.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3A-Bootstrap-Scope-Fix2.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3A-Release-Snapshot-Restore-Engine.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3B-Transactional-Release-Change.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3C-Fix1-Auto-Release-Resolution.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3C-Fix2-Legacy-Backup-Manifest-Compatibility.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3C-Fix3-Official-Artifact-Manifest-Resolution.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3C-Historical-Release-Snapshot-Bootstrap.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3D-Fix1-Parser-Encoding.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3D-Fix2-Reserved-Args.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3D-Isolated-Historical-Release-Reconstruction.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Explicit-Test-Empty-Activation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix10-Central-Update-Alembic-Port-Reconciliation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix11-Target-Release-Alembic-Context.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix3-Module-Scope.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix4-Menu8-Module-Closure.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix5-Scoped-Common-Dependency.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix6-Empty-Preflight-Lifecycle.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix7-Atomic-Empty-Switch.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix8-GetCrodipHome-Scope-State-Rollback.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC41-Step3E-Fix9-Topology-Port-Scope-Hardening.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RC9-GitHub-And-TechnicalComponents.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RemoteOfficialPin-230RC6.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-RuntimeTechnicalQualification-230RC2.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\tests\Test-TestReleaseUpdate-230RC5.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RTManager\VERSION" />
     <None Include="Service References\WSCRODIP2\configuration91.svcinfo" />
     <None Include="Service References\WSCRODIP2\configuration.svcinfo" />
     <None Include="Service References\WSCRODIP2\Crodip_agent.WSCRODIP2.GetAgentResponse.datasource">
@@ -1281,6 +1983,13 @@
     <Content Include="moduleDocumentaire\_parametres\ParamBuse12123.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="RTManager\Commands\12-system-info.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RTManager\modules\Crodip.Runtime.SystemInfo.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RTManager\SHA256SUMS.txt" />
     <Content Include="wgssSTU.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1456,7 +2165,9 @@
     <Content Include="moduleDocumentaire\_parametres\EmplacementIdentification.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\facturation.xml" />
+    <Content Include="config\facturation.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="moduleDocumentaire\_parametres\ParamDiag.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

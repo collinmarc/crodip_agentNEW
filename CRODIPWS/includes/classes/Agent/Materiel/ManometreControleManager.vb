@@ -82,10 +82,10 @@ Public Class ManometreControleManager
 
                 ' On test si l'object existe ou non
                 Dim existsObject As ManometreControle
-                existsObject = ManometreControleManager.getManometreControleByidCrodip(objManometreControle.idCrodip)
-                If existsObject.idCrodip = "" Or existsObject.idCrodip = "0" Then
+                existsObject = ManometreControleManager.getByKey(objManometreControle.uid)
+                If existsObject Is Nothing Then
                     ' Si il n'existe pas, on le crée
-                    createManometreControle(objManometreControle.idCrodip)
+                    createManometreControle(objManometreControle.numeroNational)
                 End If
 
                 Dim bddCommande As DbCommand
@@ -148,7 +148,7 @@ Public Class ManometreControleManager
 
                 paramsQuery = paramsQuery & objManometreControle.getRootQuery()
                 ' On finalise la requete et en l'execute
-                bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE idCrodip='" & objManometreControle.idCrodip & "'"
+                bddCommande.CommandText = "UPDATE AgentManoControle SET " & paramsQuery & " WHERE numeronational='" & objManometreControle.numeroNational & "'"
                 bddCommande.ExecuteNonQuery()
 
                 bReturn = True
@@ -409,7 +409,7 @@ Public Class ManometreControleManager
             bddCommande = oCSDB.getConnection().CreateCommand()
 
             ' Création
-            bddCommande.CommandText = "INSERT INTO AgentManoControle (idCrodip, aid) VALUES ('" & pIdCrodip & "', '" & pIdCrodip & "')"
+            bddCommande.CommandText = "INSERT INTO AgentManoControle (numeroNational, aid) VALUES ('" & pIdCrodip & "', '" & pIdCrodip & "')"
             bddCommande.ExecuteNonQuery()
 
         Catch ex As Exception

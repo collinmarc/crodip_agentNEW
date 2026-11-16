@@ -1,116 +1,182 @@
-Public Class CSDb
+Imports System.Data.Common
+Imports System.Data.SQLite
+Imports Microsoft.Win32
+'Imports System.Data.OleDb
 
+Public Class CSDb
+    Public Enum EnumDBTYPE
+        MSACCESS = 0
+        SQLITE = 1
+    End Enum
+
+    Public Const conf_bddUser As String = "Developpeur"
+    Public conf_bddPass As String = "UmtU8Scb"
+    Public conf_bddDLPath As String = "crodip_dasylab"
+    ' Public conf_bddDLPass = "tRyQe8se"
+    Public conf_bddPath As String = ""
+    Public conf_bddPath_dev As String = ""
+
+    Public conf_bddEtatPath As String = "crodip_etats"
+    Public conf_bddEtatPath_dev As String = "crodip_etats_dev"
+
+    Protected DBextension As String = ".mdb"
     ' Parametres de connexion
-    Private _dbHost As String
-    Private _dbUser As String
-    Private _dbPass As String
-    Private _bddConnectString As String
     ' Connexion
-    Private _dbPath As String
-    Private _dbKeyPath As String
-    Private Shared _dbConnection As OleDb.OleDbConnection
-    Private _dbCommande As OleDb.OleDbCommand
+    Protected _dbConnection As DbConnection = Nothing
+    Protected _bddConnectString As String
+    Protected _dbName As String ' Nom de la base de données
     ' Query
     Private _queryString As String
-    Private _resultReader As System.Data.OleDb.OleDbDataReader
-    Private _isExchange As Boolean = False
-    Sub New()
+    Public Shared _DBTYPE As CSDb.EnumDBTYPE = CSDb.EnumDBTYPE.SQLITE
 
-        _dbHost = ""
-        _dbUser = "developpeur"
-        _dbPass = "UmtU8Scb"
-        _queryString = ""
-#If DEBUG Then
-        _dbPath = Environment.CurrentDirectory & "\bdd\crodip_agent_dev.mdb"
-        _dbKeyPath = Environment.CurrentDirectory & "\bdd\crodip_agent_dev.mdw"
-#Else
-        _dbPath = Environment.CurrentDirectory & "\bdd\crodip_agent.mdb"
-        _dbKeyPath = Environment.CurrentDirectory & "\bdd\crodip_agent.mdw"
-#End If
-
-        _bddConnectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & _dbPath & ";Jet OLEDB:System Database=" & _dbKeyPath & ";User ID=" & _dbUser & ";Password=" & _dbPass & ";Jet OLEDB:Database Password=" & _dbPass & ""
-
-        ' 110727 : arzur_c : mise en place d'un singleton pour la connexion
+    Sub New(Optional ByVal doConnect As Boolean = False, Optional pdbPath As String = "", Optional pdbExtension As String = "")
         If _dbConnection Is Nothing Then
-            _dbConnection = New OleDb.OleDbConnection
+            _queryString = ""
+            If _DBTYPE = EnumDBTYPE.MSACCESS Then
+                If pdbPath = "" Then
+                    conf_bddPath = GlobalsCRODIP.GLOB_PARAM_DB
+                Else
+                    conf_bddPath = pdbPath
+                End If
+
+                If pdbExtension = "" Then
+                    DBextension = GlobalsCRODIP.GLOB_PARAM_DBExtension
+                Else
+                    DBextension = pdbExtension
+                End If
+                If conf_bddPath = "" Then
+                    conf_bddPath = "cropdip_agent"
+                End If
+                conf_bddPath_dev = conf_bddPath & "_dev"
+
+                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+                    _dbName = conf_bddPath_dev
+                Else
+                    _dbName = conf_bddPath
+                End If
+            Else
+                _dbName = GlobalsCRODIP.GLOB_PARAM_DB
+                DBextension = GlobalsCRODIP.GLOB_PARAM_DBExtension
+            End If
+
+            _bddConnectString = getConnectString(_dbName, _DBTYPE)
+
+
+            If _dbConnection Is Nothing Then
+                Select Case _DBTYPE
+                    Case EnumDBTYPE.MSACCESS
+                        _dbConnection = New OleDb.OleDbConnection
+                        _dbConnection.ConnectionString = _bddConnectString
+                    Case EnumDBTYPE.SQLITE
+                        _dbConnection = New SQLiteConnection()
+                        Dim oBuider As New SQLiteConnectionStringBuilder()
+                        oBuider.DataSource = "bdd/" & GlobalsCRODIP.GLOB_PARAM_DB & GlobalsCRODIP.GLOB_PARAM_DBExtension
+                        oBuider.Pooling = True
+                        _dbConnection.ConnectionString = oBuider.ConnectionString
+                End Select
+            End If
+
+
         End If
-        _dbConnection.ConnectionString = _bddConnectString
 
-        _dbCommande = New OleDb.OleDbCommand
-        'getInstance()
-    End Sub
-
-    '    Sub New()
-    '        _queryString = ""
-    '#If DEBUG Then
-    '        _dbHost = ""
-    '        _dbUser = "Developpeur"
-    '        _dbPass = "UmtU8Scb"
-    '        _dbPath = "F:\Mes documents\NewCo\CRODIP\Projets\TestCrodip\bin\Debug\bdd\crodip_agent_dev.mdb"
-    '        _dbKeyPath = "F:\Mes documents\NewCo\CRODIP\Projets\TestCrodip\bin\Debug\bdd\crodip_agent_dev.mdw"
-    '#Else
-    '        _dbHost = ""
-    '        _dbUser = "Developpeur"
-    '        _dbPass = "UmtU8Scb"
-    '        _dbPath = Environment.CurrentDirectory & "\bdd\crodip_agent.mdb"
-    '        _dbKeyPath = Environment.CurrentDirectory & "\bdd\crodip_agent.mdw"
-    '#End If
-    '        _dbConnection = New OleDb.OleDbConnection
-    '        _dbCommande = New OleDb.OleDbCommand
-    '        'getInstance()
-    '    End Sub
-    Sub New(ByVal doConnect As Boolean)
-        Me.new()
         If doConnect = True Then
-            getInstance()
+            If Not getInstance() Then
+                CSDebug.dispFatal("CSDB.New ERR : impossible d'ouvrir la base : " & _bddConnectString)
+            End If
         End If
     End Sub
+
+    Public Function IsLocked() As Boolean
+        Dim bReturn As Boolean = False
+
+        Try
+
+            Dim oCmd As DbCommand
+            oCmd = _dbConnection.CreateCommand()
+            oCmd.CommandText = "BEGIN IMMEDIATE"
+            '            oCmd.CommandTimeout = 1
+            oCmd.ExecuteNonQuery()
+
+            oCmd = _dbConnection.CreateCommand()
+            oCmd.CommandText = "ROOLBACK"
+            '           oCmd.CommandTimeout = 1
+            oCmd.ExecuteNonQuery()
+            bReturn = False 'il n'y a pas d'erreur donc la base n'est pas locké
+        Catch ex As System.Data.SQLite.SQLiteException
+            bReturn = True
+
+        End Try
+        Return bReturn
+    End Function
+    ''' <summary>
+    ''' Rend la Chaine de connextion à la base de donnée en fonction de l'environnement
+    ''' </summary>
+    ''' <param name="pDBName"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function getbddPathName() As String
+        Return ".\bdd\" & _dbName & DBextension
+    End Function
+    Public Function getConnectString(pDBName As String, pdbType As EnumDBTYPE) As String
+        Dim bReturn As String = ""
+        Select Case pdbType
+            Case EnumDBTYPE.MSACCESS
+                If GlobalsCRODIP.GLOB_ENV_DEBUG = True Then
+                    If DBextension = ".accdb" Then
+                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password="
+                    Else
+                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\bdd\" & pDBName & DBextension & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:Database Password="
+                    End If
+
+                Else
+                    If DBextension = ".accdb" Then
+                        bReturn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
+                    Else
+                        bReturn = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=.\bdd\" & pDBName & DBextension & ";User ID=" & conf_bddUser & ";Password=" & conf_bddPass & ";Jet OLEDB:System Database=.\bdd\" & pDBName & ".mdw;Jet OLEDB:Database Password=" & conf_bddPass & ""
+                    End If
+                End If
+            Case EnumDBTYPE.SQLITE
+                bReturn = "Data Source=.\bdd\" & pDBName & ".db3;Pooling=true"
+        End Select
+
+        Return bReturn
+    End Function
 
     Protected Overrides Sub Finalize()
-        Me.free()
+        '        Me.free()
         MyBase.Finalize()
+        'Try
+        '    ' Test pour fermeture de connection BDD
+        '    If _dbConnection.State() <> 0 Then
+        '        ' On ferme la connexion
+        '        _dbConnection.Close()
+        '    End If
+        'Catch ex As Exception
+
+        'End Try
     End Sub
+    ''' <summary>
+    ''' Déconnextion de la base de donnée si elle est connectée
+    ''' </summary>
     Public Sub free()
         Try
             ' Test pour fermeture de connection BDD
-            If _dbConnection.State() <> 0 Then
+            While _dbConnection.State() <> System.Data.ConnectionState.Closed
                 ' On ferme la connexion
                 _dbConnection.Close()
-            End If
+                If _dbConnection.State <> System.Data.ConnectionState.Closed Then
+                    pause(10)
+                End If
+            End While
         Catch ex As Exception
-
+            CSDebug.dispError("CSDB.Free ERR : " & ex.Message)
         End Try
     End Sub
 
     '############################################################
     '####################### Accesseurs #########################
     '############################################################
-    Public Property dbHost() As String
-        Get
-            Return _dbHost
-        End Get
-        Set(ByVal Value As String)
-            _dbHost = Value
-        End Set
-    End Property
 
-    Public Property dbUser() As String
-        Get
-            Return _dbUser
-        End Get
-        Set(ByVal Value As String)
-            _dbUser = Value
-        End Set
-    End Property
-
-    Public Property dbPass() As String
-        Get
-            Return _dbPass
-        End Get
-        Set(ByVal Value As String)
-            _dbPass = Value
-        End Set
-    End Property
 
     Public Property queryString() As String
         Get
@@ -124,67 +190,317 @@ Public Class CSDb
     '############################################################
     '################### Methodes publiques #####################
     '############################################################
-    Public Sub getInstance()
-        Try
-            ' Test pour fermeture de connection BDD
-            If _dbConnection.State() <> 0 Then
-                ' On ferme la connexion
-                _dbConnection.Close()
-            End If
-        Catch ex As Exception
-
-        End Try
-
-        ' On test si la connexion est déjà ouverte ou non
-        If _dbConnection.State() = 0 Then
-            ' Si non, on la configure et on l'ouvre
-            '            _dbConnection.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Me._dbPath & ";Jet OLEDB:System Database=" & Me._dbKeyPath & ";User ID=" & Me._dbUser & ";Password=" & Me._dbPass & ";Jet OLEDB:Database Password=" & Me._dbPass & ""
-            _dbConnection.Open()
+    Public Function getInstance() As Boolean
+        Dim bReturn As Boolean
+        'Try
+        '    ' Test pour fermeture de connection BDD
+        '    If _dbConnection.State <> ConnectionState.Closed Then
+        '        free()
+        '    End If
+        'Catch ex As Exception
+        '    CSDebug.dispError("CSDb.getInstance1 ERR : " & ex.Message)
+        'End Try
+        bReturn = True
+        If Not isClose() Then
+            free()
         End If
-        _dbCommande.Connection = _dbConnection
-    End Sub
-    Public Function getConnection() As OleDb.OleDbConnection
+
+
+
+        ' on essaie 10 fois la connexion
+        Dim nTry As Integer
+            For nTry = 1 To 10
+                Try
+
+                    ' Si non, on la configure et on l'ouvre
+                    _dbConnection.Open()
+                Exit For
+            Catch ex As Exception
+                    CSDebug.dispError("CSDb.getInstance2 on " & _dbConnection.ConnectionString & ":", ex)
+                    bReturn = False
+                End Try
+            Next
+        Return bReturn
+    End Function
+    Public Function getConnection() As DbConnection
         Return _dbConnection
     End Function
 
-    Public Function getResults() As System.Data.OleDb.OleDbDataReader
-        Dim _resultReader As System.Data.OleDb.OleDbDataReader
+    Public Function getValue(ByVal pQuery As String) As Object
+        Dim bBDFermee As Boolean = isClose()
+        If bBDFermee Then
+            getInstance()
+        End If
+        Dim oReturn As Object = Nothing
         Try
-            Dim _dbCommande As System.Data.OleDb.OleDbCommand = getConnection().CreateCommand
+            Dim oCmd As DbCommand
+            oCmd = getConnection().CreateCommand
+            oCmd.CommandText = pQuery
+            oReturn = oCmd.ExecuteScalar()
+            If bBDFermee Then
+                free()
+            End If
+        Catch ex As Exception
+            CSDebug.dispFatal("CSDb::getValue : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
+        End Try
+        Return oReturn
+    End Function
+    '''
+    ''' Execution d'un requete sans retour
+    Public Function Execute(ByVal pQuery As String) As Boolean
+        _queryString = pQuery
+        Return Execute()
+    End Function
+    '''
+    ''' Execution d'un requete sans retour
+    Public Function Execute() As Boolean
+        Dim bReturn As Boolean
+        Try
+            Dim _dbCommande As DbCommand = getConnection().CreateCommand
+            _dbCommande.CommandText = _queryString
+            _dbCommande.ExecuteNonQuery()
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispFatal("CSDb::Execute : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Function getResult2s() As DbDataReader
+        Dim _resultReader As DbDataReader
+        Try
+            Dim _dbCommande As DbCommand = getConnection().CreateCommand
             _dbCommande.CommandText = _queryString
             _resultReader = _dbCommande.ExecuteReader
         Catch ex As Exception
             '            Me.free()
-            CSDebug.dispError("CSDB.GetResults : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
+            CSDebug.dispFatal("CSDb::getResults : " & ex.Message.ToString & vbNewLine & "Query : " & _queryString)
             _resultReader = Nothing
+            'CSDebug.dispInfo("Query : " & _queryString)
         End Try
         Return _resultReader
     End Function
-    Public Function getResults(ByVal queryString As String) As System.Data.OleDb.OleDbDataReader
+    Public Function getResult2s(ByVal queryString As String) As DbDataReader
         _queryString = queryString
-        Return getResults()
+        Return getResult2s()
+    End Function
+    Public Function getLastId() As Integer
+        Dim bddCommande As DbCommand
+        Dim nReturn As Integer
+        Try
+
+            bddCommande = getConnection().CreateCommand
+            If CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE Then
+                bddCommande.CommandText = "SELECT last_insert_rowid()"
+            Else
+                bddCommande.CommandText = "SELECT @@identity"
+
+            End If
+            nReturn = CInt(bddCommande.ExecuteScalar())
+        Catch ex As Exception
+            CSDebug.dispError("CSDB.getLastId ERR", ex)
+            nReturn = -1
+        End Try
+        Return nReturn
+    End Function
+    Public Function RAZ_BASE_DONNEES() As Boolean
+        Debug.Assert(getConnection().State = ConnectionState.Open, "La connexion doit être ouverte")
+        Dim bReturn As Boolean
+        Try
+            CSDebug.dispError("VIDAGE DE LA BASE DE DONNEES !!!!!")
+
+            Dim bddCommande As DbCommand
+            bddCommande = getConnection().CreateCommand
+            'Vidage conmplet de la base
+            bddCommande.CommandText = "DELETE FROM facture"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM factureItem"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM ControleBancMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM ControleManoMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieBancMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieManometreControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM FicheVieManometreEtalon"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM BancMesure"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Controle_Regulier"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM DiagnosticBuses"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticBusesDetail"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticFacture"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticFactureItem"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticItem"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticMano542"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM DiagnosticTroncons833"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Diagnostic"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM ExploitationToPulverisateur"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Exploitation"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Pulverisateur"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM IdentifiantPulverisateur"
+            bddCommande.ExecuteNonQuery()
+
+            bddCommande.CommandText = "DELETE FROM PrestationTarif"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PrestationCategorie"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Synchronisation"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Agent"
+            bddCommande.ExecuteNonQuery()
+
+            RAZ_Pool()
+
+            bddCommande.CommandText = "DELETE FROM Structure"
+            bddCommande.ExecuteNonQuery()
+
+            _dbConnection.Close()
+            getInstance()
+            bddCommande = getConnection().CreateCommand
+            bddCommande.CommandText = "VACUUM"
+            bddCommande.ExecuteNonQuery()
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispFatal("CSDB.RAZ_BASE_DONNEES ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Public Function RAZ_Pool() As Boolean
+        Debug.Assert(getConnection().State = ConnectionState.Open, "La connexion doit être ouverte")
+        Dim bReturn As Boolean
+        Try
+            CSDebug.dispError("VIDAGE DES Données de POOL!!!!!")
+            Dim bddCommande As DbCommand
+            bddCommande = getConnection().CreateCommand
+
+            bddCommande.CommandText = "DELETE FROM AgentPC"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Pool"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolAgent"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM Poolpc"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolBuse"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM PoolManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentBuseEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoControle"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM AgentManoEtalon"
+            bddCommande.ExecuteNonQuery()
+            bddCommande.CommandText = "DELETE FROM BancMesure"
+            bddCommande.ExecuteNonQuery()
+
+            Const RegistryPath As String = "HKEY_CURRENT_USER\CRODIP"
+            Const subkey1 As String = "CRODIP"
+            Const subkey2 As String = "PC"
+
+            Registry.SetValue(RegistryPath, subkey1, "")
+            Registry.SetValue(RegistryPath, subkey2, "")
+
+
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispFatal("CSDB.RAZ_Pool ERR : " & ex.Message)
+            bReturn = False
+        End Try
+        Return bReturn
     End Function
 
     '############################################################
     '######################## Securite ##########################
     '############################################################
-    Public Function secureQuery(ByVal query As String)
-        Dim _secureQuery As String
 
-        _secureQuery = query.Replace("'", "''")
-
-        Return _secureQuery
-
-    End Function
-
-    Public Function secureString(ByVal query As String)
-        Dim _secureQuery As String = ""
+    Public Shared Function secureString(ByVal pString As String) As String
+        Dim _secureString As String
         Try
-            _secureQuery = query.Replace("'", "''")
+            _secureString = ""
+            If pString IsNot Nothing Then
+                _secureString = pString.Replace("'", "''")
+            End If
         Catch ex As Exception
-            CSDebug.dispFatal("Err 0x000015 : " & ex.Message.ToString)
+            CSDebug.dispError("CSDb::secureString : " & ex.Message.ToString)
+            _secureString = ""
         End Try
-        Return _secureQuery
+        Return _secureString
     End Function
+
+    Public Function CompacteDataBase() As Boolean
+        '    Dim bReturn As Boolean
+        '    Try
+        '        Dim jro As JRO.JetEngine
+        '        jro = New JRO.JetEngine()
+        '        Dim bdd2 As String = getConnectString(_dbName & "2", EnumDBTYPE.MSACCESS)
+        '        If System.IO.File.Exists("./bdd/" & _dbName & "2" & DBextension) Then
+        '            System.IO.File.Delete("./bdd/" & _dbName & "2" & DBextension)
+        '        End If
+        '        jro.CompactDatabase(_bddConnectString, bdd2)
+        '        If System.IO.File.Exists("./bdd/" & _dbName & DBextension) Then
+        '            System.IO.File.Delete("./bdd/" & _dbName & DBextension)
+        '        End If
+        '        System.IO.File.Move("./bdd/" & _dbName & "2" & DBextension, "./bdd/" & _dbName & DBextension)
+        '        bReturn = True
+        '    Catch ex As Exception
+        '        CSDebug.dispWarn("CSDB.CompateDatabase ERR" & ex.Message)
+        '        bReturn = False
+        '    End Try
+        '    Return bReturn
+        Return False
+    End Function
+
+    Public Function isOpen() As Boolean
+        Return (getConnection().State = ConnectionState.Open)
+    End Function
+    Public Function isClose() As Boolean
+        Return (getConnection().State = ConnectionState.Closed)
+    End Function
+
+    Public Shared Function ExecuteSQL(pSQL As String) As Boolean
+        Dim breturn As Boolean
+
+        breturn = False
+        Dim oCsDB As New CSDb(True)
+        Try
+            oCsDB.Execute(pSQL)
+            breturn = True
+        Catch ex As Exception
+            breturn = False
+        End Try
+        oCsDB.free()
+        Return breturn
+    End Function
+
 
 End Class

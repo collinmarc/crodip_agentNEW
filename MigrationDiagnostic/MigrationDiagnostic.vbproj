@@ -179,7 +179,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\COLLIN\Documents\NEWCO\CRODIP\crodip_agentNEW\CRODIPWS\CRODIPWS.vbproj">
+    <ProjectReference Include="..\CRODIPWS\CRODIPWS.vbproj">
       <Project>{d148fb92-18b1-4fb6-903d-1dc575b7d452}</Project>
       <Name>CRODIPWS</Name>
     </ProjectReference>

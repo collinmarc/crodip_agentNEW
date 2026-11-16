@@ -23,20 +23,29 @@
     <Setting Name="debug_type" Type="System.String" Scope="Application">
       <Value Profile="(Default)">file</Value>
     </Setting>
-    <Setting Name="debug_filename" Type="System.String" Scope="User">
+    <Setting Name="debug_filename" Type="System.String" Scope="Application">
       <Value Profile="(Default)">\tmp\debug-update.log</Value>
     </Setting>
-    <Setting Name="chekUpdates" Type="System.String" Scope="User">
-      <Value Profile="(Default)">WS</Value>
+    <Setting Name="chekUpdates" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20200101010000</Value>
     </Setting>
-    <Setting Name="downloadUpdates" Type="System.Boolean" Scope="User">
+    <Setting Name="downloadUpdates" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="installUpdates" Type="System.Boolean" Scope="User">
+    <Setting Name="installUpdates" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="DatabaseUpdates" Type="System.Boolean" Scope="User">
+    <Setting Name="DatabaseUpdates" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="update_bat_filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip.bat</Value>
+    </Setting>
+    <Setting Name="update_ps1_filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip.ps</Value>
+    </Setting>
+    <Setting Name="update_ps7_filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crodip.ps1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

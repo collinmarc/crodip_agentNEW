@@ -1,6 +1,8 @@
-Imports System.Threading
-Imports System.IO
 Imports System
+Imports System.IO
+Imports System.Net
+Imports System.Text
+Imports System.Threading
 
 Public Class mainForm
     Inherits System.Windows.Forms.Form
@@ -274,7 +276,7 @@ Public Class mainForm
                         Me.Refresh()
                         _majSoftware()
                     End If
-                    If My.Settings.DatabaseUpdates Then
+                    If My.Settings.DatabaseUpdates And Me.infosUpdate.hasSql Then
                         ' Récupération des mises à jour de la BDD
                         lbl_progressBar_download.Text = "Mise à jour de la base de données..."
                         Me.progressBar_download.Value = Me.progressBar_download.Value + 1
@@ -282,12 +284,18 @@ Public Class mainForm
                         _majDatabase()
                     End If
 
+                    If Me.infosUpdate.hasBAT Or Me.infosUpdate.hasPS1 Or Me.infosUpdate.hasPS7 Then
+                        lbl_progressBar_download.Text = "Execution des scrips d'installation..."
+                        Me.progressBar_download.Value = Me.progressBar_download.Value + 1
+                        Me.Refresh()
+                        _majScripts()
+                    End If
                     ' Mise à jour terminée
                     lbl_progressBar_download.Text = "Mise à jour terminée. Cliquer sur Poursuivre pour démarer le logiciel"
-                    Me.Refresh()
-                Else
-                    ' Mise à jour terminée
-                    lbl_progressBar_download.Text = "Des erreurs sont survenues durant la mise à jour. Cliquer sur Poursuivre pour relancer la mise à jour et contacter le CRODIP si cela se reproduit"
+                        Me.Refresh()
+                    Else
+                        ' Mise à jour terminée
+                        lbl_progressBar_download.Text = "Des erreurs sont survenues durant la mise à jour. Cliquer sur Poursuivre pour relancer la mise à jour et contacter le CRODIP si cela se reproduit"
                     Me.Refresh()
                 End If
 
@@ -338,40 +346,24 @@ Public Class mainForm
     Private Function _majCheck() As Boolean
         Dim returnVal As Boolean = False
         '#########################################################
+        Dim wsResponse As Object = Nothing
 
         Try
             If My.Settings.chekUpdates = "WS" Then
                 'Si le paramètre est à WS on demande la réponse par WebServices
-                Dim wsResponse As Object = Nothing
                 ' Appel au WS
                 Me.returnCode = Me._wsdl.GetSoftwareUpdate(Me.m_curVersion, wsResponse)
+            Else
+                Me.returnCode = Me._wsdl.GetSoftwareUpdate(My.Settings.chekUpdates, wsResponse)
+            End If
 
-                If Me.returnCode = 2 Then
+            If Me.returnCode = 2 Then
                     returnVal = True
                     Me.infosUpdate = New UpdateInfo(wsResponse)
-                    'If Me._wsdl.url.Contains("crodip.net") And Me.infosUpdate.baseUrl.Contains("crodip.fr") Then
-                    '    'Changement de serveur
-                    '    Me.infosUpdate.baseUrl = Me.infosUpdate.baseUrl.Replace("updates.crodip.fr", "admin-pp.crodip.net")
-                    '    For i As Integer = 0 To Me.infosUpdate.files.Length - 1
-                    '        Me.infosUpdate.files(i) = Me.infosUpdate.files(i).Replace("updates.crodip.fr", "admin-pp.crodip.net")
-                    '    Next
-                    'End If
-
-                    Me.Lbl_Version.Text = "Version Cible : " & Me.infosUpdate.version
-                    Me.Refresh()
+                Me.Lbl_Version.Text = "Version Cible : " & Me.infosUpdate.version
+                Me.Refresh()
 
                 End If
-            Else
-                'Sinon on prend la réponse indiquée dans le fichier de conf
-                returnVal = CBool(My.Settings.chekUpdates)
-                If returnVal Then
-                    Me.infosUpdate = New UpdateInfo()
-                    Me.infosUpdate.hasSql = True
-                    Me.Lbl_Version.Text = "Version Cible : " & Me.infosUpdate.version
-                    Me.Refresh()
-
-                End If
-            End If
 
         Catch ex As Exception
             CSDebug.dispError("Crodip_updater.Main._majCheck : " & ex.Message.ToString)
@@ -399,6 +391,125 @@ Public Class mainForm
         Return bReturn
     End Function
 
+    ' Execution des scripts insclus
+    Private Enum POWERSHELL As Integer
+        PS1 = 1
+        PS7 = 7
+    End Enum
+    Private Function _majScripts() As Boolean
+        Dim bReturn As Boolean
+        Try
+            If Me.infosUpdate.hasBAT Then
+                Dim fichierBat As String = My.Settings.update_bat_filename
+                If File.Exists(fichierBat) Then
+                    Dim psi As New ProcessStartInfo With {
+                                                                                                .FileName = fichierBat,
+                                                                                                .WorkingDirectory = Path.GetDirectoryName(fichierBat),
+                                                                                                .UseShellExecute = True,
+                                                                                                .WindowStyle = ProcessWindowStyle.Normal
+                                                                                               }
+
+                    Try
+                        Using p As Process = Process.Start(psi)
+                            p.WaitForExit()
+                            MessageBox.Show("Le script est terminé. Code retour : " & p.ExitCode)
+                        End Using
+
+                    Catch ex As Exception
+                        MessageBox.Show("Erreur _majscripts: " & ex.Message)
+                    End Try
+                End If
+            End If
+            If Me.infosUpdate.hasPS1 Then
+                ExecutePowerShell(POWERSHELL.PS1)
+            End If
+            If Me.infosUpdate.hasPS7 Then
+                ExecutePowerShell(POWERSHELL.PS7)
+            End If
+            bReturn = True
+        Catch ex As Exception
+            CSDebug.dispError("Crodip_updater.Main._majScripts ERR", ex)
+            bReturn = False
+        End Try
+        Return bReturn
+    End Function
+    Private Sub ExecutePowerShell(pPOWERSHELL As POWERSHELL)
+        Dim scriptPath As String
+        If pPOWERSHELL = POWERSHELL.PS1 Then
+            scriptPath =
+            Path.Combine(Application.StartupPath, My.Settings.update_ps1_filename)
+        Else
+            scriptPath =
+            Path.Combine(Application.StartupPath, My.Settings.update_ps7_filename)
+        End If
+
+        ' Vérifier que le script existe
+        If Not File.Exists(scriptPath) Then
+            Return
+        End If
+
+        Try
+            ' Préparer le lancement de PowerShell
+            Dim psi As New ProcessStartInfo()
+
+            If pPOWERSHELL = POWERSHELL.PS1 Then
+                psi.FileName = "powershell.exe"
+                psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File """ &
+                            scriptPath & """"
+            End If
+            If pPOWERSHELL = POWERSHELL.PS7 Then
+                psi.FileName = "pwsh.exe"
+                psi.Arguments = "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File """ &
+                            scriptPath & """"
+            End If
+
+            psi.UseShellExecute = False
+            psi.CreateNoWindow = True
+            psi.RedirectStandardOutput = True
+            psi.RedirectStandardError = True
+            psi.StandardOutputEncoding = Encoding.UTF8
+            psi.StandardErrorEncoding = Encoding.UTF8
+
+            ' Exécuter le script
+            Using proc As New Process()
+                proc.StartInfo = psi
+                proc.Start()
+
+                Dim resultat As String =
+                    proc.StandardOutput.ReadToEnd()
+
+                Dim erreur As String =
+                    proc.StandardError.ReadToEnd()
+
+                proc.WaitForExit()
+
+                ' Afficher le résultat
+                If proc.ExitCode = 0 Then
+                    MessageBox.Show(
+                        "Script exécuté avec succès." &
+                        Environment.NewLine &
+                        resultat,
+                        "PowerShell")
+                Else
+                    MessageBox.Show(
+                        "Erreur lors de l'exécution :" &
+                        Environment.NewLine &
+                        erreur &
+                        Environment.NewLine &
+                        resultat,
+                        "Erreur PowerShell")
+                End If
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show(
+                "Impossible de lancer PowerShell :" &
+                Environment.NewLine & ex.Message,
+                "Erreur")
+        End Try
+
+
+    End Sub
     ' Téléchargement des mises à jour
     Private Function _majDownload() As Boolean
         Dim bReturn As Boolean
@@ -515,6 +626,7 @@ retryOldFile:
     End Sub
 
 #End Region
+
 
     Private Sub btn_OK_Click(sender As System.Object, e As System.EventArgs) Handles btn_OK.Click
         ' Lancement du programme

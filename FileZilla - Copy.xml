@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.69.5" platform="windows">
+	<Servers>
+		<Server>
+			<Host>admin.crodip.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>crodip-docs</User>
+			<Pass encoding="base64">RUFyZjc2ag==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>crodip-docs</Name>
+			<Comments>EArf76j</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>admin.crodip.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>crodip-docs-pp</User>
+			<Pass encoding="base64">Y3JvZGRvY3NwcA==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>crodip-pp-docs</Name>
+			<Comments>croddocspp</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ourea.cognix-systems.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>crodip-pp-pdf</User>
+			<Pass encoding="base64">M3huRjlmVHhXcUw=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>CRODIP-PP-PDF</Name>
+			<Comments>3xnF9fTxWqL</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>admin-pp.crodip.net</Host>
+			<Port>21777</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>marc_collin</User>
+			<Pass encoding="base64">bWNvbGxpbg==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>crodip-pp.net</Name>
+			<Comments>mcollin</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ourea.cognix-systems.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>crodip</User>
+			<Pass encoding="base64">eTZvaTgyQzA=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>CRODIP-PRD-HTTP</Name>
+			<Comments>y6oi82C0</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ourea.cognix-systems.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>crodip-pdf</User>
+			<Pass encoding="base64">YnZka0VuNXhuUXg=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>CRODIP-PRD-PDF</Name>
+			<Comments>bvdkEn5xnQx</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>admin.crodip.net</Host>
+			<Port>21777</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>marc_collin_prod</User>
+			<Pass encoding="base64">bSFjb2xsaW44NA==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>crodip-prd.net</Name>
+			<Comments>m!collin84</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>fournisseurs.vinicom.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>ftp_vinicom</User>
+			<Pass encoding="base64">VmluNTZiUm81cTM=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>Fournisseurs VNC</Name>
+			<Comments>Vin56bRo5q3</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>fournisseurs.vinicom.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>ftp_vinicom</User>
+			<Pass encoding="base64">VmluNTZiUm81cTM=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>FTP vinicom Fournisseur</Name>
+			<Comments>Vin56bRo5q3</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster003.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>hobivinj</User>
+			<Pass encoding="base64">SG9iaXZpbjIwMTc=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>HOBIVIN(PRD)</Name>
+			<Comments>Hobivin2017</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp-par.ionos.com</Host>
+			<Port>21</Port>
+			<Protocol>4</Protocol>
+			<Type>0</Type>
+			<User>marccollin.com@gmail.com</User>
+			<Pass encoding="base64">NXonTi4jOi1wRC00cUNX</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>IONOS Cloud Paris</Name>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>localhost</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>ftp_vinidis</User>
+			<Pass encoding="base64">dmluaUNvbTkk</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>LOCAL</Name>
+			<Comments>viniCom9$</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>127.0.0.1</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>test</User>
+			<Pass encoding="base64">dGVzdA==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>LocalTypeSoft</Name>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.webmo.fr</Host>
+			<Port>21</Port>
+			<Protocol>4</Protocol>
+			<Type>0</Type>
+			<User>marccollin</User>
+			<Pass encoding="base64">dHBoaGd2My4=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>1</BypassProxy>
+			<Name>MCII</Name>
+			<Comments>tphhgv3.</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.phpnet.org</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>marccollin_vinicom</User>
+			<Pass encoding="base64">dmluaWNvbQ==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>MCII_FTPvinicom</Name>
+			<Comments>vinicom</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>durab.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>tevives</User>
+			<Pass encoding="base64">SWdZb0hiNFo=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>Nouveau site</Name>
+			<Comments>IgYoHb4Z</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster002.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>1</Type>
+			<User>vinicomwgs-baf</User>
+			<Pass encoding="base64">RWRjUmZ2MTE=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>Nouveau site 2</Name>
+			<Comments>EdcRfv11</Comments>
+			<RemoteDir>1 0</RemoteDir>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster030.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>xbkwujn</User>
+			<Pass encoding="base64">Q29sbGluMTA=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>Nouveau site 3</Name>
+			<Comments>Collin10</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster030.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>xbkwujn</User>
+			<Pass encoding="base64">Q29sbGluMTA=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>OVH PSP1.7</Name>
+			<Comments>Collin10</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.oxygene-chasnesurillet.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>oxygenec</User>
+			<Pass encoding="base64">aXl2bkZYTE0=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>OXYGENE</Name>
+			<Comments>iyvnFXLM</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>edi.stock-it.fr</Host>
+			<Port>21</Port>
+			<Protocol>6</Protocol>
+			<Type>0</Type>
+			<User>ftp_vinidis</User>
+			<Pass encoding="base64">dmluaUNvbTkk</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>STOCKIT</Name>
+			<Comments>viniCom9$</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>durab.fr</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>tevives</User>
+			<Pass encoding="base64">SWdZb0hiNFo=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>TEVIVES</Name>
+			<Comments>IgYoHb4Z</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>51.91.66.95</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>gestcom@vinicom.fr</User>
+			<Pass encoding="base64">Xls5cFEwbTNScXg3VkktTHIh</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINCOM-WOO-VINICOM.FR</Name>
+			<Comments>^[9pQ0m3Rqx7VI-Lr!</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster002.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>vinicomwgs</User>
+			<Pass encoding="base64">Y2dYU3V0NG1jZWhT</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM(PRD)</Name>
+			<Comments>cgXSut4mcehS
+</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>51.91.66.95</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>ftpproducteur@producteur.vinicom.fr</User>
+			<Pass encoding="base64">RFB4IUN9SVV+eW4hIT9qaGV7</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-ESPFRN-VINICOM</Name>
+			<Comments>DPx!C}IU~yn!!?jhe{
+</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>109.234.162.77</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>extranet@producteur.vinicom.fr</User>
+			<Pass encoding="base64">SDBZMipONTJ6MllUNmZGZg==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-ESPFRN-VINIDIS</Name>
+			<Comments>H0Y2*N52z2YT6fFf</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>51.210.24.243</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>gestcom@vinidis.fr</User>
+			<Pass encoding="base64">emhnZl1TZW51Zy1SMDFDUlZS</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-ESPFRN-VINIDIS NEW</Name>
+			<Comments>zhgf]Senug-R01CRVR</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster002.hosting.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>vinicomwgs-gestcom</User>
+			<Pass encoding="base64">RWRjUmZ2MTE=</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-IMPORTCMD</Name>
+			<Comments>EdcRfv11
+</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>ftp.cluster002.ovh.net</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>vinicomwgs-vinidis</User>
+			<Pass encoding="base64">VmluaWRpczA0MDkyMDE4</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_PASSIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-PLATEFORME</Name>
+			<Comments>Vinidis04092018
+
+Ce compte devrait migrer vers cluster003 (VINIDIS.FR)</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+		<Server>
+			<Host>51.91.66.95</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>gestcom@hobivin.fr</User>
+			<Pass encoding="base64">Q1lJJD8qUmYzSl4hZFsxY2ps</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>VINICOM-WOO-HOBIVIN.FR</Name>
+			<Comments>CYI$?*Rf3J^!d[1cjl</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+	<Settings>
+		<Setting name="Limit local ports">0</Setting>
+		<Setting name="Limit ports low">6000</Setting>
+		<Setting name="Limit ports high">7000</Setting>
+		<Setting name="External IP mode">0</Setting>
+		<Setting name="External IP" />
+		<Setting name="External address resolver">http://ip.filezilla-project.org/ip.php</Setting>
+		<Setting name="Last resolved IP" />
+		<Setting name="No external ip on local conn">1</Setting>
+		<Setting name="Pasv reply fallback mode">0</Setting>
+		<Setting name="Timeout">20</Setting>
+		<Setting name="Logging Debug Level">0</Setting>
+		<Setting name="Logging Raw Listing">0</Setting>
+		<Setting name="fzsftp executable" />
+		<Setting name="Allow transfermode fallback">1</Setting>
+		<Setting name="Reconnect count">2</Setting>
+		<Setting name="Reconnect delay">5</Setting>
+		<Setting name="Enable speed limits">0</Setting>
+		<Setting name="Speedlimit inbound">100</Setting>
+		<Setting name="Speedlimit outbound">20</Setting>
+		<Setting name="Speedlimit burst tolerance">0</Setting>
+		<Setting name="View hidden files">0</Setting>
+		<Setting name="Preserve timestamps">0</Setting>
+		<Setting name="Socket recv buffer size (v2)">4194304</Setting>
+		<Setting name="Socket send buffer size (v2)">262144</Setting>
+		<Setting name="FTP Keep-alive commands">0</Setting>
+		<Setting name="FTP Proxy type">0</Setting>
+		<Setting name="FTP Proxy host" />
+		<Setting name="FTP Proxy user" />
+		<Setting name="FTP Proxy password" />
+		<Setting name="FTP Proxy login sequence" />
+		<Setting name="SFTP keyfiles" />
+		<Setting name="Proxy type">0</Setting>
+		<Setting name="Proxy host" />
+		<Setting name="Proxy port">0</Setting>
+		<Setting name="Proxy user" />
+		<Setting name="Proxy password" />
+		<Setting name="Logging file" />
+		<Setting name="Logging filesize limit">10</Setting>
+		<Setting name="Trusted root certificate" />
+		<Setting name="Size format">0</Setting>
+		<Setting name="Size thousands separator">1</Setting>
+		<Setting name="Size decimal places">1</Setting>
+		<Setting name="Number of Transfers">2</Setting>
+		<Setting name="Ascii Binary mode">2</Setting>
+		<Setting name="Auto Ascii files">am|asp|bat|c|cfm|cgi|conf|cpp|css|dhtml|diz|h|hpp|htm|html|in|inc|java|js|jsp|lua|m4|mak|md5|nfo|nsi|pas|patch|php|phtml|pl|po|py|qmail|sh|shtml|sql|svg|tcl|tpl|txt|vbs|xhtml|xml|xrc</Setting>
+		<Setting name="Auto Ascii no extension">1</Setting>
+		<Setting name="Auto Ascii dotfiles">1</Setting>
+		<Setting name="Theme">opencrystal/</Setting>
+		<Setting name="Language Code" />
+		<Setting name="Last Server Path" />
+		<Setting name="Concurrent download limit">0</Setting>
+		<Setting name="Concurrent upload limit">0</Setting>
+		<Setting name="Update Check">0</Setting>
+		<Setting name="Update Check Interval">7</Setting>
+		<Setting name="Update Check Check Beta">0</Setting>
+		<Setting name="Update Check Download Dir" />
+		<Setting name="Show debug menu">0</Setting>
+		<Setting name="File exists action download">0</Setting>
+		<Setting name="File exists action upload">0</Setting>
+		<Setting name="Allow ascii resume">0</Setting>
+		<Setting name="Onetime Dialogs" />
+		<Setting name="Show Tree Local">1</Setting>
+		<Setting name="Show Tree Remote">1</Setting>
+		<Setting name="File Pane Layout">0</Setting>
+		<Setting name="File Pane Swap">0</Setting>
+		<Setting name="Last local directory">R:\Depots\</Setting>
+		<Setting name="Filelist directory sort">0</Setting>
+		<Setting name="Filelist name sort">0</Setting>
+		<Setting name="Queue successful autoclear">1</Setting>
+		<Setting name="Remote filelist colwidths">402 75 80 115 80 236</Setting>
+		<Setting name="Time Format">0</Setting>
+		<Setting name="Date Format">0</Setting>
+		<Setting name="Show message log">1</Setting>
+		<Setting name="Show queue">1</Setting>
+		<Setting name="Default editor">0</Setting>
+		<Setting name="Always use default editor">0</Setting>
+		<Setting name="Inherit system associations">1</Setting>
+		<Setting name="Custom file associations">PP C:\WINDOWS\system32\NOTEPAD.EXE
+. C:\WINDOWS\system32\NOTEPAD.EXE
+sample "C:\Program Files (x86)\Notepad++\notepad++.exe"
+PRD C:\WINDOWS\system32\NOTEPAD.EXE
+yml C:\WINDOWS\system32\NOTEPAD.EXE
+fi C:\WINDOWS\system32\NOTEPAD.EXE</Setting>
+		<Setting name="Comparison mode">1</Setting>
+		<Setting name="Comparison threshold">1</Setting>
+		<Setting name="Theme icon size" />
+		<Setting name="Timestamp in message log">0</Setting>
+		<Setting name="Local filelist shown columns">1111</Setting>
+		<Setting name="Remote filelist shown columns">111111</Setting>
+		<Setting name="Local filelist column order">0,1,2,3</Setting>
+		<Setting name="Remote filelist column order">0,1,2,3,4,5</Setting>
+		<Setting name="Filelist status bar">1</Setting>
+		<Setting name="Filter toggle state">0</Setting>
+		<Setting name="Show quickconnect bar">1</Setting>
+		<Setting name="Messagelog position">0</Setting>
+		<Setting name="Last connected site">0/crodip-prd</Setting>
+		<Setting name="File doubleclock action">0</Setting>
+		<Setting name="Dir doubleclock action">0</Setting>
+		<Setting name="Minimize to tray">0</Setting>
+		<Setting name="Search column widths" />
+		<Setting name="Search column shown" />
+		<Setting name="Search column order" />
+		<Setting name="Search window size">0 1537 222 750 500 </Setting>
+		<Setting name="Comparison hide identical">0</Setting>
+		<Setting name="Search sort order" />
+		<Setting name="Edit track local">1</Setting>
+		<Setting name="Prevent idle sleep">1</Setting>
+		<Setting name="Filteredit window size" />
+		<Setting name="Enable invalid char filter">1</Setting>
+		<Setting name="Invalid char replace">_</Setting>
+		<Setting name="Edit status dialog size" />
+		<Setting name="Display current speed">0</Setting>
+		<Setting name="Toolbar hidden">0</Setting>
+		<Setting name="Strip VMS revisions">0</Setting>
+		<Setting name="Show Site Manager on startup">0</Setting>
+		<Setting name="Prompt password change">0</Setting>
+		<Setting name="Config Location">C:\Users\COLLIN\AppData\Roaming\FileZilla\</Setting>
+		<Setting name="Kiosk mode">0</Setting>
+		<Setting name="Disable update check">0</Setting>
+		<LastServer>
+			<Host>ftp.gaya-solutions.com</Host>
+			<Port>21</Port>
+			<Protocol>6</Protocol>
+			<Type>0</Type>
+			<User>marc_collin_prod</User>
+			<Pass>m!collin84</Pass>
+			<Logontype>1</Logontype>
+			<TimezoneOffset>0</TimezoneOffset>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<MaximumMultipleConnections>0</MaximumMultipleConnections>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>crodip-prd</Name>
+		</LastServer>
+		<Setting name="Limit ports offset">0</Setting>
+		<Setting name="Preallocate space">0</Setting>
+		<Setting name="SFTP compression">0</Setting>
+		<Setting name="TCP Keepalive Interval">15</Setting>
+		<Setting name="Cache TTL">600</Setting>
+		<Setting name="Minimum TLS Version">2</Setting>
+		<Setting name="Master password encryptor" />
+		<Setting name="Cache directory" platform="win" />
+		<Setting name="Greeting resources" />
+		<Setting name="Icon theme">default</Setting>
+		<Setting name="Icon scale">125</Setting>
+		<Setting name="File doubleclick action">0</Setting>
+		<Setting name="Dir doubleclick action">0</Setting>
+		<Setting name="Startup action">0</Setting>
+		<Setting name="Prompt password save">0</Setting>
+		<Setting name="Queue completion action">1</Setting>
+		<Setting name="Queue completion command" />
+		<Setting name="Drag and Drop disabled">0</Setting>
+		<Setting name="Disable update footer">0</Setting>
+		<Setting name="Highest shown overlay id">0</Setting>
+		<Setting name="Already connected choice">1</Setting>
+		<Setting name="Local filelist colwidths">314 80 100 120</Setting>
+		<Setting name="Queue column widths">379 60 557 80 60 100</Setting>
+		<Setting name="Persistent Choices">0</Setting>
+		<Setting name="Directory listing item limit">10000000</Setting>
+		<Setting name="Remote recursive operation list refresh">0</Setting>
+		<Setting name="Resolve local symlinks" platform="win">1</Setting>
+		<Setting name="Greeting version">3.69.5</Setting>
+		<Setting name="Last automatic update check">2026-02-09 18:00:54</Setting>
+		<Setting name="Last automatic update version">3.69.5</Setting>
+		<Setting name="Trust system trust store">1</Setting>
+		<Setting name="Splitter positions (v2)">181 -151 460416666 210 150 500000000</Setting>
+		<Setting name="Update Check New Version" platform="win" />
+		<Setting name="Use Pasv mode">1</Setting>
+		<Setting name="File associations (v2)" platform="win">. C:\WINDOWS\system32\NOTEPAD.EXE %f
+/ C:\WINDOWS\system32\NOTEPAD.EXE %f
+PRD C:\WINDOWS\system32\OpenWith.exe %f
+config "C:\Program Files (x86)\Notepad++\notepad++.exe" %f
+edi C:\WINDOWS\system32\OpenWith.exe %f
+htm C:\WINDOWS\system32\NOTEPAD.EXE %f
+ini C:\WINDOWS\system32\NOTEPAD.EXE %f
+php "C:\Program Files (x86)\Notepad++\notepad++.exe" %f
+pp C:\WINDOWS\system32\OpenWith.exe %f
+prd C:\WINDOWS\system32\NOTEPAD.EXE %f
+sql "C:\Program Files (x86)\Notepad++\notepad++.exe" %f
+txt C:\WINDOWS\system32\NOTEPAD.EXE %f</Setting>
+		<Setting name="Local filelist sortorder">1 3</Setting>
+		<Setting name="Remote filelist sortorder">0 0</Setting>
+		<Setting name="Sitemanager last selected">0/IONOS Cloud Paris</Setting>
+		<Setting name="Window position and size">1 92 22 684 886 </Setting>
+		<Setting name="Tab data" sensitive="1">
+			<Tabs>
+				<Tab connected="1" selected="1">
+					<Host>ftp-par.ionos.com</Host>
+					<Port>21</Port>
+					<Protocol>4</Protocol>
+					<Type>0</Type>
+					<User>marccollin.com@gmail.com</User>
+					<Pass encoding="base64">NXonTi4jOi1wRC00cUNX</Pass>
+					<Logontype>1</Logontype>
+					<PasvMode>MODE_DEFAULT</PasvMode>
+					<EncodingType>Auto</EncodingType>
+					<BypassProxy>0</BypassProxy>
+					<Name>IONOS Cloud Paris</Name>
+					<Site>0/IONOS Cloud Paris</Site>
+					<RemotePath>1 0 10 hdd-images</RemotePath>
+					<LocalPath>Z:\MARC\VM\</LocalPath>
+				</Tab>
+			</Tabs>
+		</Setting>
+		<Setting name="Site Manager position">0 1716 266 1032 469 </Setting>
+	</Settings>
+</FileZilla3>

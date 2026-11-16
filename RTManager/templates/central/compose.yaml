@@ -1,0 +1,40 @@
+name: crodip-runtime-central
+
+services:
+  postgres:
+    image: ${CRODIP_CENTRAL_POSTGRES_IMAGE:-postgres:17}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${CRODIP_CENTRAL_POSTGRES_DB:-crodip}
+      POSTGRES_USER: ${CRODIP_CENTRAL_POSTGRES_USER:-crodip}
+      POSTGRES_PASSWORD: ${CRODIP_CENTRAL_POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - crodip_runtime_central_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${CRODIP_CENTRAL_POSTGRES_USER:-crodip} -d ${CRODIP_CENTRAL_POSTGRES_DB:-crodip}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    image: ${CRODIP_BACKEND_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "${CRODIP_BACKEND_PORT:-8120}:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://${CRODIP_CENTRAL_POSTGRES_USER:-crodip}:${CRODIP_CENTRAL_POSTGRES_PASSWORD:-change-me}@postgres:5432/${CRODIP_CENTRAL_POSTGRES_DB:-crodip}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    image: ${CRODIP_FRONTEND_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "${CRODIP_FRONTEND_PORT:-9120}:80"
+    depends_on:
+      - backend
+
+volumes:
+  crodip_runtime_central_postgres:
+    name: crodip-runtime-central-postgres

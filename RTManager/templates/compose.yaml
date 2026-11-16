@@ -1,0 +1,16 @@
+name: crodip-runtime-local
+services:
+  backend:
+    image: ${CRODIP_BACKEND_IMAGE}
+    restart: unless-stopped
+    ports: ["${CRODIP_BACKEND_PORT:-8110}:8000"]
+    environment:
+      CRODIP_DATA_ROOT: /app/runtime
+      DATABASE_URL: sqlite:////app/runtime/sqlite/crodip.db
+    volumes:
+      - ${CRODIP_DATA_ROOT}:/app/runtime
+  frontend:
+    image: ${CRODIP_FRONTEND_IMAGE}
+    restart: unless-stopped
+    ports: ["${CRODIP_FRONTEND_PORT:-9110}:80"]
+    depends_on: [backend]

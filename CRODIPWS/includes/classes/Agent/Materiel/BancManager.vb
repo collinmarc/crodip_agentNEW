@@ -446,9 +446,11 @@ Public Class BancManager
             Dim obanc As Banc = Nothing
             obanc = BancManager.getBancByuId(pAgent.oPool.uidbanc)
             If obanc IsNot Nothing Then
-                lstReturn.Add(obanc)
+                If obanc.etat Or isShowAll Then
+                    lstReturn.Add(obanc)
+                End If
             End If
-        Else
+            Else
             lstReturn = BancManager.getBancByStructureId(pAgent.uidstructure, isShowAll)
         End If
         Return lstReturn

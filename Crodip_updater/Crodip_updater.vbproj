@@ -219,7 +219,6 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Content Include="favicon.ico" />
-    <Content Include="ReleaseNotes.css" />
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.vb</DependentUpon>
     </EmbeddedResource>
@@ -231,7 +230,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="packages.config" />
     <None Include="Web References\WSCrodip_dev\crodip.wsdl" />
     <None Include="Web References\WSCrodip_dev\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -252,7 +250,6 @@
       <UrlBehavior>Static</UrlBehavior>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent />

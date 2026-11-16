@@ -718,8 +718,15 @@
 --  Update  ExploitationTOPulverisateur set aid = id;
 --  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-08-20 12:00:00','ExploitToPulve');
 -- Modif table des identifiantOTC
-ALTER table IdentifiantOTC Add Column chargement Text;
-ALTER table IdentifiantOTC Add Column type Text;
-ALTER table IdentifiantOTC Add Column active Text;
-  INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-10-13 12:00:00','IdentOTC2');
+--ALTER table IdentifiantOTC Add Column chargement Text;
+--ALTER table IdentifiantOTC Add Column type Text;
+--ALTER table IdentifiantOTC Add Column active Text;
+--INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.4','2025-10-13 12:00:00','IdentOTC2');
 
+DELETE FROM AgentManoControle
+WHERE rowid NOT IN (
+    SELECT MIN(rowid)
+    FROM AgentManoControle
+    GROUP BY numeroNational, uid
+);
+INSERT INTO VERSION (VERSION_NUM,VERSION_DATE,VERSION_COMM) VALUES ('V4.5','2026-10-13 12:00:00','Doublons AgentManoControle');
