@@ -1,7 +1,7 @@
 ﻿Imports Crodip_agent
 Imports Microsoft.Office.Interop.Access
 Imports System.Linq
-Imports Microsoft.Data.Sqlite
+Imports System.Data.SQLite
 Imports System.Data.Common
 Imports System.Collections.Generic
 
@@ -520,7 +520,7 @@ INSERT INTO AgentManoEtalon (
 
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
         Dim oCSDBSQL As New CSDb(True)
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+        Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
         ocmdSQL = oCSDBSQL.getConnection().CreateCommand
 
 
@@ -538,11 +538,11 @@ INSERT INTO AgentManoEtalon (
         Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New System.Data.SQLite.SQLiteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+        Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
 
         ocmdACCESS = oCSDBACCESS.CreateCommand
         ocmdSQL = oCSDBSQL.CreateCommand
@@ -600,11 +600,11 @@ INSERT INTO AgentManoEtalon (
         Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New System.Data.SQLite.SQLiteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+        Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
 
         ocmdACCESS = oCSDBACCESS.CreateCommand
         ocmdSQL = oCSDBSQL.CreateCommand
@@ -666,11 +666,11 @@ INSERT INTO AgentManoEtalon (
             Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
             oCSDBACCESS.Open()
             CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-            Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
+            Dim oCSDBSQL As New System.Data.SQLite.SQLiteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
             oCSDBSQL.Open()
             Dim nMax As Integer = 100
             Dim ocmdACCESS As DbCommand
-            Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+            Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
 
             ocmdACCESS = oCSDBACCESS.CreateCommand
             ocmdSQL = oCSDBSQL.CreateCommand
@@ -704,6 +704,7 @@ INSERT INTO AgentManoEtalon (
                 Dim StructureNum As String
                 Dim dateControl As String
                 Dim RSExploitant As String
+                Dim PulveNumNat As String = ""
 
 
                 DiagId = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("Id"))
@@ -713,10 +714,16 @@ INSERT INTO AgentManoEtalon (
                 StructureNum = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("OrganismePresNumero"))
                 dateControl = oDR.GetFieldValue(Of DateTime)(oDR.GetOrdinal("controleDateDebut"))
                 RSExploitant = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("proprietaireRaisonSociale"))
+                If Not oDR.IsDBNull(oDR.GetOrdinal("pulverisateurNumNational")) Then
+                    PulveNumNat = oDR.GetFieldValue(Of String)(oDR.GetOrdinal("pulverisateurNumNational"))
+                End If
 
                 dateControl = dateControl.Replace("/", "-")
 
                 ocmdSQL.CommandText = "SELECT COUNT(ID) FROM DIAGNOSTIC WHERE Id = '" & DiagId & "' "
+                If Not String.IsNullOrEmpty(PulveNumNat) Then
+                    ocmdSQL.CommandText = ocmdSQL.CommandText & " AND  DIAGNOSTIC.pulverisateurNumNational = '" & PulveNumNat & "'"
+                End If
                 Dim nEnr As Integer = ocmdSQL.ExecuteScalar()
 
                 Dim uidPulve As Integer
@@ -2067,11 +2074,11 @@ INSERT INTO Diagnostic (
         Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New System.Data.SQLite.SQLiteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+        Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
 
         ocmdACCESS = oCSDBACCESS.CreateCommand
         ocmdSQL = oCSDBSQL.CreateCommand
@@ -2150,11 +2157,11 @@ INSERT INTO Diagnostic (
         Dim oCSDBACCESS As New OleDb.OleDbConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.MSACCESS))
         oCSDBACCESS.Open()
         CSDb._DBTYPE = CSDb.EnumDBTYPE.SQLITE
-        Dim oCSDBSQL As New Microsoft.Data.Sqlite.SqliteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
+        Dim oCSDBSQL As New System.Data.SQLite.SQLiteConnection(oCSDB.getConnectString(CSDb.EnumDBTYPE.SQLITE))
         oCSDBSQL.Open()
         Dim nMax As Integer = 100
         Dim ocmdACCESS As DbCommand
-        Dim ocmdSQL As Microsoft.Data.Sqlite.SqliteCommand
+        Dim ocmdSQL As System.Data.SQLite.SQLiteCommand
 
         ocmdACCESS = oCSDBACCESS.CreateCommand
         ocmdSQL = oCSDBSQL.CreateCommand

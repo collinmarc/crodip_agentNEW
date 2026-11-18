@@ -106,6 +106,7 @@ Public Class DiagnosticManager
                 Case 9 ' BADREQUEST
                     CSDebug.dispError("SendWS - Code 9 : Mauvaise Requete")
                 Case 0 ' PAS DE MAJ
+                    pobjOut = WSgetById(0, puid, CType(pObjIn, root).aid)
             End Select
         Catch ex As Exception
             CSDebug.dispError("RootManager - sendWS : ", ex)
@@ -754,7 +755,7 @@ Public Class DiagnosticManager
         bddCommande = oCsdb.getConnection().CreateCommand
         '        bddCommande.CommandText = "SELECT * FROM Diagnostic WHERE Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip AND Diagnostic.inspecteurId=" & agent.id
         bddCommande.CommandText = "Select Diagnostic.id From Diagnostic INNER Join Agent On Diagnostic.inspecteurId = Agent.Id Where Agent.idStructure = " & pAgent.uidstructure
-        bddCommande.CommandText = bddCommande.CommandText & " AND (Diagnostic.dateModificationAgent<>Diagnostic.dateModificationCrodip OR Diagnostic.dateModificationCrodip is null)"
+        bddCommande.CommandText = bddCommande.CommandText & " AND (Diagnostic.dateModificationAgent>Diagnostic.dateModificationCrodip OR Diagnostic.dateModificationCrodip is null)"
         Try
             ' On récupère les résultats
             Dim lstId As New List(Of String)

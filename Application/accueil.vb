@@ -4395,7 +4395,7 @@ Public Class accueil
         Else
             dateDernSynhcro = CSDate.ToCRODIPString(agentCourant.oPCcourant.dateDerniereSynchro)
         End If
-        If CSDate.FromCrodipString(dateDernSynhcro) = CSDate.FromCrodipString("01/01/1970 00:00:00") Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
+        If CSDate.FromCrodipString(dateDernSynhcro) = CSDate.FromCrodipString("1970-01-01 00:00:00") Or dateDernSynhcro = "" Or dateDernSynhcro = "00/00/0000 00:00:00" Then
             lbl_infosAgent_dateDernSynchro.Text = "--/--/-- --:--:--"
         Else
             lbl_infosAgent_dateDernSynchro.Text = dateDernSynhcro

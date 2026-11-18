@@ -39,11 +39,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestCrodipWS", "TestCrodipW
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "testcrodip4", "..\testcrodip4\testcrodip4.vbproj", "{B19B4C0F-835C-4904-AB01-365BE849D5E9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrodipPortail", "CrodipPortail", "{A6FA6BA8-A005-4421-9195-E4B8FB1FB6B1}"
-	ProjectSection(SolutionItems) = preProject
-		CrodipPortail\installPS7.bat = CrodipPortail\installPS7.bat
-	EndProjectSection
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MigrationDiagnostic", "MigrationDiagnostic\MigrationDiagnostic.vbproj", "{AA5F2318-D936-4C2D-9C4E-42D13756B35F}"
 EndProject
 Global

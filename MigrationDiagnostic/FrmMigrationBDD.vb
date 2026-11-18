@@ -109,6 +109,8 @@
     End Sub
 
     Private Sub FrmMigrationBDD_Load(sender As Object, e As EventArgs) Handles Me.Load
+        GlobalsCRODIP.GLOB_PARAM_DB = My.Settings.DB
+        GlobalsCRODIP.GLOB_PARAM_DBExtension = My.Settings.DBExtension
         If Not System.IO.File.Exists(My.Settings.DBMSACESS) Or
            Not System.IO.File.Exists(My.Settings.DBMSACESS2) Then
             CSDebug.dispInfo("La base de données ACCESS n'est pas présente")

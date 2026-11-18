@@ -61,6 +61,9 @@ Public Class CSDate
     '    End Try
     'End Function
 
+    Public Shared Function FromCrodipString(ByVal accessDate As DateTime) As Date
+        Return accessDate
+    End Function
     Public Shared Function FromCrodipString(ByVal accessDate As String) As Date
         Dim vbDate As Date
         Try
@@ -80,7 +83,7 @@ Public Class CSDate
                     End If
                     vbDate = New Date(CType(yr, Double), CType(mo, Double), CType(dy, Double), CType(hr, Double), CType(mi, Double), CType(se, Double))
                 Else
-                        vbDate = Date.MinValue
+                    vbDate = Date.MinValue
                 End If
             Else
                 vbDate = Date.MinValue

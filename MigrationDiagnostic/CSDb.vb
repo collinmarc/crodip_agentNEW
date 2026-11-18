@@ -1,5 +1,6 @@
 Imports System.Data.Common
-'Imports System.Data.OleDb
+Imports System.Data.SQLite
+Imports Microsoft.Win32
 
 Public Class CSDb
     Public Enum EnumDBTYPE
@@ -38,9 +39,9 @@ Public Class CSDb
                         _dbConnection = New OleDb.OleDbConnection
                         _dbConnection.ConnectionString = _bddConnectString
                     Case EnumDBTYPE.SQLITE
-                        _dbConnection = New Microsoft.Data.Sqlite.SqliteConnection()
-                        Dim oBuider As New Microsoft.Data.Sqlite.SqliteConnectionStringBuilder()
-                        oBuider.DataSource = My.Settings.DBSQLITE
+                        _dbConnection = New SQLiteConnection()
+                        Dim oBuider As New SQLiteConnectionStringBuilder()
+                        oBuider.DataSource = "bdd/" & GlobalsCRODIP.GLOB_PARAM_DB & GlobalsCRODIP.GLOB_PARAM_DBExtension
                         oBuider.Pooling = True
                         _dbConnection.ConnectionString = oBuider.ConnectionString
                 End Select
@@ -61,18 +62,18 @@ Public Class CSDb
 
         Try
 
-            Dim oCmd As Microsoft.Data.Sqlite.SqliteCommand
+            Dim oCmd As DbCommand
             oCmd = _dbConnection.CreateCommand()
-            oCmd.CommandText = "BEGIN EXCLUSIVE"
-            oCmd.CommandTimeout = 1
+            oCmd.CommandText = "BEGIN IMMEDIATE"
+            '            oCmd.CommandTimeout = 1
             oCmd.ExecuteNonQuery()
 
             oCmd = _dbConnection.CreateCommand()
-            oCmd.CommandText = "COMMIT"
-            oCmd.CommandTimeout = 1
+            oCmd.CommandText = "ROOLBACK"
+            '           oCmd.CommandTimeout = 1
             oCmd.ExecuteNonQuery()
-            bReturn = False
-        Catch ex As Microsoft.Data.Sqlite.SqliteException
+            bReturn = False 'il n'y a pas d'erreur donc la base n'est pas locké
+        Catch ex As System.Data.SQLite.SQLiteException
             bReturn = True
 
         End Try

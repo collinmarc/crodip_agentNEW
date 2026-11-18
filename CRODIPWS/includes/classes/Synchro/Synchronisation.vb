@@ -1231,11 +1231,12 @@ Public Class Synchronisation
             Dim synchroDateTime As Object = Nothing
             Dim reponse As GetSynchroDateTimeResponse
             reponse = objWSCrodip.GetSynchroDateTime()
-            Dim sDateFromSRV As String = reponse.SynchroDateTime(0).InnerText().replace("/", "-")
+            Dim sDateFromSRV As String = reponse.SynchroDateTime(0).InnerText()
             Dim dtSRV As Date
             Try
-                dtSRV = New Date(sDateFromSRV)
+                dtSRV = CDate(sDateFromSRV)
             Catch Ex As Exception
+                sDateFromSRV = reponse.SynchroDateTime(0).InnerText().replace("/", "-")
                 Try
                     dtSRV = CSDate.FromCrodipString(sDateFromSRV)
                 Catch Ex2 As Exception

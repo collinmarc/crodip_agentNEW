@@ -108,7 +108,7 @@ Public Class RootManager
                     'CSDebug.dispTrace("WS-" & nomMethode & " Param = [" & xmlOutput & "]")
                 End Using
                 SynchronisationManager.LogSynchroDebut(nomMethode)
-                SynchronisationManager.LogSynchrodEMANDE(Params, nomMethode)
+                SynchronisationManager.LogSynchrodEMANDE(pobj, nomMethode)
                 codeResponse = methode.Invoke(objWSCrodip, Params)
                 pInfo = DirectCast(Params(1), String)
                 SynchronisationManager.LogSynchroREPONSE(codeResponse, nomMethode)

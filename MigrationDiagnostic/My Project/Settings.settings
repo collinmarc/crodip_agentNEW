@@ -35,17 +35,17 @@
     <Setting Name="StockPDF" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DBMSACESS" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">bdd/crodipAgent.mdb</Value>
-    </Setting>
     <Setting Name="DBSQLITE" Type="System.String" Scope="Application">
       <Value Profile="(Default)">bdd/crodip_agent.db3</Value>
     </Setting>
-    <Setting Name="DBMSACESS2" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">bdd/crodipAgent.mdw</Value>
-    </Setting>
     <Setting Name="DBOLEDBPROVIDER" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Microsoft.ACE.OLEDB.12.0</Value>
+    </Setting>
+    <Setting Name="DBMSACESS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bdd/crodip_agent.mdb</Value>
+    </Setting>
+    <Setting Name="DBMSACESS2" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bdd/crodip_agent.mdw</Value>
     </Setting>
   </Settings>
 </SettingsFile>

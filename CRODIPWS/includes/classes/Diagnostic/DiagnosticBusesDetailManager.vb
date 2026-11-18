@@ -51,6 +51,7 @@ Public Class DiagnosticBusesDetailManager
         'Propagation des uid
         Dim oBuse As DiagnosticBuses
         Dim oDetail As DiagnosticBusesDetail
+        Dim nReturn As Integer
         For Each oBuse In pDiag.diagnosticBusesList.Liste
             oBuse.uiddiagnostic = pDiag.uid
             oBuse.aiddiagnostic = pDiag.aid
@@ -63,21 +64,26 @@ Public Class DiagnosticBusesDetailManager
 
         'Envoi de tous les detail de buses
         For Each oBuse In pDiag.diagnosticBusesList.Liste
-            WSSend(oBuse.diagnosticBusesDetailList)
+            If oBuse.diagnosticBusesDetailList.Liste.Count > 0 Then
+                nReturn = WSSend(oBuse.diagnosticBusesDetailList)
+            End If
         Next
+        Return nReturn
     End Function
     Public Shared Function WSSend(ByVal pListe As DiagnosticBusesDetailList) As Integer
         Dim tmpArr(1)() As DiagnosticBusesDetail
         tmpArr(0) = pListe.Liste.ToArray()
         Dim updatedObject() As Object = Nothing
+        Dim nReturn As Integer
         Try
             ' Appel au WS
             Dim objWSCrodip As WSCRODIP.CrodipServer = WebServiceCRODIP.getWS()
             Dim rInfos As String = ""
-            objWSCrodip.SendDiagnosticBusesDetail(tmpArr, rInfos)
+            nReturn = objWSCrodip.SendDiagnosticBusesDetail(tmpArr, rInfos)
         Catch ex As Exception
             CSDebug.dispFatal("DiagnosticBusesDetailManager.WSSend ERR", ex)
         End Try
+        Return nReturn
     End Function
 
 
