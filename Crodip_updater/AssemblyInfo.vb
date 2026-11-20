@@ -31,4 +31,5 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("2.5.*")>
 
-<Assembly: AssemblyFileVersionAttribute("2024.02.04.1000")>
+<Assembly: AssemblyFileVersion("2026.11.18.0000")>
+<Assembly: ComVisible(False)>

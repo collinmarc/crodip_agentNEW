@@ -21,6 +21,7 @@
     <StartProgram>E:\CRODIP\Logiciel Crodip Agent.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>1254</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
 </Project>

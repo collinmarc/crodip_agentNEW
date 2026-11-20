@@ -128,15 +128,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("20200101010000")>  _
-        Public ReadOnly Property chekUpdates() As String
-            Get
-                Return CType(Me("chekUpdates"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public ReadOnly Property downloadUpdates() As Boolean
             Get
@@ -186,6 +177,15 @@ Namespace My
         Public ReadOnly Property update_ps7_filename() As String
             Get
                 Return CType(Me("update_ps7_filename"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("WS")>  _
+        Public ReadOnly Property chekUpdates() As String
+            Get
+                Return CType(Me("chekUpdates"),String)
             End Get
         End Property
     End Class

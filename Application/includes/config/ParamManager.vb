@@ -1,13 +1,15 @@
 ﻿Imports CRODIPWS
+Imports System.Configuration
 
 Public Class ParamManager
     Public ReadOnly Property Param(pParam As String) As Object
         Get
-            Return Configuration.ConfigurationManager.AppSettings(pParam)
+            Return ConfigurationManager.AppSettings(pParam)
         End Get
     End Property
     Public Shared Sub initGlobalsCrodip()
         My.Settings.Reload()
+
         Dim test As String = My.Settings.DBVersionExpected
         If My.Settings.BDDType = "ACCESS" Then
             CSDb._DBTYPE = CSDb.EnumDBTYPE.MSACCESS

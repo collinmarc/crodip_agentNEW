@@ -13,15 +13,15 @@ Option Explicit On
 
 
 Namespace My
-    
-    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "18.10.0.0"),  _
-     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
+
+    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "18.11.0.0"),
+     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
-        
-        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
-        
+
+        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()), MySettings)
+
 #Region "My.Settings Auto-Save Functionality"
 #If _MyType = "WindowsForms" Then
     Private Shared addedHandler As Boolean
@@ -36,10 +36,10 @@ Namespace My
     End Sub
 #End If
 #End Region
-        
+
         Public Shared ReadOnly Property [Default]() As MySettings
             Get
-                
+
 #If _MyType = "WindowsForms" Then
                If Not addedHandler Then
                     SyncLock addedHandlerLockObject
@@ -53,169 +53,169 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("updates.sql")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("updates.sql")>
         Public ReadOnly Property update_sql_filename() As String
             Get
-                Return CType(Me("update_sql_filename"),String)
+                Return CType(Me("update_sql_filename"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property aqw() As String
             Get
-                Return CType(Me("aqw"),String)
+                Return CType(Me("aqw"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>
         Public ReadOnly Property AutoSync() As Boolean
             Get
-                Return CType(Me("AutoSync"),Boolean)
+                Return CType(Me("AutoSync"), Boolean)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("SQLITE")>
         Public ReadOnly Property BDDType() As String
             Get
-                Return CType(Me("BDDType"),String)
+                Return CType(Me("BDDType"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>
         Public ReadOnly Property checknetwork() As Boolean
             Get
-                Return CType(Me("checknetwork"),Boolean)
+                Return CType(Me("checknetwork"), Boolean)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("crodip_agent")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("crodip_agent")>
         Public ReadOnly Property DB() As String
             Get
-                Return CType(Me("DB"),String)
+                Return CType(Me("DB"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute(".db3")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute(".db3")>
         Public ReadOnly Property DBExtension() As String
             Get
-                Return CType(Me("DBExtension"),String)
+                Return CType(Me("DBExtension"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property DBVersionExpected() As String
             Get
-                Return CType(Me("DBVersionExpected"),String)
+                Return CType(Me("DBVersionExpected"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property Expect100Continue() As String
             Get
-                Return CType(Me("Expect100Continue"),String)
+                Return CType(Me("Expect100Continue"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPHost() As String
             Get
-                Return CType(Me("FTPHost"),String)
+                Return CType(Me("FTPHost"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPHostTest() As String
             Get
-                Return CType(Me("FTPHostTest"),String)
+                Return CType(Me("FTPHostTest"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPPassword() As String
             Get
-                Return CType(Me("FTPPassword"),String)
+                Return CType(Me("FTPPassword"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPPasswordTest() As String
             Get
-                Return CType(Me("FTPPasswordTest"),String)
+                Return CType(Me("FTPPasswordTest"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPUser() As String
             Get
-                Return CType(Me("FTPUser"),String)
+                Return CType(Me("FTPUser"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property FTPUserTest() As String
             Get
-                Return CType(Me("FTPUserTest"),String)
+                Return CType(Me("FTPUserTest"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property Mode() As String
             Get
-                Return CType(Me("Mode"),String)
+                Return CType(Me("Mode"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property ModuleDocumentaire() As String
             Get
-                Return CType(Me("ModuleDocumentaire"),String)
+                Return CType(Me("ModuleDocumentaire"), String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("")>
         Public ReadOnly Property NumBuild() As String
             Get
-                Return CType(Me("NumBuild"),String)
+                Return CType(Me("NumBuild"), String)
             End Get
         End Property
-        
+
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _

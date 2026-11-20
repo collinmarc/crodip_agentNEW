@@ -1,4 +1,5 @@
 Imports System
+Imports System.CodeDom
 Imports System.IO
 Imports System.Net
 Imports System.Text
@@ -52,6 +53,7 @@ Public Class mainForm
     Friend WithEvents btn_Fermer As System.Windows.Forms.Button
     Friend WithEvents Lbl_Version As System.Windows.Forms.Label
     Private m_UseProd As Boolean
+    Friend WithEvents lblVersionInitiale As Label
     Private m_Except100Continue As Boolean
 
 
@@ -104,6 +106,7 @@ Public Class mainForm
         Me.btn_OK = New System.Windows.Forms.Button()
         Me.btn_Fermer = New System.Windows.Forms.Button()
         Me.Lbl_Version = New System.Windows.Forms.Label()
+        Me.lblVersionInitiale = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -121,7 +124,7 @@ Public Class mainForm
         '
         'progressBar_download
         '
-        Me.progressBar_download.Location = New System.Drawing.Point(104, 118)
+        Me.progressBar_download.Location = New System.Drawing.Point(104, 145)
         Me.progressBar_download.Maximum = 10
         Me.progressBar_download.Name = "progressBar_download"
         Me.progressBar_download.Size = New System.Drawing.Size(400, 23)
@@ -131,7 +134,7 @@ Public Class mainForm
         '
         Me.lbl_progressBar_download.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_progressBar_download.ForeColor = System.Drawing.Color.White
-        Me.lbl_progressBar_download.Location = New System.Drawing.Point(104, 76)
+        Me.lbl_progressBar_download.Location = New System.Drawing.Point(104, 103)
         Me.lbl_progressBar_download.Name = "lbl_progressBar_download"
         Me.lbl_progressBar_download.Size = New System.Drawing.Size(400, 42)
         Me.lbl_progressBar_download.TabIndex = 3
@@ -148,7 +151,7 @@ Public Class mainForm
         '
         'progressBar_files
         '
-        Me.progressBar_files.Location = New System.Drawing.Point(104, 172)
+        Me.progressBar_files.Location = New System.Drawing.Point(104, 199)
         Me.progressBar_files.Name = "progressBar_files"
         Me.progressBar_files.Size = New System.Drawing.Size(400, 23)
         Me.progressBar_files.TabIndex = 2
@@ -167,7 +170,7 @@ Public Class mainForm
         'btn_OK
         '
         Me.btn_OK.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_OK.Location = New System.Drawing.Point(346, 203)
+        Me.btn_OK.Location = New System.Drawing.Point(346, 230)
         Me.btn_OK.Name = "btn_OK"
         Me.btn_OK.Size = New System.Drawing.Size(74, 26)
         Me.btn_OK.TabIndex = 35
@@ -178,7 +181,7 @@ Public Class mainForm
         '
         Me.btn_Fermer.BackColor = System.Drawing.SystemColors.Control
         Me.btn_Fermer.Enabled = False
-        Me.btn_Fermer.Location = New System.Drawing.Point(432, 203)
+        Me.btn_Fermer.Location = New System.Drawing.Point(432, 230)
         Me.btn_Fermer.Name = "btn_Fermer"
         Me.btn_Fermer.Size = New System.Drawing.Size(72, 25)
         Me.btn_Fermer.TabIndex = 36
@@ -190,18 +193,30 @@ Public Class mainForm
         Me.Lbl_Version.AutoSize = True
         Me.Lbl_Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Lbl_Version.ForeColor = System.Drawing.Color.White
-        Me.Lbl_Version.Location = New System.Drawing.Point(101, 40)
+        Me.Lbl_Version.Location = New System.Drawing.Point(101, 67)
         Me.Lbl_Version.Name = "Lbl_Version"
         Me.Lbl_Version.Size = New System.Drawing.Size(45, 13)
         Me.Lbl_Version.TabIndex = 37
         Me.Lbl_Version.Text = "Label1"
         '
+        'lblVersionInitiale
+        '
+        Me.lblVersionInitiale.AutoSize = True
+        Me.lblVersionInitiale.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVersionInitiale.ForeColor = System.Drawing.Color.White
+        Me.lblVersionInitiale.Location = New System.Drawing.Point(104, 36)
+        Me.lblVersionInitiale.Name = "lblVersionInitiale"
+        Me.lblVersionInitiale.Size = New System.Drawing.Size(57, 13)
+        Me.lblVersionInitiale.TabIndex = 38
+        Me.lblVersionInitiale.Text = "Version :"
+        '
         'mainForm
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(512, 240)
+        Me.ClientSize = New System.Drawing.Size(512, 267)
         Me.ControlBox = False
+        Me.Controls.Add(Me.lblVersionInitiale)
         Me.Controls.Add(Me.Lbl_Version)
         Me.Controls.Add(Me.btn_Fermer)
         Me.Controls.Add(Me.btn_OK)
@@ -292,10 +307,10 @@ Public Class mainForm
                     End If
                     ' Mise à jour terminée
                     lbl_progressBar_download.Text = "Mise à jour terminée. Cliquer sur Poursuivre pour démarer le logiciel"
-                        Me.Refresh()
-                    Else
-                        ' Mise à jour terminée
-                        lbl_progressBar_download.Text = "Des erreurs sont survenues durant la mise à jour. Cliquer sur Poursuivre pour relancer la mise à jour et contacter le CRODIP si cela se reproduit"
+                    Me.Refresh()
+                Else
+                    ' Mise à jour terminée
+                    lbl_progressBar_download.Text = "Des erreurs sont survenues durant la mise à jour. Cliquer sur Poursuivre pour relancer la mise à jour et contacter le CRODIP si cela se reproduit"
                     Me.Refresh()
                 End If
 
@@ -306,7 +321,7 @@ Public Class mainForm
                 lbl_progressBar_download.Text = "Aucune mise à jour disponible."
 
             End If
-                Me.progressBar_download.Value = Me.progressBar_download.Maximum
+            Me.progressBar_download.Value = Me.progressBar_download.Maximum
 
 
         Catch ex As Exception
@@ -358,12 +373,12 @@ Public Class mainForm
             End If
 
             If Me.returnCode = 2 Then
-                    returnVal = True
-                    Me.infosUpdate = New UpdateInfo(wsResponse)
+                returnVal = True
+                Me.infosUpdate = New UpdateInfo(wsResponse)
                 Me.Lbl_Version.Text = "Version Cible : " & Me.infosUpdate.version
                 Me.Refresh()
 
-                End If
+            End If
 
         Catch ex As Exception
             CSDebug.dispError("Crodip_updater.Main._majCheck : " & ex.Message.ToString)
@@ -691,25 +706,32 @@ retryOldFile:
 
             strXpath = strXPathModel.Replace("%value%", "NumBuild")
             oNode = doc.SelectSingleNode(strXpath)
-            m_curVersion = oNode.InnerText()
             If oNode Is Nothing Then
-
+                Throw New Exception("Impossible de lire le fichier de config : NumBuild")
             End If
+            m_curVersion = oNode.InnerText()
 
             strXpath = strXPathModel.Replace("%value%", "WSCrodipURLTEST")
             oNode = doc.SelectSingleNode(strXpath)
+            If oNode Is Nothing Then
+                Throw New Exception("Impossible de lire le fichier de config : WSCrodipURLTEST")
+            End If
             m_urlTest = oNode.InnerText()
 
             strXpath = strXPathModel.Replace("%value%", "WSCrodipURL")
             oNode = doc.SelectSingleNode(strXpath)
+            If oNode Is Nothing Then
+                Throw New Exception("Impossible de lire le fichier de config : WSCrodipURL")
+            End If
             m_urlProd = oNode.InnerText()
 
             strXpath = strXPathModel.Replace("%value%", "WSCrodipProduction")
             oNode = doc.SelectSingleNode(strXpath)
-            m_UseProd = True
-            If Not oNode Is Nothing Then
-                m_UseProd = oNode.InnerText().ToUpper().Trim().Equals("TRUE")
+            If oNode Is Nothing Then
+                Throw New Exception("Impossible de lire le fichier de config : WSCrodipProduction")
             End If
+            m_UseProd = True
+            m_UseProd = oNode.InnerText().ToUpper().Trim().Equals("TRUE")
 #If DEBUG Then
             'En Debug on Force à False => utilisation du serveur de PréProd
             m_UseProd = False
@@ -749,8 +771,15 @@ retryOldFile:
             Dim fvi As FileVersionInfo = FileVersionInfo.GetVersionInfo(oAss.Location)
             Dim version As String = " v " & fvi.FileVersion
             Me.Text = Me.Text & version
+            If init() Then
+                Me.lblVersionInitiale.Text = "Version : " & m_curVersion & " Serveur:" & IIf(m_UseProd, m_urlProd, m_urlTest)
+            End If
         Catch ex As Exception
             CSDebug.dispError("main.Load ERR" & ex.Message)
         End Try
+    End Sub
+
+    Private Sub mainForm_ForeColorChanged(sender As Object, e As EventArgs) Handles Me.ForeColorChanged
+
     End Sub
 End Class

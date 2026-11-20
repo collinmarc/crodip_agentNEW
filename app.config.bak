@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="Crodip_agent.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="Crodip_agent.ReglagePulve" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="Crodip_agent.My.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<!-- on laise Crodip_agent.MySettings pour compatibilité avec l'ancienne version-->
+      <section name="Crodip_agent.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+    
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+	<!-- ========================================================= -->
+	<!-- My.Application.Log / System.Diagnostics                   -->
+	<!-- ========================================================= -->
+
+	<system.diagnostics>
+
+		<sources>
+			<source name="DefaultSource" switchName="DefaultSwitch">
+				<listeners>
+					<clear />
+					<add name="CrodipAgentFileLog" />
+				</listeners>
+			</source>
+			<source name="CSDebugSynchro" switchName="DefaultSwitch">
+				<listeners>
+					<clear />
+					<add name="SynchroFileLog" />
+				</listeners>
+			</source>
+		</sources>
+		<switches>
+			<add name="DefaultSwitch" value="Information" />
+		</switches>
+		<sharedListeners>
+			<add name="CrodipAgentFileLog" type="CRODIPWS.CrodipTraceListener, CRODIPWS" initializeData="tmp\crodipAgent.log" />
+			<add name="SynchroFileLog" type="CRODIPWS.CrodipTraceListenerSynchro, CRODIPWS" initializeData="tmp\synchro.log" />
+		</sharedListeners>
+	</system.diagnostics>
+<!--
+<system.diagnostics>
+
+  <sources>
+
+    
+<source name="DefaultSource" switchName="DefaultSwitch">
+	<listeners>
+		<clear />
+		<add name="CustomFileLog" />
+	</listeners>
+</source>
+
+<source name="MonObjet" switchName="MonObjetSwitch">
+	<listeners>
+		<clear />
+		<add name="MonObjetFileLog" />
+	</listeners>
+</source>
+
+</sources>
+
+<switches>
+	<add name="DefaultSwitch" value="Information" />
+	<add name="MonObjetSwitch" value="Verbose" />
+</switches>
+
+<sharedListeners>
+
+	<add name="CustomFileLog"
+         type="CRODIPWS.CrodipTraceListener, CRODIPWS"
+         initializeData="tmp\crodipAgent.log" />
+
+	<add name="MonObjetFileLog"
+         type="CRODIPWS.CrodipTraceListener, CRODIPWS"
+         initializeData="tmp\MonObjet.log" />
+
+</sharedListeners>
+
+</system.diagnostics>-->
+
+	<connectionStrings />
+  <startup useLegacyV2RuntimeActivationPolicy="true">
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.1" />
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Threading.Tasks.Extensions" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.2.4.0" newVersion="4.2.4.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.3.0" newVersion="6.0.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="SQLitePCLRaw.core" publicKeyToken="1488e028ca7ab535" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.1.5.1964" newVersion="2.1.5.1964" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.12" newVersion="10.0.0.12" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.1.2" newVersion="4.0.1.2" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ValueTuple" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Text.Encodings.Web" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="7.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Text.Json" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-7.0.0.3" newVersion="7.0.0.3" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.2.0.0" newVersion="4.2.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Buffers" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <applicationSettings>
+    <Crodip_agent.MySettings>
+      <setting name="AutoTestDefaultFileName" serializeAs="String">
+        <value>public/Exports/AutoTest.csv</value>
+      </setting>
+      <setting name="Expect100Continue" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ModuleDocumentaire" serializeAs="String">
+        <value>moduledocumentaire</value>
+      </setting>
+      <setting name="RepertoireParametres" serializeAs="String">
+        <value>moduledocumentaire/_parametres</value>
+      </setting>
+      <setting name="nbControlesAvantAlerteMax" serializeAs="String">
+        <value>10</value>
+      </setting>
+      <setting name="TxTVADefaut" serializeAs="String">
+        <value>20</value>
+      </setting>
+      <setting name="FTPuser" serializeAs="String">
+        <value>crodip-pdf</value>
+      </setting>
+      <setting name="FTPPassword" serializeAs="String">
+        <value>bvdkEn5xnQx</value>
+      </setting>
+      <setting name="FTPUserTest" serializeAs="String">
+        <value>crodip-pp-pdf</value>
+      </setting>
+      <setting name="FTPPasswordTest" serializeAs="String">
+        <value>3xnF9fTxWqL</value>
+      </setting>
+      <setting name="NbIdentifiantPulveMini" serializeAs="String">
+        <value>20</value>
+      </setting>
+      <setting name="DesacMat" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NumVersion" serializeAs="String">
+        <value>2.6</value>
+      </setting>
+      <setting name="SecurityProtocol" serializeAs="String">
+        <value>4080</value>
+      </setting>
+      <setting name="SynchroEtatDiagUrl" serializeAs="String">
+        <value>/index/envoi-diagnostic-pdf</value>
+      </setting>
+      <setting name="SynchroEtatDiagUser" serializeAs="String">
+        <value>inutilisé pour l'instant</value>
+      </setting>
+      <setting name="SynhcroEtatDiagPwd" serializeAs="String">
+        <value>inutilisé pour l'instant</value>
+      </setting>
+      <setting name="SynchroDescGetEtat" serializeAs="String">
+        <value>../pdf/</value>
+      </setting>
+      <setting name="SynchroEtatFVBancUrl" serializeAs="String">
+        <value>/index/envoi-fv-banc-pdf</value>
+      </setting>
+      <setting name="SynchroEtatFVManoUrl" serializeAs="String">
+        <value>/index/envoi-fv-mano-controle-pdf</value>
+      </setting>
+      <setting name="Mode" serializeAs="String">
+        <value>NORMAL</value>
+      </setting>
+      <setting name="checkNetwork" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="DB" serializeAs="String">
+        <value>crodip_agent</value>
+      </setting>
+      <setting name="BDDType" serializeAs="String">
+        <value>SQLITE</value>
+      </setting>
+      <setting name="StockPDF" serializeAs="String">
+        <value>DOSSIERCACHE</value>
+      </setting>
+      <setting name="SynchroEtatFVBancUser" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="SynchroEtatFVBancpwd" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="DBExtension" serializeAs="String">
+        <value>.db3</value>
+      </setting>
+      <setting name="WSCrodipURLTEST" serializeAs="String">
+        <value>https://admin-pp.crodip.net/server</value>
+      </setting>
+      <setting name="WSCrodipURL" serializeAs="String">
+        <value>https://admin.crodip.net/server</value>
+      </setting>
+      <setting name="FTPHost" serializeAs="String">
+        <value>admin.crodip.net</value>
+      </setting>
+      <setting name="FTPHostTest" serializeAs="String">
+        <value>admin-test.crodip.net</value>
+      </setting>
+      <setting name="GPSApplication" serializeAs="String">
+        <value>CRODIPGPSFULL.EXE</value>
+      </setting>
+      <setting name="GPSRepertoireExport" serializeAs="String">
+        <value>MESURESGPS</value>
+      </setting>
+      <setting name="AppercuRecap" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="AcquisitionGPS" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="urlCRODIP" serializeAs="String">
+        <value>admin.crodip.net</value>
+      </setting>
+      <setting name="aqw" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="SynchroEtatFVMAnoUser" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="SynchroEtatFVMAnoPwd" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="epulve" serializeAs="String">
+        <value>https://epulve.crodip.net</value>
+      </setting>
+      <setting name="AutoSync" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="WSCrodipProduction" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="DBVersionExpected" serializeAs="String">
+        <value>V4.4</value>
+      </setting>
+      <setting name="GestiondeTarifActif" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="GestionMetrologieActif" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NumBuild" serializeAs="String">
+        <value>20200101000000</value>
+      </setting>
+      <setting name="test" serializeAs="String">
+        <value>test</value>
+      </setting>
+    </Crodip_agent.MySettings>
+    <Crodip_agent.My.MySettings>
+      <setting name="AutoTestDefaultFileName" serializeAs="String">
+        <value>public/Exports/AutoTest.csv</value>
+      </setting>
+      <setting name="Expect100Continue" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ModuleDocumentaire" serializeAs="String">
+        <value>moduledocumentaire</value>
+      </setting>
+      <setting name="RepertoireParametres" serializeAs="String">
+        <value>moduledocumentaire/_parametres</value>
+      </setting>
+      <setting name="nbControlesAvantAlerteMax" serializeAs="String">
+        <value>10</value>
+      </setting>
+      <setting name="TxTVADefaut" serializeAs="String">
+        <value>20</value>
+      </setting>
+      <setting name="FTPuser" serializeAs="String">
+        <value>crodip-pdf</value>
+      </setting>
+      <setting name="FTPPassword" serializeAs="String">
+        <value>bvdkEn5xnQx</value>
+      </setting>
+      <setting name="FTPUserTest" serializeAs="String">
+        <value>crodip-pp-pdf</value>
+      </setting>
+      <setting name="FTPPasswordTest" serializeAs="String">
+        <value>3xnF9fTxWqL</value>
+      </setting>
+      <setting name="NbIdentifiantPulveMini" serializeAs="String">
+        <value>20</value>
+      </setting>
+      <setting name="DesacMat" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NumVersion" serializeAs="String">
+        <value>2.6</value>
+      </setting>
+      <setting name="SecurityProtocol" serializeAs="String">
+        <value>4080</value>
+      </setting>
+      <setting name="SynchroEtatDiagUrl" serializeAs="String">
+        <value>/index/envoi-diagnostic-pdf</value>
+      </setting>
+      <setting name="SynchroEtatDiagUser" serializeAs="String">
+        <value>inutilisé pour l'instant</value>
+      </setting>
+      <setting name="SynhcroEtatDiagPwd" serializeAs="String">
+        <value>inutilisé pour l'instant</value>
+      </setting>
+      <setting name="SynchroDescGetEtat" serializeAs="String">
+        <value>../pdf/</value>
+      </setting>
+      <setting name="SynchroEtatFVBancUrl" serializeAs="String">
+        <value>/index/envoi-fv-banc-pdf</value>
+      </setting>
+      <setting name="SynchroEtatFVManoUrl" serializeAs="String">
+        <value>/index/envoi-fv-mano-controle-pdf</value>
+      </setting>
+      <setting name="Mode" serializeAs="String">
+        <value>NORMAL</value>
+      </setting>
+      <setting name="checkNetwork" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="DB" serializeAs="String">
+        <value>crodip_agent</value>
+      </setting>
+      <setting name="BDDType" serializeAs="String">
+        <value>SQLITE</value>
+      </setting>
+      <setting name="StockPDF" serializeAs="String">
+        <value>DOSSIERCACHE</value>
+      </setting>
+      <setting name="SynchroEtatFVBancUser" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="SynchroEtatFVBancpwd" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="DBExtension" serializeAs="String">
+        <value>.db3</value>
+      </setting>
+      <setting name="WSCrodipURLTEST" serializeAs="String">
+        <value>https://admin-pp.crodip.net/server</value>
+      </setting>
+      <setting name="WSCrodipURL" serializeAs="String">
+        <value>https://admin.crodip.net/server</value>
+      </setting>
+      <setting name="FTPHost" serializeAs="String">
+        <value>admin.crodip.net</value>
+      </setting>
+      <setting name="FTPHostTest" serializeAs="String">
+        <value>admin-test.crodip.net</value>
+      </setting>
+      <setting name="GPSApplication" serializeAs="String">
+        <value>CRODIPGPSFULL.EXE</value>
+      </setting>
+      <setting name="GPSRepertoireExport" serializeAs="String">
+        <value>MESURESGPS</value>
+      </setting>
+      <setting name="AppercuRecap" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="AcquisitionGPS" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="urlCRODIP" serializeAs="String">
+        <value>admin.crodip.net</value>
+      </setting>
+      <setting name="aqw" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="SynchroEtatFVMAnoUser" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="SynchroEtatFVMAnoPwd" serializeAs="String">
+        <value>inutilisé</value>
+      </setting>
+      <setting name="epulve" serializeAs="String">
+        <value>https://epulve.crodip.net</value>
+      </setting>
+      <setting name="AutoSync" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="WSCrodipProduction" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="DBVersionExpected" serializeAs="String">
+        <value>V4.4</value>
+      </setting>
+      <setting name="GestiondeTarifActif" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="GestionMetrologieActif" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NumBuild" serializeAs="String">
+        <value>20260101010000</value>
+      </setting>
+    </Crodip_agent.My.MySettings>
+  </applicationSettings>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="CrodipBinding">
+          <security mode="Transport" />
+        </binding>
+        <binding name="CrodipBinding1" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://admin-pp.crodip.net/server" binding="basicHttpBinding" bindingConfiguration="CrodipBinding" contract="WSCRODIP2.CrodipServer" name="CrodipServer" />
+    </client>
+  </system.serviceModel>
+  <userSettings>
+	  <!-- on laisse Crodip_agent.MySettings pour compatibilité avec l'ancienne version-->
+	  <Crodip_agent.MySettings>
+    <setting name="DernierControleCommune" serializeAs="String">
+     <value />
+    </setting>
+    <setting name="DernierControleSite" serializeAs="String">
+     <value />
+    </setting>
+    <setting name="DernierControleNomDuSite" serializeAs="String">
+     <value />
+    </setting>
+    <setting name="DernierControleTerritoire" serializeAs="String">
+     <value />
+    </setting>
+    <setting name="DernierControleNomRepresentant" serializeAs="String">
+     <value />
+    </setting>
+    <setting name="DernierControleSiteSecurise" serializeAs="String">
+     <value>False</value>
+    </setting>
+    <setting name="DernierControleRecupResidus" serializeAs="String">
+     <value>False</value>
+    </setting>
+    <setting name="DernierControleInfosChezProp" serializeAs="String">
+     <value>False</value>
+    </setting>
+    <setting name="nbControlesAvantAlerte" serializeAs="String">
+     <value>0</value>
+    </setting>
+    <setting name="ModeSignature" serializeAs="String">
+     <value>wacom</value>
+    </setting>
+    <setting name="DernierControleCodePostal" serializeAs="String">
+     <value />
+    </setting>
+   </Crodip_agent.MySettings>
+  </userSettings>
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+      <provider invariantName="System.Data.SQLite.EF6" type="System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6" />
+    </providers>
+  </entityFramework>
+</configuration>

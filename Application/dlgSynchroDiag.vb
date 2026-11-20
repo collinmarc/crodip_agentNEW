@@ -127,7 +127,7 @@ Public Class dlgSynchroDiag
 
 
         ' Date de build
-        'GLOB_APPLI_NUMBUILD = CSSoftwareUpdate.getCurrentVersion
+        'GLOB_APPLI_NumBuild = CSSoftwareUpdate.getCurrentVersion
         'GLOB_APPLI_DATEBUILD = GlobalsCRODIP.GLOB_APPLI_BUILD.Substring(0, 8)
 
         ' Always on top

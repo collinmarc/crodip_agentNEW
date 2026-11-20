@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("CRODIP")>
 <Assembly: AssemblyProduct("Logiciel agent")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
-<Assembly: AssemblyTrademark("20251219100000")>
+<Assembly: AssemblyTrademark("20261118180000")>
 
 <Assembly: ComVisible(False)>
 

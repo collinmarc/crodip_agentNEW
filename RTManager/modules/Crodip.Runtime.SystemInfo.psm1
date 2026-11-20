@@ -24,18 +24,20 @@ function Get-CrodipSystemInventory {
 	# Nom de l'utilisateur courant
 	$username = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 	# Vérification des droits administrateur de la session actuelle
-	$principal = New-Object Security.Principal.WindowsPrincipal(
-		[System.Security.Principal.WindowsIdentity]::GetCurrent()
-	)
-	$isAdmin = $principal.IsInRole(
-		[System.Security.Principal.WindowsBuiltInRole]::Administrator
-	)
-	if (-not $isAdmin) {
-		$isAdmin = $principal.IsInRole(
-			[System.Security.Principal.WindowsBuiltInRole]::Administrateurs
-		)
-	}
-	#Lecture de la clé de registre pour avoir le Numero de PC
+# Récupération des groupes de l'utilisateur
+$groups = whoami /groups /fo csv | ConvertFrom-Csv
+
+# Vérification du SID du groupe Administrateurs
+$isAdmin = $false
+
+foreach ($group in $groups) {
+    if ($group.PSObject.Properties.Value -contains 'S-1-5-32-544') {
+        $isAdmin = $true
+        break
+    }
+}
+
+#Lecture de la clé de registre pour avoir le Numero de PC
 	$CRODIP_PC = "Unknown"
 	if (Test-Path "HKCU:\CRODIP") {
 		$regKey = Get-ItemProperty -Path "HKCU:\CRODIP"

@@ -910,6 +910,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="MySettingsGroupName.vb" />
     <Compile Include="Observe.vb" />
     <Compile Include="ReglagePulve.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -932,6 +933,7 @@
     <Compile Include="Application\Signature\frmSignClientWacom.vb">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="app.config" />
     <None Include="crodip.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2518,7 +2520,7 @@
     <None Include="My Project\DataSources\ManometreEtalon.datasource" />
     <None Include="My Project\DataSources\Materiel.datasource" />
     <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="public\docs\facture.pdf">
@@ -2941,10 +2943,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Web References\WSCrodip_prod\crodip.wsdl" />
     <None Include="Web References\WSCrodip_prod\IdentifiantPulverisateur1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
