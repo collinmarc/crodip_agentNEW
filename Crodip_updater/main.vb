@@ -249,6 +249,7 @@ Public Class mainForm
     'Private _thread_majSoftware As Thread'
     Private Sub majVersion()
         Dim bReturn As Boolean
+        My.Application.Log.WriteEntry("--majVersion")
 
         Try
             'Initialisation
@@ -337,6 +338,8 @@ Public Class mainForm
 
     ' Vérifications pre-update
     Private Sub _majPrepare()
+        My.Application.Log.WriteEntry("--majPrepare")
+
         ' On vérifie qu'on est bien dans le dossier du logiciel agent
         If Not File.Exists(My.Settings.logicielAgent_fileName) Then
             MsgBox("Logiciel Agent introuvable dans le dossier.", MsgBoxStyle.Critical)
@@ -360,9 +363,11 @@ Public Class mainForm
 
     Private Function _majCheck() As Boolean
         Dim returnVal As Boolean = False
+
         '#########################################################
         Dim wsResponse As Object = Nothing
 
+        My.Application.Log.WriteEntry("--majCheck")
         Try
             If My.Settings.chekUpdates = "WS" Then
                 'Si le paramètre est à WS on demande la réponse par WebServices
@@ -391,6 +396,7 @@ Public Class mainForm
     ' Récupération et installation des mises à jour de la base de données
     Private Function _majDatabase() As Boolean
         Dim bReturn As Boolean
+        My.Application.Log.WriteEntry("--majDataBase")
         Try
             If Me.infosUpdate.hasSql Then
                 Dim Processus As New System.Diagnostics.Process
@@ -413,27 +419,116 @@ Public Class mainForm
     End Enum
     Private Function _majScripts() As Boolean
         Dim bReturn As Boolean
+        My.Application.Log.WriteEntry("--majScripts")
+
         Try
             If Me.infosUpdate.hasBAT Then
                 Dim fichierBat As String = My.Settings.update_bat_filename
-                If File.Exists(fichierBat) Then
-                    Dim psi As New ProcessStartInfo With {
-                                                                                                .FileName = fichierBat,
-                                                                                                .WorkingDirectory = Path.GetDirectoryName(fichierBat),
-                                                                                                .UseShellExecute = True,
-                                                                                                .WindowStyle = ProcessWindowStyle.Normal
-                                                                                               }
 
-                    Try
-                        Using p As Process = Process.Start(psi)
-                            p.WaitForExit()
-                            MessageBox.Show("Le script est terminé. Code retour : " & p.ExitCode)
-                        End Using
-
-                    Catch ex As Exception
-                        MessageBox.Show("Erreur _majscripts: " & ex.Message)
-                    End Try
+                If Not File.Exists(fichierBat) Then
+                    My.Application.Log.WriteEntry("BAT introuvable : " & fichierBat,
+                                                   TraceEventType.Error)
+                    Return False
                 End If
+
+                Try
+                    Dim psi As New ProcessStartInfo With {
+                        .FileName = "cmd.exe",
+                        .Arguments = "/c """ & fichierBat & """",
+                        .WorkingDirectory = Path.GetDirectoryName(fichierBat),
+                        .UseShellExecute = False,
+                        .RedirectStandardOutput = True,
+                        .RedirectStandardError = True,
+                        .CreateNoWindow = True
+                    }
+
+                    Using p As New Process()
+
+                        p.StartInfo = psi
+
+                        My.Application.Log.WriteEntry("Lancement BAT : " & fichierBat)
+
+                        If Not p.Start() Then
+                            Throw New Exception("Impossible de démarrer le processus.")
+                        End If
+
+                        ' Vérification des redirections
+                        My.Application.Log.WriteEntry(
+                            "RedirectStandardOutput = " & p.StartInfo.RedirectStandardOutput.ToString())
+
+                        My.Application.Log.WriteEntry(
+                            "RedirectStandardError = " & p.StartInfo.RedirectStandardError.ToString())
+
+                        ' Lecture asynchrone des sorties
+                        AddHandler p.OutputDataReceived,
+                            Sub(sender, e)
+                                If e.Data IsNot Nothing Then
+                                    My.Application.Log.WriteEntry("BAT : " & e.Data)
+                                End If
+                            End Sub
+
+                        AddHandler p.ErrorDataReceived,
+                            Sub(sender, e)
+                                If e.Data IsNot Nothing Then
+                                    My.Application.Log.WriteEntry("BAT ERROR : " & e.Data,
+                                                                  TraceEventType.Error)
+                                End If
+                            End Sub
+
+                        p.BeginOutputReadLine()
+                        p.BeginErrorReadLine()
+
+                        p.WaitForExit()
+
+                        ' Attend la fin du traitement des flux
+                        p.WaitForExit()
+
+                        My.Application.Log.WriteEntry(
+                            "Fin BAT - Code retour : " & p.ExitCode)
+
+                    End Using
+
+                Catch ex As Exception
+
+                    My.Application.Log.WriteException(ex)
+
+                End Try
+                'Dim fichierBat As String = My.Settings.update_bat_filename
+                'If File.Exists(fichierBat) Then
+                '    Dim psi As New ProcessStartInfo With {
+                '                                                                                .FileName = fichierBat,
+                '                                                                                .WorkingDirectory = Path.GetDirectoryName(fichierBat),
+                '                                                                                .UseShellExecute = False,
+                '                                                                                .RedirectStandardOutput = False,
+                '                                                                                .RedirectStandardError = False,
+                '                                                                                .CreateNoWindow = False
+                '                                                                               }
+
+                '    Try
+                '        Using p As New Process()
+                '            p.StartInfo = psi
+                '            p.Start()
+                '            Dim resultat As String = p.StandardOutput.ReadToEnd()
+
+                '            Dim erreur As String = p.StandardError.ReadToEnd()
+
+                '            p.WaitForExit()
+                '            If p.ExitCode = 0 Then
+                '                My.Application.Log.WriteEntry("Script [" & fichierBat & "] executé avec succès")
+                '                My.Application.Log.WriteEntry(resultat)
+                '            Else
+                '                My.Application.Log.WriteEntry("ERREUR Script [" & fichierBat & "] ")
+                '                My.Application.Log.WriteEntry("RESULAT= " & resultat)
+                '                My.Application.Log.WriteEntry("Erreur= " & erreur)
+                '                MessageBox.Show(
+                '        "Erreur lors de l'exécution du script [" & fichierBat & "]",
+                '        "Erreur BAT")
+                '            End If
+                '        End Using
+
+                '    Catch ex As Exception
+                '        MessageBox.Show("Erreur _majscripts: " & ex.Message)
+                '    End Try
             End If
             If Me.infosUpdate.hasPS1 Then
                 ExecutePowerShell(POWERSHELL.PS1)
@@ -449,6 +544,8 @@ Public Class mainForm
         Return bReturn
     End Function
     Private Sub ExecutePowerShell(pPOWERSHELL As POWERSHELL)
+        My.Application.Log.WriteEntry("--ExecutePowerShell")
+
         Dim scriptPath As String
         If pPOWERSHELL = POWERSHELL.PS1 Then
             scriptPath =
@@ -500,18 +597,14 @@ Public Class mainForm
 
                 ' Afficher le résultat
                 If proc.ExitCode = 0 Then
-                    MessageBox.Show(
-                        "Script exécuté avec succès." &
-                        Environment.NewLine &
-                        resultat,
-                        "PowerShell")
+                    My.Application.Log.WriteEntry("Script [" & scriptPath & "] executé avec succès")
+                    My.Application.Log.WriteEntry(resultat)
                 Else
+                    My.Application.Log.WriteEntry("ERREUR Script [" & scriptPath & "] ")
+                    My.Application.Log.WriteEntry("RESULAT= " & resultat)
+                    My.Application.Log.WriteEntry("Erreur= " & erreur)
                     MessageBox.Show(
-                        "Erreur lors de l'exécution :" &
-                        Environment.NewLine &
-                        erreur &
-                        Environment.NewLine &
-                        resultat,
+                        "Erreur lors de l'exécution du script [" & scriptPath & "]",
                         "Erreur PowerShell")
                 End If
             End Using
@@ -528,6 +621,7 @@ Public Class mainForm
     ' Téléchargement des mises à jour
     Private Function _majDownload() As Boolean
         Dim bReturn As Boolean
+        My.Application.Log.WriteEntry("--majDownload")
 
         lbl_Files.Visible = True
         progressBar_files.Visible = True
@@ -551,6 +645,8 @@ Public Class mainForm
 
     ' Installation des mises à jour
     Private Sub _majSoftware()
+        My.Application.Log.WriteEntry("--majSoftware")
+
 
         ' On parcourt le repertoire temporaire des fichiers téléchargés
         Dim nbElements As Integer = Directory.GetFiles(Me.path_tempTarget).Length() + Directory.GetDirectories(Me.path_tempTarget).Length
@@ -566,6 +662,7 @@ Public Class mainForm
 
     End Sub
     Private Sub _majSoftware_copyDirContent(ByVal srcDir As String, ByVal targetDir As String, ByVal progressBar_download As ProgressBar)
+        My.Application.Log.WriteEntry("--majSofware_CopyDirContent")
 
         ' On commence par copier les fichiers
         'Try
@@ -674,6 +771,10 @@ retryOldFile:
         Dim strXPathModelUser As String = "/configuration/userSettings/[MYSETTINGS]/setting[@name='%value%']/value"
         Dim strXpath As String
         Dim bReturn As Boolean
+
+        My.Application.Log.WriteEntry("--init")
+        My.Application.Log.DefaultFileLogWriter.Flush()
+
         Try
 
             'Récupération du fichier de config du logiciel Agent
@@ -779,7 +880,4 @@ retryOldFile:
         End Try
     End Sub
 
-    Private Sub mainForm_ForeColorChanged(sender As Object, e As EventArgs) Handles Me.ForeColorChanged
-
-    End Sub
 End Class
